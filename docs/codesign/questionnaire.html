@@ -1,0 +1,756 @@
+<title>שאלון אפליקציית הפועל ירושלים</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    direction: rtl;
+    --red: #E4002B;
+    --red-ink: #FFFFFF;
+    --red-soft: #FCE8EC;
+    --bg: #FAF7F6;
+    --surface: #FFFFFF;
+    --surface-2: #F3EDEC;
+    --text: #1C1417;
+    --muted: #6E5F63;
+    --line: #E6DCDD;
+    --focus: #B00021;
+    --ok: #1E7A3C;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --red: #FF4560;
+      --red-ink: #1A0B0F;
+      --red-soft: #3A1B22;
+      --bg: #140E10;
+      --surface: #1F171A;
+      --surface-2: #2A2024;
+      --text: #F5EDEF;
+      --muted: #A8969B;
+      --line: #3A2E32;
+      --focus: #FF7A8C;
+      --ok: #5CC57E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --red: #FF4560;
+    --red-ink: #1A0B0F;
+    --red-soft: #3A1B22;
+    --bg: #140E10;
+    --surface: #1F171A;
+    --surface-2: #2A2024;
+    --text: #F5EDEF;
+    --muted: #A8969B;
+    --line: #3A2E32;
+    --focus: #FF7A8C;
+    --ok: #5CC57E;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", -apple-system, "Helvetica Neue", "Arial Hebrew", "Noto Sans Hebrew", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    direction: rtl;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 20px 80px; }
+
+  /* Header — black band with kit stripes */
+  header.hero {
+    background: #17090D;
+    color: #FFF6F7;
+    padding: 28px 20px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: -60px;
+    top: -40px;
+    width: 220px;
+    height: 300px;
+    background: repeating-linear-gradient(60deg, var(--red) 0 18px, transparent 18px 44px);
+    opacity: 0.55;
+    transform: rotate(8deg);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 680px; margin: 0 auto; position: relative; }
+  .hero .club {
+    display: inline-block;
+    background: #E4002B;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    margin: 0 0 6px;
+    font-size: clamp(26px, 5vw, 36px);
+    font-weight: 800;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .hero p { margin: 0; color: #D8C3C8; max-width: 46ch; }
+
+  /* Progress */
+  .progress {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    padding: 14px 20px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .progress-inner { max-width: 680px; margin: 0 auto; }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .progress-meta .step-num { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text); }
+  .bar { height: 6px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
+  .bar > div { height: 100%; background: var(--red); border-radius: 3px; transition: width 0.3s ease; }
+  @media (prefers-reduced-motion: reduce) { .bar > div { transition: none; } }
+
+  /* Sections */
+  .screen { padding-top: 28px; }
+  .screen h2 { font-size: 24px; font-weight: 800; margin: 0 0 4px; text-wrap: balance; }
+  .screen .intro { color: var(--muted); margin: 0 0 24px; }
+  .q { margin-bottom: 28px; }
+  .q-label { font-weight: 700; margin-bottom: 4px; }
+  .q-hint { font-size: 13.5px; color: var(--muted); margin-bottom: 10px; }
+
+  /* Single-choice cards */
+  .cards { display: flex; flex-direction: column; gap: 8px; }
+  .card {
+    display: block;
+    width: 100%;
+    text-align: start;
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font: inherit;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .card .card-title { font-weight: 600; }
+  .card .card-desc { display: block; font-size: 13.5px; color: var(--muted); margin-top: 2px; }
+  .card:hover { border-color: var(--red); }
+  .card.selected { border-color: var(--red); background: var(--red-soft); }
+  .card.selected .card-title::before { content: "● "; color: var(--red); }
+
+  /* Multi-select chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font: inherit;
+    font-size: 14.5px;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .chip:hover { border-color: var(--red); }
+  .chip.selected { background: var(--red); border-color: var(--red); color: var(--red-ink); font-weight: 600; }
+
+  /* Ranking */
+  .rank-list { display: flex; flex-direction: column; gap: 8px; }
+  .rank-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font: inherit;
+    color: var(--text);
+    text-align: start;
+    cursor: pointer;
+  }
+  .rank-item:hover { border-color: var(--red); }
+  .rank-badge {
+    flex: 0 0 28px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1.5px dashed var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+  }
+  .rank-item.ranked { border-color: var(--red); }
+  .rank-item.ranked .rank-badge { background: var(--red); border: none; color: var(--red-ink); }
+  .rank-reset { background: none; border: none; color: var(--muted); font: inherit; font-size: 13px; cursor: pointer; text-decoration: underline; padding: 4px 0; }
+
+  /* Rating matrix */
+  .rate-row { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
+  .rate-name { font-weight: 600; margin-bottom: 8px; font-size: 15px; }
+  .rate-seg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  .rate-seg button {
+    font: inherit; font-size: 12.5px;
+    padding: 6px 2px;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    color: var(--muted);
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1.3;
+  }
+  .rate-seg button.selected { background: var(--red); border-color: var(--red); color: var(--red-ink); font-weight: 700; }
+
+  /* Text */
+  textarea, input[type="text"] {
+    width: 100%;
+    font: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    resize: vertical;
+  }
+  textarea { min-height: 80px; }
+
+  :is(.card, .chip, .rank-item, .rate-seg button, .btn, textarea, input):focus-visible {
+    outline: 2.5px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  /* Nav */
+  .nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 36px; }
+  .btn {
+    font: inherit; font-weight: 700;
+    border-radius: 10px;
+    padding: 11px 26px;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+  }
+  .btn-primary { background: var(--red); color: var(--red-ink); border-color: var(--red); }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-ghost { background: none; color: var(--muted); border-color: var(--line); }
+  .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+
+  /* Summary */
+  .sum-section { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; }
+  .sum-section h3 { margin: 0 0 10px; font-size: 16px; color: var(--red); }
+  .sum-q { margin-bottom: 10px; }
+  .sum-q .sq { font-size: 13px; color: var(--muted); }
+  .sum-q .sa { font-size: 15px; }
+  .sum-q .sa.empty { color: var(--muted); font-style: italic; }
+  .export-box { margin-top: 20px; }
+  .export-box textarea { min-height: 180px; font-size: 13px; direction: rtl; }
+  .copied { color: var(--ok); font-weight: 700; font-size: 14px; margin-inline-start: 10px; }
+</style>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="club">הפועל ירושלים 🏀</span>
+    <h1>מעצבים יחד את אפליקציית האוהדים</h1>
+    <p>שאלון קצר (כ־7 דקות) שיגדיר את המטרות, ההיקף והאמצעים של האפליקציה. בסוף — מעתיקים את התשובות ומדביקים בחזרה בצ׳אט.</p>
+  </div>
+</header>
+
+<div class="progress" id="progressWrap" hidden>
+  <div class="progress-inner">
+    <div class="progress-meta">
+      <span id="stepTitle"></span>
+      <span class="step-num" id="stepNum"></span>
+    </div>
+    <div class="bar"><div id="barFill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<main class="wrap" id="app"></main>
+
+<script>
+"use strict";
+
+const RATE_LEVELS = ["לא צריך", "נחמד שיהיה", "חשוב", "חובה בגרסה 1"];
+
+const SECTIONS = [
+  {
+    id: "vision", title: "חזון ומטרות",
+    intro: "מה בכלל אומר ״האפליקציה הכי טובה שיש״? נתחיל מהכיוון.",
+    questions: [
+      { id: "goals_rank", type: "rank",
+        label: "דירוג מטרות־על",
+        hint: "הקישו על המטרות לפי סדר החשיבות — הראשונה שתבחרו תקבל מקום 1.",
+        items: [
+          "לא לפספס אף רגע במשחק (עדכונים חיים והתראות)",
+          "תחושת קהילה ושייכות בין האוהדים",
+          "מקור מידע אחד לכל מה שקשור למועדון",
+          "להגדיל את קהל האוהדים ולקרב אוהדים חדשים",
+          "בן לוויה ליום משחק — הגעה, כרטיסים, אווירה",
+        ] },
+      { id: "success_vision", type: "text",
+        label: "הצלחה בעוד שנה",
+        hint: "במשפט אחד: איך תיראה הצלחה של האפליקציה בעוד שנה מהיום?" },
+    ],
+  },
+  {
+    id: "audience", title: "קהל יעד",
+    intro: "אי אפשר לבנות לכולם בבת אחת — למי בונים קודם?",
+    questions: [
+      { id: "primary_audience", type: "single",
+        label: "הקהל הראשי של גרסה 1",
+        options: [
+          { t: "אוהדים שרופים ומנויים", d: "מי שנמצא בכל משחק ורוצה עומק" },
+          { t: "אוהדים מזדמנים", d: "עוקבים מרחוק, מגיעים לפעמים" },
+          { t: "משפחות וילדים", d: "חוויה נגישה וקלילה" },
+          { t: "אוהדים מחוץ לישראל", d: "עוקבים אחרי הקבוצה מרחוק" },
+        ] },
+      { id: "secondary_audience", type: "multi",
+        label: "קהלים נוספים שחשוב לשרת בהמשך",
+        hint: "אפשר לבחור כמה.",
+        options: ["אוהדים שרופים ומנויים", "אוהדים מזדמנים", "משפחות וילדים", "אוהדים מחוץ לישראל", "אוהדי כדורסל כלליים בישראל"] },
+      { id: "languages", type: "single",
+        label: "שפות",
+        options: [
+          { t: "עברית בלבד בשלב הראשון" },
+          { t: "עברית ואנגלית מההתחלה" },
+          { t: "עברית קודם, אנגלית בהמשך" },
+        ] },
+    ],
+  },
+  {
+    id: "features", title: "היקף פיצ׳רים",
+    intro: "דרגו כל פיצ׳ר — זה מה שיקבע מה נכנס לגרסה הראשונה ומה מחכה.",
+    questions: [
+      { id: "feature_rating", type: "rate",
+        label: "כמה כל פיצ׳ר חשוב?",
+        items: [
+          "מרכז משחק חי — תוצאות, רבעים וסטטיסטיקה בזמן אמת",
+          "לוח משחקים, תוצאות וטבלת ליגה",
+          "סגל ופרופילי שחקנים עם סטטיסטיקות",
+          "התראות פוש — תחילת משחק, תוצאות, חדשות",
+          "פיד חדשות ועדכוני מועדון",
+          "מידע על כרטיסים והיכל (ארנה פיס)",
+          "קהילת אוהדים — פורום או צ׳אט",
+          "ניחושי תוצאות, טריוויה ומשחקונים",
+          "ספריית שירי יציע ומזמורים",
+          "היסטוריה, הישגים וגביעים של המועדון",
+          "קישורים לחנות ולמרצ׳נדייז",
+          "מצב יום משחק — מסך שני בזמן המשחק",
+        ] },
+      { id: "dream_feature", type: "text",
+        label: "פיצ׳ר חלומי",
+        hint: "יש רעיון שלא הופיע ברשימה? זה המקום." },
+    ],
+  },
+  {
+    id: "content", title: "תוכן ומקורות מידע",
+    intro: "אפליקציה חיה רק כמו התוכן שבה — מאיפה הוא יגיע ומי ידאג לו?",
+    questions: [
+      { id: "sources", type: "multi",
+        label: "מקורות תוכן",
+        hint: "אפשר לבחור כמה.",
+        options: ["האתר והרשתות הרשמיות של המועדון", "אתרי הליגה והמפעלים (ליגת ווינר, ליגות אירופה)", "סיקור עצמאי שלי או של מתנדבים", "תוכן שיוצרים האוהדים עצמם"] },
+      { id: "freshness", type: "single",
+        label: "טריות המידע",
+        options: [
+          { t: "בזמן אמת בזמן משחקים", d: "עדכונים חיים תוך כדי המשחק" },
+          { t: "כמה עדכונים ביום" },
+          { t: "עדכון יומי מספיק" },
+        ] },
+      { id: "maintainer", type: "single",
+        label: "מי יתחזק את התוכן?",
+        options: [
+          { t: "אני לבד" },
+          { t: "אני יחד עם מתנדבים מהקהילה" },
+          { t: "אוטומציה כמה שאפשר, התערבות מינימלית" },
+        ] },
+    ],
+  },
+  {
+    id: "platform", title: "פלטפורמה ואמצעים",
+    intro: "איך האפליקציה מגיעה לאוהדים — ובאילו אילוצים.",
+    questions: [
+      { id: "platform_choice", type: "single",
+        label: "פלטפורמה",
+        options: [
+          { t: "אפליקציית ווב (PWA)", d: "נפתחת בדפדפן, ניתנת להתקנה למסך הבית, בלי חנויות" },
+          { t: "אפליקציה בחנויות (iOS ו־Android)", d: "חוויה נייטיב מלאה, דורשת חשבונות מפתח" },
+          { t: "ווב קודם, חנויות אחר כך", d: "מתחילים מהר ומתרחבים" },
+        ] },
+      { id: "constraints", type: "multi",
+        label: "אילוצים ועקרונות",
+        hint: "אפשר לבחור כמה.",
+        options: ["הכול בחינם — אחסון ושירותים חינמיים בלבד", "קוד פתוח", "עבודה בסיסית גם בלי אינטרנט", "נגישות מלאה", "בלי איסוף מידע אישי"] },
+      { id: "tech_level", type: "single",
+        label: "הרקע הטכני שלך",
+        hint: "כדי שנדע איך לחלק את העבודה בינינו.",
+        options: [
+          { t: "מפתח/ת — אני יכול/ה לכתוב קוד" },
+          { t: "טכנולוגי/ת אבל לא מפתח/ת" },
+          { t: "לא טכני/ת — קלוד יבנה הכול" },
+        ] },
+    ],
+  },
+  {
+    id: "community", title: "קהילה ומעורבות",
+    intro: "כמה מהאפליקציה שייך לאוהדים עצמם?",
+    questions: [
+      { id: "accounts", type: "single",
+        label: "חשבונות משתמשים",
+        options: [
+          { t: "בלי חשבונות בכלל", d: "הכי פשוט ופרטי" },
+          { t: "חשבון אופציונלי", d: "מי שרוצה — נרשם ומקבל יותר" },
+          { t: "חשבון חובה לפיצ׳רים קהילתיים" },
+        ] },
+      { id: "ugc", type: "single",
+        label: "תוכן גולשים",
+        options: [
+          { t: "בלי תוכן גולשים" },
+          { t: "תגובות וריאקציות בלבד" },
+          { t: "פוסטים ותמונות של אוהדים" },
+          { t: "הכול, כולל צ׳אט חי בזמן משחקים" },
+        ] },
+      { id: "moderation", type: "single",
+        label: "גישה למודרציה",
+        options: [
+          { t: "אישור ידני שלי לפני פרסום" },
+          { t: "פרסום חופשי + דיווחים והסרה" },
+          { t: "סינון אוטומטי ככל האפשר" },
+        ] },
+    ],
+  },
+  {
+    id: "design", title: "עיצוב וזהות",
+    intro: "איך האפליקציה תיראה ותישמע.",
+    questions: [
+      { id: "visual_style", type: "single",
+        label: "שפה עיצובית",
+        options: [
+          { t: "אדום־שחור קלאסי של הפועל", d: "זהות מועדון חזקה ומסורתית" },
+          { t: "מודרני ונקי עם נגיעות אדומות", d: "מינימליסטי, האדום כמבטא" },
+          { t: "נועז בסגנון יציע", d: "גרפיטי, סטיקרים, אנרגיה של קהל" },
+        ] },
+      { id: "tone", type: "single",
+        label: "טון דיבור",
+        options: [
+          { t: "רשמי ומקצועי" },
+          { t: "חברי וקליל" },
+          { t: "יציע — סלנג, הומור ואווירה" },
+        ] },
+      { id: "theme_mode", type: "single",
+        label: "מצב תצוגה",
+        options: [
+          { t: "בהיר" },
+          { t: "כהה" },
+          { t: "שניהם, לפי הגדרת המכשיר" },
+        ] },
+    ],
+  },
+  {
+    id: "success", title: "הצלחה ואילוצים",
+    intro: "איך נדע שהצלחנו — ומה בכוונה נשאיר בחוץ.",
+    questions: [
+      { id: "metrics", type: "multi",
+        label: "מדדי הצלחה עיקריים",
+        hint: "אפשר לבחור כמה.",
+        options: ["מספר משתמשים כולל", "שימוש בימי משחק", "פעילות קהילתית (תגובות, ניחושים)", "חזרה שבועית של משתמשים", "דירוגים ופידבק של אוהדים"] },
+      { id: "timeline", type: "single",
+        label: "יעד לגרסה ראשונה",
+        options: [
+          { t: "תוך חודש" },
+          { t: "עד פתיחת העונה" },
+          { t: "תוך שלושה חודשים" },
+          { t: "בלי לחץ — שיהיה מוכן כשיהיה מעולה" },
+        ] },
+      { id: "out_of_scope", type: "text",
+        label: "מחוץ לתחום",
+        hint: "מה במפורש לא ייכנס לגרסה הראשונה?" },
+      { id: "anything_else", type: "text",
+        label: "עוד משהו?",
+        hint: "כל מחשבה, חלום או הסתייגות שלא נכנסו לשאלון." },
+    ],
+  },
+];
+
+const TOTAL = SECTIONS.length;
+const app = document.getElementById("app");
+const progressWrap = document.getElementById("progressWrap");
+let screen = -1; // -1 welcome, 0..TOTAL-1 sections, TOTAL summary
+let answers = {};
+
+try {
+  const saved = localStorage.getItem("hapoel-questionnaire");
+  if (saved) answers = JSON.parse(saved);
+} catch (e) {}
+
+function save() {
+  try { localStorage.setItem("hapoel-questionnaire", JSON.stringify(answers)); } catch (e) {}
+}
+
+function el(tag, cls, html) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (html !== undefined) n.innerHTML = html;
+  return n;
+}
+
+function render() {
+  app.innerHTML = "";
+  window.scrollTo(0, 0);
+  if (screen === -1) { progressWrap.hidden = true; renderWelcome(); return; }
+  progressWrap.hidden = false;
+  if (screen === TOTAL) { renderSummary(); updateProgress("סיכום", TOTAL); return; }
+  const sec = SECTIONS[screen];
+  updateProgress(sec.title, screen);
+  renderSection(sec);
+}
+
+function updateProgress(title, idx) {
+  document.getElementById("stepTitle").textContent = title;
+  document.getElementById("stepNum").textContent =
+    idx === TOTAL ? "סיום" : "שלב " + (idx + 1) + " מתוך " + TOTAL;
+  document.getElementById("barFill").style.width = Math.round(((idx) / TOTAL) * 100) + "%";
+}
+
+function renderWelcome() {
+  const s = el("div", "screen");
+  s.appendChild(el("h2", "", "לפני שכותבים שורת קוד אחת"));
+  const p = el("p", "intro");
+  p.textContent = "האפליקציה הזאת תיבנה סביב מה שחשוב לך ולאוהדים — לא סביב מה שנוח לבנות. שמונה שלבים קצרים: חזון, קהל, פיצ׳רים, תוכן, פלטפורמה, קהילה, עיצוב והצלחה. אפשר לדלג על כל שאלה, ואפשר לחזור אחורה. התשובות נשמרות בדפדפן.";
+  s.appendChild(p);
+  const nav = el("div", "nav");
+  nav.appendChild(el("span"));
+  const b = el("button", "btn btn-primary", "בואו נתחיל");
+  b.onclick = () => { screen = 0; render(); };
+  nav.appendChild(b);
+  s.appendChild(nav);
+  app.appendChild(s);
+}
+
+function renderSection(sec) {
+  const s = el("div", "screen");
+  s.appendChild(el("h2", "", sec.title));
+  const intro = el("p", "intro"); intro.textContent = sec.intro; s.appendChild(intro);
+
+  sec.questions.forEach(q => {
+    const qw = el("div", "q");
+    const lbl = el("div", "q-label"); lbl.textContent = q.label; qw.appendChild(lbl);
+    if (q.hint) { const h = el("div", "q-hint"); h.textContent = q.hint; qw.appendChild(h); }
+    if (q.type === "single") renderSingle(qw, q);
+    else if (q.type === "multi") renderMulti(qw, q);
+    else if (q.type === "rank") renderRank(qw, q);
+    else if (q.type === "rate") renderRate(qw, q);
+    else if (q.type === "text") renderText(qw, q);
+    s.appendChild(qw);
+  });
+
+  const nav = el("div", "nav");
+  const back = el("button", "btn btn-ghost", "חזרה");
+  back.onclick = () => { screen--; render(); };
+  nav.appendChild(back);
+  const next = el("button", "btn btn-primary", screen === TOTAL - 1 ? "לסיכום" : "הבא");
+  next.onclick = () => { screen++; render(); };
+  nav.appendChild(next);
+  s.appendChild(nav);
+  app.appendChild(s);
+}
+
+function renderSingle(qw, q) {
+  const box = el("div", "cards");
+  q.options.forEach(opt => {
+    const t = typeof opt === "string" ? opt : opt.t;
+    const b = el("button", "card");
+    b.type = "button";
+    let inner = '<span class="card-title"></span>';
+    if (opt.d) inner += '<span class="card-desc"></span>';
+    b.innerHTML = inner;
+    b.querySelector(".card-title").textContent = t;
+    if (opt.d) b.querySelector(".card-desc").textContent = opt.d;
+    if (answers[q.id] === t) b.classList.add("selected");
+    b.onclick = () => {
+      answers[q.id] = answers[q.id] === t ? undefined : t;
+      save();
+      box.querySelectorAll(".card").forEach(c => c.classList.remove("selected"));
+      if (answers[q.id]) b.classList.add("selected");
+    };
+    box.appendChild(b);
+  });
+  qw.appendChild(box);
+}
+
+function renderMulti(qw, q) {
+  const box = el("div", "chips");
+  const cur = () => answers[q.id] || [];
+  q.options.forEach(t => {
+    const b = el("button", "chip");
+    b.type = "button";
+    b.textContent = t;
+    if (cur().includes(t)) b.classList.add("selected");
+    b.onclick = () => {
+      const c = cur();
+      answers[q.id] = c.includes(t) ? c.filter(x => x !== t) : [...c, t];
+      save();
+      b.classList.toggle("selected");
+    };
+    box.appendChild(b);
+  });
+  qw.appendChild(box);
+}
+
+function renderRank(qw, q) {
+  const box = el("div", "rank-list");
+  const cur = () => answers[q.id] || [];
+  const redraw = () => {
+    box.querySelectorAll(".rank-item").forEach(item => {
+      const t = item.dataset.item;
+      const pos = cur().indexOf(t);
+      const badge = item.querySelector(".rank-badge");
+      if (pos >= 0) { item.classList.add("ranked"); badge.textContent = pos + 1; }
+      else { item.classList.remove("ranked"); badge.textContent = "–"; }
+    });
+  };
+  q.items.forEach(t => {
+    const b = el("button", "rank-item");
+    b.type = "button";
+    b.dataset.item = t;
+    b.innerHTML = '<span class="rank-badge">–</span><span></span>';
+    b.querySelector("span:last-child").textContent = t;
+    b.onclick = () => {
+      const c = cur();
+      answers[q.id] = c.includes(t) ? c.filter(x => x !== t) : [...c, t];
+      save();
+      redraw();
+    };
+    box.appendChild(b);
+  });
+  qw.appendChild(box);
+  const reset = el("button", "rank-reset", "איפוס הדירוג");
+  reset.type = "button";
+  reset.onclick = () => { answers[q.id] = []; save(); redraw(); };
+  qw.appendChild(reset);
+  redraw();
+}
+
+function renderRate(qw, q) {
+  const cur = () => answers[q.id] || {};
+  q.items.forEach(name => {
+    const row = el("div", "rate-row");
+    const n = el("div", "rate-name"); n.textContent = name; row.appendChild(n);
+    const seg = el("div", "rate-seg");
+    RATE_LEVELS.forEach((lvl, i) => {
+      const b = el("button");
+      b.type = "button";
+      b.textContent = lvl;
+      if (cur()[name] === i) b.classList.add("selected");
+      b.onclick = () => {
+        const c = { ...cur() };
+        if (c[name] === i) delete c[name]; else c[name] = i;
+        answers[q.id] = c;
+        save();
+        seg.querySelectorAll("button").forEach(x => x.classList.remove("selected"));
+        if (answers[q.id][name] === i) b.classList.add("selected");
+      };
+      seg.appendChild(b);
+    });
+    row.appendChild(seg);
+    qw.appendChild(row);
+  });
+}
+
+function renderText(qw, q) {
+  const t = el("textarea");
+  t.value = answers[q.id] || "";
+  t.oninput = () => { answers[q.id] = t.value; save(); };
+  qw.appendChild(t);
+}
+
+function answerText(q) {
+  const a = answers[q.id];
+  if (a === undefined || a === "" || (Array.isArray(a) && a.length === 0) ||
+      (typeof a === "object" && !Array.isArray(a) && Object.keys(a).length === 0)) return null;
+  if (q.type === "single" || q.type === "text") return String(a);
+  if (q.type === "multi") return a.join("; ");
+  if (q.type === "rank") return a.map((t, i) => (i + 1) + ". " + t).join("\n");
+  if (q.type === "rate") {
+    const order = [...q.items].filter(n => a[n] !== undefined).sort((x, y) => a[y] - a[x]);
+    return order.map(n => n + " — " + RATE_LEVELS[a[n]]).join("\n");
+  }
+  return null;
+}
+
+function buildExport() {
+  let md = "# שאלון אפליקציית הפועל ירושלים — תשובות\n\n";
+  SECTIONS.forEach(sec => {
+    md += "## " + sec.title + "\n\n";
+    sec.questions.forEach(q => {
+      const a = answerText(q);
+      md += "**" + q.label + ":**\n" + (a === null ? "(לא נענה)" : a) + "\n\n";
+    });
+  });
+  return md;
+}
+
+function renderSummary() {
+  const s = el("div", "screen");
+  s.appendChild(el("h2", "", "סיכום התשובות"));
+  const intro = el("p", "intro");
+  intro.textContent = "זה מה שענית. אפשר לחזור אחורה ולתקן, וכשהכול מרגיש נכון — מעתיקים את הבלוק למטה ומדביקים בחזרה בצ׳אט עם קלוד.";
+  s.appendChild(intro);
+
+  SECTIONS.forEach(sec => {
+    const box = el("div", "sum-section");
+    box.appendChild(el("h3", "", sec.title));
+    sec.questions.forEach(q => {
+      const a = answerText(q);
+      const qd = el("div", "sum-q");
+      const sq = el("div", "sq"); sq.textContent = q.label; qd.appendChild(sq);
+      const sa = el("div", "sa" + (a === null ? " empty" : ""));
+      sa.textContent = a === null ? "לא נענה" : a;
+      sa.style.whiteSpace = "pre-line";
+      qd.appendChild(sa);
+      box.appendChild(qd);
+    });
+    s.appendChild(box);
+  });
+
+  const exp = el("div", "export-box");
+  exp.appendChild(el("div", "q-label", "התשובות להעתקה"));
+  const ta = el("textarea");
+  ta.readOnly = true;
+  ta.value = buildExport();
+  exp.appendChild(ta);
+  const row = el("div", "nav");
+  const back = el("button", "btn btn-ghost", "חזרה לעריכה");
+  back.onclick = () => { screen = TOTAL - 1; render(); };
+  row.appendChild(back);
+  const wrapBtns = el("div");
+  const copy = el("button", "btn btn-primary", "העתקת התשובות");
+  const okMsg = el("span", "copied", "הועתק ✓");
+  okMsg.hidden = true;
+  copy.onclick = async () => {
+    let done = false;
+    try { await navigator.clipboard.writeText(ta.value); done = true; } catch (e) {}
+    if (!done) {
+      ta.focus(); ta.select();
+      try { done = document.execCommand("copy"); } catch (e) {}
+    }
+    if (done) { okMsg.hidden = false; setTimeout(() => { okMsg.hidden = true; }, 2500); }
+    else { ta.focus(); ta.select(); }
+  };
+  wrapBtns.appendChild(copy);
+  wrapBtns.appendChild(okMsg);
+  row.appendChild(wrapBtns);
+  exp.appendChild(row);
+  s.appendChild(exp);
+  app.appendChild(s);
+}
+
+render();
+</script>
