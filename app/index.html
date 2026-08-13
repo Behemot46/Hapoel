@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>האדומים מהבירה</title>
+  <meta name="description" content="אפליקציית האוהדים של הפועל ירושלים — לוח משחקים, תוצאות וטבלה. מיזם אוהדים לא רשמי.">
+  <meta name="theme-color" content="#17090D">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="האדומים">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="wordmark">
+      <span class="ball">🏀</span>
+      <span>
+        <strong>האדומים מהבירה</strong>
+        <small>מיזם אוהדים לא רשמי · הפועל ירושלים</small>
+      </span>
+    </div>
+  </div>
+</header>
+
+<div id="sampleBanner" class="sample-banner" hidden>
+  נתוני דוגמה להמחשה — האיסוף האוטומטי יופעל עם עליית האתר
+</div>
+
+<main id="view" class="view" aria-live="polite"></main>
+
+<nav class="tabbar" aria-label="ניווט ראשי">
+  <a href="#/" data-route="home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 10.5V21h6v-6h6v6h6V10.5L12 3z"/></svg>
+    בית
+  </a>
+  <a href="#/games" data-route="games">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 5v10h12V9H6zm2-6h2v3H8V3zm6 0h2v3h-2V3z"/></svg>
+    משחקים
+  </a>
+  <a href="#/table" data-route="table">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v3H4V5zm0 5.5h16v3H4v-3zM4 16h16v3H4v-3z"/></svg>
+    טבלה
+  </a>
+</nav>
+
+<script src="js/app.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+  }
+</script>
+</body>
+</html>

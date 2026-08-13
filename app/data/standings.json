@@ -1,0 +1,18 @@
+{
+  "season": "2026/27",
+  "competition": "ליגת ווינר סל",
+  "rows": [
+    { "pos": 1, "team": "הפועל ירושלים", "played": 2, "wins": 2, "losses": 0 },
+    { "pos": 2, "team": "מכבי תל אביב", "played": 2, "wins": 2, "losses": 0 },
+    { "pos": 3, "team": "הפועל תל אביב", "played": 2, "wins": 1, "losses": 1 },
+    { "pos": 4, "team": "הפועל חולון", "played": 2, "wins": 1, "losses": 1 },
+    { "pos": 5, "team": "בני הרצליה", "played": 2, "wins": 1, "losses": 1 },
+    { "pos": 6, "team": "עירוני נס ציונה", "played": 2, "wins": 1, "losses": 1 },
+    { "pos": 7, "team": "מכבי ראשון לציון", "played": 2, "wins": 1, "losses": 1 },
+    { "pos": 8, "team": "הפועל גליל עליון", "played": 2, "wins": 1, "losses": 1 },
+    { "pos": 9, "team": "עירוני קריית אתא", "played": 2, "wins": 1, "losses": 1 },
+    { "pos": 10, "team": "הפועל באר שבע", "played": 2, "wins": 1, "losses": 1 },
+    { "pos": 11, "team": "אליצור נתניה", "played": 2, "wins": 0, "losses": 2 },
+    { "pos": 12, "team": "הפועל העמק", "played": 2, "wins": 0, "losses": 2 }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "season": "2026/27",
+  "games": [
+    {
+      "id": "sample-1",
+      "date": "2026-08-02T20:00:00+03:00",
+      "competition": "משחק הכנה",
+      "home": "הפועל ירושלים",
+      "away": "הפועל חולון",
+      "venue": "ארנה פיס, ירושלים",
+      "status": "finished",
+      "homeScore": 88,
+      "awayScore": 79
+    },
+    {
+      "id": "sample-2",
+      "date": "2026-08-09T19:30:00+03:00",
+      "competition": "משחק הכנה",
+      "home": "בני הרצליה",
+      "away": "הפועל ירושלים",
+      "venue": "היכל בני הרצליה",
+      "status": "finished",
+      "homeScore": 84,
+      "awayScore": 90
+    },
+    {
+      "id": "sample-3",
+      "date": "2026-08-23T20:00:00+03:00",
+      "competition": "משחק הכנה",
+      "home": "הפועל ירושלים",
+      "away": "עירוני נס ציונה",
+      "venue": "ארנה פיס, ירושלים",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "sample-4",
+      "date": "2026-09-06T19:00:00+03:00",
+      "competition": "גביע ווינר",
+      "home": "מכבי תל אביב",
+      "away": "הפועל ירושלים",
+      "venue": "היכל מנורה מבטחים",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "sample-5",
+      "date": "2026-10-04T19:10:00+03:00",
+      "competition": "ליגת ווינר סל",
+      "round": "מחזור 1",
+      "home": "הפועל ירושלים",
+      "away": "הפועל תל אביב",
+      "venue": "ארנה פיס, ירושלים",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    }
+  ]
+}
