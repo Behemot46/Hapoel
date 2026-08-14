@@ -4,22 +4,23 @@ The development sandbox cannot reach basket.co.il or the EuroCup API, so
 this runs on Actions (workflow_dispatch) and prints enough structure to
 write a parser against. Run it, read the log, then write the real code.
 
-Answers four questions in one run:
-  1. does a EuroCup game object carry a live score, period and clock?
-  2. is there a EuroCup standings/group table endpoint?
-  3. has the Winner League published its fixture list yet?
-  4. how many players does the club actually have registered?
+Established so far:
+  round 1  /clubs/JER/games is a 404; the group table is /rounds/N/standings;
+           the club has 10 registered players plus a coach.
+  round 2  Group A holds JER; standings rows carry position/W/L/points;
+           player objects carry no images at all; every club has a crest;
+           the league fixture list is genuinely still unpublished.
+  round 3  (this one) no 2026-27 game has been played yet, so the shape of a
+           game in progress is learned from last season instead.
 """
 import json
 import re
 import sys
 
 import requests
-from bs4 import BeautifulSoup
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; HapoelFanApp/1.0; +https://github.com/Behemot46/Hapoel)",
       "Accept": "application/json, text/html;q=0.9"}
-SEASON = "U2026"
 API = "https://api-live.euroleague.net"
 
 
@@ -42,15 +43,14 @@ def get(url, want_json=True):
     try:
         return r.json()
     except Exception:
-        log("    (not json)", r.text[:200].replace("\n", " "))
+        log("    (not json)", r.text[:300].replace("\n", " "))
         return None
 
 
-def shape(obj, prefix="", depth=0, out=None, seen=0):
-    """Print the key structure of a JSON blob, one line per leaf path."""
+def shape(obj, prefix="", depth=0, out=None):
     if out is None:
         out = []
-    if depth > 4 or len(out) > 120:
+    if depth > 5 or len(out) > 160:
         return out
     if isinstance(obj, dict):
         for k, v in obj.items():
@@ -58,12 +58,17 @@ def shape(obj, prefix="", depth=0, out=None, seen=0):
             if isinstance(v, (dict, list)):
                 shape(v, p, depth + 1, out)
             else:
-                out.append(f"{p} = {json.dumps(v, ensure_ascii=False)[:60]}")
+                out.append(f"{p} = {json.dumps(v, ensure_ascii=False)[:70]}")
     elif isinstance(obj, list):
-        log(f"    {prefix}: list[{len(obj)}]")
+        out.append(f"{prefix}: list[{len(obj)}]")
         if obj:
             shape(obj[0], prefix + "[0]", depth + 1, out)
     return out
+
+
+def dump(obj, limit=110):
+    for line in shape(obj)[:limit]:
+        log("   ", line)
 
 
 def section(title):
@@ -73,131 +78,89 @@ def section(title):
     log("=" * 70)
 
 
-# ---------------------------------------------------------------- 1. live game
-
-def probe_games():
-    section("1. EuroCup games — does a game object carry live state?")
-    data = get(f"{API}/v2/competitions/U/seasons/{SEASON}/clubs/JER/games")
-    if not data:
-        log("  no games payload")
-        return
-    games = data.get("data") if isinstance(data, dict) else data
-    if not isinstance(games, list):
-        log("  unexpected envelope, keys:", list(data)[:15])
-        games = None
-        for v in (data or {}).values():
+def listify(d):
+    if isinstance(d, list):
+        return d
+    if isinstance(d, dict):
+        if isinstance(d.get("data"), list):
+            return d["data"]
+        for v in d.values():
             if isinstance(v, list) and v and isinstance(v[0], dict):
-                games = v
-                break
-    if not games:
-        log("  could not locate the game list")
+                return v
+    return []
+
+
+def probe_played():
+    """Last season has finished games — their shape is the shape a live game
+    will take as it fills in."""
+    section("A. A finished game from last season: what does a result look like?")
+    d = get(f"{API}/v2/competitions/U/seasons/U2025/games")
+    games = listify(d)
+    log(f"  {len(games)} games in U2025")
+    played = [g for g in games if g.get("played")]
+    log(f"  {len(played)} played")
+    if not played:
+        log("  nothing played — cannot learn the shape here")
         return
-    log(f"  {len(games)} games")
-    log("  --- full shape of games[0] ---")
-    for line in shape(games[0]):
-        log("   ", line)
-    # anything that smells like live state, across every game
-    keys = set()
-    for g in games:
-        keys |= {k for k in g if re.search(
-            r"live|status|played|period|quarter|minute|clock|time|phase", k, re.I)}
-    log("  live-ish keys present:", sorted(keys))
-    for g in games[:3]:
-        log("   sample:", json.dumps({k: g.get(k) for k in sorted(keys)}, ensure_ascii=False)[:300])
+    g = played[len(played) // 2]
+    log("  --- full shape of a finished game ---")
+    dump(g)
 
-    # the per-game detail endpoint is where a live boxscore usually lives
-    gid = games[0].get("gameCode") or games[0].get("code") or games[0].get("id")
-    if gid:
-        for u in (f"{API}/v2/competitions/U/seasons/{SEASON}/games/{gid}",
-                  f"{API}/v2/competitions/U/seasons/{SEASON}/games/{gid}/stats",
-                  f"{API}/v2/competitions/U/seasons/{SEASON}/games/{gid}/boxscore"):
-            d = get(u)
-            if d:
-                log(f"  --- shape of {u.rsplit('/', 1)[-1]} ---")
-                for line in shape(d)[:45]:
-                    log("   ", line)
-
-
-# ---------------------------------------------------------------- 2. standings
-
-def probe_standings():
-    section("2. EuroCup standings — is there a group table?")
-    for u in (f"{API}/v2/competitions/U/seasons/{SEASON}/standings",
-              f"{API}/v2/competitions/U/seasons/{SEASON}/standings/traditional",
-              f"{API}/v2/competitions/U/seasons/{SEASON}/rounds/1/standings",
-              f"{API}/v2/competitions/U/seasons/{SEASON}/clubs",
-              f"{API}/v1/standings?seasonCode={SEASON}"):
-        d = get(u)
-        if d:
-            for line in shape(d)[:40]:
-                log("   ", line)
-
-
-# ---------------------------------------------------------------- 3. league
-
-def probe_league():
-    section("3. Winner League — is the fixture list published?")
-    html = get("https://basket.co.il/", want_json=False)
-    if not html:
+    code = g.get("gameCode") or g.get("code") or g.get("id")
+    log("  game identifier:", repr(code))
+    if not code:
         return
-    soup = BeautifulSoup(html, "html.parser")
-    links = []
-    for a in soup.find_all("a", href=True):
-        t = a.get_text(" ", strip=True)
-        if re.search(r"משחק|מחזור|לוח|תוצא", t) and len(t) < 40:
-            links.append((t, a["href"]))
-    log(f"  {len(links)} schedule-ish links on the home page")
-    for t, h in links[:20]:
-        log(f"    {t!r} -> {h}")
-    for u in ("https://basket.co.il/games.asp",
-              "https://basket.co.il/team.asp?TeamId=1035",
-              "https://basket.co.il/league.asp?LeagueId=1"):
-        h = get(u, want_json=False)
-        if not h:
+    for u in (f"{API}/v2/competitions/U/seasons/U2025/games/{code}",
+              f"{API}/v2/competitions/U/seasons/U2025/games/{code}/boxscore",
+              f"{API}/v2/competitions/U/seasons/U2025/games/{code}/stats",
+              f"{API}/v2/competitions/U/seasons/U2025/games/{code}/report",
+              f"{API}/v1/games?seasonCode=U2025&gameCode={code}"):
+        r = get(u, want_json=not u.startswith(f"{API}/v1"))
+        if r is None:
             continue
-        s = BeautifulSoup(h, "html.parser")
-        tables = s.find_all("table")
-        log(f"    {u}: {len(tables)} tables")
-        for i, t in enumerate(tables[:8]):
-            rows = t.find_all("tr")
-            head = rows[0].get_text(" | ", strip=True)[:100] if rows else ""
-            log(f"      table[{i}] rows={len(rows)} head={head!r}")
-
-
-# ---------------------------------------------------------------- 4. roster
-
-def probe_roster():
-    section("4. Roster — how many players are actually registered?")
-    for u in (f"{API}/v2/competitions/U/seasons/{SEASON}/clubs/JER/people",
-              f"{API}/v2/competitions/U/seasons/{SEASON}/clubs/JER/people?personType=J",
-              f"{API}/v2/competitions/U/seasons/{SEASON}/clubs/JER"):
-        d = get(u)
-        if not d:
+        if isinstance(r, str):
+            log("    xml head:", r[:500].replace("\n", " "))
             continue
-        people = d.get("data") if isinstance(d, dict) else d
-        if isinstance(people, list):
-            log(f"    {len(people)} entries")
-            for p in people:
-                per = p.get("person") or p
-                log("      ",
-                    p.get("dorsal") or p.get("jerseyNumber") or "-",
-                    (per.get("name") or per.get("fullName") or "?")[:32],
-                    p.get("positionName") or p.get("position") or "",
-                    p.get("type") or p.get("personType") or "")
+        log(f"  --- {u.rsplit('/', 1)[-1][:40]} ---")
+        dump(r, 70)
+
+
+def probe_upcoming_shape():
+    section("B. Our own 2026-27 games — the exact fields we will be polling")
+    d = get(f"{API}/v2/competitions/U/seasons/U2026/games")
+    games = listify(d)
+    ours = [g for g in games if "JER" in json.dumps(g)]
+    log(f"  {len(games)} games, {len(ours)} ours")
+    if ours:
+        log("  --- full shape of our first game ---")
+        dump(ours[0])
+        log("  date-ish values across our games:")
+        for g in ours[:4]:
+            vals = {k: v for k, v in g.items()
+                    if isinstance(v, str) and re.search(r"date|time|utc", k, re.I)}
+            log("   ", json.dumps(vals, ensure_ascii=False)[:220])
+
+
+def probe_live_endpoints():
+    section("C. Anything explicitly named 'live'?")
+    for u in (f"{API}/v2/competitions/U/seasons/U2026/games/live",
+              f"{API}/v2/competitions/U/games/live",
+              f"{API}/v1/games?seasonCode=U2026",
+              f"{API}/v2/competitions/U/seasons/U2026/rounds"):
+        r = get(u, want_json=not u.startswith(f"{API}/v1"))
+        if r is None:
+            continue
+        if isinstance(r, str):
+            log("    xml head:", r[:400].replace("\n", " "))
         else:
-            for line in shape(d)[:30]:
-                log("   ", line)
+            dump(r, 30)
 
 
 if __name__ == "__main__":
     which = sys.argv[1] if len(sys.argv) > 1 else "all"
-    if which in ("all", "games"):
-        probe_games()
-    if which in ("all", "standings"):
-        probe_standings()
-    if which in ("all", "league"):
-        probe_league()
-    if which in ("all", "roster"):
-        probe_roster()
+    for name, fn in (("played", probe_played), ("upcoming", probe_upcoming_shape),
+                     ("live", probe_live_endpoints)):
+        if which in ("all", name):
+            fn()
     log("")
     log("probe done")

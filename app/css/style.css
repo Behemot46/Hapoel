@@ -201,6 +201,98 @@ body {
   .countdown.tipped .cd-unit::after { animation: none; }
 }
 
+/* Live game card */
+.live-game { border-color: var(--red); }
+.live-head { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--red);
+  animation: cd-pulse 1.4s ease-in-out infinite;
+}
+.live-label {
+  font-size: 12px; font-weight: 800; color: var(--red);
+  letter-spacing: 0.02em;
+}
+.live-game .opponent { font-size: 22px; font-weight: 800; line-height: 1.25; }
+.live-game .comp { color: var(--muted); font-size: 13.5px; margin-bottom: 12px; }
+.live-score {
+  display: flex; align-items: flex-start; justify-content: center; gap: 14px;
+  padding: 14px 8px 10px;
+  background: var(--red-soft);
+  border-radius: 12px;
+}
+.ls-side { text-align: center; min-width: 78px; }
+.ls-num {
+  font-size: 40px; font-weight: 900; line-height: 1;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.ls-side.lead .ls-num { color: var(--red); }
+.ls-who { font-size: 12px; font-weight: 700; margin-top: 5px; color: var(--muted); }
+.ls-side.lead .ls-who { color: var(--text); }
+.ls-sep { font-size: 26px; font-weight: 700; color: var(--muted); line-height: 1.3; }
+.live-when {
+  text-align: center; margin-top: 10px;
+  font-size: 13.5px; font-weight: 700;
+}
+.live-fresh { text-align: center; margin-top: 8px; font-size: 11.5px; color: var(--muted); }
+.live-game.done { border-color: var(--line); }
+.live-game.done .live-dot { animation: none; background: var(--muted); }
+.live-game.done .live-label { color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+
+/* EuroCup group table */
+.standings td.diff { font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; }
+.groups-more { padding: 0; }
+.groups-more > summary {
+  padding: 14px 16px;
+  font-weight: 800;
+  font-size: 14.5px;
+  cursor: pointer;
+  list-style: none;
+}
+.groups-more > summary::-webkit-details-marker { display: none; }
+.groups-more > summary::after { content: " ⌄"; color: var(--muted); }
+.groups-more[open] > summary::after { content: " ⌃"; }
+.group-name {
+  font-size: 12.5px; font-weight: 800; color: var(--red);
+  padding: 10px 16px 4px;
+  border-top: 1px solid var(--line);
+}
+.groups-more .standings { margin-bottom: 6px; }
+.table-note { font-size: 12px; color: var(--muted); margin: 10px 4px 0; line-height: 1.5; }
+
+/* A plain "here is what is missing and why" note */
+.notice { background: var(--surface-2); border-style: dashed; }
+.notice-title { font-weight: 800; font-size: 14.5px; margin-bottom: 3px; }
+.notice-body { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* Add to calendar */
+.cal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.cal-btn:hover { border-color: var(--red); color: var(--red); }
+.cal-ico { font-size: 15px; line-height: 1; }
+.cal-note {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+.cal-card .share-sub { margin-bottom: 2px; }
+
 /* Result card */
 .result-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .result-line .teams { font-weight: 700; }
@@ -270,6 +362,24 @@ a.player-row:hover { border-color: var(--red); }
 }
 .player-photo.thumb { width: 40px; height: 40px; flex: 0 0 40px; }
 .player-photo.big { width: 116px; height: 116px; margin: 0 auto 10px; display: block; }
+
+/* Initials stand in for the photo we do not have the rights to publish */
+.avatar {
+  display: flex; align-items: center; justify-content: center;
+  background: hsl(var(--h) 52% 92%);
+  color: hsl(var(--h) 58% 34%);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  /* isolate only — each script keeps its own direction, so Hebrew initials
+     read right-to-left and Latin ones left-to-right */
+  unicode-bidi: isolate;
+  user-select: none;
+}
+.avatar.thumb { font-size: 15px; }
+.avatar.big { font-size: 40px; }
+@media (prefers-color-scheme: dark) {
+  .avatar { background: hsl(var(--h) 26% 24%); color: hsl(var(--h) 70% 78%); }
+}
 
 /* Player detail */
 .back-link {

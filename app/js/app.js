@@ -3,7 +3,7 @@
 const TEAM = "הפועל ירושלים";
 const state = {
   games: null, standings: null, meta: null, club: null,
-  gamesTab: "upcoming", diaryScope: "season",
+  gamesTab: "upcoming", tableTab: "league", diaryScope: "season",
 };
 
 const view = document.getElementById("view");
@@ -73,7 +73,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -84,6 +84,7 @@ async function boot() {
       loadJSON("data/player-details.json").catch(() => ({})),
       loadJSON("data/team-names.json").catch(() => ({})),
       loadJSON("data/history.json").catch(() => (null)),
+      loadJSON("data/eurocup.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -95,6 +96,7 @@ async function boot() {
     state.details = details || {};
     state.teamNames = teamNames || {};
     state.history = history;
+    state.eurocup = eurocup;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -112,6 +114,8 @@ async function boot() {
   if (sb) sb.onclick = shareApp;
   window.addEventListener("hashchange", render);
   render();
+  // a frozen single-file copy has no site to poll
+  if (!window.__HAPOEL_SNAPSHOT__) watchLive();
 }
 
 /* ---------- helpers ---------- */
@@ -272,6 +276,222 @@ function countdownEl(game) {
   return wrap;
 }
 
+/* ---------- the live score on game night ---------- */
+
+// live.json is republished straight to the site every few minutes while a
+// game is on. It may be missing entirely — that just means "nothing on".
+let livePoll = null;
+
+function stopLivePoll() {
+  if (livePoll) { clearInterval(livePoll); livePoll = null; }
+}
+
+async function fetchLive() {
+  try {
+    const res = await fetch("data/live.json?t=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) return null;
+    const d = await res.json();
+    return d && d.state && d.state !== "idle" ? d : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function minutesAgo(iso) {
+  const t = new Date(iso).getTime();
+  if (!t) return null;
+  return Math.max(0, Math.round((Date.now() - t) / 60000));
+}
+
+function freshnessLabel(iso) {
+  const m = minutesAgo(iso);
+  if (m === null) return "";
+  if (m < 1) return "עודכן ממש עכשיו";
+  if (m === 1) return "עודכן לפני דקה";
+  if (m < 60) return "עודכן לפני " + m + " דקות";
+  const h = Math.floor(m / 60);
+  return "עודכן לפני " + (h === 1 ? "שעה" : h + " שעות");
+}
+
+function quarterLabel(q) {
+  if (!q) return "";
+  return q >= 4 ? "רבע רביעי" : ["רבע ראשון", "רבע שני", "רבע שלישי"][q - 1] || "";
+}
+
+function liveCard(live) {
+  const g = live.game || {};
+  const done = live.state === "final";
+  const c = el("div", "card live-game" + (done ? " done" : ""));
+  const head = el("div", "live-head");
+  head.appendChild(text("span", "live-dot", ""));
+  head.appendChild(text("span", "live-label", done ? "המשחק הסתיים" : "עכשיו"));
+  c.appendChild(head);
+
+  const opp = isUs(g.home) ? g.away : g.home;
+  c.appendChild(oppEl("opponent", opp));
+  c.appendChild(text("div", "comp",
+    (g.competition || "") + (g.venue ? " · " + g.venue : "")));
+
+  if (live.state === "live" || live.state === "final") {
+    const us = live.ourScore, them = live.theirScore;
+    const box = el("div", "live-score");
+    const ours = el("div", "ls-side" + (us > them ? " lead" : ""));
+    ours.appendChild(text("div", "ls-num", String(us)));
+    ours.appendChild(text("div", "ls-who", "ירושלים"));
+    const theirs = el("div", "ls-side" + (them > us ? " lead" : ""));
+    theirs.appendChild(text("div", "ls-num", String(them)));
+    theirs.appendChild(text("div", "ls-who", teamName(opp)));
+    box.appendChild(ours);
+    box.appendChild(text("div", "ls-sep", "–"));
+    box.appendChild(theirs);
+    c.appendChild(box);
+    if (live.state === "live" && live.quarter) {
+      c.appendChild(text("div", "live-when", quarterLabel(live.quarter)));
+    }
+  } else if (live.state === "starting") {
+    c.appendChild(text("div", "live-when", "המשחק עולה לאוויר"));
+  } else {
+    // a domestic game: we know it is being played, we have no feed for it
+    c.appendChild(text("div", "live-when", "המשחק מתנהל · אין הזנת תוצאות חיה"));
+  }
+
+  c.appendChild(text("div", "live-fresh", freshnessLabel(live.updated)));
+  return c;
+}
+
+// swap the countdown out for the live card when a game starts, and back to
+// the schedule when it ends — without the fan having to reload anything
+function watchLive() {
+  stopLivePoll();
+  const paint = async () => {
+    const live = await fetchLive();
+    const had = state.live;
+    state.live = live;
+    const changed = JSON.stringify(had || null) !== JSON.stringify(live || null);
+    if (changed && (location.hash === "" || location.hash === "#/")) render();
+  };
+  paint();
+  livePoll = setInterval(paint, 60000);
+}
+
+/* ---------- adding games to the phone's calendar ---------- */
+
+// Two hours is a basketball game with its breaks; close enough that the
+// slot in someone's calendar is honest without pretending to know the end.
+const GAME_MINUTES = 120;
+
+function icsStamp(d) {
+  return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+}
+function icsEscape(s) {
+  return String(s || "").replace(/[\\;,]/g, m => "\\" + m).replace(/\n/g, "\\n");
+}
+// RFC 5545 wants lines folded at 75 octets — Hebrew is multi-byte, so fold
+// by byte count and never in the middle of a character
+function icsFold(line) {
+  const enc = new TextEncoder();
+  if (enc.encode(line).length <= 74) return line;
+  const out = [];
+  let cur = "", bytes = 0, limit = 74;
+  for (const ch of line) {
+    const n = enc.encode(ch).length;
+    if (bytes + n > limit) { out.push(cur); cur = " "; bytes = 1; limit = 73; }
+    cur += ch; bytes += n;
+  }
+  out.push(cur);
+  return out.join("\r\n");
+}
+
+// home team first, the way a fixture is normally written; which side we are
+// on is spelled out in the description instead
+function gameTitle(g) {
+  return teamName(g.home) + " – " + teamName(g.away);
+}
+
+// calendar clients are happier with an ASCII UID, and our ids carry Hebrew
+function icsUid(g) {
+  let h = 0;
+  for (let i = 0; i < g.id.length; i++) h = (h * 31 + g.id.charCodeAt(i)) >>> 0;
+  return g.date.slice(0, 10).replace(/-/g, "") + "-" + h.toString(36) +
+         "@hapoel-fan-app";
+}
+
+function gameLocation(g) {
+  if (g.venue) return g.venue;
+  return isHome(g) ? ((state.club && state.club.arena) || "") : "";
+}
+
+function vevent(g, stamp) {
+  const start = new Date(g.date);
+  const end = new Date(start.getTime() + GAME_MINUTES * 60000);
+  const lines = [
+    "BEGIN:VEVENT",
+    "UID:" + icsUid(g),
+    "DTSTAMP:" + stamp,
+    "DTSTART:" + icsStamp(start),
+    "DTEND:" + icsStamp(end),
+    "SUMMARY:" + icsEscape("🏀 " + gameTitle(g)),
+    "DESCRIPTION:" + icsEscape(
+      g.competition + " · " + (isHome(g) ? "משחק בית" : "משחק חוץ") +
+      "\n" + appUrl()),
+  ];
+  const loc = gameLocation(g);
+  if (loc) lines.push("LOCATION:" + icsEscape(loc));
+  lines.push(
+    "URL:" + appUrl(),
+    // one reminder, two hours before — enough time to get to מלחה
+    "BEGIN:VALARM",
+    "ACTION:DISPLAY",
+    "DESCRIPTION:" + icsEscape("היום " + gameTitle(g)),
+    "TRIGGER:-PT2H",
+    "END:VALARM",
+    "END:VEVENT");
+  return lines;
+}
+
+function buildIcs(games) {
+  const stamp = icsStamp(new Date());
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Hapoel Jerusalem Fan App//HE",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "X-WR-CALNAME:" + icsEscape("הפועל ירושלים"),
+  ];
+  games.forEach(g => lines.push(...vevent(g, stamp)));
+  lines.push("END:VCALENDAR");
+  return lines.map(icsFold).join("\r\n") + "\r\n";
+}
+
+function downloadIcs(games, filename) {
+  const blob = new Blob([buildIcs(games)], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+}
+
+function calButton(games, label, filename, cls) {
+  const b = el("button", "cal-btn" + (cls ? " " + cls : ""));
+  b.type = "button";
+  b.appendChild(text("span", "cal-ico", "📅"));
+  b.appendChild(text("span", "", label));
+  b.onclick = () => downloadIcs(games, filename);
+  return b;
+}
+
+// the file lands in Downloads/Files on some phones rather than opening the
+// calendar straight away, so say so instead of leaving people confused
+function calNote() {
+  return text("div", "cal-note", "הקובץ יורד למכשיר — פתיחה שלו מוסיפה את המשחקים ליומן");
+}
+
 /* ---------- sharing the app itself ---------- */
 
 // always the live site, never location.href — a standalone copy opened
@@ -309,7 +529,10 @@ function renderHome() {
   const next = upcoming()[0];
   const last = finished()[0];
 
-  if (next) {
+  // a game in progress outranks everything else on the screen
+  if (state.live) view.appendChild(liveCard(state.live));
+
+  if (next && !state.live) {
     const c = el("div", "card next-game");
     c.appendChild(text("div", "eyebrow", "המשחק הבא"));
     c.appendChild(oppEl("opponent", opponent(next)));
@@ -324,8 +547,10 @@ function renderHome() {
     meta.appendChild(text("span", "badge" + (isHome(next) ? " home" : ""), isHome(next) ? "משחק בית" : "משחק חוץ"));
     if (next.venue) meta.appendChild(text("span", "badge", next.venue));
     c.appendChild(meta);
+    c.appendChild(calButton([next], "הוספה ליומן", "hapoel-next-game.ics"));
+    c.appendChild(calNote());
     view.appendChild(c);
-  } else {
+  } else if (!next) {
     const c = el("div", "card");
     c.appendChild(text("div", "eyebrow", "המשחק הבא"));
     c.appendChild(text("div", "empty", "לוח המשחקים לעונה טרם פורסם — נעדכן ברגע שיהיה"));
@@ -405,6 +630,28 @@ function renderGames() {
     return;
   }
 
+  // 16 fixtures in a season is not a season — say why rather than let the
+  // list look like the whole story
+  if (state.gamesTab === "upcoming" && state.games.league &&
+      state.games.league.published === false) {
+    const n = el("div", "card notice");
+    n.appendChild(text("div", "notice-title", "לוח הליגה עדיין לא פורסם"));
+    n.appendChild(text("div", "notice-body",
+      "מה שמופיע כאן הוא הגביע והיורוקאפ. ברגע שליגת ווינר סל תפרסם את " +
+      "לוח המשחקים, הוא ייכנס לכאן מעצמו."));
+    view.appendChild(n);
+  }
+
+  if (state.gamesTab === "upcoming") {
+    const c = el("div", "card cal-card");
+    c.appendChild(text("div", "share-title", "כל המשחקים ביומן שלך"));
+    c.appendChild(text("div", "share-sub",
+      list.length + " משחקים, עם תזכורת שעתיים לפני כל אחד"));
+    c.appendChild(calButton(list, "הוספה ליומן", "hapoel-season.ics"));
+    c.appendChild(calNote());
+    view.appendChild(c);
+  }
+
   let lastMonth = -1;
   list.forEach(g => {
     const d = new Date(g.date);
@@ -468,12 +715,87 @@ function attendButton(g) {
 /* ---------- table ---------- */
 
 function renderTable() {
-  view.appendChild(text("div", "section-title",
-    "טבלת " + state.standings.competition + " · עונת " + state.standings.season));
-  const c = el("div", "card table-card");
-  c.appendChild(standingsTable(state.standings.rows, true));
-  view.appendChild(c);
+  const euro = state.eurocup;
+  if (euro && euro.groups && euro.groups.length) {
+    const seg = el("div", "seg");
+    const bL = text("button", state.tableTab === "euro" ? "" : "active", "ווינר סל");
+    const bE = text("button", state.tableTab === "euro" ? "active" : "", "יורוקאפ");
+    bL.onclick = () => { state.tableTab = "league"; render(); };
+    bE.onclick = () => { state.tableTab = "euro"; render(); };
+    seg.appendChild(bL);
+    seg.appendChild(bE);
+    view.appendChild(seg);
+  }
+
+  if (state.tableTab === "euro" && euro) {
+    renderEurocup(euro);
+  } else {
+    view.appendChild(text("div", "section-title",
+      "טבלת " + state.standings.competition + " · עונת " + state.standings.season));
+    const c = el("div", "card table-card");
+    c.appendChild(standingsTable(state.standings.rows, true));
+    view.appendChild(c);
+  }
   footer();
+}
+
+// "Group A" is how the competition names it; in Hebrew a group is בית
+function groupLabel(name) {
+  const m = /^group\s+(\S+)$/i.exec(name || "");
+  return m ? "בית " + m[1] : (name || "");
+}
+
+function renderEurocup(euro) {
+  const ourFirst = euro.groups;
+  const ours = ourFirst[0];
+  view.appendChild(text("div", "section-title",
+    groupLabel(ours.name) + " · " + euro.competition + " " + euro.season));
+  const c = el("div", "card table-card");
+  c.appendChild(eurocupTable(ours.rows));
+  view.appendChild(c);
+
+  const rest = ourFirst.slice(1);
+  if (rest.length) {
+    const d = el("details", "card groups-more");
+    const s = el("summary");
+    s.textContent = "שאר הבתים";
+    d.appendChild(s);
+    rest.forEach(g => {
+      d.appendChild(text("div", "group-name", groupLabel(g.name)));
+      d.appendChild(eurocupTable(g.rows));
+    });
+    view.appendChild(d);
+  }
+  view.appendChild(text("div", "table-note",
+    "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."));
+}
+
+function isUsEuro(r) { return r.code === "JER" || isUs(teamName(r.team)); }
+
+function eurocupTable(rows) {
+  const t = el("table", "standings");
+  const head = el("tr");
+  ["#", "קבוצה", "מש׳", "נצ׳", "הפ׳", "הפרש"].forEach((h, i) => {
+    const th = el("th", i === 1 ? "team" : "");
+    th.textContent = h;
+    head.appendChild(th);
+  });
+  t.appendChild(head);
+  rows.forEach(r => {
+    const tr = el("tr", isUsEuro(r) ? "us" : "");
+    tr.appendChild(text("td", "num", r.pos == null ? "–" : String(r.pos)));
+    const name = teamName(r.team);
+    const td = el("td", "team");
+    td.appendChild(text("span", isLatin(name) ? "latin" : "", name));
+    tr.appendChild(td);
+    tr.appendChild(text("td", "num", String(r.played ?? 0)));
+    tr.appendChild(text("td", "num", String(r.wins ?? 0)));
+    tr.appendChild(text("td", "num", String(r.losses ?? 0)));
+    const diff = (r.for ?? 0) - (r.against ?? 0);
+    tr.appendChild(text("td", "num diff", diff > 0 ? "+" + diff : String(diff)));
+    t.appendChild(tr);
+  });
+  return t;
 }
 
 function standingsTable(rows, full) {
@@ -541,7 +863,7 @@ function renderRoster() {
     const num = el("div", "shirt");
     num.textContent = p.number != null ? p.number : "–";
     row.appendChild(num);
-    if (p.photo) row.appendChild(playerPhoto(p, "thumb"));
+    row.appendChild(playerAvatar(p, "thumb"));
     const info = el("div", "info");
     info.appendChild(playerNameEl(p));
     // keep the list line short — the birth year lives on the player page
@@ -566,6 +888,35 @@ function playerName(p) { return (state.playerNames || {})[p.name] || p.name; }
 function playerNameEl(p, cls) {
   const he = (state.playerNames || {})[p.name];
   return text("div", (cls || "opp") + (he ? "" : " latin"), he || p.name);
+}
+
+// The EuroCup feed carries no player images, and press photos are not ours
+// to publish. So when there is no photo, draw something deliberate rather
+// than leave a hole: initials on a tint of the club's own palette.
+const AVATAR_HUES = [348, 3, 18, 335, 356, 12];
+
+// Given name then surname, in that order. Kept in logical order so Hebrew
+// initials read right-to-left and Latin ones left-to-right, each correctly.
+function initialsOf(p) {
+  const name = (playerName(p) || "").replace(/,/g, " ");
+  const parts = name.split(/\s+/).filter(Boolean);
+  if (!parts.length) return "?";
+  // ג׳ and צ׳ are one sound — keep the geresh with its letter
+  const head = w => (/^[א-ת][׳']/.test(w) ? w.slice(0, 2) : w[0]);
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (head(parts[0]) + head(parts[1])).toUpperCase();
+}
+
+function playerAvatar(p, cls) {
+  if (p.photo) return playerPhoto(p, cls);
+  const d = el("div", "player-photo avatar " + (cls || ""));
+  const key = (p.name || "") + (p.number ?? "");
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+  d.style.setProperty("--h", String(AVATAR_HUES[h % AVATAR_HUES.length]));
+  d.textContent = initialsOf(p);
+  d.setAttribute("aria-hidden", "true"); // the name is right next to it
+  return d;
 }
 
 function playerPhoto(p, cls) {
@@ -684,7 +1035,7 @@ function renderPlayer(slug) {
   }
 
   const card = el("div", "card player-hero");
-  if (p.photo) card.appendChild(playerPhoto(p, "big"));
+  card.appendChild(playerAvatar(p, "big"));
   if (p.number != null) card.appendChild(text("div", "big-shirt", String(p.number)));
   card.appendChild(playerNameEl(p, "player-title"));
   if (p.position) card.appendChild(text("div", "player-pos", p.position));
@@ -1017,7 +1368,7 @@ function renderMeet() {
     const num = el("div", "shirt");
     num.textContent = p.number != null ? p.number : "\u2013";
     head.appendChild(num);
-    if (p.photo) head.appendChild(playerPhoto(p, "thumb"));
+    head.appendChild(playerAvatar(p, "thumb"));
     const who = el("div", "info");
     who.appendChild(playerNameEl(p));
     const bits = [];
