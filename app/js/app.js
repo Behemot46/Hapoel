@@ -156,10 +156,14 @@ const routes = {
 
 function render() {
   const hash = location.hash || "#/";
-  const fn = routes[hash] || renderHome;
+  // player detail lives under #/player/<slug>
+  const playerMatch = hash.match(/^#\/player\/(.+)$/);
+  const fn = playerMatch
+    ? () => renderPlayer(decodeURIComponent(playerMatch[1]))
+    : (routes[hash] || renderHome);
   const routeName = hash === "#/games" ? "games"
     : hash === "#/table" ? "table"
-    : hash === "#/roster" ? "roster"
+    : (hash === "#/roster" || playerMatch) ? "roster"
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
     a.classList.toggle("active", a.dataset.route === routeName));
@@ -377,24 +381,108 @@ function renderRoster() {
   });
 
   sorted.forEach(p => {
-    const row = el("div", "player-row");
+    const row = el("a", "player-row");
+    row.href = "#/player/" + encodeURIComponent(p.slug || slugOf(p));
     const num = el("div", "shirt");
     num.textContent = p.number != null ? p.number : "–";
     row.appendChild(num);
+    if (p.photo) row.appendChild(playerPhoto(p, "thumb"));
     const info = el("div", "info");
-    // Hebrew name when we have one; otherwise the Latin name, isolated so
-    // it keeps its own direction inside the RTL layout
-    const he = (state.playerNames || {})[p.name];
-    const nameEl = text("div", "opp" + (he ? "" : " latin"), he || p.name);
-    info.appendChild(nameEl);
+    info.appendChild(playerNameEl(p));
+    // keep the list line short — the birth year lives on the player page
     const bits = [];
     if (p.position) bits.push(p.position);
     if (p.height) bits.push(p.height + " ס״מ");
-    if (p.born) bits.push("שנתון " + p.born);
     if (bits.length) info.appendChild(text("div", "sub", bits.join(" · ")));
     row.appendChild(info);
+    row.appendChild(text("div", "chevron", "‹"));
     view.appendChild(row);
   });
+  footer();
+}
+
+function slugOf(p) {
+  return (p.name || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+// Hebrew name when we have one; otherwise the Latin name, isolated so it
+// keeps its own direction inside the RTL layout
+function playerName(p) { return (state.playerNames || {})[p.name] || p.name; }
+function playerNameEl(p, cls) {
+  const he = (state.playerNames || {})[p.name];
+  return text("div", (cls || "opp") + (he ? "" : " latin"), he || p.name);
+}
+
+function playerPhoto(p, cls) {
+  const img = document.createElement("img");
+  img.className = "player-photo " + (cls || "");
+  img.src = p.photo;
+  img.alt = playerName(p);
+  img.loading = "lazy";
+  img.onerror = () => img.remove();
+  return img;
+}
+
+function renderPlayer(slug) {
+  const players = (state.roster && state.roster.players) || [];
+  const p = players.find(x => (x.slug || slugOf(x)) === slug);
+
+  const back = el("a", "back-link");
+  back.href = "#/roster";
+  back.textContent = "› חזרה לסגל";
+  view.appendChild(back);
+
+  if (!p) {
+    view.appendChild(text("div", "empty", "לא מצאנו את השחקן הזה"));
+    footer();
+    return;
+  }
+
+  const card = el("div", "card player-hero");
+  if (p.photo) card.appendChild(playerPhoto(p, "big"));
+  if (p.number != null) card.appendChild(text("div", "big-shirt", String(p.number)));
+  card.appendChild(playerNameEl(p, "player-title"));
+  if (p.position) card.appendChild(text("div", "player-pos", p.position));
+  view.appendChild(card);
+
+  // the shirt number is already the badge above, so it is not repeated here
+  const facts = [
+    ["גובה", p.height ? p.height + " ס״מ" : null],
+    ["שנתון", p.born || null],
+    ["מדינה", p.country || null],
+  ].filter(([, v]) => v !== null && v !== undefined);
+  if (facts.length) {
+    const grid = el("div", "facts");
+    facts.forEach(([l, v]) => {
+      const cell = el("div", "fact");
+      cell.appendChild(text("div", "fv", String(v)));
+      cell.appendChild(text("div", "fl", l));
+      grid.appendChild(cell);
+    });
+    view.appendChild(grid);
+  }
+
+  // season averages arrive once games are played
+  view.appendChild(text("div", "section-title", "סטטיסטיקת עונה"));
+  const sc = el("div", "card");
+  const st = p.stats;
+  if (st && Object.keys(st).length) {
+    const grid = el("div", "facts");
+    [["נקודות", st.pts], ["ריבאונדים", st.reb], ["אסיסטים", st.ast],
+     ["דקות", st.min], ["מדד", st.pir], ["משחקים", st.games]]
+      .filter(([, v]) => v !== undefined && v !== null)
+      .forEach(([l, v]) => {
+        const cell = el("div", "fact");
+        cell.appendChild(text("div", "fv", String(v)));
+        cell.appendChild(text("div", "fl", l));
+        grid.appendChild(cell);
+      });
+    sc.appendChild(grid);
+  } else {
+    sc.appendChild(text("div", "empty", "העונה טרם החלה — הנתונים יופיעו כאן אחרי המשחק הראשון"));
+  }
+  view.appendChild(sc);
+
   footer();
 }
 
