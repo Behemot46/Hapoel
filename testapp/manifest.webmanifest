@@ -1,0 +1,17 @@
+{
+  "name": "יושב סופר את הדקות — הפועל ירושלים",
+  "short_name": "סופר את הדקות",
+  "description": "אפליקציית האוהדים של הפועל ירושלים — לוח משחקים, תוצאות וטבלה. מיזם אוהדים לא רשמי.",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#17090D",
+  "theme_color": "#17090D",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
