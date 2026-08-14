@@ -277,12 +277,154 @@ def update_games():
     if len(games) < 1:
         dump_tables(team_soup, team_link)
         raise RuntimeError("no games parsed — refusing to overwrite (see DIAG lines)")
+    log("domestic games parsed:", len(games))
+
+    # the league site carries only domestic games, so add the European ones
+    try:
+        euro = eurocup_games()
+    except Exception as e:
+        log("eurocup games failed:", e)
+        euro = []
+    if euro:
+        # a fixture already known from the league site wins — its names are Hebrew
+        have = {g["date"][:10] for g in games}
+        added = [g for g in euro if g["date"][:10] not in have]
+        games.extend(added)
+        log(f"european games added: {len(added)} of {len(euro)}")
+    else:
+        # never drop European fixtures already published just because a fetch failed
+        previous = (load_json("games.json") or {}).get("games", [])
+        kept = [g for g in previous if g.get("competition") == "יורוקאפ"]
+        if kept:
+            games.extend(kept)
+            log(f"kept {len(kept)} previously known european games")
+
     games.sort(key=lambda g: g["date"])
-    log("games parsed:", len(games))
+    log("games total:", len(games))
     current = load_json("games.json") or {}
     current["games"] = games
     save_json("games.json", current)
     return True
+
+# ---------------------------------------------------------------- eurocup games
+
+EUROCUP_GAME_ENDPOINTS = [
+    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/clubs/JER/games",
+    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/games?clubCode=JER",
+    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/games",
+    "https://api-live.euroleague.net/v1/results?seasonCode=U2026&clubCode=JER",
+    "https://api-live.euroleague.net/v1/schedules?seasonCode=U2026&clubCode=JER",
+]
+
+SIDE_KEYS = [("local", "road"), ("home", "away"), ("hometeam", "awayteam"),
+             ("teama", "teamb"), ("club", "opponent")]
+
+def _name_of(v):
+    """A side may be a plain name or an object wrapping one."""
+    if isinstance(v, str) and len(v.strip()) >= 3:
+        return v.strip()
+    if isinstance(v, dict):
+        low = {k.lower(): val for k, val in v.items()}
+        for k in ("name", "clubname", "teamname", "fullname"):
+            if isinstance(low.get(k), str) and low[k].strip():
+                return low[k].strip()
+        club = low.get("club")
+        if isinstance(club, dict):
+            return _name_of(club)
+    return None
+
+def _score_of(v, sibling, key):
+    if isinstance(v, dict):
+        low = {k.lower(): val for k, val in v.items()}
+        for k in ("score", "points", "pts"):
+            if isinstance(low.get(k), (int, float)):
+                return int(low[k])
+    s = sibling.get(key)
+    return int(s) if isinstance(s, (int, float)) else None
+
+ISO_DATE = re.compile(r"(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})")
+
+def _date_of(d):
+    for k, v in d.items():
+        if "date" in k.lower() and isinstance(v, str):
+            m = ISO_DATE.search(v)
+            if m:
+                y, mo, da, hh, mm = m.groups()
+                return f"{y}-{mo}-{da}T{hh}:{mm}:00+03:00"
+            dm = DATE_RE.search(v)
+            if dm:
+                da, mo, y = (int(x) for x in dm.groups())
+                if y < 100:
+                    y += 2000
+                tm = TIME_RE.search(" ".join(str(x) for x in d.values() if isinstance(x, str)))
+                hh, mm = (int(x) for x in tm.groups()) if tm else (20, 0)
+                return f"{y:04d}-{mo:02d}-{da:02d}T{hh:02d}:{mm:02d}:00+03:00"
+    return None
+
+def _extract_games(obj, out):
+    if isinstance(obj, list):
+        for x in obj:
+            _extract_games(x, out)
+        return
+    if not isinstance(obj, dict):
+        return
+    low = {k.lower(): v for k, v in obj.items()}
+    date = _date_of(low)
+    if date:
+        for hk, ak in SIDE_KEYS:
+            if hk in low and ak in low:
+                home = _name_of(low[hk])
+                away = _name_of(low[ak])
+                if home and away:
+                    hs = _score_of(low[hk], low, "homescore")
+                    as_ = _score_of(low[ak], low, "awayscore")
+                    played = bool(low.get("played")) or (hs is not None and as_ is not None and (hs or as_))
+                    out.append({
+                        "date": date, "home": home, "away": away,
+                        "homeScore": hs if played else None,
+                        "awayScore": as_ if played else None,
+                        "status": "finished" if played else "scheduled",
+                        "round": low.get("round") or low.get("roundnumber"),
+                    })
+                    break
+    for v in obj.values():
+        _extract_games(v, out)
+
+def is_us_latin(name):
+    n = (name or "").lower()
+    return "jerusalem" in n and ("hapoel" in n or "midtown" in n)
+
+def eurocup_games():
+    for url in EUROCUP_GAME_ENDPOINTS:
+        try:
+            data = json.loads(fetch(url))
+        except Exception as e:
+            log("eurocup games endpoint failed:", url, e)
+            continue
+        found = []
+        _extract_games(data, found)
+        ours = [g for g in found if is_us_latin(g["home"]) or is_us_latin(g["away"])]
+        log(f"  eurocup games {url}: {len(found)} parsed, {len(ours)} ours")
+        if ours:
+            games = []
+            for g in ours:
+                opp = g["away"] if is_us_latin(g["home"]) else g["home"]
+                day = g["date"][:10].replace("-", "")
+                games.append({
+                    "id": f"{day}-euro-{re.sub(r'[^A-Za-z]', '', opp)[:12]}",
+                    "date": g["date"],
+                    "competition": "יורוקאפ",
+                    "home": TEAM if is_us_latin(g["home"]) else g["home"],
+                    "away": TEAM if is_us_latin(g["away"]) else g["away"],
+                    "venue": None,
+                    "status": g["status"],
+                    "homeScore": g["homeScore"],
+                    "awayScore": g["awayScore"],
+                })
+            return games
+        if found:
+            log(f"  DIAG sample parsed game: {found[0]}")
+    return []
 
 # ---------------------------------------------------------------- roster
 
