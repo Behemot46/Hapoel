@@ -66,13 +66,14 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
       loadJSON("data/club.json"),
       loadJSON("data/roster.json").catch(() => ({ players: [] })),
       loadJSON("data/player-names.json").catch(() => ({})),
+      loadJSON("data/player-profiles.json").catch(() => ({})),
     ]);
     state.games = games;
     state.standings = standings;
@@ -80,6 +81,7 @@ async function boot() {
     state.club = club;
     state.roster = roster;
     state.playerNames = names || {};
+    state.profiles = profiles || {};
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     refreshDiary();
   } catch (e) {
@@ -152,6 +154,7 @@ function countdownLabel(dateStr) {
 const routes = {
   "": renderHome, "#/": renderHome, "#/games": renderGames,
   "#/table": renderTable, "#/roster": renderRoster, "#/diary": renderDiary,
+  "#/meet": renderMeet,
 };
 
 function render() {
@@ -163,7 +166,7 @@ function render() {
     : (routes[hash] || renderHome);
   const routeName = hash === "#/games" ? "games"
     : hash === "#/table" ? "table"
-    : (hash === "#/roster" || playerMatch) ? "roster"
+    : (hash === "#/roster" || hash === "#/meet" || playerMatch) ? "roster"
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
     a.classList.toggle("active", a.dataset.route === routeName));
@@ -373,6 +376,18 @@ function renderRoster() {
     return;
   }
 
+  // gateway into the "get to know the squad" profiles
+  if (Object.keys(state.profiles || {}).length > 1) {
+    const promo = el("a", "card promo");
+    promo.href = "#/meet";
+    const t = el("div");
+    t.appendChild(text("div", "promo-title", "בואו נכיר את הסגל"));
+    t.appendChild(text("div", "promo-sub", "מי הם החבר׳ה האלה? פרופיל לכל שחקן"));
+    promo.appendChild(t);
+    promo.appendChild(text("div", "chevron", "‹"));
+    view.appendChild(promo);
+  }
+
   const sorted = [...players].sort((a, b) => {
     if (a.number != null && b.number != null) return a.number - b.number;
     if (a.number != null) return -1;
@@ -462,6 +477,34 @@ function renderPlayer(slug) {
     view.appendChild(grid);
   }
 
+  const prof = profileOf(p);
+  if (prof) {
+    view.appendChild(text("div", "section-title", "מי הוא"));
+    const pc = el("div", "card");
+    pc.appendChild(text("div", "meet-headline", prof.headline));
+    pc.appendChild(text("p", "meet-summary", prof.summary));
+    if (prof.strengths && prof.strengths.length) {
+      const chips = el("div", "chips-row");
+      prof.strengths.forEach(s => chips.appendChild(text("span", "strength", s)));
+      pc.appendChild(chips);
+    }
+    if (prof.watch) {
+      const w = el("div", "meet-watch");
+      w.appendChild(text("span", "watch-label", "מה לשים לב"));
+      w.appendChild(text("span", "", prof.watch));
+      pc.appendChild(w);
+    }
+    if (prof.source) {
+      const src = el("a", "meet-link muted-link");
+      src.href = prof.source;
+      src.target = "_blank";
+      src.rel = "noopener";
+      src.textContent = "המקור";
+      pc.appendChild(src);
+    }
+    view.appendChild(pc);
+  }
+
   // season averages arrive once games are played
   view.appendChild(text("div", "section-title", "סטטיסטיקת עונה"));
   const sc = el("div", "card");
@@ -483,6 +526,90 @@ function renderPlayer(slug) {
   }
   view.appendChild(sc);
 
+  footer();
+}
+
+/* ---------- meet the squad ---------- */
+
+function profileOf(p) {
+  const src = state.profiles || {};
+  if (src[p.name]) return src[p.name];
+  // fall back to a surname match, so "Kenneth" vs "Kenny" still lands
+  const last = (p.name || "").split(" ").pop().toLowerCase();
+  const key = Object.keys(src).find(k => k !== "_comment" && k.toLowerCase().endsWith(last));
+  return key ? src[key] : null;
+}
+
+function renderMeet() {
+  const players = ((state.roster && state.roster.players) || []).slice()
+    .sort((a, b) => (a.number ?? 999) - (b.number ?? 999));
+
+  const intro = el("div", "card meet-intro");
+  intro.appendChild(text("div", "eyebrow", "בואו נכיר"));
+  intro.appendChild(text("div", "meet-title", "מי הם החבר׳ה האלה?"));
+  intro.appendChild(text("p", "",
+    "סגל חדש ברובו. ריכזנו לכל שחקן את מה שכתבו עליו סקאוטים ואת המספרים מהקריירה שלו, כדי שתגיעו למשחק הראשון ותדעו את מי אתם מריעים."));
+  intro.appendChild(text("p", "meet-note",
+    "הפרופילים נכתבו על ידי אוהדים על בסיס דוחות סקאוטינג ונתונים פומביים, ומצורף מקור לכל שחקן. אינם מטעם המועדון."));
+  view.appendChild(intro);
+
+  let written = 0;
+  players.forEach(p => {
+    const prof = profileOf(p);
+    if (!prof) return;
+    written++;
+    const c = el("div", "card meet-card");
+
+    const head = el("div", "meet-head");
+    const num = el("div", "shirt");
+    num.textContent = p.number != null ? p.number : "–";
+    head.appendChild(num);
+    if (p.photo) head.appendChild(playerPhoto(p, "thumb"));
+    const who = el("div", "info");
+    who.appendChild(playerNameEl(p));
+    const bits = [];
+    if (p.position) bits.push(p.position);
+    if (p.height) bits.push(p.height + " ס״מ");
+    if (p.country) bits.push(p.country);
+    if (bits.length) who.appendChild(text("div", "sub", bits.join(" · ")));
+    head.appendChild(who);
+    c.appendChild(head);
+
+    c.appendChild(text("div", "meet-headline", prof.headline));
+    c.appendChild(text("p", "meet-summary", prof.summary));
+
+    if (prof.strengths && prof.strengths.length) {
+      const chips = el("div", "chips-row");
+      prof.strengths.forEach(s => chips.appendChild(text("span", "strength", s)));
+      c.appendChild(chips);
+    }
+    if (prof.watch) {
+      const w = el("div", "meet-watch");
+      w.appendChild(text("span", "watch-label", "מה לשים לב"));
+      w.appendChild(text("span", "", prof.watch));
+      c.appendChild(w);
+    }
+
+    const links = el("div", "meet-links");
+    const page = el("a", "meet-link");
+    page.href = "#/player/" + encodeURIComponent(p.slug || slugOf(p));
+    page.textContent = "לעמוד השחקן";
+    links.appendChild(page);
+    if (prof.source) {
+      const src = el("a", "meet-link muted-link");
+      src.href = prof.source;
+      src.target = "_blank";
+      src.rel = "noopener";
+      src.textContent = "המקור";
+      links.appendChild(src);
+    }
+    c.appendChild(links);
+    view.appendChild(c);
+  });
+
+  if (!written) {
+    view.appendChild(text("div", "empty", "הפרופילים בהכנה — נעדכן בקרוב"));
+  }
   footer();
 }
 

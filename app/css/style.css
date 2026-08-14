@@ -227,6 +227,54 @@ a.player-row:hover { border-color: var(--red); }
 .fact .fv { font-weight: 800; font-size: 18px; font-variant-numeric: tabular-nums; }
 .fact .fl { font-size: 11.5px; color: var(--muted); }
 
+/* Meet the squad */
+a.promo {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  text-decoration: none; color: inherit;
+  background: var(--red-soft);
+  border-color: var(--red);
+}
+a.promo:hover { filter: brightness(0.98); }
+.promo-title { font-weight: 800; font-size: 16px; color: var(--red); }
+.promo-sub { font-size: 13px; color: var(--muted); margin-top: 1px; }
+.promo .chevron { color: var(--red); font-size: 22px; line-height: 1; }
+
+.meet-intro .meet-title { font-size: 21px; font-weight: 800; margin-bottom: 8px; }
+.meet-intro p { margin: 0 0 8px; font-size: 15px; }
+.meet-intro .meet-note { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+.meet-card { padding-bottom: 12px; }
+.meet-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.meet-head .info { flex: 1; min-width: 0; }
+.meet-head .opp { font-weight: 700; font-size: 16px; }
+.meet-head .sub { color: var(--muted); font-size: 12.5px; margin-top: 1px; }
+.meet-headline {
+  font-weight: 800; font-size: 17px; color: var(--red);
+  margin-bottom: 6px; text-wrap: balance;
+}
+.meet-summary { margin: 0 0 10px; font-size: 15px; line-height: 1.6; }
+.chips-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.strength {
+  font-size: 12.5px; font-weight: 600;
+  background: var(--surface-2); color: var(--text);
+  padding: 4px 10px; border-radius: 999px;
+}
+.meet-watch {
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13.5px;
+  margin-bottom: 10px;
+}
+.meet-watch .watch-label {
+  display: block; font-weight: 800; font-size: 11.5px;
+  color: var(--muted); margin-bottom: 2px;
+}
+.meet-links { display: flex; gap: 14px; }
+.meet-link { color: var(--red); font-weight: 700; font-size: 13.5px; text-decoration: none; }
+.meet-link:hover { text-decoration: underline; }
+.meet-link.muted-link { color: var(--muted); font-weight: 600; }
+
 .player-row .shirt {
   flex: 0 0 38px;
   height: 38px;
