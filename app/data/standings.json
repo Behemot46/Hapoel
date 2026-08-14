@@ -2,17 +2,131 @@
   "season": "2026/27",
   "competition": "ליגת ווינר סל",
   "rows": [
-    { "pos": 1, "team": "הפועל ירושלים", "played": 2, "wins": 2, "losses": 0 },
-    { "pos": 2, "team": "מכבי תל אביב", "played": 2, "wins": 2, "losses": 0 },
-    { "pos": 3, "team": "הפועל תל אביב", "played": 2, "wins": 1, "losses": 1 },
-    { "pos": 4, "team": "הפועל חולון", "played": 2, "wins": 1, "losses": 1 },
-    { "pos": 5, "team": "בני הרצליה", "played": 2, "wins": 1, "losses": 1 },
-    { "pos": 6, "team": "עירוני נס ציונה", "played": 2, "wins": 1, "losses": 1 },
-    { "pos": 7, "team": "מכבי ראשון לציון", "played": 2, "wins": 1, "losses": 1 },
-    { "pos": 8, "team": "הפועל גליל עליון", "played": 2, "wins": 1, "losses": 1 },
-    { "pos": 9, "team": "עירוני קריית אתא", "played": 2, "wins": 1, "losses": 1 },
-    { "pos": 10, "team": "הפועל באר שבע", "played": 2, "wins": 1, "losses": 1 },
-    { "pos": 11, "team": "אליצור נתניה", "played": 2, "wins": 0, "losses": 2 },
-    { "pos": 12, "team": "הפועל העמק", "played": 2, "wins": 0, "losses": 2 }
+    {
+      "pos": 1,
+      "team": "סלים",
+      "played": 0,
+      "wins": 0,
+      "losses": 0
+    },
+    {
+      "pos": 2,
+      "team": "נצ'",
+      "played": 0,
+      "wins": 0,
+      "losses": 0
+    },
+    {
+      "pos": 3,
+      "team": "מכבי ת\"א",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 4,
+      "team": "הפועל ת\"א",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 5,
+      "team": "הפועל י-ם",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 6,
+      "team": "בני הרצליה",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 7,
+      "team": "הפועל חולון",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 8,
+      "team": "הפועל העמק",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 9,
+      "team": "ראשון לציון",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 10,
+      "team": "הפועל ב\"ש",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 11,
+      "team": "מכבי רמת גן",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 12,
+      "team": "קריית אתא",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 13,
+      "team": "נס ציונה",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 14,
+      "team": "גליל עליון",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 15,
+      "team": "הפועל אילת",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 16,
+      "team": "מכבי אשדוד",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    }
   ]
 }
