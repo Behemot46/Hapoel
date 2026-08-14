@@ -59,6 +59,13 @@ function refreshDiary() {
 }
 
 async function loadJSON(path) {
+  // the standalone single-file build embeds the data, because fetch() is
+  // blocked on file:// — so read from there first when it exists
+  const embedded = window.__HAPOEL_DATA__;
+  if (embedded) {
+    const key = path.replace(/^data\//, "").replace(/\.json$/, "");
+    if (Object.prototype.hasOwnProperty.call(embedded, key)) return embedded[key];
+  }
   const res = await fetch(path, { cache: "no-cache" });
   if (!res.ok) throw new Error(path + " → " + res.status);
   return res.json();
@@ -85,6 +92,13 @@ async function boot() {
     state.profiles = profiles || {};
     state.details = details || {};
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
+    // the single-file build is a frozen copy, so say so plainly
+    if (window.__HAPOEL_SNAPSHOT__) {
+      const b = document.getElementById("sampleBanner");
+      b.textContent = "עותק להורדה — צילום מצב מ־" + window.__HAPOEL_SNAPSHOT__ +
+        ". לגרסה המתעדכנת: behemot46.github.io/Hapoel";
+      b.hidden = false;
+    }
     refreshDiary();
   } catch (e) {
     view.innerHTML = '<div class="empty">לא הצלחנו לטעון את הנתונים.<br>בדקו את החיבור ונסו לרענן.</div>';

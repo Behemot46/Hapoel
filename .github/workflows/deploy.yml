@@ -18,6 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # a single self-contained copy fans can download and pass around
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build the standalone file
+        run: python scripts/build_standalone.py app/hapoel-standalone.html
+
       # Publishing to a gh-pages branch auto-enables GitHub Pages for the
       # repo — the Pages-via-Actions flow can't create the site with the
       # default workflow token ("Resource not accessible by integration").
