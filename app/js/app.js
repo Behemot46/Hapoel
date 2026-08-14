@@ -1,9 +1,62 @@
 "use strict";
 
 const TEAM = "הפועל ירושלים";
-const state = { games: null, standings: null, meta: null, club: null, gamesTab: "upcoming" };
+const state = {
+  games: null, standings: null, meta: null, club: null,
+  gamesTab: "upcoming", diaryScope: "season",
+};
 
 const view = document.getElementById("view");
+
+/* ---------- the fan diary: attendance kept on this device only ---------- */
+
+const DIARY_KEY = "hapoel-diary-v1";
+
+// id -> snapshot of the game, so the diary survives games leaving the feed
+function loadDiary() {
+  try { return JSON.parse(localStorage.getItem(DIARY_KEY)) || {}; }
+  catch (e) { return {}; }
+}
+let diary = loadDiary();
+
+function saveDiary() {
+  try { localStorage.setItem(DIARY_KEY, JSON.stringify(diary)); } catch (e) {}
+}
+
+function attended(id) { return Object.prototype.hasOwnProperty.call(diary, id); }
+
+function snapshot(g) {
+  return {
+    date: g.date,
+    competition: g.competition,
+    opponent: opponent(g),
+    home: isHome(g),
+    status: g.status,
+    us: ourScore(g),
+    them: theirScore(g),
+  };
+}
+
+function toggleAttend(g) {
+  if (attended(g.id)) delete diary[g.id];
+  else diary[g.id] = snapshot(g);
+  saveDiary();
+}
+
+// keep stored snapshots fresh — a game marked while upcoming gains its result later
+function refreshDiary() {
+  let dirty = false;
+  (state.games.games || []).forEach(g => {
+    if (attended(g.id)) {
+      const next = snapshot(g);
+      if (JSON.stringify(next) !== JSON.stringify(diary[g.id])) {
+        diary[g.id] = next;
+        dirty = true;
+      }
+    }
+  });
+  if (dirty) saveDiary();
+}
 
 async function loadJSON(path) {
   const res = await fetch(path, { cache: "no-cache" });
@@ -13,17 +66,20 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club] = await Promise.all([
+    const [games, standings, meta, club, roster] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
       loadJSON("data/club.json"),
+      loadJSON("data/roster.json").catch(() => ({ players: [] })),
     ]);
     state.games = games;
     state.standings = standings;
     state.meta = meta;
     state.club = club;
+    state.roster = roster;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
+    refreshDiary();
   } catch (e) {
     view.innerHTML = '<div class="empty">לא הצלחנו לטעון את הנתונים.<br>בדקו את החיבור ונסו לרענן.</div>';
     return;
@@ -91,12 +147,18 @@ function countdownLabel(dateStr) {
 
 /* ---------- routing ---------- */
 
-const routes = { "": renderHome, "#/": renderHome, "#/games": renderGames, "#/table": renderTable };
+const routes = {
+  "": renderHome, "#/": renderHome, "#/games": renderGames,
+  "#/table": renderTable, "#/roster": renderRoster, "#/diary": renderDiary,
+};
 
 function render() {
   const hash = location.hash || "#/";
   const fn = routes[hash] || renderHome;
-  const routeName = hash === "#/games" ? "games" : hash === "#/table" ? "table" : "home";
+  const routeName = hash === "#/games" ? "games"
+    : hash === "#/table" ? "table"
+    : hash === "#/roster" ? "roster"
+    : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
     a.classList.toggle("active", a.dataset.route === routeName));
   view.innerHTML = "";
@@ -209,6 +271,7 @@ function renderGames() {
 }
 
 function gameRow(g) {
+  const wrap = el("div", "game-card");
   const row = el("div", "game-row");
   const d = new Date(g.date);
 
@@ -231,7 +294,26 @@ function gameRow(g) {
     end.appendChild(text("div", "t", fmtTime.format(d)));
   }
   row.appendChild(end);
-  return row;
+  wrap.appendChild(row);
+  wrap.appendChild(attendButton(g));
+  return wrap;
+}
+
+function attendButton(g) {
+  const past = g.status === "finished";
+  const b = el("button", "attend");
+  b.type = "button";
+  const paint = () => {
+    const on = attended(g.id);
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.textContent = on
+      ? (past ? "✓ הייתי שם" : "✓ אני מגיע")
+      : (past ? "הייתי שם" : "אני מגיע");
+  };
+  paint();
+  b.onclick = () => { toggleAttend(g); paint(); };
+  return b;
 }
 
 /* ---------- table ---------- */
@@ -267,6 +349,215 @@ function standingsTable(rows, full) {
     t.appendChild(tr);
   });
   return t;
+}
+
+/* ---------- roster ---------- */
+
+function renderRoster() {
+  const r = state.roster || {};
+  const players = r.players || [];
+  view.appendChild(text("div", "section-title",
+    "הסגל" + (r.season ? " · עונת " + r.season : "")));
+
+  if (!players.length) {
+    const c = el("div", "card");
+    c.appendChild(text("div", "empty", "הסגל טרם פורסם — נעדכן ברגע שיהיה"));
+    view.appendChild(c);
+    footer();
+    return;
+  }
+
+  const sorted = [...players].sort((a, b) => {
+    if (a.number != null && b.number != null) return a.number - b.number;
+    if (a.number != null) return -1;
+    if (b.number != null) return 1;
+    return a.name.localeCompare(b.name, "he");
+  });
+
+  sorted.forEach(p => {
+    const row = el("div", "player-row");
+    const num = el("div", "shirt");
+    num.textContent = p.number != null ? p.number : "–";
+    row.appendChild(num);
+    const info = el("div", "info");
+    info.appendChild(text("div", "opp", p.name));
+    const bits = [];
+    if (p.position) bits.push(p.position);
+    if (p.height) bits.push(p.height + " ס״מ");
+    if (p.born) bits.push("שנתון " + p.born);
+    if (bits.length) info.appendChild(text("div", "sub", bits.join(" · ")));
+    row.appendChild(info);
+    view.appendChild(row);
+  });
+  footer();
+}
+
+/* ---------- diary ---------- */
+
+const SEASON_START = new Date(new Date().getFullYear(), 6, 1); // 1 July of this year
+
+function diaryEntries(scope) {
+  return Object.entries(diary)
+    .map(([id, e]) => ({ id, ...e }))
+    .filter(e => scope === "all" || new Date(e.date) >= SEASON_START)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+function diaryStats(entries) {
+  const played = entries.filter(e => e.status === "finished");
+  const wins = played.filter(e => e.us > e.them).length;
+  return {
+    total: entries.length,
+    home: entries.filter(e => e.home).length,
+    away: entries.filter(e => !e.home).length,
+    europe: entries.filter(e => /יורו|אירופ|BCL|צ׳מפיונס|ליגת האלופות/i.test(e.competition || "")).length,
+    played: played.length,
+    wins,
+    losses: played.length - wins,
+  };
+}
+
+const BADGES = [
+  { key: "veteran10", emoji: "🏆", name: "ותיק היציע", need: 10,
+    got: s => s.total, hint: "10 משחקים" },
+  { key: "veteran25", emoji: "🎖️", name: "ותיק כבוד", need: 25,
+    got: s => s.total, hint: "25 משחקים" },
+  { key: "veteran50", emoji: "👑", name: "אגדת יציע", need: 50,
+    got: s => s.total, hint: "50 משחקים" },
+  { key: "away5", emoji: "🚌", name: "נאמן בחוץ", need: 5,
+    got: s => s.away, hint: "5 משחקי חוץ" },
+  { key: "derby", emoji: "🔥", name: "דרבי", need: 1,
+    got: (s, e) => e.filter(x => /מכבי ת|מכבי תל אביב/.test(x.opponent || "")).length,
+    hint: "משחק מול מכבי ת״א" },
+  { key: "europe", emoji: "✈️", name: "לילה אירופי", need: 1,
+    got: s => s.europe, hint: "משחק אירופי" },
+  { key: "rain", emoji: "☔", name: "נאמן גם בגשם", need: 1,
+    got: (s, e) => e.filter(x => x.status === "finished" && x.us < x.them).length,
+    hint: "נשארת גם בהפסד" },
+  { key: "charm", emoji: "🍀", name: "קמע", need: 5,
+    got: (s, e) => {
+      const played = e.filter(x => x.status === "finished")
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
+      let best = 0, run = 0;
+      played.forEach(x => { run = x.us > x.them ? run + 1 : 0; best = Math.max(best, run); });
+      return best;
+    }, hint: "5 נצחונות ברצף" },
+];
+
+function renderDiary() {
+  const scope = state.diaryScope;
+  const entries = diaryEntries(scope);
+  const s = diaryStats(entries);
+
+  const seg = el("div", "seg");
+  const bS = text("button", scope === "season" ? "active" : "", "העונה");
+  const bA = text("button", scope === "all" ? "active" : "", "הכול");
+  bS.onclick = () => { state.diaryScope = "season"; render(); };
+  bA.onclick = () => { state.diaryScope = "all"; render(); };
+  seg.appendChild(bS);
+  seg.appendChild(bA);
+  view.appendChild(seg);
+
+  if (!s.total) {
+    const c = el("div", "card");
+    c.appendChild(text("div", "eyebrow", "היומן שלי"));
+    const e = el("div", "empty");
+    e.innerHTML = 'עוד לא סימנת אף משחק.<br>בלשונית ״משחקים״ סמנו ״הייתי שם״ — והיומן יתחיל להיבנות.<br><br>' +
+      '<span class="tiny">הכול נשמר במכשיר שלך בלבד. בלי הרשמה, בלי שרת.</span>';
+    c.appendChild(e);
+    view.appendChild(c);
+    footer();
+    return;
+  }
+
+  // hero
+  const hero = el("div", "card diary-hero");
+  hero.appendChild(text("div", "eyebrow", scope === "season" ? "העונה שלי" : "מאז ומתמיד"));
+  hero.appendChild(text("div", "big", String(s.total)));
+  hero.appendChild(text("div", "cap", s.total === 1 ? "משחק שהייתי בו" : "משחקים שהייתי בהם"));
+  const grid = el("div", "stat-grid");
+  [["בית", s.home], ["חוץ", s.away], ["אירופה", s.europe]].forEach(([l, n]) => {
+    const cell = el("div", "stat-cell");
+    cell.appendChild(text("div", "n", String(n)));
+    cell.appendChild(text("div", "l", l));
+    grid.appendChild(cell);
+  });
+  hero.appendChild(grid);
+  if (s.played) {
+    const rec = el("div", "record" + (s.wins >= s.losses ? "" : " bad"));
+    rec.appendChild(text("span", "lab", "המאזן שלי ביציע"));
+    rec.appendChild(text("span", "val", s.wins + "–" + s.losses));
+    hero.appendChild(rec);
+  }
+  const share = el("button", "share-btn", "שיתוף בוואטסאפ");
+  share.type = "button";
+  share.onclick = () => shareDiary(s, scope);
+  hero.appendChild(share);
+  view.appendChild(hero);
+
+  // badges
+  view.appendChild(text("div", "section-title", "תגים"));
+  const bc = el("div", "card");
+  const bl = el("div", "badge-list");
+  BADGES.forEach(b => {
+    const got = b.got(s, entries);
+    const done = got >= b.need;
+    const chip = el("div", "bdg" + (done ? "" : " locked"));
+    chip.appendChild(text("span", "bdg-emoji", b.emoji));
+    const t = el("span");
+    t.appendChild(text("span", "bdg-name", b.name));
+    t.appendChild(text("span", "bdg-sub", done ? b.hint : b.hint + " · " + got + " מתוך " + b.need));
+    chip.appendChild(t);
+    bl.appendChild(chip);
+  });
+  bc.appendChild(bl);
+  view.appendChild(bc);
+
+  // history
+  view.appendChild(text("div", "section-title", "המשחקים שלי"));
+  entries.forEach(e => {
+    const row = el("div", "game-row");
+    const d = new Date(e.date);
+    const date = el("div", "date-block");
+    date.appendChild(text("div", "d", String(d.getDate())));
+    date.appendChild(text("div", "m", MONTHS_SHORT[d.getMonth()]));
+    row.appendChild(date);
+    const info = el("div", "info");
+    info.appendChild(text("div", "opp", "נגד " + e.opponent));
+    info.appendChild(text("div", "sub",
+      (e.competition || "") + " · " + (e.home ? "בית" : "חוץ") + " · " + d.getFullYear()));
+    row.appendChild(info);
+    const end = el("div", "end");
+    if (e.status === "finished") {
+      end.appendChild(text("div", "t score", e.us + "–" + e.them));
+      end.appendChild(text("span", "chip " + (e.us > e.them ? "win" : "loss"), e.us > e.them ? "נ׳" : "ה׳"));
+    } else {
+      end.appendChild(text("div", "t", fmtTime.format(d)));
+    }
+    row.appendChild(end);
+    view.appendChild(row);
+  });
+
+  footer();
+}
+
+function shareDiary(s, scope) {
+  const lines = [
+    scope === "season" ? "העונה שלי עם הפועל ירושלים 🔴⚫" : "אני והפועל ירושלים 🔴⚫",
+    s.total + (s.total === 1 ? " משחק ביציע" : " משחקים ביציע") +
+      " (" + s.home + " בית, " + s.away + " חוץ)",
+  ];
+  if (s.played) lines.push("המאזן שלי: " + s.wins + "–" + s.losses);
+  const earned = BADGES.filter(b => b.got(s, diaryEntries(scope)) >= b.need);
+  if (earned.length) lines.push(earned.map(b => b.emoji + " " + b.name).join(" · "));
+  lines.push("יש בנו אהבה והיא תנצח");
+  const txt = lines.join("\n");
+
+  if (navigator.share) {
+    navigator.share({ text: txt }).catch(() => {});
+  } else {
+    window.open("https://wa.me/?text=" + encodeURIComponent(txt), "_blank", "noopener");
+  }
 }
 
 /* ---------- footer ---------- */

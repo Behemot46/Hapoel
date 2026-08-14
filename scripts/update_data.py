@@ -284,13 +284,92 @@ def update_games():
     save_json("games.json", current)
     return True
 
+# ---------------------------------------------------------------- roster
+
+POSITION_WORDS = ("שוער", "רכז", "קלע", "כנף", "סמ\"ק", "סמ״ק", "פורוורד", "סנטר", "מרכז", "גארד")
+
+def parse_roster(soup):
+    """Find the squad table on the team page and map it by header text.
+    Expected headers vary; we look for a table whose header mentions שחקן/שם
+    together with at least one of מספר / תפקיד / גובה / לידה."""
+    best = []
+    for table in soup.find_all("table"):
+        rows = table.find_all("tr")
+        if len(rows) < 4:
+            continue
+        hdr_idx = hdr = None
+        for i, r in enumerate(rows[:3]):
+            cells = [c.get_text(strip=True) for c in r.find_all(["td", "th"])]
+            joined = " ".join(cells)
+            if ("שחקן" in joined or "שם" in joined) and any(
+                    k in joined for k in ("מס", "תפקיד", "גובה", "לידה", "עמדה")):
+                hdr_idx, hdr = i, cells
+                break
+        if hdr_idx is None:
+            continue
+
+        def col(*names):
+            for j, c in enumerate(hdr):
+                if any(n in c for n in names):
+                    return j
+            return None
+
+        j_name = col("שחקן", "שם")
+        j_num = col("מס")
+        j_pos = col("תפקיד", "עמדה")
+        j_height = col("גובה")
+        j_born = col("לידה", "שנתון")
+
+        players = []
+        for r in rows[hdr_idx + 1:]:
+            cells = [c.get_text(strip=True) for c in r.find_all("td")]
+            if len(cells) < 2:
+                continue
+
+            def cell(j):
+                return cells[j] if j is not None and j < len(cells) else ""
+
+            name = cell(j_name)
+            if not name or len(name) < 3 or not re.search(r"[א-תA-Za-z]{2,}", name):
+                continue
+            p = {"name": name}
+            if parse_int(cell(j_num)) is not None:
+                p["number"] = parse_int(cell(j_num))
+            if cell(j_pos):
+                p["position"] = cell(j_pos)
+            if parse_int(cell(j_height)):
+                p["height"] = parse_int(cell(j_height))
+            if parse_int(cell(j_born)):
+                p["born"] = parse_int(cell(j_born))
+            players.append(p)
+        if len(players) > len(best):
+            best = players
+    return best
+
+def update_roster():
+    team_link = find_team_link()
+    if not team_link:
+        raise RuntimeError("no team page found for roster")
+    soup = BeautifulSoup(fetch(team_link), "html.parser")
+    players = parse_roster(soup)
+    if len(players) < 5:
+        dump_tables(soup, team_link)
+        raise RuntimeError(f"only {len(players)} players parsed — refusing to overwrite (see DIAG lines)")
+    log("roster players:", len(players))
+    current = load_json("roster.json") or {}
+    current["players"] = players
+    current["sample"] = False
+    save_json("roster.json", current)
+    return True
+
 # ---------------------------------------------------------------- main
 
 def main():
     meta = load_json("meta.json") or {"sources": {}}
     ok_any = False
     status = {}
-    for name, fn in [("standings", update_standings), ("games", update_games)]:
+    for name, fn in [("standings", update_standings), ("games", update_games),
+                     ("roster", update_roster)]:
         try:
             fn()
             status[name] = {"ok": True, "detail": "עודכן בהצלחה"}
