@@ -52,7 +52,9 @@ const fmtTime = new Intl.DateTimeFormat("he-IL", { hour: "2-digit", minute: "2-d
 const fmtUpdatedDate = new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "numeric" });
 const fmtUpdated = { format: d => fmtUpdatedDate.format(d) + " בשעה " + fmtTime.format(d) };
 
-function isHome(g) { return g.home === TEAM; }
+// the league lists the club under its sponsored name, so match loosely
+function isUs(name) { return !!name && name.includes("הפועל") && name.includes("ירושלים"); }
+function isHome(g) { return isUs(g.home); }
 function opponent(g) { return isHome(g) ? g.away : g.home; }
 function ourScore(g) { return isHome(g) ? g.homeScore : g.awayScore; }
 function theirScore(g) { return isHome(g) ? g.awayScore : g.homeScore; }
@@ -149,7 +151,7 @@ function renderHome() {
   if (rows && rows.length) {
     view.appendChild(text("div", "section-title", "טבלת " + state.standings.competition));
     const c = el("div", "card table-card");
-    const usIdx = rows.findIndex(r => r.team === TEAM);
+    const usIdx = rows.findIndex(r => isUs(r.team));
     let slice;
     if (usIdx < 0) slice = rows.slice(0, 4);
     else {
@@ -249,7 +251,7 @@ function standingsTable(rows, full) {
   });
   t.appendChild(head);
   rows.forEach(r => {
-    const tr = el("tr", r.team === TEAM ? "us" : "");
+    const tr = el("tr", isUs(r.team) ? "us" : "");
     tr.appendChild(text("td", "num", String(r.pos)));
     tr.appendChild(text("td", "team", r.team));
     tr.appendChild(text("td", "num", String(r.played)));

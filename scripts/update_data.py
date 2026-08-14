@@ -31,6 +31,9 @@ TEAM = "הפועל ירושלים"
 UA = {"User-Agent": "Mozilla/5.0 (compatible; HapoelFanApp/1.0; +https://github.com/Behemot46/Hapoel)"}
 
 LEAGUE_HOME = "https://basket.co.il/"
+# the league lists the club under its sponsored name, so match loosely
+def is_us(name):
+    return "הפועל" in (name or "") and "ירושלים" in (name or "")
 
 def log(*args):
     print("[update]", *args, flush=True)
@@ -57,14 +60,23 @@ def parse_int(s):
 
 # ---------------------------------------------------------------- standings
 
+def dump_tables(soup, url):
+    """Diagnostic: log a summary of every table so selectors can be calibrated."""
+    tables = soup.find_all("table")
+    log(f"DIAG {url}: {len(tables)} tables")
+    for i, t in enumerate(tables[:12]):
+        rows = t.find_all("tr")
+        first = rows[0].get_text(" | ", strip=True)[:110] if rows else ""
+        second = rows[1].get_text(" | ", strip=True)[:110] if len(rows) > 1 else ""
+        log(f"  table[{i}] rows={len(rows)} head='{first}' next='{second}'")
+
 def find_standings(soup):
-    """Find a standings-looking table: a row mentions TEAM and has >=3 numeric cells."""
+    """Find a standings-looking table: a row mentions our team and has >=3 numeric cells."""
     for table in soup.find_all("table"):
         rows = table.find_all("tr")
         if len(rows) < 6:
             continue
-        team_rows = [r for r in rows if TEAM in r.get_text()]
-        if not team_rows:
+        if not any(is_us(r.get_text()) for r in rows):
             continue
         parsed = []
         for r in rows:
@@ -75,29 +87,32 @@ def find_standings(soup):
             name = next((c for c in cells if re.search(r"[א-ת]{3,}", c)), None)
             if name and len(nums) >= 3:
                 parsed.append({"team": name, "nums": [parse_int(n) for n in nums]})
-        if any(p["team"] == TEAM or TEAM in p["team"] for p in parsed) and len(parsed) >= 6:
+        if any(is_us(p["team"]) for p in parsed) and len(parsed) >= 6:
             return parsed
     return None
 
+# season pages: 2026/27 is cYear=2027 on basket.co.il; fall back to the
+# previous season during the off-season, when the new table is still empty
+STANDINGS_URLS = [
+    "https://basket.co.il/table.asp?cYear=2027",
+    "https://basket.co.il/table.asp",
+    "https://basket.co.il/table.asp?cYear=2026",
+]
+
 def update_standings():
-    html = fetch(LEAGUE_HOME)
-    soup = BeautifulSoup(html, "html.parser")
-    parsed = find_standings(soup)
+    parsed = None
+    for url in STANDINGS_URLS:
+        try:
+            soup = BeautifulSoup(fetch(url), "html.parser")
+        except Exception as e:
+            log("standings fetch failed:", url, e)
+            continue
+        parsed = find_standings(soup)
+        if parsed:
+            break
+        dump_tables(soup, url)
     if not parsed:
-        # try linked standings pages
-        for a in soup.find_all("a", href=True):
-            label = a.get_text(strip=True)
-            if any(k in label for k in ("טבלה", "טבלת הליגה", "דירוג")):
-                try:
-                    sub = BeautifulSoup(fetch(requests.compat.urljoin(LEAGUE_HOME, a["href"])), "html.parser")
-                except Exception as e:
-                    log("standings link failed:", e)
-                    continue
-                parsed = find_standings(sub)
-                if parsed:
-                    break
-    if not parsed:
-        raise RuntimeError("no standings table found containing team name")
+        raise RuntimeError("no standings table found containing team name (see DIAG lines)")
 
     rows = []
     for i, p in enumerate(parsed, start=1):
@@ -126,7 +141,7 @@ def parse_team_games(soup):
     games = []
     for tr in soup.find_all("tr"):
         txt = tr.get_text(" ", strip=True)
-        if TEAM not in txt:
+        if not is_us(txt):
             continue
         dm = DATE_RE.search(txt)
         if not dm:
@@ -140,11 +155,12 @@ def parse_team_games(soup):
 
         cells = [c.get_text(strip=True) for c in tr.find_all("td")]
         heb = [c for c in cells if re.search(r"[א-ת]{3,}", c) and not DATE_RE.search(c)]
-        opp = next((h for h in heb if TEAM not in h), None)
+        opp = next((h for h in heb if not is_us(h)), None)
         if not opp:
             continue
 
-        idx_team = txt.find(TEAM)
+        us_match = re.search(r"הפועל[^|]{0,25}ירושלים", txt)
+        idx_team = us_match.start() if us_match else txt.find("ירושלים")
         idx_opp = txt.find(opp)
         home = TEAM if idx_team < idx_opp else opp
         away = opp if home == TEAM else TEAM
@@ -163,20 +179,35 @@ def parse_team_games(soup):
         games.append(game)
     return games
 
+def find_team_link():
+    """Find our team.asp page: look on standings pages first, then the homepage.
+    Only accept team.asp links — news/article links also carry the team name."""
+    candidates = STANDINGS_URLS + [LEAGUE_HOME]
+    for url in candidates:
+        try:
+            soup = BeautifulSoup(fetch(url), "html.parser")
+        except Exception as e:
+            log("team-link fetch failed:", url, e)
+            continue
+        for a in soup.find_all("a", href=True):
+            if "team.asp" in a["href"].lower() and is_us(a.get_text()):
+                return requests.compat.urljoin(url, a["href"])
+        # fallback: raw regex over the HTML near the team name
+        m = re.search(r'href="([^"]*team\.asp[^"]*)"[^>]*>[^<]*הפועל[^<]{0,25}ירושלים', str(soup))
+        if m:
+            return requests.compat.urljoin(url, m.group(1))
+    return None
+
 def update_games():
-    html = fetch(LEAGUE_HOME)
-    soup = BeautifulSoup(html, "html.parser")
-    team_link = None
-    for a in soup.find_all("a", href=True):
-        if TEAM in a.get_text():
-            team_link = requests.compat.urljoin(LEAGUE_HOME, a["href"])
-            break
+    team_link = find_team_link()
     if not team_link:
-        raise RuntimeError("no link to team page found on league homepage")
+        raise RuntimeError("no team.asp link for our team found on league pages")
+    log("team page:", team_link)
     team_soup = BeautifulSoup(fetch(team_link), "html.parser")
     games = parse_team_games(team_soup)
     if len(games) < 3:
-        raise RuntimeError(f"only {len(games)} games parsed — refusing to overwrite")
+        dump_tables(team_soup, team_link)
+        raise RuntimeError(f"only {len(games)} games parsed — refusing to overwrite (see DIAG lines)")
     games.sort(key=lambda g: g["date"])
     log("games parsed:", len(games))
     current = load_json("games.json") or {}
