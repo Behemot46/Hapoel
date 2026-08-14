@@ -52,8 +52,12 @@ const fmtTime = new Intl.DateTimeFormat("he-IL", { hour: "2-digit", minute: "2-d
 const fmtUpdatedDate = new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "numeric" });
 const fmtUpdated = { format: d => fmtUpdatedDate.format(d) + " בשעה " + fmtTime.format(d) };
 
-// the league lists the club under its sponsored name, so match loosely
-function isUs(name) { return !!name && name.includes("הפועל") && name.includes("ירושלים"); }
+// the league lists the club under its sponsored or abbreviated name
+// ("הפועל י-ם"), so match loosely
+function isUs(name) {
+  if (!name || !name.includes("הפועל")) return false;
+  return ["ירושלים", "י-ם", "י־ם", 'י"ם', "י״ם"].some(j => name.includes(j));
+}
 function isHome(g) { return isUs(g.home); }
 function opponent(g) { return isHome(g) ? g.away : g.home; }
 function ourScore(g) { return isHome(g) ? g.homeScore : g.awayScore; }
@@ -242,9 +246,11 @@ function renderTable() {
 }
 
 function standingsTable(rows, full) {
+  const hasPoints = rows.some(r => r.points !== undefined);
   const t = el("table", "standings");
   const head = el("tr");
-  ["#", "קבוצה", "מש׳", "נצ׳", "הפ׳"].forEach((h, i) => {
+  const cols = ["#", "קבוצה", "מש׳", "נצ׳", "הפ׳"].concat(hasPoints ? ["נק׳"] : []);
+  cols.forEach((h, i) => {
     const th = el("th", i === 1 ? "team" : "");
     th.textContent = h;
     head.appendChild(th);
@@ -257,6 +263,7 @@ function standingsTable(rows, full) {
     tr.appendChild(text("td", "num", String(r.played)));
     tr.appendChild(text("td", "num", String(r.wins)));
     tr.appendChild(text("td", "num", String(r.losses)));
+    if (hasPoints) tr.appendChild(text("td", "num", r.points !== undefined ? String(r.points) : "–"));
     t.appendChild(tr);
   });
   return t;
