@@ -100,5 +100,51 @@
       "text": "שש פעמים אול־סטאר ב־NBA, שהגיע לירושלים והוביל אותה לאליפות 2017. בעלים שותף במועדון מאז 2013, ואחרי הזכייה אמר שירושלים נתנה לו לפרוש כאלוף.",
       "source": "https://forward.com/news/375168/will-amare-stoudemire-clinching-israel-victory-basketball-star-amare-stoude/"
     }
+  ],
+  "coachesNote": "רשימה חלקית — רק תקופות שאומתו במקורות. חסרים? מוסיפים כאן.",
+  "coaches": [
+    {
+      "name": "אלכסנדר דז׳יקיץ׳",
+      "years": "2022–2024",
+      "title": "העידן שהגיע הכי רחוק באירופה",
+      "text": "מאמן סרבי שהגיע ביוני 2022 והפך את ירושלים לכוח יבשתי. הוביל את הקבוצה לגמר ליגת האלופות של פיב״א — שם נעצרה מול בון — וזכה בגביע המדינה ובגביע ווינר. בעברו עוזר מאמן בטימברוולוס, ומאמן ריטאס וילנה, פרטיזן בלגרד ובודוצ׳נוסט. נפרד מהמועדון בינואר 2024.",
+      "achievements": [
+        "גמר ליגת האלופות",
+        "גביע המדינה",
+        "גביע ווינר"
+      ],
+      "highlight": true,
+      "source": "https://www.eurohoops.net/en/fiba-champions-league/1359315/hapoel-jerusalem-hires-aleksandar-dzikic-as-head-coach/"
+    },
+    {
+      "name": "עודד קטש",
+      "years": "2010–2011, 2018–2021",
+      "text": "שתי תקופות במועדון. בקדנציה השנייה הגיעו גביע המדינה של 2019 והגביע הדרמטי של 2020 מול נהריה.",
+      "achievements": [
+        "גביע המדינה 2019",
+        "גביע המדינה 2020"
+      ],
+      "source": "https://www.jpost.com/israel-news/culture/hapoel-jerusalem-thrilled-to-keep-coach-oded-katash-around-585041"
+    },
+    {
+      "name": "בראד גרינברג",
+      "years": "2013–2014",
+      "text": "עונה של 21 ניצחונות מול 7 הפסדים בליגה, והעפלה לשמינייה של היורוקאפ.",
+      "source": "http://www.coachbradgreenberg.com/experience"
+    },
+    {
+      "name": "דיינוס אדומאיטיס",
+      "years": "2021–2022",
+      "text": "המאמן הליטאי שהחליף את קטש על הקווים.",
+      "source": "https://www.eurohoops.net/en/fiba-champions-league/1154284/dainius-adomaitis-expected-to-replace-oded-kattash-at-hapoel-jerusalem/"
+    },
+    {
+      "name": "סאשה אובראדוביץ׳",
+      "years": "2026–",
+      "title": "העידן הנוכחי",
+      "text": "נכנס בקיץ 2026 עם מנדט ברור: להביא את המועדון ליורוליג. תקציב השכר כמעט הוכפל סביבו.",
+      "current": true,
+      "source": "https://sportando.basketball/en/hapoel-jerusalem-pushes-for-euroleague-license-agrees-deal-with-sasa-obradovic/"
+    }
   ]
 }

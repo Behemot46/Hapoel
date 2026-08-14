@@ -812,6 +812,40 @@ function renderHistory() {
     view.appendChild(line);
   }
 
+  // eras, told through the coaches who shaped them
+  if (h.coaches && h.coaches.length) {
+    view.appendChild(text("div", "section-title", "עידני מאמנים"));
+    h.coaches.forEach(c => {
+      const card = el("div", "card coach-card" + (c.highlight ? " coach-big" : ""));
+      const top = el("div", "coach-top");
+      const who = el("div");
+      who.appendChild(text("div", "coach-name", c.name));
+      if (c.title) who.appendChild(text("div", "coach-title", c.title));
+      top.appendChild(who);
+      const yr = el("div", "coach-years" + (c.current ? " now" : ""));
+      yr.textContent = c.years;
+      top.appendChild(yr);
+      card.appendChild(top);
+
+      card.appendChild(text("p", "meet-summary", c.text));
+      if (c.achievements && c.achievements.length) {
+        const chips = el("div", "chips-row");
+        c.achievements.forEach(a => chips.appendChild(text("span", "strength trophy-chip", "🏆 " + a)));
+        card.appendChild(chips);
+      }
+      if (c.source) {
+        const a = el("a", "meet-link muted-link");
+        a.href = c.source; a.target = "_blank"; a.rel = "noopener";
+        a.textContent = "המקור";
+        card.appendChild(a);
+      }
+      view.appendChild(card);
+    });
+    if (h.coachesNote) {
+      view.appendChild(text("div", "list-note", h.coachesNote));
+    }
+  }
+
   // the founder's special request
   if (h.legends && h.legends.length) {
     view.appendChild(text("div", "section-title", "פינת כוכבי העבר"));
@@ -823,7 +857,10 @@ function renderHistory() {
       head.appendChild(badge);
       const who = el("div", "info");
       who.appendChild(text("div", "opp", l.name));
-      who.appendChild(text("div", "sub", [l.role, l.era].filter(Boolean).join(" · ")));
+      const sub = el("div", "sub");
+      if (l.role) sub.appendChild(document.createTextNode(l.role + (l.era ? " · " : "")));
+      if (l.era) sub.appendChild(text("span", "yr", l.era));
+      who.appendChild(sub);
       head.appendChild(who);
       c.appendChild(head);
       c.appendChild(text("p", "meet-summary", l.text));
