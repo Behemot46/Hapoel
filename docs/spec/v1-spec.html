@@ -1,0 +1,223 @@
+<title>אפיון האדומים מהבירה</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    direction: rtl;
+    --red: #E4002B;
+    --red-ink: #FFFFFF;
+    --red-soft: #FCE8EC;
+    --bg: #FAF7F6;
+    --surface: #FFFFFF;
+    --surface-2: #F3EDEC;
+    --text: #1C1417;
+    --muted: #6E5F63;
+    --line: #E6DCDD;
+    --ok: #1E7A3C;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --red: #FF4560;
+      --red-ink: #1A0B0F;
+      --red-soft: #3A1B22;
+      --bg: #140E10;
+      --surface: #1F171A;
+      --surface-2: #2A2024;
+      --text: #F5EDEF;
+      --muted: #A8969B;
+      --line: #3A2E32;
+      --ok: #5CC57E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --red: #FF4560;
+    --red-ink: #1A0B0F;
+    --red-soft: #3A1B22;
+    --bg: #140E10;
+    --surface: #1F171A;
+    --surface-2: #2A2024;
+    --text: #F5EDEF;
+    --muted: #A8969B;
+    --line: #3A2E32;
+    --ok: #5CC57E;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", -apple-system, "Helvetica Neue", "Arial Hebrew", "Noto Sans Hebrew", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    direction: rtl;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 8px 20px 80px; }
+
+  header.hero {
+    background: #17090D;
+    color: #FFF6F7;
+    padding: 30px 20px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: -60px;
+    top: -40px;
+    width: 220px;
+    height: 320px;
+    background: repeating-linear-gradient(60deg, var(--red) 0 18px, transparent 18px 44px);
+    opacity: 0.55;
+    transform: rotate(8deg);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero .club {
+    display: inline-block;
+    background: #E4002B;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .hero h1 { margin: 0 0 6px; font-size: clamp(26px, 5vw, 38px); font-weight: 800; line-height: 1.2; text-wrap: balance; }
+  .hero p { margin: 0; color: #D8C3C8; max-width: 50ch; }
+  .hero .disclaimer { margin-top: 14px; font-size: 13px; color: #B79AA1; }
+
+  h2 {
+    font-size: 22px; font-weight: 800;
+    margin: 44px 0 12px;
+    padding-top: 8px;
+    text-wrap: balance;
+  }
+  h2::before { content: ""; display: block; width: 44px; height: 4px; background: var(--red); border-radius: 2px; margin-bottom: 10px; }
+  h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  p { margin: 0 0 12px; max-width: 68ch; }
+  .lead { font-size: 17.5px; }
+  .muted { color: var(--muted); }
+
+  ol.principles { padding-inline-start: 22px; margin: 0; }
+  ol.principles li { margin-bottom: 8px; }
+  ol.principles b { color: var(--red); }
+
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 15px; }
+  th, td { text-align: start; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  th { background: var(--surface-2); font-size: 13.5px; color: var(--muted); font-weight: 700; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  td .eta { font-variant-numeric: tabular-nums; }
+
+  .tier { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; }
+  .tier-label {
+    display: inline-block; font-size: 12.5px; font-weight: 800;
+    padding: 2px 10px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .tier-must .tier-label { background: var(--red); color: var(--red-ink); }
+  .tier-imp .tier-label { background: var(--red-soft); color: var(--red); }
+  .tier-later .tier-label { background: var(--surface-2); color: var(--muted); }
+  .tier ul, .tier ol { margin: 0; padding-inline-start: 20px; }
+  .tier li { margin-bottom: 6px; }
+  .tier li:last-child { margin-bottom: 0; }
+  .tier .note { font-size: 13.5px; color: var(--muted); }
+
+  .callout {
+    background: var(--red-soft);
+    border-inline-start: 4px solid var(--red);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 18px 0;
+  }
+  .callout p { margin: 0; }
+
+  .next { margin-top: 40px; background: #17090D; color: #FFF6F7; border-radius: 12px; padding: 20px 22px; }
+  .next h2 { color: #FFF6F7; margin-top: 0; }
+  .next p { color: #D8C3C8; }
+</style>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="club">הפועל ירושלים 🏀</span>
+    <h1>האדומים מהבירה — אפיון גרסה 1</h1>
+    <p>מסמך האפיון של אפליקציית האוהדים, כפי שנגזר מהשאלון שמילאת. שם העבודה ״האדומים מהבירה״ — נבחר שם סופי יחד.</p>
+    <p class="disclaimer">אפליקציית אוהדים לא רשמית, נבנית באהבה על ידי הקהילה. אינה מטעם המועדון.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h2>תמצית</h2>
+  <p class="lead">אתר־אפליקציה (PWA) חינמי בעברית שנותן לאוהד המזדמן מקום אחד לכל מה שקשור להפועל ירושלים: מתי משחקים, מה הייתה התוצאה, מי בסגל, מה חדש — ועוד קצת נשמה: שירי יציע, היסטוריה ופינת נוסטלגיה.</p>
+  <div class="callout"><p><b>יעד השקה: פתיחת עונת 2026/27.</b> הצלחה בעוד שנה, כפי שהגדרת: רבע מהקהל משתמש באפליקציה.</p></div>
+
+  <h2>עקרונות מנחים</h2>
+  <ol class="principles">
+    <li><b>מקור מידע אחד.</b> המטרה מספר 1 שדירגת — כל מה שאוהד צריך, בלי לחפש בחמישה אתרים.</li>
+    <li><b>בנוי לאוהד המזדמן.</b> פשוט וברור, בלי ידע מוקדם. האוהד השרוף יקבל עומק בהמשך.</li>
+    <li><b>חינם באמת.</b> אחסון ושירותים חינמיים בלבד, קוד פתוח.</li>
+    <li><b>בלי חשבונות, בלי מידע אישי.</b> נכנסים ומשתמשים. נקודה.</li>
+    <li><b>אוטומציה מקסימלית.</b> התוכן מתעדכן לבד כמה פעמים ביום; התערבות ידנית מינימלית.</li>
+    <li><b>זהות ברורה.</b> עברית בלבד בשלב הראשון, אדום־שחור קלאסי, טון חברי וקליל, מצב בהיר וכהה לפי המכשיר.</li>
+  </ol>
+
+  <h2>מה בגרסה 1</h2>
+
+  <div class="tier tier-must">
+    <span class="tier-label">חובה — ליבת האפליקציה</span>
+    <ul>
+      <li><b>לוח משחקים ותוצאות</b> — המשחק הבא בגדול בעמוד הבית, לוח מלא (ליגת ווינר + מפעל אירופי), תוצאות עבר.</li>
+      <li><b>טבלת ליגה</b> — מיקום הפועל מודגש, טבלה מלאה.</li>
+      <li><b>סגל ושחקנים</b> — עמוד לכל שחקן: תמונה, תפקיד, מספר, נתונים בסיסיים וסטטיסטיקת עונה.</li>
+    </ul>
+  </div>
+
+  <div class="tier tier-imp">
+    <span class="tier-label">חשוב — נכנס לפי קצב ההתקדמות, בסדר הזה</span>
+    <ol>
+      <li><b>פיד חדשות</b> — כותרות מהאתר והרשתות הרשמיות, עם קישור למקור.</li>
+      <li><b>היסטוריה ונוסטלגיה</b> — הישגים וגביעים + פינת כוכבי עבר (הבקשה המיוחדת שלך מהשאלון).</li>
+      <li><b>שירי יציע ומזמורים</b> — מילים, ואם אפשר גם השמעה.</li>
+      <li><b>ניחושים וטריוויה</b> — ניחוש תוצאה לפני משחק וטריוויה על המועדון, בלי חשבון (שמירה מקומית במכשיר).</li>
+      <li><b>התראות פוש</b> — תחילת משחק ותוצאה סופית. <span class="note">דורש רכיב טכני נוסף; ייכנס אם נמצא פתרון חינמי אמין בזמן.</span></li>
+    </ol>
+  </div>
+
+  <div class="tier tier-later">
+    <span class="tier-label">נדחה לגרסה 2</span>
+    <ul>
+      <li>מרכז משחק חי בזמן אמת · מידע כרטיסים והיכל · קהילת אוהדים ותגובות · קישורי מרצ׳נדייז · אנגלית · אפליקציה בחנויות.</li>
+    </ul>
+    <p class="note" style="margin: 10px 0 0;">מחוץ לתחום עקרונית: מצב ״מסך שני״ ביום משחק, וכל דבר שמורכב מדי ללוח הזמנים — נעדיף גרסה קטנה ומצוינת על גדולה ובינונית.</p>
+  </div>
+
+  <h2>איך זה יעבוד (בגובה העיניים)</h2>
+  <p><b>האפליקציה</b> היא אתר מהיר שנפתח בדפדפן וניתן להתקנה למסך הבית (PWA), עם עבודה בסיסית גם בלי אינטרנט — המידע האחרון שנטען נשמר במכשיר.</p>
+  <p><b>האחסון</b> על GitHub Pages — שירות אחסון חינמי לאתרים, ישירות מהריפו של הפרויקט.</p>
+  <p><b>התוכן</b> נאסף על ידי ״רובוט״ (GitHub Actions) שרץ כמה פעמים ביום, אוסף עדכונים מהאתר הרשמי ומאתרי הליגה, ושומר אותם כקבצי נתונים. האפליקציה קוראת מהם. אין שרתים, אין עלויות, אין תחזוקה שוטפת.</p>
+  <p><b>המדידה</b> בספירת מבקרים חינמית ושומרת פרטיות (בלי עוגיות ובלי מעקב אישי) — כדי לעקוב אחרי שני מדדי ההצלחה שבחרת: סך משתמשים וחזרה שבועית.</p>
+
+  <h2>מפת דרכים עד פתיחת העונה</h2>
+  <div class="table-scroll">
+    <table>
+      <tr><th>שלב</th><th>מה נבנה</th><th>סיום משוער</th></tr>
+      <tr><td>א׳ — שלד וליבה</td><td>עיצוב, עמוד בית, לוח משחקים, תוצאות וטבלה עם עדכון אוטומטי</td><td class="eta">סוף אוגוסט</td></tr>
+      <tr><td>ב׳ — הסגל</td><td>עמודי שחקנים וסטטיסטיקות</td><td class="eta">אמצע ספטמבר</td></tr>
+      <tr><td>ג׳ — נשמה</td><td>חדשות, היסטוריה ונוסטלגיה, שירי יציע</td><td class="eta">סוף ספטמבר</td></tr>
+      <tr><td>ד׳ — ליטוש והשקה</td><td>טריוויה וניחושים, התראות (אם בשל), בדיקות, השקה לאוהדים</td><td class="eta">פתיחת העונה</td></tr>
+    </table>
+  </div>
+
+  <h2>סיכונים והערות גלויות</h2>
+  <p><b>תלות במקורות.</b> כשאתר המועדון או הליגה משנים מבנה, האיסוף האוטומטי עלול להישבר ויידרש תיקון קצר. זה צפוי ומתוכנן.</p>
+  <p><b>מיתוג.</b> כאפליקציית אוהדים לא רשמית נשתמש בזהות אדום־שחור משלנו, בלי הסמל הרשמי, ועם כיתוב ברור שזה מיזם אוהדים. אם המועדון ירצה לאמץ — מה טוב.</p>
+  <p><b>התראות פוש.</b> הפיצ׳ר היחיד שדורש רכיב מעבר לאחסון סטטי; ייכנס רק עם פתרון חינמי שעומד בעקרונות.</p>
+
+  <div class="next">
+    <h2>השלב הבא</h2>
+    <p>מאשרים את המסמך (או מבקשים שינויים) — ומתחילים לבנות את שלב א׳: השלד, העיצוב ולוח המשחקים החי הראשון.</p>
+  </div>
+
+</main>
