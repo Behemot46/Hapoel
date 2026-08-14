@@ -363,6 +363,36 @@ NAME_KEYS = ("name", "personname", "fullname", "displayname", "playername")
 NUM_KEYS = ("dorsal", "jersey", "number", "shirtnumber", "dorsalraw")
 POS_KEYS = ("positionname", "position", "role")
 
+IMAGE_EXT = re.compile(r"\.(jpg|jpeg|png|webp)(\?|$)", re.I)
+
+def find_image(d):
+    """Pull a headshot URL out of a player record, whatever it is called."""
+    for k, v in d.items():
+        if isinstance(v, str) and v.startswith("http") and (
+                IMAGE_EXT.search(v) or any(w in k for w in ("image", "photo", "picture", "headshot"))):
+            return v
+        if isinstance(v, dict) and any(w in k for w in ("image", "photo", "picture")):
+            # prefer a headshot-ish entry, else any URL in there
+            for kk in ("headshot", "profile", "player", "medium", "small"):
+                vv = v.get(kk)
+                if isinstance(vv, str) and vv.startswith("http"):
+                    return vv
+            for vv in v.values():
+                if isinstance(vv, str) and vv.startswith("http"):
+                    return vv
+    return None
+
+def find_country(d):
+    for k in ("country", "nationality", "countryname", "birthcountry"):
+        v = d.get(k)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+        if isinstance(v, dict):
+            n = v.get("name") or v.get("Name")
+            if isinstance(n, str) and n.strip():
+                return n.strip()
+    return None
+
 def _walk_json(obj, out):
     """Collect dicts that look like a player record, anywhere in the tree."""
     if isinstance(obj, list):
@@ -409,6 +439,15 @@ def _walk_json(obj, out):
             m = re.search(r"(19|20)\d{2}", bd)
             if m:
                 p["born"] = int(m.group())
+        img = find_image(lower)
+        if img:
+            p["photoUrl"] = img
+        country = find_country(lower)
+        if country:
+            p["country"] = country
+        code = lower.get("code") or lower.get("personcode") or lower.get("id")
+        if isinstance(code, (str, int)) and str(code).strip():
+            p["code"] = str(code).strip()
         out.append(p)
     for v in obj.values():
         _walk_json(v, out)
@@ -519,6 +558,56 @@ def roster_candidates(team_link, soup):
                 urls.append(u)
     return urls
 
+PHOTO_DIR = ROOT / "app" / "img" / "players"
+
+def slugify(name):
+    s = re.sub(r"[^a-zA-Z0-9]+", "-", (name or "").strip().lower())
+    return s.strip("-") or "player"
+
+def fetch_photos(players):
+    """Download headshots into the repo so the app stays self-contained:
+    works offline, and no third-party request from the fan's device."""
+    try:
+        from PIL import Image
+    except ImportError:
+        Image = None
+    PHOTO_DIR.mkdir(parents=True, exist_ok=True)
+    kept = set()
+    for p in players:
+        url = p.pop("photoUrl", None)
+        slug = slugify(p["name"])
+        rel = f"img/players/{slug}.jpg"
+        dest = PHOTO_DIR / f"{slug}.jpg"
+        if not url:
+            if dest.exists():
+                p["photo"] = rel
+                kept.add(dest.name)
+            continue
+        try:
+            r = requests.get(url, headers=UA, timeout=30)
+            r.raise_for_status()
+            data = r.content
+            if Image is not None:
+                import io
+                im = Image.open(io.BytesIO(data)).convert("RGB")
+                im.thumbnail((400, 400))
+                im.save(dest, "JPEG", quality=82, optimize=True)
+            else:
+                dest.write_bytes(data)
+            p["photo"] = rel
+            kept.add(dest.name)
+            log(f"  photo saved: {slug} ({dest.stat().st_size // 1024} KB)")
+        except Exception as e:
+            log(f"  photo failed for {p['name']}: {e}")
+            if dest.exists():
+                p["photo"] = rel
+                kept.add(dest.name)
+    # drop photos of players who left the squad
+    for f in PHOTO_DIR.glob("*.jpg"):
+        if f.name not in kept:
+            f.unlink()
+            log("  photo removed (left squad):", f.name)
+
 def update_roster():
     team_link = find_team_link()
     if not team_link:
@@ -586,6 +675,11 @@ def update_roster():
         dump_tables(soup, team_link)
         raise RuntimeError(f"only {len(players)} players parsed — refusing to overwrite (see DIAG lines)")
     log("roster players:", len(players))
+    # one-time visibility into what the feed actually offers per player
+    log("  fields present:", sorted({k for p in players for k in p}))
+    for p in players:
+        p["slug"] = slugify(p["name"])
+    fetch_photos(players)
     current = load_json("roster.json") or {}
     current["players"] = players
     current["sample"] = False
