@@ -1,5 +1,75 @@
 {
   "season": "2026/27",
-  "sample": true,
-  "players": []
+  "sample": false,
+  "players": [
+    {
+      "name": "CACOK, DEVONTAE",
+      "number": 0,
+      "position": "Center",
+      "height": 201,
+      "born": 1996
+    },
+    {
+      "name": "HARPER, JARED",
+      "number": 1,
+      "position": "Guard",
+      "height": 178,
+      "born": 1997
+    },
+    {
+      "name": "HUBER, ROI",
+      "number": 13,
+      "position": "Guard",
+      "born": 1997
+    },
+    {
+      "name": "LEVI, NIMROD",
+      "number": 15,
+      "position": "Forward",
+      "height": 208,
+      "born": 1995
+    },
+    {
+      "name": "LOFTON, KENNY",
+      "number": 2,
+      "position": "Forward"
+    },
+    {
+      "name": "MILETIC, DUSAN",
+      "number": 11,
+      "position": "Center",
+      "height": 214,
+      "born": 1998
+    },
+    {
+      "name": "MILTON, SHAKE",
+      "number": 9,
+      "position": "Guard",
+      "height": 196,
+      "born": 1996
+    },
+    {
+      "name": "OBRADOVIC, SASA",
+      "born": 1969
+    },
+    {
+      "name": "RODDY, DAVID",
+      "number": 21,
+      "position": "Forward"
+    },
+    {
+      "name": "SMITH, JALEEN",
+      "number": 3,
+      "position": "Guard",
+      "height": 190,
+      "born": 1994
+    },
+    {
+      "name": "ZOOSMAN, YOVEL",
+      "number": 50,
+      "position": "Guard",
+      "height": 200,
+      "born": 1998
+    }
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-14T06:55:08+00:00",
+  "lastUpdated": "2026-08-14T08:24:50+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -11,8 +11,8 @@
       "detail": "עודכן בהצלחה"
     },
     "roster": {
-      "ok": false,
-      "detail": "only 0 players parsed — refusing to overwrite (see DIAG lines)"
+      "ok": true,
+      "detail": "עודכן בהצלחה"
     }
   }
 }
