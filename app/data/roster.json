@@ -8,7 +8,7 @@
       "position": "סנטר",
       "height": 201,
       "born": 1996,
-      "country": "United States of America",
+      "country": "ארה״ב",
       "code": "012714",
       "slug": "devontae-cacok"
     },
@@ -18,7 +18,7 @@
       "position": "גארד",
       "height": 178,
       "born": 1997,
-      "country": "United States of America",
+      "country": "ארה״ב",
       "code": "011970",
       "slug": "jared-harper"
     },
@@ -27,7 +27,7 @@
       "number": 13,
       "position": "גארד",
       "born": 1997,
-      "country": "Israel",
+      "country": "ישראל",
       "code": "013904",
       "slug": "roi-huber"
     },
@@ -37,7 +37,7 @@
       "position": "פורוורד",
       "height": 208,
       "born": 1995,
-      "country": "Israel",
+      "country": "ישראל",
       "code": "007768",
       "slug": "nimrod-levi"
     },
@@ -45,7 +45,7 @@
       "name": "Kenny Lofton",
       "number": 2,
       "position": "פורוורד",
-      "country": "United States of America",
+      "country": "ארה״ב",
       "slug": "kenny-lofton"
     },
     {
@@ -54,7 +54,7 @@
       "position": "סנטר",
       "height": 214,
       "born": 1998,
-      "country": "Serbia",
+      "country": "סרביה",
       "code": "009896",
       "slug": "dusan-miletic"
     },
@@ -64,7 +64,7 @@
       "position": "גארד",
       "height": 196,
       "born": 1996,
-      "country": "United States of America",
+      "country": "ארה״ב",
       "code": "014007",
       "slug": "shake-milton"
     },
@@ -72,7 +72,7 @@
       "name": "David Roddy",
       "number": 21,
       "position": "פורוורד",
-      "country": "United States of America",
+      "country": "ארה״ב",
       "slug": "david-roddy"
     },
     {
@@ -81,7 +81,7 @@
       "position": "גארד",
       "height": 190,
       "born": 1994,
-      "country": "United States of America",
+      "country": "ארה״ב",
       "code": "011192",
       "slug": "jaleen-smith"
     },
@@ -91,7 +91,7 @@
       "position": "גארד",
       "height": 200,
       "born": 1998,
-      "country": "Israel",
+      "country": "ישראל",
       "code": "006625",
       "slug": "yovel-zoosman"
     }
