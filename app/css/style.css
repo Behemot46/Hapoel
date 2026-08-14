@@ -262,6 +262,11 @@ body {
 .groups-more .standings { margin-bottom: 6px; }
 .table-note { font-size: 12px; color: var(--muted); margin: 10px 4px 0; line-height: 1.5; }
 
+/* A plain "here is what is missing and why" note */
+.notice { background: var(--surface-2); border-style: dashed; }
+.notice-title { font-weight: 800; font-size: 14.5px; margin-bottom: 3px; }
+.notice-body { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
 /* Add to calendar */
 .cal-btn {
   display: inline-flex;
@@ -357,6 +362,24 @@ a.player-row:hover { border-color: var(--red); }
 }
 .player-photo.thumb { width: 40px; height: 40px; flex: 0 0 40px; }
 .player-photo.big { width: 116px; height: 116px; margin: 0 auto 10px; display: block; }
+
+/* Initials stand in for the photo we do not have the rights to publish */
+.avatar {
+  display: flex; align-items: center; justify-content: center;
+  background: hsl(var(--h) 52% 92%);
+  color: hsl(var(--h) 58% 34%);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  /* isolate only — each script keeps its own direction, so Hebrew initials
+     read right-to-left and Latin ones left-to-right */
+  unicode-bidi: isolate;
+  user-select: none;
+}
+.avatar.thumb { font-size: 15px; }
+.avatar.big { font-size: 40px; }
+@media (prefers-color-scheme: dark) {
+  .avatar { background: hsl(var(--h) 26% 24%); color: hsl(var(--h) 70% 78%); }
+}
 
 /* Player detail */
 .back-link {

@@ -630,6 +630,18 @@ function renderGames() {
     return;
   }
 
+  // 16 fixtures in a season is not a season — say why rather than let the
+  // list look like the whole story
+  if (state.gamesTab === "upcoming" && state.games.league &&
+      state.games.league.published === false) {
+    const n = el("div", "card notice");
+    n.appendChild(text("div", "notice-title", "לוח הליגה עדיין לא פורסם"));
+    n.appendChild(text("div", "notice-body",
+      "מה שמופיע כאן הוא הגביע והיורוקאפ. ברגע שליגת ווינר סל תפרסם את " +
+      "לוח המשחקים, הוא ייכנס לכאן מעצמו."));
+    view.appendChild(n);
+  }
+
   if (state.gamesTab === "upcoming") {
     const c = el("div", "card cal-card");
     c.appendChild(text("div", "share-title", "כל המשחקים ביומן שלך"));
@@ -851,7 +863,7 @@ function renderRoster() {
     const num = el("div", "shirt");
     num.textContent = p.number != null ? p.number : "–";
     row.appendChild(num);
-    if (p.photo) row.appendChild(playerPhoto(p, "thumb"));
+    row.appendChild(playerAvatar(p, "thumb"));
     const info = el("div", "info");
     info.appendChild(playerNameEl(p));
     // keep the list line short — the birth year lives on the player page
@@ -876,6 +888,35 @@ function playerName(p) { return (state.playerNames || {})[p.name] || p.name; }
 function playerNameEl(p, cls) {
   const he = (state.playerNames || {})[p.name];
   return text("div", (cls || "opp") + (he ? "" : " latin"), he || p.name);
+}
+
+// The EuroCup feed carries no player images, and press photos are not ours
+// to publish. So when there is no photo, draw something deliberate rather
+// than leave a hole: initials on a tint of the club's own palette.
+const AVATAR_HUES = [348, 3, 18, 335, 356, 12];
+
+// Given name then surname, in that order. Kept in logical order so Hebrew
+// initials read right-to-left and Latin ones left-to-right, each correctly.
+function initialsOf(p) {
+  const name = (playerName(p) || "").replace(/,/g, " ");
+  const parts = name.split(/\s+/).filter(Boolean);
+  if (!parts.length) return "?";
+  // ג׳ and צ׳ are one sound — keep the geresh with its letter
+  const head = w => (/^[א-ת][׳']/.test(w) ? w.slice(0, 2) : w[0]);
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (head(parts[0]) + head(parts[1])).toUpperCase();
+}
+
+function playerAvatar(p, cls) {
+  if (p.photo) return playerPhoto(p, cls);
+  const d = el("div", "player-photo avatar " + (cls || ""));
+  const key = (p.name || "") + (p.number ?? "");
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+  d.style.setProperty("--h", String(AVATAR_HUES[h % AVATAR_HUES.length]));
+  d.textContent = initialsOf(p);
+  d.setAttribute("aria-hidden", "true"); // the name is right next to it
+  return d;
 }
 
 function playerPhoto(p, cls) {
@@ -994,7 +1035,7 @@ function renderPlayer(slug) {
   }
 
   const card = el("div", "card player-hero");
-  if (p.photo) card.appendChild(playerPhoto(p, "big"));
+  card.appendChild(playerAvatar(p, "big"));
   if (p.number != null) card.appendChild(text("div", "big-shirt", String(p.number)));
   card.appendChild(playerNameEl(p, "player-title"));
   if (p.position) card.appendChild(text("div", "player-pos", p.position));
@@ -1327,7 +1368,7 @@ function renderMeet() {
     const num = el("div", "shirt");
     num.textContent = p.number != null ? p.number : "\u2013";
     head.appendChild(num);
-    if (p.photo) head.appendChild(playerPhoto(p, "thumb"));
+    head.appendChild(playerAvatar(p, "thumb"));
     const who = el("div", "info");
     who.appendChild(playerNameEl(p));
     const bits = [];

@@ -21,6 +21,7 @@ import re
 import sys
 import datetime
 import pathlib
+import zoneinfo
 
 import requests
 from bs4 import BeautifulSoup
@@ -61,6 +62,15 @@ def save_json(name, obj):
 def parse_int(s):
     m = re.search(r"\d+", s or "")
     return int(m.group()) if m else None
+
+# The league site prints Israeli wall-clock time. Stamping every game +03:00
+# is right in summer and an hour early all winter, so resolve the real offset
+# for the date instead of assuming one.
+ISRAEL = zoneinfo.ZoneInfo("Asia/Jerusalem")
+
+def israel_iso(year, month, day, hh, mm):
+    d = datetime.datetime(year, month, day, hh, mm, tzinfo=ISRAEL)
+    return d.isoformat(timespec="seconds")
 
 # ---------------------------------------------------------------- standings
 
@@ -234,7 +244,7 @@ def parse_team_games(soup):
 
             games.append({
                 "id": f"{year:04d}{month:02d}{day:02d}-{re.sub(r'[^א-ת]', '', opp)[:12]}",
-                "date": f"{year:04d}-{month:02d}-{day:02d}T{hh:02d}:{mm:02d}:00+03:00",
+                "date": israel_iso(year, month, day, hh, mm),
                 "competition": cell(j_stage) or "ליגת ווינר סל",
                 "home": TEAM if is_us(home_raw) else home_raw,
                 "away": TEAM if is_us(away_raw) else away_raw,
@@ -303,8 +313,33 @@ def update_games():
     log("games total:", len(games))
     current = load_json("games.json") or {}
     current["games"] = games
+    current["league"] = league_status(games)
     save_json("games.json", current)
     return True
+
+# A cup tie or two is all the league publishes before the season is drawn.
+# Rather than let the app quietly show a near-empty schedule for weeks, note
+# how many league fixtures exist so the app can say so — and shout in the log
+# on the day the real list finally appears.
+def is_league_game(g):
+    """Domestic and not a cup tie. The league site puts whatever the stage is
+    called in the column, so match by exclusion rather than by one string."""
+    comp = g.get("competition") or ""
+    return comp != "יורוקאפ" and "גביע" not in comp
+
+def league_status(games):
+    league = [g for g in games if is_league_game(g)]
+    previous = ((load_json("games.json") or {}).get("league") or {}).get("count", 0)
+    count = len(league)
+    if count and not previous:
+        log("*" * 60)
+        log(f"THE LEAGUE SCHEDULE IS OUT — {count} fixtures appeared")
+        log("*" * 60)
+    elif count > previous:
+        log(f"league fixtures grew: {previous} -> {count}")
+    elif not count:
+        log("league schedule still unpublished (0 fixtures)")
+    return {"count": count, "published": bool(count)}
 
 # ---------------------------------------------------------------- eurocup games
 
