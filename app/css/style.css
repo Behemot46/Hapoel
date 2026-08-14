@@ -295,6 +295,68 @@ a.player-row:hover { border-color: var(--red); }
 }
 .season-games { font-size: 12px; color: var(--muted); margin-top: 10px; }
 
+/* History: trophy cabinet and timeline */
+.trophy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 4px; }
+@media (min-width: 460px) { .trophy-grid { grid-template-columns: repeat(4, 1fr); } }
+.trophy {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 8px;
+  text-align: center;
+}
+.trophy .tr-emoji { font-size: 22px; line-height: 1; }
+.trophy .tr-count {
+  font-size: 30px; font-weight: 800; line-height: 1.1;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+}
+.trophy .tr-name { font-size: 12.5px; font-weight: 700; }
+.trophy .tr-years { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+.timeline { position: relative; padding-inline-start: 4px; }
+.tl-item {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  padding-bottom: 16px;
+}
+/* the thread running through the years */
+.tl-item::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 27px;
+  top: 26px; bottom: 0;
+  width: 2px;
+  background: var(--line);
+}
+.tl-item:last-child::before { display: none; }
+.tl-year {
+  flex: 0 0 56px;
+  font-weight: 800; font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface-2);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 4px 0;
+  text-align: center;
+  height: fit-content;
+  position: relative;
+  z-index: 1;
+}
+.tl-big .tl-year { background: var(--red); color: var(--red-ink); }
+.tl-body {
+  flex: 1; min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.tl-big .tl-body { border-color: var(--red); background: var(--red-soft); }
+.tl-title { font-weight: 800; font-size: 15.5px; margin-bottom: 4px; text-wrap: balance; }
+.tl-text { margin: 0; font-size: 14.5px; line-height: 1.6; }
+.legend-badge { background: var(--red-soft); color: var(--red); font-size: 20px; }
+
 /* Meet the squad */
 a.promo {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;

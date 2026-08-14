@@ -73,7 +73,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -83,6 +83,7 @@ async function boot() {
       loadJSON("data/player-profiles.json").catch(() => ({})),
       loadJSON("data/player-details.json").catch(() => ({})),
       loadJSON("data/team-names.json").catch(() => ({})),
+      loadJSON("data/history.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -93,6 +94,7 @@ async function boot() {
     state.profiles = profiles || {};
     state.details = details || {};
     state.teamNames = teamNames || {};
+    state.history = history;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -184,7 +186,7 @@ function countdownLabel(dateStr) {
 const routes = {
   "": renderHome, "#/": renderHome, "#/games": renderGames,
   "#/table": renderTable, "#/roster": renderRoster, "#/diary": renderDiary,
-  "#/meet": renderMeet,
+  "#/meet": renderMeet, "#/history": renderHistory,
 };
 
 function render() {
@@ -197,6 +199,7 @@ function render() {
   const routeName = hash === "#/games" ? "games"
     : hash === "#/table" ? "table"
     : (hash === "#/roster" || hash === "#/meet" || playerMatch) ? "roster"
+    : hash === "#/history" ? "home"
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
     a.classList.toggle("active", a.dataset.route === routeName));
@@ -310,6 +313,17 @@ function renderHome() {
     more.textContent = "לטבלה המלאה";
     c.appendChild(more);
     view.appendChild(c);
+  }
+
+  if (state.history) {
+    const promo = el("a", "card promo");
+    promo.href = "#/history";
+    const t = el("div");
+    t.appendChild(text("div", "promo-title", "היסטוריה ומורשת"));
+    t.appendChild(text("div", "promo-sub", "ארון התארים, הרגעים הגדולים ופינת כוכבי העבר"));
+    promo.appendChild(t);
+    promo.appendChild(text("div", "chevron", "‹"));
+    view.appendChild(promo);
   }
 
   view.appendChild(shareCard());
@@ -740,6 +754,88 @@ function renderPlayer(slug) {
     sc.appendChild(text("div", "empty", "העונה טרם החלה — הנתונים יופיעו כאן אחרי המשחק הראשון"));
   }
   view.appendChild(sc);
+
+  footer();
+}
+
+/* ---------- history, trophies and past stars ---------- */
+
+function renderHistory() {
+  const h = state.history;
+  if (!h) {
+    view.appendChild(text("div", "empty", "ההיסטוריה בהכנה"));
+    footer();
+    return;
+  }
+
+  const intro = el("div", "card meet-intro");
+  intro.appendChild(text("div", "eyebrow", "המורשת"));
+  intro.appendChild(text("div", "meet-title", "מאז " + h.founded));
+  intro.appendChild(text("p", "",
+    "שמונים שנה של המתנה לאליפות הראשונה, לילה אחד בבלגיה ששינה הכול, ודרך שעדיין נמשכת."));
+  view.appendChild(intro);
+
+  // trophy cabinet
+  if (h.trophies && h.trophies.length) {
+    view.appendChild(text("div", "section-title", "ארון התארים"));
+    const grid = el("div", "trophy-grid");
+    h.trophies.forEach(t => {
+      const c = el("div", "trophy");
+      c.appendChild(text("div", "tr-emoji", t.emoji || "🏆"));
+      c.appendChild(text("div", "tr-count", String(t.count)));
+      c.appendChild(text("div", "tr-name", t.name));
+      if (t.years) c.appendChild(text("div", "tr-years", t.years));
+      grid.appendChild(c);
+    });
+    view.appendChild(grid);
+  }
+
+  // timeline
+  if (h.timeline && h.timeline.length) {
+    view.appendChild(text("div", "section-title", "רגעים"));
+    const line = el("div", "timeline");
+    h.timeline.forEach(e => {
+      const item = el("div", "tl-item" + (e.highlight ? " tl-big" : ""));
+      item.appendChild(text("div", "tl-year", e.year));
+      const body = el("div", "tl-body");
+      body.appendChild(text("div", "tl-title", e.title));
+      body.appendChild(text("p", "tl-text", e.text));
+      if (e.source) {
+        const a = el("a", "meet-link muted-link");
+        a.href = e.source; a.target = "_blank"; a.rel = "noopener";
+        a.textContent = "המקור";
+        body.appendChild(a);
+      }
+      item.appendChild(body);
+      line.appendChild(item);
+    });
+    view.appendChild(line);
+  }
+
+  // the founder's special request
+  if (h.legends && h.legends.length) {
+    view.appendChild(text("div", "section-title", "פינת כוכבי העבר"));
+    h.legends.forEach(l => {
+      const c = el("div", "card meet-card");
+      const head = el("div", "meet-head");
+      const badge = el("div", "shirt legend-badge");
+      badge.textContent = "★";
+      head.appendChild(badge);
+      const who = el("div", "info");
+      who.appendChild(text("div", "opp", l.name));
+      who.appendChild(text("div", "sub", [l.role, l.era].filter(Boolean).join(" · ")));
+      head.appendChild(who);
+      c.appendChild(head);
+      c.appendChild(text("p", "meet-summary", l.text));
+      if (l.source) {
+        const a = el("a", "meet-link muted-link");
+        a.href = l.source; a.target = "_blank"; a.rel = "noopener";
+        a.textContent = "המקור";
+        c.appendChild(a);
+      }
+      view.appendChild(c);
+    });
+  }
 
   footer();
 }
