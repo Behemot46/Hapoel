@@ -1,0 +1,84 @@
+{
+  "_comment": "נתוני חוזה, שכר וסטטיסטיקות מהעונה שעברה. נערך ידנית — האיסוף האוטומטי לא נוגע בקובץ. שכר מופיע רק כשדווח בתקשורת, תמיד עם מקור ותמיד מסומן כדיווח ולא כנתון רשמי. שחקן שלא דווח עליו — לא מוצג לו שכר.",
+  "Jared Harper": {
+    "bornDate": "1997-09-14",
+    "birthPlace": "ג׳ורג׳יה, ארה״ב",
+    "contract": { "years": 3, "until": "2029", "note": "החוזה הגדול בתולדות המועדון" },
+    "salary": { "perSeason": 1700000, "currency": "$", "reported": true },
+    "lastSeason": {
+      "label": "יורוקאפ 2025/26",
+      "team": "הפועל ירושלים",
+      "games": 28, "pts": 17.7, "reb": 2.9, "ast": 6.9,
+      "honor": "MVP היורוקאפ — הראשון אי פעם שזכה פעמיים"
+    },
+    "source": "https://www.eurohoops.net/en/eurocup/1956228/jared-harper-repeats-as-bkt-eurocup-mvp/"
+  },
+  "Kenny Lofton": {
+    "bornDate": "2002-01-02",
+    "birthPlace": "פורט ארתור, טקסס",
+    "contract": { "years": 1, "until": "2027" },
+    "salary": { "perSeason": 1300000, "currency": "$", "reported": true },
+    "source": "https://www.eurohoops.net/en/eurocup/1994230/hapoel-jerusalem-sign-kenny-lofton-jr/"
+  },
+  "David Roddy": {
+    "bornDate": "2001-03-27",
+    "birthPlace": "מיניאפוליס, מינסוטה",
+    "contract": { "years": 1, "until": "2027", "note": "עם אופציה לעונה נוספת" },
+    "salary": { "perSeason": 1500000, "currency": "$", "reported": true },
+    "source": "https://www.eurohoops.net/en/eurocup/1993780/david-roddy-to-hapoel-jerusalem-eurocup/"
+  },
+  "Shake Milton": {
+    "bornDate": "1996-09-26",
+    "birthPlace": "דאלאס, טקסס",
+    "salary": { "perSeason": 1000000, "currency": "$", "reported": true },
+    "source": "https://basketballsphere.com/obradovicev-hapoel-jerusalem-udvostrucio-ulaganja-milton-medju-najplacenijima/"
+  },
+  "Devontae Cacok": {
+    "bornDate": "1996-10-08",
+    "birthPlace": "צפון קרוליינה, ארה״ב",
+    "contract": { "years": 2, "until": "2028" },
+    "lastSeason": {
+      "label": "ליגת הפיתוח של ה־NBA",
+      "team": "מוטור סיטי קרוז",
+      "games": 14, "pts": 19.9, "reb": 9.7
+    },
+    "source": "https://www.eurohoops.net/en/eurocup/1989973/hapoel-jerusalem-signs-devontae-cacok-to-a-two-year-deal/"
+  },
+  "Jaleen Smith": {
+    "bornDate": "1994-11-24",
+    "birthPlace": "פריפורט, טקסס",
+    "contract": { "years": 2, "until": "2028" },
+    "lastSeason": {
+      "label": "יורוקאפ 2024/25",
+      "team": "בהצ׳שהיר איסטנבול",
+      "pts": 13.3, "ast": 3.1, "threePct": 42.1,
+      "honor": "חמישייה ראשונה של היורוקאפ"
+    },
+    "source": "https://sportando.basketball/en/official-jaleen-smith-signs-with-hapoel-jerusalem-through-2028/"
+  },
+  "Dusan Miletic": {
+    "bornDate": "1998-07-30",
+    "birthPlace": "קוסובסקה מיטרוביצה, סרביה",
+    "lastSeason": {
+      "label": "ליגת אדריאטית 2025/26",
+      "team": "קלוז׳־נאפוקה",
+      "honor": "מוביל הליגה בחסימות"
+    },
+    "source": "https://en.wikipedia.org/wiki/Du%C5%A1an_Mileti%C4%87"
+  },
+  "Yovel Zoosman": {
+    "bornDate": "1998-05-12",
+    "birthPlace": "ישראל",
+    "source": "https://en.wikipedia.org/wiki/Yovel_Zoosman"
+  },
+  "Nimrod Levi": {
+    "bornDate": "1995-03-24",
+    "birthPlace": "רמת גן",
+    "source": "https://en.wikipedia.org/wiki/Nimrod_Levi"
+  },
+  "Roi Huber": {
+    "bornDate": "1997-02-10",
+    "birthPlace": "קדימה",
+    "source": "https://en.wikipedia.org/wiki/Roi_Huber"
+  }
+}
