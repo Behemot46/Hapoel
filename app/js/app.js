@@ -73,7 +73,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -82,6 +82,7 @@ async function boot() {
       loadJSON("data/player-names.json").catch(() => ({})),
       loadJSON("data/player-profiles.json").catch(() => ({})),
       loadJSON("data/player-details.json").catch(() => ({})),
+      loadJSON("data/team-names.json").catch(() => ({})),
     ]);
     state.games = games;
     state.standings = standings;
@@ -91,6 +92,7 @@ async function boot() {
     state.playerNames = names || {};
     state.profiles = profiles || {};
     state.details = details || {};
+    state.teamNames = teamNames || {};
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -133,9 +135,19 @@ const fmtUpdated = { format: d => fmtUpdatedDate.format(d) + " בשעה " + fmtT
 // the league lists the club under its sponsored or abbreviated name
 // ("הפועל י-ם"), so match loosely
 function isUs(name) {
-  if (!name || !name.includes("הפועל")) return false;
+  if (!name) return false;
+  const lat = name.toLowerCase();
+  // European fixtures arrive in Latin ("Hapoel Midtown Jerusalem")
+  if (lat.includes("jerusalem") && (lat.includes("hapoel") || lat.includes("midtown"))) return true;
+  if (!name.includes("הפועל")) return false;
   return ["ירושלים", "י-ם", "י־ם", 'י"ם', "י״ם"].some(j => name.includes(j));
 }
+
+// show a Hebrew name where we have one, otherwise the original
+function teamName(name) {
+  return (state.teamNames || {})[name] || name;
+}
+function isLatin(name) { return /^[\x00-\x7F\s'’.-]+$/.test(name || ""); }
 function isHome(g) { return isUs(g.home); }
 function opponent(g) { return isHome(g) ? g.away : g.home; }
 function ourScore(g) { return isHome(g) ? g.homeScore : g.awayScore; }
@@ -193,6 +205,16 @@ function render() {
   window.scrollTo(0, 0);
 }
 
+// "נגד X", with the Latin part isolated so RTL does not scramble it
+function oppEl(cls, raw) {
+  const name = teamName(raw);
+  const d = el("div", cls);
+  d.appendChild(document.createTextNode("נגד "));
+  const s = text("span", isLatin(name) ? "latin" : "", name);
+  d.appendChild(s);
+  return d;
+}
+
 /* ---------- sharing the app itself ---------- */
 
 // always the live site, never location.href — a standalone copy opened
@@ -233,7 +255,7 @@ function renderHome() {
   if (next) {
     const c = el("div", "card next-game");
     c.appendChild(text("div", "eyebrow", "המשחק הבא"));
-    c.appendChild(text("div", "opponent", "נגד " + opponent(next)));
+    c.appendChild(oppEl("opponent", opponent(next)));
     c.appendChild(text("div", "comp", next.competition + (next.round ? " · " + next.round : "")));
     const when = el("div", "when");
     const d = new Date(next.date);
@@ -258,7 +280,7 @@ function renderHome() {
     c.appendChild(text("div", "eyebrow", "התוצאה האחרונה"));
     const line = el("div", "result-line");
     const right = el("div");
-    right.appendChild(text("div", "teams", "נגד " + opponent(last)));
+    right.appendChild(oppEl("teams", opponent(last)));
     right.appendChild(text("div", "sub", last.competition + " · " + fmtFull.format(new Date(last.date))));
     line.appendChild(right);
     const left = el("div");
@@ -340,7 +362,7 @@ function gameRow(g) {
   row.appendChild(date);
 
   const info = el("div", "info");
-  info.appendChild(text("div", "opp", "נגד " + opponent(g)));
+  info.appendChild(oppEl("opp", opponent(g)));
   info.appendChild(text("div", "sub",
     g.competition + " · " + (isHome(g) ? "בית" : "חוץ") + (g.venue ? " · " + g.venue : "")));
   row.appendChild(info);
@@ -939,7 +961,7 @@ function renderDiary() {
     date.appendChild(text("div", "m", MONTHS_SHORT[d.getMonth()]));
     row.appendChild(date);
     const info = el("div", "info");
-    info.appendChild(text("div", "opp", "נגד " + e.opponent));
+    info.appendChild(oppEl("opp", e.opponent));
     info.appendChild(text("div", "sub",
       (e.competition || "") + " · " + (e.home ? "בית" : "חוץ") + " · " + d.getFullYear()));
     row.appendChild(info);
