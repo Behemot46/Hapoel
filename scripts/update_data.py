@@ -558,6 +558,53 @@ def roster_candidates(team_link, soup):
                 urls.append(u)
     return urls
 
+COUNTRY_HE = {
+    "united states of america": "ארה״ב", "united states": "ארה״ב", "usa": "ארה״ב",
+    "israel": "ישראל", "serbia": "סרביה", "montenegro": "מונטנגרו",
+    "croatia": "קרואטיה", "slovenia": "סלובניה", "bosnia and herzegovina": "בוסניה",
+    "north macedonia": "מקדוניה הצפונית", "greece": "יוון", "spain": "ספרד",
+    "france": "צרפת", "italy": "איטליה", "germany": "גרמניה", "turkey": "טורקיה",
+    "lithuania": "ליטא", "latvia": "לטביה", "estonia": "אסטוניה", "poland": "פולין",
+    "ukraine": "אוקראינה", "russia": "רוסיה", "georgia": "גאורגיה",
+    "canada": "קנדה", "brazil": "ברזיל", "argentina": "ארגנטינה",
+    "nigeria": "ניגריה", "senegal": "סנגל", "cameroon": "קמרון",
+    "dominican republic": "הרפובליקה הדומיניקנית", "puerto rico": "פוארטו ריקו",
+    "australia": "אוסטרליה", "united kingdom": "בריטניה", "great britain": "בריטניה",
+    "belgium": "בלגיה", "netherlands": "הולנד", "portugal": "פורטוגל",
+    "czech republic": "צ׳כיה", "czechia": "צ׳כיה", "finland": "פינלנד", "sweden": "שוודיה",
+}
+
+def tidy_country(raw):
+    return COUNTRY_HE.get((raw or "").strip().lower(), (raw or "").strip())
+
+# the squad feed carries no headshots, so try the per-player detail endpoints
+PERSON_ENDPOINTS = [
+    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/people/{code}",
+    "https://api-live.euroleague.net/v2/people/{code}",
+    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/clubs/JER/people/{code}",
+]
+
+def photo_url_for(code, template=None):
+    """Return (url, template_that_worked). Reuses a known-good template."""
+    templates = [template] if template else PERSON_ENDPOINTS
+    for t in templates:
+        try:
+            body = fetch(t.format(code=code))
+            data = json.loads(body)
+        except Exception as e:
+            log(f"  person endpoint failed ({t}): {e}")
+            continue
+        found = []
+        _walk_json(data, found)
+        for rec in found:
+            if rec.get("photoUrl"):
+                return rec["photoUrl"], t
+        # log the shape once so the next round can target it
+        if isinstance(data, dict):
+            log(f"  DIAG person keys for {code}: {sorted(data.keys())[:20]}")
+        return None, t
+    return None, None
+
 PHOTO_DIR = ROOT / "app" / "img" / "players"
 
 def slugify(name):
@@ -679,6 +726,20 @@ def update_roster():
     log("  fields present:", sorted({k for p in players for k in p}))
     for p in players:
         p["slug"] = slugify(p["name"])
+        if p.get("country"):
+            p["country"] = tidy_country(p["country"])
+
+    # headshots are not in the squad payload — look them up per player
+    if not any(p.get("photoUrl") for p in players):
+        template = None
+        for p in players:
+            if not p.get("code"):
+                continue
+            url, template = photo_url_for(p["code"], template)
+            if url:
+                p["photoUrl"] = url
+            elif template is None:
+                break  # no endpoint responded at all; stop trying
     fetch_photos(players)
     current = load_json("roster.json") or {}
     current["players"] = players
