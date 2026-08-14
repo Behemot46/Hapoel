@@ -7,65 +7,93 @@
       "number": 0,
       "position": "סנטר",
       "height": 201,
-      "born": 1996
+      "born": 1996,
+      "country": "United States of America",
+      "code": "012714",
+      "slug": "devontae-cacok"
     },
     {
       "name": "Jared Harper",
       "number": 1,
       "position": "גארד",
       "height": 178,
-      "born": 1997
+      "born": 1997,
+      "country": "United States of America",
+      "code": "011970",
+      "slug": "jared-harper"
     },
     {
       "name": "Roi Huber",
       "number": 13,
       "position": "גארד",
-      "born": 1997
+      "born": 1997,
+      "country": "Israel",
+      "code": "013904",
+      "slug": "roi-huber"
     },
     {
       "name": "Nimrod Levi",
       "number": 15,
       "position": "פורוורד",
       "height": 208,
-      "born": 1995
+      "born": 1995,
+      "country": "Israel",
+      "code": "007768",
+      "slug": "nimrod-levi"
     },
     {
       "name": "Kenny Lofton",
       "number": 2,
-      "position": "פורוורד"
+      "position": "פורוורד",
+      "country": "United States of America",
+      "slug": "kenny-lofton"
     },
     {
       "name": "Dusan Miletic",
       "number": 11,
       "position": "סנטר",
       "height": 214,
-      "born": 1998
+      "born": 1998,
+      "country": "Serbia",
+      "code": "009896",
+      "slug": "dusan-miletic"
     },
     {
       "name": "Shake Milton",
       "number": 9,
       "position": "גארד",
       "height": 196,
-      "born": 1996
+      "born": 1996,
+      "country": "United States of America",
+      "code": "014007",
+      "slug": "shake-milton"
     },
     {
       "name": "David Roddy",
       "number": 21,
-      "position": "פורוורד"
+      "position": "פורוורד",
+      "country": "United States of America",
+      "slug": "david-roddy"
     },
     {
       "name": "Jaleen Smith",
       "number": 3,
       "position": "גארד",
       "height": 190,
-      "born": 1994
+      "born": 1994,
+      "country": "United States of America",
+      "code": "011192",
+      "slug": "jaleen-smith"
     },
     {
       "name": "Yovel Zoosman",
       "number": 50,
       "position": "גארד",
       "height": 200,
-      "born": 1998
+      "born": 1998,
+      "country": "Israel",
+      "code": "006625",
+      "slug": "yovel-zoosman"
     }
   ]
 }
