@@ -3,71 +3,67 @@
   "sample": false,
   "players": [
     {
-      "name": "CACOK, DEVONTAE",
+      "name": "Devontae Cacok",
       "number": 0,
-      "position": "Center",
+      "position": "סנטר",
       "height": 201,
       "born": 1996
     },
     {
-      "name": "HARPER, JARED",
+      "name": "Jared Harper",
       "number": 1,
-      "position": "Guard",
+      "position": "גארד",
       "height": 178,
       "born": 1997
     },
     {
-      "name": "HUBER, ROI",
+      "name": "Roi Huber",
       "number": 13,
-      "position": "Guard",
+      "position": "גארד",
       "born": 1997
     },
     {
-      "name": "LEVI, NIMROD",
+      "name": "Nimrod Levi",
       "number": 15,
-      "position": "Forward",
+      "position": "פורוורד",
       "height": 208,
       "born": 1995
     },
     {
-      "name": "LOFTON, KENNY",
+      "name": "Kenny Lofton",
       "number": 2,
-      "position": "Forward"
+      "position": "פורוורד"
     },
     {
-      "name": "MILETIC, DUSAN",
+      "name": "Dusan Miletic",
       "number": 11,
-      "position": "Center",
+      "position": "סנטר",
       "height": 214,
       "born": 1998
     },
     {
-      "name": "MILTON, SHAKE",
+      "name": "Shake Milton",
       "number": 9,
-      "position": "Guard",
+      "position": "גארד",
       "height": 196,
       "born": 1996
     },
     {
-      "name": "OBRADOVIC, SASA",
-      "born": 1969
-    },
-    {
-      "name": "RODDY, DAVID",
+      "name": "David Roddy",
       "number": 21,
-      "position": "Forward"
+      "position": "פורוורד"
     },
     {
-      "name": "SMITH, JALEEN",
+      "name": "Jaleen Smith",
       "number": 3,
-      "position": "Guard",
+      "position": "גארד",
       "height": 190,
       "born": 1994
     },
     {
-      "name": "ZOOSMAN, YOVEL",
+      "name": "Yovel Zoosman",
       "number": 50,
-      "position": "Guard",
+      "position": "גארד",
       "height": 200,
       "born": 1998
     }
