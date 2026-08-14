@@ -19,7 +19,8 @@
 ### מבנה הריפו
 
 - [`app/`](app/) — האפליקציה עצמה (HTML/CSS/JS, ללא תלות בכלים חיצוניים). הנתונים בקבצי JSON תחת [`app/data/`](app/data/).
-- [`scripts/update_data.py`](scripts/update_data.py) — אוסף הנתונים האוטומטי (רץ ב־GitHub Actions שלוש פעמים ביום).
+- [`scripts/update_data.py`](scripts/update_data.py) — אוסף הנתונים האוטומטי (רץ ב־GitHub Actions שלוש פעמים ביום). לוח משחקים וטבלה מאתר הליגה, סגל מהפיד של היורוקאפ.
+- [`app/data/player-names.json`](app/data/player-names.json) — שמות השחקנים בעברית. **נערך ידנית** — האיסוף האוטומטי לא נוגע בו.
 - [`.github/workflows/`](.github/workflows/) — פרסום האתר לחינם ב־GitHub Pages + עדכון הנתונים המתוזמן.
 - [`docs/spec/v1-spec.md`](docs/spec/v1-spec.md) — מסמך האפיון של גרסה 1. השאלון שממנו נולד: [`docs/codesign/questionnaire.html`](docs/codesign/questionnaire.html).
 - [`docs/spec/inspiration-futbology.md`](docs/spec/inspiration-futbology.md) — לימוד Futbology והרעיון של יומן האוהד.
