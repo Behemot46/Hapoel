@@ -1,14 +1,14 @@
 {
-  "lastUpdated": "2026-08-14T03:19:23+00:00",
+  "lastUpdated": "2026-08-14T04:28:40+00:00",
   "sample": true,
   "sources": {
     "standings": {
       "ok": false,
-      "detail": "no standings table found containing team name"
+      "detail": "no standings table found containing team name (see DIAG lines)"
     },
     "games": {
       "ok": false,
-      "detail": "only 0 games parsed — refusing to overwrite"
+      "detail": "no team.asp link for our team found on league pages"
     }
   }
 }
