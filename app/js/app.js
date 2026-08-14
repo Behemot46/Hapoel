@@ -66,18 +66,20 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster] = await Promise.all([
+    const [games, standings, meta, club, roster, names] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
       loadJSON("data/club.json"),
       loadJSON("data/roster.json").catch(() => ({ players: [] })),
+      loadJSON("data/player-names.json").catch(() => ({})),
     ]);
     state.games = games;
     state.standings = standings;
     state.meta = meta;
     state.club = club;
     state.roster = roster;
+    state.playerNames = names || {};
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     refreshDiary();
   } catch (e) {
@@ -380,7 +382,11 @@ function renderRoster() {
     num.textContent = p.number != null ? p.number : "–";
     row.appendChild(num);
     const info = el("div", "info");
-    info.appendChild(text("div", "opp", p.name));
+    // Hebrew name when we have one; otherwise the Latin name, isolated so
+    // it keeps its own direction inside the RTL layout
+    const he = (state.playerNames || {})[p.name];
+    const nameEl = text("div", "opp" + (he ? "" : " latin"), he || p.name);
+    info.appendChild(nameEl);
     const bits = [];
     if (p.position) bits.push(p.position);
     if (p.height) bits.push(p.height + " ס״מ");
