@@ -1,13 +1,20 @@
 name: בדיקת מקורות (ידני)
 
-# Diagnostic only — reads public sources and prints their structure so a
-# parser can be written against real data. Never commits anything.
+# Two manual tools, neither of which ever commits anything:
+#   probe  — prints the structure of the public sources, so parsers can be
+#            written against real data instead of guesswork
+#   dry    — runs the real updater and shows what it *would* have written,
+#            for checking a parser change before it reaches main
 
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: 'probe (מבנה המקורות) או dry (הרצת יבש של האיסוף)'
+        required: false
+        default: 'probe'
       which:
-        description: 'מה לבדוק: all / games / standings / league / roster'
+        description: 'למצב probe: all / played / upcoming / live'
         required: false
         default: 'all'
 
@@ -25,7 +32,45 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 pillow
 
       - name: Probe sources
+        if: inputs.mode != 'dry'
         run: python scripts/probe_sources.py "${{ inputs.which || 'all' }}"
+
+      - name: Dry run — collect data
+        if: inputs.mode == 'dry'
+        run: |
+          python scripts/update_data.py
+          python scripts/update_live.py
+
+      - name: Dry run — show what would have been written
+        if: inputs.mode == 'dry'
+        run: |
+          git --no-pager diff --stat app/data/ || true
+          python - <<'PY'
+          import json, pathlib
+          d = json.load(open('app/data/games.json'))
+          print('===== games.json =====')
+          print('league:', d.get('league'), '| total:', len(d['games']))
+          for g in d['games'][:8]:
+              print(' ', g['date'], '|', g['competition'], '|',
+                    g['home'], 'vs', g['away'], '| venue:', g.get('venue'))
+          print('===== eurocup.json =====')
+          p = pathlib.Path('app/data/eurocup.json')
+          if not p.exists():
+              print('MISSING')
+          else:
+              e = json.loads(p.read_text())
+              print('round', e['round'], '| ourGroup', e['ourGroup'])
+              for g in e['groups']:
+                  print(' ', g['name'], [r['code'] for r in g['rows']])
+              print('our group:')
+              for r in e['groups'][0]['rows']:
+                  print('   ', r)
+          print('===== live.json =====')
+          lp = pathlib.Path('app/data/live.json')
+          print(lp.read_text() if lp.exists() else 'MISSING')
+          print('===== meta.json =====')
+          print(pathlib.Path('app/data/meta.json').read_text())
+          PY
