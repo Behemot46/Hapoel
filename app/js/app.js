@@ -558,7 +558,7 @@ function shareDiary(s, scope) {
   if (s.played) lines.push("המאזן שלי: " + s.wins + "–" + s.losses);
   const earned = BADGES.filter(b => b.got(s, diaryEntries(scope)) >= b.need);
   if (earned.length) lines.push(earned.map(b => b.emoji + " " + b.name).join(" · "));
-  lines.push("יש בנו אהבה והיא תנצח");
+  lines.push("יושב סופר את הדקות");
   const txt = lines.join("\n");
 
   if (navigator.share) {
