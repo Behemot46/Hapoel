@@ -104,6 +104,8 @@ async function boot() {
     view.innerHTML = '<div class="empty">לא הצלחנו לטעון את הנתונים.<br>בדקו את החיבור ונסו לרענן.</div>';
     return;
   }
+  const sb = document.getElementById("shareBtn");
+  if (sb) sb.onclick = shareApp;
   window.addEventListener("hashchange", render);
   render();
 }
@@ -191,6 +193,37 @@ function render() {
   window.scrollTo(0, 0);
 }
 
+/* ---------- sharing the app itself ---------- */
+
+// always the live site, never location.href — a standalone copy opened
+// from disk would otherwise share a path on the sender's own device
+function appUrl() {
+  return (state.club && state.club.url) || "https://behemot46.github.io/Hapoel/";
+}
+
+function shareApp() {
+  const msg = [
+    "יושב סופר את הדקות 🔴⚫",
+    "אפליקציית האוהדים של הפועל ירושלים — לוח משחקים, טבלה, סגל ויומן אישי.",
+    "חינם, בלי הרשמה, נכנסים ומשתמשים:",
+    appUrl(),
+  ].join("\n");
+  window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank", "noopener");
+}
+
+function shareCard() {
+  const c = el("div", "card share-card");
+  const t = el("div");
+  t.appendChild(text("div", "share-title", "מכירים אוהד שעוד לא ראה?"));
+  t.appendChild(text("div", "share-sub", "שלחו לו את האפליקציה בוואטסאפ"));
+  c.appendChild(t);
+  const b = el("button", "wa-btn", "שיתוף");
+  b.type = "button";
+  b.onclick = shareApp;
+  c.appendChild(b);
+  return c;
+}
+
 /* ---------- home ---------- */
 
 function renderHome() {
@@ -257,6 +290,7 @@ function renderHome() {
     view.appendChild(c);
   }
 
+  view.appendChild(shareCard());
   footer();
 }
 
