@@ -120,6 +120,9 @@ def find_standings(soup):
             team = cell(j_team)
             if not team or not re.search(r"[א-ת]{2,}", team):
                 continue
+            # drop header fragments that parse as rows (e.g. "סלים", "נצ'")
+            if len(team) < 5 or team in ("ליגת ווינר סל", "שם הקבוצה"):
+                continue
             wins = int(cell(j_wins)) if (cell(j_wins) or "").isdigit() else None
             losses = int(cell(j_losses)) if (cell(j_losses) or "").isdigit() else None
             if wins is None:
