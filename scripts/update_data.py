@@ -413,6 +413,36 @@ def _walk_json(obj, out):
     for v in obj.values():
         _walk_json(v, out)
 
+POSITION_HE = {
+    "guard": "גארד",
+    "point guard": "רכז",
+    "shooting guard": "קלע",
+    "forward": "פורוורד",
+    "small forward": "כנף",
+    "power forward": "סמ״ק",
+    "center": "סנטר",
+    "coach": "מאמן",
+    "head coach": "מאמן ראשי",
+}
+
+def tidy_word(w):
+    """Capitalise a name word, respecting hyphens and apostrophes."""
+    return "-".join(
+        "'".join(bit.capitalize() for bit in part.split("'"))
+        for part in w.split("-")
+    )
+
+def tidy_name(raw):
+    """'CACOK, DEVONTAE' -> 'Devontae Cacok'"""
+    s = " ".join((raw or "").split())
+    if "," in s:
+        last, first = s.split(",", 1)
+        s = f"{first.strip()} {last.strip()}"
+    return " ".join(tidy_word(w) for w in s.split() if w)
+
+def tidy_position(raw):
+    return POSITION_HE.get((raw or "").strip().lower(), (raw or "").strip())
+
 def dedupe_players(players):
     seen, out = set(), []
     for p in players:
@@ -459,9 +489,19 @@ def roster_from_eurocup():
                         p[key] = txt
                 players.append(p)
         players = dedupe_players([p for p in players if len(p["name"]) >= 3])
-        log(f"  eurocup attempt {url}: {len(players)} players")
-        if len(players) >= 5:
-            return players
+        # the feed mixes staff into the squad (the head coach has no shirt
+        # number), so keep only numbered entries
+        squad, staff = [], []
+        for p in players:
+            (squad if p.get("number") is not None else staff).append(p)
+        for p in squad:
+            p["name"] = tidy_name(p["name"])
+            if p.get("position"):
+                p["position"] = tidy_position(p["position"])
+        log(f"  eurocup attempt {url}: {len(squad)} players"
+            + (f" (excluded non-numbered: {[tidy_name(s['name']) for s in staff]})" if staff else ""))
+        if len(squad) >= 5:
+            return squad
     return []
 
 def roster_candidates(team_link, soup):
