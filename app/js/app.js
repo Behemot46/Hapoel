@@ -167,20 +167,6 @@ function finished() {
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
-function daysUntil(dateStr) {
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const d = new Date(dateStr);
-  const day = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  return Math.round((day - today) / 86400000);
-}
-function countdownLabel(dateStr) {
-  const n = daysUntil(dateStr);
-  if (n === 0) return "היום!";
-  if (n === 1) return "מחר";
-  return "בעוד " + n + " ימים";
-}
-
 /* ---------- routing ---------- */
 
 const routes = {
@@ -203,6 +189,7 @@ function render() {
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
     a.classList.toggle("active", a.dataset.route === routeName));
+  stopCountdown(); // the view is about to be wiped from under the ticking element
   view.innerHTML = "";
   fn();
   window.scrollTo(0, 0);
@@ -216,6 +203,73 @@ function oppEl(cls, raw) {
   const s = text("span", isLatin(name) ? "latin" : "", name);
   d.appendChild(s);
   return d;
+}
+
+/* ---------- the live countdown the app is named after ---------- */
+
+let countdownTimer = null;
+
+function stopCountdown() {
+  if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+}
+
+function plural(n, one, many) { return n === 1 ? one : many; }
+
+// builds the counter and keeps it ticking until the view changes
+function countdownEl(game) {
+  const wrap = el("div", "countdown");
+  const big = el("div", "cd-minutes");
+  const num = text("span", "cd-num", "—");
+  big.appendChild(num);
+  wrap.appendChild(big);
+  const unit = text("div", "cd-unit", "דקות למשחק");
+  wrap.appendChild(unit);
+  const parts = el("div", "cd-parts");
+  wrap.appendChild(parts);
+
+  const target = new Date(game.date).getTime();
+
+  const tick = () => {
+    const left = target - Date.now();
+
+    if (left <= 0) {
+      // 2.5h is roughly a game; past that the result simply hasn't reached us yet
+      const tipped = -left < 2.5 * 3600 * 1000;
+      wrap.classList.add("live");
+      wrap.classList.toggle("tipped", tipped);
+      num.textContent = tipped ? "עכשיו" : "היום";
+      unit.textContent = tipped ? "המשחק כבר התחיל" : "המשחק היה אמור להתחיל";
+      parts.textContent = "";
+      return;
+    }
+
+    const totalMin = Math.floor(left / 60000);
+    num.textContent = totalMin.toLocaleString("he-IL");
+
+    const days = Math.floor(left / 86400000);
+    const hours = Math.floor(left / 3600000) % 24;
+    const mins = Math.floor(left / 60000) % 60;
+    const secs = Math.floor(left / 1000) % 60;
+
+    parts.textContent = "";
+    const bits = [];
+    if (days) bits.push([days, plural(days, "יום", "ימים")]);
+    if (days || hours) bits.push([hours, plural(hours, "שעה", "שעות")]);
+    bits.push([mins, plural(mins, "דקה", "דקות")]);
+    bits.push([secs, plural(secs, "שנייה", "שניות")]);
+    bits.forEach(([v, label], i) => {
+      if (i) parts.appendChild(text("span", "cd-sep", "·"));
+      const b = el("span", "cd-part");
+      b.appendChild(text("span", "cd-pv", String(v)));
+      b.appendChild(text("span", "cd-pl", label));
+      parts.appendChild(b);
+    });
+  };
+
+  tick();
+  stopCountdown();
+  countdownTimer = setInterval(tick, 1000);
+  return wrap;
 }
 
 /* ---------- sharing the app itself ---------- */
@@ -265,9 +319,9 @@ function renderHome() {
     when.appendChild(text("span", "", fmtFull.format(d)));
     when.appendChild(text("span", "time", fmtTime.format(d)));
     c.appendChild(when);
+    c.appendChild(countdownEl(next));
     const meta = el("div", "meta-row");
     meta.appendChild(text("span", "badge" + (isHome(next) ? " home" : ""), isHome(next) ? "משחק בית" : "משחק חוץ"));
-    meta.appendChild(text("span", "badge countdown", countdownLabel(next.date)));
     if (next.venue) meta.appendChild(text("span", "badge", next.venue));
     c.appendChild(meta);
     view.appendChild(c);

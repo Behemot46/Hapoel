@@ -136,7 +136,70 @@ body {
   color: var(--muted);
 }
 .badge.home { background: var(--red); color: var(--red-ink); }
-.badge.countdown { background: var(--red-soft); color: var(--red); }
+
+/* The live counter the app is named after */
+.countdown {
+  margin-top: 14px;
+  padding: 14px 12px 12px;
+  border-radius: 12px;
+  background: var(--red-soft);
+  text-align: center;
+}
+.cd-minutes { line-height: 1; }
+.cd-num {
+  display: inline-block;
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  /* "36,240" must keep its digits and comma in Latin order inside an RTL line */
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.cd-unit {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--red);
+  opacity: 0.85;
+}
+.cd-parts {
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
+  border-top-color: color-mix(in srgb, var(--red) 22%, transparent);
+  font-size: 12.5px;
+  color: var(--muted);
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+}
+.cd-part { unicode-bidi: isolate; }
+.cd-pv { font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; }
+.cd-pl { margin-inline-start: 3px; }
+.cd-sep { opacity: 0.45; }
+.countdown.live .cd-num { font-size: 34px; }
+.countdown.live .cd-parts { display: none; }
+.countdown.tipped .cd-unit::after {
+  content: "";
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  margin-inline-start: 7px;
+  vertical-align: middle;
+  animation: cd-pulse 1.4s ease-in-out infinite;
+}
+@keyframes cd-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.7); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .countdown.tipped .cd-unit::after { animation: none; }
+}
 
 /* Result card */
 .result-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; }

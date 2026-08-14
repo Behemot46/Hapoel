@@ -73,7 +73,8 @@
     });
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("sw.js", { updateViaCache: "none" })
-        .then(function (reg) { reg.update(); });
+        .then(function (reg) { if (reg) reg.update(); })
+        .catch(function () { /* no worker is fine — the app works online regardless */ });
     });
   }
 </script>
