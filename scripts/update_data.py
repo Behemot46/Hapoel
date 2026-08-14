@@ -385,13 +385,42 @@ def update_roster():
                 players = found
                 break
 
+    # the squad may live on a team-scoped stats page rather than behind a link
+    if len(players) < 5:
+        m = re.search(r"TeamId=(\d+)", team_link)
+        if m:
+            tid = m.group(1)
+            for path in ("stats-individual.asp?TeamId={}", "stats-individual.asp?TeamId={}&cYear=2027",
+                         "team-players.asp?TeamId={}", "players.asp?TeamId={}",
+                         "stats-accumulate.asp?TeamId={}"):
+                u = requests.compat.urljoin(LEAGUE_HOME, path.format(tid))
+                try:
+                    sub = BeautifulSoup(fetch(u), "html.parser")
+                except Exception as e:
+                    log("roster url failed:", u, e)
+                    continue
+                tried.append(u)
+                found = parse_roster(sub)
+                log(f"  roster attempt {u}: {len(found)} players")
+                if len(found) >= 5:
+                    players = found
+                    break
+
     if len(players) < 5:
         log("DIAG roster: tried", tried)
-        links = [(a.get_text(" ", strip=True)[:40], a["href"][:90])
-                 for a in soup.find_all("a", href=True)]
-        log(f"DIAG links on team page: {len(links)}")
-        for t, h in links[:40]:
-            log(f"  '{t}' -> {h}")
+        # summarise what the team page links to, by page, so the squad page
+        # can be identified without dumping 292 rows
+        from collections import Counter
+        pats = Counter()
+        example = {}
+        for a in soup.find_all("a", href=True):
+            key = a["href"].split("?")[0] or "#"
+            pats[key] += 1
+            example.setdefault(key, (a.get_text(" ", strip=True)[:30], a["href"][:80]))
+        log(f"DIAG link patterns on team page ({len(pats)} distinct):")
+        for key, n in pats.most_common(25):
+            t, h = example[key]
+            log(f"  {n:>3}x {key}  e.g. '{t}' -> {h}")
         dump_tables(soup, team_link)
         raise RuntimeError(f"only {len(players)} players parsed — refusing to overwrite (see DIAG lines)")
     log("roster players:", len(players))
