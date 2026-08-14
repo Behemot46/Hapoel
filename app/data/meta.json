@@ -1,7 +1,14 @@
 {
-  "lastUpdated": "2026-08-13T21:00:00Z",
+  "lastUpdated": "2026-08-14T03:19:23+00:00",
   "sample": true,
   "sources": {
-    "league": { "ok": false, "detail": "טרם הופעל איסוף אוטומטי — נתוני דוגמה" }
+    "standings": {
+      "ok": false,
+      "detail": "no standings table found containing team name"
+    },
+    "games": {
+      "ok": false,
+      "detail": "only 0 games parsed — refusing to overwrite"
+    }
   }
 }
