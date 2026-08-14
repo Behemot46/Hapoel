@@ -22,6 +22,160 @@
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
+    },
+    {
+      "id": "20260929-euro-RostockSeawo",
+      "date": "2026-09-29T20:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "הפועל ירושלים",
+      "away": "Rostock Seawolves",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261006-euro-CedevitaOlim",
+      "date": "2026-10-06T18:30:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "Cedevita Olimpija Ljubljana",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261014-euro-RecoletasSal",
+      "date": "2026-10-14T20:30:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "Recoletas Salud San Pablo Burgos",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261021-euro-RigaZelli",
+      "date": "2026-10-21T20:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "הפועל ירושלים",
+      "away": "Riga Zelli",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261028-euro-LeMansSarthe",
+      "date": "2026-10-28T20:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "Le Mans Sarthe Basket",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261104-euro-ArisThessalo",
+      "date": "2026-11-04T20:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "הפועל ירושלים",
+      "away": "Aris Thessaloniki",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261111-euro-BagliettoDer",
+      "date": "2026-11-11T19:30:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "Baglietto Derthona Tortona",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261117-euro-RostockSeawo",
+      "date": "2026-11-17T20:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "Rostock Seawolves",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261209-euro-CedevitaOlim",
+      "date": "2026-12-09T20:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "הפועל ירושלים",
+      "away": "Cedevita Olimpija Ljubljana",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261216-euro-RecoletasSal",
+      "date": "2026-12-16T20:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "הפועל ירושלים",
+      "away": "Recoletas Salud San Pablo Burgos",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261223-euro-RigaZelli",
+      "date": "2026-12-23T18:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "Riga Zelli",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261230-euro-LeMansSarthe",
+      "date": "2026-12-30T20:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "הפועל ירושלים",
+      "away": "Le Mans Sarthe Basket",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270105-euro-ArisThessalo",
+      "date": "2027-01-05T19:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "Aris Thessaloniki",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270113-euro-BagliettoDer",
+      "date": "2027-01-13T20:00:00+03:00",
+      "competition": "יורוקאפ",
+      "home": "הפועל ירושלים",
+      "away": "Baglietto Derthona Tortona",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
     }
   ]
 }
