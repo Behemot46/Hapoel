@@ -638,29 +638,9 @@ function renderPlayer(slug) {
 
   const prof = profileOf(p);
   if (prof) {
-    view.appendChild(text("div", "section-title", "מי הוא"));
+    view.appendChild(text("div", "section-title", "דוח סקאוטינג"));
     const pc = el("div", "card");
-    pc.appendChild(text("div", "meet-headline", prof.headline));
-    pc.appendChild(text("p", "meet-summary", prof.summary));
-    if (prof.strengths && prof.strengths.length) {
-      const chips = el("div", "chips-row");
-      prof.strengths.forEach(s => chips.appendChild(text("span", "strength", s)));
-      pc.appendChild(chips);
-    }
-    if (prof.watch) {
-      const w = el("div", "meet-watch");
-      w.appendChild(text("span", "watch-label", "מה לשים לב"));
-      w.appendChild(text("span", "", prof.watch));
-      pc.appendChild(w);
-    }
-    if (prof.source) {
-      const src = el("a", "meet-link muted-link");
-      src.href = prof.source;
-      src.target = "_blank";
-      src.rel = "noopener";
-      src.textContent = "המקור";
-      pc.appendChild(src);
-    }
+    pc.appendChild(reportBody(prof));
     view.appendChild(pc);
   }
 
@@ -888,17 +868,88 @@ function profileOf(p) {
   return key ? src[key] : null;
 }
 
+function skillRow(label, value) {
+  const row = el("div", "skill");
+  row.appendChild(text("span", "skill-label", label));
+  const dots = el("div", "skill-dots");
+  for (let i = 1; i <= 5; i++) {
+    dots.appendChild(el("span", "dot" + (i <= value ? " on" : "")));
+  }
+  row.appendChild(dots);
+  return row;
+}
+
+function reportBody(prof, opts) {
+  const frag = document.createDocumentFragment();
+  frag.appendChild(text("div", "meet-headline", prof.headline));
+  frag.appendChild(text("p", "meet-summary", prof.summary));
+
+  if (prof.skills && Object.keys(prof.skills).length) {
+    const box = el("div", "skills-box");
+    box.appendChild(text("div", "skills-cap", "פרופיל יכולות"));
+    Object.keys(prof.skills).forEach(k => box.appendChild(skillRow(k, prof.skills[k])));
+    box.appendChild(text("div", "disclaimer-line", "הערכה שנגזרה מדוחות פומביים, לא מדד רשמי."));
+    frag.appendChild(box);
+  }
+
+  if (prof.strengths && prof.strengths.length) {
+    const b = el("div", "pros");
+    b.appendChild(text("div", "list-cap", "חוזקות"));
+    const ul = el("ul");
+    prof.strengths.forEach(x => ul.appendChild(text("li", "", x)));
+    b.appendChild(ul);
+    frag.appendChild(b);
+  }
+  if (prof.weaknesses && prof.weaknesses.length) {
+    const b = el("div", "cons");
+    b.appendChild(text("div", "list-cap", "לשים לב"));
+    const ul = el("ul");
+    prof.weaknesses.forEach(x => ul.appendChild(text("li", "", x)));
+    b.appendChild(ul);
+    frag.appendChild(b);
+  }
+  if (prof.watch) {
+    const w = el("div", "meet-watch");
+    w.appendChild(text("span", "watch-label", "מה לשים לב"));
+    w.appendChild(text("span", "", prof.watch));
+    frag.appendChild(w);
+  }
+  if (prof.role) {
+    const r = el("div", "role-box");
+    r.appendChild(text("span", "watch-label", "התפקיד בירושלים"));
+    r.appendChild(text("span", "", prof.role));
+    frag.appendChild(r);
+  }
+  if (prof.comparison) {
+    const c = el("div", "chips-row");
+    c.appendChild(text("span", "strength compare", "משווים אותו ל" + prof.comparison));
+    frag.appendChild(c);
+  }
+  const srcs = prof.sources || (prof.source ? [prof.source] : []);
+  if (srcs.length && (!opts || !opts.hideSources)) {
+    const links = el("div", "meet-links");
+    srcs.forEach((u, i) => {
+      const a = el("a", "meet-link muted-link");
+      a.href = u; a.target = "_blank"; a.rel = "noopener";
+      a.textContent = srcs.length > 1 ? "מקור " + (i + 1) : "המקור";
+      links.appendChild(a);
+    });
+    frag.appendChild(links);
+  }
+  return frag;
+}
+
 function renderMeet() {
   const players = ((state.roster && state.roster.players) || []).slice()
     .sort((a, b) => (a.number ?? 999) - (b.number ?? 999));
 
   const intro = el("div", "card meet-intro");
   intro.appendChild(text("div", "eyebrow", "בואו נכיר"));
-  intro.appendChild(text("div", "meet-title", "מי הם החבר׳ה האלה?"));
+  intro.appendChild(text("div", "meet-title", "מי הם החבר\u05f3ה האלה?"));
   intro.appendChild(text("p", "",
-    "סגל חדש ברובו. ריכזנו לכל שחקן את מה שכתבו עליו סקאוטים ואת המספרים מהקריירה שלו, כדי שתגיעו למשחק הראשון ותדעו את מי אתם מריעים."));
+    "סגל חדש ברובו. לכל שחקן דוח מלא: מה הוא נותן, איפה הוא פחות חזק, ומה התפקיד שלו בקבוצה הזאת."));
   intro.appendChild(text("p", "meet-note",
-    "הפרופילים נכתבו על ידי אוהדים על בסיס דוחות סקאוטינג ונתונים פומביים, ומצורף מקור לכל שחקן. אינם מטעם המועדון."));
+    "הדוחות נכתבו על ידי אוהדים על בסיס דוחות סקאוטינג ונתונים פומביים, עם מקורות. אינם מטעם המועדון."));
   view.appendChild(intro);
 
   let written = 0;
@@ -910,53 +961,30 @@ function renderMeet() {
 
     const head = el("div", "meet-head");
     const num = el("div", "shirt");
-    num.textContent = p.number != null ? p.number : "–";
+    num.textContent = p.number != null ? p.number : "\u2013";
     head.appendChild(num);
     if (p.photo) head.appendChild(playerPhoto(p, "thumb"));
     const who = el("div", "info");
     who.appendChild(playerNameEl(p));
     const bits = [];
     if (p.position) bits.push(p.position);
-    if (p.height) bits.push(p.height + " ס״מ");
+    if (p.height) bits.push(p.height + " ס\u05f4מ");
     if (p.country) bits.push(p.country);
     if (bits.length) who.appendChild(text("div", "sub", bits.join(" · ")));
     head.appendChild(who);
     c.appendChild(head);
 
-    c.appendChild(text("div", "meet-headline", prof.headline));
-    c.appendChild(text("p", "meet-summary", prof.summary));
+    c.appendChild(reportBody(prof));
 
-    if (prof.strengths && prof.strengths.length) {
-      const chips = el("div", "chips-row");
-      prof.strengths.forEach(s => chips.appendChild(text("span", "strength", s)));
-      c.appendChild(chips);
-    }
-    if (prof.watch) {
-      const w = el("div", "meet-watch");
-      w.appendChild(text("span", "watch-label", "מה לשים לב"));
-      w.appendChild(text("span", "", prof.watch));
-      c.appendChild(w);
-    }
-
-    const links = el("div", "meet-links");
     const page = el("a", "meet-link");
     page.href = "#/player/" + encodeURIComponent(p.slug || slugOf(p));
     page.textContent = "לעמוד השחקן";
-    links.appendChild(page);
-    if (prof.source) {
-      const src = el("a", "meet-link muted-link");
-      src.href = prof.source;
-      src.target = "_blank";
-      src.rel = "noopener";
-      src.textContent = "המקור";
-      links.appendChild(src);
-    }
-    c.appendChild(links);
+    c.appendChild(page);
     view.appendChild(c);
   });
 
   if (!written) {
-    view.appendChild(text("div", "empty", "הפרופילים בהכנה — נעדכן בקרוב"));
+    view.appendChild(text("div", "empty", "הדוחות בהכנה — נעדכן בקרוב"));
   }
   footer();
 }
