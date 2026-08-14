@@ -67,7 +67,23 @@ body {
   padding: 14px 18px;
   position: relative;
   z-index: 1; /* keep the wordmark above the kit stripes */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
+.share-icon {
+  flex: 0 0 auto;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFF6F7;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.share-icon svg { width: 21px; height: 21px; fill: currentColor; }
+.share-icon:hover { background: var(--red); }
 .wordmark { display: flex; align-items: center; gap: 10px; }
 .wordmark .ball { font-size: 24px; }
 .wordmark strong { display: block; font-size: 18px; font-weight: 800; line-height: 1.2; }
@@ -439,6 +455,24 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
   padding: 10px; cursor: pointer;
   text-decoration: none;
 }
+
+/* Share the app */
+.share-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--red-soft);
+  border-color: var(--red);
+}
+.share-title { font-weight: 800; font-size: 15.5px; }
+.share-sub { font-size: 13px; color: var(--muted); margin-top: 1px; }
+.wa-btn {
+  flex: 0 0 auto;
+  font: inherit; font-weight: 800; font-size: 14.5px;
+  background: var(--red); color: var(--red-ink);
+  border: none; border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.wa-btn:hover { filter: brightness(1.08); }
 
 .footer-note { text-align: center; color: var(--muted); font-size: 12px; margin-top: 26px; }
 .footer-note .heart { color: var(--red); }
