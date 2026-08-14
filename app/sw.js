@@ -2,7 +2,7 @@
 
 // Bump VERSION whenever the app shell changes. It names the caches, so a
 // new version drops the old ones instead of serving them forever.
-const VERSION = "v3";
+const VERSION = "v4";
 const SHELL_CACHE = "shell-" + VERSION;
 const DATA_CACHE = "data-" + VERSION;
 
@@ -41,6 +41,10 @@ self.addEventListener("activate", e => {
 self.addEventListener("fetch", e => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;
+
+  // the live score is meaningful only while it is fresh, and it is polled
+  // with a cache-buster — caching it would both mislead and fill the store
+  if (url.pathname.endsWith("/live.json")) return;
 
   const cacheName = url.pathname.includes("/data/") ? DATA_CACHE : SHELL_CACHE;
 

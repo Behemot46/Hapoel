@@ -394,7 +394,75 @@ def is_us_latin(name):
     n = (name or "").lower()
     return "jerusalem" in n and ("hapoel" in n or "midtown" in n)
 
+# The v2 feed gives three times per game and they are NOT the same:
+#   date       CET, the competition's own clock
+#   localDate  local to the venue — Belgrade for our "home" European games
+#   utcDate    the actual instant, and the only one worth storing
+# Reading `date` as if it were Israeli time put every European fixture an
+# hour early on the schedule. Store the instant; the app renders it local.
+EUROCUP_V2_GAMES = "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/games"
+
+def _club_name(side):
+    club = (side or {}).get("club") or {}
+    return club.get("name") or club.get("editorialName") or club.get("code")
+
+def _club_code(side):
+    return ((side or {}).get("club") or {}).get("code")
+
+def _partials(side):
+    p = (side or {}).get("partials") or {}
+    out = [p.get(f"partials{i}") for i in range(1, 5)]
+    return [int(x) for x in out if isinstance(x, (int, float))]
+
+def parse_eurocup_game(g):
+    """One game object → our schema, or None if it is not ours."""
+    local, road = g.get("local") or {}, g.get("road") or {}
+    if "JER" not in (_club_code(local), _club_code(road)):
+        return None
+    when = g.get("utcDate")
+    if not when:
+        return None
+    home, away = _club_name(local), _club_name(road)
+    we_are_home = _club_code(local) == "JER"
+    opp = away if we_are_home else home
+    played = bool(g.get("played"))
+    venue = (g.get("venue") or {}).get("name") or None
+    day = when[:10].replace("-", "")
+    return {
+        "id": f"{day}-euro-{re.sub(r'[^A-Za-z]', '', opp or '')[:12]}",
+        "date": when,
+        "competition": "יורוקאפ",
+        "round": g.get("roundName") or (f"מחזור {g['round']}" if g.get("round") else None),
+        "home": TEAM if we_are_home else home,
+        "away": TEAM if not we_are_home else away,
+        # a European "home" game is often played abroad, so never hide the venue
+        "venue": venue.title() if venue else None,
+        "status": "finished" if played else "scheduled",
+        "homeScore": int(local.get("score")) if played else None,
+        "awayScore": int(road.get("score")) if played else None,
+        "homePartials": _partials(local) if played else None,
+        "awayPartials": _partials(road) if played else None,
+    }
+
 def eurocup_games():
+    try:
+        data = json.loads(fetch(EUROCUP_V2_GAMES))
+    except Exception as e:
+        log("eurocup v2 games failed:", e)
+        return eurocup_games_fallback()
+    raw = data.get("data") if isinstance(data, dict) else data
+    if not isinstance(raw, list):
+        log("eurocup v2 games: unexpected envelope", list(data)[:8] if isinstance(data, dict) else type(data))
+        return eurocup_games_fallback()
+    games = [x for x in (parse_eurocup_game(g) for g in raw) if x]
+    log(f"eurocup v2 games: {len(raw)} in feed, {len(games)} ours")
+    if games:
+        log("  sample:", json.dumps(games[0], ensure_ascii=False)[:220])
+        return games
+    return eurocup_games_fallback()
+
+def eurocup_games_fallback():
+    """Older endpoints, kept in case the v2 shape moves under us."""
     for url in EUROCUP_GAME_ENDPOINTS:
         try:
             data = json.loads(fetch(url))
@@ -927,12 +995,79 @@ def update_roster():
 
 # ---------------------------------------------------------------- main
 
+# ---------------------------------------------------------------- eurocup table
+
+# The group table lives per round. Only rounds that have been reached answer
+# with content; the rest return an empty list, so walk down from the top and
+# take the first round that has anything in it — that is the current table.
+EUROCUP_STANDINGS = ("https://api-live.euroleague.net"
+                     "/v2/competitions/U/seasons/U2026/rounds/{r}/standings")
+MAX_ROUND = 18
+
+def eurocup_groups():
+    for rnd in range(MAX_ROUND, 0, -1):
+        try:
+            data = json.loads(fetch(EUROCUP_STANDINGS.format(r=rnd)))
+        except Exception as e:
+            log("eurocup standings round", rnd, "failed:", e)
+            continue
+        groups = data if isinstance(data, list) else data.get("data") or []
+        if groups:
+            log(f"eurocup standings: round {rnd}, {len(groups)} groups")
+            return rnd, groups
+    return None, []
+
+def update_eurocup_standings():
+    rnd, groups = eurocup_groups()
+    if not groups:
+        raise RuntimeError("no eurocup group table returned by any round")
+
+    ours = None
+    out = []
+    for g in groups:
+        info = g.get("group") or {}
+        rows = []
+        for r in g.get("standings") or []:
+            club = r.get("club") or {}
+            d = r.get("data") or {}
+            name = club.get("name") or club.get("editorialName") or club.get("code")
+            rows.append({
+                "pos": d.get("position"),
+                "team": name,
+                "code": club.get("code"),
+                "played": d.get("gamesPlayed"),
+                "wins": d.get("gamesWon"),
+                "losses": d.get("gamesLost"),
+                "for": d.get("pointsFavour"),
+                "against": d.get("pointsAgainst"),
+            })
+        rows.sort(key=lambda x: (x["pos"] is None, x["pos"]))
+        entry = {"name": info.get("name") or info.get("rawName") or "", "rows": rows}
+        out.append(entry)
+        if any(r["code"] == "JER" for r in rows):
+            ours = entry["name"]
+
+    if not ours:
+        # better no table than a table the club is missing from
+        raise RuntimeError("eurocup table parsed but our club is not in it")
+
+    out.sort(key=lambda g: (g["name"] != ours, g["name"]))
+    log("eurocup groups:", [g["name"] for g in out], "ours:", ours)
+    save_json("eurocup.json", {
+        "competition": "יורוקאפ",
+        "season": "2026/27",
+        "round": rnd,
+        "ourGroup": ours,
+        "groups": out,
+    })
+    return True
+
 def main():
     meta = load_json("meta.json") or {"sources": {}}
     ok_any = False
     status = {}
     for name, fn in [("standings", update_standings), ("games", update_games),
-                     ("roster", update_roster)]:
+                     ("roster", update_roster), ("eurocup", update_eurocup_standings)]:
         try:
             fn()
             status[name] = {"ok": True, "detail": "עודכן בהצלחה"}

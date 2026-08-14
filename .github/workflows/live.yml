@@ -1,0 +1,63 @@
+name: משחק חי
+
+# Runs often, but only during the hours games are actually played, and the
+# script itself exits in a second when nothing is on. The result is written
+# straight to the published branch rather than to main, so a game night does
+# not fill the history with commits and the score reaches fans in ~30s
+# instead of going the long way round through the deploy workflow.
+
+on:
+  schedule:
+    # every 5 minutes, 15:00–22:00 UTC — covers 17:00–01:00 Israel time,
+    # which spans both European tip-offs and domestic evening games
+    - cron: '*/5 15-22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: live-score
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Poll the game
+        run: python scripts/update_live.py
+
+      - name: Publish live.json to gh-pages
+        run: |
+          set -euo pipefail
+          if [ ! -f app/data/live.json ]; then
+            echo "nothing to publish"
+            exit 0
+          fi
+          cp app/data/live.json /tmp/live.json
+          git config user.name "hapoel-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          # the site may not have been published yet on a fresh repo
+          if ! git fetch origin gh-pages --depth=1; then
+            echo "no gh-pages branch yet — nothing to publish to"
+            exit 0
+          fi
+          git checkout -B gh-pages origin/gh-pages
+          mkdir -p data
+          cp /tmp/live.json data/live.json
+          git add data/live.json
+          if git diff --cached --quiet; then
+            echo "score unchanged since last poll"
+          else
+            git commit -m "עדכון תוצאה חיה"
+            git push origin gh-pages
+          fi

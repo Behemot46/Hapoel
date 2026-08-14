@@ -3,7 +3,7 @@
 const TEAM = "הפועל ירושלים";
 const state = {
   games: null, standings: null, meta: null, club: null,
-  gamesTab: "upcoming", diaryScope: "season",
+  gamesTab: "upcoming", tableTab: "league", diaryScope: "season",
 };
 
 const view = document.getElementById("view");
@@ -73,7 +73,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -84,6 +84,7 @@ async function boot() {
       loadJSON("data/player-details.json").catch(() => ({})),
       loadJSON("data/team-names.json").catch(() => ({})),
       loadJSON("data/history.json").catch(() => (null)),
+      loadJSON("data/eurocup.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -95,6 +96,7 @@ async function boot() {
     state.details = details || {};
     state.teamNames = teamNames || {};
     state.history = history;
+    state.eurocup = eurocup;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -112,6 +114,8 @@ async function boot() {
   if (sb) sb.onclick = shareApp;
   window.addEventListener("hashchange", render);
   render();
+  // a frozen single-file copy has no site to poll
+  if (!window.__HAPOEL_SNAPSHOT__) watchLive();
 }
 
 /* ---------- helpers ---------- */
@@ -272,6 +276,104 @@ function countdownEl(game) {
   return wrap;
 }
 
+/* ---------- the live score on game night ---------- */
+
+// live.json is republished straight to the site every few minutes while a
+// game is on. It may be missing entirely — that just means "nothing on".
+let livePoll = null;
+
+function stopLivePoll() {
+  if (livePoll) { clearInterval(livePoll); livePoll = null; }
+}
+
+async function fetchLive() {
+  try {
+    const res = await fetch("data/live.json?t=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) return null;
+    const d = await res.json();
+    return d && d.state && d.state !== "idle" ? d : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function minutesAgo(iso) {
+  const t = new Date(iso).getTime();
+  if (!t) return null;
+  return Math.max(0, Math.round((Date.now() - t) / 60000));
+}
+
+function freshnessLabel(iso) {
+  const m = minutesAgo(iso);
+  if (m === null) return "";
+  if (m < 1) return "עודכן ממש עכשיו";
+  if (m === 1) return "עודכן לפני דקה";
+  if (m < 60) return "עודכן לפני " + m + " דקות";
+  const h = Math.floor(m / 60);
+  return "עודכן לפני " + (h === 1 ? "שעה" : h + " שעות");
+}
+
+function quarterLabel(q) {
+  if (!q) return "";
+  return q >= 4 ? "רבע רביעי" : ["רבע ראשון", "רבע שני", "רבע שלישי"][q - 1] || "";
+}
+
+function liveCard(live) {
+  const g = live.game || {};
+  const done = live.state === "final";
+  const c = el("div", "card live-game" + (done ? " done" : ""));
+  const head = el("div", "live-head");
+  head.appendChild(text("span", "live-dot", ""));
+  head.appendChild(text("span", "live-label", done ? "המשחק הסתיים" : "עכשיו"));
+  c.appendChild(head);
+
+  const opp = isUs(g.home) ? g.away : g.home;
+  c.appendChild(oppEl("opponent", opp));
+  c.appendChild(text("div", "comp",
+    (g.competition || "") + (g.venue ? " · " + g.venue : "")));
+
+  if (live.state === "live" || live.state === "final") {
+    const us = live.ourScore, them = live.theirScore;
+    const box = el("div", "live-score");
+    const ours = el("div", "ls-side" + (us > them ? " lead" : ""));
+    ours.appendChild(text("div", "ls-num", String(us)));
+    ours.appendChild(text("div", "ls-who", "ירושלים"));
+    const theirs = el("div", "ls-side" + (them > us ? " lead" : ""));
+    theirs.appendChild(text("div", "ls-num", String(them)));
+    theirs.appendChild(text("div", "ls-who", teamName(opp)));
+    box.appendChild(ours);
+    box.appendChild(text("div", "ls-sep", "–"));
+    box.appendChild(theirs);
+    c.appendChild(box);
+    if (live.state === "live" && live.quarter) {
+      c.appendChild(text("div", "live-when", quarterLabel(live.quarter)));
+    }
+  } else if (live.state === "starting") {
+    c.appendChild(text("div", "live-when", "המשחק עולה לאוויר"));
+  } else {
+    // a domestic game: we know it is being played, we have no feed for it
+    c.appendChild(text("div", "live-when", "המשחק מתנהל · אין הזנת תוצאות חיה"));
+  }
+
+  c.appendChild(text("div", "live-fresh", freshnessLabel(live.updated)));
+  return c;
+}
+
+// swap the countdown out for the live card when a game starts, and back to
+// the schedule when it ends — without the fan having to reload anything
+function watchLive() {
+  stopLivePoll();
+  const paint = async () => {
+    const live = await fetchLive();
+    const had = state.live;
+    state.live = live;
+    const changed = JSON.stringify(had || null) !== JSON.stringify(live || null);
+    if (changed && (location.hash === "" || location.hash === "#/")) render();
+  };
+  paint();
+  livePoll = setInterval(paint, 60000);
+}
+
 /* ---------- adding games to the phone's calendar ---------- */
 
 // Two hours is a basketball game with its breaks; close enough that the
@@ -427,7 +529,10 @@ function renderHome() {
   const next = upcoming()[0];
   const last = finished()[0];
 
-  if (next) {
+  // a game in progress outranks everything else on the screen
+  if (state.live) view.appendChild(liveCard(state.live));
+
+  if (next && !state.live) {
     const c = el("div", "card next-game");
     c.appendChild(text("div", "eyebrow", "המשחק הבא"));
     c.appendChild(oppEl("opponent", opponent(next)));
@@ -445,7 +550,7 @@ function renderHome() {
     c.appendChild(calButton([next], "הוספה ליומן", "hapoel-next-game.ics"));
     c.appendChild(calNote());
     view.appendChild(c);
-  } else {
+  } else if (!next) {
     const c = el("div", "card");
     c.appendChild(text("div", "eyebrow", "המשחק הבא"));
     c.appendChild(text("div", "empty", "לוח המשחקים לעונה טרם פורסם — נעדכן ברגע שיהיה"));
@@ -598,12 +703,87 @@ function attendButton(g) {
 /* ---------- table ---------- */
 
 function renderTable() {
-  view.appendChild(text("div", "section-title",
-    "טבלת " + state.standings.competition + " · עונת " + state.standings.season));
-  const c = el("div", "card table-card");
-  c.appendChild(standingsTable(state.standings.rows, true));
-  view.appendChild(c);
+  const euro = state.eurocup;
+  if (euro && euro.groups && euro.groups.length) {
+    const seg = el("div", "seg");
+    const bL = text("button", state.tableTab === "euro" ? "" : "active", "ווינר סל");
+    const bE = text("button", state.tableTab === "euro" ? "active" : "", "יורוקאפ");
+    bL.onclick = () => { state.tableTab = "league"; render(); };
+    bE.onclick = () => { state.tableTab = "euro"; render(); };
+    seg.appendChild(bL);
+    seg.appendChild(bE);
+    view.appendChild(seg);
+  }
+
+  if (state.tableTab === "euro" && euro) {
+    renderEurocup(euro);
+  } else {
+    view.appendChild(text("div", "section-title",
+      "טבלת " + state.standings.competition + " · עונת " + state.standings.season));
+    const c = el("div", "card table-card");
+    c.appendChild(standingsTable(state.standings.rows, true));
+    view.appendChild(c);
+  }
   footer();
+}
+
+// "Group A" is how the competition names it; in Hebrew a group is בית
+function groupLabel(name) {
+  const m = /^group\s+(\S+)$/i.exec(name || "");
+  return m ? "בית " + m[1] : (name || "");
+}
+
+function renderEurocup(euro) {
+  const ourFirst = euro.groups;
+  const ours = ourFirst[0];
+  view.appendChild(text("div", "section-title",
+    groupLabel(ours.name) + " · " + euro.competition + " " + euro.season));
+  const c = el("div", "card table-card");
+  c.appendChild(eurocupTable(ours.rows));
+  view.appendChild(c);
+
+  const rest = ourFirst.slice(1);
+  if (rest.length) {
+    const d = el("details", "card groups-more");
+    const s = el("summary");
+    s.textContent = "שאר הבתים";
+    d.appendChild(s);
+    rest.forEach(g => {
+      d.appendChild(text("div", "group-name", groupLabel(g.name)));
+      d.appendChild(eurocupTable(g.rows));
+    });
+    view.appendChild(d);
+  }
+  view.appendChild(text("div", "table-note",
+    "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."));
+}
+
+function isUsEuro(r) { return r.code === "JER" || isUs(teamName(r.team)); }
+
+function eurocupTable(rows) {
+  const t = el("table", "standings");
+  const head = el("tr");
+  ["#", "קבוצה", "מש׳", "נצ׳", "הפ׳", "הפרש"].forEach((h, i) => {
+    const th = el("th", i === 1 ? "team" : "");
+    th.textContent = h;
+    head.appendChild(th);
+  });
+  t.appendChild(head);
+  rows.forEach(r => {
+    const tr = el("tr", isUsEuro(r) ? "us" : "");
+    tr.appendChild(text("td", "num", r.pos == null ? "–" : String(r.pos)));
+    const name = teamName(r.team);
+    const td = el("td", "team");
+    td.appendChild(text("span", isLatin(name) ? "latin" : "", name));
+    tr.appendChild(td);
+    tr.appendChild(text("td", "num", String(r.played ?? 0)));
+    tr.appendChild(text("td", "num", String(r.wins ?? 0)));
+    tr.appendChild(text("td", "num", String(r.losses ?? 0)));
+    const diff = (r.for ?? 0) - (r.against ?? 0);
+    tr.appendChild(text("td", "num diff", diff > 0 ? "+" + diff : String(diff)));
+    t.appendChild(tr);
+  });
+  return t;
 }
 
 function standingsTable(rows, full) {
