@@ -1,2 +1,4 @@
+__pycache__/
+*.pyc
+testapp/
 dist/
-app/hapoel-standalone.html
