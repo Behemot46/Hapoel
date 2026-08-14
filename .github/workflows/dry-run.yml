@@ -1,0 +1,54 @@
+name: הרצת יבש של האיסוף (ידני)
+
+# Runs the real updater against the real sources and shows the resulting
+# diff, but never commits. Used to verify a parser change before merging.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 pillow
+      - name: Run the updater
+        run: python scripts/update_data.py
+      - name: Run the live poller
+        run: python scripts/update_live.py
+      - name: Show what would have changed
+        run: |
+          git --no-pager diff --stat app/data/ || true
+          echo "===== games.json ====="
+          python -c "
+import json
+d = json.load(open('app/data/games.json'))
+print('league:', d.get('league'))
+print('total:', len(d['games']))
+for g in d['games'][:6]:
+    print(' ', g['date'], '|', g['competition'], '|', g['home'], 'vs', g['away'], '|', g.get('venue'))
+"
+          echo "===== eurocup.json ====="
+          python -c "
+import json, pathlib
+p = pathlib.Path('app/data/eurocup.json')
+if not p.exists():
+    print('MISSING')
+else:
+    d = json.loads(p.read_text())
+    print('round', d['round'], 'ourGroup', d['ourGroup'])
+    for g in d['groups']:
+        print(' ', g['name'], [r['code'] for r in g['rows']])
+    print('our group rows:')
+    for r in d['groups'][0]['rows']:
+        print('   ', r)
+"
+          echo "===== live.json ====="
+          cat app/data/live.json 2>/dev/null || echo MISSING
