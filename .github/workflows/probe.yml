@@ -1,0 +1,31 @@
+name: בדיקת מקורות (ידני)
+
+# Diagnostic only — reads public sources and prints their structure so a
+# parser can be written against real data. Never commits anything.
+
+on:
+  workflow_dispatch:
+    inputs:
+      which:
+        description: 'מה לבדוק: all / games / standings / league / roster'
+        required: false
+        default: 'all'
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Probe sources
+        run: python scripts/probe_sources.py "${{ inputs.which || 'all' }}"
