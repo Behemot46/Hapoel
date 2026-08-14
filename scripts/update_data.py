@@ -348,6 +348,122 @@ def parse_roster(soup):
 
 ROSTER_WORDS = ("סגל", "שחקנים", "הרכב", "שחקני")
 
+# --- EuroCup as a roster source ------------------------------------------
+# basket.co.il publishes no squad at all, but the club plays in the EuroCup,
+# whose official feeds do list players. Team code JER, competition U (EuroCup).
+EUROCUP_ENDPOINTS = [
+    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/clubs/JER/people",
+    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2025/clubs/JER/people",
+    "https://api-live.euroleague.net/v1/teams?seasonCode=U2026&teamCode=JER",
+    "https://api-live.euroleague.net/v1/teams?seasonCode=U2025&teamCode=JER",
+]
+EUROCUP_PAGE = "https://www.euroleaguebasketball.net/en/eurocup/teams/hapoel-midtown-jerusalem/jer/"
+
+NAME_KEYS = ("name", "personname", "fullname", "displayname", "playername")
+NUM_KEYS = ("dorsal", "jersey", "number", "shirtnumber", "dorsalraw")
+POS_KEYS = ("positionname", "position", "role")
+
+def _walk_json(obj, out):
+    """Collect dicts that look like a player record, anywhere in the tree."""
+    if isinstance(obj, list):
+        for x in obj:
+            _walk_json(x, out)
+        return
+    if not isinstance(obj, dict):
+        return
+    lower = {k.lower(): v for k, v in obj.items()}
+    # a record often splits across two levels: {"person": {...}, "dorsal": 5}
+    # so read both as one merged view, with the outer level taking precedence
+    for nest in ("person", "player", "personinfo"):
+        inner = lower.get(nest)
+        if isinstance(inner, dict):
+            merged = {k.lower(): v for k, v in inner.items()}
+            merged.update(lower)
+            lower = merged
+            break
+
+    name = None
+    for k in NAME_KEYS:
+        v = lower.get(k)
+        if isinstance(v, str) and len(v.strip()) >= 3:
+            name = v.strip()
+            break
+    has_player_marker = any(k in lower for k in NUM_KEYS + POS_KEYS + ("height", "birthdate"))
+    if name and has_player_marker:
+        p = {"name": name}
+        for k in NUM_KEYS:
+            n = parse_int(str(lower.get(k, "")))
+            if n is not None:
+                p["number"] = n
+                break
+        for k in POS_KEYS:
+            v = lower.get(k)
+            if isinstance(v, str) and v.strip():
+                p["position"] = v.strip()
+                break
+        h = lower.get("height")
+        if isinstance(h, (int, float)) and h:
+            p["height"] = int(h if h > 100 else h * 100)
+        bd = lower.get("birthdate") or lower.get("birthdatestring")
+        if isinstance(bd, str):
+            m = re.search(r"(19|20)\d{2}", bd)
+            if m:
+                p["born"] = int(m.group())
+        out.append(p)
+    for v in obj.values():
+        _walk_json(v, out)
+
+def dedupe_players(players):
+    seen, out = set(), []
+    for p in players:
+        key = p["name"].strip().lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(p)
+    return out
+
+def roster_from_eurocup():
+    for url in EUROCUP_ENDPOINTS:
+        try:
+            body = fetch(url)
+        except Exception as e:
+            log("eurocup endpoint failed:", url, e)
+            continue
+        players = []
+        try:
+            _walk_json(json.loads(body), players)
+        except ValueError:
+            # v1 endpoints answer XML — pull player nodes out of it
+            soup = BeautifulSoup(body, "html.parser")
+            for tag in soup.find_all(["player", "playeritem"]):
+                nm = tag.find("name")
+                if not nm:
+                    continue
+                p = {"name": nm.get_text(strip=True)}
+                for field, key in (("dorsal", "number"), ("position", "position"),
+                                   ("height", "height"), ("birthdate", "born")):
+                    node = tag.find(field)
+                    if not node:
+                        continue
+                    txt = node.get_text(strip=True)
+                    if key in ("number", "height"):
+                        v = parse_int(txt)
+                        if v:
+                            p[key] = v
+                    elif key == "born":
+                        m = re.search(r"(19|20)\d{2}", txt)
+                        if m:
+                            p[key] = int(m.group())
+                    elif txt:
+                        p[key] = txt
+                players.append(p)
+        players = dedupe_players([p for p in players if len(p["name"]) >= 3])
+        log(f"  eurocup attempt {url}: {len(players)} players")
+        if len(players) >= 5:
+            return players
+    return []
+
 def roster_candidates(team_link, soup):
     """The team page itself carries the schedule and standings, not the squad,
     so collect pages that look like they hold the roster."""
@@ -405,6 +521,12 @@ def update_roster():
                 if len(found) >= 5:
                     players = found
                     break
+
+    # EuroCup feeds — the club plays there, and they do publish squads
+    if len(players) < 5:
+        players = roster_from_eurocup()
+        if players:
+            tried.append("eurocup")
 
     if len(players) < 5:
         log("DIAG roster: tried", tried)

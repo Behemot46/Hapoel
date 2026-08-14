@@ -426,7 +426,9 @@ const BADGES = [
     got: s => s.total, hint: "50 משחקים" },
   { key: "away5", emoji: "🚌", name: "נאמן בחוץ", need: 5,
     got: s => s.away, hint: "5 משחקי חוץ" },
-  { key: "derby", emoji: "🔥", name: "דרבי", need: 1,
+  // Hapoel Jerusalem–Maccabi Tel Aviv is the קלאסיקו; a דרבי would mean
+  // two clubs from the same city, which this is not
+  { key: "clasico", emoji: "🔥", name: "קלאסיקו", need: 1,
     got: (s, e) => e.filter(x => /מכבי ת|מכבי תל אביב/.test(x.opponent || "")).length,
     hint: "משחק מול מכבי ת״א" },
   { key: "europe", emoji: "✈️", name: "לילה אירופי", need: 1,
