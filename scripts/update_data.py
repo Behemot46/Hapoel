@@ -120,6 +120,9 @@ def find_standings(soup):
             team = cell(j_team)
             if not team or not re.search(r"[א-ת]{2,}", team):
                 continue
+            # drop header fragments that parse as rows (e.g. "סלים", "נצ'")
+            if len(team) < 5 or team in ("ליגת ווינר סל", "שם הקבוצה"):
+                continue
             wins = int(cell(j_wins)) if (cell(j_wins) or "").isdigit() else None
             losses = int(cell(j_losses)) if (cell(j_losses) or "").isdigit() else None
             if wins is None:
@@ -180,46 +183,66 @@ TIME_RE = re.compile(r"(\d{1,2}):(\d{2})")
 SCORE_RE = re.compile(r"(\d{2,3})\s*[-–:]\s*(\d{2,3})")
 
 def parse_team_games(soup):
-    """Extract games from a team page: rows containing a date and two team names."""
+    """Header-driven parse of the team schedule table.
+    Real header on team.asp: תאריך | שעה | שלב | מארחת | אורחת | תוצאה"""
     games = []
-    for tr in soup.find_all("tr"):
-        txt = tr.get_text(" ", strip=True)
-        if not is_us(txt):
-            continue
-        dm = DATE_RE.search(txt)
-        if not dm:
-            continue
-        day, month, year = (int(x) for x in dm.groups())
-        if year < 100:
-            year += 2000
-        tm = TIME_RE.search(txt)
-        hh, mm = (int(x) for x in tm.groups()) if tm else (20, 0)
-        sm = SCORE_RE.search(txt)
-
-        cells = [c.get_text(strip=True) for c in tr.find_all("td")]
-        heb = [c for c in cells if re.search(r"[א-ת]{3,}", c) and not DATE_RE.search(c)]
-        opp = next((h for h in heb if not is_us(h)), None)
-        if not opp:
+    for table in soup.find_all("table"):
+        rows = table.find_all("tr")
+        hdr_idx = hdr = None
+        for i, r in enumerate(rows[:3]):
+            cells = [c.get_text(strip=True) for c in r.find_all(["td", "th"])]
+            if any("תאריך" in c for c in cells) and any("מארחת" in c for c in cells):
+                hdr_idx, hdr = i, cells
+                break
+        if hdr_idx is None:
             continue
 
-        us_match = re.search(r"הפועל[^|]{0,25}ירושלים", txt)
-        idx_team = us_match.start() if us_match else txt.find("ירושלים")
-        idx_opp = txt.find(opp)
-        home = TEAM if idx_team < idx_opp else opp
-        away = opp if home == TEAM else TEAM
+        def col(name):
+            for j, c in enumerate(hdr):
+                if name in c:
+                    return j
+            return None
 
-        game = {
-            "id": f"{year:04d}{month:02d}{day:02d}-{re.sub(r'[^א-ת]', '', opp)[:12]}",
-            "date": f"{year:04d}-{month:02d}-{day:02d}T{hh:02d}:{mm:02d}:00+03:00",
-            "competition": "ליגת ווינר סל",
-            "home": home,
-            "away": away,
-            "venue": None,
-            "status": "finished" if sm else "scheduled",
-            "homeScore": int(sm.group(1)) if sm else None,
-            "awayScore": int(sm.group(2)) if sm else None,
-        }
-        games.append(game)
+        j_date, j_time, j_stage = col("תאריך"), col("שעה"), col("שלב")
+        j_home, j_away, j_score = col("מארחת"), col("אורחת"), col("תוצאה")
+
+        for r in rows[hdr_idx + 1:]:
+            cells = [c.get_text(strip=True) for c in r.find_all("td")]
+            if len(cells) < 3:
+                continue
+
+            def cell(j):
+                return cells[j] if j is not None and j < len(cells) else ""
+
+            dm = DATE_RE.search(cell(j_date) or " ".join(cells))
+            if not dm:
+                continue
+            day, month, year = (int(x) for x in dm.groups())
+            if year < 100:
+                year += 2000
+            tm = TIME_RE.search(cell(j_time))
+            hh, mm = (int(x) for x in tm.groups()) if tm else (20, 0)
+            home_raw, away_raw = cell(j_home), cell(j_away)
+            if not home_raw or not away_raw:
+                continue
+            if not (is_us(home_raw) or is_us(away_raw)):
+                continue
+            # NOTE: score order vs. host/guest still unverified — no finished
+            # games on the page yet; recheck when first results appear
+            sm = SCORE_RE.search(cell(j_score))
+            opp = away_raw if is_us(home_raw) else home_raw
+
+            games.append({
+                "id": f"{year:04d}{month:02d}{day:02d}-{re.sub(r'[^א-ת]', '', opp)[:12]}",
+                "date": f"{year:04d}-{month:02d}-{day:02d}T{hh:02d}:{mm:02d}:00+03:00",
+                "competition": cell(j_stage) or "ליגת ווינר סל",
+                "home": TEAM if is_us(home_raw) else home_raw,
+                "away": TEAM if is_us(away_raw) else away_raw,
+                "venue": None,
+                "status": "finished" if sm else "scheduled",
+                "homeScore": int(sm.group(1)) if sm else None,
+                "awayScore": int(sm.group(2)) if sm else None,
+            })
     return games
 
 def find_team_link():
@@ -250,9 +273,10 @@ def update_games():
     log("team page:", team_link)
     team_soup = BeautifulSoup(fetch(team_link), "html.parser")
     games = parse_team_games(team_soup)
-    if len(games) < 3:
+    # the pre-season schedule can legitimately hold just a game or two
+    if len(games) < 1:
         dump_tables(team_soup, team_link)
-        raise RuntimeError(f"only {len(games)} games parsed — refusing to overwrite (see DIAG lines)")
+        raise RuntimeError("no games parsed — refusing to overwrite (see DIAG lines)")
     games.sort(key=lambda g: g["date"])
     log("games parsed:", len(games))
     current = load_json("games.json") or {}
