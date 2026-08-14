@@ -272,6 +272,115 @@ function countdownEl(game) {
   return wrap;
 }
 
+/* ---------- adding games to the phone's calendar ---------- */
+
+// Two hours is a basketball game with its breaks; close enough that the
+// slot in someone's calendar is honest without pretending to know the end.
+const GAME_MINUTES = 120;
+
+function icsStamp(d) {
+  return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+}
+function icsEscape(s) {
+  return String(s || "").replace(/[\\;,]/g, m => "\\" + m).replace(/\n/g, "\\n");
+}
+// RFC 5545 wants lines folded at 75 octets — Hebrew is multi-byte, so fold
+// by byte count and never in the middle of a character
+function icsFold(line) {
+  const enc = new TextEncoder();
+  if (enc.encode(line).length <= 74) return line;
+  const out = [];
+  let cur = "", bytes = 0, limit = 74;
+  for (const ch of line) {
+    const n = enc.encode(ch).length;
+    if (bytes + n > limit) { out.push(cur); cur = " "; bytes = 1; limit = 73; }
+    cur += ch; bytes += n;
+  }
+  out.push(cur);
+  return out.join("\r\n");
+}
+
+function gameTitle(g) {
+  return (isHome(g) ? teamName(g.home) : teamName(g.away)) + " – " +
+         (isHome(g) ? teamName(g.away) : teamName(g.home));
+}
+
+function gameLocation(g) {
+  if (g.venue) return g.venue;
+  return isHome(g) ? ((state.club && state.club.arena) || "") : "";
+}
+
+function vevent(g, stamp) {
+  const start = new Date(g.date);
+  const end = new Date(start.getTime() + GAME_MINUTES * 60000);
+  const lines = [
+    "BEGIN:VEVENT",
+    "UID:" + g.id + "@hapoel-fan-app",
+    "DTSTAMP:" + stamp,
+    "DTSTART:" + icsStamp(start),
+    "DTEND:" + icsStamp(end),
+    "SUMMARY:" + icsEscape("🏀 " + gameTitle(g)),
+    "DESCRIPTION:" + icsEscape(
+      g.competition + " · " + (isHome(g) ? "משחק בית" : "משחק חוץ") +
+      "\n" + appUrl()),
+  ];
+  const loc = gameLocation(g);
+  if (loc) lines.push("LOCATION:" + icsEscape(loc));
+  lines.push(
+    "URL:" + appUrl(),
+    // one reminder, two hours before — enough time to get to מלחה
+    "BEGIN:VALARM",
+    "ACTION:DISPLAY",
+    "DESCRIPTION:" + icsEscape("היום " + gameTitle(g)),
+    "TRIGGER:-PT2H",
+    "END:VALARM",
+    "END:VEVENT");
+  return lines;
+}
+
+function buildIcs(games) {
+  const stamp = icsStamp(new Date());
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Hapoel Jerusalem Fan App//HE",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "X-WR-CALNAME:" + icsEscape("הפועל ירושלים"),
+  ];
+  games.forEach(g => lines.push(...vevent(g, stamp)));
+  lines.push("END:VCALENDAR");
+  return lines.map(icsFold).join("\r\n") + "\r\n";
+}
+
+function downloadIcs(games, filename) {
+  const blob = new Blob([buildIcs(games)], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+}
+
+function calButton(games, label, filename, cls) {
+  const b = el("button", "cal-btn" + (cls ? " " + cls : ""));
+  b.type = "button";
+  b.appendChild(text("span", "cal-ico", "📅"));
+  b.appendChild(text("span", "", label));
+  b.onclick = () => downloadIcs(games, filename);
+  return b;
+}
+
+// the file lands in Downloads/Files on some phones rather than opening the
+// calendar straight away, so say so instead of leaving people confused
+function calNote() {
+  return text("div", "cal-note", "הקובץ יורד למכשיר — פתיחה שלו מוסיפה את המשחקים ליומן");
+}
+
 /* ---------- sharing the app itself ---------- */
 
 // always the live site, never location.href — a standalone copy opened
@@ -324,6 +433,8 @@ function renderHome() {
     meta.appendChild(text("span", "badge" + (isHome(next) ? " home" : ""), isHome(next) ? "משחק בית" : "משחק חוץ"));
     if (next.venue) meta.appendChild(text("span", "badge", next.venue));
     c.appendChild(meta);
+    c.appendChild(calButton([next], "הוספה ליומן", "hapoel-next-game.ics"));
+    c.appendChild(calNote());
     view.appendChild(c);
   } else {
     const c = el("div", "card");
@@ -403,6 +514,16 @@ function renderGames() {
       : "עוד לא נרשמו תוצאות העונה"));
     footer();
     return;
+  }
+
+  if (state.gamesTab === "upcoming") {
+    const c = el("div", "card cal-card");
+    c.appendChild(text("div", "share-title", "כל המשחקים ביומן שלך"));
+    c.appendChild(text("div", "share-sub",
+      list.length + " משחקים, עם תזכורת שעתיים לפני כל אחד"));
+    c.appendChild(calButton(list, "הוספה ליומן", "hapoel-season.ics"));
+    c.appendChild(calNote());
+    view.appendChild(c);
   }
 
   let lastMonth = -1;
