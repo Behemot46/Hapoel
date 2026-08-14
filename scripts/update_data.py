@@ -346,13 +346,52 @@ def parse_roster(soup):
             best = players
     return best
 
+ROSTER_WORDS = ("סגל", "שחקנים", "הרכב", "שחקני")
+
+def roster_candidates(team_link, soup):
+    """The team page itself carries the schedule and standings, not the squad,
+    so collect pages that look like they hold the roster."""
+    urls, seen = [], set()
+    for a in soup.find_all("a", href=True):
+        label = a.get_text(" ", strip=True)
+        href = a["href"]
+        if any(w in label for w in ROSTER_WORDS) or \
+           any(w in href.lower() for w in ("player", "squad", "roster")):
+            u = requests.compat.urljoin(team_link, href)
+            if u not in seen:
+                seen.add(u)
+                urls.append(u)
+    return urls
+
 def update_roster():
     team_link = find_team_link()
     if not team_link:
         raise RuntimeError("no team page found for roster")
     soup = BeautifulSoup(fetch(team_link), "html.parser")
+
     players = parse_roster(soup)
+    tried = [team_link]
     if len(players) < 5:
+        for u in roster_candidates(team_link, soup)[:6]:
+            try:
+                sub = BeautifulSoup(fetch(u), "html.parser")
+            except Exception as e:
+                log("roster page fetch failed:", u, e)
+                continue
+            tried.append(u)
+            found = parse_roster(sub)
+            log(f"  roster attempt {u}: {len(found)} players")
+            if len(found) >= 5:
+                players = found
+                break
+
+    if len(players) < 5:
+        log("DIAG roster: tried", tried)
+        links = [(a.get_text(" ", strip=True)[:40], a["href"][:90])
+                 for a in soup.find_all("a", href=True)]
+        log(f"DIAG links on team page: {len(links)}")
+        for t, h in links[:40]:
+            log(f"  '{t}' -> {h}")
         dump_tables(soup, team_link)
         raise RuntimeError(f"only {len(players)} players parsed — refusing to overwrite (see DIAG lines)")
     log("roster players:", len(players))
