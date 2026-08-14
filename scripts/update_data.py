@@ -584,6 +584,48 @@ PERSON_ENDPOINTS = [
     "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/clubs/JER/people/{code}",
 ]
 
+def photos_from_team_page(players):
+    """Last resort: the EuroCup team page embeds its data as JSON. Pull
+    headshot URLs from it and match them to players by surname."""
+    try:
+        html = fetch(EUROCUP_PAGE)
+    except Exception as e:
+        log("  team page fetch failed:", e)
+        return 0
+    blobs = re.findall(r'<script[^>]*type="application/json"[^>]*>(.*?)</script>',
+                       html, re.S)
+    blobs += re.findall(r'__NEXT_DATA__[^>]*>(.*?)</script>', html, re.S)
+    found = []
+    for b in blobs:
+        try:
+            _walk_json(json.loads(b), found)
+        except ValueError:
+            continue
+    have = {tidy_name(f["name"]).lower(): f["photoUrl"] for f in found if f.get("photoUrl")}
+    log(f"  team page: {len(blobs)} json blobs, {len(have)} names with images")
+    if not have:
+        # fall back to any image URL that carries a player surname
+        urls = re.findall(r'https://[^"\'\s]+\.(?:jpg|jpeg|png|webp)[^"\'\s]*', html)
+        log(f"  team page raw image urls: {len(urls)}")
+        for p in players:
+            last = p["name"].split()[-1].lower()
+            for u in urls:
+                if last in u.lower():
+                    p["photoUrl"] = u
+                    break
+        return sum(1 for p in players if p.get("photoUrl"))
+    hits = 0
+    for p in players:
+        key = p["name"].lower()
+        url = have.get(key)
+        if not url:  # match on surname when the full name differs
+            last = p["name"].split()[-1].lower()
+            url = next((v for k, v in have.items() if last in k), None)
+        if url:
+            p["photoUrl"] = url
+            hits += 1
+    return hits
+
 def photo_url_for(code, template=None):
     """Return (url, template_that_worked). Reuses a known-good template."""
     templates = [template] if template else PERSON_ENDPOINTS
@@ -729,17 +771,11 @@ def update_roster():
         if p.get("country"):
             p["country"] = tidy_country(p["country"])
 
-    # headshots are not in the squad payload — look them up per player
+    # headshots are not in the squad payload, and the per-player endpoints
+    # carry none either — try the team page's embedded data
     if not any(p.get("photoUrl") for p in players):
-        template = None
-        for p in players:
-            if not p.get("code"):
-                continue
-            url, template = photo_url_for(p["code"], template)
-            if url:
-                p["photoUrl"] = url
-            elif template is None:
-                break  # no endpoint responded at all; stop trying
+        hits = photos_from_team_page(players)
+        log(f"  headshots matched from team page: {hits}/{len(players)}")
     fetch_photos(players)
     current = load_json("roster.json") or {}
     current["players"] = players
