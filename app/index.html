@@ -59,7 +59,18 @@
 <script src="js/app.js"></script>
 <script>
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+    // updateViaCache:none — always revalidate the worker itself, so a new
+    // version reaches fans instead of being served from the HTTP cache
+    var hadController = !!navigator.serviceWorker.controller;
+    var reloading = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      // only when replacing an older worker, so a first visit doesn't reload
+      if (hadController && !reloading) { reloading = true; location.reload(); }
+    });
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" })
+        .then(function (reg) { reg.update(); });
+    });
   }
 </script>
 </body>
