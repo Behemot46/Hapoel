@@ -312,7 +312,10 @@ a.player-row:hover { border-color: var(--red); }
   font-variant-numeric: tabular-nums;
 }
 .trophy .tr-name { font-size: 12.5px; font-weight: 700; }
-.trophy .tr-years { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.trophy .tr-years {
+  font-size: 11px; color: var(--muted); margin-top: 2px;
+  unicode-bidi: isolate;
+}
 
 .timeline { position: relative; padding-inline-start: 4px; }
 .tl-item {
@@ -356,6 +359,41 @@ a.player-row:hover { border-color: var(--red); }
 .tl-title { font-weight: 800; font-size: 15.5px; margin-bottom: 4px; text-wrap: balance; }
 .tl-text { margin: 0; font-size: 14.5px; line-height: 1.6; }
 .legend-badge { background: var(--red-soft); color: var(--red); font-size: 20px; }
+/* year ranges inside a mixed line need their own direction too */
+.yr { direction: ltr; unicode-bidi: isolate; }
+
+/* Coach eras */
+.coach-card { padding-bottom: 12px; }
+.coach-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; margin-bottom: 8px;
+}
+.coach-name { font-weight: 800; font-size: 17px; }
+.coach-title { font-size: 13px; color: var(--red); font-weight: 700; margin-top: 1px; }
+.coach-years {
+  flex: 0 0 auto;
+  font-size: 12.5px; font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  /* a year range is a standalone LTR token: without this, RTL resolves the
+     dash as a separator and renders "2013–2014" as "2014–2013" */
+  direction: ltr;
+  unicode-bidi: isolate;
+  background: var(--surface-2); color: var(--muted);
+  border-radius: 999px; padding: 4px 11px;
+  white-space: nowrap;
+}
+.coach-years.now { background: var(--red); color: var(--red-ink); }
+/* the era the fans remember */
+.coach-big {
+  border-color: var(--red);
+  border-width: 2px;
+  background: var(--red-soft);
+}
+.coach-big .coach-name { font-size: 19px; }
+.coach-big .coach-years { background: var(--red); color: var(--red-ink); }
+.trophy-chip { background: var(--surface); }
+.coach-big .trophy-chip { background: var(--surface); }
+.list-note { font-size: 12px; color: var(--muted); text-align: center; margin: -2px 0 4px; }
 
 /* Meet the squad */
 a.promo {
