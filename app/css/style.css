@@ -66,6 +66,7 @@ body {
   margin: 0 auto;
   padding: 14px 18px;
   position: relative;
+  z-index: 1; /* keep the wordmark above the kit stripes */
 }
 .wordmark { display: flex; align-items: center; gap: 10px; }
 .wordmark .ball { font-size: 24px; }
@@ -167,7 +168,105 @@ body {
 .game-row .end .t { font-weight: 800; font-variant-numeric: tabular-nums; }
 .month-label { font-size: 13px; font-weight: 800; color: var(--muted); margin: 18px 4px 8px; }
 
+/* Roster */
+.player-row {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 11px 14px;
+  margin-bottom: 8px;
+}
+.player-row .shirt {
+  flex: 0 0 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: var(--red);
+  color: var(--red-ink);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
 .empty { text-align: center; color: var(--muted); padding: 30px 10px; }
+.empty .tiny { font-size: 12.5px; }
+
+/* Attendance ("I was there") */
+.game-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.game-card .game-row { border: none; border-radius: 0; margin: 0; background: none; }
+.attend {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: none;
+  border-top: 1px solid var(--line);
+  padding: 9px;
+  cursor: pointer;
+}
+.attend:hover { color: var(--text); }
+.attend.on { background: var(--red-soft); color: var(--red); }
+
+/* Diary */
+.diary-hero { text-align: center; }
+.diary-hero .big {
+  font-size: 52px; font-weight: 800; line-height: 1;
+  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
+}
+.diary-hero .cap { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.stat-cell { background: var(--surface-2); border-radius: 10px; padding: 10px 6px; }
+.stat-cell .n { font-weight: 800; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat-cell .l { font-size: 11.5px; color: var(--muted); }
+.record {
+  background: var(--win-soft);
+  border-radius: 10px;
+  padding: 11px 14px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+}
+.record .lab { font-size: 13.5px; font-weight: 700; }
+.record .val {
+  font-weight: 800; font-size: 20px; color: var(--win);
+  direction: ltr; unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums;
+}
+.record.bad { background: var(--surface-2); }
+.record.bad .val { color: var(--muted); }
+.share-btn {
+  width: 100%;
+  font: inherit; font-weight: 700; font-size: 14.5px;
+  color: var(--red);
+  background: none;
+  border: 1.5px solid var(--red);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+.share-btn:hover { background: var(--red); color: var(--red-ink); }
+
+.badge-list { display: flex; flex-direction: column; gap: 8px; }
+.bdg {
+  display: flex; align-items: center; gap: 11px;
+  background: var(--red-soft);
+  border-radius: 10px;
+  padding: 9px 12px;
+}
+.bdg-emoji { font-size: 20px; }
+.bdg-name { display: block; font-weight: 700; font-size: 14.5px; }
+.bdg-sub { display: block; font-size: 12px; color: var(--muted); }
+.bdg.locked { background: var(--surface-2); opacity: 0.75; }
+.bdg.locked .bdg-emoji { filter: grayscale(1); }
 
 /* Standings */
 .table-card { padding: 6px 0; overflow-x: auto; }
@@ -207,11 +306,12 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
 }
 .tabbar a {
   display: flex; flex-direction: column; align-items: center; gap: 2px;
-  font-size: 11.5px; font-weight: 700;
+  font-size: 11px; font-weight: 700;
   color: var(--muted);
   text-decoration: none;
-  padding: 4px 18px;
+  padding: 4px 10px;
   border-radius: 10px;
+  white-space: nowrap;
 }
 .tabbar a svg { width: 22px; height: 22px; fill: currentColor; }
 .tabbar a.active { color: var(--red); }
