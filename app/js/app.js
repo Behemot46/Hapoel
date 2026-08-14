@@ -66,7 +66,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -74,6 +74,7 @@ async function boot() {
       loadJSON("data/roster.json").catch(() => ({ players: [] })),
       loadJSON("data/player-names.json").catch(() => ({})),
       loadJSON("data/player-profiles.json").catch(() => ({})),
+      loadJSON("data/player-details.json").catch(() => ({})),
     ]);
     state.games = games;
     state.standings = standings;
@@ -82,6 +83,7 @@ async function boot() {
     state.roster = roster;
     state.playerNames = names || {};
     state.profiles = profiles || {};
+    state.details = details || {};
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     refreshDiary();
   } catch (e) {
@@ -438,6 +440,96 @@ function playerPhoto(p, cls) {
   return img;
 }
 
+/* ---------- player attributes, shown as bars ---------- */
+
+function detailsOf(p) {
+  const src = state.details || {};
+  if (src[p.name]) return src[p.name];
+  const last = (p.name || "").split(" ").pop().toLowerCase();
+  const key = Object.keys(src).find(k => k !== "_comment" && k.toLowerCase().endsWith(last));
+  return key ? src[key] : null;
+}
+
+function ageOf(p, det) {
+  const born = (det && det.bornDate) ? new Date(det.bornDate) : null;
+  if (born && !isNaN(born)) {
+    const now = new Date();
+    let a = now.getFullYear() - born.getFullYear();
+    const m = now.getMonth() - born.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < born.getDate())) a--;
+    return a;
+  }
+  return p.born ? new Date().getFullYear() - p.born : null;
+}
+
+// a bar is only meaningful against a scale, so measure each player
+// against the squad's own range
+function squadRange(getter) {
+  const vals = ((state.roster && state.roster.players) || [])
+    .map(getter).filter(v => typeof v === "number" && !isNaN(v));
+  if (!vals.length) return null;
+  return { min: Math.min(...vals), max: Math.max(...vals) };
+}
+
+function attrBar(label, value, display, range, note) {
+  const row = el("div", "attr");
+  const top = el("div", "attr-top");
+  top.appendChild(text("span", "attr-label", label));
+  top.appendChild(text("span", "attr-value", display));
+  row.appendChild(top);
+
+  const track = el("div", "attr-track");
+  const fill = el("div", "attr-fill");
+  let pct = 50;
+  if (range && range.max > range.min) {
+    pct = ((value - range.min) / (range.max - range.min)) * 100;
+  }
+  fill.style.width = Math.max(6, Math.min(100, pct)) + "%";
+  track.appendChild(fill);
+  row.appendChild(track);
+
+  if (range) {
+    const ends = el("div", "attr-ends");
+    ends.appendChild(text("span", "", String(range.min)));
+    ends.appendChild(text("span", "", note || ""));
+    ends.appendChild(text("span", "", String(range.max)));
+    row.appendChild(ends);
+  }
+  return row;
+}
+
+function rankNote(value, getter, lowIsFirst) {
+  const vals = ((state.roster && state.roster.players) || [])
+    .map(getter).filter(v => typeof v === "number" && !isNaN(v));
+  if (vals.length < 3 || typeof value !== "number") return "";
+  const sorted = [...vals].sort((a, b) => lowIsFirst ? a - b : b - a);
+  if (value === sorted[0]) return lowIsFirst ? "הצעיר בסגל" : "הגבוה בסגל";
+  if (value === sorted[sorted.length - 1]) return lowIsFirst ? "הוותיק בסגל" : "הנמוך בסגל";
+  return "";
+}
+
+function statBar(label, value, max, suffix) {
+  const row = el("div", "statbar");
+  const top = el("div", "attr-top");
+  top.appendChild(text("span", "attr-label", label));
+  top.appendChild(text("span", "attr-value", value + (suffix || "")));
+  row.appendChild(top);
+  const track = el("div", "attr-track");
+  const fill = el("div", "attr-fill stat");
+  fill.style.width = Math.max(6, Math.min(100, (value / max) * 100)) + "%";
+  track.appendChild(fill);
+  row.appendChild(track);
+  return row;
+}
+
+function fmtMoney(n, cur) {
+  if (n >= 1000000) {
+    const m = (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1);
+    return m + " מיליון " + (cur || "$");
+  }
+  return Math.round(n / 1000) + " אלף " + (cur || "$");
+}
+
 function renderPlayer(slug) {
   const players = (state.roster && state.roster.players) || [];
   const p = players.find(x => (x.slug || slugOf(x)) === slug);
@@ -459,23 +551,6 @@ function renderPlayer(slug) {
   card.appendChild(playerNameEl(p, "player-title"));
   if (p.position) card.appendChild(text("div", "player-pos", p.position));
   view.appendChild(card);
-
-  // the shirt number is already the badge above, so it is not repeated here
-  const facts = [
-    ["גובה", p.height ? p.height + " ס״מ" : null],
-    ["שנתון", p.born || null],
-    ["מדינה", p.country || null],
-  ].filter(([, v]) => v !== null && v !== undefined);
-  if (facts.length) {
-    const grid = el("div", "facts");
-    facts.forEach(([l, v]) => {
-      const cell = el("div", "fact");
-      cell.appendChild(text("div", "fv", String(v)));
-      cell.appendChild(text("div", "fl", l));
-      grid.appendChild(cell);
-    });
-    view.appendChild(grid);
-  }
 
   const prof = profileOf(p);
   if (prof) {
@@ -505,8 +580,78 @@ function renderPlayer(slug) {
     view.appendChild(pc);
   }
 
+  const det = detailsOf(p);
+  const age = ageOf(p, det);
+
+  // attributes as bars, measured against the squad's own range
+  const attrs = el("div", "card");
+  attrs.appendChild(text("div", "eyebrow", "נתונים"));
+  if (age) {
+    const ageRange = squadRange(x => ageOf(x, detailsOf(x)));
+    attrs.appendChild(attrBar("גיל", age, age, ageRange,
+      rankNote(age, x => ageOf(x, detailsOf(x)), true)));
+  }
+  if (p.height) {
+    attrs.appendChild(attrBar("גובה", p.height, p.height + " ס״מ",
+      squadRange(x => x.height), rankNote(p.height, x => x.height, false)));
+  }
+  const chips = el("div", "chips-row");
+  if (p.position) chips.appendChild(text("span", "strength", p.position));
+  if (p.country) chips.appendChild(text("span", "strength", p.country));
+  if (det && det.birthPlace) chips.appendChild(text("span", "strength", "נולד ב" + det.birthPlace));
+  if (chips.children.length) attrs.appendChild(chips);
+  view.appendChild(attrs);
+
+  // contract and salary — only what has actually been reported
+  if (det && (det.contract || det.salary)) {
+    view.appendChild(text("div", "section-title", "חוזה"));
+    const cc = el("div", "card");
+    const row = el("div", "contract-row");
+    if (det.contract) {
+      const box = el("div", "contract-box");
+      box.appendChild(text("div", "cv",
+        det.contract.years + (det.contract.years === 1 ? " עונה" : " עונות")));
+      box.appendChild(text("div", "cl", det.contract.until ? "עד " + det.contract.until : "משך החוזה"));
+      row.appendChild(box);
+    }
+    const sal = el("div", "contract-box");
+    if (det.salary && det.salary.perSeason) {
+      sal.appendChild(text("div", "cv", fmtMoney(det.salary.perSeason, det.salary.currency)));
+      sal.appendChild(text("div", "cl", "לעונה · לפי דיווח"));
+    } else {
+      sal.appendChild(text("div", "cv muted-value", "לא פורסם"));
+      sal.appendChild(text("div", "cl", "שכר"));
+    }
+    row.appendChild(sal);
+    cc.appendChild(row);
+    if (det.contract && det.contract.note) {
+      cc.appendChild(text("div", "contract-note", det.contract.note));
+    }
+    if (det.salary && det.salary.reported) {
+      cc.appendChild(text("div", "disclaimer-line",
+        "נתוני שכר מבוססים על דיווחי תקשורת ואינם רשמיים."));
+    }
+    view.appendChild(cc);
+  }
+
+  // last season, as bars so the numbers register at a glance
+  if (det && det.lastSeason) {
+    const ls = det.lastSeason;
+    view.appendChild(text("div", "section-title", "העונה שעברה"));
+    const lc = el("div", "card");
+    const cap = [ls.label, ls.team].filter(Boolean).join(" · ");
+    if (cap) lc.appendChild(text("div", "season-cap", cap));
+    if (ls.honor) lc.appendChild(text("div", "honor", "★ " + ls.honor));
+    if (typeof ls.pts === "number") lc.appendChild(statBar("נקודות", ls.pts, 25));
+    if (typeof ls.reb === "number") lc.appendChild(statBar("ריבאונדים", ls.reb, 12));
+    if (typeof ls.ast === "number") lc.appendChild(statBar("אסיסטים", ls.ast, 8));
+    if (typeof ls.threePct === "number") lc.appendChild(statBar("אחוזי 3", ls.threePct, 50, "%"));
+    if (ls.games) lc.appendChild(text("div", "season-games", ls.games + " משחקים"));
+    view.appendChild(lc);
+  }
+
   // season averages arrive once games are played
-  view.appendChild(text("div", "section-title", "סטטיסטיקת עונה"));
+  view.appendChild(text("div", "section-title", "העונה הנוכחית"));
   const sc = el("div", "card");
   const st = p.stats;
   if (st && Object.keys(st).length) {
