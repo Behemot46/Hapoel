@@ -44,12 +44,28 @@ def is_us(name):
 def log(*args):
     print("[update]", *args, flush=True)
 
+# The EuroCup API answers 429 to a burst. One source hammering it used to
+# starve the sources that ran after it, so back off and retry here rather
+# than letting a throttle look like a broken feed.
+RETRY_WAITS = (2, 5, 12, 25)
+
 def fetch(url):
     log("GET", url)
-    r = requests.get(url, headers=UA, timeout=30)
-    r.raise_for_status()
-    r.encoding = r.apparent_encoding or "utf-8"
-    return r.text
+    last = None
+    for i, wait in enumerate((0,) + RETRY_WAITS):
+        if wait:
+            time.sleep(wait)
+        r = requests.get(url, headers=UA, timeout=30)
+        if r.status_code != 429:
+            r.raise_for_status()
+            r.encoding = r.apparent_encoding or "utf-8"
+            return r.text
+        last = r
+        retry_after = r.headers.get("Retry-After")
+        log(f"  429 throttled (attempt {i + 1}), retry-after={retry_after or '-'}")
+        if retry_after and retry_after.isdigit():
+            time.sleep(min(int(retry_after), 30))
+    last.raise_for_status()
 
 def load_json(name):
     p = DATA / name
@@ -1053,7 +1069,7 @@ def update_roster():
         url, template = photo_url_for(p["code"], template)
         if url:
             p["photoUrl"] = url
-        time.sleep(0.4)
+        time.sleep(1.2)
     log(f"  headshots resolved: {sum(1 for p in players if p.get('photoUrl'))}/{len(players)}")
     if not any(p.get("photoUrl") for p in players):
         hits = photos_from_team_page(players)
