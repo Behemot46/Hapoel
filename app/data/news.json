@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-15T12:42:08Z",
+  "updated": "2026-08-15T13:32:05Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 1",
@@ -90,6 +90,13 @@
       "published": "2026-08-01T07:00:00Z"
     },
     {
+      "title": "אחרי שייק מילטון: המטרות הבאות של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE90VUdxeEk1M212RzdzX3Z2S2k2ZnpWbkVsOE9YeWNLc2NBZERVV0pwdkE3dFQ3M1FYM1gyZldJeEtfSnBablJndWtoUG5kcDhSZ3lWazZpNjdyU0lFMnVfejJQcDJaUXg0RGdLbEtTQWFydWZQV3drMk1ub9IBgwFBVV95cUxOdW1QOF9KM2Q5OVlHblMtTXc0Vy1qeC1IcXdJZ2cteWtaMVlRRUxjZURuYXROUXJjQm56MzQyblpKSmJudkdWa0hpVW1QUDdiUTkzRUk4MC1JUGhMbWR0emw1cE1qV19oSHc1VVdRSVFrOC1OUnA1WXNJNHpCZ05zbXdhaw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-07-28T07:00:00Z"
+    },
+    {
       "title": "אחרי הכישלון: הפועל ירושלים העבירה מסר חד וברור להפועל ומכבי תל אביב",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE02MU5EUmIwOTI2c2s0UGpJdnQ2TzVqRzlMbDZtSGVkWjhmN1BoM3BZTTRNNWk2MWFGZVhSTnN6ZWNNYkwwSWNYT1VNYnhNWDh3Q0pIYkNyMVY4QTk2Q29tTHJ4UHFoNWRpOUd6ZU4yTWxPSlJ1aGFNeTV1ONIBgwFBVV95cUxQMDZNbFgwM3pXdVZlVTVidlF0Yl9IR2NjMXNZcFpQNHg4TDdJd2d2WEJUSk1XSjBRMVdmUjhRMFV1N3BmTjNHN2g0N1FtUnR3TVpWdDJBSkt4amhzdlhFYTFuczg4Mk9iT015OTNiRjk3Vk9zZHh4ejBFYk1VS1ZvLTBUOA?oc=5",
       "source": "ישראל היום",
@@ -125,17 +132,17 @@
       "published": "2026-07-26T07:00:00Z"
     },
     {
-      "title": "אחרי מכבי תל אביב: שחקן היורוליג מבוקש בהפועל ירושלים | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB0bXlhLTlVdmpGQy1FZG1fSkV5WHNaLXRNYVBZNjFwd1lIN3U2LS1jaUZaLVFxakVfQVNVX2lJdXdKRzRKYmxzZDhWUkYzc25hT0k3YXhJU3lSQ1BGcmVRQVJ6cUpMUGNvYUl4MExIYmhOMU1uczRhLWg1MNIBgwFBVV95cUxQSUJ1N2JUX2xQME4wR3dWX1JZVHk5Y1hmb3h1eGs0aTZyUmhMeGZtbXNnMlQtV240M2RoYW9YRDJFNmZza2w4ZktiYkdiUEtHbWQtOFpxSXhXOU1kdEVCb05kU2ZrbWVXN1hRc0g3c3c0WVYyWlVCbE85QVhSd04tcDd1RQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-26T07:00:00Z"
-    },
-    {
       "title": "בשכר גבוה: קני לופטון ג`וניור חתם בהפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9LTW42Ny1wNkFkcUJpSUlTeEo4NkpDM18tclI0VS1UbmFpMFY5VndVMzltWWJvVUlhTENYWDZuQ0s5NDJ3WDZkbkRfcXVjZGlaVXlSNTQ4NmRuVnlnMnVMcFY4NVpzWFd5a3dLaUhSNDR4dWdJ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-26T07:00:00Z"
+    },
+    {
+      "title": "אחרי מכבי תל אביב: שחקן היורוליג מבוקש בהפועל ירושלים | פרסום ראשון",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB0bXlhLTlVdmpGQy1FZG1fSkV5WHNaLXRNYVBZNjFwd1lIN3U2LS1jaUZaLVFxakVfQVNVX2lJdXdKRzRKYmxzZDhWUkYzc25hT0k3YXhJU3lSQ1BGcmVRQVJ6cUpMUGNvYUl4MExIYmhOMU1uczRhLWg1MNIBgwFBVV95cUxQSUJ1N2JUX2xQME4wR3dWX1JZVHk5Y1hmb3h1eGs0aTZyUmhMeGZtbXNnMlQtV240M2RoYW9YRDJFNmZza2w4ZktiYkdiUEtHbWQtOFpxSXhXOU1kdEVCb05kU2ZrbWVXN1hRc0g3c3c0WVYyWlVCbE85QVhSd04tcDd1RQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-07-26T07:00:00Z"
     },
     {
@@ -172,13 +179,6 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-07-21T07:00:00Z"
-    },
-    {
-      "title": "בשכר גבוה: דייויד רודי סיכם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBSZWd4QWJRdXJodFJVOHNJbnVDQTMyTjNsZFpKdGFERXpGZTFENEdmSW8zLUQxSjhWOUVFYnVsei1PTHZaNFVVM0ZIYWNYM2xpQkNIRjFiTjBXLXloaDZRdnlzYVNJbjdNSXQ4akpHN1dxN3hM?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-20T07:00:00Z"
     }
   ]
 }
