@@ -855,11 +855,32 @@ function standingsTable(rows, full) {
   return t;
 }
 
+// Most photos come from the EuroCup feed, but a player the feed has no person
+// record for is filled in by hand from another source. Naming only the feed
+// would credit it for pictures that are not its, so list what is actually here.
 function photoCredit() {
   const players = (state.roster && state.roster.players) || [];
-  if (!players.some(p => p.photo)) return null;
+  const shown = players.filter(p => p.photo);
+  if (!shown.length) return null;
+  const others = [];
+  shown.forEach(p => {
+    if (p.photoCredit && !others.includes(p.photoCredit)) others.push(p.photoCredit);
+  });
+  const from = shown.some(p => !p.photoCredit)
+    ? ["הפיד הרשמי של היורוקאפ"].concat(others)
+    : others;
   return text("div", "table-note",
-    "תמונות השחקנים מהפיד הרשמי של היורוקאפ. שחקן בלי תמונה מוצג בראשי תיבות.");
+    "תמונות השחקנים מ" + listHe(from) +
+    ". שחקן בלי תמונה מוצג בראשי תיבות.");
+}
+
+// "א", "א וב", "א, ב וג" — the vav attaches straight to a Hebrew word, and
+// takes a maqaf only before a Latin word or a digit
+function listHe(items) {
+  if (items.length <= 1) return items[0] || "";
+  const last = items[items.length - 1];
+  const vav = /^[֐-׿]/.test(last) ? "ו" : "ו־";
+  return items.slice(0, -1).join(", ") + " " + vav + last;
 }
 
 /* ---------- roster ---------- */

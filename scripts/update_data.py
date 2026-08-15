@@ -973,9 +973,22 @@ def fetch_photos(players):
             data = r.content
             if Image is not None:
                 import io
-                im = Image.open(io.BytesIO(data)).convert("RGB")
-                # the feed ships waist-up cut-outs; a round frame wants a head
-                im = photo_crop.crop_to_face(im)
+                im = Image.open(io.BytesIO(data))
+                # some sources ship the cut-out on a transparent canvas.
+                # Dropping alpha would leave whatever colour hides underneath —
+                # black in one source, white in another — so flatten onto white
+                # deliberately, which is what the rest of the squad looks like.
+                if im.mode in ("RGBA", "LA", "P"):
+                    im = im.convert("RGBA")
+                    flat = Image.new("RGB", im.size, (255, 255, 255))
+                    flat.paste(im, mask=im.split()[-1])
+                    im = flat
+                else:
+                    im = im.convert("RGB")
+                # the feed ships waist-up cut-outs; a round frame wants a head.
+                # skip_square=False: these bytes are fresh off the network, so a
+                # square canvas is the source's framing, not our earlier crop.
+                im = photo_crop.crop_to_face(im, skip_square=False)
                 im.thumbnail((400, 400))
                 im.save(dest, "JPEG", quality=85, optimize=True)
             else:
@@ -1177,6 +1190,10 @@ def _save_roster(players):
                 if not (PHOTO_DIR / f"{slugify(p['name'])}.jpg").exists():
                     p["photoUrl"] = src["url"]
                     log(f"  curated photo for {key}: {src.get('credit') or src['url'][:60]}")
+                # the credit sticks to the player even on later runs, when the
+                # file is already on disk and no request is made
+                if src.get("credit"):
+                    p["photoCredit"] = src["credit"]
                 used_curated.append(key)
                 break
     stale = [k for k in curated if not k.startswith("_") and k not in used_curated]
