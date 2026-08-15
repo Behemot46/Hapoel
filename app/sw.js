@@ -2,7 +2,7 @@
 
 // Bump VERSION whenever the app shell changes. It names the caches, so a
 // new version drops the old ones instead of serving them forever.
-const VERSION = "v7";
+const VERSION = "v8";
 const SHELL_CACHE = "shell-" + VERSION;
 const DATA_CACHE = "data-" + VERSION;
 
@@ -12,6 +12,7 @@ const SHELL_FILES = [
   "css/style.css",
   "js/app.js",
   "manifest.webmanifest",
+  "icons/crest.png",
   "icons/icon-192.png",
   "icons/icon-512.png",
 ];

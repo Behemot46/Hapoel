@@ -43,6 +43,14 @@ def build():
             if p.get("photo") in photos:
                 p["photo"] = photos[p["photo"]]
 
+    # the crest in the header is a real file now, not inline SVG — a copy
+    # opened from disk has no icons/ folder next to it, so carry it along
+    crest = APP / "icons" / "crest.png"
+    crest_uri = None
+    if crest.exists():
+        crest_uri = ("data:image/png;base64,"
+                     + base64.b64encode(crest.read_bytes()).decode("ascii"))
+
     snapshot = datetime.date.today().strftime("%d.%m.%Y")
     payload = (
         "window.__HAPOEL_DATA__ = " + json.dumps(data, ensure_ascii=False) + ";\n"
@@ -55,13 +63,17 @@ def build():
     html = html.replace('<link rel="manifest" href="manifest.webmanifest">', "")
     html = re.sub(r'\s*<link rel="icon"[^>]*>', "", html)
     html = re.sub(r'\s*<link rel="apple-touch-icon"[^>]*>', "", html)
+    if crest_uri:
+        html = html.replace('src="icons/crest.png"', 'src="' + crest_uri + '"')
     html = html.replace('<script src="js/app.js"></script>',
                         "<script>\n" + payload + js + "\n</script>")
     # the service worker block is dead weight in a file:// copy
     html = re.sub(r"<script>\s*// a single-file copy.*?</script>", "", html, flags=re.S)
 
-    if "js/app.js" in html or "css/style.css" in html:
-        raise SystemExit("build failed: external references remain")
+    leftover = re.findall(r'(?:src|href)="((?!https?:|data:|#)[^"]+)"', html)
+    if leftover:
+        raise SystemExit("build failed, these would 404 from a file:// copy: "
+                         + ", ".join(sorted(set(leftover))))
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(html, encoding="utf-8")

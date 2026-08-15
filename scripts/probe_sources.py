@@ -1,73 +1,84 @@
-"""Diagnostic probe — why hapoel.site does not answer yet.
+"""Diagnostic probe — a high-resolution club crest.
 
-The previous round failed on every request with a truncated cause. The
-decisive question is whether the name resolves at all: a domain bought
-minutes ago usually has not propagated, which looks identical to a broken
-configuration from the outside. Ask DNS directly, then try the host.
+The crest supplied is 160x160. That is plenty for the 38px header mark, but a
+PWA icon is 512x512 and upscaling 3.2x turns crisp lettering into mush. The
+club's own site and its social cards usually carry a larger original — find
+the biggest one that is actually the crest.
 """
-import socket
-import ssl
+import io
+import re
 
 import requests
 
-HOSTS = ["hapoel.site", "www.hapoel.site"]
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-log("=" * 74)
-log("A. does the name resolve?")
-log("=" * 74)
-resolved = {}
-for h in HOSTS:
+def measure(url, label):
     try:
-        infos = socket.getaddrinfo(h, 443, proto=socket.IPPROTO_TCP)
-        ips = sorted({i[4][0] for i in infos})
-        resolved[h] = ips
-        log(f"  {h:<18} -> {', '.join(ips)}")
+        r = requests.get(url, headers=UA, timeout=30)
+        ct = r.headers.get("Content-Type", "?")
+        if r.status_code != 200 or not ct.startswith("image/"):
+            log(f"  {label}: {r.status_code} {ct[:24]}")
+            return None
+        from PIL import Image
+        im = Image.open(io.BytesIO(r.content))
+        log(f"  {label}: {im.size} {im.mode} {len(r.content)}b  {url[:88]}")
+        return (im.size[0] * im.size[1], url, im.size)
     except Exception as e:
-        resolved[h] = []
-        log(f"  {h:<18} -> NO DNS RECORD  ({type(e).__name__}: {e})")
+        log(f"  {label}: FAIL {type(e).__name__} {str(e)[:80]}")
+        return None
+
+
+found = []
+log("=" * 74)
+log("A. images on the club's own pages")
+log("=" * 74)
+for page in ("https://hapoel.co.il/", "https://hapoel.co.il/team"):
+    try:
+        r = requests.get(page, headers=UA, timeout=30)
+        r.encoding = r.apparent_encoding or "utf-8"
+        urls = []
+        for m in re.findall(r'(?:src|href|content)="([^"]+\.(?:png|svg|jpg|webp))"', r.text, re.I):
+            u = m if m.startswith("http") else requests.compat.urljoin(page, m)
+            if u not in urls:
+                urls.append(u)
+        picks = [u for u in urls
+                 if re.search(r"logo|crest|emblem|semel|icon|apple|favicon|share|og", u, re.I)]
+        log(f"  {page}: {len(urls)} images, {len(picks)} look like a mark")
+        for u in picks[:12]:
+            if u.lower().endswith(".svg"):
+                log(f"    SVG (vector, scales to any size): {u[:110]}")
+                found.append((10 ** 9, u, "svg"))
+                continue
+            got = measure(u, "      ")
+            if got:
+                found.append(got)
+    except Exception as e:
+        log(f"  {page}: FAIL {type(e).__name__} {str(e)[:90]}")
 
 log("")
 log("=" * 74)
-log("B. if it resolves, does it serve TLS and our app?")
+log("B. the usual fixed locations")
 log("=" * 74)
-for h, ips in resolved.items():
-    if not ips:
-        log(f"  {h}: skipped, nothing to connect to")
-        continue
-    try:
-        ctx = ssl.create_default_context()
-        with socket.create_connection((h, 443), timeout=15) as sock:
-            with ctx.wrap_socket(sock, server_hostname=h) as ss:
-                cert = ss.getpeercert()
-                log(f"  {h}: TLS ok, issued to "
-                    f"{dict(x[0] for x in cert['subject']).get('commonName','?')}")
-    except Exception as e:
-        log(f"  {h}: TLS FAIL {type(e).__name__}: {str(e)[:120]}")
-    try:
-        r = requests.get(f"https://{h}/", timeout=20, allow_redirects=True)
-        log(f"    GET / -> {r.status_code}, server={r.headers.get('server','?')}, "
-            f"{len(r.content)}b")
-        if "יושב סופר את הדקות" in r.text:
-            log("    ^ this is our app")
-    except Exception as e:
-        log(f"    GET / FAIL {type(e).__name__}: {str(e)[:160]}")
+for u in ("https://hapoel.co.il/favicon.ico",
+          "https://hapoel.co.il/apple-touch-icon.png",
+          "https://hapoel.co.il/images/logo.png",
+          "https://upload.wikimedia.org/wikipedia/he/thumb/9/9d/Hapoel_Jerusalem_B.C._logo.png/512px-Hapoel_Jerusalem_B.C._logo.png",
+          "https://upload.wikimedia.org/wikipedia/he/9/9d/Hapoel_Jerusalem_B.C._logo.png"):
+    got = measure(u, u.split("/")[-1][:34])
+    if got:
+        found.append(got)
 
 log("")
 log("=" * 74)
-log("C. what the registrar's nameservers say (is it pointed at Vercel?)")
+log("BEST CANDIDATES (largest first)")
 log("=" * 74)
-try:
-    r = requests.get("https://dns.google/resolve?name=hapoel.site&type=NS", timeout=20)
-    log("  NS:", [a.get("data") for a in r.json().get("Answer", [])] or "none published")
-    for t in ("A", "CNAME"):
-        r = requests.get(f"https://dns.google/resolve?name=hapoel.site&type={t}", timeout=20)
-        j = r.json()
-        log(f"  {t}: status={j.get('Status')} "
-            f"{[a.get('data') for a in j.get('Answer', [])] or 'none'}")
-except Exception as e:
-    log(f"  public resolver FAIL {type(e).__name__}: {str(e)[:120]}")
+for area, u, size in sorted(found, reverse=True)[:6]:
+    log(f"  {size}  {u}")
+if not found:
+    log("  nothing usable — the 160px original stays the source")
