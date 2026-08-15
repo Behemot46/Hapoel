@@ -945,9 +945,31 @@ PHOTO_DIR = ROOT / "app" / "img" / "players"
 # update_roster(); the cap exists to protect the other sources, not the images
 PHOTO_LOOKUPS_PER_RUN = 4
 
-def slugify(name):
-    s = re.sub(r"[^a-zA-Z0-9]+", "-", (name or "").strip().lower())
-    return s.strip("-") or "player"
+def slugify(name, club_id=""):
+    """A stable, unique id for a player, used in the url and in the photo
+    filename. A name written in Hebrew has no Latin letters at all, so the
+    obvious version of this returned the same fallback for every Israeli in
+    the squad: four players sharing one address, and four headshots sharing
+    one filename. The league's own player id is the thing here that is both
+    stable and unique, so that is what stands in."""
+    s = re.sub(r"[^a-zA-Z0-9]+", "-", (name or "").strip().lower()).strip("-")
+    if s:
+        return s
+    return f"p-{club_id}" if club_id else "player"
+
+
+def assign_slugs(players):
+    """Slugs after this are unique, whatever the feed sends. Two players can
+    share a name, and a name can carry no Latin letters at all."""
+    taken = {}
+    for p in players:
+        s = slugify(p.get("name"), p.get("clubId"))
+        if s in taken:
+            s = f"{s}-{p.get('clubId') or len(taken)}"
+            log(f"  slug clash on {p.get('name')}, using {s}")
+        taken[s] = p.get("name")
+        p["slug"] = s
+    return players
 
 def fetch_photos(players):
     """Download headshots into the repo so the app stays self-contained:
@@ -960,7 +982,9 @@ def fetch_photos(players):
     kept = set()
     for p in players:
         url = p.pop("photoUrl", None)
-        slug = slugify(p["name"])
+        # the slug assigned to the squad, not a fresh guess: a headshot filed
+        # under the wrong name is worse than no headshot at all
+        slug = p.get("slug") or slugify(p.get("name"), p.get("clubId"))
         rel = f"img/players/{slug}.jpg"
         dest = PHOTO_DIR / f"{slug}.jpg"
         if not url:
@@ -1169,8 +1193,8 @@ def _save_roster(players):
     log("roster players:", len(players))
     # one-time visibility into what the feed actually offers per player
     log("  fields present:", sorted({k for p in players for k in p}))
+    assign_slugs(players)
     for p in players:
-        p["slug"] = slugify(p["name"])
         if p.get("country"):
             p["country"] = tidy_country(p["country"])
 
@@ -1187,7 +1211,7 @@ def _save_roster(players):
         for key in (p.get("nameHe"), p.get("name")):
             src = curated.get(key)
             if isinstance(src, dict) and src.get("url"):
-                if not (PHOTO_DIR / f"{slugify(p['name'])}.jpg").exists():
+                if not (PHOTO_DIR / f"{p['slug']}.jpg").exists():
                     p["photoUrl"] = src["url"]
                     log(f"  curated photo for {key}: {src.get('credit') or src['url'][:60]}")
                 # the credit sticks to the player even on later runs, when the
@@ -1203,7 +1227,7 @@ def _save_roster(players):
     template = None
     missing = [p for p in players
                if not p.get("photoUrl") and p.get("code")
-               and not (PHOTO_DIR / f"{slugify(p['name'])}.jpg").exists()]
+               and not (PHOTO_DIR / f"{p['slug']}.jpg").exists()]
     log(f"  headshots on disk: {len(players) - len(missing)}/{len(players)}")
     for p in missing[:PHOTO_LOOKUPS_PER_RUN]:
         url, template = photo_url_for(p["code"], template)

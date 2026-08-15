@@ -1754,8 +1754,16 @@ function renderRoster() {
   footer();
 }
 
+// Mirrors slugify() in scripts/update_data.py, and has to keep mirroring it:
+// the collector writes p.slug, this is only the fallback when it is missing.
+// A name written in Hebrew has no Latin letters, so stripping to [a-z0-9]
+// left every Israeli in the squad with the same empty slug, and the roster
+// page sent all of them to whichever one came first.
 function slugOf(p) {
-  return (p.name || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const s = (p.name || "").trim().toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  if (s) return s;
+  return p.clubId ? "p-" + p.clubId : "";
 }
 
 // Hebrew name when we have one; otherwise the Latin name, isolated so it

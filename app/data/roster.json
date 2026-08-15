@@ -68,7 +68,7 @@
       "height": 192,
       "clubId": "26156",
       "source": "club",
-      "slug": "player"
+      "slug": "p-26156"
     },
     {
       "name": "יותם חנוכי",
@@ -79,7 +79,7 @@
       "clubId": "26042",
       "source": "club",
       "height": 204,
-      "slug": "player"
+      "slug": "p-26042"
     },
     {
       "name": "Shake Milton",
@@ -166,7 +166,7 @@
       "clubId": "26039",
       "source": "club",
       "height": 210,
-      "slug": "player"
+      "slug": "p-26039"
     },
     {
       "name": "איתן בורג",
@@ -177,7 +177,7 @@
       "height": 191,
       "clubId": "26044",
       "source": "club",
-      "slug": "player"
+      "slug": "p-26044"
     },
     {
       "name": "Yovel Zoosman",
