@@ -78,6 +78,7 @@
       "born": 2000,
       "clubId": "26042",
       "source": "club",
+      "height": 204,
       "slug": "player"
     },
     {
@@ -160,6 +161,7 @@
       "born": 1999,
       "clubId": "26039",
       "source": "club",
+      "height": 210,
       "slug": "player"
     },
     {
