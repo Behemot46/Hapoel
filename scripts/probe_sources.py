@@ -1,131 +1,166 @@
-"""Diagnostic probe, round 2 — can a headline link reach the publisher?
+"""Diagnostic probe — is hapoel.site alive, and is it serving our app?
 
-Round 1 settled the source: every Israeli sports site's own RSS is dead
-(404/403/500) except ynet's general sport feed, which carries no basketball
-about us. Google News answers with 100 items, each carrying <source>, so it
-is the feed. One thing decides the data model:
+The domain was bought and pointed at Vercel. A previous run from a GitHub
+runner answered NXDOMAIN with no NS published, which means the delegation at
+the registrar had not completed — nothing Vercel could fix. This re-checks,
+and if the name now resolves it goes on to verify the site is really ours:
 
-    <link> is https://news.google.com/rss/articles/CBMi... — an opaque id,
-    not the article. Does following it land on the publisher, and can the
-    real address be stored at collection time instead of sending every fan
-    through Google?
+  * the DNS chain: which nameservers the registry publishes, and what A /
+    CNAME they answer with
+  * the page: the app's title, and the three Open Graph lines that a crawler
+    reads when the link is pasted into WhatsApp — those are hardcoded to
+    hapoel.site and cannot come from club.json
+  * club.json's own url field, which is what the in-app share message uses
+  * every data file the app loads at boot, and the images it points at —
+    a 404 here is silent in the browser and shows up as an empty screen
 
-Also re-checks the two sites whose feed might exist under another path, and
-prints the fields of a full item verbatim, because round 1 only summarised.
+Resolution goes through DNS-over-HTTPS rather than the runner's resolver, so
+the answer comes from the public DNS and not from a cache on the machine.
 """
+import json
 import re
-import sys
-import xml.etree.ElementTree as ET
 
 import requests
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-      "Accept-Language": "he-IL,he;q=0.9,en;q=0.8"}
+                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+SITE = "https://hapoel.site"
+FALLBACK = "https://behemot46.github.io/Hapoel"
 
-FEED = ("https://news.google.com/rss/search?"
-        "q=%22%D7%94%D7%A4%D7%95%D7%A2%D7%9C+%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D%22+"
-        "%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C&hl=iw&gl=IL&ceid=IL:iw")
+# every file app/js/app.js asks for in boot(), in the same order
+DATA_FILES = ["games.json", "standings.json", "meta.json", "club.json", "roster.json",
+              "player-names.json", "player-profiles.json", "player-details.json",
+              "team-names.json", "history.json", "eurocup.json", "hall-of-fame.json",
+              "lastseason.json", "season-stats.json", "feedback.json",
+              "venue-names.json", "news.json"]
+
+RCODE = {0: "NOERROR", 1: "FORMERR", 2: "SERVFAIL", 3: "NXDOMAIN", 5: "REFUSED"}
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-log("=" * 78)
-log("A. one item, every field, verbatim")
-log("=" * 78)
-r = requests.get(FEED, headers=UA, timeout=30)
-r.encoding = "utf-8"
-root = ET.fromstring(r.text.encode("utf-8"))
-items = root.findall(".//item")
-log(f"items: {len(items)}")
-ch = root.find("channel")
-log(f"channel title: {ch.findtext('title')}")
-log(f"channel lastBuildDate: {ch.findtext('lastBuildDate')}")
-for it in items[:2]:
-    log("-" * 70)
-    for c in it:
-        tag = c.tag.split("}")[-1]
-        val = (c.text or "").strip().replace("\n", " ")
-        attrs = dict(c.attrib)
-        log(f"  <{tag}> attrs={attrs}")
-        log(f"      {val[:300]}")
-
-log("")
-log("=" * 78)
-log("B. following the link — where does it actually land?")
-log("=" * 78)
-for it in items[:5]:
-    link = it.findtext("link")
-    title = (it.findtext("title") or "")[:58]
-    log("-" * 70)
-    log(f"  {title}")
+def resolve(name, rtype):
+    """Ask a public resolver over HTTPS. Returns (rcode, [answers])."""
     try:
-        rr = requests.get(link, headers=UA, timeout=25, allow_redirects=True)
-        log(f"  {rr.status_code}  hops={len(rr.history)}  {rr.headers.get('Content-Type','?')[:32]}")
-        log(f"  final: {rr.url[:150]}")
-        if "news.google" in rr.url:
-            body = rr.text
-            # google's new format hands back a page that redirects with JS
-            for pat in (r'data-n-au="([^"]+)"', r'<c-wiz[^>]*data-p="([^"]{0,120})',
-                        r'url=(https?://[^"\'&]+)', r'href="(https?://(?!\w*\.?google)[^"]+)"'):
-                m = re.findall(pat, body)
-                if m:
-                    log(f"  in-page {pat[:22]}… → {str(m[:3])[:220]}")
-                    break
-            else:
-                log(f"  no publisher url in body ({len(body)}b); starts: "
-                    f"{body[:150].replace(chr(10), ' ')}")
+        r = requests.get("https://dns.google/resolve",
+                         params={"name": name, "type": rtype},
+                         headers={"Accept": "application/dns-json"}, timeout=20)
+        d = r.json()
+        status = d.get("Status", -1)
+        answers = [a.get("data", "") for a in (d.get("Answer") or [])]
+        auth = [a.get("data", "") for a in (d.get("Authority") or [])]
+        return RCODE.get(status, str(status)), answers, auth
     except Exception as e:
-        log(f"  FAIL {type(e).__name__} {str(e)[:90]}")
+        return f"FAIL {type(e).__name__}", [], [str(e)[:80]]
+
+
+log("=" * 78)
+log("A. DNS — has the registrar delegated the name yet?")
+log("=" * 78)
+resolved = False
+for rtype in ("NS", "A", "AAAA", "CNAME"):
+    code, answers, auth = resolve("hapoel.site", rtype)
+    log(f"  hapoel.site {rtype:<6} {code:<10} {answers if answers else '—'}")
+    if auth and not answers:
+        log(f"      authority: {str(auth)[:150]}")
+    if rtype in ("A", "CNAME") and code == "NOERROR" and answers:
+        resolved = True
+code, answers, _ = resolve("www.hapoel.site", "A")
+log(f"  www.hapoel.site A      {code:<10} {answers if answers else '—'}")
+
+if not resolved:
+    log("")
+    log("  the name still does not resolve — the delegation is not live.")
+    log("  nothing to check on the site itself; stopping here.")
+    raise SystemExit(0)
 
 log("")
 log("=" * 78)
-log("C. the batch endpoint Google News uses to resolve those ids")
+log("B. the page — is it our app?")
 log("=" * 78)
-first = items[0].findtext("link").rsplit("/", 1)[-1].split("?")[0]
-log(f"  id: {first[:60]}…")
 try:
-    rr = requests.post(
-        "https://news.google.com/_/DotsSplashUi/data/batchexecute",
-        headers={**UA, "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"},
-        data={"f.req": '[[["Fbv4je","[\\"garturlreq\\",[[\\"X\\",\\"X\\",[\\"X\\",\\"X\\"],'
-                       'null,null,1,1,\\"IL:iw\\",null,1,null,null,null,null,null,0,1],'
-                       '\\"X\\",\\"IL\\",1,[2,3,4],1,1,null,0,0,null,0],\\"' + first +
-                       '\\",0,0]",null,"generic"]]]'},
-        timeout=25)
-    log(f"  {rr.status_code}  {len(rr.content)}b")
-    m = re.findall(r'https?://(?!\w*\.?google)[^\\"]{12,140}', rr.text)
-    log(f"  urls found: {str(m[:4])[:400]}")
+    r = requests.get(SITE + "/", headers=UA, timeout=30, allow_redirects=True)
+    r.encoding = r.apparent_encoding or "utf-8"
+    html = r.text
+    log(f"  {r.status_code}  {r.headers.get('Content-Type', '?')[:40]}  {len(r.content)}b")
+    log(f"  final url: {r.url}")
+    log(f"  server: {r.headers.get('server', '?')}  "
+        f"x-vercel-id: {r.headers.get('x-vercel-id', '—')[:40]}")
+    title = re.search(r"<title>(.*?)</title>", html, re.S)
+    log(f"  <title>: {title.group(1).strip() if title else 'MISSING'}")
+    for prop in ("og:url", "og:title", "og:image", "og:site_name"):
+        m = re.search(r'<meta property="%s" content="([^"]*)"' % prop, html)
+        val = m.group(1) if m else "MISSING"
+        mark = "ok " if (prop != "og:url" or "hapoel.site" in val) else "!! "
+        log(f"  {mark}{prop:<12} {val}")
+    can = re.search(r'<link rel="canonical" href="([^"]*)"', html)
+    log(f"  canonical: {can.group(1) if can else 'MISSING'}")
 except Exception as e:
-    log(f"  FAIL {type(e).__name__} {str(e)[:90]}")
+    log(f"  FAIL {type(e).__name__} {str(e)[:110]}")
+    raise SystemExit(0)
 
 log("")
 log("=" * 78)
-log("D. the two sites that might still have a feed under another path")
+log("C. the data files the app loads at boot")
 log("=" * 78)
-for u in ("https://sport1.maariv.co.il/?feed=rss2",
-          "https://sport1.maariv.co.il/category/basketball/feed/",
-          "https://www.sport5.co.il/rss/rss.aspx",
-          "https://www.sport5.co.il/RSS/BasketBall.xml",
-          "https://www.one.co.il/rss/basketball.xml",
-          "https://www.ynet.co.il/Integration/StoryRss1854.xml",
-          "https://www.jpost.com/rss/rssfeedsisraelsports.aspx"):
+club = None
+bad = 0
+for f in DATA_FILES:
+    url = f"{SITE}/data/{f}"
     try:
-        rr = requests.get(u, headers=UA, timeout=20)
-        ct = rr.headers.get("Content-Type", "?")[:34]
-        body = rr.text[:120].replace("\n", " ")
-        n = 0
-        if rr.status_code == 200 and ("xml" in ct or body.lstrip().startswith("<?xml")):
-            try:
-                n = len(ET.fromstring(rr.text.encode("utf-8")).findall(".//item"))
-            except Exception:
-                n = -1
-        log(f"  {rr.status_code}  items={n:>3}  {ct:<34} {u}")
+        rr = requests.get(url, headers=UA, timeout=25)
+        ok = rr.status_code == 200
+        try:
+            d = rr.json()
+            shape = (f"{len(d)} keys" if isinstance(d, dict) else f"{len(d)} items")
+        except Exception:
+            d, shape = None, "NOT JSON"
+            ok = False
+        if f == "club.json":
+            club = d
+        log(f"  {'ok ' if ok else '!! '}{rr.status_code}  {shape:<12} {f}")
+        if not ok:
+            bad += 1
     except Exception as e:
-        log(f"  FAIL {type(e).__name__:<18} {u}  {str(e)[:50]}")
+        bad += 1
+        log(f"  !! FAIL {f}: {type(e).__name__} {str(e)[:60]}")
+
+log("")
+if club:
+    url = club.get("url", "")
+    log(f"  club.json url: {url}   "
+        f"{'← hapoel.site, as it should be' if 'hapoel.site' in url else '← NOT hapoel.site'}")
 
 log("")
 log("=" * 78)
-log("done")
+log("D. the shell and the images")
+log("=" * 78)
+assets = ["css/style.css", "js/app.js", "sw.js", "manifest.webmanifest",
+          "icons/crest.png", "icons/icon-192.png", "icons/icon-512.png",
+          "icons/apple-touch-icon.png"]
+try:
+    roster = requests.get(f"{SITE}/data/roster.json", headers=UA, timeout=25).json()
+    photos = [p["photo"] for p in roster.get("players", []) if p.get("photo")]
+    log(f"  roster points at {len(photos)} player photos")
+    assets += photos
+except Exception as e:
+    log(f"  could not read roster for photo paths: {e}")
+
+for a in assets:
+    try:
+        rr = requests.get(f"{SITE}/{a}", headers=UA, timeout=25)
+        ct = rr.headers.get("Content-Type", "?").split(";")[0]
+        ok = rr.status_code == 200 and len(rr.content) > 100
+        if not ok:
+            bad += 1
+        log(f"  {'ok ' if ok else '!! '}{rr.status_code}  {len(rr.content):>7}b  {ct:<26} {a}")
+    except Exception as e:
+        bad += 1
+        log(f"  !! FAIL {a}: {type(e).__name__} {str(e)[:60]}")
+
+log("")
+log("=" * 78)
+log(f"VERDICT: hapoel.site resolves and answers. broken resources: {bad}")
+log("=" * 78)
