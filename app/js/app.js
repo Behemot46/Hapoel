@@ -723,7 +723,10 @@ function newsWhen(iso) {
   if (days === 1) return "אתמול";
   if (days === 2) return "שלשום";
   if (days <= 6) return "לפני " + days + " ימים";
-  return fmtUpdatedDate.format(new Date(t));
+  // past a week a relative count stops meaning anything — but "4.8" can be
+  // read as the fourth of August or the eighth of April, so name the month
+  const d = new Date(t);
+  return d.getDate() + " ב" + MONTHS_SHORT[d.getMonth()];
 }
 
 function newsItemEl(item) {
@@ -1506,7 +1509,9 @@ function photoCredit() {
 function listHe(items) {
   if (items.length <= 1) return items[0] || "";
   const last = items[items.length - 1];
-  const vav = /^[֐-׿]/.test(last) ? "ו" : "ו־";
+  // the vav attaches straight to a Hebrew word — except to one that already
+  // opens with a vav, where "ווואלה ספורט" would grow a third vav
+  const vav = (/^[֐-׿]/.test(last) && !/^ו/.test(last)) ? "ו" : "ו־";
   return items.slice(0, -1).join(", ") + " " + vav + last;
 }
 
