@@ -1,85 +1,86 @@
-"""Diagnostic probe — round 3: the actual numbers, ready to paste.
+"""Diagnostic probe — does hapoel.site actually serve the app?
 
-Round 2 found the EuroCup shape: playerStats[] with player/accumulated/
-averagePerGame, 14 players for U2025. timePlayed looks like seconds
-(18246 over 16 games = 1140/game = 19:00), so convert and sanity-check it.
-
-Round 2 also matched the wrong table on the league page — it grabbed the
-standings, and those read all zeros for cYear=2026, which means that code is
-now the *coming* season. Find the per-player table properly, and work out
-which cYear actually holds 2025/26.
+The sandbox proxy refuses the domain (403 on CONNECT), so this is the only
+way to see it. Checks the things that would break on a move to a new host:
+the page itself, the data files the app fetches on boot, the service worker
+and its cache header, the icons, and the Open Graph tags a WhatsApp preview
+reads. Also checks live.json, which until now was published only to the
+branch GitHub Pages serves.
 """
-import json
 import re
 
 import requests
-from bs4 import BeautifulSoup
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+SITE = "https://hapoel.site"
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-log("=" * 70)
-log("A. EuroCup 2025/26 per-player averages")
-log("=" * 70)
-url = ("https://api-live.euroleague.net/v2/competitions/U/seasons/U2025"
-       "/clubs/JER/people/stats")
-j = requests.get(url, headers={"Accept": "application/json"}, timeout=30).json()
-rows = j.get("playerStats", [])
-log(f"  {len(rows)} players")
-out = []
-for r in rows:
-    p, a = r.get("player", {}), r.get("averagePerGame", {})
-    acc = r.get("accumulated", {})
-    gp = acc.get("gamesPlayed") or 0
-    secs = a.get("timePlayed") or 0
-    out.append({
-        "name": p.get("name"), "code": p.get("code"),
-        "gp": gp,
-        "min": round(secs / 60.0, 1),
-        "pts": a.get("points"), "reb": a.get("totalRebounds"),
-        "ast": a.get("assistances"), "stl": a.get("steals"),
-        "blk": a.get("blocksFavour"), "tov": a.get("turnovers"),
-        "pir": a.get("valuation"),
-        "fg2": acc.get("twoPointShootingPercentage"),
-        "fg3": acc.get("threePointShootingPercentage"),
-        "ft": acc.get("freeThrowShootingPercentage"),
-    })
-out.sort(key=lambda x: (x["pts"] or 0), reverse=True)
-log("  sanity: minutes must land between 5 and 40")
-bad = [o for o in out if o["min"] and not (5 <= o["min"] <= 40)]
-log("    out of range:", bad or "none — the seconds reading is right")
+def get(path, note=""):
+    url = SITE + path
+    try:
+        r = requests.get(url, headers=UA, timeout=30, allow_redirects=True)
+        cc = r.headers.get("Cache-Control", "—")
+        log(f"  {path:<34} {r.status_code}  {r.headers.get('Content-Type','?')[:28]:<28}"
+            f" {len(r.content):>7}b  cache={cc[:38]} {note}")
+        return r
+    except Exception as e:
+        log(f"  {path:<34} FAIL {type(e).__name__} {str(e)[:90]}")
+        return None
+
+
+log("=" * 78)
+log("A. the pages and assets the app needs")
+log("=" * 78)
+root = get("/")
+for p in ("/index.html", "/js/app.js", "/css/style.css", "/sw.js",
+          "/manifest.webmanifest", "/icons/icon-512.png",
+          "/data/club.json", "/data/games.json", "/data/standings.json",
+          "/data/meta.json", "/data/hall-of-fame.json", "/data/history.json",
+          "/data/roster.json", "/data/feedback.json",
+          "/img/players/david-roddy.jpg", "/hapoel-standalone.html"):
+    get(p)
 log("")
-log("  PASTE-READY:")
-log(json.dumps(out, ensure_ascii=False, indent=1))
+log("  live.json — 404 here means the live score would never show:")
+get("/data/live.json", "(404 is expected when no game is on)")
 
 log("")
-log("=" * 70)
-log("B. which cYear is 2025/26, and where is the player table?")
-log("=" * 70)
-for year in (2026, 2025):
-    u = f"https://basket.co.il/team.asp?TeamId=1095&cYear={year}"
+log("=" * 78)
+log("B. is it serving OUR app, and the new domain?")
+log("=" * 78)
+if root is not None and root.status_code == 200:
+    html = root.text
+    t = re.search(r"<title>(.*?)</title>", html, re.S)
+    log("  title:", (t.group(1).strip() if t else "?"))
+    for prop in ("og:url", "og:title", "og:image", "og:description"):
+        m = re.search(rf'property="{prop}"[^>]*content="([^"]*)"', html)
+        log(f"  {prop:<16}", m.group(1)[:80] if m else "MISSING")
+    m = re.search(r'rel="canonical"[^>]*href="([^"]*)"', html)
+    log("  canonical       ", m.group(1) if m else "MISSING")
+    log("  registers sw    ", 'navigator.serviceWorker.register("sw.js"' in html)
+
+log("")
+log("  club.json url — what a shared WhatsApp link will point at:")
+c = get("/data/club.json")
+if c is not None and c.status_code == 200:
     try:
-        r = requests.get(u, headers=UA, timeout=30)
-        r.encoding = r.apparent_encoding or "windows-1255"
-        soup = BeautifulSoup(r.text, "html.parser")
-        log(f"  cYear={year} -> {r.status_code}")
-        # a player row is one that links to a PlayerId
-        hits = 0
-        for tr in soup.find_all("tr"):
-            if not re.search(r"PlayerId=\d+", str(tr)):
-                continue
-            cells = [c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
-            cells = [c for c in cells if c]
-            if len(cells) < 3:
-                continue
-            hits += 1
-            if hits <= 4:
-                log(f"    {cells}")
-        log(f"    rows linking a player: {hits}")
+        log("    url =", c.json().get("url"))
     except Exception as e:
-        log(f"  cYear={year}: FAIL {type(e).__name__} {str(e)[:120]}")
+        log("    could not parse:", e)
+
+log("")
+log("=" * 78)
+log("C. the old address still up?")
+log("=" * 78)
+try:
+    r = requests.get("https://behemot46.github.io/Hapoel/data/club.json",
+                     headers=UA, timeout=30)
+    log(f"  github.io club.json: {r.status_code}")
+    if r.status_code == 200:
+        log("    url =", r.json().get("url"))
+except Exception as e:
+    log(f"  github.io: FAIL {type(e).__name__} {str(e)[:90]}")
