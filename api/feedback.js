@@ -1,33 +1,34 @@
 "use strict";
 
 /**
- * Where a fan's answers land.
+ * Where a fan's answers land, with nothing for anyone to set up.
  *
- * The app itself is static files: no server, nowhere to store anything.
- * Vercel runs this one function next to it, so the form can be filled and
- * sent without leaving the app, without an account and without a
- * third-party form service. Each submission becomes an issue on the
- * project's repository, which is where the work gets planned anyway.
+ * The app is static files: no server, nowhere to store anything. Vercel
+ * runs this one function next to it so the form can be filled and sent
+ * without leaving the app and without an account.
  *
- * That repository is public, so an answer is readable by anyone who finds
- * it. What the app does not do is point anybody at it: the form names no
- * address, opens no tab and links nowhere. It also says plainly that the
- * answer is stored in the open, which is why it asks for no name, no phone
- * and no email, and tells the fan not to type any.
+ * What this function does not have is a way into GitHub. Writing an issue
+ * needs a token, and a token can only be minted by a human in a browser.
+ * So it does not try. It parks the answer on a public ntfy topic, which
+ * takes a plain POST from anybody, and a scheduled workflow collects it
+ * from there and opens the issue with the token GitHub Actions already
+ * holds. Nothing has to be created, by anyone, ever.
  *
- * One environment variable in Vercel:
+ * The one number that matters: ntfy keeps a message for 12 hours, measured
+ * rather than assumed. The drain runs hourly, so an answer gets a dozen
+ * chances to be collected before it expires. If ntfy refuses the publish
+ * this function says so, and the app tells the fan the send failed instead
+ * of swallowing it.
  *
- *     FEEDBACK_TOKEN   a GitHub token that may open issues on the repo
- *     FEEDBACK_REPO    optional: another repo, private ones included
- *
- * Without the token the function answers 501 and the app tells the fan
- * plainly that sending failed, keeping what they typed on the screen.
- * There is deliberately no fallback destination: every one of them ends in
- * either a published address or a published phone number.
+ * The topic is readable by anyone who knows its name, and the name is in
+ * this file, in a public repository. That is the deliberate trade: the
+ * answers end up in public issues regardless, and the alternative was a
+ * token that was never going to be created. Nothing identifying is asked
+ * for, and the form tells fans not to type anything personal.
  */
 
-const REPO = process.env.FEEDBACK_REPO || "Behemot46/Hapoel";
-const TOKEN = process.env.FEEDBACK_TOKEN || "";
+const TOPIC = process.env.FEEDBACK_TOPIC || "hapoel-fan-app-mnf24qkz7yv9";
+const NTFY = "https://ntfy.sh/";
 
 const LIMITS = { fan: 40, want: 40, wants: 4, text: 900 };
 const RATE = { perIp: 5, windowMs: 60 * 60 * 1000, minGapMs: 20 * 1000 };
@@ -64,40 +65,8 @@ function readBody(req) {
   return null;
 }
 
-function issueBody(a) {
-  const lines = [];
-  if (a.fan) lines.push("**איזה אוהד:** " + a.fan);
-  if (a.wants.length) lines.push("**הכי יעזור:** " + a.wants.join(" · "));
-  if (a.rating) lines.push("**שימושיות:** " + a.rating + " מתוך 5");
-  if (a.idea) lines.push("", "**מה להוסיף או לשנות**", "", a.idea);
-  if (a.bug) lines.push("", "**מה לא עבד**", "", a.bug);
-  lines.push("", "---",
-    "נשלח מהטופס באפליקציה · " + new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC");
-  return lines.join("\n");
-}
-
-function issueTitle(a) {
-  const first = (a.idea || a.bug || "").split("\n")[0].trim();
-  if (first) return "משוב: " + first.slice(0, 70);
-  if (a.wants.length) return "משוב: " + a.wants[0];
-  if (a.rating) return "משוב: " + a.rating + " מתוך 5";
-  return "משוב מאוהד";
-}
-
-async function createIssue(payload) {
-  const res = await fetch("https://api.github.com/repos/" + REPO + "/issues", {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + TOKEN,
-      Accept: "application/vnd.github+json",
-      "X-GitHub-Api-Version": "2022-11-28",
-      "Content-Type": "application/json",
-      "User-Agent": "hapoel-fan-app",
-    },
-    body: JSON.stringify(payload),
-  });
-  return res;
-}
+// The issue itself is written by scripts/feedback_drain.py, which is the
+// side that has a token. This one only has to hand over the answers.
 
 module.exports = async (req, res) => {
   res.setHeader("Cache-Control", "no-store");
@@ -106,11 +75,6 @@ module.exports = async (req, res) => {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ ok: false, reason: "method" });
   }
-  if (!TOKEN || !REPO) {
-    // not an error the fan caused, and the app says so honestly
-    return res.status(501).json({ ok: false, reason: "not-configured" });
-  }
-
   const body = readBody(req);
   if (!body) return res.status(400).json({ ok: false, reason: "bad-json" });
 
@@ -133,22 +97,23 @@ module.exports = async (req, res) => {
   const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "unknown";
   if (rateLimited(ip)) return res.status(429).json({ ok: false, reason: "too-fast" });
 
-  const payload = { title: issueTitle(a), body: issueBody(a), labels: ["משוב"] };
+  a.sent = new Date().toISOString();
+
   try {
-    let gh = await createIssue(payload);
-    if (gh.status === 422) {
-      // a label the repository does not have yet and the token may not be
-      // allowed to create, the answer matters more than the label
-      delete payload.labels;
-      gh = await createIssue(payload);
-    }
-    if (!gh.ok) {
-      const detail = (await gh.text()).slice(0, 200);
-      console.error("github refused", gh.status, detail);
+    // the JSON publish form, because a Hebrew title in an HTTP header is
+    // not something to rely on
+    const parked = await fetch(NTFY, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "User-Agent": "hapoel-fan-app" },
+      body: JSON.stringify({ topic: TOPIC, title: "hapoel-feedback",
+                             message: JSON.stringify(a) }),
+    });
+    if (!parked.ok) {
+      console.error("ntfy refused", parked.status, (await parked.text()).slice(0, 200));
       return res.status(502).json({ ok: false, reason: "upstream" });
     }
-    const issue = await gh.json();
-    return res.status(200).json({ ok: true, number: issue.number });
+    const note = await parked.json();
+    return res.status(200).json({ ok: true, id: note.id });
   } catch (e) {
     console.error("feedback failed", e && e.message);
     return res.status(502).json({ ok: false, reason: "upstream" });

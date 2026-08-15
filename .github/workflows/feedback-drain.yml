@@ -1,0 +1,39 @@
+name: איסוף משוב מאוהדים
+
+# The other half of the feedback path. The function on the site has no
+# token, so it parks each answer on a public ntfy topic; this runs here,
+# where GITHUB_TOKEN exists, and files what is waiting as issues.
+#
+# ntfy keeps a message for 12 hours, so this has to run more often than
+# that. Hourly gives every answer a dozen chances to be collected, and a
+# missed run costs nothing: the drain always polls the last 12 hours and
+# skips ids that already became issues.
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  # two runs at once would race to file the same answer twice
+  group: feedback-drain
+  cancel-in-progress: false
+
+jobs:
+  drain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Collect what is waiting
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/feedback_drain.py
