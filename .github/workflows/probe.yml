@@ -68,6 +68,15 @@ jobs:
               print('our group:')
               for r in e['groups'][0]['rows']:
                   print('   ', r)
+          print('===== news.json =====')
+          np = pathlib.Path('app/data/news.json')
+          if not np.exists():
+              print('MISSING')
+          else:
+              n = json.loads(np.read_text())
+              print(len(n['items']), 'headlines from', ', '.join(n['sources']))
+              for i in n['items'][:6]:
+                  print(' ', i['published'][:10], '|', i['source'], '|', i['title'][:70])
           print('===== live.json =====')
           lp = pathlib.Path('app/data/live.json')
           print(lp.read_text() if lp.exists() else 'MISSING')

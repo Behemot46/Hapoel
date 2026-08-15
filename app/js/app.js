@@ -74,7 +74,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -91,6 +91,7 @@ async function boot() {
       loadJSON("data/season-stats.json").catch(() => (null)),
       loadJSON("data/feedback.json").catch(() => (null)),
       loadJSON("data/venue-names.json").catch(() => (null)),
+      loadJSON("data/news.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -108,6 +109,7 @@ async function boot() {
     state.seasonStats = seasonStats;
     state.feedback = feedback;
     state.venues = venues;
+    state.news = news;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -220,7 +222,7 @@ const routes = {
   "": renderHome, "#/": renderHome, "#/games": renderGames,
   "#/table": renderTable, "#/roster": renderRoster, "#/diary": renderDiary,
   "#/meet": renderMeet, "#/history": renderHistory,
-  "#/hof": renderHof, "#/stats": renderStats,
+  "#/hof": renderHof, "#/stats": renderStats, "#/news": renderNews,
 };
 
 function render() {
@@ -233,7 +235,7 @@ function render() {
   const routeName = hash === "#/games" ? "games"
     : hash === "#/table" ? "table"
     : (hash === "#/roster" || hash === "#/meet" || playerMatch) ? "roster"
-    : (hash === "#/history" || hash === "#/hof") ? "home"
+    : (hash === "#/history" || hash === "#/hof" || hash === "#/news") ? "home"
     : hash === "#/stats" ? "table"
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
@@ -695,6 +697,96 @@ function feedbackCard() {
   return c;
 }
 
+/* ---------- news: headlines from the sports press ---------- */
+
+// Headlines only, each one a link out to whoever published it. The text
+// belongs to that outlet — the app quotes the headline, names the source
+// and sends the reader there. Nothing is reproduced beyond the title.
+
+function newsItems() {
+  const n = state.news;
+  return (n && Array.isArray(n.items)) ? n.items : [];
+}
+
+// "לפני שעתיים", "אתמול", "12.8" — a fan reads freshness, not timestamps
+function newsWhen(iso) {
+  const t = new Date(iso).getTime();
+  if (!t) return "";
+  const mins = Math.max(0, Math.round((Date.now() - t) / 60000));
+  if (mins < 2) return "עכשיו";
+  if (mins < 60) return "לפני " + mins + " דקות";
+  const hours = Math.round(mins / 60);
+  if (hours === 1) return "לפני שעה";
+  if (hours === 2) return "לפני שעתיים";
+  if (hours < 24) return "לפני " + hours + " שעות";
+  const days = Math.round(hours / 24);
+  if (days === 1) return "אתמול";
+  if (days === 2) return "שלשום";
+  if (days <= 6) return "לפני " + days + " ימים";
+  return fmtUpdatedDate.format(new Date(t));
+}
+
+function newsItemEl(item) {
+  const a = el("a", "news-item");
+  a.href = item.url;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  // a headline often carries a score, and a score in Hebrew prose flips
+  a.appendChild(prose("div", "news-title", item.title));
+  const meta = el("div", "news-meta");
+  if (item.source) {
+    meta.appendChild(text("span", "news-source" + (isLatin(item.source) ? " latin" : ""),
+      item.source));
+  }
+  const when = newsWhen(item.published);
+  if (when) {
+    if (item.source) meta.appendChild(text("span", "dot", "·"));
+    meta.appendChild(text("span", "", when));
+  }
+  a.appendChild(meta);
+  return a;
+}
+
+function newsCard() {
+  const items = newsItems();
+  if (!items.length) return null;
+  const c = el("div", "card news-card");
+  c.appendChild(text("div", "eyebrow", "מה כותבים על הקבוצה"));
+  items.slice(0, 3).forEach(i => c.appendChild(newsItemEl(i)));
+  const more = el("a", "link-btn");
+  more.href = "#/news";
+  more.textContent = "לכל הכותרות";
+  c.appendChild(more);
+  return c;
+}
+
+function renderNews() {
+  const items = newsItems();
+  view.appendChild(text("div", "section-title", "מה כותבים על הקבוצה"));
+  if (!items.length) {
+    view.appendChild(el("div", "card")).appendChild(
+      text("div", "empty", "עוד לא נאספו כותרות — נעדכן ברגע שיהיו"));
+    footer();
+    return;
+  }
+  const c = el("div", "card news-card");
+  items.forEach(i => c.appendChild(newsItemEl(i)));
+  view.appendChild(c);
+
+  const outlets = [];
+  items.forEach(i => { if (i.source && !outlets.includes(i.source)) outlets.push(i.source); });
+  const note = el("div", "table-note");
+  note.appendChild(document.createTextNode(
+    "הכותרות " + prefixHe("מ", listHe(outlets)) +
+    ". לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה, " +
+    "והזכויות עליה שלו. האיסוף נעשה דרך חדשות Google, ואינו קשור למועדון."));
+  view.appendChild(note);
+  if (state.news && state.news.updated) {
+    view.appendChild(text("div", "table-note", "נאסף " + newsWhen(state.news.updated)));
+  }
+  footer();
+}
+
 function shareCard() {
   const c = el("div", "card share-card");
   const t = el("div");
@@ -1019,6 +1111,9 @@ function renderHome() {
     c.appendChild(line);
     view.appendChild(c);
   }
+
+  const nc = newsCard();
+  if (nc) view.appendChild(nc);
 
   const rows = state.standings.rows;
   if (rows && rows.length && seasonStarted(rows)) {
@@ -1413,6 +1508,11 @@ function listHe(items) {
   const last = items[items.length - 1];
   const vav = /^[֐-׿]/.test(last) ? "ו" : "ו־";
   return items.slice(0, -1).join(", ") + " " + vav + last;
+}
+
+// the same rule for a prefix letter: "מספורט 5", but "מ־ONE"
+function prefixHe(letter, word) {
+  return letter + (/^[֐-׿]/.test(word) ? "" : "־") + word;
 }
 
 /* ---------- roster ---------- */

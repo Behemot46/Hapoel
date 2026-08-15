@@ -882,6 +882,29 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
   text-decoration: none;
 }
 
+/* News — each headline is a link out to whoever published it */
+.news-card { padding: 6px 0 0; }
+.news-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.news-item:last-of-type { border-bottom: none; }
+.news-item:hover { background: var(--surface-2); }
+.news-title {
+  font-size: 15.5px; font-weight: 700; line-height: 1.4;
+  text-wrap: pretty;
+}
+.news-meta {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-size: 12.5px; color: var(--muted);
+  margin-top: 4px;
+}
+.news-source { font-weight: 700; color: var(--red-text); }
+.news-card .link-btn { border-top: 1px solid var(--line); }
+
 /* Share the app */
 .share-card {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
@@ -1075,6 +1098,10 @@ a:focus-visible, button:focus-visible { outline: 2.5px solid var(--red); outline
   .next-game .opponent { font-size: 27px; }
   .next-game .comp { font-size: 15px; }
   .card { padding: 18px; }
+  .news-card { padding: 6px 0 0; }
+  .news-item { padding: 13px 18px; }
+  .news-title { font-size: 16.5px; }
+  .news-meta { font-size: 13px; }
 
   .wordmark small,
   .table-note, .cal-note, .list-note, .footer-note, .poll-note,

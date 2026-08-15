@@ -1,0 +1,30 @@
+{
+  "_comment": "הגדרות מדור החדשות. הקובץ נכתב ביד — האיסוף האוטומטי קורא אותו ולעולם לא דורס אותו. queries הן שאילתות החיפוש בחדשות Google, names מתרגם את שם המקור לשם שיוצג לאוהד (המפתח הוא הדומיין), block מסתיר מקור שלא רוצים לראות, maxItems הוא מספר הכותרות שנשמרות ו־maxAgeDays הגיל המרבי שלהן.",
+  "queries": [
+    "\"הפועל ירושלים\" כדורסל",
+    "\"הפועל י-ם\" כדורסל"
+  ],
+  "names": {
+    "sport5.co.il": "ספורט 5",
+    "one.co.il": "ONE",
+    "sport1.co.il": "ספורט 1",
+    "sport1.maariv.co.il": "ספורט 1",
+    "maariv.co.il": "מעריב",
+    "walla.co.il": "וואלה ספורט",
+    "sports.walla.co.il": "וואלה ספורט",
+    "ynet.co.il": "ynet",
+    "israelhayom.co.il": "ישראל היום",
+    "calcalist.co.il": "כלכליסט",
+    "mako.co.il": "mako",
+    "ice.co.il": "אייס",
+    "kolhair.co.il": "כל העיר",
+    "jerusalem.mynet.co.il": "מיינט ירושלים",
+    "basket.co.il": "מנהלת הליגה",
+    "hapoel.co.il": "אתר המועדון",
+    "eurocupbasketball.com": "יורוקאפ",
+    "euroleaguebasketball.net": "יורוליג"
+  },
+  "block": [],
+  "maxItems": 24,
+  "maxAgeDays": 45
+}
