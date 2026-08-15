@@ -1,26 +1,22 @@
 """Diagnostic probe — reads nothing, writes nothing, just describes sources.
 
-Round 7: photos for the four players the EuroCup feed has no headshot for.
-They all played in the NBA, so Wikimedia Commons is the obvious place to
-look — freely licensed and attributable, unlike scraping an image search.
-
-This prints candidates only. Nothing is downloaded into the repo until a
-human has looked at the list and confirmed the person and the licence.
+Round 8: resolve two share.google links the founder sent, so we can see what
+they actually point at before anything is downloaded into the repo. Prints
+the redirect chain, the page title and any image URLs; downloads nothing.
 """
-import json
+import re
 import sys
-import urllib.parse
 
 import requests
 
-UA = {"User-Agent": "HapoelFanApp/1.0 (https://github.com/Behemot46/Hapoel; fan project)"}
-COMMONS = "https://commons.wikimedia.org/w/api.php"
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+      "Accept": "text/html,application/xhtml+xml,image/*;q=0.9,*/*;q=0.8",
+      "Accept-Language": "he-IL,he;q=0.9,en;q=0.8"}
 
-WANTED = [
-    ("Devontae Cacok", "דבונטה קאקוק"),
-    ("Kenny Lofton Jr.", "קני לופטון"),
-    ("Shake Milton", "שייק מילטון"),
-    ("David Roddy", "דייוויד רודי"),
+LINKS = [
+    "https://share.google/gbAL2cjyQalVNvrBp",
+    "https://share.google/BLobTWj4FcMsUfGzo",
 ]
 
 
@@ -28,53 +24,56 @@ def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def search(term):
-    params = {
-        "action": "query", "format": "json",
-        "generator": "search",
-        "gsrsearch": f'filetype:bitmap {term}',
-        "gsrnamespace": "6", "gsrlimit": "8",
-        "prop": "imageinfo",
-        "iiprop": "url|size|extmetadata",
-        "iiurlwidth": "600",
-    }
+def probe(url):
+    log("")
+    log("=" * 70)
+    log(url)
+    log("=" * 70)
     try:
-        r = requests.get(COMMONS, params=params, headers=UA, timeout=30)
-        r.raise_for_status()
-        return r.json()
+        r = requests.get(url, headers=UA, timeout=30, allow_redirects=True)
     except Exception as e:
-        log("  FAIL", term, type(e).__name__, str(e)[:120])
-        return None
+        log("  FAIL", type(e).__name__, str(e)[:160])
+        return
+    log(f"  status {r.status_code}  content-type {r.headers.get('Content-Type','?')}  "
+        f"{len(r.content)} bytes")
+    for h in r.history:
+        log(f"  redirect {h.status_code} -> {h.headers.get('Location','')[:150]}")
+    log(f"  FINAL: {r.url[:200]}")
 
+    ctype = r.headers.get("Content-Type", "")
+    if ctype.startswith("image/"):
+        log("  this URL is the image itself")
+        return
 
-def probe():
-    for latin, he in WANTED:
-        log("")
-        log("=" * 68)
-        log(f"{latin}  ({he})")
-        log("=" * 68)
-        data = search(latin)
-        pages = ((data or {}).get("query") or {}).get("pages") or {}
-        if not pages:
-            log("  no results on Commons")
+    r.encoding = r.apparent_encoding or "utf-8"
+    html = r.text
+    t = re.search(r"<title[^>]*>(.*?)</title>", html, re.S | re.I)
+    if t:
+        log("  title:", re.sub(r"\s+", " ", t.group(1))[:160])
+
+    for prop in ("og:image", "og:title", "og:description", "twitter:image"):
+        m = re.search(rf'<meta[^>]+(?:property|name)=["\']{prop}["\'][^>]+content=["\']([^"\']+)',
+                      html, re.I)
+        if not m:
+            m = re.search(rf'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\']{prop}["\']',
+                          html, re.I)
+        if m:
+            log(f"  {prop}: {m.group(1)[:170]}")
+
+    imgs = re.findall(r'https?://[^\s"\'<>]+\.(?:jpg|jpeg|png|webp)(?:\?[^\s"\'<>]*)?', html, re.I)
+    seen, keep = set(), []
+    for u in imgs:
+        if u in seen:
             continue
-        for pg in list(pages.values())[:8]:
-            ii = (pg.get("imageinfo") or [{}])[0]
-            meta = ii.get("extmetadata") or {}
-            def m(k):
-                v = (meta.get(k) or {}).get("value")
-                if not isinstance(v, str):
-                    return ""
-                # extmetadata values arrive as little bits of html
-                import re as _re
-                return _re.sub(r"<[^>]+>", "", v).strip()[:70]
-            log(f"  {pg.get('title')}")
-            log(f"     {ii.get('width')}x{ii.get('height')}  {ii.get('url','')[:100]}")
-            log(f"     licence: {m('LicenseShortName') or '?'} | by: {m('Artist') or '?'}")
-            log(f"     desc: {m('ImageDescription')[:70]}")
+        seen.add(u)
+        keep.append(u)
+    log(f"  {len(keep)} distinct image urls on the page; first 12:")
+    for u in keep[:12]:
+        log("   ", u[:170])
 
 
 if __name__ == "__main__":
-    probe()
+    for u in LINKS:
+        probe(u)
     log("")
     log("probe done — nothing downloaded")
