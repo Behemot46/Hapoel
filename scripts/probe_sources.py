@@ -1,13 +1,13 @@
-"""Diagnostic probe — round 2 on last season's player stats.
+"""Diagnostic probe — round 3: the actual numbers, ready to paste.
 
-Round 1: the EuroCup U2025 endpoint answers 200 with 23 KB, so the data is
-there and only the envelope guess was wrong — print the real shape. And the
-league's own team page for cYear=2026 (the 2025/26 season) contains נקודות,
-ריבאונד, אסיסט and ממוצע next to PlayerId links, so a per-player table exists
-there too — print its columns.
+Round 2 found the EuroCup shape: playerStats[] with player/accumulated/
+averagePerGame, 14 players for U2025. timePlayed looks like seconds
+(18246 over 16 games = 1140/game = 19:00), so convert and sanity-check it.
 
-Two competitions, two different sets of numbers. Whatever ends up in the app
-has to name which one it is.
+Round 2 also matched the wrong table on the league page — it grabbed the
+standings, and those read all zeros for cYear=2026, which means that code is
+now the *coming* season. Find the per-player table properly, and work out
+which cYear actually holds 2025/26.
 """
 import json
 import re
@@ -24,57 +24,62 @@ def log(*a):
 
 
 log("=" * 70)
-log("A. EuroCup U2025 — the real envelope")
+log("A. EuroCup 2025/26 per-player averages")
 log("=" * 70)
 url = ("https://api-live.euroleague.net/v2/competitions/U/seasons/U2025"
        "/clubs/JER/people/stats")
-r = requests.get(url, headers={"Accept": "application/json"}, timeout=30)
-j = r.json()
-log("  top-level type:", type(j).__name__)
-if isinstance(j, dict):
-    log("  top-level keys:", sorted(j.keys()))
-    for k, v in j.items():
-        log(f"    {k}: {type(v).__name__}" +
-            (f" len={len(v)}" if isinstance(v, (list, dict)) else f" = {str(v)[:60]}"))
-    # find the list of players wherever it lives
-    for k, v in j.items():
-        if isinstance(v, list) and v and isinstance(v[0], dict):
-            log(f"  --- list at {k!r}, {len(v)} entries ---")
-            log("  entry keys:", sorted(v[0].keys()))
-            log("  entry 0:", json.dumps(v[0], ensure_ascii=False)[:1400])
-            break
-        if isinstance(v, dict):
-            for k2, v2 in v.items():
-                if isinstance(v2, list) and v2 and isinstance(v2[0], dict):
-                    log(f"  --- list at {k!r}.{k2!r}, {len(v2)} entries ---")
-                    log("  entry keys:", sorted(v2[0].keys()))
-                    log("  entry 0:", json.dumps(v2[0], ensure_ascii=False)[:1400])
-                    break
+j = requests.get(url, headers={"Accept": "application/json"}, timeout=30).json()
+rows = j.get("playerStats", [])
+log(f"  {len(rows)} players")
+out = []
+for r in rows:
+    p, a = r.get("player", {}), r.get("averagePerGame", {})
+    acc = r.get("accumulated", {})
+    gp = acc.get("gamesPlayed") or 0
+    secs = a.get("timePlayed") or 0
+    out.append({
+        "name": p.get("name"), "code": p.get("code"),
+        "gp": gp,
+        "min": round(secs / 60.0, 1),
+        "pts": a.get("points"), "reb": a.get("totalRebounds"),
+        "ast": a.get("assistances"), "stl": a.get("steals"),
+        "blk": a.get("blocksFavour"), "tov": a.get("turnovers"),
+        "pir": a.get("valuation"),
+        "fg2": acc.get("twoPointShootingPercentage"),
+        "fg3": acc.get("threePointShootingPercentage"),
+        "ft": acc.get("freeThrowShootingPercentage"),
+    })
+out.sort(key=lambda x: (x["pts"] or 0), reverse=True)
+log("  sanity: minutes must land between 5 and 40")
+bad = [o for o in out if o["min"] and not (5 <= o["min"] <= 40)]
+log("    out of range:", bad or "none — the seconds reading is right")
+log("")
+log("  PASTE-READY:")
+log(json.dumps(out, ensure_ascii=False, indent=1))
 
 log("")
 log("=" * 70)
-log("B. the league's team page — the per-player table")
+log("B. which cYear is 2025/26, and where is the player table?")
 log("=" * 70)
-u = "https://basket.co.il/team.asp?TeamId=1095&cYear=2026"
-r = requests.get(u, headers=UA, timeout=30)
-r.encoding = r.apparent_encoding or "windows-1255"
-soup = BeautifulSoup(r.text, "html.parser")
-log(f"  {u} -> {r.status_code}")
-for ti, table in enumerate(soup.find_all("table")):
-    rows = table.find_all("tr")
-    if len(rows) < 3:
-        continue
-    head = [c.get_text(" ", strip=True) for c in rows[0].find_all(["th", "td"])]
-    if not any(w in " ".join(head) for w in ("נק", "ריב", "אס", "ממוצע", "שחקן")):
-        continue
-    log(f"  --- table {ti}: {len(rows)} rows ---")
-    log("  header:", head)
-    for tr in rows[1:5]:
-        cells = [c.get_text(" ", strip=True) for c in tr.find_all(["th", "td"])]
-        pid = re.search(r"PlayerId=(\d+)", str(tr))
-        log(f"    {'id=' + pid.group(1) if pid else 'id=?':<10}", cells)
-    break
-else:
-    log("  no table matched — dumping any row that names a player")
-    for m in re.findall(r"<tr[^>]*>.*?PlayerId=\d+.*?</tr>", r.text, re.S)[:2]:
-        log("   ", re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " | ", m))[:400])
+for year in (2026, 2025):
+    u = f"https://basket.co.il/team.asp?TeamId=1095&cYear={year}"
+    try:
+        r = requests.get(u, headers=UA, timeout=30)
+        r.encoding = r.apparent_encoding or "windows-1255"
+        soup = BeautifulSoup(r.text, "html.parser")
+        log(f"  cYear={year} -> {r.status_code}")
+        # a player row is one that links to a PlayerId
+        hits = 0
+        for tr in soup.find_all("tr"):
+            if not re.search(r"PlayerId=\d+", str(tr)):
+                continue
+            cells = [c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
+            cells = [c for c in cells if c]
+            if len(cells) < 3:
+                continue
+            hits += 1
+            if hits <= 4:
+                log(f"    {cells}")
+        log(f"    rows linking a player: {hits}")
+    except Exception as e:
+        log(f"  cYear={year}: FAIL {type(e).__name__} {str(e)[:120]}")

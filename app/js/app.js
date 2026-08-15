@@ -111,7 +111,7 @@ async function boot() {
     if (window.__HAPOEL_SNAPSHOT__) {
       const b = document.getElementById("sampleBanner");
       b.textContent = "עותק להורדה — צילום מצב מ־" + window.__HAPOEL_SNAPSHOT__ +
-        ". לגרסה המתעדכנת: behemot46.github.io/Hapoel";
+        ". לגרסה המתעדכנת: " + appHost();
       b.hidden = false;
     }
     refreshDiary();
@@ -538,9 +538,16 @@ function calNote() {
 /* ---------- sharing the app itself ---------- */
 
 // always the live site, never location.href — a standalone copy opened
-// from disk would otherwise share a path on the sender's own device
+// from disk would otherwise share a path on the sender's own device.
+// The address lives in club.json and nowhere else: whatever the app is
+// published under is what fans get sent, and moving hosts is one edit.
 function appUrl() {
-  return (state.club && state.club.url) || "https://behemot46.github.io/Hapoel/";
+  return (state.club && state.club.url) || location.origin + "/";
+}
+
+// the same address without the scheme, for reading rather than clicking
+function appHost() {
+  return appUrl().replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
 function shareApp() {
