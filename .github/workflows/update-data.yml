@@ -2,10 +2,12 @@ name: עדכון נתונים אוטומטי
 
 on:
   schedule:
-    # three times a day: ~08:00, ~14:00, ~16:00 Israel time. Deliberately
-    # outside the live-score window (15:00–22:00 UTC) — a deploy rebuilds
-    # gh-pages from scratch and would drop live.json mid-game.
-    - cron: '0 5,11,13 * * *'
+    # five times a day: ~06:00, ~08:00, ~11:00, ~14:00, ~16:00 Israel time.
+    # Deliberately outside the live-score window (15:00–22:00 UTC) — a deploy
+    # rebuilds gh-pages from scratch and would drop live.json mid-game.
+    # The morning and midday runs were added for the news feed: a fixture
+    # changes twice a season, a headline changes twice a morning.
+    - cron: '0 3,5,8,11,13 * * *'
   workflow_dispatch:
 
 permissions:

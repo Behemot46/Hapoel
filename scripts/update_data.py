@@ -28,6 +28,7 @@ import requests
 from bs4 import BeautifulSoup
 
 import club_roster
+import news_feed
 import photo_crop
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -1363,6 +1364,7 @@ def main():
     for name, fn in [("standings", update_standings), ("games", update_games),
                      ("eurocup", update_eurocup_standings),
                      ("seasonStats", update_season_stats),
+                     ("news", news_feed.update_news),
                      ("roster", update_roster)]:
         try:
             fn()
