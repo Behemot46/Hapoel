@@ -12,21 +12,27 @@ consistent to within a couple of percent, which is what makes this safe.
 """
 
 BG_TOLERANCE = 60      # colour distance that counts as "not background"
-HEAD_TO_CROP = 1.9     # crop side as a multiple of head width
+HEAD_TO_CROP = 1.6     # crop side as a multiple of head width
 HEADROOM = 0.12        # air above the head, as a fraction of the crop side
 
-# HEAD_TO_CROP used to be 2.5, and then the h*0.62 clamp below — not this rule —
-# was what actually decided the crop. That made the framing depend on how much
-# of its own canvas each source filled: a head taking 33% of the image height
-# came out at 53% of the circle, one taking 25% at 40%, from the same code. At
-# 1.9 the head rule binds first and every source lands at the same 53%, which
-# is what the squad already looks like. The clamps stay as a backstop.
+# The head ends up filling 1/HEAD_TO_CROP of the frame, so 1.6 puts it at just
+# over 60% — the face filling most of the circle, which is the point.
+# This only holds because find_head measures the head at its widest. It used to
+# measure a fixed band at the top of the silhouette, which reads hair rather
+# than head: one player came out at 32% of his canvas and another at 14%, and
+# the clamps below then quietly decided both crops instead of this constant.
 
 
 def _background(px, w, h):
+    """Average the corners — but weight the top ones, and use a median so one
+    dirty corner cannot drag the answer. In a head-and-shoulders cut-out the
+    shoulders often reach the bottom edge, and averaging all four corners then
+    returns a blend of background and jersey, against which nothing reads as
+    foreground. The top corners are empty by definition here: an image whose
+    top row is already full of subject is rejected as not a cut-out."""
     cs = [px[x, y] for x in (0, 1, 2, w - 3, w - 2, w - 1)
-          for y in (0, 1, 2, h - 3, h - 2, h - 1)]
-    return tuple(sum(c[i] for c in cs) // len(cs) for i in range(3))
+          for y in (0, 1, 2)]
+    return tuple(sorted(c[i] for c in cs)[len(cs) // 2] for i in range(3))
 
 
 def find_head(im):
@@ -54,11 +60,31 @@ def find_head(im):
     if top is None or top > h * 0.35:
         return None
 
-    band = range(top, min(h, top + int(h * 0.16)))
-    xs = [x for x in range(w) if any(fg(x, y) for y in band)]
-    if not xs:
+    # The head is the widest the silhouette gets before the neck pinches in.
+    # Measuring a fixed band at the very top instead reads whatever the hair
+    # happens to be doing up there: voluminous curls span the true head width
+    # straight away, a flat-top fade spans a third of it, and the same player
+    # would be framed differently for having different hair.
+    widest, widest_at, run = 0, top, 0
+    for y in range(top, min(h, top + int(h * 0.6))):
+        xs = [x for x in range(w) if fg(x, y)]
+        if not xs:
+            continue
+        wide = xs[-1] - xs[0]
+        if wide > widest:
+            widest, widest_at, run = wide, y, 0
+        elif wide < widest * 0.9:
+            # narrowing: the neck. A few stray rows are noise, a run is real,
+            # and past it the shoulders would only widen again.
+            run += 1
+            if run >= 4:
+                break
+        else:
+            run = 0
+    if not widest:
         return None
-    return (xs[0] + xs[-1]) // 2, top, xs[-1] - xs[0]
+    xs = [x for x in range(w) if fg(x, widest_at)]
+    return (xs[0] + xs[-1]) // 2, top, widest
 
 
 def crop_to_face(im, size=320, skip_square=True):
@@ -83,7 +109,10 @@ def crop_to_face(im, size=320, skip_square=True):
 
     cx, top, head_w = found
     side = int(head_w * HEAD_TO_CROP)
-    side = max(int(h * 0.34), min(side, int(h * 0.62), w, h))
+    # backstops only, for when the head reading is nonsense — the head rule
+    # above is what should decide the crop. The ceiling used to be 0.62h,
+    # tight enough that it, not the head, framed most pictures.
+    side = max(int(h * 0.34), min(side, int(h * 0.85), w, h))
     y0 = max(0, int(top - side * HEADROOM))
     y0 = min(y0, h - side)
     x0 = min(max(0, cx - side // 2), w - side)
