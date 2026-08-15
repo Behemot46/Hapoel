@@ -136,6 +136,9 @@ body {
   color: var(--muted);
 }
 .badge.home { background: var(--red); color: var(--red-ink); }
+/* a home game that is not at home — marked, not hidden */
+.badge.away-home { background: var(--surface-2); color: var(--text); border: 1px dashed var(--red); }
+.game-row .sub .away-home { color: var(--red); font-weight: 700; }
 
 /* The live counter the app is named after */
 .countdown {

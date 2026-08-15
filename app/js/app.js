@@ -74,7 +74,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -90,6 +90,7 @@ async function boot() {
       loadJSON("data/lastseason.json").catch(() => (null)),
       loadJSON("data/season-stats.json").catch(() => (null)),
       loadJSON("data/feedback.json").catch(() => (null)),
+      loadJSON("data/venue-names.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -106,6 +107,7 @@ async function boot() {
     state.lastSeason = lastSeason;
     state.seasonStats = seasonStats;
     state.feedback = feedback;
+    state.venues = venues;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -373,7 +375,7 @@ function liveCard(live) {
   const opp = isUs(g.home) ? g.away : g.home;
   c.appendChild(oppEl("opponent", opp));
   c.appendChild(text("div", "comp",
-    (g.competition || "") + (g.venue ? " · " + g.venue : "")));
+    (g.competition || "") + (g.venue ? " · " + venueLabel(g.venue) : "")));
 
   if (live.state === "live" || live.state === "final") {
     const us = live.ourScore, them = live.theirScore;
@@ -460,7 +462,12 @@ function icsUid(g) {
 }
 
 function gameLocation(g) {
-  if (g.venue) return g.venue;
+  // the calendar entry is the one place a fan checks on the way out the
+  // door, so the city belongs in it
+  if (g.venue) {
+    const v = venueInfo(g.venue);
+    return v ? v.he + ", " + v.city : g.venue;
+  }
   return isHome(g) ? ((state.club && state.club.arena) || "") : "";
 }
 
@@ -909,8 +916,11 @@ function renderHome() {
     c.appendChild(when);
     c.appendChild(countdownEl(next));
     const meta = el("div", "meta-row");
-    meta.appendChild(text("span", "badge" + (isHome(next) ? " home" : ""), isHome(next) ? "משחק בית" : "משחק חוץ"));
-    if (next.venue) meta.appendChild(text("span", "badge", next.venue));
+    meta.appendChild(text("span",
+      "badge" + (isHome(next) && !isDisplacedHome(next) ? " home" : "") +
+      (isDisplacedHome(next) ? " away-home" : ""),
+      homeAwayLabel(next, true)));
+    if (next.venue) meta.appendChild(text("span", "badge", venueLabel(next.venue)));
     c.appendChild(meta);
     c.appendChild(calButton([next], "הוספה ליומן", "hapoel-next-game.ics"));
     c.appendChild(calNote());
@@ -941,7 +951,7 @@ function renderHome() {
   }
 
   const rows = state.standings.rows;
-  if (rows && rows.length) {
+  if (rows && rows.length && seasonStarted(rows)) {
     view.appendChild(text("div", "section-title", "טבלת " + state.standings.competition));
     const c = el("div", "card table-card");
     const usIdx = rows.findIndex(r => isUs(r.team));
@@ -956,6 +966,19 @@ function renderHome() {
     more.href = "#/table";
     more.textContent = "לטבלה המלאה";
     c.appendChild(more);
+    view.appendChild(c);
+  } else if (rows && rows.length) {
+    // no games yet: a four‑team window around our position would be showing
+    // last season's neighbours as if they were this season's
+    const c = el("a", "card promo");
+    c.href = "#/table";
+    const t = el("div");
+    t.appendChild(text("div", "promo-title", "הליגה העונה"));
+    t.appendChild(text("div", "promo-sub",
+      rows.length + " קבוצות ב" + state.standings.competition +
+      ". הטבלה תיפתח עם המשחק הראשון."));
+    c.appendChild(t);
+    c.appendChild(text("div", "chevron", "‹"));
     view.appendChild(c);
   }
 
@@ -1033,6 +1056,17 @@ function renderGames() {
     view.appendChild(n);
   }
 
+  // a fan who reads "בית" and books nothing is fine; one who reads it and
+  // drives to מלחה is not
+  const note = state.venues && state.venues.awayNote;
+  if (state.gamesTab === "upcoming" && note &&
+      upcoming().some(isDisplacedHome)) {
+    const n = el("div", "card notice");
+    n.appendChild(text("div", "notice-title", "משחקי הבית באירופה — בבלגרד"));
+    n.appendChild(prose("div", "notice-body", note));
+    view.appendChild(n);
+  }
+
   if (state.gamesTab === "upcoming") {
     const c = el("div", "card cal-card");
     c.appendChild(text("div", "share-title", "כל המשחקים ביומן שלך"));
@@ -1057,6 +1091,44 @@ function renderGames() {
   footer();
 }
 
+
+/* ---------- where a game is actually played ---------- */
+
+// European "home" games are staged in Belgrade by decision of Euroleague
+// Basketball. They count as home in the table, which is why the feed marks
+// them that way — but a fan reading "בית" packs for Malha, and the game is
+// 1,500 km away. Wherever a home game is not at our own arena, say the city.
+
+function venueInfo(name) {
+  const v = (state.venues && state.venues.venues) || {};
+  return v[name] || null;
+}
+
+function venueLabel(name) {
+  if (!name) return "";
+  const v = venueInfo(name);
+  return v ? v.he : name;
+}
+
+function isOurArena(name) {
+  if (!name) return true;              // nothing said — assume the usual place
+  const home = (state.venues && state.venues.homeArena) || [];
+  return home.some(h => h.toLowerCase() === String(name).toLowerCase());
+}
+
+// "בית", or "בית בבלגרד" when home is somewhere else entirely
+function homeAwayLabel(g, long) {
+  if (!isHome(g)) return long ? "משחק חוץ" : "חוץ";
+  if (isOurArena(g.venue)) return long ? "משחק בית" : "בית";
+  const v = venueInfo(g.venue);
+  const city = v && v.city;
+  return (long ? "משחק בית" : "בית") + (city ? " ב" + city : " מחוץ לישראל");
+}
+
+function isDisplacedHome(g) {
+  return isHome(g) && !isOurArena(g.venue);
+}
+
 function gameRow(g) {
   const wrap = el("div", "game-card");
   const row = el("div", "game-row");
@@ -1069,8 +1141,12 @@ function gameRow(g) {
 
   const info = el("div", "info");
   info.appendChild(oppEl("opp", opponent(g)));
-  info.appendChild(text("div", "sub",
-    g.competition + " · " + (isHome(g) ? "בית" : "חוץ") + (g.venue ? " · " + g.venue : "")));
+  const sub = el("div", "sub");
+  sub.appendChild(document.createTextNode(g.competition + " · "));
+  sub.appendChild(text("span", isDisplacedHome(g) ? "away-home" : "",
+    homeAwayLabel(g, false)));
+  if (g.venue) sub.appendChild(document.createTextNode(" · " + venueLabel(g.venue)));
+  info.appendChild(sub);
   row.appendChild(info);
 
   const end = el("div", "end");
@@ -1121,11 +1197,18 @@ function renderTable() {
   if (state.tableTab === "euro" && euro) {
     renderEurocup(euro);
   } else {
+    const started = seasonStarted(state.standings.rows);
     view.appendChild(text("div", "section-title",
-      "טבלת " + state.standings.competition + " · עונת " + state.standings.season));
+      (started ? "טבלת " : "קבוצות ") + state.standings.competition +
+      " · עונת " + state.standings.season));
     const c = el("div", "card table-card");
     c.appendChild(standingsTable(state.standings.rows, true));
     view.appendChild(c);
+    if (!started) {
+      view.appendChild(text("div", "table-note",
+        "העונה טרם החלה — אלה הקבוצות שמשחקות השנה, לא דירוג. " +
+        "הטבלה תסתדר מעצמה עם המשחק הראשון."));
+    }
   }
   footer();
 }
@@ -1139,8 +1222,10 @@ function groupLabel(name) {
 function renderEurocup(euro) {
   const ourFirst = euro.groups;
   const ours = ourFirst[0];
+  const euroStarted = seasonStarted(ours.rows);
   view.appendChild(text("div", "section-title",
-    groupLabel(ours.name) + " · " + euro.competition + " " + euro.season));
+    groupLabel(ours.name) + " · " + euro.competition + " " + euro.season +
+    (euroStarted ? "" : " · ההגרלה")));
   const c = el("div", "card table-card");
   c.appendChild(eurocupTable(ours.rows));
   view.appendChild(c);
@@ -1157,16 +1242,21 @@ function renderEurocup(euro) {
     });
     view.appendChild(d);
   }
-  view.appendChild(text("div", "table-note",
-    "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."));
+  view.appendChild(text("div", "table-note", euroStarted
+    ? "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."
+    : "אלה הקבוצות שהוגרלו לבית, לפי סדר האלף־בית — עוד לא שוחק אף משחק. " +
+      "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."));
 }
 
 function isUsEuro(r) { return r.code === "JER" || isUs(teamName(r.team)); }
 
 function eurocupTable(rows) {
+  // same as the league table: before the first tip-off these are the eight
+  // clubs drawn into the group, not an order any of them earned
+  const started = seasonStarted(rows);
   const t = el("table", "standings");
   const head = el("tr");
-  ["#", "קבוצה", "מש׳", "נצ׳", "הפ׳", "הפרש"].forEach((h, i) => {
+  [started ? "#" : "", "קבוצה", "מש׳", "נצ׳", "הפ׳", "הפרש"].forEach((h, i) => {
     const th = el("th", i === 1 ? "team" : "");
     th.textContent = h;
     head.appendChild(th);
@@ -1174,7 +1264,8 @@ function eurocupTable(rows) {
   t.appendChild(head);
   rows.forEach(r => {
     const tr = el("tr", isUsEuro(r) ? "us" : "");
-    tr.appendChild(text("td", "num", r.pos == null ? "–" : String(r.pos)));
+    tr.appendChild(text("td", "num",
+      !started ? "·" : (r.pos == null ? "–" : String(r.pos))));
     const name = teamName(r.team);
     const td = el("td", "team");
     td.appendChild(text("span", isLatin(name) ? "latin" : "", name));
@@ -1189,11 +1280,22 @@ function eurocupTable(rows) {
   return t;
 }
 
+// Before a ball is thrown the feed still hands back a full table: every team
+// at 0‑0, numbered 1 to 14, in last season's finishing order. Rendered as a
+// table that reads as a standing — a fan sees "3 הפועל י־ם" and believes it.
+// It is last year's position wearing this year's clothes, so the position
+// column is dropped until somebody has actually played.
+function seasonStarted(rows) {
+  return (rows || []).some(r => (r.played || 0) > 0);
+}
+
 function standingsTable(rows, full) {
   const hasPoints = rows.some(r => r.points !== undefined);
+  const started = seasonStarted(rows);
   const t = el("table", "standings");
   const head = el("tr");
-  const cols = ["#", "קבוצה", "מש׳", "נצ׳", "הפ׳"].concat(hasPoints ? ["נק׳"] : []);
+  const cols = [started ? "#" : "", "קבוצה", "מש׳", "נצ׳", "הפ׳"]
+    .concat(hasPoints ? ["נק׳"] : []);
   cols.forEach((h, i) => {
     const th = el("th", i === 1 ? "team" : "");
     th.textContent = h;
@@ -1202,7 +1304,7 @@ function standingsTable(rows, full) {
   t.appendChild(head);
   rows.forEach(r => {
     const tr = el("tr", isUs(r.team) ? "us" : "");
-    tr.appendChild(text("td", "num", String(r.pos)));
+    tr.appendChild(text("td", "num", started ? String(r.pos) : "·"));
     tr.appendChild(text("td", "team", r.team));
     tr.appendChild(text("td", "num", String(r.played)));
     tr.appendChild(text("td", "num", String(r.wins)));
