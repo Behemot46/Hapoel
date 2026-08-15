@@ -1,0 +1,30 @@
+name: דוח משוב מאוהדים (ידני)
+
+# Reads every answer the form collected and prints one report. Reads only:
+# it never writes, comments or closes anything.
+#
+# The answers live in this public repository, so the log shows nothing that
+# was not already readable in the issues themselves. The script refuses to
+# run here if FEEDBACK_REPO is ever pointed at a private repository.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Read the answers
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/feedback_report.py

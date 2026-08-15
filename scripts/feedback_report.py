@@ -1,18 +1,20 @@
 """What the fans answered, counted and quoted.
 
-Each submission from the form arrives as an issue on a PRIVATE repository, the one named by FEEDBACK_REPO in Vercel. This reads them back and prints
-one report: how many answered, what kind of fans they are, what they asked
-for, how useful they find the app, and then every word they wrote,
-verbatim. The counted part says what to build; the written part says why.
+Each submission from the form arrives as an issue on the project's
+repository. This reads them back and prints one report: how many answered,
+what kind of fans they are, what they asked for, how useful they find the
+app, and then every word they wrote, verbatim. The counted part says what
+to build; the written part says why.
 
-    FEEDBACK_REPO=Behemot46/<the private repo> GITHUB_TOKEN=… \\
-        python scripts/feedback_report.py
+Run it from Actions ("דוח משוב מאוהדים"), or locally:
 
-DO NOT RUN THIS IN THIS REPOSITORY'S ACTIONS. Workflow logs of a public
-repository are readable by anyone, so printing the answers there would
-publish exactly what the form promised to keep private, which is why the
-workflow that used to do it was deleted, and why the guard below refuses to
-run inside CI unless someone deliberately overrides it.
+    FEEDBACK_REPO=Behemot46/Hapoel GITHUB_TOKEN=… python scripts/feedback_report.py
+
+The answers live in a public repository, so this report shows nothing that
+was not already readable there. If FEEDBACK_REPO is ever pointed at a
+private repository, do not run it from Actions here: a public workflow log
+would republish what that repository was chosen to keep. The script checks
+and refuses.
 
 Nothing here writes anything. It reads, counts and prints.
 """
@@ -24,7 +26,7 @@ import re
 import urllib.parse
 import urllib.request
 
-REPO = os.environ.get("FEEDBACK_REPO", "")
+REPO = os.environ.get("FEEDBACK_REPO") or os.environ.get("GITHUB_REPOSITORY", "Behemot46/Hapoel")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 LABEL = "משוב"
 MARKER = "נשלח מהטופס באפליקציה"
@@ -94,31 +96,24 @@ def bar(n, total, width=28):
     return "█" * filled + "·" * (width - filled)
 
 
-def refuse_if_public_ci():
-    """A public workflow log is a publication. Answers are not for it."""
-    if os.environ.get("GITHUB_ACTIONS") and not os.environ.get("FEEDBACK_ALLOW_CI"):
-        raise SystemExit(
-            "לא רץ בתוך GitHub Actions: הלוג של ריפו ציבורי גלוי לכולם, "
-            "והתשובות פרטיות. להריץ מקומית עם FEEDBACK_REPO ו־GITHUB_TOKEN.")
-
-
-def check_private():
-    """The answers live in a private repository. Say so out loud if not."""
+def check_target():
+    """Read the target, and refuse the one combination that would publish
+    something: a private repository printed into a public workflow log."""
     try:
         repo = api("")
     except Exception as e:
         log(f"אי אפשר לקרוא את {REPO}: {e}")
         log("צריך GITHUB_TOKEN עם הרשאת קריאה לכרטיסים באותו ריפו.")
         raise SystemExit(1)
-    if not repo.get("private"):
-        log(f"אזהרה: {REPO} אינו פרטי. התשובות שם גלויות לכל.")
+    if repo.get("private") and os.environ.get("GITHUB_ACTIONS") \
+            and not os.environ.get("FEEDBACK_ALLOW_CI"):
+        raise SystemExit(
+            f"{REPO} פרטי, והלוג של ריפו ציבורי גלוי לכולם. "
+            "להריץ מקומית, או להגדיר FEEDBACK_ALLOW_CI אם זה בכל זאת מה שרוצים.")
 
 
 def main():
-    refuse_if_public_ci()
-    if not REPO:
-        raise SystemExit("חסר FEEDBACK_REPO, שם הריפו הפרטי שאליו נשלחות התשובות.")
-    check_private()
+    check_target()
     issues = all_issues()
     log("=" * 74)
     log(f"משוב מאוהדים, {REPO}")

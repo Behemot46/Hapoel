@@ -861,8 +861,11 @@ function pollNote() {
   const t = pollTarget();
   if (!t) return "";
   if (t.kind === "endpoint") {
+    // No address, and no promise the app cannot keep: the answers are kept
+    // in the open, so the honest thing is to say so and to ask for nothing
+    // that would identify anybody.
     return "השליחה נעשית מכאן, בלי חשבון ובלי לצאת מהאפליקציה. " +
-           "התשובות מגיעות רק אלינו ואינן מתפרסמות בשום מקום. " +
+           "מה שתכתבו נשמר אצלנו בארגז הפתוח של הפרויקט, אז אל תכתבו פרטים אישיים. " +
            "לא ביקשנו שם, טלפון או אימייל, ואין באפליקציה מעקב.";
   }
   if (t.kind === "form") {
