@@ -407,6 +407,9 @@ body {
 }
 /* Latin names keep their own direction but stay right-aligned in the RTL row */
 .latin { unicode-bidi: isolate; }
+/* a score or a record inside Hebrew prose: keep the numbers in the order
+   they were written, instead of letting the RTL paragraph swap them */
+.numrun { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
 a.player-row { text-decoration: none; color: inherit; }
 /* .game-row .info sets the flex; player rows need their own */
 .player-row .info { flex: 1; min-width: 0; }
