@@ -937,6 +937,10 @@ def photo_url_for(code, template=None):
 
 PHOTO_DIR = ROOT / "app" / "img" / "players"
 
+# how many new headshots to look up in a single run — see the note in
+# update_roster(); the cap exists to protect the other sources, not the images
+PHOTO_LOOKUPS_PER_RUN = 4
+
 def slugify(name):
     s = re.sub(r"[^a-zA-Z0-9]+", "-", (name or "").strip().lower())
     return s.strip("-") or "player"
@@ -1059,18 +1063,23 @@ def update_roster():
         if p.get("country"):
             p["country"] = tidy_country(p["country"])
 
-    # headshots are not in the squad payload; the competition-wide person
-    # record has them. Go one player at a time and pause between requests —
-    # the API answers 429 to a burst.
+    # Headshots are not in the squad payload; the competition-wide person
+    # record has them. A photo does not change, so only look up players whose
+    # file is missing — a steady-state run makes no image requests at all.
+    # New players are fetched a few per run so a squad overhaul never eats the
+    # rate limit that the other sources need.
     template = None
-    for p in players:
-        if p.get("photoUrl") or not p.get("code"):
-            continue
+    missing = [p for p in players
+               if not p.get("photoUrl") and p.get("code")
+               and not (PHOTO_DIR / f"{slugify(p['name'])}.jpg").exists()]
+    log(f"  headshots on disk: {len(players) - len(missing)}/{len(players)}")
+    for p in missing[:PHOTO_LOOKUPS_PER_RUN]:
         url, template = photo_url_for(p["code"], template)
         if url:
             p["photoUrl"] = url
-        time.sleep(1.2)
-    log(f"  headshots resolved: {sum(1 for p in players if p.get('photoUrl'))}/{len(players)}")
+        time.sleep(1.5)
+    if len(missing) > PHOTO_LOOKUPS_PER_RUN:
+        log(f"  {len(missing) - PHOTO_LOOKUPS_PER_RUN} headshots left for the next run")
     if not any(p.get("photoUrl") for p in players):
         hits = photos_from_team_page(players)
         log(f"  headshots matched from team page: {hits}/{len(players)}")
@@ -1217,9 +1226,12 @@ def main():
     meta = load_json("meta.json") or {"sources": {}}
     ok_any = False
     status = {}
+    # order matters: the image lookups are the only greedy step, so everything
+    # that shares the same API budget runs before them
     for name, fn in [("standings", update_standings), ("games", update_games),
-                     ("roster", update_roster), ("eurocup", update_eurocup_standings),
-                     ("seasonStats", update_season_stats)]:
+                     ("eurocup", update_eurocup_standings),
+                     ("seasonStats", update_season_stats),
+                     ("roster", update_roster)]:
         try:
             fn()
             status[name] = {"ok": True, "detail": "עודכן בהצלחה"}
