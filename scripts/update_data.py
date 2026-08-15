@@ -1097,12 +1097,76 @@ def update_eurocup_standings():
     })
     return True
 
+# ---------------------------------------------------------------- season stats
+
+# Per-player season averages, straight from the competition's own feed. Before
+# a ball is thrown the list is empty, and the app says so rather than drawing
+# a table of zeros.
+SEASON_STATS = ("https://api-live.euroleague.net"
+                "/v2/competitions/U/seasons/U2026/clubs/JER/people/stats")
+
+def _num(v):
+    return round(float(v), 1) if isinstance(v, (int, float)) else None
+
+def update_season_stats():
+    try:
+        data = json.loads(fetch(SEASON_STATS))
+    except Exception as e:
+        raise RuntimeError(f"season stats fetch failed: {e}")
+
+    rows = data.get("playerStats") if isinstance(data, dict) else None
+    if rows is None:
+        rows = data.get("data") if isinstance(data, dict) else data
+    if not isinstance(rows, list):
+        raise RuntimeError(f"unexpected season stats envelope: {list(data)[:8]}")
+
+    out = []
+    for r in rows:
+        person = (r.get("player") or {}).get("person") or r.get("person") or {}
+        avg = r.get("averagePerGame") or {}
+        tot = r.get("accumulated") or r.get("total") or {}
+        name = person.get("name") or person.get("alias")
+        if not name:
+            continue
+        out.append({
+            "name": tidy_name(name),
+            "games": r.get("gamesPlayed") or tot.get("gamesPlayed"),
+            "min": _num(avg.get("timePlayed")),
+            "pts": _num(avg.get("points")),
+            "reb": _num(avg.get("totalRebounds")),
+            "ast": _num(avg.get("assistances") or avg.get("assists")),
+            "stl": _num(avg.get("steals")),
+            "blk": _num(avg.get("blocksFavour") or avg.get("blocks")),
+            "val": _num(avg.get("valuation")),
+            "fg2m": _num(avg.get("fieldGoalsMade2")),
+            "fg2a": _num(avg.get("fieldGoalsAttempted2")),
+            "fg3m": _num(avg.get("fieldGoalsMade3")),
+            "fg3a": _num(avg.get("fieldGoalsAttempted3")),
+            "ftm": _num(avg.get("freeThrowsMade")),
+            "fta": _num(avg.get("freeThrowsAttempted")),
+        })
+
+    played = [p for p in out if (p.get("games") or 0) > 0]
+    log(f"season stats: {len(out)} players in feed, {len(played)} with minutes")
+    if out:
+        log("  sample:", json.dumps(out[0], ensure_ascii=False)[:200])
+
+    save_json("season-stats.json", {
+        "competition": "יורוקאפ",
+        "season": "2026/27",
+        "note": "ממוצעים למשחק בתחרות האירופית, מהפיד הרשמי של היורוקאפ.",
+        "players": sorted(played, key=lambda p: -(p.get("pts") or 0)),
+        "started": bool(played),
+    })
+    return True
+
 def main():
     meta = load_json("meta.json") or {"sources": {}}
     ok_any = False
     status = {}
     for name, fn in [("standings", update_standings), ("games", update_games),
-                     ("roster", update_roster), ("eurocup", update_eurocup_standings)]:
+                     ("roster", update_roster), ("eurocup", update_eurocup_standings),
+                     ("seasonStats", update_season_stats)]:
         try:
             fn()
             status[name] = {"ok": True, "detail": "עודכן בהצלחה"}

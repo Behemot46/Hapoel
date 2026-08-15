@@ -4,6 +4,7 @@ const TEAM = "הפועל ירושלים";
 const state = {
   games: null, standings: null, meta: null, club: null,
   gamesTab: "upcoming", tableTab: "league", diaryScope: "season",
+  hofTab: "israeli", statsTab: "now",
 };
 
 const view = document.getElementById("view");
@@ -73,7 +74,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -85,6 +86,9 @@ async function boot() {
       loadJSON("data/team-names.json").catch(() => ({})),
       loadJSON("data/history.json").catch(() => (null)),
       loadJSON("data/eurocup.json").catch(() => (null)),
+      loadJSON("data/hall-of-fame.json").catch(() => (null)),
+      loadJSON("data/lastseason.json").catch(() => (null)),
+      loadJSON("data/season-stats.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -97,6 +101,9 @@ async function boot() {
     state.teamNames = teamNames || {};
     state.history = history;
     state.eurocup = eurocup;
+    state.hof = hof;
+    state.lastSeason = lastSeason;
+    state.seasonStats = seasonStats;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -177,6 +184,7 @@ const routes = {
   "": renderHome, "#/": renderHome, "#/games": renderGames,
   "#/table": renderTable, "#/roster": renderRoster, "#/diary": renderDiary,
   "#/meet": renderMeet, "#/history": renderHistory,
+  "#/hof": renderHof, "#/stats": renderStats,
 };
 
 function render() {
@@ -189,7 +197,8 @@ function render() {
   const routeName = hash === "#/games" ? "games"
     : hash === "#/table" ? "table"
     : (hash === "#/roster" || hash === "#/meet" || playerMatch) ? "roster"
-    : hash === "#/history" ? "home"
+    : (hash === "#/history" || hash === "#/hof") ? "home"
+    : hash === "#/stats" ? "table"
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
     a.classList.toggle("active", a.dataset.route === routeName));
@@ -600,6 +609,30 @@ function renderHome() {
     const t = el("div");
     t.appendChild(text("div", "promo-title", "היסטוריה ומורשת"));
     t.appendChild(text("div", "promo-sub", "ארון התארים, הרגעים הגדולים ופינת כוכבי העבר"));
+    promo.appendChild(t);
+    promo.appendChild(text("div", "chevron", "‹"));
+    view.appendChild(promo);
+  }
+
+  if (state.hof) {
+    const promo = el("a", "card promo hof-promo");
+    promo.href = "#/hof";
+    const t = el("div");
+    t.appendChild(text("div", "promo-title", "🦁 אולם התהילה"));
+    t.appendChild(text("div", "promo-sub",
+      (state.hof.israelis || []).length + " ישראלים ו־" +
+      (state.hof.foreigners || []).length + " זרים שהמועדון זוכר בשמם"));
+    promo.appendChild(t);
+    promo.appendChild(text("div", "chevron", "‹"));
+    view.appendChild(promo);
+  }
+
+  if (state.lastSeason || state.seasonStats) {
+    const promo = el("a", "card promo");
+    promo.href = "#/stats";
+    const t = el("div");
+    t.appendChild(text("div", "promo-title", "סטטיסטיקה"));
+    t.appendChild(text("div", "promo-sub", "העונה הזו, והמאזן המלא של העונה שעברה"));
     promo.appendChild(t);
     promo.appendChild(text("div", "chevron", "‹"));
     view.appendChild(promo);
@@ -1144,6 +1177,251 @@ function renderPlayer(slug) {
 }
 
 /* ---------- history, trophies and past stars ---------- */
+
+/* ---------- hall of fame ---------- */
+
+function hofCard(p, foreign) {
+  const c = el("div", "card hof-card");
+  const head = el("div", "hof-head");
+  const av = el("div", "hof-badge");
+  av.textContent = initialsOf({ name: p.name });
+  let h = 0;
+  for (let i = 0; i < p.name.length; i++) h = (h * 31 + p.name.charCodeAt(i)) >>> 0;
+  av.style.setProperty("--h", String(AVATAR_HUES[h % AVATAR_HUES.length]));
+  head.appendChild(av);
+  const who = el("div", "info");
+  who.appendChild(text("div", "hof-name", p.name));
+  const bits = [p.position, p.era];
+  if (foreign && p.country) bits.splice(1, 0, p.country);
+  who.appendChild(text("div", "sub", bits.filter(Boolean).join(" · ")));
+  head.appendChild(who);
+  c.appendChild(head);
+
+  if (p.latin) {
+    const lat = text("div", "hof-latin", p.latin);
+    c.appendChild(lat);
+  }
+  c.appendChild(text("div", "hof-headline", p.headline));
+  c.appendChild(text("p", "hof-bio", p.bio));
+
+  if (p.highlights && p.highlights.length) {
+    const ul = el("ul", "hof-list");
+    p.highlights.forEach(x => ul.appendChild(text("li", "", x)));
+    c.appendChild(ul);
+  }
+  if (p.source) {
+    const a = el("a", "src-link");
+    a.href = p.source;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "מקור";
+    c.appendChild(a);
+  }
+  return c;
+}
+
+function renderHof() {
+  const h = state.hof;
+  if (!h) {
+    view.appendChild(text("div", "empty", "אולם התהילה בהכנה"));
+    footer();
+    return;
+  }
+  const intro = el("div", "card meet-intro");
+  intro.appendChild(text("div", "eyebrow", "אולם התהילה"));
+  intro.appendChild(text("div", "meet-title", "מי שזוכרים בשמם"));
+  intro.appendChild(text("p", "", h.intro));
+  view.appendChild(intro);
+
+  const seg = el("div", "seg");
+  const bI = text("button", state.hofTab === "foreign" ? "" : "active",
+    "ישראלים · " + (h.israelis || []).length);
+  const bF = text("button", state.hofTab === "foreign" ? "active" : "",
+    "זרים · " + (h.foreigners || []).length);
+  bI.onclick = () => { state.hofTab = "israeli"; render(); };
+  bF.onclick = () => { state.hofTab = "foreign"; render(); };
+  seg.appendChild(bI);
+  seg.appendChild(bF);
+  view.appendChild(seg);
+
+  const foreign = state.hofTab === "foreign";
+  (foreign ? h.foreigners : h.israelis).forEach(p =>
+    view.appendChild(hofCard(p, foreign)));
+
+  if (h.note) view.appendChild(text("div", "table-note", h.note));
+  footer();
+}
+
+/* ---------- last season, and this one ---------- */
+
+function renderStats() {
+  const seg = el("div", "seg");
+  const bT = text("button", state.statsTab === "last" ? "" : "active", "העונה הזו");
+  const bL = text("button", state.statsTab === "last" ? "active" : "", "העונה שעברה");
+  bT.onclick = () => { state.statsTab = "now"; render(); };
+  bL.onclick = () => { state.statsTab = "last"; render(); };
+  seg.appendChild(bT);
+  seg.appendChild(bL);
+  view.appendChild(seg);
+
+  if (state.statsTab === "last") renderLastSeason();
+  else renderThisSeason();
+  footer();
+}
+
+function statRow(p, cols) {
+  const tr = el("tr");
+  const td = el("td", "team");
+  td.appendChild(text("span", "", playerName({ name: p.name })));
+  tr.appendChild(td);
+  cols.forEach(c => tr.appendChild(text("td", "num", p[c.key] == null ? "–" : String(p[c.key]))));
+  return tr;
+}
+
+function renderThisSeason() {
+  const s = state.seasonStats;
+  if (!s || !s.started || !(s.players || []).length) {
+    const c = el("div", "card notice");
+    c.appendChild(text("div", "notice-title", "העונה עוד לא התחילה"));
+    c.appendChild(text("div", "notice-body",
+      "ברגע שיישחק המשחק הראשון, הסטטיסטיקות ייכנסו לכאן מעצמן — ממוצעים " +
+      "לשחקן ישירות מהפיד הרשמי של היורוקאפ, בלי הקלדה ידנית."));
+    view.appendChild(c);
+    advancedCard();
+    return;
+  }
+
+  view.appendChild(text("div", "section-title",
+    "ממוצעים למשחק · " + s.competition + " " + s.season));
+  const cols = [
+    { key: "games", label: "מש׳" }, { key: "pts", label: "נק׳" },
+    { key: "reb", label: "ריב׳" }, { key: "ast", label: "אס׳" },
+    { key: "val", label: "מדד" },
+  ];
+  const card = el("div", "card table-card");
+  const t = el("table", "standings stats-table");
+  const head = el("tr");
+  const th0 = el("th", "team");
+  th0.textContent = "שחקן";
+  head.appendChild(th0);
+  cols.forEach(c => {
+    const th = el("th", "");
+    th.textContent = c.label;
+    head.appendChild(th);
+  });
+  t.appendChild(head);
+  s.players.forEach(p => t.appendChild(statRow(p, cols)));
+  card.appendChild(t);
+  view.appendChild(card);
+  if (s.note) view.appendChild(text("div", "table-note", s.note));
+  advancedCard();
+}
+
+// Deliberately a promise, not a fake chart: everything here needs play-by-play
+// data we do not have yet, and inventing it would be worse than waiting.
+function advancedCard() {
+  view.appendChild(text("div", "section-title", "סטטיסטיקה מתקדמת"));
+  const c = el("div", "card notice");
+  c.appendChild(text("div", "notice-title", "בדרך"));
+  c.appendChild(text("div", "notice-body",
+    "יעילות התקפה והגנה ל־100 מחזורים, אחוז שימוש, True Shooting והפרש " +
+    "כשעל הפרקט. המדדים האלה דורשים נתוני מחזורים שעדיין לא אספנו — " +
+    "וטבלה שנראית מרשים אבל מבוססת על ניחוש שווה פחות מכלום."));
+  view.appendChild(c);
+}
+
+function renderLastSeason() {
+  const l = state.lastSeason;
+  if (!l) {
+    view.appendChild(text("div", "empty", "נתוני העונה שעברה בהכנה"));
+    return;
+  }
+  const lg = l.league || {};
+  view.appendChild(text("div", "section-title", "עונת " + l.season + " · " + lg.name));
+
+  const c = el("div", "card");
+  const row = el("div", "ls-summary");
+  [["מקום", String(lg.ourPos)], ["מאזן", lg.ourRecord],
+   ["נקודות", String(lg.ourPoints)],
+   ["הפרש", (lg.ourDiff > 0 ? "+" : "") + lg.ourDiff]].forEach(([k, v]) => {
+    const b = el("div", "lsx");
+    b.appendChild(text("div", "lsx-v", v));
+    b.appendChild(text("div", "lsx-k", k));
+    row.appendChild(b);
+  });
+  c.appendChild(row);
+  const split = el("div", "ls-split");
+  [["בבית", lg.home], ["בחוץ", lg.away]].forEach(([k, s]) => {
+    if (!s) return;
+    const d = el("div", "lsp");
+    d.appendChild(text("div", "lsp-k", k));
+    d.appendChild(text("div", "lsp-v", s.wins + "‑" + s.losses));
+    d.appendChild(text("div", "lsp-s", s.for + ":" + s.against));
+    split.appendChild(d);
+  });
+  c.appendChild(split);
+  view.appendChild(c);
+
+  (l.headlines || []).forEach(h => {
+    const b = el("div", "card");
+    b.appendChild(text("div", "notice-title", h.title));
+    b.appendChild(text("div", "notice-body", h.text));
+    view.appendChild(b);
+  });
+
+  if (lg.rows && lg.rows.length) {
+    view.appendChild(text("div", "section-title", "הטבלה הסופית"));
+    const tc = el("div", "card table-card");
+    const t = el("table", "standings");
+    const head = el("tr");
+    ["#", "קבוצה", "מש׳", "נצ׳", "הפ׳", "נק׳"].forEach((x, i) => {
+      const th = el("th", i === 1 ? "team" : "");
+      th.textContent = x;
+      head.appendChild(th);
+    });
+    t.appendChild(head);
+    lg.rows.forEach(r => {
+      const tr = el("tr", isUs(r.team) ? "us" : "");
+      tr.appendChild(text("td", "num", String(r.pos)));
+      tr.appendChild(text("td", "team", r.team));
+      tr.appendChild(text("td", "num", String(r.played)));
+      tr.appendChild(text("td", "num", String(r.wins)));
+      tr.appendChild(text("td", "num", String(r.losses)));
+      tr.appendChild(text("td", "num", String(r.points)));
+      t.appendChild(tr);
+    });
+    tc.appendChild(t);
+    view.appendChild(tc);
+    if (lg.champion) {
+      view.appendChild(text("div", "table-note", "אלופת העונה: " + lg.champion + "."));
+    }
+  }
+
+  const eu = l.europe;
+  if (eu) {
+    view.appendChild(text("div", "section-title", eu.name));
+    const b = el("div", "card");
+    if (eu.mvp) b.appendChild(text("div", "notice-title", eu.mvp));
+    b.appendChild(text("div", "notice-body", eu.note));
+    if (eu.source) {
+      const a = el("a", "src-link");
+      a.href = eu.source;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "מקור";
+      b.appendChild(a);
+    }
+    view.appendChild(b);
+  }
+  if (lg.source) {
+    const a = el("a", "src-link block");
+    a.href = lg.source;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "מקור הטבלה: אתר הליגה";
+    view.appendChild(a);
+  }
+}
 
 function renderHistory() {
   const h = state.history;
