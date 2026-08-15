@@ -1,72 +1,82 @@
-"""Generate the PWA icon set: the lion-and-ball mark in club colours.
+"""Generate the PWA icon set from the club crest.
 
-The club's own crest is its trademark and is not reproduced here — this is an
-original mark drawn for the project, echoing the mascot and the lion of
-Jerusalem. To use the real crest, replace these files by hand.
+The crest lives at app/icons/crest.png. It is the club's own mark, used here
+in an unofficial fan app that says so on every screen.
+
+The source is 160x160 — the largest that could be found; the club's own
+favicon is 48x48 and there is no public vector. So the icons are built to
+keep it as sharp as the source allows: the 192 is drawn at close to native
+size, and the 512 is upscaled with LANCZOS, which is soft at full size but
+is displayed far smaller than that in practice (Android uses the 192 on the
+home screen; the 512 is for splash and listings).
+
+If crest.png is missing the script says so and leaves the icons alone,
+rather than silently shipping a blank badge.
 """
-from PIL import Image, ImageDraw
 import os
+import sys
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "app", "icons")
-RED = (228, 0, 43, 255)
-DARK = (23, 9, 13, 255)
-WHITE = (255, 255, 255, 255)
+from PIL import Image
 
-def make(size):
-    s = 4  # supersample for smooth edges
-    W = size * s
-    img = Image.new("RGBA", (W, W), RED)
-    d = ImageDraw.Draw(img)
+HERE = os.path.dirname(os.path.abspath(__file__))
+ICONS = os.path.join(HERE, "..", "app", "icons")
+CREST = os.path.join(ICONS, "crest.png")
 
-    # subtle dark corner stripe for kit identity
-    d.polygon([(0, 0), (int(W * 0.28), 0), (0, int(W * 0.28))], fill=DARK)
+# white, because the crest's own outer ring is near-black: on a dark tile the
+# edge of the badge would disappear into the background
+BG = (255, 255, 255, 255)
 
-    # basketball
-    m = int(W * 0.20)
-    lw = max(s * 2, int(W * 0.035))
-    box = [m, m, W - m, W - m]
-    d.ellipse(box, outline=WHITE, width=lw)
-    cx = W // 2
-    d.line([(cx, m), (cx, W - m)], fill=WHITE, width=lw)
-    d.line([(m, cx), (W - m, cx)], fill=WHITE, width=lw)
+# how much of the tile the crest fills. A maskable icon can have up to 20%
+# trimmed off each edge, so the mark stays inside the safe zone.
+FILL = 0.78
+FILL_MASKABLE = 0.62
 
-    # side seams: big circles left/right of the ball, clipped to the ball interior
-    r = (W - 2 * m) // 2
-    seams = Image.new("RGBA", (W, W), (0, 0, 0, 0))
-    ds = ImageDraw.Draw(seams)
-    R = int(r * 1.5)
-    for scx in (cx - int(r * 1.9), cx + int(r * 1.9)):
-        ds.ellipse([scx - R, cx - R, scx + R, cx + R], outline=WHITE, width=lw)
-    mask = Image.new("L", (W, W), 0)
-    ImageDraw.Draw(mask).ellipse([m + lw // 2, m + lw // 2, W - m - lw // 2, W - m - lw // 2], fill=255)
-    img.paste(seams, (0, 0), Image.composite(seams.split()[3], Image.new("L", (W, W), 0), mask))
 
-    # the lion: a maned head over the ball, matching the wordmark emblem
-    import math
-    lion = Image.new("RGBA", (W, W), (0, 0, 0, 0))
-    dl = ImageDraw.Draw(lion)
-    face_r = int(W * 0.135)
-    mane_out, mane_in = int(W * 0.235), int(W * 0.168)
-    pts = []
-    for i in range(14):
-        a = math.pi * 2 * i / 14 - math.pi / 2
-        rr = mane_out if i % 2 == 0 else mane_in
-        pts.append((cx + rr * math.cos(a), cx - int(W * 0.020) + rr * math.sin(a)))
-    dl.polygon(pts, fill=WHITE)
-    fy = cx - int(W * 0.020)
-    dl.ellipse([cx - face_r, fy - face_r, cx + face_r, fy + face_r], fill=WHITE)
-    # eyes and muzzle, cut in the club's black
-    ew = int(W * 0.026)
-    for ex in (cx - int(W * 0.052), cx + int(W * 0.052)):
-        dl.polygon([(ex - ew, fy - int(W * 0.032)), (ex + ew, fy - int(W * 0.032)),
-                    (ex, fy - int(W * 0.002))], fill=DARK)
-    mw, my = int(W * 0.038), fy + int(W * 0.030)
-    dl.polygon([(cx - mw, my), (cx + mw, my), (cx, my + int(W * 0.042))], fill=DARK)
-    img.alpha_composite(lion)
+def load_crest():
+    if not os.path.exists(CREST):
+        print(f"no crest at {CREST} — icons left untouched.")
+        print("Drop the club crest there as a square PNG and run this again.")
+        return None
+    im = Image.open(CREST).convert("RGBA")
+    # trim any transparent margin so 'fill' means the mark, not the padding
+    box = im.split()[-1].getbbox()
+    if box:
+        im = im.crop(box)
+    return im
 
-    return img.resize((size, size), Image.LANCZOS)
 
-os.makedirs(OUT, exist_ok=True)
-for name, size in [("icon-512.png", 512), ("icon-192.png", 192), ("apple-touch-icon.png", 180)]:
-    make(size).convert("RGB").save(os.path.join(OUT, name))
-    print("wrote", name)
+def make(crest, size, fill, bg=BG):
+    tile = Image.new("RGBA", (size, size), bg)
+    side = max(1, int(size * fill))
+    # keep the aspect ratio; the crest is square but do not assume it
+    w, h = crest.size
+    scale = side / max(w, h)
+    new = (max(1, round(w * scale)), max(1, round(h * scale)))
+    art = crest.resize(new, Image.LANCZOS)
+    tile.paste(art, ((size - new[0]) // 2, (size - new[1]) // 2), art)
+    return tile.convert("RGB")
+
+
+def main():
+    crest = load_crest()
+    if crest is None:
+        return 1
+    print(f"crest: {crest.size[0]}x{crest.size[1]} (after trimming transparent margin)")
+    out = [
+        ("icon-192.png", 192, FILL),
+        ("icon-512.png", 512, FILL),
+        ("icon-512-maskable.png", 512, FILL_MASKABLE),
+        ("apple-touch-icon.png", 180, FILL),
+    ]
+    for name, size, fill in out:
+        img = make(crest, size, fill)
+        path = os.path.join(ICONS, name)
+        img.save(path, "PNG", optimize=True)
+        upscale = (size * fill) / max(crest.size)
+        note = "native or down" if upscale <= 1.05 else f"{upscale:.1f}x upscale"
+        print(f"  {name:<26} {size}x{size}  crest at {int(size*fill)}px  ({note})")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
