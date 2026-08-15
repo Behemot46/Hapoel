@@ -318,6 +318,23 @@ body {
   direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums;
 }
 .stats-table td.num, .stats-table th { font-variant-numeric: tabular-nums; }
+.stats-table td.team span { display: block; }
+.ps-games { font-size: 11px; color: var(--muted); font-weight: 600; }
+.ps-shot td {
+  padding-top: 0; padding-bottom: 9px;
+  border-bottom: 1px solid var(--line);
+}
+.ps-pct {
+  display: inline-flex; align-items: baseline; gap: 4px;
+  margin-inline-end: 12px;
+  font-size: 11.5px;
+}
+.ps-pct-k { color: var(--muted); }
+.ps-pct-v {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  direction: ltr; unicode-bidi: isolate;
+}
 
 /* A plain "here is what is missing and why" note */
 .notice { background: var(--surface-2); border-style: dashed; }
@@ -407,6 +424,9 @@ body {
 }
 /* Latin names keep their own direction but stay right-aligned in the RTL row */
 .latin { unicode-bidi: isolate; }
+/* a score or a record inside Hebrew prose: keep the numbers in the order
+   they were written, instead of letting the RTL paragraph swap them */
+.numrun { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
 a.player-row { text-decoration: none; color: inherit; }
 /* .game-row .info sets the flex; player rows need their own */
 .player-row .info { flex: 1; min-width: 0; }

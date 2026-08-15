@@ -111,7 +111,7 @@ async function boot() {
     if (window.__HAPOEL_SNAPSHOT__) {
       const b = document.getElementById("sampleBanner");
       b.textContent = "עותק להורדה — צילום מצב מ־" + window.__HAPOEL_SNAPSHOT__ +
-        ". לגרסה המתעדכנת: behemot46.github.io/Hapoel";
+        ". לגרסה המתעדכנת: " + appHost();
       b.hidden = false;
     }
     refreshDiary();
@@ -137,6 +137,36 @@ function el(tag, cls, html) {
   if (html !== undefined) n.innerHTML = html;
   return n;
 }
+// A score written inside Hebrew prose comes out backwards. Digits are weak
+// left-to-right and the separator between them is neutral, so the RTL
+// paragraph around them decides the order and puts the second number first:
+// "10‑3" is painted as "3-10", and "ניצחון 92‑89" as "89-92" — which reads
+// as a defeat. Every such run gets its own isolate so it keeps the order it
+// was written in. Applies to authored text; a bare number is unaffected,
+// only pairs joined by a separator flip.
+const NUM_RUN = /\d[\d,.]*(?:\s?[‑\-–:/]\s?\d[\d,.]*)+/g;
+
+function proseInto(node, str) {
+  const s = String(str == null ? "" : str);
+  let last = 0;
+  s.replace(NUM_RUN, (m, i) => {
+    if (i > last) node.appendChild(document.createTextNode(s.slice(last, i)));
+    const b = document.createElement("bdi");
+    b.className = "numrun";
+    b.textContent = m;
+    node.appendChild(b);
+    last = i + m.length;
+    return m;
+  });
+  if (last < s.length) node.appendChild(document.createTextNode(s.slice(last)));
+  return node;
+}
+
+// same shape as text(), for strings that come from the data files
+function prose(tag, cls, str) {
+  return proseInto(el(tag, cls), str);
+}
+
 function text(tag, cls, str) {
   const n = el(tag, cls);
   n.textContent = str;
@@ -508,9 +538,16 @@ function calNote() {
 /* ---------- sharing the app itself ---------- */
 
 // always the live site, never location.href — a standalone copy opened
-// from disk would otherwise share a path on the sender's own device
+// from disk would otherwise share a path on the sender's own device.
+// The address lives in club.json and nowhere else: whatever the app is
+// published under is what fans get sent, and moving hosts is one edit.
 function appUrl() {
-  return (state.club && state.club.url) || "https://behemot46.github.io/Hapoel/";
+  return (state.club && state.club.url) || location.origin + "/";
+}
+
+// the same address without the scheme, for reading rather than clicking
+function appHost() {
+  return appUrl().replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
 function shareApp() {
@@ -1557,10 +1594,10 @@ function coachCard(c) {
   top.appendChild(yr);
   card.appendChild(top);
 
-  card.appendChild(text("p", "meet-summary", c.text));
+  card.appendChild(prose("p", "meet-summary", c.text));
   if (c.achievements && c.achievements.length) {
     const chips = el("div", "chips-row");
-    c.achievements.forEach(a => chips.appendChild(text("span", "strength trophy-chip", "🏆 " + a)));
+    c.achievements.forEach(a => chips.appendChild(prose("span", "strength trophy-chip", "🏆 " + a)));
     card.appendChild(chips);
   }
   if (c.source) {
@@ -1585,7 +1622,7 @@ function hofCard(p, foreign) {
   who.appendChild(text("div", "hof-name", p.name));
   const bits = [p.position, p.era];
   if (foreign && p.country) bits.splice(1, 0, p.country);
-  who.appendChild(text("div", "sub", bits.filter(Boolean).join(" · ")));
+  who.appendChild(prose("div", "sub", bits.filter(Boolean).join(" · ")));
   head.appendChild(who);
   c.appendChild(head);
 
@@ -1593,12 +1630,12 @@ function hofCard(p, foreign) {
     const lat = text("div", "hof-latin", p.latin);
     c.appendChild(lat);
   }
-  c.appendChild(text("div", "hof-headline", p.headline));
-  c.appendChild(text("p", "hof-bio", p.bio));
+  c.appendChild(prose("div", "hof-headline", p.headline));
+  c.appendChild(prose("p", "hof-bio", p.bio));
 
   if (p.highlights && p.highlights.length) {
     const ul = el("ul", "hof-list");
-    p.highlights.forEach(x => ul.appendChild(text("li", "", x)));
+    p.highlights.forEach(x => ul.appendChild(prose("li", "", x)));
     c.appendChild(ul);
   }
   if (p.source) {
@@ -1653,7 +1690,7 @@ function renderHof() {
   (foreign ? h.foreigners : h.israelis).forEach(p =>
     view.appendChild(hofCard(p, foreign)));
 
-  if (h.note) view.appendChild(text("div", "table-note", h.note));
+  if (h.note) view.appendChild(prose("div", "table-note", h.note));
   footer();
 }
 
@@ -1718,7 +1755,7 @@ function renderThisSeason() {
   s.players.forEach(p => t.appendChild(statRow(p, cols)));
   card.appendChild(t);
   view.appendChild(card);
-  if (s.note) view.appendChild(text("div", "table-note", s.note));
+  if (s.note) view.appendChild(prose("div", "table-note", s.note));
   advancedCard();
 }
 
@@ -1733,6 +1770,61 @@ function advancedCard() {
     "כשעל הפרקט. המדדים האלה דורשים נתוני מחזורים שעדיין לא אספנו — " +
     "וטבלה שנראית מרשים אבל מבוססת על ניחוש שווה פחות מכלום."));
   view.appendChild(c);
+}
+
+// Averages for the season that ended. Two rows per player: the counting stats
+// on top, the shooting underneath — a phone cannot hold nine columns, and
+// splitting beats dropping half the numbers.
+function lastSeasonPlayers(ps) {
+  if (!ps || !(ps.players || []).length) return;
+  view.appendChild(text("div", "section-title",
+    "ממוצעים למשחק · " + ps.competition + " " + ps.season));
+
+  const card = el("div", "card table-card");
+  const t = el("table", "standings stats-table");
+  const head = el("tr");
+  const th0 = el("th", "team");
+  th0.textContent = "שחקן";
+  head.appendChild(th0);
+  [["דק׳", "דקות"], ["נק׳", "נקודות"], ["ריב׳", "ריבאונדים"],
+   ["אס׳", "אסיסטים"], ["מדד", "מדד יעילות"]].forEach(([short, full]) => {
+    const th = el("th", "");
+    th.textContent = short;
+    th.title = full;
+    head.appendChild(th);
+  });
+  t.appendChild(head);
+
+  ps.players.forEach(p => {
+    const tr = el("tr");
+    const td = el("td", "team");
+    td.appendChild(text("span", "", p.nameHe || p.name));
+    td.appendChild(text("span", "ps-games", p.games + " מש׳"));
+    tr.appendChild(td);
+    [p.min, p.pts, p.reb, p.ast, p.val].forEach(v =>
+      tr.appendChild(text("td", "num", v == null ? "–" : v.toFixed(1))));
+    t.appendChild(tr);
+
+    // the shooting line, only when the feed actually recorded attempts
+    const shots = [["2", p.fg2], ["3", p.fg3], ["עונשין", p.ft]]
+      .filter(([, v]) => v);
+    if (shots.length) {
+      const sr = el("tr", "ps-shot");
+      const sc = el("td");
+      sc.colSpan = 6;
+      shots.forEach(([label, v]) => {
+        const b = el("span", "ps-pct");
+        b.appendChild(text("span", "ps-pct-k", label));
+        b.appendChild(text("span", "ps-pct-v", v));
+        sc.appendChild(b);
+      });
+      sr.appendChild(sc);
+      t.appendChild(sr);
+    }
+  });
+  card.appendChild(t);
+  view.appendChild(card);
+  if (ps.note) view.appendChild(prose("div", "table-note", ps.note));
 }
 
 function renderLastSeason() {
@@ -1770,9 +1862,11 @@ function renderLastSeason() {
   (l.headlines || []).forEach(h => {
     const b = el("div", "card");
     b.appendChild(text("div", "notice-title", h.title));
-    b.appendChild(text("div", "notice-body", h.text));
+    b.appendChild(prose("div", "notice-body", h.text));
     view.appendChild(b);
   });
+
+  lastSeasonPlayers(l.playerStats);
 
   if (lg.rows && lg.rows.length) {
     view.appendChild(text("div", "section-title", "הטבלה הסופית"));
@@ -1807,7 +1901,7 @@ function renderLastSeason() {
     view.appendChild(text("div", "section-title", eu.name));
     const b = el("div", "card");
     if (eu.mvp) b.appendChild(text("div", "notice-title", eu.mvp));
-    b.appendChild(text("div", "notice-body", eu.note));
+    b.appendChild(prose("div", "notice-body", eu.note));
     if (eu.source) {
       const a = el("a", "src-link");
       a.href = eu.source;
@@ -1867,7 +1961,7 @@ function renderHistory() {
       item.appendChild(text("div", "tl-year", e.year));
       const body = el("div", "tl-body");
       body.appendChild(text("div", "tl-title", e.title));
-      body.appendChild(text("p", "tl-text", e.text));
+      body.appendChild(prose("p", "tl-text", e.text));
       if (e.source) {
         const a = el("a", "meet-link muted-link");
         a.href = e.source; a.target = "_blank"; a.rel = "noopener";
@@ -1906,7 +2000,7 @@ function renderHistory() {
       who.appendChild(sub);
       head.appendChild(who);
       c.appendChild(head);
-      c.appendChild(text("p", "meet-summary", l.text));
+      c.appendChild(prose("p", "meet-summary", l.text));
       if (l.source) {
         const a = el("a", "meet-link muted-link");
         a.href = l.source; a.target = "_blank"; a.rel = "noopener";
@@ -1944,8 +2038,8 @@ function skillRow(label, value) {
 
 function reportBody(prof, opts) {
   const frag = document.createDocumentFragment();
-  frag.appendChild(text("div", "meet-headline", prof.headline));
-  frag.appendChild(text("p", "meet-summary", prof.summary));
+  frag.appendChild(prose("div", "meet-headline", prof.headline));
+  frag.appendChild(prose("p", "meet-summary", prof.summary));
 
   if (prof.skills && Object.keys(prof.skills).length) {
     const box = el("div", "skills-box");
@@ -1959,7 +2053,7 @@ function reportBody(prof, opts) {
     const b = el("div", "pros");
     b.appendChild(text("div", "list-cap", "חוזקות"));
     const ul = el("ul");
-    prof.strengths.forEach(x => ul.appendChild(text("li", "", x)));
+    prof.strengths.forEach(x => ul.appendChild(prose("li", "", x)));
     b.appendChild(ul);
     frag.appendChild(b);
   }
@@ -1967,7 +2061,7 @@ function reportBody(prof, opts) {
     const b = el("div", "cons");
     b.appendChild(text("div", "list-cap", "לשים לב"));
     const ul = el("ul");
-    prof.weaknesses.forEach(x => ul.appendChild(text("li", "", x)));
+    prof.weaknesses.forEach(x => ul.appendChild(prose("li", "", x)));
     b.appendChild(ul);
     frag.appendChild(b);
   }
