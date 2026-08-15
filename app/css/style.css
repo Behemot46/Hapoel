@@ -281,6 +281,19 @@ body {
 .hof-head .info { flex: 1; min-width: 0; }
 .hof-name { font-size: 18px; font-weight: 800; line-height: 1.25; }
 .hof-nick { font-size: 13px; font-weight: 700; color: var(--red); margin-top: 1px; }
+
+/* the affairs — same card, deliberately cooler than a trophy */
+.affair-card { background: var(--surface-2); }
+.affair-head { display: flex; align-items: baseline; gap: 9px; margin-bottom: 6px; }
+.affair-year {
+  flex: 0 0 auto;
+  font-size: 12px; font-weight: 800;
+  background: var(--surface); color: var(--muted);
+  border-radius: 999px; padding: 2px 9px;
+  direction: ltr; unicode-bidi: isolate;
+}
+.affair-title { font-size: 16px; font-weight: 800; }
+.affair-text { margin: 0; font-size: 14.5px; }
 /* the ones that did not work out — same card, cooled down */
 .flop-card { border-style: dashed; }
 .flop-card .hof-badge { filter: grayscale(1); opacity: 0.75; }

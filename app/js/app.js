@@ -1988,6 +1988,13 @@ function renderHistory() {
     view.appendChild(line);
   }
 
+  // the same history told through whoever was paying for it
+  if (h.owners && h.owners.length) {
+    view.appendChild(text("div", "section-title", "עידני הבעלות"));
+    if (h.ownersIntro) view.appendChild(prose("div", "list-note", h.ownersIntro));
+    h.owners.forEach(o => view.appendChild(coachCard(o)));
+  }
+
   // eras, told through the coaches who shaped them
   if (h.coaches && h.coaches.length) {
     view.appendChild(text("div", "section-title", "עידני מאמנים"));
@@ -1995,6 +2002,27 @@ function renderHistory() {
     if (h.coachesNote) {
       view.appendChild(text("div", "list-note", h.coachesNote));
     }
+  }
+
+  // the nights nobody puts on a poster
+  if (h.affairs && h.affairs.length) {
+    view.appendChild(text("div", "section-title", "פרשות"));
+    if (h.affairsIntro) view.appendChild(prose("div", "list-note", h.affairsIntro));
+    h.affairs.forEach(a => {
+      const c = el("div", "card affair-card");
+      const head = el("div", "affair-head");
+      head.appendChild(text("span", "affair-year", a.year));
+      head.appendChild(text("span", "affair-title", a.title));
+      c.appendChild(head);
+      c.appendChild(prose("p", "affair-text", a.text));
+      if (a.source) {
+        const link = el("a", "meet-link muted-link");
+        link.href = a.source; link.target = "_blank"; link.rel = "noopener";
+        link.textContent = "המקור";
+        c.appendChild(link);
+      }
+      view.appendChild(c);
+    });
   }
 
   // the founder's special request
