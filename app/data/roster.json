@@ -20,7 +20,8 @@
       "born": 1997,
       "country": "ארה״ב",
       "code": "011970",
-      "slug": "jared-harper"
+      "slug": "jared-harper",
+      "photo": "img/players/jared-harper.jpg"
     },
     {
       "name": "Roi Huber",
@@ -29,7 +30,8 @@
       "born": 1997,
       "country": "ישראל",
       "code": "013904",
-      "slug": "roi-huber"
+      "slug": "roi-huber",
+      "photo": "img/players/roi-huber.jpg"
     },
     {
       "name": "Nimrod Levi",
@@ -39,7 +41,8 @@
       "born": 1995,
       "country": "ישראל",
       "code": "007768",
-      "slug": "nimrod-levi"
+      "slug": "nimrod-levi",
+      "photo": "img/players/nimrod-levi.jpg"
     },
     {
       "name": "Kenny Lofton",
