@@ -392,7 +392,7 @@ function liveCard(live) {
       c.appendChild(text("div", "live-when", quarterLabel(live.quarter)));
     }
   } else if (live.state === "starting") {
-    c.appendChild(text("div", "live-when", "המשחק עולה לאוויר"));
+    c.appendChild(text("div", "live-when", "רגע לפני הקפיצה"));
   } else {
     // a domestic game: we know it is being played, we have no feed for it
     c.appendChild(text("div", "live-when", "המשחק מתנהל · אין הזנת תוצאות חיה"));
@@ -934,7 +934,7 @@ function renderHome() {
     left.style.textAlign = "center";
     const sc = text("div", "score", ourScore(last) + "–" + theirScore(last));
     left.appendChild(sc);
-    left.appendChild(text("span", "chip " + (won(last) ? "win" : "loss"), won(last) ? "נצחון" : "הפסד"));
+    left.appendChild(text("span", "chip " + (won(last) ? "win" : "loss"), won(last) ? "ניצחון" : "הפסד"));
     line.appendChild(left);
     c.appendChild(line);
     view.appendChild(c);
@@ -2067,7 +2067,7 @@ function reportBody(prof, opts) {
   }
   if (prof.watch) {
     const w = el("div", "meet-watch");
-    w.appendChild(text("span", "watch-label", "מה לשים לב"));
+    w.appendChild(text("span", "watch-label", "למה לשים לב"));
     w.appendChild(text("span", "", prof.watch));
     frag.appendChild(w);
   }
@@ -2199,7 +2199,7 @@ const BADGES = [
       let best = 0, run = 0;
       played.forEach(x => { run = x.us > x.them ? run + 1 : 0; best = Math.max(best, run); });
       return best;
-    }, hint: "5 נצחונות ברצף" },
+    }, hint: "5 ניצחונות ברצף" },
 ];
 
 function renderDiary() {
