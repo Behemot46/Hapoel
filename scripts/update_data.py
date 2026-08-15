@@ -28,6 +28,7 @@ import requests
 from bs4 import BeautifulSoup
 
 import club_roster
+import photo_crop
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "app" / "data"
@@ -973,8 +974,10 @@ def fetch_photos(players):
             if Image is not None:
                 import io
                 im = Image.open(io.BytesIO(data)).convert("RGB")
+                # the feed ships waist-up cut-outs; a round frame wants a head
+                im = photo_crop.crop_to_face(im)
                 im.thumbnail((400, 400))
-                im.save(dest, "JPEG", quality=82, optimize=True)
+                im.save(dest, "JPEG", quality=85, optimize=True)
             else:
                 dest.write_bytes(data)
             p["photo"] = rel
