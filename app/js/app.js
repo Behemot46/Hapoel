@@ -74,7 +74,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -89,6 +89,7 @@ async function boot() {
       loadJSON("data/hall-of-fame.json").catch(() => (null)),
       loadJSON("data/lastseason.json").catch(() => (null)),
       loadJSON("data/season-stats.json").catch(() => (null)),
+      loadJSON("data/feedback.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -104,6 +105,7 @@ async function boot() {
     state.hof = hof;
     state.lastSeason = lastSeason;
     state.seasonStats = seasonStats;
+    state.feedback = feedback;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -120,9 +122,11 @@ async function boot() {
   const sb = document.getElementById("shareBtn");
   if (sb) sb.onclick = shareApp;
   window.addEventListener("hashchange", render);
+  watchInstall();
   render();
   // a frozen single-file copy has no site to poll
   if (!window.__HAPOEL_SNAPSHOT__) watchLive();
+  pollWhenQuiet(countVisit());
 }
 
 /* ---------- helpers ---------- */
@@ -519,6 +523,115 @@ function shareApp() {
   window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank", "noopener");
 }
 
+/* ---------- adding the app to the home screen ---------- */
+
+// Chrome hands us the install prompt through an event and lets us fire it
+// later; iOS Safari has no such API at all, so there the honest thing is to
+// show the two taps rather than a button that cannot do anything.
+const INSTALL_KEY = "hapoel-install-v1";
+let installPrompt = null;
+
+function isStandalone() {
+  return window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+}
+
+function isIosSafari() {
+  const ua = navigator.userAgent;
+  // iPadOS 13+ reports itself as a Mac, but a Mac has no touch screen
+  const ios = /iphone|ipod|ipad/i.test(ua) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  return ios && !/crios|fxios|edgios/i.test(ua);
+}
+
+function installHidden() {
+  try { return localStorage.getItem(INSTALL_KEY) === "hidden"; }
+  catch (e) { return false; }
+}
+
+function hideInstall() {
+  try { localStorage.setItem(INSTALL_KEY, "hidden"); } catch (e) {}
+}
+
+// nothing to offer once it is installed, when the fan waved it away, or on a
+// browser that neither fires the event nor is an iOS we know the steps for
+function canOfferInstall() {
+  if (window.__HAPOEL_SNAPSHOT__ || isStandalone() || installHidden()) return false;
+  return !!installPrompt || isIosSafari();
+}
+
+function watchInstall() {
+  window.addEventListener("beforeinstallprompt", e => {
+    e.preventDefault();          // keep Chrome's own mini-bar out of the way
+    installPrompt = e;           // and fire it ourselves when the fan asks
+    if (location.hash === "" || location.hash === "#/") render();
+  });
+  window.addEventListener("appinstalled", () => {
+    installPrompt = null;
+    hideInstall();
+    if (location.hash === "" || location.hash === "#/") render();
+  });
+}
+
+function installCard() {
+  if (!canOfferInstall()) return null;
+  const c = el("div", "card install-card");
+
+  const x = el("button", "install-x", "×");
+  x.type = "button";
+  x.setAttribute("aria-label", "לא להציע יותר");
+  x.onclick = () => { hideInstall(); render(); };
+  c.appendChild(x);
+
+  const t = el("div", "install-text");
+  t.appendChild(text("div", "share-title", "רוצים אותה על מסך הבית?"));
+  t.appendChild(text("div", "share-sub",
+    "נפתחת כמו אפליקציה רגילה, במסך מלא, ועובדת גם בלי אינטרנט"));
+  c.appendChild(t);
+
+  if (installPrompt) {
+    const b = el("button", "wa-btn", "הוספה");
+    b.type = "button";
+    b.onclick = async () => {
+      const p = installPrompt;
+      installPrompt = null;      // a prompt may only be used once
+      b.disabled = true;
+      try {
+        p.prompt();
+        const res = await p.userChoice;
+        if (res && res.outcome === "accepted") hideInstall();
+      } catch (e) { /* dismissed mid-flight — leave the card for next time */ }
+      render();
+    };
+    c.appendChild(b);
+  } else {
+    // iOS: spell out the two taps, with the share glyph drawn rather than
+    // typed, because the character for it renders as a box on most fonts
+    const steps = el("div", "install-steps");
+    const one = el("span", "install-step");
+    one.appendChild(document.createTextNode("הקישו "));
+    one.appendChild(shareGlyph());
+    one.appendChild(document.createTextNode(" בסרגל של ספארי"));
+    steps.appendChild(one);
+    steps.appendChild(text("span", "install-step", "ואז ״הוספה למסך הבית״"));
+    c.appendChild(steps);
+    c.classList.add("install-ios");
+  }
+  return c;
+}
+
+function shareGlyph() {
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("class", "ios-share");
+  svg.setAttribute("aria-hidden", "true");
+  const p = document.createElementNS(ns, "path");
+  p.setAttribute("d", "M12 3l4 4-1.4 1.4L13 6.8V15h-2V6.8L9.4 8.4 8 7l4-4zM5 12h3v2H6v6h12v-6h-2v-2h3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z");
+  svg.appendChild(p);
+  return svg;
+}
+
 function shareCard() {
   const c = el("div", "card share-card");
   const t = el("div");
@@ -530,6 +643,212 @@ function shareCard() {
   b.onclick = shareApp;
   c.appendChild(b);
   return c;
+}
+
+/* ---------- the quick poll ---------- */
+
+// The app has no server, so the answers cannot land here. They are collected
+// in the sheet and handed to a Google Form, prefilled, in one tap. Until a
+// form is configured the whole thing stays out of sight: a fan sent to a
+// broken link is worse than never being asked.
+
+const POLL_KEY = "hapoel-poll-v1";
+const VISITS_KEY = "hapoel-visits-v1";
+
+const POLL_WANTS = [
+  "חדשות ועדכונים על הקבוצה",
+  "התראה לפני כל משחק",
+  "שירי יציע",
+  "סטטיסטיקות מתקדמות",
+  "כרטיסים ומידע על האולם",
+  "פינת נוסטלגיה",
+];
+
+function pollConfig() {
+  const f = state.feedback || {};
+  return f.formUrl ? f : null;
+}
+
+function pollState() {
+  try { return JSON.parse(localStorage.getItem(POLL_KEY)) || {}; }
+  catch (e) { return {}; }
+}
+
+function savePollState(s) {
+  try { localStorage.setItem(POLL_KEY, JSON.stringify(s)); } catch (e) {}
+}
+
+// counted once per app start, so the poll waits for a fan who came back
+function countVisit() {
+  try {
+    const n = (parseInt(localStorage.getItem(VISITS_KEY), 10) || 0) + 1;
+    localStorage.setItem(VISITS_KEY, String(n));
+    return n;
+  } catch (e) { return 1; }
+}
+
+function shouldAskPoll(visits) {
+  const cfg = pollConfig();
+  if (!cfg || window.__HAPOEL_SNAPSHOT__) return false;
+  const s = pollState();
+  if (s.done) return false;
+  if (visits < (cfg.afterVisits || 3)) return false;
+  if (s.snoozedAt) {
+    const days = (Date.now() - new Date(s.snoozedAt).getTime()) / 86400000;
+    if (days < (cfg.snoozeDays || 30)) return false;
+  }
+  return true;
+}
+
+// a fan watching a live score is not the fan to interrupt
+function pollWhenQuiet(visits) {
+  if (!shouldAskPoll(visits)) return;
+  const tick = setInterval(() => {
+    if (state.live) return;
+    clearInterval(tick);
+    if (shouldAskPoll(visits)) openPoll();
+  }, 4000);
+  setTimeout(() => { if (!state.live && shouldAskPoll(visits)) openPoll(); }, 1500);
+}
+
+function prefilledFormUrl(answers) {
+  const cfg = pollConfig();
+  const base = cfg.formUrl.split("?")[0];
+  const f = cfg.fields || {};
+  const parts = ["usp=pp_url"];
+  Object.keys(f).forEach(k => {
+    const id = f[k];
+    const v = answers[k];
+    // an unmapped field is left for the fan to fill in the form itself
+    if (id && v) parts.push(encodeURIComponent(id) + "=" + encodeURIComponent(v));
+  });
+  return base + "?" + parts.join("&");
+}
+
+let pollSheet = null;
+
+function closePoll() {
+  if (!pollSheet) return;
+  document.removeEventListener("keydown", pollKeys);
+  document.body.classList.remove("sheet-open");
+  pollSheet.remove();
+  pollSheet = null;
+}
+
+function pollKeys(e) {
+  if (e.key === "Escape") { snoozePoll(); }
+}
+
+function snoozePoll() {
+  const s = pollState();
+  s.snoozedAt = new Date().toISOString();
+  savePollState(s);
+  closePoll();
+}
+
+function openPoll() {
+  if (pollSheet || !pollConfig()) return;
+  const answers = { want: "", rating: "", text: "" };
+
+  const wrap = el("div", "sheet-wrap");
+  const sheet = el("div", "sheet");
+  sheet.setAttribute("role", "dialog");
+  sheet.setAttribute("aria-modal", "true");
+  sheet.setAttribute("aria-labelledby", "pollTitle");
+
+  const head = el("div", "sheet-head");
+  const h = text("div", "sheet-title", "רגע, מה דעתכם?");
+  h.id = "pollTitle";
+  head.appendChild(h);
+  const x = el("button", "sheet-x", "×");
+  x.type = "button";
+  x.setAttribute("aria-label", "סגירה");
+  x.onclick = snoozePoll;
+  head.appendChild(x);
+  sheet.appendChild(head);
+
+  sheet.appendChild(text("div", "sheet-sub",
+    "שלוש שאלות, פחות מדקה. זה מה שיקבע מה נבנה אחר כך."));
+
+  // 1 — what to build next
+  sheet.appendChild(text("div", "poll-q", "מה הכי חשוב לכם שנוסיף?"));
+  const wants = el("div", "poll-chips");
+  POLL_WANTS.forEach(w => {
+    const b = el("button", "poll-chip", w);
+    b.type = "button";
+    b.onclick = () => {
+      answers.want = answers.want === w ? "" : w;
+      wants.querySelectorAll(".poll-chip").forEach(o =>
+        o.classList.toggle("on", o.textContent === answers.want));
+    };
+    wants.appendChild(b);
+  });
+  sheet.appendChild(wants);
+
+  // 2 — how it feels so far
+  sheet.appendChild(text("div", "poll-q", "איך האפליקציה עד עכשיו?"));
+  const scale = el("div", "poll-scale");
+  [1, 2, 3, 4, 5].forEach(n => {
+    const b = el("button", "poll-star", String(n));
+    b.type = "button";
+    b.setAttribute("aria-label", n + " מתוך 5");
+    b.onclick = () => {
+      answers.rating = String(n);
+      scale.querySelectorAll(".poll-star").forEach(o =>
+        o.classList.toggle("on", parseInt(o.textContent, 10) <= n));
+    };
+    scale.appendChild(b);
+  });
+  const ends = el("div", "poll-ends");
+  ends.appendChild(text("span", null, "לא משהו"));
+  ends.appendChild(text("span", null, "מצוינת"));
+  sheet.appendChild(scale);
+  sheet.appendChild(ends);
+
+  // 3 — anything at all
+  sheet.appendChild(text("div", "poll-q", "רעיון, באג, או משהו שחסר?"));
+  const ta = el("textarea", "poll-text");
+  ta.rows = 3;
+  ta.placeholder = "כתבו כאן — קוראים הכול";
+  ta.oninput = () => { answers.text = ta.value.slice(0, 900); };
+  sheet.appendChild(ta);
+
+  const send = el("button", "wa-btn poll-send", "שליחה");
+  send.type = "button";
+  send.onclick = () => {
+    const s = pollState();
+    s.done = true;
+    savePollState(s);
+    window.open(prefilledFormUrl(answers), "_blank", "noopener");
+    closePoll();
+    toast("תודה! הטופס נפתח בלשונית חדשה");
+  };
+  sheet.appendChild(send);
+
+  const later = el("button", "poll-later", "לא עכשיו");
+  later.type = "button";
+  later.onclick = snoozePoll;
+  sheet.appendChild(later);
+
+  sheet.appendChild(text("div", "poll-note",
+    "התשובות נשלחות לטופס של גוגל. אין חשבון, אין מעקב, ושום דבר לא נשמר באפליקציה."));
+
+  wrap.appendChild(sheet);
+  wrap.onclick = e => { if (e.target === wrap) snoozePoll(); };
+  document.body.appendChild(wrap);
+  pollSheet = wrap;
+  document.addEventListener("keydown", pollKeys);
+  document.body.classList.add("sheet-open");
+  // focus the dialog itself, not the send button: a focus ring on the primary
+  // action reads as though an answer has already been chosen
+  sheet.tabIndex = -1;
+  sheet.focus();
+}
+
+function toast(msg) {
+  const t = text("div", "toast", msg);
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 4000);
 }
 
 /* ---------- home ---------- */
@@ -638,6 +957,8 @@ function renderHome() {
     view.appendChild(promo);
   }
 
+  const ic = installCard();
+  if (ic) view.appendChild(ic);
   view.appendChild(shareCard());
   footer();
 }
@@ -1911,6 +2232,15 @@ function footer() {
     ? "עודכן לאחרונה: " + fmtUpdated.format(new Date(state.meta.lastUpdated)) : "";
   f.innerHTML = (updated ? updated + "<br>" : "") +
     'מיזם אוהדים לא רשמי, נבנה באהבה <span class="heart">♥</span> קוד פתוח';
+  // the poll shows itself once; this is the way back in for anyone who
+  // waved it away and later had something to say
+  if (pollConfig()) {
+    const a = el("button", "footer-link", "יש לכם רעיון? ספרו לנו");
+    a.type = "button";
+    a.onclick = openPoll;
+    f.appendChild(el("br"));
+    f.appendChild(a);
+  }
   view.appendChild(f);
 }
 
