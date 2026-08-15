@@ -1,5 +1,10 @@
 :root {
   --red: #E4002B;
+  /* --red on the pink tint is 4.13:1 — under AA for anything but large text,
+     and the promo titles and countdown label are normal size. This darker
+     red clears AA on the tint, on white and on the page background, and is
+     still unmistakably the club red. --red stays the colour of fills. */
+  --red-text: #C10028;
   --red-ink: #FFFFFF;
   --red-soft: #FCE8EC;
   --black: #17090D;
@@ -15,6 +20,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --red: #FF4560;
+    /* dark already clears AA on its tint (4.61:1); kept as the brand red */
+    --red-text: #FF4560;
     --red-ink: #1A0B0F;
     --red-soft: #3A1B22;
     --bg: #140E10;
@@ -35,7 +42,8 @@ body {
   min-height: 100%;
   background: var(--bg);
   color: var(--text);
-  font-family: "Segoe UI", -apple-system, "Helvetica Neue", "Arial Hebrew", "Noto Sans Hebrew", Arial, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans Hebrew",
+    Assistant, Rubik, Heebo, "Arial Hebrew", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.55;
   direction: rtl;
@@ -111,7 +119,7 @@ body {
 .eyebrow {
   font-size: 12px;
   font-weight: 800;
-  color: var(--red);
+  color: var(--red-text);
   letter-spacing: 0.02em;
   margin-bottom: 6px;
 }
@@ -138,7 +146,7 @@ body {
 .badge.home { background: var(--red); color: var(--red-ink); }
 /* a home game that is not at home — marked, not hidden */
 .badge.away-home { background: var(--surface-2); color: var(--text); border: 1px dashed var(--red); }
-.game-row .sub .away-home { color: var(--red); font-weight: 700; }
+.game-row .sub .away-home { color: var(--red-text); font-weight: 700; }
 
 /* The live counter the app is named after */
 .countdown {
@@ -153,7 +161,7 @@ body {
   display: inline-block;
   font-size: 44px;
   font-weight: 900;
-  color: var(--red);
+  color: var(--red-text);
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
   /* "36,240" must keep its digits and comma in Latin order inside an RTL line */
@@ -164,7 +172,7 @@ body {
   margin-top: 4px;
   font-size: 13px;
   font-weight: 800;
-  color: var(--red);
+  color: var(--red-text);
   opacity: 0.85;
 }
 .cd-parts {
@@ -213,7 +221,7 @@ body {
   animation: cd-pulse 1.4s ease-in-out infinite;
 }
 .live-label {
-  font-size: 12px; font-weight: 800; color: var(--red);
+  font-size: 12px; font-weight: 800; color: var(--red-text);
   letter-spacing: 0.02em;
 }
 .live-game .opponent { font-size: 22px; font-weight: 800; line-height: 1.25; }
@@ -230,7 +238,7 @@ body {
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
-.ls-side.lead .ls-num { color: var(--red); }
+.ls-side.lead .ls-num { color: var(--red-text); }
 .ls-who { font-size: 12px; font-weight: 700; margin-top: 5px; color: var(--muted); }
 .ls-side.lead .ls-who { color: var(--text); }
 .ls-sep { font-size: 26px; font-weight: 700; color: var(--muted); line-height: 1.3; }
@@ -258,7 +266,7 @@ body {
 .groups-more > summary::after { content: " ⌄"; color: var(--muted); }
 .groups-more[open] > summary::after { content: " ⌃"; }
 .group-name {
-  font-size: 12.5px; font-weight: 800; color: var(--red);
+  font-size: 12.5px; font-weight: 800; color: var(--red-text);
   padding: 10px 16px 4px;
   border-top: 1px solid var(--line);
 }
@@ -283,7 +291,7 @@ body {
 }
 .hof-head .info { flex: 1; min-width: 0; }
 .hof-name { font-size: 18px; font-weight: 800; line-height: 1.25; }
-.hof-nick { font-size: 13px; font-weight: 700; color: var(--red); margin-top: 1px; }
+.hof-nick { font-size: 13px; font-weight: 700; color: var(--red-text); margin-top: 1px; }
 
 /* the affairs — same card, deliberately cooler than a trophy */
 .affair-card { background: var(--surface-2); }
@@ -307,14 +315,14 @@ body {
 }
 .hof-headline {
   margin-top: 8px;
-  font-size: 14.5px; font-weight: 800; color: var(--red);
+  font-size: 14.5px; font-weight: 800; color: var(--red-text);
 }
 .hof-bio { margin: 6px 0 0; font-size: 14.5px; line-height: 1.6; }
 .hof-list { margin: 10px 0 0; padding-inline-start: 20px; font-size: 13.5px; line-height: 1.75; }
-.hof-list li::marker { color: var(--red); }
+.hof-list li::marker { color: var(--red-text); }
 .src-link {
   display: inline-block; margin-top: 10px;
-  font-size: 12px; font-weight: 700; color: var(--red); text-decoration: none;
+  font-size: 12px; font-weight: 700; color: var(--red-text); text-decoration: none;
 }
 .src-link:hover { text-decoration: underline; }
 .src-link.block { display: block; margin: 4px 4px 0; }
@@ -323,7 +331,7 @@ body {
 .ls-summary { display: flex; gap: 8px; text-align: center; }
 .lsx { flex: 1; background: var(--surface-2); border-radius: 10px; padding: 10px 4px; }
 .lsx-v {
-  font-size: 21px; font-weight: 900; color: var(--red);
+  font-size: 21px; font-weight: 900; color: var(--red-text);
   font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate;
 }
 .lsx-k { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
@@ -378,7 +386,7 @@ body {
   font-weight: 700;
   cursor: pointer;
 }
-.cal-btn:hover { border-color: var(--red); color: var(--red); }
+.cal-btn:hover { border-color: var(--red); color: var(--red-text); }
 .cal-ico { font-size: 15px; line-height: 1; }
 .cal-note {
   font-size: 11.5px;
@@ -482,7 +490,7 @@ a.player-row:hover { border-color: var(--red); }
 /* Player detail */
 .back-link {
   display: inline-block;
-  color: var(--red);
+  color: var(--red-text);
   font-weight: 700;
   font-size: 14px;
   text-decoration: none;
@@ -540,7 +548,7 @@ a.player-row:hover { border-color: var(--red); }
   margin-top: 3px;
   font-variant-numeric: tabular-nums;
 }
-.attr-ends span:nth-child(2) { font-weight: 700; color: var(--red); }
+.attr-ends span:nth-child(2) { font-weight: 700; color: var(--red-text); }
 .statbar { margin-bottom: 12px; }
 .statbar:last-child { margin-bottom: 0; }
 
@@ -555,12 +563,12 @@ a.player-row:hover { border-color: var(--red); }
 .contract-box .cv { font-weight: 800; font-size: 17px; }
 .contract-box .cv.muted-value { color: var(--muted); font-size: 15px; }
 .contract-box .cl { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
-.contract-note { font-size: 13px; margin-top: 10px; color: var(--red); font-weight: 600; }
+.contract-note { font-size: 13px; margin-top: 10px; color: var(--red-text); font-weight: 600; }
 .disclaimer-line { font-size: 11.5px; color: var(--muted); margin-top: 8px; }
 
 .season-cap { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
 .honor {
-  background: var(--red-soft); color: var(--red);
+  background: var(--red-soft); color: var(--red-text);
   font-weight: 700; font-size: 13.5px;
   border-radius: 8px; padding: 8px 11px; margin-bottom: 12px;
 }
@@ -579,7 +587,7 @@ a.player-row:hover { border-color: var(--red); }
 .trophy .tr-emoji { font-size: 22px; line-height: 1; }
 .trophy .tr-count {
   font-size: 30px; font-weight: 800; line-height: 1.1;
-  color: var(--red);
+  color: var(--red-text);
   font-variant-numeric: tabular-nums;
 }
 .trophy .tr-name { font-size: 12.5px; font-weight: 700; }
@@ -629,7 +637,7 @@ a.player-row:hover { border-color: var(--red); }
 .tl-big .tl-body { border-color: var(--red); background: var(--red-soft); }
 .tl-title { font-weight: 800; font-size: 15.5px; margin-bottom: 4px; text-wrap: balance; }
 .tl-text { margin: 0; font-size: 14.5px; line-height: 1.6; }
-.legend-badge { background: var(--red-soft); color: var(--red); font-size: 20px; }
+.legend-badge { background: var(--red-soft); color: var(--red-text); font-size: 20px; }
 /* year ranges inside a mixed line need their own direction too */
 .yr { direction: ltr; unicode-bidi: isolate; }
 
@@ -640,7 +648,7 @@ a.player-row:hover { border-color: var(--red); }
   gap: 12px; margin-bottom: 8px;
 }
 .coach-name { font-weight: 800; font-size: 17px; }
-.coach-title { font-size: 13px; color: var(--red); font-weight: 700; margin-top: 1px; }
+.coach-title { font-size: 13px; color: var(--red-text); font-weight: 700; margin-top: 1px; }
 .coach-years {
   flex: 0 0 auto;
   font-size: 12.5px; font-weight: 800;
@@ -674,9 +682,9 @@ a.promo {
   border-color: var(--red);
 }
 a.promo:hover { filter: brightness(0.98); }
-.promo-title { font-weight: 800; font-size: 16px; color: var(--red); }
+.promo-title { font-weight: 800; font-size: 16px; color: var(--red-text); }
 .promo-sub { font-size: 13px; color: var(--muted); margin-top: 1px; }
-.promo .chevron { color: var(--red); font-size: 22px; line-height: 1; }
+.promo .chevron { color: var(--red-text); font-size: 22px; line-height: 1; }
 
 .meet-intro .meet-title { font-size: 21px; font-weight: 800; margin-bottom: 8px; }
 .meet-intro p { margin: 0 0 8px; font-size: 15px; }
@@ -688,7 +696,7 @@ a.promo:hover { filter: brightness(0.98); }
 .meet-head .opp { font-weight: 700; font-size: 16px; }
 .meet-head .sub { color: var(--muted); font-size: 12.5px; margin-top: 1px; }
 .meet-headline {
-  font-weight: 800; font-size: 17px; color: var(--red);
+  font-weight: 800; font-size: 17px; color: var(--red-text);
   margin-bottom: 6px; text-wrap: balance;
 }
 .meet-summary { margin: 0 0 10px; font-size: 15px; line-height: 1.6; }
@@ -752,12 +760,12 @@ a.promo:hover { filter: brightness(0.98); }
 }
 .role-box .watch-label {
   display: block; font-weight: 800; font-size: 11.5px;
-  color: var(--red); margin-bottom: 2px;
+  color: var(--red-text); margin-bottom: 2px;
 }
-.strength.compare { background: var(--red-soft); color: var(--red); font-weight: 700; }
+.strength.compare { background: var(--red-soft); color: var(--red-text); font-weight: 700; }
 
 .meet-links { display: flex; gap: 14px; }
-.meet-link { color: var(--red); font-weight: 700; font-size: 13.5px; text-decoration: none; }
+.meet-link { color: var(--red-text); font-weight: 700; font-size: 13.5px; text-decoration: none; }
 .meet-link:hover { text-decoration: underline; }
 .meet-link.muted-link { color: var(--muted); font-weight: 600; }
 
@@ -798,7 +806,7 @@ a.promo:hover { filter: brightness(0.98); }
   cursor: pointer;
 }
 .attend:hover { color: var(--text); }
-.attend.on { background: var(--red-soft); color: var(--red); }
+.attend.on { background: var(--red-soft); color: var(--red-text); }
 
 /* Diary */
 .diary-hero { text-align: center; }
@@ -830,7 +838,7 @@ a.promo:hover { filter: brightness(0.98); }
 .share-btn {
   width: 100%;
   font: inherit; font-weight: 700; font-size: 14.5px;
-  color: var(--red);
+  color: var(--red-text);
   background: none;
   border: 1.5px solid var(--red);
   border-radius: 10px;
@@ -868,7 +876,7 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
   display: block; width: 100%;
   text-align: center;
   font: inherit; font-weight: 700; font-size: 14px;
-  color: var(--red);
+  color: var(--red-text);
   background: none; border: none;
   padding: 10px; cursor: pointer;
   text-decoration: none;
@@ -969,7 +977,7 @@ body.sheet-open { overflow: hidden; }
   padding: 11px 0; cursor: pointer;
 }
 .poll-star:hover { border-color: var(--red); }
-.poll-star.on { background: var(--red-soft); color: var(--red); border-color: var(--red); }
+.poll-star.on { background: var(--red-soft); color: var(--red-text); border-color: var(--red); }
 .poll-ends {
   display: flex; justify-content: space-between;
   color: var(--muted); font-size: 11.5px; margin-top: 5px;
@@ -1004,11 +1012,11 @@ body.sheet-open { overflow: hidden; }
 }
 
 .footer-note { text-align: center; color: var(--muted); font-size: 12px; margin-top: 26px; }
-.footer-note .heart { color: var(--red); }
+.footer-note .heart { color: var(--red-text); }
 .footer-link {
   font: inherit; font-size: 12px; font-weight: 700;
   background: none; border: none; cursor: pointer;
-  color: var(--red); padding: 6px 2px; margin-top: 2px;
+  color: var(--red-text); padding: 6px 2px; margin-top: 2px;
   text-decoration: underline;
 }
 
@@ -1023,6 +1031,17 @@ body.sheet-open { overflow: hidden; }
   padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
   z-index: 20;
 }
+/* On a phone the bar is the width of the content. On a desktop it was the
+   width of the monitor, so the five links sat marooned at the far edges
+   while the app itself was a column in the middle. Keep them together. */
+@media (min-width: 620px) {
+  .tabbar {
+    justify-content: center;
+    gap: 8px;
+    padding-inline: 16px;
+  }
+  .tabbar a { min-width: 96px; }
+}
 .tabbar a {
   display: flex; flex-direction: column; align-items: center; gap: 2px;
   font-size: 11px; font-weight: 700;
@@ -1033,11 +1052,36 @@ body.sheet-open { overflow: hidden; }
   white-space: nowrap;
 }
 .tabbar a svg { width: 22px; height: 22px; fill: currentColor; }
-.tabbar a.active { color: var(--red); }
+.tabbar a.active { color: var(--red-text); }
 
 a:focus-visible, button:focus-visible { outline: 2.5px solid var(--red); outline-offset: 2px; }
 
 @media (prefers-reduced-motion: no-preference) {
   .view { animation: fadein 0.18s ease; }
   @keyframes fadein { from { opacity: 0.4; } to { opacity: 1; } }
+}
+
+/* ---------- desktop ----------
+   The layout is a phone column by design and stays one, but on a monitor
+   the type was set for a screen held 30cm from your face. Everything moves
+   up one step, and the 11.5px tier — notes, credits, captions — comes up to
+   a size that is actually readable at arm's length. */
+@media (min-width: 900px) {
+  body { font-size: 17px; }
+  .view { max-width: 620px; padding: 26px 20px 40px; }
+  .topbar-inner { max-width: 620px; }
+
+  .section-title { font-size: 16.5px; }
+  .next-game .opponent { font-size: 27px; }
+  .next-game .comp { font-size: 15px; }
+  .card { padding: 18px; }
+
+  .wordmark small,
+  .table-note, .cal-note, .list-note, .footer-note, .poll-note,
+  .hof-latin, .ps-games, .lsx-k, .lsp-k, .lsp-s, .live-fresh,
+  .ps-pct, .affair-year, .install-step {
+    font-size: 12.5px;
+  }
+  .cd-parts, .badge, .chip, .tabbar a { font-size: 13px; }
+  .game-row .sub, .player-row .sub, .meet-card .sub, .hof-card .sub { font-size: 13.5px; }
 }
