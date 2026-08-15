@@ -1,86 +1,73 @@
-"""Diagnostic probe — does hapoel.site actually serve the app?
+"""Diagnostic probe — why hapoel.site does not answer yet.
 
-The sandbox proxy refuses the domain (403 on CONNECT), so this is the only
-way to see it. Checks the things that would break on a move to a new host:
-the page itself, the data files the app fetches on boot, the service worker
-and its cache header, the icons, and the Open Graph tags a WhatsApp preview
-reads. Also checks live.json, which until now was published only to the
-branch GitHub Pages serves.
+The previous round failed on every request with a truncated cause. The
+decisive question is whether the name resolves at all: a domain bought
+minutes ago usually has not propagated, which looks identical to a broken
+configuration from the outside. Ask DNS directly, then try the host.
 """
-import re
+import socket
+import ssl
 
 import requests
 
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
-SITE = "https://hapoel.site"
+HOSTS = ["hapoel.site", "www.hapoel.site"]
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def get(path, note=""):
-    url = SITE + path
+log("=" * 74)
+log("A. does the name resolve?")
+log("=" * 74)
+resolved = {}
+for h in HOSTS:
     try:
-        r = requests.get(url, headers=UA, timeout=30, allow_redirects=True)
-        cc = r.headers.get("Cache-Control", "—")
-        log(f"  {path:<34} {r.status_code}  {r.headers.get('Content-Type','?')[:28]:<28}"
-            f" {len(r.content):>7}b  cache={cc[:38]} {note}")
-        return r
+        infos = socket.getaddrinfo(h, 443, proto=socket.IPPROTO_TCP)
+        ips = sorted({i[4][0] for i in infos})
+        resolved[h] = ips
+        log(f"  {h:<18} -> {', '.join(ips)}")
     except Exception as e:
-        log(f"  {path:<34} FAIL {type(e).__name__} {str(e)[:90]}")
-        return None
-
-
-log("=" * 78)
-log("A. the pages and assets the app needs")
-log("=" * 78)
-root = get("/")
-for p in ("/index.html", "/js/app.js", "/css/style.css", "/sw.js",
-          "/manifest.webmanifest", "/icons/icon-512.png",
-          "/data/club.json", "/data/games.json", "/data/standings.json",
-          "/data/meta.json", "/data/hall-of-fame.json", "/data/history.json",
-          "/data/roster.json", "/data/feedback.json",
-          "/img/players/david-roddy.jpg", "/hapoel-standalone.html"):
-    get(p)
-log("")
-log("  live.json — 404 here means the live score would never show:")
-get("/data/live.json", "(404 is expected when no game is on)")
+        resolved[h] = []
+        log(f"  {h:<18} -> NO DNS RECORD  ({type(e).__name__}: {e})")
 
 log("")
-log("=" * 78)
-log("B. is it serving OUR app, and the new domain?")
-log("=" * 78)
-if root is not None and root.status_code == 200:
-    html = root.text
-    t = re.search(r"<title>(.*?)</title>", html, re.S)
-    log("  title:", (t.group(1).strip() if t else "?"))
-    for prop in ("og:url", "og:title", "og:image", "og:description"):
-        m = re.search(rf'property="{prop}"[^>]*content="([^"]*)"', html)
-        log(f"  {prop:<16}", m.group(1)[:80] if m else "MISSING")
-    m = re.search(r'rel="canonical"[^>]*href="([^"]*)"', html)
-    log("  canonical       ", m.group(1) if m else "MISSING")
-    log("  registers sw    ", 'navigator.serviceWorker.register("sw.js"' in html)
-
-log("")
-log("  club.json url — what a shared WhatsApp link will point at:")
-c = get("/data/club.json")
-if c is not None and c.status_code == 200:
+log("=" * 74)
+log("B. if it resolves, does it serve TLS and our app?")
+log("=" * 74)
+for h, ips in resolved.items():
+    if not ips:
+        log(f"  {h}: skipped, nothing to connect to")
+        continue
     try:
-        log("    url =", c.json().get("url"))
+        ctx = ssl.create_default_context()
+        with socket.create_connection((h, 443), timeout=15) as sock:
+            with ctx.wrap_socket(sock, server_hostname=h) as ss:
+                cert = ss.getpeercert()
+                log(f"  {h}: TLS ok, issued to "
+                    f"{dict(x[0] for x in cert['subject']).get('commonName','?')}")
     except Exception as e:
-        log("    could not parse:", e)
+        log(f"  {h}: TLS FAIL {type(e).__name__}: {str(e)[:120]}")
+    try:
+        r = requests.get(f"https://{h}/", timeout=20, allow_redirects=True)
+        log(f"    GET / -> {r.status_code}, server={r.headers.get('server','?')}, "
+            f"{len(r.content)}b")
+        if "יושב סופר את הדקות" in r.text:
+            log("    ^ this is our app")
+    except Exception as e:
+        log(f"    GET / FAIL {type(e).__name__}: {str(e)[:160]}")
 
 log("")
-log("=" * 78)
-log("C. the old address still up?")
-log("=" * 78)
+log("=" * 74)
+log("C. what the registrar's nameservers say (is it pointed at Vercel?)")
+log("=" * 74)
 try:
-    r = requests.get("https://behemot46.github.io/Hapoel/data/club.json",
-                     headers=UA, timeout=30)
-    log(f"  github.io club.json: {r.status_code}")
-    if r.status_code == 200:
-        log("    url =", r.json().get("url"))
+    r = requests.get("https://dns.google/resolve?name=hapoel.site&type=NS", timeout=20)
+    log("  NS:", [a.get("data") for a in r.json().get("Answer", [])] or "none published")
+    for t in ("A", "CNAME"):
+        r = requests.get(f"https://dns.google/resolve?name=hapoel.site&type={t}", timeout=20)
+        j = r.json()
+        log(f"  {t}: status={j.get('Status')} "
+            f"{[a.get('data') for a in j.get('Answer', [])] or 'none'}")
 except Exception as e:
-    log(f"  github.io: FAIL {type(e).__name__} {str(e)[:90]}")
+    log(f"  public resolver FAIL {type(e).__name__}: {str(e)[:120]}")
