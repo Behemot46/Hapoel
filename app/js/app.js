@@ -676,6 +676,25 @@ function shareGlyph() {
   return svg;
 }
 
+// The poll shows itself once and then never again. Fans who waved it away,
+// or who only thought of something on the tenth visit, need a way in that is
+// not a grey line of text at the bottom of the page.
+function feedbackCard() {
+  if (!pollConfig() || window.__HAPOEL_SNAPSHOT__) return null;
+  const c = el("div", "card feedback-card");
+  const t = el("div");
+  t.appendChild(text("div", "share-title", "מה חסר לכם באפליקציה?"));
+  t.appendChild(text("div", "share-sub",
+    pollState().done ? "אמרתם כבר משהו — יש עוד? קדימה"
+                     : "שלוש שאלות, פחות מדקה. זה מה שנבנה אחר כך"));
+  c.appendChild(t);
+  const b = el("button", "wa-btn", "לסקר");
+  b.type = "button";
+  b.onclick = openPoll;
+  c.appendChild(b);
+  return c;
+}
+
 function shareCard() {
   const c = el("div", "card share-card");
   const t = el("div");
@@ -708,9 +727,37 @@ const POLL_WANTS = [
   "פינת נוסטלגיה",
 ];
 
+// Three possible destinations, first one configured wins. A Google Form is
+// the best of them — no account, answers land in a sheet. WhatsApp is the
+// easiest for a fan but publishes a phone number. A GitHub issue needs no
+// setup at all and works today, at the cost of asking for an account, so it
+// is the floor rather than the goal.
 function pollConfig() {
   const f = state.feedback || {};
-  return f.formUrl ? f : null;
+  return (f.formUrl || f.whatsapp || f.issueRepo) ? f : null;
+}
+
+function pollTarget() {
+  const f = pollConfig();
+  if (!f) return null;
+  if (f.formUrl) return { kind: "form", label: "הטופס ייפתח בלשונית חדשה" };
+  if (f.whatsapp) return { kind: "whatsapp", label: "ייפתח וואטסאפ עם התשובות מוכנות" };
+  return { kind: "issue", label: "ייפתח גיטהאב — צריך חשבון, וזה חינם" };
+}
+
+function pollNote() {
+  const t = pollTarget();
+  if (!t) return "";
+  if (t.kind === "form") {
+    return "התשובות נשלחות לטופס של גוגל. אין חשבון, אין מעקב, " +
+           "ושום דבר לא נשמר באפליקציה.";
+  }
+  if (t.kind === "whatsapp") {
+    return "התשובות נפתחות כהודעת וואטסאפ מוכנה — אתם שולחים, אנחנו קוראים. " +
+           "שום דבר לא נשמר באפליקציה.";
+  }
+  return "התשובות נפתחות ככרטיס פתוח בגיטהאב, במקום שבו הקוד של האפליקציה " +
+         "נמצא. צריך חשבון גיטהאב. שום דבר לא נשמר באפליקציה.";
 }
 
 function pollState() {
@@ -753,6 +800,30 @@ function pollWhenQuiet(visits) {
     if (shouldAskPoll(visits)) openPoll();
   }, 4000);
   setTimeout(() => { if (!state.live && shouldAskPoll(visits)) openPoll(); }, 1500);
+}
+
+// the message a human reads, when the destination is not a form
+function answersAsText(answers) {
+  const lines = ["משוב על ״יושב סופר את הדקות״", ""];
+  if (answers.want) lines.push("הכי חשוב להוסיף: " + answers.want);
+  if (answers.rating) lines.push("ציון לאפליקציה: " + answers.rating + " מתוך 5");
+  if (answers.text) lines.push("", answers.text);
+  return lines.join("\n");
+}
+
+function pollSubmitUrl(answers) {
+  const cfg = pollConfig();
+  const t = pollTarget();
+  if (t.kind === "whatsapp") {
+    return "https://wa.me/" + String(cfg.whatsapp).replace(/[^0-9]/g, "") +
+      "?text=" + encodeURIComponent(answersAsText(answers));
+  }
+  if (t.kind === "issue") {
+    const title = "משוב מאוהד" + (answers.want ? ": " + answers.want : "");
+    return "https://github.com/" + cfg.issueRepo + "/issues/new?title=" +
+      encodeURIComponent(title) + "&body=" + encodeURIComponent(answersAsText(answers));
+  }
+  return prefilledFormUrl(answers);
 }
 
 function prefilledFormUrl(answers) {
@@ -863,9 +934,9 @@ function openPoll() {
     const s = pollState();
     s.done = true;
     savePollState(s);
-    window.open(prefilledFormUrl(answers), "_blank", "noopener");
+    window.open(pollSubmitUrl(answers), "_blank", "noopener");
     closePoll();
-    toast("תודה! הטופס נפתח בלשונית חדשה");
+    toast("תודה! " + (pollTarget() || {}).label);
   };
   sheet.appendChild(send);
 
@@ -874,8 +945,7 @@ function openPoll() {
   later.onclick = snoozePoll;
   sheet.appendChild(later);
 
-  sheet.appendChild(text("div", "poll-note",
-    "התשובות נשלחות לטופס של גוגל. אין חשבון, אין מעקב, ושום דבר לא נשמר באפליקציה."));
+  sheet.appendChild(text("div", "poll-note", pollNote()));
 
   wrap.appendChild(sheet);
   wrap.onclick = e => { if (e.target === wrap) snoozePoll(); };
@@ -1019,6 +1089,8 @@ function renderHome() {
 
   const ic = installCard();
   if (ic) view.appendChild(ic);
+  const fc = feedbackCard();
+  if (fc) view.appendChild(fc);
   view.appendChild(shareCard());
   footer();
 }
