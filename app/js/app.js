@@ -855,6 +855,13 @@ function standingsTable(rows, full) {
   return t;
 }
 
+function photoCredit() {
+  const players = (state.roster && state.roster.players) || [];
+  if (!players.some(p => p.photo)) return null;
+  return text("div", "table-note",
+    "תמונות השחקנים מהפיד הרשמי של היורוקאפ. שחקן בלי תמונה מוצג בראשי תיבות.");
+}
+
 /* ---------- roster ---------- */
 
 function renderRoster() {
@@ -908,6 +915,8 @@ function renderRoster() {
     row.appendChild(text("div", "chevron", "‹"));
     view.appendChild(row);
   });
+  const cr = photoCredit();
+  if (cr) view.appendChild(cr);
   footer();
 }
 
@@ -942,6 +951,10 @@ function initialsOf(p) {
 
 function playerAvatar(p, cls) {
   if (p.photo) return playerPhoto(p, cls);
+  return initialsAvatar(p, cls);
+}
+
+function initialsAvatar(p, cls) {
   const d = el("div", "player-photo avatar " + (cls || ""));
   const key = (p.name || "") + (p.number ?? "");
   let h = 0;
@@ -958,7 +971,11 @@ function playerPhoto(p, cls) {
   img.src = p.photo;
   img.alt = playerName(p);
   img.loading = "lazy";
-  img.onerror = () => img.remove();
+  // a missing file should leave initials behind, not a hole in the layout
+  img.onerror = () => {
+    const fallback = initialsAvatar(p, cls);
+    if (img.parentNode) img.parentNode.replaceChild(fallback, img);
+  };
   return img;
 }
 
@@ -1669,6 +1686,8 @@ function renderMeet() {
   if (!written) {
     view.appendChild(text("div", "empty", "הדוחות בהכנה — נעדכן בקרוב"));
   }
+  const cr = photoCredit();
+  if (cr) view.appendChild(cr);
   footer();
 }
 

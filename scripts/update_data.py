@@ -21,6 +21,7 @@ import re
 import sys
 import datetime
 import pathlib
+import time
 import zoneinfo
 
 import requests
@@ -43,12 +44,28 @@ def is_us(name):
 def log(*args):
     print("[update]", *args, flush=True)
 
+# The EuroCup API answers 429 to a burst. One source hammering it used to
+# starve the sources that ran after it, so back off and retry here rather
+# than letting a throttle look like a broken feed.
+RETRY_WAITS = (2, 5, 12, 25)
+
 def fetch(url):
     log("GET", url)
-    r = requests.get(url, headers=UA, timeout=30)
-    r.raise_for_status()
-    r.encoding = r.apparent_encoding or "utf-8"
-    return r.text
+    last = None
+    for i, wait in enumerate((0,) + RETRY_WAITS):
+        if wait:
+            time.sleep(wait)
+        r = requests.get(url, headers=UA, timeout=30)
+        if r.status_code != 429:
+            r.raise_for_status()
+            r.encoding = r.apparent_encoding or "utf-8"
+            return r.text
+        last = r
+        retry_after = r.headers.get("Retry-After")
+        log(f"  429 throttled (attempt {i + 1}), retry-after={retry_after or '-'}")
+        if retry_after and retry_after.isdigit():
+            time.sleep(min(int(retry_after), 30))
+    last.raise_for_status()
 
 def load_json(name):
     p = DATA / name
@@ -823,10 +840,14 @@ def tidy_country(raw):
     return COUNTRY_HE.get((raw or "").strip().lower(), (raw or "").strip())
 
 # the squad feed carries no headshots, so try the per-player detail endpoints
+# The squad payload carries images:{} for everyone, but the competition-wide
+# person record does have a headshot — and being season-less it also covers a
+# summer signing whose EuroCup history is at another club. One request per
+# player, which the API tolerates; a full box-score sweep does not (429).
 PERSON_ENDPOINTS = [
+    "https://api-live.euroleague.net/v2/competitions/U/people/{code}",
     "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/people/{code}",
-    "https://api-live.euroleague.net/v2/people/{code}",
-    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/clubs/JER/people/{code}",
+    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2025/people/{code}",
 ]
 
 def photos_from_team_page(players):
@@ -871,28 +892,54 @@ def photos_from_team_page(players):
             hits += 1
     return hits
 
+def _headshot_from_person(data):
+    """{"data": [ {images:{headshot}}, ... ]} — newest entry wins, because a
+    player who has been round the block has one record per club-season."""
+    rows = data.get("data") if isinstance(data, dict) else data
+    if isinstance(rows, dict):
+        rows = [rows]
+    if not isinstance(rows, list):
+        return None
+    best, best_key = None, ""
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        url = ((r.get("images") or {}).get("headshot")
+               or (r.get("images") or {}).get("action"))
+        if not isinstance(url, str) or not url.startswith("http"):
+            continue
+        key = str((r.get("season") or {}).get("code") or r.get("startDate") or "")
+        if best is None or key >= best_key:
+            best, best_key = url, key
+    return best
+
 def photo_url_for(code, template=None):
     """Return (url, template_that_worked). Reuses a known-good template."""
     templates = [template] if template else PERSON_ENDPOINTS
     for t in templates:
         try:
-            body = fetch(t.format(code=code))
-            data = json.loads(body)
+            data = json.loads(fetch(t.format(code=code)))
         except Exception as e:
             log(f"  person endpoint failed ({t}): {e}")
             continue
+        url = _headshot_from_person(data)
+        if url:
+            return url, t
+        # fall back to the loose walker in case the shape moves
         found = []
         _walk_json(data, found)
         for rec in found:
             if rec.get("photoUrl"):
                 return rec["photoUrl"], t
-        # log the shape once so the next round can target it
         if isinstance(data, dict):
-            log(f"  DIAG person keys for {code}: {sorted(data.keys())[:20]}")
-        return None, t
+            log(f"  no headshot for {code} at {t} (keys {sorted(data.keys())[:8]})")
     return None, None
 
 PHOTO_DIR = ROOT / "app" / "img" / "players"
+
+# how many new headshots to look up in a single run — see the note in
+# update_roster(); the cap exists to protect the other sources, not the images
+PHOTO_LOOKUPS_PER_RUN = 4
 
 def slugify(name):
     s = re.sub(r"[^a-zA-Z0-9]+", "-", (name or "").strip().lower())
@@ -1016,8 +1063,23 @@ def update_roster():
         if p.get("country"):
             p["country"] = tidy_country(p["country"])
 
-    # headshots are not in the squad payload, and the per-player endpoints
-    # carry none either — try the team page's embedded data
+    # Headshots are not in the squad payload; the competition-wide person
+    # record has them. A photo does not change, so only look up players whose
+    # file is missing — a steady-state run makes no image requests at all.
+    # New players are fetched a few per run so a squad overhaul never eats the
+    # rate limit that the other sources need.
+    template = None
+    missing = [p for p in players
+               if not p.get("photoUrl") and p.get("code")
+               and not (PHOTO_DIR / f"{slugify(p['name'])}.jpg").exists()]
+    log(f"  headshots on disk: {len(players) - len(missing)}/{len(players)}")
+    for p in missing[:PHOTO_LOOKUPS_PER_RUN]:
+        url, template = photo_url_for(p["code"], template)
+        if url:
+            p["photoUrl"] = url
+        time.sleep(1.5)
+    if len(missing) > PHOTO_LOOKUPS_PER_RUN:
+        log(f"  {len(missing) - PHOTO_LOOKUPS_PER_RUN} headshots left for the next run")
     if not any(p.get("photoUrl") for p in players):
         hits = photos_from_team_page(players)
         log(f"  headshots matched from team page: {hits}/{len(players)}")
@@ -1164,9 +1226,12 @@ def main():
     meta = load_json("meta.json") or {"sources": {}}
     ok_any = False
     status = {}
+    # order matters: the image lookups are the only greedy step, so everything
+    # that shares the same API budget runs before them
     for name, fn in [("standings", update_standings), ("games", update_games),
-                     ("roster", update_roster), ("eurocup", update_eurocup_standings),
-                     ("seasonStats", update_season_stats)]:
+                     ("eurocup", update_eurocup_standings),
+                     ("seasonStats", update_season_stats),
+                     ("roster", update_roster)]:
         try:
             fn()
             status[name] = {"ok": True, "detail": "עודכן בהצלחה"}
