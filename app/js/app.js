@@ -1772,6 +1772,61 @@ function advancedCard() {
   view.appendChild(c);
 }
 
+// Averages for the season that ended. Two rows per player: the counting stats
+// on top, the shooting underneath — a phone cannot hold nine columns, and
+// splitting beats dropping half the numbers.
+function lastSeasonPlayers(ps) {
+  if (!ps || !(ps.players || []).length) return;
+  view.appendChild(text("div", "section-title",
+    "ממוצעים למשחק · " + ps.competition + " " + ps.season));
+
+  const card = el("div", "card table-card");
+  const t = el("table", "standings stats-table");
+  const head = el("tr");
+  const th0 = el("th", "team");
+  th0.textContent = "שחקן";
+  head.appendChild(th0);
+  [["דק׳", "דקות"], ["נק׳", "נקודות"], ["ריב׳", "ריבאונדים"],
+   ["אס׳", "אסיסטים"], ["מדד", "מדד יעילות"]].forEach(([short, full]) => {
+    const th = el("th", "");
+    th.textContent = short;
+    th.title = full;
+    head.appendChild(th);
+  });
+  t.appendChild(head);
+
+  ps.players.forEach(p => {
+    const tr = el("tr");
+    const td = el("td", "team");
+    td.appendChild(text("span", "", p.nameHe || p.name));
+    td.appendChild(text("span", "ps-games", p.games + " מש׳"));
+    tr.appendChild(td);
+    [p.min, p.pts, p.reb, p.ast, p.val].forEach(v =>
+      tr.appendChild(text("td", "num", v == null ? "–" : v.toFixed(1))));
+    t.appendChild(tr);
+
+    // the shooting line, only when the feed actually recorded attempts
+    const shots = [["2", p.fg2], ["3", p.fg3], ["עונשין", p.ft]]
+      .filter(([, v]) => v);
+    if (shots.length) {
+      const sr = el("tr", "ps-shot");
+      const sc = el("td");
+      sc.colSpan = 6;
+      shots.forEach(([label, v]) => {
+        const b = el("span", "ps-pct");
+        b.appendChild(text("span", "ps-pct-k", label));
+        b.appendChild(text("span", "ps-pct-v", v));
+        sc.appendChild(b);
+      });
+      sr.appendChild(sc);
+      t.appendChild(sr);
+    }
+  });
+  card.appendChild(t);
+  view.appendChild(card);
+  if (ps.note) view.appendChild(prose("div", "table-note", ps.note));
+}
+
 function renderLastSeason() {
   const l = state.lastSeason;
   if (!l) {
@@ -1810,6 +1865,8 @@ function renderLastSeason() {
     b.appendChild(prose("div", "notice-body", h.text));
     view.appendChild(b);
   });
+
+  lastSeasonPlayers(l.playerStats);
 
   if (lg.rows && lg.rows.length) {
     view.appendChild(text("div", "section-title", "הטבלה הסופית"));

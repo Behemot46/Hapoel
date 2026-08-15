@@ -318,6 +318,23 @@ body {
   direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums;
 }
 .stats-table td.num, .stats-table th { font-variant-numeric: tabular-nums; }
+.stats-table td.team span { display: block; }
+.ps-games { font-size: 11px; color: var(--muted); font-weight: 600; }
+.ps-shot td {
+  padding-top: 0; padding-bottom: 9px;
+  border-bottom: 1px solid var(--line);
+}
+.ps-pct {
+  display: inline-flex; align-items: baseline; gap: 4px;
+  margin-inline-end: 12px;
+  font-size: 11.5px;
+}
+.ps-pct-k { color: var(--muted); }
+.ps-pct-v {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  direction: ltr; unicode-bidi: isolate;
+}
 
 /* A plain "here is what is missing and why" note */
 .notice { background: var(--surface-2); border-style: dashed; }
