@@ -1124,7 +1124,32 @@ def update_roster():
         raise RuntimeError(f"only {len(players)} players parsed — refusing to overwrite (see DIAG lines)")
     return _save_roster(players)
 
+def apply_overrides(players):
+    """Hand-kept corrections win over anything scraped. A source that stops
+    publishing a field should not silently blank it out, and an override left
+    behind by a departed player should not rot unnoticed — so say both."""
+    src = load_json("player-overrides.json") or {}
+    used = set()
+    for p in players:
+        for key in (p.get("nameHe"), p.get("name")):
+            o = src.get(key)
+            if not isinstance(o, dict):
+                continue
+            used.add(key)
+            for field, value in o.items():
+                if field.startswith("_"):
+                    continue
+                if p.get(field) != value:
+                    log(f"  override: {key} {field} {p.get(field)!r} -> {value!r}")
+                p[field] = value
+            break
+    stale = [k for k in src if not k.startswith("_") and k not in used]
+    if stale:
+        log("  overrides with nobody in the squad (stale?):", stale)
+    return players
+
 def _save_roster(players):
+    apply_overrides(players)
     log("roster players:", len(players))
     # one-time visibility into what the feed actually offers per player
     log("  fields present:", sorted({k for p in players for k in p}))
