@@ -1620,6 +1620,8 @@ function hofCard(p, foreign) {
   head.appendChild(av);
   const who = el("div", "info");
   who.appendChild(text("div", "hof-name", p.name));
+  // the name the stands actually used
+  if (p.nickname) who.appendChild(text("div", "hof-nick", "״" + p.nickname + "״"));
   const bits = [p.position, p.era];
   if (foreign && p.country) bits.splice(1, 0, p.country);
   who.appendChild(prose("div", "sub", bits.filter(Boolean).join(" · ")));
@@ -1670,6 +1672,7 @@ function renderHof() {
     ["foreign", "זרים · " + (h.foreigners || []).length],
   ];
   if (coaches.length) tabs.push(["coaches", "מאמנים · " + coaches.length]);
+  if ((h.flops || []).length) tabs.push(["flops", "אכזבות · " + h.flops.length]);
   tabs.forEach(([key, label]) => {
     const b = text("button", state.hofTab === key ? "active" : "", label);
     b.onclick = () => { state.hofTab = key; render(); };
@@ -1682,6 +1685,17 @@ function renderHof() {
     coaches.forEach(c => view.appendChild(coachCard(c)));
     const note = (state.history && state.history.coachesNote);
     if (note) view.appendChild(text("div", "table-note", note));
+    footer();
+    return;
+  }
+
+  if (state.hofTab === "flops") {
+    if (h.flopsIntro) view.appendChild(prose("div", "table-note", h.flopsIntro));
+    h.flops.forEach(p => {
+      const c = hofCard(p, true);
+      c.classList.add("flop-card");
+      view.appendChild(c);
+    });
     footer();
     return;
   }
