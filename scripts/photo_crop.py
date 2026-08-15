@@ -54,12 +54,17 @@ def find_head(im):
     return (xs[0] + xs[-1]) // 2, top, xs[-1] - xs[0]
 
 
-def crop_to_face(im, size=320):
+def crop_to_face(im, size=320, skip_square=True):
     """Square crop centred on the head. Returns the image unchanged when the
-    head cannot be located, and skips images that are already square — so
-    running this twice does not crop twice."""
+    head cannot be located, and by default skips images that are already
+    square — so running this twice over stored files does not crop twice.
+
+    Pass skip_square=False for bytes just pulled off the network: some sources
+    publish the cut-out on a square canvas, and there the head still sits high
+    with empty space below it. Nothing has been cropped yet, so there is no
+    double-crop to guard against."""
     w, h = im.size
-    if w == h:
+    if w == h and skip_square:
         return im
     found = find_head(im)
     if not found:
