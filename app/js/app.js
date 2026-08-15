@@ -862,7 +862,7 @@ function pollNote() {
   if (!t) return "";
   if (t.kind === "endpoint") {
     return "השליחה נעשית מכאן, בלי חשבון ובלי לצאת מהאפליקציה. " +
-           "התשובה נפתחת ככרטיס גלוי בעמוד הפרויקט, אז אל תכתבו בה פרטים אישיים — " +
+           "התשובות מגיעות רק אלינו ואינן מתפרסמות בשום מקום. " +
            "לא ביקשנו שם, טלפון או אימייל, ואין באפליקציה מעקב.";
   }
   if (t.kind === "form") {
@@ -1181,12 +1181,21 @@ function openPoll() {
       savePollState(s);
       closePoll();
     };
-    // the endpoint sends from here; anything else opens with the answers in it
+    // The endpoint sends from here. A fallback exists only if one is
+    // configured — and none is, deliberately: the fan was promised the
+    // answers stay private, and every other destination is public or
+    // exposes a phone number. With nowhere private to send, the honest
+    // move is to say so and keep their words on the screen.
     const away = () => {
       const url = fallbackUrl(answers);
-      if (url) window.open(url, "_blank", "noopener");
+      if (!url) {
+        send.disabled = false;
+        send.textContent = "שליחה";
+        return toast("לא הצלחנו לשלוח כרגע. מה שכתבתם עדיין כאן — נסו שוב עוד רגע");
+      }
+      window.open(url, "_blank", "noopener");
       done();
-      const label = url ? fallbackLabel() : "";
+      const label = fallbackLabel();
       toast(label ? "תודה! " + label : "תודה!");
     };
     if (!cfg.endpoint) return away();

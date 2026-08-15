@@ -1,29 +1,32 @@
 "use strict";
 
 /**
- * Where a fan's answers land.
+ * Where a fan's answers land — and who can read them.
  *
- * The app itself is static files — it has no server and cannot store
- * anything. Vercel runs this one function next to it, so the form can be
- * filled and sent without leaving the app, without an account and without
- * a third-party form service. Each submission becomes an issue on the
- * project's own repository, which is where the work gets planned anyway.
+ * The app itself is static files: no server, nowhere to store anything.
+ * Vercel runs this one function next to it, so the form can be filled and
+ * sent without leaving the app, without an account and without a
+ * third-party form service. Each submission becomes an issue.
  *
- * Enabling it takes one environment variable in Vercel:
+ * THE ANSWERS ARE PRIVATE. They go to a repository only the owner can
+ * read, never to this public one, and that is enforced here rather than
+ * left to whoever fills in the configuration: before the first write the
+ * function asks GitHub whether the target repository is private, and
+ * refuses to write to it if it is not. A misconfiguration therefore loses
+ * a submission — it never publishes one.
  *
- *     FEEDBACK_TOKEN   a GitHub token with permission to open issues
- *     FEEDBACK_REPO    optional, owner/repo — defaults to this project
+ * Two environment variables in Vercel, both required:
  *
- * Without the token the function answers 501 and the app quietly falls
- * back to opening a prefilled GitHub issue in a new tab. A fan should
- * never meet an error because a deployment was half-configured.
+ *     FEEDBACK_TOKEN   a GitHub token that may open issues on that repo
+ *     FEEDBACK_REPO    owner/repo — a PRIVATE repository
  *
- * Anything a fan types ends up in a public issue, so the form says so in
- * as many words and asks for no name, no phone and no email. The caps and
- * checks below exist because this is an open endpoint on a public site.
+ * With either missing the function answers 501 and the app tells the fan
+ * plainly that sending failed, keeping what they typed on screen. There is
+ * deliberately no public fallback: a fan who was promised privacy must not
+ * be handed to a public issue form instead.
  */
 
-const REPO = process.env.FEEDBACK_REPO || "Behemot46/Hapoel";
+const REPO = process.env.FEEDBACK_REPO || "";
 const TOKEN = process.env.FEEDBACK_TOKEN || "";
 
 const LIMITS = { fan: 40, want: 40, wants: 4, text: 900 };
@@ -81,6 +84,34 @@ function issueTitle(a) {
   return "משוב מאוהד";
 }
 
+// Asked once per warm instance, then remembered: whether the repository the
+// answers are going to is actually private. This is the guarantee the form
+// makes to the fan, so it is checked against GitHub and not against a
+// comment in a config file.
+let targetPrivate = null;
+
+async function targetIsPrivate() {
+  if (targetPrivate !== null) return targetPrivate;
+  const res = await fetch("https://api.github.com/repos/" + REPO, {
+    headers: {
+      Authorization: "Bearer " + TOKEN,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      "User-Agent": "hapoel-fan-app",
+    },
+  });
+  if (!res.ok) {
+    console.error("cannot read target repo", REPO, res.status);
+    return null; // unknown — treated as "do not write"
+  }
+  const repo = await res.json();
+  targetPrivate = repo.private === true;
+  if (!targetPrivate) {
+    console.error("REFUSING: " + REPO + " is public, and answers are private");
+  }
+  return targetPrivate;
+}
+
 async function createIssue(payload) {
   const res = await fetch("https://api.github.com/repos/" + REPO + "/issues", {
     method: "POST",
@@ -103,8 +134,8 @@ module.exports = async (req, res) => {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ ok: false, reason: "method" });
   }
-  if (!TOKEN) {
-    // not an error the fan caused, and the app knows to fall back
+  if (!TOKEN || !REPO) {
+    // not an error the fan caused, and the app says so honestly
     return res.status(501).json({ ok: false, reason: "not-configured" });
   }
 
@@ -132,6 +163,10 @@ module.exports = async (req, res) => {
 
   const payload = { title: issueTitle(a), body: issueBody(a), labels: ["משוב"] };
   try {
+    if ((await targetIsPrivate()) !== true) {
+      // losing one answer beats publishing it
+      return res.status(501).json({ ok: false, reason: "target-not-private" });
+    }
     let gh = await createIssue(payload);
     if (gh.status === 422) {
       // a label the repository does not have yet and the token may not be
