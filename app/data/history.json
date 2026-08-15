@@ -101,7 +101,7 @@
       "source": "https://forward.com/news/375168/will-amare-stoudemire-clinching-israel-victory-basketball-star-amare-stoude/"
     }
   ],
-  "coachesNote": "רשימה חלקית — רק תקופות שאומתו במקורות. חסרים? מוסיפים כאן.",
+  "coachesNote": "רשימה חלקית — רק תקופות שאומתו במקורות פומביים. עשורים שלמים של מאמנים עוד חסרים כאן; מי שיודע, מוזמן להוסיף.",
   "coaches": [
     {
       "name": "אלכסנדר דז׳יקיץ׳",
@@ -137,6 +137,29 @@
       "years": "2021–2022",
       "text": "המאמן הליטאי שהחליף את קטש על הקווים.",
       "source": "https://www.eurohoops.net/en/fiba-champions-league/1154284/dainius-adomaitis-expected-to-replace-oded-kattash-at-hapoel-jerusalem/"
+    },
+    {
+      "name": "פיני גרשון",
+      "years": "אמצע שנות התשעים",
+      "title": "הגביע הראשון בתולדות המועדון",
+      "text": "ב־1996 הוביל את הפועל ירושלים לגביע המדינה — הראשון אי פעם למועדון — בניצחון בגמר על מכבי תל אביב. אחד המאמנים המנוסים בתולדות הליגה הישראלית, ושני ברשימת המאמנים עם הכי הרבה ניצחונות בליגה.",
+      "achievements": [
+        "גביע המדינה 1996"
+      ],
+      "highlight": true,
+      "source": "https://en.wikipedia.org/wiki/Pini_Gershon"
+    },
+    {
+      "name": "צביקה שרף",
+      "years": "1992, 1999–2001",
+      "text": "שתי תקופות במועדון, בשוליים של תור הזהב של שנות התשעים. שלישי ברשימת המאמנים עם הכי הרבה ניצחונות בתולדות הליגה הישראלית.",
+      "source": "https://en.wikipedia.org/wiki/Zvi_Sherf"
+    },
+    {
+      "name": "יונתן אלון",
+      "years": "2025–2026",
+      "text": "המאמן הראשי בעונה שבה הקבוצה סיימה שלישית בעונה הסדירה וג׳ארד הארפר לקח את פרס ה־MVP השני שלו ברציפות ביורוקאפ.",
+      "source": "https://hapoel.co.il/news?NewsId=30335&lang=en"
     },
     {
       "name": "סאשה אובראדוביץ׳",

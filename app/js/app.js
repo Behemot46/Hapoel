@@ -1202,6 +1202,34 @@ function renderPlayer(slug) {
 
 /* ---------- hall of fame ---------- */
 
+// one coach card, shared by the history screen and the hall of fame
+function coachCard(c) {
+  const card = el("div", "card coach-card" + (c.highlight ? " coach-big" : ""));
+  const top = el("div", "coach-top");
+  const who = el("div");
+  who.appendChild(text("div", "coach-name", c.name));
+  if (c.title) who.appendChild(text("div", "coach-title", c.title));
+  top.appendChild(who);
+  const yr = el("div", "coach-years" + (c.current ? " now" : ""));
+  yr.textContent = c.years;
+  top.appendChild(yr);
+  card.appendChild(top);
+
+  card.appendChild(text("p", "meet-summary", c.text));
+  if (c.achievements && c.achievements.length) {
+    const chips = el("div", "chips-row");
+    c.achievements.forEach(a => chips.appendChild(text("span", "strength trophy-chip", "🏆 " + a)));
+    card.appendChild(chips);
+  }
+  if (c.source) {
+    const a = el("a", "meet-link muted-link");
+    a.href = c.source; a.target = "_blank"; a.rel = "noopener";
+    a.textContent = "המקור";
+    card.appendChild(a);
+  }
+  return card;
+}
+
 function hofCard(p, foreign) {
   const c = el("div", "card hof-card");
   const head = el("div", "hof-head");
@@ -1255,16 +1283,29 @@ function renderHof() {
   intro.appendChild(text("p", "", h.intro));
   view.appendChild(intro);
 
+  // coaches live in history.json — one list, shown in both places
+  const coaches = (state.history && state.history.coaches) || [];
   const seg = el("div", "seg");
-  const bI = text("button", state.hofTab === "foreign" ? "" : "active",
-    "ישראלים · " + (h.israelis || []).length);
-  const bF = text("button", state.hofTab === "foreign" ? "active" : "",
-    "זרים · " + (h.foreigners || []).length);
-  bI.onclick = () => { state.hofTab = "israeli"; render(); };
-  bF.onclick = () => { state.hofTab = "foreign"; render(); };
-  seg.appendChild(bI);
-  seg.appendChild(bF);
+  const tabs = [
+    ["israeli", "ישראלים · " + (h.israelis || []).length],
+    ["foreign", "זרים · " + (h.foreigners || []).length],
+  ];
+  if (coaches.length) tabs.push(["coaches", "מאמנים · " + coaches.length]);
+  tabs.forEach(([key, label]) => {
+    const b = text("button", state.hofTab === key ? "active" : "", label);
+    b.onclick = () => { state.hofTab = key; render(); };
+    seg.appendChild(b);
+  });
   view.appendChild(seg);
+
+  if (state.hofTab === "coaches") {
+    if (h.coachesIntro) view.appendChild(text("div", "table-note", h.coachesIntro));
+    coaches.forEach(c => view.appendChild(coachCard(c)));
+    const note = (state.history && state.history.coachesNote);
+    if (note) view.appendChild(text("div", "table-note", note));
+    footer();
+    return;
+  }
 
   const foreign = state.hofTab === "foreign";
   (foreign ? h.foreigners : h.israelis).forEach(p =>
@@ -1500,32 +1541,7 @@ function renderHistory() {
   // eras, told through the coaches who shaped them
   if (h.coaches && h.coaches.length) {
     view.appendChild(text("div", "section-title", "עידני מאמנים"));
-    h.coaches.forEach(c => {
-      const card = el("div", "card coach-card" + (c.highlight ? " coach-big" : ""));
-      const top = el("div", "coach-top");
-      const who = el("div");
-      who.appendChild(text("div", "coach-name", c.name));
-      if (c.title) who.appendChild(text("div", "coach-title", c.title));
-      top.appendChild(who);
-      const yr = el("div", "coach-years" + (c.current ? " now" : ""));
-      yr.textContent = c.years;
-      top.appendChild(yr);
-      card.appendChild(top);
-
-      card.appendChild(text("p", "meet-summary", c.text));
-      if (c.achievements && c.achievements.length) {
-        const chips = el("div", "chips-row");
-        c.achievements.forEach(a => chips.appendChild(text("span", "strength trophy-chip", "🏆 " + a)));
-        card.appendChild(chips);
-      }
-      if (c.source) {
-        const a = el("a", "meet-link muted-link");
-        a.href = c.source; a.target = "_blank"; a.rel = "noopener";
-        a.textContent = "המקור";
-        card.appendChild(a);
-      }
-      view.appendChild(card);
-    });
+    h.coaches.forEach(c => view.appendChild(coachCard(c)));
     if (h.coachesNote) {
       view.appendChild(text("div", "list-note", h.coachesNote));
     }
