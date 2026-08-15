@@ -240,6 +240,7 @@ function render() {
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
     a.classList.toggle("active", a.dataset.route === routeName));
+  noteScreen(hash); // distinct screens: four taps around the app, not four taps
   stopCountdown(); // the view is about to be wiped from under the ticking element
   view.innerHTML = "";
   fn();
@@ -907,15 +908,63 @@ function shouldAskPoll(visits) {
   return true;
 }
 
-// a fan watching a live score is not the fan to interrupt
+/* When it is fair to ask.
+ *
+ * A returning visit is not the same as having seen the app. Asking after
+ * a couple of seconds on the home screen is asking someone what they think
+ * of a book they have not opened — the answer is worthless, and being
+ * interrupted that early is the reason people close things.
+ *
+ * So three gates, all of which must be passed, and none of which can be
+ * passed by sitting still:
+ *   · the fan came back              (afterVisits app openings)
+ *   · they actually looked around    (afterScreens *different* screens)
+ *   · they stayed a while            (afterSeconds in the app, this visit)
+ *
+ * A live game overrides all of it — nobody is answering a questionnaire
+ * while the score is moving.
+ */
+
+const seenScreens = new Set();
+let sessionStart = Date.now();
+let pollAsked = false;
+let pollWatch = null;
+
+function pollGate() {
+  const cfg = pollConfig() || {};
+  return {
+    screens: cfg.afterScreens || 4,
+    seconds: cfg.afterSeconds || 90,
+  };
+}
+
+// counted from render(), so it measures screens opened rather than taps
+function noteScreen(hash) {
+  seenScreens.add(hash);
+}
+
+function browsedEnough() {
+  const g = pollGate();
+  return seenScreens.size >= g.screens &&
+    (Date.now() - sessionStart) / 1000 >= g.seconds;
+}
+
 function pollWhenQuiet(visits) {
   if (!shouldAskPoll(visits)) return;
-  const tick = setInterval(() => {
-    if (state.live) return;
-    clearInterval(tick);
-    if (shouldAskPoll(visits)) openPoll();
-  }, 4000);
-  setTimeout(() => { if (!state.live && shouldAskPoll(visits)) openPoll(); }, 1500);
+  if (pollWatch) clearInterval(pollWatch);
+  pollWatch = setInterval(() => {
+    // the state can change under us: a snooze, an answer, a game starting
+    if (pollAsked || !shouldAskPoll(visits)) return stopPollWatch();
+    if (state.live || pollSheet || !browsedEnough()) return;
+    stopPollWatch();
+    pollAsked = true;
+    openPoll();
+  }, 5000);
+}
+
+function stopPollWatch() {
+  if (pollWatch) clearInterval(pollWatch);
+  pollWatch = null;
 }
 
 function answerFilled(a) {
