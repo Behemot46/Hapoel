@@ -36,7 +36,10 @@ jobs:
       - name: Poll the game
         run: python scripts/update_live.py
 
-      - name: Publish live.json to gh-pages
+      # The score has to reach both hosts. Vercel serves main, GitHub Pages
+      # serves gh-pages, and a file written to only one of them is a live
+      # score that silently never appears on the other.
+      - name: Publish live.json
         run: |
           set -euo pipefail
           if [ ! -f app/data/live.json ]; then
@@ -46,7 +49,26 @@ jobs:
           cp app/data/live.json /tmp/live.json
           git config user.name "hapoel-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          # the site may not have been published yet on a fresh repo
+
+          # main — this is what Vercel publishes at the custom domain
+          git add app/data/live.json
+          if git diff --cached --quiet; then
+            echo "main: score unchanged since last poll"
+          else
+            git commit -m "עדכון תוצאה חיה"
+            # the data collector may have pushed while we were polling
+            for i in 1 2 3; do
+              if git pull --rebase --autostash origin main && git push origin HEAD:main; then
+                echo "main: published"
+                break
+              fi
+              echo "main: push race, retry $i"
+              sleep $((i * 5))
+            done
+          fi
+
+          # gh-pages — the published branch, so the score reaches fans there
+          # in ~30s instead of waiting on a full redeploy
           if ! git fetch origin gh-pages --depth=1; then
             echo "no gh-pages branch yet — nothing to publish to"
             exit 0
@@ -56,7 +78,7 @@ jobs:
           cp /tmp/live.json data/live.json
           git add data/live.json
           if git diff --cached --quiet; then
-            echo "score unchanged since last poll"
+            echo "gh-pages: score unchanged since last poll"
           else
             git commit -m "עדכון תוצאה חיה"
             git push origin gh-pages

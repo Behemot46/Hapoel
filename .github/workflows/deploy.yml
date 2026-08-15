@@ -3,7 +3,11 @@ name: פרסום האתר
 on:
   push:
     branches: [main]
-    paths: ['app/**']
+    paths:
+      - 'app/**'
+      # the live score is pushed straight to gh-pages as well, so a score
+      # update must not drag a full site rebuild behind it every 5 minutes
+      - '!app/data/live.json'
   workflow_dispatch:
 
 permissions:

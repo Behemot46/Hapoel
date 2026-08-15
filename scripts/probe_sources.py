@@ -1,85 +1,73 @@
-"""Diagnostic probe — round 3: the actual numbers, ready to paste.
+"""Diagnostic probe — why hapoel.site does not answer yet.
 
-Round 2 found the EuroCup shape: playerStats[] with player/accumulated/
-averagePerGame, 14 players for U2025. timePlayed looks like seconds
-(18246 over 16 games = 1140/game = 19:00), so convert and sanity-check it.
-
-Round 2 also matched the wrong table on the league page — it grabbed the
-standings, and those read all zeros for cYear=2026, which means that code is
-now the *coming* season. Find the per-player table properly, and work out
-which cYear actually holds 2025/26.
+The previous round failed on every request with a truncated cause. The
+decisive question is whether the name resolves at all: a domain bought
+minutes ago usually has not propagated, which looks identical to a broken
+configuration from the outside. Ask DNS directly, then try the host.
 """
-import json
-import re
+import socket
+import ssl
 
 import requests
-from bs4 import BeautifulSoup
 
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+HOSTS = ["hapoel.site", "www.hapoel.site"]
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-log("=" * 70)
-log("A. EuroCup 2025/26 per-player averages")
-log("=" * 70)
-url = ("https://api-live.euroleague.net/v2/competitions/U/seasons/U2025"
-       "/clubs/JER/people/stats")
-j = requests.get(url, headers={"Accept": "application/json"}, timeout=30).json()
-rows = j.get("playerStats", [])
-log(f"  {len(rows)} players")
-out = []
-for r in rows:
-    p, a = r.get("player", {}), r.get("averagePerGame", {})
-    acc = r.get("accumulated", {})
-    gp = acc.get("gamesPlayed") or 0
-    secs = a.get("timePlayed") or 0
-    out.append({
-        "name": p.get("name"), "code": p.get("code"),
-        "gp": gp,
-        "min": round(secs / 60.0, 1),
-        "pts": a.get("points"), "reb": a.get("totalRebounds"),
-        "ast": a.get("assistances"), "stl": a.get("steals"),
-        "blk": a.get("blocksFavour"), "tov": a.get("turnovers"),
-        "pir": a.get("valuation"),
-        "fg2": acc.get("twoPointShootingPercentage"),
-        "fg3": acc.get("threePointShootingPercentage"),
-        "ft": acc.get("freeThrowShootingPercentage"),
-    })
-out.sort(key=lambda x: (x["pts"] or 0), reverse=True)
-log("  sanity: minutes must land between 5 and 40")
-bad = [o for o in out if o["min"] and not (5 <= o["min"] <= 40)]
-log("    out of range:", bad or "none — the seconds reading is right")
-log("")
-log("  PASTE-READY:")
-log(json.dumps(out, ensure_ascii=False, indent=1))
+log("=" * 74)
+log("A. does the name resolve?")
+log("=" * 74)
+resolved = {}
+for h in HOSTS:
+    try:
+        infos = socket.getaddrinfo(h, 443, proto=socket.IPPROTO_TCP)
+        ips = sorted({i[4][0] for i in infos})
+        resolved[h] = ips
+        log(f"  {h:<18} -> {', '.join(ips)}")
+    except Exception as e:
+        resolved[h] = []
+        log(f"  {h:<18} -> NO DNS RECORD  ({type(e).__name__}: {e})")
 
 log("")
-log("=" * 70)
-log("B. which cYear is 2025/26, and where is the player table?")
-log("=" * 70)
-for year in (2026, 2025):
-    u = f"https://basket.co.il/team.asp?TeamId=1095&cYear={year}"
+log("=" * 74)
+log("B. if it resolves, does it serve TLS and our app?")
+log("=" * 74)
+for h, ips in resolved.items():
+    if not ips:
+        log(f"  {h}: skipped, nothing to connect to")
+        continue
     try:
-        r = requests.get(u, headers=UA, timeout=30)
-        r.encoding = r.apparent_encoding or "windows-1255"
-        soup = BeautifulSoup(r.text, "html.parser")
-        log(f"  cYear={year} -> {r.status_code}")
-        # a player row is one that links to a PlayerId
-        hits = 0
-        for tr in soup.find_all("tr"):
-            if not re.search(r"PlayerId=\d+", str(tr)):
-                continue
-            cells = [c.get_text(" ", strip=True) for c in tr.find_all(["td", "th"])]
-            cells = [c for c in cells if c]
-            if len(cells) < 3:
-                continue
-            hits += 1
-            if hits <= 4:
-                log(f"    {cells}")
-        log(f"    rows linking a player: {hits}")
+        ctx = ssl.create_default_context()
+        with socket.create_connection((h, 443), timeout=15) as sock:
+            with ctx.wrap_socket(sock, server_hostname=h) as ss:
+                cert = ss.getpeercert()
+                log(f"  {h}: TLS ok, issued to "
+                    f"{dict(x[0] for x in cert['subject']).get('commonName','?')}")
     except Exception as e:
-        log(f"  cYear={year}: FAIL {type(e).__name__} {str(e)[:120]}")
+        log(f"  {h}: TLS FAIL {type(e).__name__}: {str(e)[:120]}")
+    try:
+        r = requests.get(f"https://{h}/", timeout=20, allow_redirects=True)
+        log(f"    GET / -> {r.status_code}, server={r.headers.get('server','?')}, "
+            f"{len(r.content)}b")
+        if "יושב סופר את הדקות" in r.text:
+            log("    ^ this is our app")
+    except Exception as e:
+        log(f"    GET / FAIL {type(e).__name__}: {str(e)[:160]}")
+
+log("")
+log("=" * 74)
+log("C. what the registrar's nameservers say (is it pointed at Vercel?)")
+log("=" * 74)
+try:
+    r = requests.get("https://dns.google/resolve?name=hapoel.site&type=NS", timeout=20)
+    log("  NS:", [a.get("data") for a in r.json().get("Answer", [])] or "none published")
+    for t in ("A", "CNAME"):
+        r = requests.get(f"https://dns.google/resolve?name=hapoel.site&type={t}", timeout=20)
+        j = r.json()
+        log(f"  {t}: status={j.get('Status')} "
+            f"{[a.get('data') for a in j.get('Answer', [])] or 'none'}")
+except Exception as e:
+    log(f"  public resolver FAIL {type(e).__name__}: {str(e)[:120]}")
