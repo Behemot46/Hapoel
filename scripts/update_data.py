@@ -1166,6 +1166,23 @@ def _save_roster(players):
     # file is missing — a steady-state run makes no image requests at all.
     # New players are fetched a few per run so a squad overhaul never eats the
     # rate limit that the other sources need.
+    # a hand-curated URL beats any lookup: it is the one case where somebody
+    # has actually looked at the picture and confirmed who is in it
+    curated = load_json("player-photo-sources.json") or {}
+    used_curated = []
+    for p in players:
+        for key in (p.get("nameHe"), p.get("name")):
+            src = curated.get(key)
+            if isinstance(src, dict) and src.get("url"):
+                if not (PHOTO_DIR / f"{slugify(p['name'])}.jpg").exists():
+                    p["photoUrl"] = src["url"]
+                    log(f"  curated photo for {key}: {src.get('credit') or src['url'][:60]}")
+                used_curated.append(key)
+                break
+    stale = [k for k in curated if not k.startswith("_") and k not in used_curated]
+    if stale:
+        log("  curated photo urls with nobody in the squad (stale?):", stale)
+
     template = None
     missing = [p for p in players
                if not p.get("photoUrl") and p.get("code")
