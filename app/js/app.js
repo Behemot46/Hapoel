@@ -926,9 +926,13 @@ function slugOf(p) {
 
 // Hebrew name when we have one; otherwise the Latin name, isolated so it
 // keeps its own direction inside the RTL layout
-function playerName(p) { return (state.playerNames || {})[p.name] || p.name; }
+// order of preference: the hand-kept transliteration file, then the Hebrew
+// name the club itself publishes, then whatever the European feed calls them
+function playerName(p) {
+  return (state.playerNames || {})[p.name] || p.nameHe || p.name;
+}
 function playerNameEl(p, cls) {
-  const he = (state.playerNames || {})[p.name];
+  const he = (state.playerNames || {})[p.name] || p.nameHe;
   return text("div", (cls || "opp") + (he ? "" : " latin"), he || p.name);
 }
 
@@ -990,7 +994,8 @@ function detailsOf(p) {
 }
 
 function ageOf(p, det) {
-  const born = (det && det.bornDate) ? new Date(det.bornDate) : null;
+  const iso = (det && det.bornDate) || p.birthDate;
+  const born = iso ? new Date(iso) : null;
   if (born && !isNaN(born)) {
     const now = new Date();
     let a = now.getFullYear() - born.getFullYear();

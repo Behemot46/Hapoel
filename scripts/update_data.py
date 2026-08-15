@@ -27,6 +27,8 @@ import zoneinfo
 import requests
 from bs4 import BeautifulSoup
 
+import club_roster
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "app" / "data"
 TEAM = "הפועל ירושלים"
@@ -989,7 +991,72 @@ def fetch_photos(players):
             f.unlink()
             log("  photo removed (left squad):", f.name)
 
+def merge_club_and_euro(club, euro):
+    """The club page is the source of truth for who is in the squad, the shirt
+    number, the Hebrew name and the date of birth. The European feed is the
+    only place with height, country, position and the person code the photos
+    hang off — so take those from it wherever a player appears in both."""
+    he_to_lat = {}
+    for lat, he in (load_json("player-names.json") or {}).items():
+        if not lat.startswith("_"):
+            he_to_lat[he] = lat
+    by_lat = {p["name"]: p for p in euro}
+    by_num = {p.get("number"): p for p in euro if p.get("number") is not None}
+
+    merged, matched = [], 0
+    for c in club:
+        lat = he_to_lat.get(c["name"])
+        e = by_lat.get(lat) if lat else None
+        if e is None:
+            e = by_num.get(c["number"])
+            # a shirt number alone is weak evidence; only trust it when the
+            # European feed has nobody else it could be
+            if e and lat and e["name"] != lat:
+                e = None
+        if e:
+            matched += 1
+        rec = dict(e or {})
+        rec["name"] = (e or {}).get("name") or c["name"]
+        rec["nameHe"] = c["name"]
+        rec["number"] = c["number"] if c["number"] is not None else rec.get("number")
+        for k in ("birthDate", "born", "height", "clubId"):
+            if c.get(k):
+                rec[k] = c[k]
+        rec["source"] = "club" + ("+eurocup" if e else "")
+        merged.append(rec)
+
+    # anyone the European feed knows but the club page did not list
+    listed = {r.get("name") for r in merged}
+    for e in euro:
+        if e["name"] not in listed:
+            log(f"  in the european squad but not on the club page: {e['name']}")
+            e["source"] = "eurocup"
+            merged.append(e)
+
+    log(f"  merged squad: {len(merged)} players, {matched} matched to the european feed")
+    merged.sort(key=lambda r: (r.get("number") is None, r.get("number") or 0))
+    return merged
+
 def update_roster():
+    # The club's own squad page lists more players than the European
+    # registration ever will, and is the only source with dates of birth.
+    club = []
+    try:
+        club = club_roster.fetch_team(fetch, log=log)
+    except Exception as e:
+        log("club squad page failed:", e)
+
+    euro = []
+    try:
+        euro = roster_from_eurocup()
+    except Exception as e:
+        log("eurocup roster failed:", e)
+
+    if len(club) >= 5:
+        players = merge_club_and_euro(club, euro)
+        return _save_roster(players)
+    log(f"club page gave {len(club)} players — falling back to the league site")
+
     team_link = find_team_link()
     if not team_link:
         raise RuntimeError("no team page found for roster")
@@ -1055,6 +1122,9 @@ def update_roster():
             log(f"  {n:>3}x {key}  e.g. '{t}' -> {h}")
         dump_tables(soup, team_link)
         raise RuntimeError(f"only {len(players)} players parsed — refusing to overwrite (see DIAG lines)")
+    return _save_roster(players)
+
+def _save_roster(players):
     log("roster players:", len(players))
     # one-time visibility into what the feed actually offers per player
     log("  fields present:", sorted({k for p in players for k in p}))
