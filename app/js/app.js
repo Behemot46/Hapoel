@@ -941,7 +941,7 @@ function renderHome() {
   }
 
   const rows = state.standings.rows;
-  if (rows && rows.length) {
+  if (rows && rows.length && seasonStarted(rows)) {
     view.appendChild(text("div", "section-title", "טבלת " + state.standings.competition));
     const c = el("div", "card table-card");
     const usIdx = rows.findIndex(r => isUs(r.team));
@@ -956,6 +956,19 @@ function renderHome() {
     more.href = "#/table";
     more.textContent = "לטבלה המלאה";
     c.appendChild(more);
+    view.appendChild(c);
+  } else if (rows && rows.length) {
+    // no games yet: a four‑team window around our position would be showing
+    // last season's neighbours as if they were this season's
+    const c = el("a", "card promo");
+    c.href = "#/table";
+    const t = el("div");
+    t.appendChild(text("div", "promo-title", "הליגה העונה"));
+    t.appendChild(text("div", "promo-sub",
+      rows.length + " קבוצות ב" + state.standings.competition +
+      ". הטבלה תיפתח עם המשחק הראשון."));
+    c.appendChild(t);
+    c.appendChild(text("div", "chevron", "‹"));
     view.appendChild(c);
   }
 
@@ -1121,11 +1134,18 @@ function renderTable() {
   if (state.tableTab === "euro" && euro) {
     renderEurocup(euro);
   } else {
+    const started = seasonStarted(state.standings.rows);
     view.appendChild(text("div", "section-title",
-      "טבלת " + state.standings.competition + " · עונת " + state.standings.season));
+      (started ? "טבלת " : "קבוצות ") + state.standings.competition +
+      " · עונת " + state.standings.season));
     const c = el("div", "card table-card");
     c.appendChild(standingsTable(state.standings.rows, true));
     view.appendChild(c);
+    if (!started) {
+      view.appendChild(text("div", "table-note",
+        "העונה טרם החלה — אלה הקבוצות שמשחקות השנה, לא דירוג. " +
+        "הטבלה תסתדר מעצמה עם המשחק הראשון."));
+    }
   }
   footer();
 }
@@ -1139,8 +1159,10 @@ function groupLabel(name) {
 function renderEurocup(euro) {
   const ourFirst = euro.groups;
   const ours = ourFirst[0];
+  const euroStarted = seasonStarted(ours.rows);
   view.appendChild(text("div", "section-title",
-    groupLabel(ours.name) + " · " + euro.competition + " " + euro.season));
+    groupLabel(ours.name) + " · " + euro.competition + " " + euro.season +
+    (euroStarted ? "" : " · ההגרלה")));
   const c = el("div", "card table-card");
   c.appendChild(eurocupTable(ours.rows));
   view.appendChild(c);
@@ -1157,16 +1179,21 @@ function renderEurocup(euro) {
     });
     view.appendChild(d);
   }
-  view.appendChild(text("div", "table-note",
-    "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."));
+  view.appendChild(text("div", "table-note", euroStarted
+    ? "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."
+    : "אלה הקבוצות שהוגרלו לבית, לפי סדר האלף־בית — עוד לא שוחק אף משחק. " +
+      "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."));
 }
 
 function isUsEuro(r) { return r.code === "JER" || isUs(teamName(r.team)); }
 
 function eurocupTable(rows) {
+  // same as the league table: before the first tip-off these are the eight
+  // clubs drawn into the group, not an order any of them earned
+  const started = seasonStarted(rows);
   const t = el("table", "standings");
   const head = el("tr");
-  ["#", "קבוצה", "מש׳", "נצ׳", "הפ׳", "הפרש"].forEach((h, i) => {
+  [started ? "#" : "", "קבוצה", "מש׳", "נצ׳", "הפ׳", "הפרש"].forEach((h, i) => {
     const th = el("th", i === 1 ? "team" : "");
     th.textContent = h;
     head.appendChild(th);
@@ -1174,7 +1201,8 @@ function eurocupTable(rows) {
   t.appendChild(head);
   rows.forEach(r => {
     const tr = el("tr", isUsEuro(r) ? "us" : "");
-    tr.appendChild(text("td", "num", r.pos == null ? "–" : String(r.pos)));
+    tr.appendChild(text("td", "num",
+      !started ? "·" : (r.pos == null ? "–" : String(r.pos))));
     const name = teamName(r.team);
     const td = el("td", "team");
     td.appendChild(text("span", isLatin(name) ? "latin" : "", name));
@@ -1189,11 +1217,22 @@ function eurocupTable(rows) {
   return t;
 }
 
+// Before a ball is thrown the feed still hands back a full table: every team
+// at 0‑0, numbered 1 to 14, in last season's finishing order. Rendered as a
+// table that reads as a standing — a fan sees "3 הפועל י־ם" and believes it.
+// It is last year's position wearing this year's clothes, so the position
+// column is dropped until somebody has actually played.
+function seasonStarted(rows) {
+  return (rows || []).some(r => (r.played || 0) > 0);
+}
+
 function standingsTable(rows, full) {
   const hasPoints = rows.some(r => r.points !== undefined);
+  const started = seasonStarted(rows);
   const t = el("table", "standings");
   const head = el("tr");
-  const cols = ["#", "קבוצה", "מש׳", "נצ׳", "הפ׳"].concat(hasPoints ? ["נק׳"] : []);
+  const cols = [started ? "#" : "", "קבוצה", "מש׳", "נצ׳", "הפ׳"]
+    .concat(hasPoints ? ["נק׳"] : []);
   cols.forEach((h, i) => {
     const th = el("th", i === 1 ? "team" : "");
     th.textContent = h;
@@ -1202,7 +1241,7 @@ function standingsTable(rows, full) {
   t.appendChild(head);
   rows.forEach(r => {
     const tr = el("tr", isUs(r.team) ? "us" : "");
-    tr.appendChild(text("td", "num", String(r.pos)));
+    tr.appendChild(text("td", "num", started ? String(r.pos) : "·"));
     tr.appendChild(text("td", "team", r.team));
     tr.appendChild(text("td", "num", String(r.played)));
     tr.appendChild(text("td", "num", String(r.wins)));
