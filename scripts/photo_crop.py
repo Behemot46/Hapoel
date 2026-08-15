@@ -12,8 +12,15 @@ consistent to within a couple of percent, which is what makes this safe.
 """
 
 BG_TOLERANCE = 60      # colour distance that counts as "not background"
-HEAD_TO_CROP = 2.5     # crop side as a multiple of head width
+HEAD_TO_CROP = 1.9     # crop side as a multiple of head width
 HEADROOM = 0.12        # air above the head, as a fraction of the crop side
+
+# HEAD_TO_CROP used to be 2.5, and then the h*0.62 clamp below — not this rule —
+# was what actually decided the crop. That made the framing depend on how much
+# of its own canvas each source filled: a head taking 33% of the image height
+# came out at 53% of the circle, one taking 25% at 40%, from the same code. At
+# 1.9 the head rule binds first and every source lands at the same 53%, which
+# is what the squad already looks like. The clamps stay as a backstop.
 
 
 def _background(px, w, h):
