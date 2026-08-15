@@ -805,36 +805,52 @@ function shareCard() {
 
 /* ---------- the quick poll ---------- */
 
-// The app has no server, so the answers cannot land here. They are collected
-// in the sheet and handed to a Google Form, prefilled, in one tap. Until a
-// form is configured the whole thing stays out of sight: a fan sent to a
-// broken link is worse than never being asked.
+// Five questions, four of them taps, and the whole thing sends from inside
+// the app: a fan on a phone should never be handed to a form on another
+// site, and should never be asked to open an account to say something.
+//
+// The answers reach /api/feedback, a function that runs next to the app on
+// the host and files each one on the project's issue tracker. When that
+// endpoint is not configured the app falls back to the older destinations
+// rather than showing a fan an error it caused itself.
 
 const POLL_KEY = "hapoel-poll-v1";
 const VISITS_KEY = "hapoel-visits-v1";
 
-const POLL_WANTS = [
-  "חדשות ועדכונים על הקבוצה",
-  "התראה לפני כל משחק",
-  "שירי יציע",
-  "סטטיסטיקות מתקדמות",
-  "כרטיסים ומידע על האולם",
-  "פינת נוסטלגיה",
+const POLL_FANS = [
+  "מנוי לעונה",
+  "בא מדי פעם לאולם",
+  "צופה בשידורים",
+  "עוקב מרחוק",
 ];
 
-// Three possible destinations, first one configured wins. A Google Form is
-// the best of them — no account, answers land in a sheet. WhatsApp is the
-// easiest for a fan but publishes a phone number. A GitHub issue needs no
-// setup at all and works today, at the cost of asking for an account, so it
-// is the floor rather than the goal.
+const POLL_WANTS = [
+  "התראה לפני כל משחק",
+  "תוצאה חיה",
+  "חדשות על הקבוצה",
+  "סטטיסטיקות מתקדמות",
+  "שירי יציע",
+  "נוסטלגיה והיסטוריה",
+  "כרטיסים ומידע על האולם",
+  "יומן אוהד אישי",
+];
+
+const POLL_WANTS_MAX = 3;
+
+// Four possible destinations, first one configured wins. The endpoint is
+// the only one that keeps the fan inside the app. A Google Form asks for no
+// account but hands them to another site. WhatsApp is easy but publishes a
+// phone number. A GitHub issue opened by hand needs no setup at all and
+// works today, at the cost of asking for an account, so it is the floor.
 function pollConfig() {
   const f = state.feedback || {};
-  return (f.formUrl || f.whatsapp || f.issueRepo) ? f : null;
+  return (f.endpoint || f.formUrl || f.whatsapp || f.issueRepo) ? f : null;
 }
 
 function pollTarget() {
   const f = pollConfig();
   if (!f) return null;
+  if (f.endpoint) return { kind: "endpoint", label: "התשובות הגיעו" };
   if (f.formUrl) return { kind: "form", label: "הטופס ייפתח בלשונית חדשה" };
   if (f.whatsapp) return { kind: "whatsapp", label: "ייפתח וואטסאפ עם התשובות מוכנות" };
   return { kind: "issue", label: "ייפתח גיטהאב — צריך חשבון, וזה חינם" };
@@ -843,6 +859,11 @@ function pollTarget() {
 function pollNote() {
   const t = pollTarget();
   if (!t) return "";
+  if (t.kind === "endpoint") {
+    return "השליחה נעשית מכאן, בלי חשבון ובלי לצאת מהאפליקציה. " +
+           "התשובה נפתחת ככרטיס גלוי בעמוד הפרויקט, אז אל תכתבו בה פרטים אישיים — " +
+           "לא ביקשנו שם, טלפון או אימייל, ואין באפליקציה מעקב.";
+  }
   if (t.kind === "form") {
     return "התשובות נשלחות לטופס של גוגל. אין חשבון, אין מעקב, " +
            "ושום דבר לא נשמר באפליקציה.";
@@ -897,38 +918,78 @@ function pollWhenQuiet(visits) {
   setTimeout(() => { if (!state.live && shouldAskPoll(visits)) openPoll(); }, 1500);
 }
 
-// the message a human reads, when the destination is not a form
-function answersAsText(answers) {
+function answerFilled(a) {
+  return !!(a.fan || (a.wants && a.wants.length) || a.rating || a.idea || a.bug);
+}
+
+// a value that can go in a URL or a line of text — the multi-answer question
+// is the only one that is not already a string
+function answerValue(a, key) {
+  const v = a[key];
+  return Array.isArray(v) ? v.join(", ") : (v || "");
+}
+
+// the message a human reads, when the destination is not the endpoint
+function answersAsText(a) {
   const lines = ["משוב על ״יושב סופר את הדקות״", ""];
-  if (answers.want) lines.push("הכי חשוב להוסיף: " + answers.want);
-  if (answers.rating) lines.push("ציון לאפליקציה: " + answers.rating + " מתוך 5");
-  if (answers.text) lines.push("", answers.text);
+  if (a.fan) lines.push("איזה אוהד: " + a.fan);
+  if (a.wants && a.wants.length) lines.push("הכי יעזור: " + a.wants.join(", "));
+  if (a.rating) lines.push("שימושיות: " + a.rating + " מתוך 5");
+  if (a.idea) lines.push("", "מה להוסיף או לשנות:", a.idea);
+  if (a.bug) lines.push("", "מה לא עבד:", a.bug);
   return lines.join("\n");
 }
 
-function pollSubmitUrl(answers) {
+// The endpoint answers 501 while it has no token, and any network at all can
+// fail — either way the fan's words are not thrown away: the older
+// destination opens with everything they typed already in it.
+function sendToEndpoint(a) {
   const cfg = pollConfig();
-  const t = pollTarget();
-  if (t.kind === "whatsapp") {
-    return "https://wa.me/" + String(cfg.whatsapp).replace(/[^0-9]/g, "") +
-      "?text=" + encodeURIComponent(answersAsText(answers));
-  }
-  if (t.kind === "issue") {
-    const title = "משוב מאוהד" + (answers.want ? ": " + answers.want : "");
-    return "https://github.com/" + cfg.issueRepo + "/issues/new?title=" +
-      encodeURIComponent(title) + "&body=" + encodeURIComponent(answersAsText(answers));
-  }
-  return prefilledFormUrl(answers);
+  return fetch(cfg.endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      fan: a.fan, wants: a.wants, rating: a.rating,
+      idea: a.idea, bug: a.bug, nickname: a.nickname || "",
+    }),
+  }).then(res => res.ok);
 }
 
-function prefilledFormUrl(answers) {
+function fallbackUrl(a) {
+  const cfg = pollConfig();
+  if (cfg.formUrl) return prefilledFormUrl(a);
+  if (cfg.whatsapp) {
+    return "https://wa.me/" + String(cfg.whatsapp).replace(/[^0-9]/g, "") +
+      "?text=" + encodeURIComponent(answersAsText(a));
+  }
+  if (cfg.issueRepo) {
+    const first = (a.idea || a.bug || "").split("\n")[0].trim();
+    const title = "משוב מאוהד" + (first ? ": " + first.slice(0, 70)
+      : (a.wants && a.wants.length ? ": " + a.wants[0] : ""));
+    return "https://github.com/" + cfg.issueRepo + "/issues/new?title=" +
+      encodeURIComponent(title) + "&body=" + encodeURIComponent(answersAsText(a));
+  }
+  return null;
+}
+
+// what to promise a fan once the endpoint has already declined — the
+// endpoint's own "התשובות הגיעו" would be a lie on this path
+function fallbackLabel() {
+  const cfg = pollConfig() || {};
+  if (cfg.formUrl) return "הטופס נפתח בלשונית חדשה";
+  if (cfg.whatsapp) return "וואטסאפ נפתח עם התשובות";
+  if (cfg.issueRepo) return "נפתח כרטיס בגיטהאב — צריך חשבון, וזה חינם";
+  return "";
+}
+
+function prefilledFormUrl(a) {
   const cfg = pollConfig();
   const base = cfg.formUrl.split("?")[0];
   const f = cfg.fields || {};
   const parts = ["usp=pp_url"];
   Object.keys(f).forEach(k => {
     const id = f[k];
-    const v = answers[k];
+    const v = answerValue(a, k);
     // an unmapped field is left for the fan to fill in the form itself
     if (id && v) parts.push(encodeURIComponent(id) + "=" + encodeURIComponent(v));
   });
@@ -956,9 +1017,43 @@ function snoozePoll() {
   closePoll();
 }
 
+// one question, one row of taps — single choice or up to `max` of them
+function pollChips(list, onPick, max) {
+  const box = el("div", "poll-chips");
+  const chosen = [];
+  list.forEach(w => {
+    const b = el("button", "poll-chip", w);
+    b.type = "button";
+    b.setAttribute("aria-pressed", "false");
+    b.onclick = () => {
+      const at = chosen.indexOf(w);
+      if (at >= 0) chosen.splice(at, 1);
+      else if (max === 1) { chosen.length = 0; chosen.push(w); }
+      else if (chosen.length < max) chosen.push(w);
+      else return toast("אפשר לבחור עד " + max);
+      box.querySelectorAll(".poll-chip").forEach(o => {
+        const on = chosen.indexOf(o.textContent) >= 0;
+        o.classList.toggle("on", on);
+        o.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      onPick(chosen.slice());
+    };
+    box.appendChild(b);
+  });
+  return box;
+}
+
+function pollTextarea(placeholder, onInput) {
+  const ta = el("textarea", "poll-text");
+  ta.rows = 2;
+  ta.placeholder = placeholder;
+  ta.oninput = () => onInput(ta.value.slice(0, 900));
+  return ta;
+}
+
 function openPoll() {
   if (pollSheet || !pollConfig()) return;
-  const answers = { want: "", rating: "", text: "" };
+  const answers = { fan: "", wants: [], rating: "", idea: "", bug: "", nickname: "" };
 
   const wrap = el("div", "sheet-wrap");
   const sheet = el("div", "sheet");
@@ -978,25 +1073,19 @@ function openPoll() {
   sheet.appendChild(head);
 
   sheet.appendChild(text("div", "sheet-sub",
-    "שלוש שאלות, פחות מדקה. זה מה שיקבע מה נבנה אחר כך."));
+    "חמש שאלות, רובן בלחיצה. זה מה שיקבע מה נבנה אחר כך."));
 
-  // 1 — what to build next
-  sheet.appendChild(text("div", "poll-q", "מה הכי חשוב לכם שנוסיף?"));
-  const wants = el("div", "poll-chips");
-  POLL_WANTS.forEach(w => {
-    const b = el("button", "poll-chip", w);
-    b.type = "button";
-    b.onclick = () => {
-      answers.want = answers.want === w ? "" : w;
-      wants.querySelectorAll(".poll-chip").forEach(o =>
-        o.classList.toggle("on", o.textContent === answers.want));
-    };
-    wants.appendChild(b);
-  });
-  sheet.appendChild(wants);
+  // 1 — who is answering, so the wishes can be read by kind of fan
+  sheet.appendChild(text("div", "poll-q", "איזה אוהד אתם?"));
+  sheet.appendChild(pollChips(POLL_FANS, v => { answers.fan = v[0] || ""; }, 1));
 
-  // 2 — how it feels so far
-  sheet.appendChild(text("div", "poll-q", "איך האפליקציה עד עכשיו?"));
+  // 2 — the roadmap question, and the one worth several answers
+  sheet.appendChild(text("div", "poll-q", "מה הכי יעזור לכם באפליקציה?"));
+  sheet.appendChild(text("div", "poll-hint", "עד " + POLL_WANTS_MAX + " בחירות"));
+  sheet.appendChild(pollChips(POLL_WANTS, v => { answers.wants = v; }, POLL_WANTS_MAX));
+
+  // 3 — usefulness, not a beauty contest
+  sheet.appendChild(text("div", "poll-q", "כמה האפליקציה שימושית לכם היום?"));
   const scale = el("div", "poll-scale");
   [1, 2, 3, 4, 5].forEach(n => {
     const b = el("button", "poll-star", String(n));
@@ -1010,28 +1099,54 @@ function openPoll() {
     scale.appendChild(b);
   });
   const ends = el("div", "poll-ends");
-  ends.appendChild(text("span", null, "לא משהו"));
-  ends.appendChild(text("span", null, "מצוינת"));
+  ends.appendChild(text("span", null, "בכלל לא"));
+  ends.appendChild(text("span", null, "לא מוותר עליה"));
   sheet.appendChild(scale);
   sheet.appendChild(ends);
 
-  // 3 — anything at all
-  sheet.appendChild(text("div", "poll-q", "רעיון, באג, או משהו שחסר?"));
-  const ta = el("textarea", "poll-text");
-  ta.rows = 3;
-  ta.placeholder = "כתבו כאן — קוראים הכול";
-  ta.oninput = () => { answers.text = ta.value.slice(0, 900); };
-  sheet.appendChild(ta);
+  // 4 and 5 — the two that cannot be guessed from a list
+  sheet.appendChild(text("div", "poll-q", "מה הייתם מוסיפים או משנים?"));
+  sheet.appendChild(pollTextarea("במילים שלכם — קוראים הכול",
+    v => { answers.idea = v; }));
+
+  sheet.appendChild(text("div", "poll-q", "משהו לא עבד או לא היה ברור?"));
+  sheet.appendChild(pollTextarea("מה קרה, ובאיזה מסך", v => { answers.bug = v; }));
+
+  // the honeypot: off screen, never focusable, and only a bot fills it
+  const trap = el("input", "poll-trap");
+  trap.type = "text";
+  trap.tabIndex = -1;
+  trap.setAttribute("autocomplete", "off");
+  trap.setAttribute("aria-hidden", "true");
+  trap.oninput = () => { answers.nickname = trap.value; };
+  sheet.appendChild(trap);
 
   const send = el("button", "wa-btn poll-send", "שליחה");
   send.type = "button";
   send.onclick = () => {
-    const s = pollState();
-    s.done = true;
-    savePollState(s);
-    window.open(pollSubmitUrl(answers), "_blank", "noopener");
-    closePoll();
-    toast("תודה! " + (pollTarget() || {}).label);
+    if (!answerFilled(answers)) return toast("ענו על משהו אחד לפחות");
+    const cfg = pollConfig();
+    const done = () => {
+      const s = pollState();
+      s.done = true;
+      savePollState(s);
+      closePoll();
+    };
+    // the endpoint sends from here; anything else opens with the answers in it
+    const away = () => {
+      const url = fallbackUrl(answers);
+      if (url) window.open(url, "_blank", "noopener");
+      done();
+      const label = url ? fallbackLabel() : "";
+      toast(label ? "תודה! " + label : "תודה!");
+    };
+    if (!cfg.endpoint) return away();
+    send.disabled = true;
+    send.textContent = "שולח…";
+    sendToEndpoint(answers).then(ok => {
+      if (ok) { done(); toast("תודה! התשובות הגיעו"); }
+      else away();
+    }).catch(away);
   };
   sheet.appendChild(send);
 
