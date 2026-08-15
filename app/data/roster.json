@@ -59,7 +59,8 @@
       "born": 1998,
       "country": "סרביה",
       "code": "009896",
-      "slug": "dusan-miletic"
+      "slug": "dusan-miletic",
+      "photo": "img/players/dusan-miletic.jpg"
     },
     {
       "name": "Shake Milton",
@@ -86,7 +87,8 @@
       "born": 1994,
       "country": "ארה״ב",
       "code": "011192",
-      "slug": "jaleen-smith"
+      "slug": "jaleen-smith",
+      "photo": "img/players/jaleen-smith.jpg"
     },
     {
       "name": "Yovel Zoosman",
