@@ -21,6 +21,7 @@ import re
 import sys
 import datetime
 import pathlib
+import time
 import zoneinfo
 
 import requests
@@ -823,10 +824,14 @@ def tidy_country(raw):
     return COUNTRY_HE.get((raw or "").strip().lower(), (raw or "").strip())
 
 # the squad feed carries no headshots, so try the per-player detail endpoints
+# The squad payload carries images:{} for everyone, but the competition-wide
+# person record does have a headshot — and being season-less it also covers a
+# summer signing whose EuroCup history is at another club. One request per
+# player, which the API tolerates; a full box-score sweep does not (429).
 PERSON_ENDPOINTS = [
+    "https://api-live.euroleague.net/v2/competitions/U/people/{code}",
     "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/people/{code}",
-    "https://api-live.euroleague.net/v2/people/{code}",
-    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/clubs/JER/people/{code}",
+    "https://api-live.euroleague.net/v2/competitions/U/seasons/U2025/people/{code}",
 ]
 
 def photos_from_team_page(players):
@@ -871,25 +876,47 @@ def photos_from_team_page(players):
             hits += 1
     return hits
 
+def _headshot_from_person(data):
+    """{"data": [ {images:{headshot}}, ... ]} — newest entry wins, because a
+    player who has been round the block has one record per club-season."""
+    rows = data.get("data") if isinstance(data, dict) else data
+    if isinstance(rows, dict):
+        rows = [rows]
+    if not isinstance(rows, list):
+        return None
+    best, best_key = None, ""
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        url = ((r.get("images") or {}).get("headshot")
+               or (r.get("images") or {}).get("action"))
+        if not isinstance(url, str) or not url.startswith("http"):
+            continue
+        key = str((r.get("season") or {}).get("code") or r.get("startDate") or "")
+        if best is None or key >= best_key:
+            best, best_key = url, key
+    return best
+
 def photo_url_for(code, template=None):
     """Return (url, template_that_worked). Reuses a known-good template."""
     templates = [template] if template else PERSON_ENDPOINTS
     for t in templates:
         try:
-            body = fetch(t.format(code=code))
-            data = json.loads(body)
+            data = json.loads(fetch(t.format(code=code)))
         except Exception as e:
             log(f"  person endpoint failed ({t}): {e}")
             continue
+        url = _headshot_from_person(data)
+        if url:
+            return url, t
+        # fall back to the loose walker in case the shape moves
         found = []
         _walk_json(data, found)
         for rec in found:
             if rec.get("photoUrl"):
                 return rec["photoUrl"], t
-        # log the shape once so the next round can target it
         if isinstance(data, dict):
-            log(f"  DIAG person keys for {code}: {sorted(data.keys())[:20]}")
-        return None, t
+            log(f"  no headshot for {code} at {t} (keys {sorted(data.keys())[:8]})")
     return None, None
 
 PHOTO_DIR = ROOT / "app" / "img" / "players"
@@ -1016,8 +1043,18 @@ def update_roster():
         if p.get("country"):
             p["country"] = tidy_country(p["country"])
 
-    # headshots are not in the squad payload, and the per-player endpoints
-    # carry none either — try the team page's embedded data
+    # headshots are not in the squad payload; the competition-wide person
+    # record has them. Go one player at a time and pause between requests —
+    # the API answers 429 to a burst.
+    template = None
+    for p in players:
+        if p.get("photoUrl") or not p.get("code"):
+            continue
+        url, template = photo_url_for(p["code"], template)
+        if url:
+            p["photoUrl"] = url
+        time.sleep(0.4)
+    log(f"  headshots resolved: {sum(1 for p in players if p.get('photoUrl'))}/{len(players)}")
     if not any(p.get("photoUrl") for p in players):
         hits = photos_from_team_page(players)
         log(f"  headshots matched from team page: {hits}/{len(players)}")
