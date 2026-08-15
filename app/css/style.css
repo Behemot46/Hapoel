@@ -1085,3 +1085,10 @@ a:focus-visible, button:focus-visible { outline: 2.5px solid var(--red); outline
   .cd-parts, .badge, .chip, .tabbar a { font-size: 13px; }
   .game-row .sub, .player-row .sub, .meet-card .sub, .hof-card .sub { font-size: 13.5px; }
 }
+
+/* the ask-for-feedback card: same shape as the share card, cooler colour so
+   two red cards do not sit on top of each other on the home screen */
+.feedback-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--surface-2);
+}
