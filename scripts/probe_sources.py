@@ -1,79 +1,72 @@
-"""Diagnostic probe — reads nothing, writes nothing, just describes sources.
+"""Diagnostic probe — round 9: confirm the two candidate photo URLs.
 
-Round 8: resolve two share.google links the founder sent, so we can see what
-they actually point at before anything is downloaded into the repo. Prints
-the redirect chain, the page title and any image URLs; downloads nothing.
+Link 1 resolved to a Proballers headshot of David Roddy. Link 2 resolved to
+an Instagram post, which is neither verifiable nor ours to re-host — but the
+same results page carried a basket.co.il file whose path names Shake Milton.
+Print both untruncated and check that they are really images.
 """
 import re
 import sys
+import urllib.parse
 
 import requests
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-      "Accept": "text/html,application/xhtml+xml,image/*;q=0.9,*/*;q=0.8",
-      "Accept-Language": "he-IL,he;q=0.9,en;q=0.8"}
+      "Accept": "text/html,image/*;q=0.9,*/*;q=0.8"}
 
-LINKS = [
-    "https://share.google/gbAL2cjyQalVNvrBp",
-    "https://share.google/BLobTWj4FcMsUfGzo",
-]
+RODDY = ("https://www.proballers.com/media/cache/resize_600_png/"
+         "https---www.proballers.com/ul/player/"
+         "david-roddy-1f0fe381-d437-6f74-ad19-414dbecff047.png")
+LINK2 = "https://share.google/BLobTWj4FcMsUfGzo"
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def probe(url):
-    log("")
-    log("=" * 70)
-    log(url)
-    log("=" * 70)
+def head(url, label):
     try:
-        r = requests.get(url, headers=UA, timeout=30, allow_redirects=True)
+        r = requests.get(url, headers=UA, timeout=30, stream=True)
+        ctype = r.headers.get("Content-Type", "?")
+        data = r.raw.read(400000)
+        log(f"  {label}: {r.status_code} {ctype} {len(data)} bytes")
+        if ctype.startswith("image/"):
+            try:
+                import io
+                from PIL import Image
+                im = Image.open(io.BytesIO(data))
+                log(f"    image {im.size} {im.mode}")
+            except Exception as e:
+                log("    could not decode:", e)
+        return r.status_code == 200 and ctype.startswith("image/")
     except Exception as e:
-        log("  FAIL", type(e).__name__, str(e)[:160])
-        return
-    log(f"  status {r.status_code}  content-type {r.headers.get('Content-Type','?')}  "
-        f"{len(r.content)} bytes")
-    for h in r.history:
-        log(f"  redirect {h.status_code} -> {h.headers.get('Location','')[:150]}")
-    log(f"  FINAL: {r.url[:200]}")
-
-    ctype = r.headers.get("Content-Type", "")
-    if ctype.startswith("image/"):
-        log("  this URL is the image itself")
-        return
-
-    r.encoding = r.apparent_encoding or "utf-8"
-    html = r.text
-    t = re.search(r"<title[^>]*>(.*?)</title>", html, re.S | re.I)
-    if t:
-        log("  title:", re.sub(r"\s+", " ", t.group(1))[:160])
-
-    for prop in ("og:image", "og:title", "og:description", "twitter:image"):
-        m = re.search(rf'<meta[^>]+(?:property|name)=["\']{prop}["\'][^>]+content=["\']([^"\']+)',
-                      html, re.I)
-        if not m:
-            m = re.search(rf'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\']{prop}["\']',
-                          html, re.I)
-        if m:
-            log(f"  {prop}: {m.group(1)[:170]}")
-
-    imgs = re.findall(r'https?://[^\s"\'<>]+\.(?:jpg|jpeg|png|webp)(?:\?[^\s"\'<>]*)?', html, re.I)
-    seen, keep = set(), []
-    for u in imgs:
-        if u in seen:
-            continue
-        seen.add(u)
-        keep.append(u)
-    log(f"  {len(keep)} distinct image urls on the page; first 12:")
-    for u in keep[:12]:
-        log("   ", u[:170])
+        log(f"  {label}: FAIL {type(e).__name__} {str(e)[:120]}")
+        return False
 
 
-if __name__ == "__main__":
-    for u in LINKS:
-        probe(u)
-    log("")
-    log("probe done — nothing downloaded")
+log("=" * 70)
+log("A. the Roddy headshot from link 1")
+log("=" * 70)
+log("  " + RODDY)
+head(RODDY, "roddy")
+
+log("")
+log("=" * 70)
+log("B. untruncated image urls behind link 2")
+log("=" * 70)
+r = requests.get(LINK2, headers=UA, timeout=30, allow_redirects=True)
+r.encoding = r.apparent_encoding or "utf-8"
+html = r.text
+# the imgrefurl / imgurl parameters carry the real target
+q = urllib.parse.urlparse(r.url).query
+for k, v in urllib.parse.parse_qs(q).items():
+    if k in ("imgurl", "imgrefurl", "docid"):
+        log(f"  {k} = {v[0][:300]}")
+urls = []
+for u in re.findall(r'https?://[^\s"\'<>\\]+', html):
+    if re.search(r"\.(jpg|jpeg|png|webp)(\?|$)", u, re.I) and u not in urls:
+        urls.append(u)
+log(f"  {len(urls)} image urls, full text:")
+for u in urls[:14]:
+    log("   ", urllib.parse.unquote(u)[:260])
