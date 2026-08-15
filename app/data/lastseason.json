@@ -1,0 +1,44 @@
+{
+  "_comment": "עונת 2025/26 — צילום מצב סופי. הטבלה נלקחה מאתר הליגה (table.asp?cYear=2026) והועתקה לכאן פעם אחת, כי עונה שהסתיימה כבר לא משתנה. האיסוף האוטומטי לא נוגע בקובץ.",
+  "season": "2025/26",
+  "league": {
+    "name": "ליגת ווינר סל",
+    "stage": "העונה הסדירה",
+    "ourPos": 3,
+    "ourRecord": "18‑8",
+    "ourPoints": 44,
+    "ourDiff": 170,
+    "home": { "played": 13, "wins": 10, "losses": 3, "for": 1204, "against": 1049 },
+    "away": { "played": 13, "wins": 8, "losses": 5, "for": 1136, "against": 1121 },
+    "champion": "מכבי תל אביב",
+    "rows": [
+      { "pos": 1, "team": "מכבי ת\"א", "played": 26, "wins": 24, "losses": 2, "points": 50, "diff": 452 },
+      { "pos": 2, "team": "הפועל ת\"א", "played": 26, "wins": 22, "losses": 4, "points": 48, "diff": 321 },
+      { "pos": 3, "team": "הפועל י-ם", "played": 26, "wins": 18, "losses": 8, "points": 44, "diff": 170 },
+      { "pos": 4, "team": "בני הרצליה", "played": 26, "wins": 18, "losses": 8, "points": 44, "diff": 64 },
+      { "pos": 5, "team": "הפועל חולון", "played": 26, "wins": 15, "losses": 11, "points": 41, "diff": 6 },
+      { "pos": 6, "team": "הפועל העמק", "played": 26, "wins": 15, "losses": 11, "points": 41, "diff": 97 },
+      { "pos": 7, "team": "ראשון לציון", "played": 26, "wins": 12, "losses": 14, "points": 38, "diff": -41 },
+      { "pos": 8, "team": "הפועל ב\"ש", "played": 26, "wins": 10, "losses": 16, "points": 36, "diff": -107 },
+      { "pos": 9, "team": "מכבי רמת גן", "played": 26, "wins": 10, "losses": 16, "points": 36, "diff": -60 },
+      { "pos": 10, "team": "קריית אתא", "played": 26, "wins": 9, "losses": 17, "points": 35, "diff": null }
+    ],
+    "source": "https://basket.co.il/table.asp?cYear=2026"
+  },
+  "europe": {
+    "name": "יורוקאפ 2025/26",
+    "note": "ג׳ארד הארפר נבחר ל־MVP העונה של היורוקאפ בפעם השנייה ברציפות. את התואר עצמו לקחה בורג־אן־ברס, שגברה בגמר על בשיקטאש — הגמר לא עבר דרך ירושלים.",
+    "mvp": "ג׳ארד הארפר — MVP היורוקאפ 2025/26",
+    "source": "https://basketnews.com/news-245142-jared-harper-wins-back-to-back-eurocup-mvp.html"
+  },
+  "headlines": [
+    {
+      "title": "מקום שלישי בעונה הסדירה",
+      "text": "18 ניצחונות מול 8 הפסדים, 44 נקודות, הפרש 170+. בבית 10‑3, בחוץ 8‑5 — הפער הזה הוא הסיפור של העונה."
+    },
+    {
+      "title": "MVP היורוקאפ, פעם שנייה",
+      "text": "ג׳ארד הארפר לקח את פרס ה־MVP של היורוקאפ בשנייה ברציפות — הישג נדיר, ומספיק כדי שהמועדון יחתום איתו על החוזה הגדול בתולדותיו."
+    }
+  ]
+}

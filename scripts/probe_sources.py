@@ -10,14 +10,17 @@ Established so far:
   round 2  Group A holds JER; standings rows carry position/W/L/points;
            player objects carry no images at all; every club has a crest;
            the league fixture list is genuinely still unpublished.
-  round 3  (this one) no 2026-27 game has been played yet, so the shape of a
-           game in progress is learned from last season instead.
+  round 3  the feed gives three different times per game and utcDate is the
+           only true one; scores live in local/road .score and .partials.
+  round 4  (this one) last season — what did 2025-26 actually look like, and
+           is there a season-level player stats endpoint to aggregate?
 """
 import json
 import re
 import sys
 
 import requests
+from bs4 import BeautifulSoup
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; HapoelFanApp/1.0; +https://github.com/Behemot46/Hapoel)",
       "Accept": "application/json, text/html;q=0.9"}
@@ -90,76 +93,100 @@ def listify(d):
     return []
 
 
-def probe_played():
-    """Last season has finished games — their shape is the shape a live game
-    will take as it fills in."""
-    section("A. A finished game from last season: what does a result look like?")
+# ------------------------------------------------------- last European season
+
+def probe_last_euro():
+    section("A. Last season in Europe — our record and how it ended")
     d = get(f"{API}/v2/competitions/U/seasons/U2025/games")
     games = listify(d)
-    log(f"  {len(games)} games in U2025")
-    played = [g for g in games if g.get("played")]
-    log(f"  {len(played)} played")
-    if not played:
-        log("  nothing played — cannot learn the shape here")
-        return
-    g = played[len(played) // 2]
-    log("  --- full shape of a finished game ---")
-    dump(g)
+    ours = []
+    for g in games:
+        local, road = g.get("local") or {}, g.get("road") or {}
+        codes = ((local.get("club") or {}).get("code"), (road.get("club") or {}).get("code"))
+        if "JER" in codes:
+            ours.append((g, local, road))
+    log(f"  {len(games)} games in U2025, {len(ours)} ours")
+    w = l = 0
+    for g, local, road in sorted(ours, key=lambda x: x[0].get("utcDate") or ""):
+        home = (local.get("club") or {}).get("code") == "JER"
+        us = int(local.get("score") or 0) if home else int(road.get("score") or 0)
+        them = int(road.get("score") or 0) if home else int(local.get("score") or 0)
+        opp = ((road if home else local).get("club") or {}).get("name")
+        if g.get("played"):
+            w += us > them
+            l += us < them
+        log(f"    {(g.get('utcDate') or '')[:10]} {'H' if home else 'A'} "
+            f"{us:>3}-{them:<3} {'W' if us > them else 'L'}  {opp}  "
+            f"[{g.get('phaseType', {}).get('name')} {g.get('roundName')}]")
+    log(f"  RECORD: {w}-{l}")
 
-    code = g.get("gameCode") or g.get("code") or g.get("id")
-    log("  game identifier:", repr(code))
-    if not code:
-        return
-    for u in (f"{API}/v2/competitions/U/seasons/U2025/games/{code}",
-              f"{API}/v2/competitions/U/seasons/U2025/games/{code}/boxscore",
-              f"{API}/v2/competitions/U/seasons/U2025/games/{code}/stats",
-              f"{API}/v2/competitions/U/seasons/U2025/games/{code}/report",
-              f"{API}/v1/games?seasonCode=U2025&gameCode={code}"):
-        r = get(u, want_json=not u.startswith(f"{API}/v1"))
-        if r is None:
+    section("A2. Last season's final group table")
+    for rnd in range(22, 0, -1):
+        d = get(f"{API}/v2/competitions/U/seasons/U2025/rounds/{rnd}/standings")
+        groups = d if isinstance(d, list) else listify(d)
+        if groups:
+            log(f"  last populated round: {rnd}")
+            for grp in groups:
+                rows = grp.get("standings") or []
+                if any((r.get("club") or {}).get("code") == "JER" for r in rows):
+                    log("  our group:", (grp.get("group") or {}).get("name"))
+                    for r in rows:
+                        c, dd = r.get("club") or {}, r.get("data") or {}
+                        log(f"    {dd.get('position')}. {c.get('name')[:34]:<34} "
+                            f"{dd.get('gamesWon')}-{dd.get('gamesLost')} "
+                            f"{dd.get('pointsFavour')}:{dd.get('pointsAgainst')}")
+            break
+
+
+def probe_player_stats():
+    section("B. Is there a season-level player stats endpoint?")
+    for u in (f"{API}/v2/competitions/U/seasons/U2025/clubs/JER/people/stats",
+              f"{API}/v2/competitions/U/seasons/U2025/statistics/players",
+              f"{API}/v2/competitions/U/seasons/U2025/people/statistics",
+              f"{API}/v2/competitions/U/seasons/U2025/statistics/players/traditional?limit=400",
+              f"{API}/v2/competitions/U/seasons/U2025/statistics/teams/traditional"):
+        d = get(u)
+        if d:
+            dump(d, 45)
+
+    section("B2. Failing that, a single game's boxscore")
+    d = get(f"{API}/v2/competitions/U/seasons/U2025/games")
+    for g in listify(d):
+        local, road = g.get("local") or {}, g.get("road") or {}
+        codes = ((local.get("club") or {}).get("code"), (road.get("club") or {}).get("code"))
+        if "JER" in codes and g.get("played"):
+            code = g.get("gameCode")
+            log("  using gameCode", code)
+            for u in (f"{API}/v2/competitions/U/seasons/U2025/games/{code}/stats",
+                      f"{API}/v2/competitions/U/seasons/U2025/games/{code}/boxscore"):
+                r = get(u)
+                if r:
+                    dump(r, 60)
+            break
+
+
+def probe_league_last():
+    section("C. Last season in the Israeli league")
+    for u in ("https://basket.co.il/table.asp?cYear=2026",
+              "https://basket.co.il/team.asp?TeamId=1035&cYear=2026"):
+        h = get(u, want_json=False)
+        if not h:
             continue
-        if isinstance(r, str):
-            log("    xml head:", r[:500].replace("\n", " "))
-            continue
-        log(f"  --- {u.rsplit('/', 1)[-1][:40]} ---")
-        dump(r, 70)
-
-
-def probe_upcoming_shape():
-    section("B. Our own 2026-27 games — the exact fields we will be polling")
-    d = get(f"{API}/v2/competitions/U/seasons/U2026/games")
-    games = listify(d)
-    ours = [g for g in games if "JER" in json.dumps(g)]
-    log(f"  {len(games)} games, {len(ours)} ours")
-    if ours:
-        log("  --- full shape of our first game ---")
-        dump(ours[0])
-        log("  date-ish values across our games:")
-        for g in ours[:4]:
-            vals = {k: v for k, v in g.items()
-                    if isinstance(v, str) and re.search(r"date|time|utc", k, re.I)}
-            log("   ", json.dumps(vals, ensure_ascii=False)[:220])
-
-
-def probe_live_endpoints():
-    section("C. Anything explicitly named 'live'?")
-    for u in (f"{API}/v2/competitions/U/seasons/U2026/games/live",
-              f"{API}/v2/competitions/U/games/live",
-              f"{API}/v1/games?seasonCode=U2026",
-              f"{API}/v2/competitions/U/seasons/U2026/rounds"):
-        r = get(u, want_json=not u.startswith(f"{API}/v1"))
-        if r is None:
-            continue
-        if isinstance(r, str):
-            log("    xml head:", r[:400].replace("\n", " "))
-        else:
-            dump(r, 30)
+        s = BeautifulSoup(h, "html.parser")
+        for i, t in enumerate(s.find_all("table")[:10]):
+            rows = t.find_all("tr")
+            if len(rows) < 3:
+                continue
+            head = rows[0].get_text(" | ", strip=True)[:100]
+            log(f"    table[{i}] rows={len(rows)} head={head!r}")
+            for r in rows[1:14]:
+                log("      ", r.get_text(" | ", strip=True)[:110])
 
 
 if __name__ == "__main__":
     which = sys.argv[1] if len(sys.argv) > 1 else "all"
-    for name, fn in (("played", probe_played), ("upcoming", probe_upcoming_shape),
-                     ("live", probe_live_endpoints)):
+    for name, fn in (("euro", probe_last_euro), ("stats", probe_player_stats),
+                     ("league", probe_league_last)):
         if which in ("all", name):
             fn()
     log("")
