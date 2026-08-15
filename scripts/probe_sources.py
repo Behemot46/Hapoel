@@ -1,81 +1,74 @@
-"""Diagnostic probe — round 12: last attempt at photos for Roddy and Lofton.
+"""Diagnostic probe — player stats for the season that just ended.
 
-Round 11 established two things:
-  * the Proballers player page is rendered client-side — its HTML carries one
-    image, the site's generic Open Graph card, and no player photo at all;
-  * in the EuroCup squad feed Roddy and Lofton come back with code=None, which
-    is precisely why the updater never found a headshot for them. Everyone
-    with a code already has one.
+The stats page has a full team table for 2025/26 but not a single player line.
+Two possible sources:
 
-So try, in order of how much we would trust the result:
-  A. the Proballers image without the expired resize cache, and a couple of
-     other cache sizes — same file, different derivative;
-  B. the EuroLeague person directory under other competitions, in case the two
-     of them hold a person code we are not looking under.
+  A. the EuroCup feed for the previous season code. This season is U2026, so
+     last season should be U2025 — confirm that, and print what a player row
+     actually carries (games, minutes, points, rebounds, assists, rating).
+  B. the league's own site, which is the only place Winner League averages
+     live. Print enough of the page to see whether a per-player table exists
+     and how it is shaped.
+
+Anything written into the app has to say which competition it is from: a
+EuroCup average and a Winner League average are different numbers, and one
+labelled as the other is a lie even when both are accurate.
 """
-import io
+import json
+import re
 
 import requests
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-      "Accept": "text/html,image/*;q=0.9,*/*;q=0.8",
-      "Referer": "https://www.proballers.com/basketball/player/190935/roddy-david"}
-
-FILE = "ul/player/david-roddy-1f0fe381-d437-6f74-ad19-414dbecff047.png"
-BASE = "https://www.proballers.com/"
-CANDIDATES = [
-    BASE + FILE,
-    BASE + "media/cache/resize_600_png/https---www.proballers.com/" + FILE,
-    BASE + "media/cache/resize_200_png/https---www.proballers.com/" + FILE,
-    BASE + "media/cache/player_profile/https---www.proballers.com/" + FILE,
-    BASE + "media/" + FILE,
-]
+                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+API = "https://api-live.euroleague.net/v2/competitions/U/seasons"
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def try_image(url, label):
+log("=" * 70)
+log("A. EuroCup player stats, by season code")
+log("=" * 70)
+for season in ("U2025", "U2026"):
+    url = f"{API}/{season}/clubs/JER/people/stats"
     try:
-        r = requests.get(url, headers=UA, timeout=30, stream=True)
-        ctype = r.headers.get("Content-Type", "?")
-        data = r.raw.read(900000)
-        log(f"  {label}: {r.status_code} {ctype} {len(data)} bytes")
-        if r.status_code == 200 and ctype.startswith("image/"):
-            from PIL import Image
-            im = Image.open(io.BytesIO(data))
-            log(f"    -> {im.size} {im.mode}  USABLE")
-            return True
+        r = requests.get(url, headers={"Accept": "application/json"}, timeout=30)
+        log(f"  {season}: {r.status_code} {len(r.text)} chars")
+        if r.status_code != 200:
+            continue
+        j = r.json()
+        rows = j.get("data", j if isinstance(j, list) else [])
+        log(f"    {len(rows)} rows")
+        if rows:
+            log("    keys on a row:", sorted(rows[0].keys()))
+            first = rows[0]
+            for k in ("player", "person", "stats", "averages", "accumulated"):
+                if isinstance(first.get(k), dict):
+                    log(f"    {k} keys:", sorted(first[k].keys())[:26])
+            log("    row 0 verbatim:", json.dumps(first, ensure_ascii=False)[:1100])
     except Exception as e:
-        log(f"  {label}: FAIL {type(e).__name__} {str(e)[:110]}")
-    return False
-
-
-log("=" * 70)
-log("A. the Proballers file without the expired resize cache")
-log("=" * 70)
-for u in CANDIDATES:
-    try_image(u, u.replace(BASE, "")[:70])
+        log(f"  {season}: FAIL {type(e).__name__} {str(e)[:140]}")
 
 log("")
 log("=" * 70)
-log("B. does either of them hold a person code in another competition?")
+log("B. the league site — are there per-player averages?")
 log("=" * 70)
-for comp, season in (("E", "E2026"), ("U", "U2025"), ("E", "E2025")):
-    url = (f"https://api-live.euroleague.net/v2/competitions/{comp}/seasons/"
-           f"{season}/people?personName=Roddy")
+for url in ("https://basket.co.il/team-stats.asp?TeamId=1095&cYear=2026",
+            "https://basket.co.il/team.asp?TeamId=1095&cYear=2026",
+            "https://basket.co.il/stats.asp?cYear=2026"):
     try:
-        r = requests.get(url, headers={"Accept": "application/json"}, timeout=30)
-        log(f"  {comp}/{season}: {r.status_code} {r.text[:220]}")
+        r = requests.get(url, headers=UA, timeout=30)
+        r.encoding = r.apparent_encoding or "windows-1255"
+        log(f"  {url} -> {r.status_code} {len(r.text)} chars")
+        if r.status_code != 200:
+            continue
+        # a stats table would name the usual columns
+        for word in ("נקודות", "ריבאונד", "אסיסט", "דקות", "PlayerId", "ממוצע"):
+            log(f"    contains {word!r}:", word in r.text)
+        m = re.findall(r"PlayerId=(\d+)[^>]*>([^<]{2,40})", r.text)[:8]
+        if m:
+            log("    player links:", m)
     except Exception as e:
-        log(f"  {comp}/{season}: FAIL {type(e).__name__} {str(e)[:110]}")
-
-for name in ("Roddy", "Lofton"):
-    url = f"https://api-live.euroleague.net/v2/people?name={name}"
-    try:
-        r = requests.get(url, headers={"Accept": "application/json"}, timeout=30)
-        log(f"  /v2/people?name={name}: {r.status_code} {r.text[:300]}")
-    except Exception as e:
-        log(f"  /v2/people?name={name}: FAIL {type(e).__name__} {str(e)[:110]}")
+        log(f"  {url}: FAIL {type(e).__name__} {str(e)[:140]}")
