@@ -1,4 +1,4 @@
-"""Diagnostic probe — did the feedback function actually deploy?
+"""Diagnostic probe, did the feedback function actually deploy?
 
 vercel.json sets `outputDirectory: app`, and the function lives in `api/` at
 the root of the repository, outside it. Vercel is documented to pick up a
@@ -18,7 +18,7 @@ import urllib.error
 import urllib.request
 
 # the apex redirects to www with a 308, and a POST that is not followed
-# looks like a failure that is not one — so ask both, as the app would
+# looks like a failure that is not one, so ask both, as the app would
 SITES = ["https://hapoel.site", "https://www.hapoel.site"]
 UA = {"User-Agent": "Mozilla/5.0 (probe)", "Content-Type": "application/json"}
 
@@ -50,20 +50,20 @@ for site in SITES:
     status, body = call(site, "POST", {})
     log(f"    POST empty body → {status}  {body}")
     if status == 404:
-        log("       !! the function did not deploy — vercel is not building api/")
+        log("       !! the function did not deploy, vercel is not building api/")
     elif status == 501:
-        log("       ok — deployed, waiting for FEEDBACK_TOKEN")
+        log("       ok, deployed, waiting for FEEDBACK_TOKEN")
     elif status == 400:
-        log("       ok — deployed AND configured: it refused an empty answer")
+        log("       ok, deployed AND configured: it refused an empty answer")
     elif status == 200:
         log("       !! it accepted an empty answer, which it should not")
     elif status == 308:
-        log("       redirect — a browser would follow it and keep the POST")
+        log("       redirect, a browser would follow it and keep the POST")
 
     status, body = call(site, "GET")
     log(f"    GET             → {status}  {body}")
-    log("       " + ("ok — only POST is allowed" if status == 405 else "unexpected"))
+    log("       " + ("ok, only POST is allowed" if status == 405 else "unexpected"))
 
 log("")
 log("=" * 74)
-log("done — nothing was written")
+log("done, nothing was written")

@@ -8,7 +8,7 @@ name: משחק חי
 
 on:
   schedule:
-    # every 5 minutes, 15:00–22:00 UTC — covers 17:00–01:00 Israel time,
+    # every 5 minutes, 15:00-22:00 UTC, covers 17:00-01:00 Israel time,
     # which spans both European tip-offs and domestic evening games
     - cron: '*/5 15-22 * * *'
   workflow_dispatch:
@@ -50,7 +50,7 @@ jobs:
           git config user.name "hapoel-data-bot"
           git config user.email "actions@users.noreply.github.com"
 
-          # main — this is what Vercel publishes at the custom domain
+          # main, this is what Vercel publishes at the custom domain
           git add app/data/live.json
           if git diff --cached --quiet; then
             echo "main: score unchanged since last poll"
@@ -67,10 +67,10 @@ jobs:
             done
           fi
 
-          # gh-pages — the published branch, so the score reaches fans there
+          # gh-pages, the published branch, so the score reaches fans there
           # in ~30s instead of waiting on a full redeploy
           if ! git fetch origin gh-pages --depth=1; then
-            echo "no gh-pages branch yet — nothing to publish to"
+            echo "no gh-pages branch yet, nothing to publish to"
             exit 0
           fi
           git checkout -B gh-pages origin/gh-pages

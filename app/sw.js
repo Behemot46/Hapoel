@@ -44,7 +44,7 @@ self.addEventListener("fetch", e => {
   if (e.request.method !== "GET" || url.origin !== location.origin) return;
 
   // the live score is meaningful only while it is fresh, and it is polled
-  // with a cache-buster — caching it would both mislead and fill the store
+  // with a cache-buster, caching it would both mislead and fill the store
   if (url.pathname.endsWith("/live.json")) return;
 
   const cacheName = url.pathname.includes("/data/") ? DATA_CACHE : SHELL_CACHE;

@@ -3,7 +3,7 @@ name: עדכון נתונים אוטומטי
 on:
   schedule:
     # five times a day: ~06:00, ~08:00, ~11:00, ~14:00, ~16:00 Israel time.
-    # Deliberately outside the live-score window (15:00–22:00 UTC) — a deploy
+    # Deliberately outside the live-score window (15:00-22:00 UTC), a deploy
     # rebuilds gh-pages from scratch and would drop live.json mid-game.
     # The morning and midday runs were added for the news feed: a fixture
     # changes twice a season, a headline changes twice a morning.
@@ -35,7 +35,7 @@ jobs:
         run: |
           git config user.name "hapoel-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          # app/img too — headshots are downloaded into the repo so the app
+          # app/img too, headshots are downloaded into the repo so the app
           # works offline, and committing only app/data/ silently threw them
           # away while roster.json still pointed at them
           git add app/data/ app/img/

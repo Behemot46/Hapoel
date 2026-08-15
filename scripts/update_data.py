@@ -211,7 +211,7 @@ def update_standings():
 
 DATE_RE = re.compile(r"(\d{1,2})[./](\d{1,2})[./](\d{2,4})")
 TIME_RE = re.compile(r"(\d{1,2}):(\d{2})")
-SCORE_RE = re.compile(r"(\d{2,3})\s*[-–:]\s*(\d{2,3})")
+SCORE_RE = re.compile(r"(\d{2,3})\s*[--:]\s*(\d{2,3})")
 
 def parse_team_games(soup):
     """Header-driven parse of the team schedule table.
@@ -258,7 +258,7 @@ def parse_team_games(soup):
                 continue
             if not (is_us(home_raw) or is_us(away_raw)):
                 continue
-            # NOTE: score order vs. host/guest still unverified — no finished
+            # NOTE: score order vs. host/guest still unverified, no finished
             # games on the page yet; recheck when first results appear
             sm = SCORE_RE.search(cell(j_score))
             opp = away_raw if is_us(home_raw) else home_raw
@@ -307,7 +307,7 @@ def update_games():
     # the pre-season schedule can legitimately hold just a game or two
     if len(games) < 1:
         dump_tables(team_soup, team_link)
-        raise RuntimeError("no games parsed — refusing to overwrite (see DIAG lines)")
+        raise RuntimeError("no games parsed, refusing to overwrite (see DIAG lines)")
     log("domestic games parsed:", len(games))
 
     # the league site carries only domestic games, so add the European ones
@@ -317,7 +317,7 @@ def update_games():
         log("eurocup games failed:", e)
         euro = []
     if euro:
-        # a fixture already known from the league site wins — its names are Hebrew
+        # a fixture already known from the league site wins, its names are Hebrew
         have = {g["date"][:10] for g in games}
         added = [g for g in euro if g["date"][:10] not in have]
         games.extend(added)
@@ -340,7 +340,7 @@ def update_games():
 
 # A cup tie or two is all the league publishes before the season is drawn.
 # Rather than let the app quietly show a near-empty schedule for weeks, note
-# how many league fixtures exist so the app can say so — and shout in the log
+# how many league fixtures exist so the app can say so, and shout in the log
 # on the day the real list finally appears.
 def is_league_game(g):
     """Domestic and not a cup tie. The league site puts whatever the stage is
@@ -354,7 +354,7 @@ def league_status(games):
     count = len(league)
     if count and not previous:
         log("*" * 60)
-        log(f"THE LEAGUE SCHEDULE IS OUT — {count} fixtures appeared")
+        log(f"THE LEAGUE SCHEDULE IS OUT, {count} fixtures appeared")
         log("*" * 60)
     elif count > previous:
         log(f"league fixtures grew: {previous} -> {count}")
@@ -452,7 +452,7 @@ def is_us_latin(name):
 
 # The v2 feed gives three times per game and they are NOT the same:
 #   date       CET, the competition's own clock
-#   localDate  local to the venue — Belgrade for our "home" European games
+#   localDate  local to the venue, Belgrade for our "home" European games
 #   utcDate    the actual instant, and the only one worth storing
 # Reading `date` as if it were Israeli time put every European fixture an
 # hour early on the schedule. Store the instant; the app renders it local.
@@ -769,7 +769,7 @@ def roster_from_eurocup():
         try:
             _walk_json(json.loads(body), players)
         except ValueError:
-            # v1 endpoints answer XML — pull player nodes out of it
+            # v1 endpoints answer XML, pull player nodes out of it
             soup = BeautifulSoup(body, "html.parser")
             for tag in soup.find_all(["player", "playeritem"]):
                 nm = tag.find("name")
@@ -845,7 +845,7 @@ def tidy_country(raw):
 
 # the squad feed carries no headshots, so try the per-player detail endpoints
 # The squad payload carries images:{} for everyone, but the competition-wide
-# person record does have a headshot — and being season-less it also covers a
+# person record does have a headshot, and being season-less it also covers a
 # summer signing whose EuroCup history is at another club. One request per
 # player, which the API tolerates; a full box-score sweep does not (429).
 PERSON_ENDPOINTS = [
@@ -897,7 +897,7 @@ def photos_from_team_page(players):
     return hits
 
 def _headshot_from_person(data):
-    """{"data": [ {images:{headshot}}, ... ]} — newest entry wins, because a
+    """{"data": [ {images:{headshot}}, ... ]}, newest entry wins, because a
     player who has been round the block has one record per club-season."""
     rows = data.get("data") if isinstance(data, dict) else data
     if isinstance(rows, dict):
@@ -941,7 +941,7 @@ def photo_url_for(code, template=None):
 
 PHOTO_DIR = ROOT / "app" / "img" / "players"
 
-# how many new headshots to look up in a single run — see the note in
+# how many new headshots to look up in a single run, see the note in
 # update_roster(); the cap exists to protect the other sources, not the images
 PHOTO_LOOKUPS_PER_RUN = 4
 
@@ -976,8 +976,7 @@ def fetch_photos(players):
                 import io
                 im = Image.open(io.BytesIO(data))
                 # some sources ship the cut-out on a transparent canvas.
-                # Dropping alpha would leave whatever colour hides underneath —
-                # black in one source, white in another — so flatten onto white
+                # Dropping alpha would leave whatever colour hides underneath,                 # black in one source, white in another, so flatten onto white
                 # deliberately, which is what the rest of the squad looks like.
                 if im.mode in ("RGBA", "LA", "P"):
                     im = im.convert("RGBA")
@@ -1012,7 +1011,7 @@ def merge_club_and_euro(club, euro):
     """The club page is the source of truth for who is in the squad, the shirt
     number, the Hebrew name and the date of birth. The European feed is the
     only place with height, country, position and the person code the photos
-    hang off — so take those from it wherever a player appears in both."""
+    hang off, so take those from it wherever a player appears in both."""
     he_to_lat = {}
     for lat, he in (load_json("player-names.json") or {}).items():
         if not lat.startswith("_"):
@@ -1072,7 +1071,7 @@ def update_roster():
     if len(club) >= 5:
         players = merge_club_and_euro(club, euro)
         return _save_roster(players)
-    log(f"club page gave {len(club)} players — falling back to the league site")
+    log(f"club page gave {len(club)} players, falling back to the league site")
 
     team_link = find_team_link()
     if not team_link:
@@ -1116,7 +1115,7 @@ def update_roster():
                     players = found
                     break
 
-    # EuroCup feeds — the club plays there, and they do publish squads
+    # EuroCup feeds, the club plays there, and they do publish squads
     if len(players) < 5:
         players = roster_from_eurocup()
         if players:
@@ -1138,13 +1137,13 @@ def update_roster():
             t, h = example[key]
             log(f"  {n:>3}x {key}  e.g. '{t}' -> {h}")
         dump_tables(soup, team_link)
-        raise RuntimeError(f"only {len(players)} players parsed — refusing to overwrite (see DIAG lines)")
+        raise RuntimeError(f"only {len(players)} players parsed, refusing to overwrite (see DIAG lines)")
     return _save_roster(players)
 
 def apply_overrides(players):
     """Hand-kept corrections win over anything scraped. A source that stops
     publishing a field should not silently blank it out, and an override left
-    behind by a departed player should not rot unnoticed — so say both."""
+    behind by a departed player should not rot unnoticed, so say both."""
     src = load_json("player-overrides.json") or {}
     used = set()
     for p in players:
@@ -1177,7 +1176,7 @@ def _save_roster(players):
 
     # Headshots are not in the squad payload; the competition-wide person
     # record has them. A photo does not change, so only look up players whose
-    # file is missing — a steady-state run makes no image requests at all.
+    # file is missing, a steady-state run makes no image requests at all.
     # New players are fetched a few per run so a squad overhaul never eats the
     # rate limit that the other sources need.
     # a hand-curated URL beats any lookup: it is the one case where somebody
@@ -1229,7 +1228,7 @@ def _save_roster(players):
 
 # The group table lives per round. Only rounds that have been reached answer
 # with content; the rest return an empty list, so walk down from the top and
-# take the first round that has anything in it — that is the current table.
+# take the first round that has anything in it, that is the current table.
 EUROCUP_STANDINGS = ("https://api-live.euroleague.net"
                      "/v2/competitions/U/seasons/U2026/rounds/{r}/standings")
 MAX_ROUND = 18
@@ -1381,7 +1380,7 @@ def main():
         meta["sample"] = False
     save_json("meta.json", meta)
     log("done. any source ok:", ok_any)
-    # exit 0 either way — a failed scrape is recorded, not fatal;
+    # exit 0 either way, a failed scrape is recorded, not fatal;
     # the workflow commits meta.json so failures are visible in-app history
     return 0
 

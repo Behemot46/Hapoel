@@ -2,8 +2,8 @@
 
 The EuroCup feed only knows the ten players registered for Europe, in Latin
 transliteration and with no birth dates. hapoel.co.il/team carries the whole
-squad — including the Israeli players who never appear in the European
-registration — with Hebrew names, shirt numbers and dates of birth.
+squad, including the Israeli players who never appear in the European
+registration, with Hebrew names, shirt numbers and dates of birth.
 
 The page is server-rendered, and each player appears as a pair of links to
 the league's own player page:
@@ -30,7 +30,7 @@ def _hebrew(s):
 
 
 def _card_of(tag, depth=6):
-    """Climb to the smallest ancestor that holds a birth date — that is the
+    """Climb to the smallest ancestor that holds a birth date, that is the
     player's card, whatever the site chooses to call its CSS classes."""
     node = tag
     for _ in range(depth):

@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Where a fan's answers land — and who can read them.
+ * Where a fan's answers land: and who can read them.
  *
  * The app itself is static files: no server, nowhere to store anything.
  * Vercel runs this one function next to it, so the form can be filled and
@@ -13,12 +13,12 @@
  * left to whoever fills in the configuration: before the first write the
  * function asks GitHub whether the target repository is private, and
  * refuses to write to it if it is not. A misconfiguration therefore loses
- * a submission — it never publishes one.
+ * a submission: it never publishes one.
  *
  * Two environment variables in Vercel, both required:
  *
  *     FEEDBACK_TOKEN   a GitHub token that may open issues on that repo
- *     FEEDBACK_REPO    owner/repo — a PRIVATE repository
+ *     FEEDBACK_REPO    owner/repo: a PRIVATE repository
  *
  * With either missing the function answers 501 and the app tells the fan
  * plainly that sending failed, keeping what they typed on screen. There is
@@ -34,7 +34,7 @@ const RATE = { perIp: 5, windowMs: 60 * 60 * 1000, minGapMs: 20 * 1000 };
 
 // Best effort only: a serverless instance is short-lived and there may be
 // several at once. It stops a stuck finger and a naive script, not a
-// determined flood — for that, Vercel's own bot protection is the tool.
+// determined flood, for that, Vercel's own bot protection is the tool.
 const seen = new Map();
 
 function rateLimited(ip) {
@@ -102,7 +102,7 @@ async function targetIsPrivate() {
   });
   if (!res.ok) {
     console.error("cannot read target repo", REPO, res.status);
-    return null; // unknown — treated as "do not write"
+    return null; // unknown, treated as "do not write"
   }
   const repo = await res.json();
   targetPrivate = repo.private === true;
@@ -170,7 +170,7 @@ module.exports = async (req, res) => {
     let gh = await createIssue(payload);
     if (gh.status === 422) {
       // a label the repository does not have yet and the token may not be
-      // allowed to create — the answer matters more than the label
+      // allowed to create, the answer matters more than the label
       delete payload.labels;
       gh = await createIssue(payload);
     }

@@ -31,11 +31,11 @@ def main():
         im = Image.open(f).convert("RGB")
         w, h = im.size
         if w == h:
-            print(f"  {f.name}: already square ({w}x{h}) — left alone")
+            print(f"  {f.name}: already square ({w}x{h}), left alone")
             continue
         head = find_head(im)
         if not head:
-            print(f"  {f.name}: not a cut-out on a flat background — crop it by "
+            print(f"  {f.name}: not a cut-out on a flat background, crop it by "
                   f"hand to a square around the face, then re-run")
             continue
         out = crop_to_face(im)

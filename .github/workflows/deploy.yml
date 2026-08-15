@@ -31,7 +31,7 @@ jobs:
         run: python scripts/build_standalone.py app/hapoel-standalone.html
 
       # Publishing to a gh-pages branch auto-enables GitHub Pages for the
-      # repo — the Pages-via-Actions flow can't create the site with the
+      # repo, the Pages-via-Actions flow can't create the site with the
       # default workflow token ("Resource not accessible by integration").
       - name: Publish app/ to gh-pages
         uses: peaceiris/actions-gh-pages@v4

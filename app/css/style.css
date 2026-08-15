@@ -1,6 +1,6 @@
 :root {
   --red: #E4002B;
-  /* --red on the pink tint is 4.13:1 — under AA for anything but large text,
+  /* --red on the pink tint is 4.13:1, under AA for anything but large text,
      and the promo titles and countdown label are normal size. This darker
      red clears AA on the tint, on white and on the page background, and is
      still unmistakably the club red. --red stays the colour of fills. */
@@ -144,7 +144,7 @@ body {
   color: var(--muted);
 }
 .badge.home { background: var(--red); color: var(--red-ink); }
-/* a home game that is not at home — marked, not hidden */
+/* a home game that is not at home, marked, not hidden */
 .badge.away-home { background: var(--surface-2); color: var(--text); border: 1px dashed var(--red); }
 .game-row .sub .away-home { color: var(--red-text); font-weight: 700; }
 
@@ -293,7 +293,7 @@ body {
 .hof-name { font-size: 18px; font-weight: 800; line-height: 1.25; }
 .hof-nick { font-size: 13px; font-weight: 700; color: var(--red-text); margin-top: 1px; }
 
-/* the affairs — same card, deliberately cooler than a trophy */
+/* the affairs, same card, deliberately cooler than a trophy */
 .affair-card { background: var(--surface-2); }
 .affair-head { display: flex; align-items: baseline; gap: 9px; margin-bottom: 6px; }
 .affair-year {
@@ -305,7 +305,7 @@ body {
 }
 .affair-title { font-size: 16px; font-weight: 800; }
 .affair-text { margin: 0; font-size: 14.5px; }
-/* the ones that did not work out — same card, cooled down */
+/* the ones that did not work out, same card, cooled down */
 .flop-card { border-style: dashed; }
 .flop-card .hof-badge { filter: grayscale(1); opacity: 0.75; }
 .flop-card .hof-headline { color: var(--muted); }
@@ -476,7 +476,7 @@ a.player-row:hover { border-color: var(--red); }
   color: hsl(var(--h) 58% 34%);
   font-weight: 800;
   letter-spacing: 0.01em;
-  /* isolate only — each script keeps its own direction, so Hebrew initials
+  /* isolate only, each script keeps its own direction, so Hebrew initials
      read right-to-left and Latin ones left-to-right */
   unicode-bidi: isolate;
   user-select: none;
@@ -654,7 +654,7 @@ a.player-row:hover { border-color: var(--red); }
   font-size: 12.5px; font-weight: 800;
   font-variant-numeric: tabular-nums;
   /* a year range is a standalone LTR token: without this, RTL resolves the
-     dash as a separator and renders "2013–2014" as "2014–2013" */
+     dash as a separator and renders "2013-2014" as "2014-2013" */
   direction: ltr;
   unicode-bidi: isolate;
   background: var(--surface-2); color: var(--muted);
@@ -882,7 +882,7 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
   text-decoration: none;
 }
 
-/* News — each headline is a link out to whoever published it */
+/* News, each headline is a link out to whoever published it */
 .news-card { padding: 6px 0 0; }
 .news-item {
   display: block;
@@ -987,7 +987,7 @@ body.sheet-open { overflow: hidden; }
 .poll-hint { color: var(--muted); font-size: 12px; margin: -5px 0 7px; }
 /* the honeypot: out of sight and out of the tab order, but not display:none,
    which the bots that matter already know to skip. Clipped rather than
-   pushed off-screen — a negative offset inside an RTL page can hand the
+   pushed off-screen, a negative offset inside an RTL page can hand the
    whole document a horizontal scrollbar. */
 .poll-trap {
   position: absolute;
@@ -1099,7 +1099,7 @@ a:focus-visible, button:focus-visible { outline: 2.5px solid var(--red); outline
 /* ---------- desktop ----------
    The layout is a phone column by design and stays one, but on a monitor
    the type was set for a screen held 30cm from your face. Everything moves
-   up one step, and the 11.5px tier — notes, credits, captions — comes up to
+   up one step, and the 11.5px tier, notes, credits, captions, comes up to
    a size that is actually readable at arm's length. */
 @media (min-width: 900px) {
   body { font-size: 17px; }

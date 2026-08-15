@@ -3,7 +3,7 @@
 The crest lives at app/icons/crest.png. It is the club's own mark, used here
 in an unofficial fan app that says so on every screen.
 
-The source is 160x160 — the largest that could be found; the club's own
+The source is 160x160, the largest that could be found; the club's own
 favicon is 48x48 and there is no public vector. So the icons are built to
 keep it as sharp as the source allows: the 192 is drawn at close to native
 size, and the 512 is upscaled with LANCZOS, which is soft at full size but
@@ -34,7 +34,7 @@ FILL_MASKABLE = 0.62
 
 def load_crest():
     if not os.path.exists(CREST):
-        print(f"no crest at {CREST} — icons left untouched.")
+        print(f"no crest at {CREST}, icons left untouched.")
         print("Drop the club crest there as a square PNG and run this again.")
         return None
     im = Image.open(CREST).convert("RGBA")
