@@ -93,7 +93,9 @@
       "birthDate": "1996-09-26",
       "clubId": "26049",
       "source": "club+eurocup",
-      "slug": "shake-milton"
+      "slug": "shake-milton",
+      "photoCredit": "פרובולרס",
+      "photo": "img/players/shake-milton.jpg"
     },
     {
       "name": "Dusan Miletic",
@@ -151,7 +153,9 @@
       "height": 196,
       "clubId": "26047",
       "source": "club+eurocup",
-      "slug": "david-roddy"
+      "slug": "david-roddy",
+      "photoCredit": "פרובולרס",
+      "photo": "img/players/david-roddy.jpg"
     },
     {
       "name": "גבריאל צאצאשוילי",
