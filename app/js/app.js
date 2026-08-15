@@ -44,7 +44,7 @@ function toggleAttend(g) {
   saveDiary();
 }
 
-// keep stored snapshots fresh — a game marked while upcoming gains its result later
+// keep stored snapshots fresh, a game marked while upcoming gains its result later
 function refreshDiary() {
   let dirty = false;
   (state.games.games || []).forEach(g => {
@@ -61,7 +61,7 @@ function refreshDiary() {
 
 async function loadJSON(path) {
   // the standalone single-file build embeds the data, because fetch() is
-  // blocked on file:// — so read from there first when it exists
+  // blocked on file://, so read from there first when it exists
   const embedded = window.__HAPOEL_DATA__;
   if (embedded) {
     const key = path.replace(/^data\//, "").replace(/\.json$/, "");
@@ -114,7 +114,7 @@ async function boot() {
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
       const b = document.getElementById("sampleBanner");
-      b.textContent = "עותק להורדה — צילום מצב מ־" + window.__HAPOEL_SNAPSHOT__ +
+      b.textContent = "עותק להורדה: צילום מצב מ־" + window.__HAPOEL_SNAPSHOT__ +
         ". לגרסה המתעדכנת: " + appHost();
       b.hidden = false;
     }
@@ -144,7 +144,7 @@ function el(tag, cls, html) {
 // A score written inside Hebrew prose comes out backwards. Digits are weak
 // left-to-right and the separator between them is neutral, so the RTL
 // paragraph around them decides the order and puts the second number first:
-// "10‑3" is painted as "3-10", and "ניצחון 92‑89" as "89-92" — which reads
+// "10‑3" is painted as "3-10", and "ניצחון 92‑89" as "89-92", which reads
 // as a defeat. Every such run gets its own isolate so it keeps the order it
 // was written in. Applies to authored text; a bare number is unaffected,
 // only pairs joined by a separator flip.
@@ -271,7 +271,7 @@ function plural(n, one, many) { return n === 1 ? one : many; }
 function countdownEl(game) {
   const wrap = el("div", "countdown");
   const big = el("div", "cd-minutes");
-  const num = text("span", "cd-num", "—");
+  const num = text("span", "cd-num", "-");
   big.appendChild(num);
   wrap.appendChild(big);
   const unit = text("div", "cd-unit", "דקות למשחק");
@@ -327,7 +327,7 @@ function countdownEl(game) {
 /* ---------- the live score on game night ---------- */
 
 // live.json is republished straight to the site every few minutes while a
-// game is on. It may be missing entirely — that just means "nothing on".
+// game is on. It may be missing entirely, that just means "nothing on".
 let livePoll = null;
 
 function stopLivePoll() {
@@ -390,7 +390,7 @@ function liveCard(live) {
     theirs.appendChild(text("div", "ls-num", String(them)));
     theirs.appendChild(text("div", "ls-who", teamName(opp)));
     box.appendChild(ours);
-    box.appendChild(text("div", "ls-sep", "–"));
+    box.appendChild(text("div", "ls-sep", "-"));
     box.appendChild(theirs);
     c.appendChild(box);
     if (live.state === "live" && live.quarter) {
@@ -408,7 +408,7 @@ function liveCard(live) {
 }
 
 // swap the countdown out for the live card when a game starts, and back to
-// the schedule when it ends — without the fan having to reload anything
+// the schedule when it ends, without the fan having to reload anything
 function watchLive() {
   stopLivePoll();
   const paint = async () => {
@@ -434,7 +434,7 @@ function icsStamp(d) {
 function icsEscape(s) {
   return String(s || "").replace(/[\\;,]/g, m => "\\" + m).replace(/\n/g, "\\n");
 }
-// RFC 5545 wants lines folded at 75 octets — Hebrew is multi-byte, so fold
+// RFC 5545 wants lines folded at 75 octets, Hebrew is multi-byte, so fold
 // by byte count and never in the middle of a character
 function icsFold(line) {
   const enc = new TextEncoder();
@@ -453,7 +453,7 @@ function icsFold(line) {
 // home team first, the way a fixture is normally written; which side we are
 // on is spelled out in the description instead
 function gameTitle(g) {
-  return teamName(g.home) + " – " + teamName(g.away);
+  return teamName(g.home) + ", " + teamName(g.away);
 }
 
 // calendar clients are happier with an ASCII UID, and our ids carry Hebrew
@@ -492,7 +492,7 @@ function vevent(g, stamp) {
   if (loc) lines.push("LOCATION:" + icsEscape(loc));
   lines.push(
     "URL:" + appUrl(),
-    // one reminder, two hours before — enough time to get to מלחה
+    // one reminder, two hours before, enough time to get to מלחה
     "BEGIN:VALARM",
     "ACTION:DISPLAY",
     "DESCRIPTION:" + icsEscape("היום " + gameTitle(g)),
@@ -542,12 +542,12 @@ function calButton(games, label, filename, cls) {
 // the file lands in Downloads/Files on some phones rather than opening the
 // calendar straight away, so say so instead of leaving people confused
 function calNote() {
-  return text("div", "cal-note", "הקובץ יורד למכשיר — פתיחה שלו מוסיפה את המשחקים ליומן");
+  return text("div", "cal-note", "הקובץ יורד למכשיר, פתיחה שלו מוסיפה את המשחקים ליומן");
 }
 
 /* ---------- sharing the app itself ---------- */
 
-// always the live site, never location.href — a standalone copy opened
+// always the live site, never location.href, a standalone copy opened
 // from disk would otherwise share a path on the sender's own device.
 // The address lives in club.json and nowhere else: whatever the app is
 // published under is what fans get sent, and moving hosts is one edit.
@@ -563,7 +563,7 @@ function appHost() {
 function shareApp() {
   const msg = [
     "יושב סופר את הדקות 🔴⚫",
-    "אפליקציית האוהדים של הפועל ירושלים — לוח משחקים, טבלה, סגל ויומן אישי.",
+    "אפליקציית האוהדים של הפועל ירושלים: לוח משחקים, טבלה, סגל ויומן אישי.",
     "חינם, בלי הרשמה, נכנסים ומשתמשים:",
     appUrl(),
   ].join("\n");
@@ -647,7 +647,7 @@ function installCard() {
         p.prompt();
         const res = await p.userChoice;
         if (res && res.outcome === "accepted") hideInstall();
-      } catch (e) { /* dismissed mid-flight — leave the card for next time */ }
+      } catch (e) { /* dismissed mid-flight, leave the card for next time */ }
       render();
     };
     c.appendChild(b);
@@ -688,7 +688,7 @@ function feedbackCard() {
   const t = el("div");
   t.appendChild(text("div", "share-title", "מה חסר לכם באפליקציה?"));
   t.appendChild(text("div", "share-sub",
-    pollState().done ? "אמרתם כבר משהו — יש עוד? קדימה"
+    pollState().done ? "אמרתם כבר משהו. יש עוד? קדימה"
                      : "שלוש שאלות, פחות מדקה. זה מה שנבנה אחר כך"));
   c.appendChild(t);
   const b = el("button", "wa-btn", "לסקר");
@@ -701,7 +701,7 @@ function feedbackCard() {
 /* ---------- news: headlines from the sports press ---------- */
 
 // Headlines only, each one a link out to whoever published it. The text
-// belongs to that outlet — the app quotes the headline, names the source
+// belongs to that outlet, the app quotes the headline, names the source
 // and sends the reader there. Nothing is reproduced beyond the title.
 
 function newsItems() {
@@ -709,7 +709,7 @@ function newsItems() {
   return (n && Array.isArray(n.items)) ? n.items : [];
 }
 
-// "לפני שעתיים", "אתמול", "12.8" — a fan reads freshness, not timestamps
+// "לפני שעתיים", "אתמול", "12.8", a fan reads freshness, not timestamps
 function newsWhen(iso) {
   const t = new Date(iso).getTime();
   if (!t) return "";
@@ -724,7 +724,7 @@ function newsWhen(iso) {
   if (days === 1) return "אתמול";
   if (days === 2) return "שלשום";
   if (days <= 6) return "לפני " + days + " ימים";
-  // past a week a relative count stops meaning anything — but "4.8" can be
+  // past a week a relative count stops meaning anything, but "4.8" can be
   // read as the fourth of August or the eighth of April, so name the month
   const d = new Date(t);
   return d.getDate() + " ב" + MONTHS_SHORT[d.getMonth()];
@@ -769,7 +769,7 @@ function renderNews() {
   view.appendChild(text("div", "section-title", "מה כותבים על הקבוצה"));
   if (!items.length) {
     view.appendChild(el("div", "card")).appendChild(
-      text("div", "empty", "עוד לא נאספו כותרות — נעדכן ברגע שיהיו"));
+      text("div", "empty", "עוד לא נאספו כותרות, נעדכן ברגע שיהיו"));
     footer();
     return;
   }
@@ -854,7 +854,7 @@ function pollTarget() {
   if (f.endpoint) return { kind: "endpoint", label: "התשובות הגיעו" };
   if (f.formUrl) return { kind: "form", label: "הטופס ייפתח בלשונית חדשה" };
   if (f.whatsapp) return { kind: "whatsapp", label: "ייפתח וואטסאפ עם התשובות מוכנות" };
-  return { kind: "issue", label: "ייפתח גיטהאב — צריך חשבון, וזה חינם" };
+  return { kind: "issue", label: "ייפתח גיטהאב. צריך חשבון, וזה חינם" };
 }
 
 function pollNote() {
@@ -870,7 +870,7 @@ function pollNote() {
            "ושום דבר לא נשמר באפליקציה.";
   }
   if (t.kind === "whatsapp") {
-    return "התשובות נפתחות כהודעת וואטסאפ מוכנה — אתם שולחים, אנחנו קוראים. " +
+    return "התשובות נפתחות כהודעת וואטסאפ מוכנה: אתם שולחים, אנחנו קוראים. " +
            "שום דבר לא נשמר באפליקציה.";
   }
   return "התשובות נפתחות ככרטיס פתוח בגיטהאב, במקום שבו הקוד של האפליקציה " +
@@ -912,7 +912,7 @@ function shouldAskPoll(visits) {
  *
  * A returning visit is not the same as having seen the app. Asking after
  * a couple of seconds on the home screen is asking someone what they think
- * of a book they have not opened — the answer is worthless, and being
+ * of a book they have not opened: the answer is worthless, and being
  * interrupted that early is the reason people close things.
  *
  * So three gates, all of which must be passed, and none of which can be
@@ -921,7 +921,7 @@ function shouldAskPoll(visits) {
  *   · they actually looked around    (afterScreens *different* screens)
  *   · they stayed a while            (afterSeconds in the app, this visit)
  *
- * A live game overrides all of it — nobody is answering a questionnaire
+ * A live game overrides all of it: nobody is answering a questionnaire
  * while the score is moving.
  */
 
@@ -971,7 +971,7 @@ function answerFilled(a) {
   return !!(a.fan || (a.wants && a.wants.length) || a.rating || a.idea || a.bug);
 }
 
-// a value that can go in a URL or a line of text — the multi-answer question
+// a value that can go in a URL or a line of text, the multi-answer question
 // is the only one that is not already a string
 function answerValue(a, key) {
   const v = a[key];
@@ -990,7 +990,7 @@ function answersAsText(a) {
 }
 
 // The endpoint answers 501 while it has no token, and any network at all can
-// fail — either way the fan's words are not thrown away: the older
+// fail, either way the fan's words are not thrown away: the older
 // destination opens with everything they typed already in it.
 function sendToEndpoint(a) {
   const cfg = pollConfig();
@@ -1021,13 +1021,13 @@ function fallbackUrl(a) {
   return null;
 }
 
-// what to promise a fan once the endpoint has already declined — the
+// what to promise a fan once the endpoint has already declined, the
 // endpoint's own "התשובות הגיעו" would be a lie on this path
 function fallbackLabel() {
   const cfg = pollConfig() || {};
   if (cfg.formUrl) return "הטופס נפתח בלשונית חדשה";
   if (cfg.whatsapp) return "וואטסאפ נפתח עם התשובות";
-  if (cfg.issueRepo) return "נפתח כרטיס בגיטהאב — צריך חשבון, וזה חינם";
+  if (cfg.issueRepo) return "נפתח כרטיס בגיטהאב. צריך חשבון, וזה חינם";
   return "";
 }
 
@@ -1066,7 +1066,7 @@ function snoozePoll() {
   closePoll();
 }
 
-// one question, one row of taps — single choice or up to `max` of them
+// one question, one row of taps, single choice or up to `max` of them
 function pollChips(list, onPick, max) {
   const box = el("div", "poll-chips");
   const chosen = [];
@@ -1124,16 +1124,16 @@ function openPoll() {
   sheet.appendChild(text("div", "sheet-sub",
     "חמש שאלות, רובן בלחיצה. זה מה שיקבע מה נבנה אחר כך."));
 
-  // 1 — who is answering, so the wishes can be read by kind of fan
+  // 1, who is answering, so the wishes can be read by kind of fan
   sheet.appendChild(text("div", "poll-q", "איזה אוהד אתם?"));
   sheet.appendChild(pollChips(POLL_FANS, v => { answers.fan = v[0] || ""; }, 1));
 
-  // 2 — the roadmap question, and the one worth several answers
+  // 2, the roadmap question, and the one worth several answers
   sheet.appendChild(text("div", "poll-q", "מה הכי יעזור לכם באפליקציה?"));
   sheet.appendChild(text("div", "poll-hint", "עד " + POLL_WANTS_MAX + " בחירות"));
   sheet.appendChild(pollChips(POLL_WANTS, v => { answers.wants = v; }, POLL_WANTS_MAX));
 
-  // 3 — usefulness, not a beauty contest
+  // 3, usefulness, not a beauty contest
   sheet.appendChild(text("div", "poll-q", "כמה האפליקציה שימושית לכם היום?"));
   const scale = el("div", "poll-scale");
   [1, 2, 3, 4, 5].forEach(n => {
@@ -1153,9 +1153,9 @@ function openPoll() {
   sheet.appendChild(scale);
   sheet.appendChild(ends);
 
-  // 4 and 5 — the two that cannot be guessed from a list
+  // 4 and 5, the two that cannot be guessed from a list
   sheet.appendChild(text("div", "poll-q", "מה הייתם מוסיפים או משנים?"));
-  sheet.appendChild(pollTextarea("במילים שלכם — קוראים הכול",
+  sheet.appendChild(pollTextarea("במילים שלכם. קוראים הכול",
     v => { answers.idea = v; }));
 
   sheet.appendChild(text("div", "poll-q", "משהו לא עבד או לא היה ברור?"));
@@ -1182,7 +1182,7 @@ function openPoll() {
       closePoll();
     };
     // The endpoint sends from here. A fallback exists only if one is
-    // configured — and none is, deliberately: the fan was promised the
+    // configured, and none is, deliberately: the fan was promised the
     // answers stay private, and every other destination is public or
     // exposes a phone number. With nowhere private to send, the honest
     // move is to say so and keep their words on the screen.
@@ -1191,7 +1191,7 @@ function openPoll() {
       if (!url) {
         send.disabled = false;
         send.textContent = "שליחה";
-        return toast("לא הצלחנו לשלוח כרגע. מה שכתבתם עדיין כאן — נסו שוב עוד רגע");
+        return toast("לא הצלחנו לשלוח כרגע. מה שכתבתם עדיין כאן. נסו שוב עוד רגע");
       }
       window.open(url, "_blank", "noopener");
       done();
@@ -1266,7 +1266,7 @@ function renderHome() {
   } else if (!next) {
     const c = el("div", "card");
     c.appendChild(text("div", "eyebrow", "המשחק הבא"));
-    c.appendChild(text("div", "empty", "לוח המשחקים לעונה טרם פורסם — נעדכן ברגע שיהיה"));
+    c.appendChild(text("div", "empty", "לוח המשחקים לעונה טרם פורסם, נעדכן ברגע שיהיה"));
     view.appendChild(c);
   }
 
@@ -1280,7 +1280,7 @@ function renderHome() {
     line.appendChild(right);
     const left = el("div");
     left.style.textAlign = "center";
-    const sc = text("div", "score", ourScore(last) + "–" + theirScore(last));
+    const sc = text("div", "score", ourScore(last) + "-" + theirScore(last));
     left.appendChild(sc);
     left.appendChild(text("span", "chip " + (won(last) ? "win" : "loss"), won(last) ? "ניצחון" : "הפסד"));
     line.appendChild(left);
@@ -1381,13 +1381,13 @@ function renderGames() {
   const list = state.gamesTab === "upcoming" ? upcoming() : finished();
   if (!list.length) {
     view.appendChild(text("div", "empty", state.gamesTab === "upcoming"
-      ? "אין משחקים קרובים בלוח — נעדכן ברגע שיהיו"
+      ? "אין משחקים קרובים בלוח, נעדכן ברגע שיהיו"
       : "עוד לא נרשמו תוצאות העונה"));
     footer();
     return;
   }
 
-  // 16 fixtures in a season is not a season — say why rather than let the
+  // 16 fixtures in a season is not a season, say why rather than let the
   // list look like the whole story
   if (state.gamesTab === "upcoming" && state.games.league &&
       state.games.league.published === false) {
@@ -1405,7 +1405,7 @@ function renderGames() {
   if (state.gamesTab === "upcoming" && note &&
       upcoming().some(isDisplacedHome)) {
     const n = el("div", "card notice");
-    n.appendChild(text("div", "notice-title", "משחקי הבית באירופה — בבלגרד"));
+    n.appendChild(text("div", "notice-title", "משחקי הבית באירופה: בבלגרד"));
     n.appendChild(prose("div", "notice-body", note));
     view.appendChild(n);
   }
@@ -1439,7 +1439,7 @@ function renderGames() {
 
 // European "home" games are staged in Belgrade by decision of Euroleague
 // Basketball. They count as home in the table, which is why the feed marks
-// them that way — but a fan reading "בית" packs for Malha, and the game is
+// them that way, but a fan reading "בית" packs for Malha, and the game is
 // 1,500 km away. Wherever a home game is not at our own arena, say the city.
 
 function venueInfo(name) {
@@ -1454,7 +1454,7 @@ function venueLabel(name) {
 }
 
 function isOurArena(name) {
-  if (!name) return true;              // nothing said — assume the usual place
+  if (!name) return true;              // nothing said, assume the usual place
   const home = (state.venues && state.venues.homeArena) || [];
   return home.some(h => h.toLowerCase() === String(name).toLowerCase());
 }
@@ -1494,7 +1494,7 @@ function gameRow(g) {
 
   const end = el("div", "end");
   if (g.status === "finished") {
-    end.appendChild(text("div", "t score", ourScore(g) + "–" + theirScore(g)));
+    end.appendChild(text("div", "t score", ourScore(g) + "-" + theirScore(g)));
     end.appendChild(text("span", "chip " + (won(g) ? "win" : "loss"), won(g) ? "נ׳" : "ה׳"));
   } else {
     end.appendChild(text("div", "t", fmtTime.format(d)));
@@ -1549,7 +1549,7 @@ function renderTable() {
     view.appendChild(c);
     if (!started) {
       view.appendChild(text("div", "table-note",
-        "העונה טרם החלה — אלה הקבוצות שמשחקות השנה, לא דירוג. " +
+        "העונה טרם החלה. אלה הקבוצות שמשחקות השנה, לא דירוג. " +
         "הטבלה תסתדר מעצמה עם המשחק הראשון."));
     }
   }
@@ -1587,7 +1587,7 @@ function renderEurocup(euro) {
   }
   view.appendChild(text("div", "table-note", euroStarted
     ? "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."
-    : "אלה הקבוצות שהוגרלו לבית, לפי סדר האלף־בית — עוד לא שוחק אף משחק. " +
+    : "אלה הקבוצות שהוגרלו לבית, לפי סדר האלף־בית. עוד לא שוחק אף משחק. " +
       "הטבלה נקבעת לפי ניצחונות; בשוויון מכריעים המפגשים הישירים והפרש הנקודות."));
 }
 
@@ -1608,7 +1608,7 @@ function eurocupTable(rows) {
   rows.forEach(r => {
     const tr = el("tr", isUsEuro(r) ? "us" : "");
     tr.appendChild(text("td", "num",
-      !started ? "·" : (r.pos == null ? "–" : String(r.pos))));
+      !started ? "·" : (r.pos == null ? "-" : String(r.pos))));
     const name = teamName(r.team);
     const td = el("td", "team");
     td.appendChild(text("span", isLatin(name) ? "latin" : "", name));
@@ -1625,7 +1625,7 @@ function eurocupTable(rows) {
 
 // Before a ball is thrown the feed still hands back a full table: every team
 // at 0‑0, numbered 1 to 14, in last season's finishing order. Rendered as a
-// table that reads as a standing — a fan sees "3 הפועל י־ם" and believes it.
+// table that reads as a standing, a fan sees "3 הפועל י־ם" and believes it.
 // It is last year's position wearing this year's clothes, so the position
 // column is dropped until somebody has actually played.
 function seasonStarted(rows) {
@@ -1652,7 +1652,7 @@ function standingsTable(rows, full) {
     tr.appendChild(text("td", "num", String(r.played)));
     tr.appendChild(text("td", "num", String(r.wins)));
     tr.appendChild(text("td", "num", String(r.losses)));
-    if (hasPoints) tr.appendChild(text("td", "num", r.points !== undefined ? String(r.points) : "–"));
+    if (hasPoints) tr.appendChild(text("td", "num", r.points !== undefined ? String(r.points) : "-"));
     t.appendChild(tr);
   });
   return t;
@@ -1677,12 +1677,12 @@ function photoCredit() {
     ". שחקן בלי תמונה מוצג בראשי תיבות.");
 }
 
-// "א", "א וב", "א, ב וג" — the vav attaches straight to a Hebrew word, and
+// "א", "א וב", "א, ב וג", the vav attaches straight to a Hebrew word, and
 // takes a maqaf only before a Latin word or a digit
 function listHe(items) {
   if (items.length <= 1) return items[0] || "";
   const last = items[items.length - 1];
-  // the vav attaches straight to a Hebrew word — except to one that already
+  // the vav attaches straight to a Hebrew word, except to one that already
   // opens with a vav, where "ווואלה ספורט" would grow a third vav
   const vav = (/^[֐-׿]/.test(last) && !/^ו/.test(last)) ? "ו" : "ו־";
   return items.slice(0, -1).join(", ") + " " + vav + last;
@@ -1703,7 +1703,7 @@ function renderRoster() {
 
   if (!players.length) {
     const c = el("div", "card");
-    c.appendChild(text("div", "empty", "הסגל טרם פורסם — נעדכן ברגע שיהיה"));
+    c.appendChild(text("div", "empty", "הסגל טרם פורסם, נעדכן ברגע שיהיה"));
     view.appendChild(c);
     footer();
     return;
@@ -1732,12 +1732,12 @@ function renderRoster() {
     const row = el("a", "player-row");
     row.href = "#/player/" + encodeURIComponent(p.slug || slugOf(p));
     const num = el("div", "shirt");
-    num.textContent = p.number != null ? p.number : "–";
+    num.textContent = p.number != null ? p.number : "-";
     row.appendChild(num);
     row.appendChild(playerAvatar(p, "thumb"));
     const info = el("div", "info");
     info.appendChild(playerNameEl(p));
-    // keep the list line short — the birth year lives on the player page
+    // keep the list line short, the birth year lives on the player page
     const bits = [];
     if (p.position) bits.push(p.position);
     if (p.height) bits.push(p.height + " ס״מ");
@@ -1778,7 +1778,7 @@ function initialsOf(p) {
   const name = (playerName(p) || "").replace(/,/g, " ");
   const parts = name.split(/\s+/).filter(Boolean);
   if (!parts.length) return "?";
-  // ג׳ and צ׳ are one sound — keep the geresh with its letter
+  // ג׳ and צ׳ are one sound, keep the geresh with its letter
   const head = w => (/^[א-ת][׳']/.test(w) ? w.slice(0, 2) : w[0]);
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (head(parts[0]) + head(parts[1])).toUpperCase();
@@ -1957,7 +1957,7 @@ function renderPlayer(slug) {
   if (chips.children.length) attrs.appendChild(chips);
   view.appendChild(attrs);
 
-  // contract and salary — only what has actually been reported
+  // contract and salary, only what has actually been reported
   if (det && (det.contract || det.salary)) {
     view.appendChild(text("div", "section-title", "חוזה"));
     const cc = el("div", "card");
@@ -2022,7 +2022,7 @@ function renderPlayer(slug) {
       });
     sc.appendChild(grid);
   } else {
-    sc.appendChild(text("div", "empty", "העונה טרם החלה — הנתונים יופיעו כאן אחרי המשחק הראשון"));
+    sc.appendChild(text("div", "empty", "העונה טרם החלה. הנתונים יופיעו כאן אחרי המשחק הראשון"));
   }
   view.appendChild(sc);
 
@@ -2116,7 +2116,7 @@ function renderHof() {
   intro.appendChild(text("p", "", h.intro));
   view.appendChild(intro);
 
-  // coaches live in history.json — one list, shown in both places
+  // coaches live in history.json, one list, shown in both places
   const coaches = (state.history && state.history.coaches) || [];
   const seg = el("div", "seg");
   const tabs = [
@@ -2182,7 +2182,7 @@ function statRow(p, cols) {
   const td = el("td", "team");
   td.appendChild(text("span", "", playerName({ name: p.name })));
   tr.appendChild(td);
-  cols.forEach(c => tr.appendChild(text("td", "num", p[c.key] == null ? "–" : String(p[c.key]))));
+  cols.forEach(c => tr.appendChild(text("td", "num", p[c.key] == null ? "-" : String(p[c.key]))));
   return tr;
 }
 
@@ -2192,7 +2192,7 @@ function renderThisSeason() {
     const c = el("div", "card notice");
     c.appendChild(text("div", "notice-title", "העונה עוד לא התחילה"));
     c.appendChild(text("div", "notice-body",
-      "ברגע שיישחק המשחק הראשון, הסטטיסטיקות ייכנסו לכאן מעצמן — ממוצעים " +
+      "ברגע שיישחק המשחק הראשון, הסטטיסטיקות ייכנסו לכאן מעצמן, ממוצעים " +
       "לשחקן ישירות מהפיד הרשמי של היורוקאפ, בלי הקלדה ידנית."));
     view.appendChild(c);
     advancedCard();
@@ -2233,13 +2233,13 @@ function advancedCard() {
   c.appendChild(text("div", "notice-title", "בדרך"));
   c.appendChild(text("div", "notice-body",
     "יעילות התקפה והגנה ל־100 מחזורים, אחוז שימוש, True Shooting והפרש " +
-    "כשעל הפרקט. המדדים האלה דורשים נתוני מחזורים שעדיין לא אספנו — " +
+    "כשעל הפרקט. המדדים האלה דורשים נתוני מחזורים שעדיין לא אספנו, " +
     "וטבלה שנראית מרשים אבל מבוססת על ניחוש שווה פחות מכלום."));
   view.appendChild(c);
 }
 
 // Averages for the season that ended. Two rows per player: the counting stats
-// on top, the shooting underneath — a phone cannot hold nine columns, and
+// on top, the shooting underneath, a phone cannot hold nine columns, and
 // splitting beats dropping half the numbers.
 function lastSeasonPlayers(ps) {
   if (!ps || !(ps.players || []).length) return;
@@ -2268,7 +2268,7 @@ function lastSeasonPlayers(ps) {
     td.appendChild(text("span", "ps-games", p.games + " מש׳"));
     tr.appendChild(td);
     [p.min, p.pts, p.reb, p.ast, p.val].forEach(v =>
-      tr.appendChild(text("td", "num", v == null ? "–" : v.toFixed(1))));
+      tr.appendChild(text("td", "num", v == null ? "-" : v.toFixed(1))));
     t.appendChild(tr);
 
     // the shooting line, only when the feed actually recorded attempts
@@ -2635,7 +2635,7 @@ function renderMeet() {
   });
 
   if (!written) {
-    view.appendChild(text("div", "empty", "הדוחות בהכנה — נעדכן בקרוב"));
+    view.appendChild(text("div", "empty", "הדוחות בהכנה, נעדכן בקרוב"));
   }
   const cr = photoCredit();
   if (cr) view.appendChild(cr);
@@ -2676,7 +2676,7 @@ const BADGES = [
     got: s => s.total, hint: "50 משחקים" },
   { key: "away5", emoji: "🚌", name: "נאמן בחוץ", need: 5,
     got: s => s.away, hint: "5 משחקי חוץ" },
-  // Hapoel Jerusalem–Maccabi Tel Aviv is the קלאסיקו; a דרבי would mean
+  // Hapoel Jerusalem-Maccabi Tel Aviv is the קלאסיקו; a דרבי would mean
   // two clubs from the same city, which this is not
   { key: "clasico", emoji: "🔥", name: "קלאסיקו", need: 1,
     got: (s, e) => e.filter(x => /מכבי ת|מכבי תל אביב/.test(x.opponent || "")).length,
@@ -2714,7 +2714,7 @@ function renderDiary() {
     const c = el("div", "card");
     c.appendChild(text("div", "eyebrow", "היומן שלי"));
     const e = el("div", "empty");
-    e.innerHTML = 'עוד לא סימנת אף משחק.<br>בלשונית ״משחקים״ סמנו ״הייתי שם״ — והיומן יתחיל להיבנות.<br><br>' +
+    e.innerHTML = 'עוד לא סימנת אף משחק.<br>בלשונית ״משחקים״ סמנו ״הייתי שם״, והיומן יתחיל להיבנות.<br><br>' +
       '<span class="tiny">הכול נשמר במכשיר שלך בלבד. בלי הרשמה, בלי שרת.</span>';
     c.appendChild(e);
     view.appendChild(c);
@@ -2738,7 +2738,7 @@ function renderDiary() {
   if (s.played) {
     const rec = el("div", "record" + (s.wins >= s.losses ? "" : " bad"));
     rec.appendChild(text("span", "lab", "המאזן שלי ביציע"));
-    rec.appendChild(text("span", "val", s.wins + "–" + s.losses));
+    rec.appendChild(text("span", "val", s.wins + "-" + s.losses));
     hero.appendChild(rec);
   }
   const share = el("button", "share-btn", "שיתוף בוואטסאפ");
@@ -2781,7 +2781,7 @@ function renderDiary() {
     row.appendChild(info);
     const end = el("div", "end");
     if (e.status === "finished") {
-      end.appendChild(text("div", "t score", e.us + "–" + e.them));
+      end.appendChild(text("div", "t score", e.us + "-" + e.them));
       end.appendChild(text("span", "chip " + (e.us > e.them ? "win" : "loss"), e.us > e.them ? "נ׳" : "ה׳"));
     } else {
       end.appendChild(text("div", "t", fmtTime.format(d)));
@@ -2799,7 +2799,7 @@ function shareDiary(s, scope) {
     s.total + (s.total === 1 ? " משחק ביציע" : " משחקים ביציע") +
       " (" + s.home + " בית, " + s.away + " חוץ)",
   ];
-  if (s.played) lines.push("המאזן שלי: " + s.wins + "–" + s.losses);
+  if (s.played) lines.push("המאזן שלי: " + s.wins + "-" + s.losses);
   const earned = BADGES.filter(b => b.got(s, diaryEntries(scope)) >= b.need);
   if (earned.length) lines.push(earned.map(b => b.emoji + " " + b.name).join(" · "));
   lines.push("יושב סופר את הדקות");

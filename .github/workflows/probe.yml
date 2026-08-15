@@ -1,9 +1,9 @@
 name: בדיקת מקורות (ידני)
 
 # Two manual tools, neither of which ever commits anything:
-#   probe  — prints the structure of the public sources, so parsers can be
+#   probe: prints the structure of the public sources, so parsers can be
 #            written against real data instead of guesswork
-#   dry    — runs the real updater and shows what it *would* have written,
+#   dry:   runs the real updater and shows what it *would* have written,
 #            for checking a parser change before it reaches main
 
 on:
@@ -38,13 +38,13 @@ jobs:
         if: inputs.mode != 'dry'
         run: python scripts/probe_sources.py "${{ inputs.which || 'all' }}"
 
-      - name: Dry run — collect data
+      - name: Dry run, collect data
         if: inputs.mode == 'dry'
         run: |
           python scripts/update_data.py
           python scripts/update_live.py
 
-      - name: Dry run — show what would have been written
+      - name: Dry run, show what would have been written
         if: inputs.mode == 'dry'
         run: |
           git --no-pager diff --stat app/data/ || true

@@ -5,7 +5,7 @@ What the probe found, and why this is built the way it is:
   * Every Israeli sports site's own RSS is gone. sport5, ONE, mako and
     calcalist answer 404/403, walla's feed host answers 500, and the club's
     own hapoel.co.il returns "אופס! תקלה" for /feed, /news and wp-json.
-    ynet's sport feed is alive but is general sport — in a sample of 30
+    ynet's sport feed is alive but is general sport: in a sample of 30
     items, none were about us.
   * Google News still indexes all of them and answers an RSS query with 100
     items, each carrying <source url="…">, a pubDate and a headline. That is
@@ -13,13 +13,13 @@ What the probe found, and why this is built the way it is:
 
 Two rules follow from that, and both are deliberate:
 
-  1. Headlines only. The title, who published it and when — never the
+  1. Headlines only. The title, who published it and when: never the
      article body, never the publisher's photo. The text belongs to the
      outlet that wrote it; the app quotes the headline and sends the reader
      there. Every item is a link out, with the source named on it.
   2. The <link> is a news.google.com id, not the article address. Following
      it server-side lands on a JavaScript page, and the endpoint that
-     resolves those ids needs a signed request — so the id is what gets
+     resolves those ids needs a signed request, so the id is what gets
      stored. In a browser it redirects to the publisher, which is how a
      Google News link is meant to be opened.
 
@@ -90,7 +90,7 @@ def _clean(s):
 
 def _strip_source(title, source):
     """Google appends " - Publisher" to every headline. Take it back off,
-    but only when the tail really is the publisher — a headline can legally
+    but only when the tail really is the publisher, a headline can legally
     end in a dash-separated phrase of its own."""
     if not source:
         return title
@@ -194,7 +194,7 @@ def update_news():
     caller records a failure and the previous file survives untouched."""
     items = collect()
     if not items:
-        raise RuntimeError("no headlines matched — leaving the previous feed in place")
+        raise RuntimeError("no headlines matched, leaving the previous feed in place")
     sources = []
     for i in items:
         if i["source"] and i["source"] not in sources:
@@ -209,7 +209,7 @@ def update_news():
     }
     (DATA / "news.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    log("wrote news.json —", len(items), "headlines from", len(sources), "outlets")
+    log("wrote news.json -", len(items), "headlines from", len(sources), "outlets")
     return payload
 
 

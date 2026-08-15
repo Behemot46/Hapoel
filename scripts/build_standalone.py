@@ -1,6 +1,6 @@
 """Build a single self-contained HTML file of the whole app.
 
-Everything — styles, code, data and any player photos — is inlined, so the
+Everything, styles, code, data and any player photos, is inlined, so the
 file can be sent over WhatsApp or email and opened straight from disk with
 no server and no internet. fetch() is blocked on file://, which is why the
 data is embedded rather than loaded.
@@ -43,7 +43,7 @@ def build():
             if p.get("photo") in photos:
                 p["photo"] = photos[p["photo"]]
 
-    # the crest in the header is a real file now, not inline SVG — a copy
+    # the crest in the header is a real file now, not inline SVG, a copy
     # opened from disk has no icons/ folder next to it, so carry it along
     crest = APP / "icons" / "crest.png"
     crest_uri = None

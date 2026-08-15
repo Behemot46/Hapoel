@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>יושב סופר את הדקות</title>
-  <meta name="description" content="אפליקציית האוהדים של הפועל ירושלים — לוח משחקים, תוצאות, טבלה ויומן אוהד אישי. מיזם אוהדים לא רשמי.">
+  <meta name="description" content="אפליקציית האוהדים של הפועל ירושלים: לוח משחקים, תוצאות, טבלה ויומן אוהד אישי. מיזם אוהדים לא רשמי.">
   <meta name="theme-color" content="#17090D">
 
   <!--
@@ -18,7 +18,7 @@
   <meta property="og:url" content="https://hapoel.site/">
   <meta property="og:site_name" content="יושב סופר את הדקות">
   <meta property="og:locale" content="he_IL">
-  <meta property="og:title" content="יושב סופר את הדקות — הפועל ירושלים">
+  <meta property="og:title" content="יושב סופר את הדקות · הפועל ירושלים">
   <meta property="og:description" content="מונה הדקות למשחק הבא, תוצאה חיה, טבלה, סגל ויומן אוהד אישי. חינם, בלי הרשמה.">
   <meta property="og:image" content="https://hapoel.site/icons/icon-512.png">
   <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       <!--
         The club crest. This is an unofficial fan project and says so on
         every screen; the mark belongs to Hapoel Jerusalem B.C.
-        Source file: app/icons/crest.png — replace it and re-run
+        Source file: app/icons/crest.png, replace it and re-run
         scripts/make_icons.py to regenerate the whole icon set.
       -->
       <img class="ball" src="icons/crest.png" alt="" width="38" height="38">
@@ -53,7 +53,7 @@
 </header>
 
 <div id="sampleBanner" class="sample-banner" hidden>
-  נתוני דוגמה להמחשה — האיסוף האוטומטי יופעל עם עליית האתר
+  נתוני דוגמה להמחשה, האיסוף האוטומטי יופעל עם עליית האתר
 </div>
 
 <main id="view" class="view" aria-live="polite"></main>
@@ -85,7 +85,7 @@
 <script>
   // a single-file copy opened from disk has no service worker scope
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    // updateViaCache:none — always revalidate the worker itself, so a new
+    // updateViaCache:none, always revalidate the worker itself, so a new
     // version reaches fans instead of being served from the HTTP cache
     var hadController = !!navigator.serviceWorker.controller;
     var reloading = false;
@@ -96,7 +96,7 @@
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("sw.js", { updateViaCache: "none" })
         .then(function (reg) { if (reg) reg.update(); })
-        .catch(function () { /* no worker is fine — the app works online regardless */ });
+        .catch(function () { /* no worker is fine, the app works online regardless */ });
     });
   }
 </script>

@@ -33,7 +33,7 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; HapoelFanApp/1.0; +https://github.
 GAMES_URL = "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/games"
 
 # a game is "on" from shortly before tip-off until well after it should have
-# ended — the second bound is generous because overtime and late tip-offs happen
+# ended, the second bound is generous because overtime and late tip-offs happen
 BEFORE = datetime.timedelta(minutes=20)
 AFTER = datetime.timedelta(hours=3)
 
@@ -145,7 +145,7 @@ def main():
         # no commits at all
         prev = load("live.json") or {}
         if prev.get("state") == "idle":
-            log("nothing on, already idle — no write")
+            log("nothing on, already idle, no write")
             return 0
         save_live({"state": "idle"})
         return 0
@@ -164,7 +164,7 @@ def main():
     if game.get("competition") == "יורוקאפ":
         snap = eurocup_snapshot(game)
     else:
-        log("domestic game — no live feed available, reporting 'playing' only")
+        log("domestic game, no live feed available, reporting 'playing' only")
 
     if not snap:
         snap = {"state": "playing"}

@@ -16,7 +16,7 @@ HEAD_TO_CROP = 1.6     # crop side as a multiple of head width
 HEADROOM = 0.12        # air above the head, as a fraction of the crop side
 
 # The head ends up filling 1/HEAD_TO_CROP of the frame, so 1.6 puts it at just
-# over 60% — the face filling most of the circle, which is the point.
+# over 60%, the face filling most of the circle, which is the point.
 # This only holds because find_head measures the head at its widest. It used to
 # measure a fixed band at the top of the silhouette, which reads hair rather
 # than head: one player came out at 32% of his canvas and another at 14%, and
@@ -24,7 +24,7 @@ HEADROOM = 0.12        # air above the head, as a fraction of the crop side
 
 
 def _background(px, w, h):
-    """Average the corners — but weight the top ones, and use a median so one
+    """Average the corners, but weight the top ones, and use a median so one
     dirty corner cannot drag the answer. In a head-and-shoulders cut-out the
     shoulders often reach the bottom edge, and averaging all four corners then
     returns a blend of background and jersey, against which nothing reads as
@@ -37,7 +37,7 @@ def _background(px, w, h):
 
 def find_head(im):
     """(centre_x, top_y, head_width) in pixels, or None if the image is not a
-    cut-out we can read — a busy photo would give nonsense, so say so."""
+    cut-out we can read, a busy photo would give nonsense, so say so."""
     im = im.convert("RGB")
     w, h = im.size
     px = im.load()
@@ -90,7 +90,7 @@ def find_head(im):
 def crop_to_face(im, size=320, skip_square=True):
     """Square crop centred on the head. Returns the image unchanged when the
     head cannot be located, and by default skips images that are already
-    square — so running this twice over stored files does not crop twice.
+    square, so running this twice over stored files does not crop twice.
 
     Pass skip_square=False for bytes just pulled off the network: some sources
     publish the cut-out on a square canvas, and there the head still sits high
@@ -109,7 +109,7 @@ def crop_to_face(im, size=320, skip_square=True):
 
     cx, top, head_w = found
     side = int(head_w * HEAD_TO_CROP)
-    # backstops only, for when the head reading is nonsense — the head rule
+    # backstops only, for when the head reading is nonsense, the head rule
     # above is what should decide the crop. The ceiling used to be 0.62h,
     # tight enough that it, not the head, framed most pictures.
     side = max(int(h * 0.34), min(side, int(h * 0.85), w, h))

@@ -56,7 +56,7 @@
   }
   .wrap { max-width: 680px; margin: 0 auto; padding: 0 20px 80px; }
 
-  /* Header — black band with kit stripes */
+  /* Header, black band with kit stripes */
   header.hero {
     background: #17090D;
     color: #FFF6F7;
@@ -258,7 +258,7 @@
   <div class="hero-inner">
     <span class="club">הפועל ירושלים 🏀</span>
     <h1>מעצבים יחד את אפליקציית האוהדים</h1>
-    <p>שאלון קצר (כ־7 דקות) שיגדיר את המטרות, ההיקף והאמצעים של האפליקציה. בסוף — מעתיקים את התשובות ומדביקים בחזרה בצ׳אט.</p>
+    <p>שאלון קצר (כ־7 דקות) שיגדיר את המטרות, ההיקף והאמצעים של האפליקציה. בסוף, מעתיקים את התשובות ומדביקים בחזרה בצ׳אט.</p>
   </div>
 </header>
 
@@ -286,13 +286,13 @@ const SECTIONS = [
     questions: [
       { id: "goals_rank", type: "rank",
         label: "דירוג מטרות־על",
-        hint: "הקישו על המטרות לפי סדר החשיבות — הראשונה שתבחרו תקבל מקום 1.",
+        hint: "הקישו על המטרות לפי סדר החשיבות, הראשונה שתבחרו תקבל מקום 1.",
         items: [
           "לא לפספס אף רגע במשחק (עדכונים חיים והתראות)",
           "תחושת קהילה ושייכות בין האוהדים",
           "מקור מידע אחד לכל מה שקשור למועדון",
           "להגדיל את קהל האוהדים ולקרב אוהדים חדשים",
-          "בן לוויה ליום משחק — הגעה, כרטיסים, אווירה",
+          "בן לוויה ליום משחק, הגעה, כרטיסים, אווירה",
         ] },
       { id: "success_vision", type: "text",
         label: "הצלחה בעוד שנה",
@@ -301,7 +301,7 @@ const SECTIONS = [
   },
   {
     id: "audience", title: "קהל יעד",
-    intro: "אי אפשר לבנות לכולם בבת אחת — למי בונים קודם?",
+    intro: "אי אפשר לבנות לכולם בבת אחת, למי בונים קודם?",
     questions: [
       { id: "primary_audience", type: "single",
         label: "הקהל הראשי של גרסה 1",
@@ -326,23 +326,23 @@ const SECTIONS = [
   },
   {
     id: "features", title: "היקף פיצ׳רים",
-    intro: "דרגו כל פיצ׳ר — זה מה שיקבע מה נכנס לגרסה הראשונה ומה מחכה.",
+    intro: "דרגו כל פיצ׳ר, זה מה שיקבע מה נכנס לגרסה הראשונה ומה מחכה.",
     questions: [
       { id: "feature_rating", type: "rate",
         label: "כמה כל פיצ׳ר חשוב?",
         items: [
-          "מרכז משחק חי — תוצאות, רבעים וסטטיסטיקה בזמן אמת",
+          "מרכז משחק חי, תוצאות, רבעים וסטטיסטיקה בזמן אמת",
           "לוח משחקים, תוצאות וטבלת ליגה",
           "סגל ופרופילי שחקנים עם סטטיסטיקות",
-          "התראות פוש — תחילת משחק, תוצאות, חדשות",
+          "התראות פוש, תחילת משחק, תוצאות, חדשות",
           "פיד חדשות ועדכוני מועדון",
           "מידע על כרטיסים והיכל (ארנה פיס)",
-          "קהילת אוהדים — פורום או צ׳אט",
+          "קהילת אוהדים, פורום או צ׳אט",
           "ניחושי תוצאות, טריוויה ומשחקונים",
           "ספריית שירי יציע ומזמורים",
           "היסטוריה, הישגים וגביעים של המועדון",
           "קישורים לחנות ולמרצ׳נדייז",
-          "מצב יום משחק — מסך שני בזמן המשחק",
+          "מצב יום משחק, מסך שני בזמן המשחק",
         ] },
       { id: "dream_feature", type: "text",
         label: "פיצ׳ר חלומי",
@@ -351,7 +351,7 @@ const SECTIONS = [
   },
   {
     id: "content", title: "תוכן ומקורות מידע",
-    intro: "אפליקציה חיה רק כמו התוכן שבה — מאיפה הוא יגיע ומי ידאג לו?",
+    intro: "אפליקציה חיה רק כמו התוכן שבה, מאיפה הוא יגיע ומי ידאג לו?",
     questions: [
       { id: "sources", type: "multi",
         label: "מקורות תוכן",
@@ -375,7 +375,7 @@ const SECTIONS = [
   },
   {
     id: "platform", title: "פלטפורמה ואמצעים",
-    intro: "איך האפליקציה מגיעה לאוהדים — ובאילו אילוצים.",
+    intro: "איך האפליקציה מגיעה לאוהדים, ובאילו אילוצים.",
     questions: [
       { id: "platform_choice", type: "single",
         label: "פלטפורמה",
@@ -387,14 +387,14 @@ const SECTIONS = [
       { id: "constraints", type: "multi",
         label: "אילוצים ועקרונות",
         hint: "אפשר לבחור כמה.",
-        options: ["הכול בחינם — אחסון ושירותים חינמיים בלבד", "קוד פתוח", "עבודה בסיסית גם בלי אינטרנט", "נגישות מלאה", "בלי איסוף מידע אישי"] },
+        options: ["הכול בחינם, אחסון ושירותים חינמיים בלבד", "קוד פתוח", "עבודה בסיסית גם בלי אינטרנט", "נגישות מלאה", "בלי איסוף מידע אישי"] },
       { id: "tech_level", type: "single",
         label: "הרקע הטכני שלך",
         hint: "כדי שנדע איך לחלק את העבודה בינינו.",
         options: [
-          { t: "מפתח/ת — אני יכול/ה לכתוב קוד" },
+          { t: "מפתח/ת, אני יכול/ה לכתוב קוד" },
           { t: "טכנולוגי/ת אבל לא מפתח/ת" },
-          { t: "לא טכני/ת — קלוד יבנה הכול" },
+          { t: "לא טכני/ת, קלוד יבנה הכול" },
         ] },
     ],
   },
@@ -406,7 +406,7 @@ const SECTIONS = [
         label: "חשבונות משתמשים",
         options: [
           { t: "בלי חשבונות בכלל", d: "הכי פשוט ופרטי" },
-          { t: "חשבון אופציונלי", d: "מי שרוצה — נרשם ומקבל יותר" },
+          { t: "חשבון אופציונלי", d: "מי שרוצה, נרשם ומקבל יותר" },
           { t: "חשבון חובה לפיצ׳רים קהילתיים" },
         ] },
       { id: "ugc", type: "single",
@@ -442,7 +442,7 @@ const SECTIONS = [
         options: [
           { t: "רשמי ומקצועי" },
           { t: "חברי וקליל" },
-          { t: "יציע — סלנג, הומור ואווירה" },
+          { t: "יציע, סלנג, הומור ואווירה" },
         ] },
       { id: "theme_mode", type: "single",
         label: "מצב תצוגה",
@@ -455,7 +455,7 @@ const SECTIONS = [
   },
   {
     id: "success", title: "הצלחה ואילוצים",
-    intro: "איך נדע שהצלחנו — ומה בכוונה נשאיר בחוץ.",
+    intro: "איך נדע שהצלחנו, ומה בכוונה נשאיר בחוץ.",
     questions: [
       { id: "metrics", type: "multi",
         label: "מדדי הצלחה עיקריים",
@@ -467,7 +467,7 @@ const SECTIONS = [
           { t: "תוך חודש" },
           { t: "עד פתיחת העונה" },
           { t: "תוך שלושה חודשים" },
-          { t: "בלי לחץ — שיהיה מוכן כשיהיה מעולה" },
+          { t: "בלי לחץ, שיהיה מוכן כשיהיה מעולה" },
         ] },
       { id: "out_of_scope", type: "text",
         label: "מחוץ לתחום",
@@ -523,7 +523,7 @@ function renderWelcome() {
   const s = el("div", "screen");
   s.appendChild(el("h2", "", "לפני שכותבים שורת קוד אחת"));
   const p = el("p", "intro");
-  p.textContent = "האפליקציה הזאת תיבנה סביב מה שחשוב לך ולאוהדים — לא סביב מה שנוח לבנות. שמונה שלבים קצרים: חזון, קהל, פיצ׳רים, תוכן, פלטפורמה, קהילה, עיצוב והצלחה. אפשר לדלג על כל שאלה, ואפשר לחזור אחורה. התשובות נשמרות בדפדפן.";
+  p.textContent = "האפליקציה הזאת תיבנה סביב מה שחשוב לך ולאוהדים, לא סביב מה שנוח לבנות. שמונה שלבים קצרים: חזון, קהל, פיצ׳רים, תוכן, פלטפורמה, קהילה, עיצוב והצלחה. אפשר לדלג על כל שאלה, ואפשר לחזור אחורה. התשובות נשמרות בדפדפן.";
   s.appendChild(p);
   const nav = el("div", "nav");
   nav.appendChild(el("span"));
@@ -613,14 +613,14 @@ function renderRank(qw, q) {
       const pos = cur().indexOf(t);
       const badge = item.querySelector(".rank-badge");
       if (pos >= 0) { item.classList.add("ranked"); badge.textContent = pos + 1; }
-      else { item.classList.remove("ranked"); badge.textContent = "–"; }
+      else { item.classList.remove("ranked"); badge.textContent = "-"; }
     });
   };
   q.items.forEach(t => {
     const b = el("button", "rank-item");
     b.type = "button";
     b.dataset.item = t;
-    b.innerHTML = '<span class="rank-badge">–</span><span></span>';
+    b.innerHTML = '<span class="rank-badge">-</span><span></span>';
     b.querySelector("span:last-child").textContent = t;
     b.onclick = () => {
       const c = cur();
@@ -680,13 +680,13 @@ function answerText(q) {
   if (q.type === "rank") return a.map((t, i) => (i + 1) + ". " + t).join("\n");
   if (q.type === "rate") {
     const order = [...q.items].filter(n => a[n] !== undefined).sort((x, y) => a[y] - a[x]);
-    return order.map(n => n + " — " + RATE_LEVELS[a[n]]).join("\n");
+    return order.map(n => n + ", " + RATE_LEVELS[a[n]]).join("\n");
   }
   return null;
 }
 
 function buildExport() {
-  let md = "# שאלון אפליקציית הפועל ירושלים — תשובות\n\n";
+  let md = "# שאלון אפליקציית הפועל ירושלים, תשובות\n\n";
   SECTIONS.forEach(sec => {
     md += "## " + sec.title + "\n\n";
     sec.questions.forEach(q => {
@@ -701,7 +701,7 @@ function renderSummary() {
   const s = el("div", "screen");
   s.appendChild(el("h2", "", "סיכום התשובות"));
   const intro = el("p", "intro");
-  intro.textContent = "זה מה שענית. אפשר לחזור אחורה ולתקן, וכשהכול מרגיש נכון — מעתיקים את הבלוק למטה ומדביקים בחזרה בצ׳אט עם קלוד.";
+  intro.textContent = "זה מה שענית. אפשר לחזור אחורה ולתקן, וכשהכול מרגיש נכון, מעתיקים את הבלוק למטה ומדביקים בחזרה בצ׳אט עם קלוד.";
   s.appendChild(intro);
 
   SECTIONS.forEach(sec => {

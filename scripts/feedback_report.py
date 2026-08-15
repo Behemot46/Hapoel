@@ -1,7 +1,6 @@
 """What the fans answered, counted and quoted.
 
-Each submission from the form arrives as an issue on a PRIVATE repository —
-the one named by FEEDBACK_REPO in Vercel. This reads them back and prints
+Each submission from the form arrives as an issue on a PRIVATE repository, the one named by FEEDBACK_REPO in Vercel. This reads them back and prints
 one report: how many answered, what kind of fans they are, what they asked
 for, how useful they find the app, and then every word they wrote,
 verbatim. The counted part says what to build; the written part says why.
@@ -11,7 +10,7 @@ verbatim. The counted part says what to build; the written part says why.
 
 DO NOT RUN THIS IN THIS REPOSITORY'S ACTIONS. Workflow logs of a public
 repository are readable by anyone, so printing the answers there would
-publish exactly what the form promised to keep private — which is why the
+publish exactly what the form promised to keep private, which is why the
 workflow that used to do it was deleted, and why the guard below refuses to
 run inside CI unless someone deliberately overrides it.
 
@@ -56,7 +55,7 @@ def api(path, **params):
 
 
 def all_issues():
-    """Every issue that came from the form — by label first, and by the
+    """Every issue that came from the form, by label first, and by the
     marker line the function writes, so a submission filed before the label
     existed is still counted."""
     out, page = [], 1
@@ -118,11 +117,11 @@ def check_private():
 def main():
     refuse_if_public_ci()
     if not REPO:
-        raise SystemExit("חסר FEEDBACK_REPO — שם הריפו הפרטי שאליו נשלחות התשובות.")
+        raise SystemExit("חסר FEEDBACK_REPO, שם הריפו הפרטי שאליו נשלחות התשובות.")
     check_private()
     issues = all_issues()
     log("=" * 74)
-    log(f"משוב מאוהדים — {REPO}")
+    log(f"משוב מאוהדים, {REPO}")
     log("=" * 74)
     if not issues:
         log("עוד לא הגיעה אף תשובה.")
@@ -166,7 +165,7 @@ def main():
 
     log("")
     log("-" * 74)
-    log("מה הכי יעזור — כל אוהד בחר עד שלושה")
+    log("מה הכי יעזור, כל אוהד בחר עד שלושה")
     log("-" * 74)
     top = wants.most_common()
     for name, n in top:
@@ -190,7 +189,7 @@ def main():
     for title, rows in (("מה להוסיף או לשנות", ideas), ("מה לא עבד", bugs)):
         log("")
         log("-" * 74)
-        log(f"{title} — {len(rows)} תשובות, במילים שלהם")
+        log(f"{title}, {len(rows)} תשובות, במילים שלהם")
         log("-" * 74)
         for num, when, txt in rows:
             log(f"  #{num} · {when}")
