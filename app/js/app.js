@@ -385,7 +385,7 @@ function liveCard(live) {
     const box = el("div", "live-score");
     const ours = el("div", "ls-side" + (us > them ? " lead" : ""));
     ours.appendChild(text("div", "ls-num", String(us)));
-    ours.appendChild(text("div", "ls-who", "ירושלים"));
+    ours.appendChild(text("div", "ls-who", "הפועל"));
     const theirs = el("div", "ls-side" + (them > us ? " lead" : ""));
     theirs.appendChild(text("div", "ls-num", String(them)));
     theirs.appendChild(text("div", "ls-who", teamName(opp)));
@@ -2578,7 +2578,7 @@ function reportBody(prof, opts) {
   }
   if (prof.role) {
     const r = el("div", "role-box");
-    r.appendChild(text("span", "watch-label", "התפקיד בירושלים"));
+    r.appendChild(text("span", "watch-label", "התפקיד בהפועל"));
     r.appendChild(text("span", "", prof.role));
     frag.appendChild(r);
   }
