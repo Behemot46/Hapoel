@@ -1,0 +1,64 @@
+name: סיכום משוב מאוהדים
+
+# Twice a day, 08:00 and 20:00 Israel time. It collects anything still
+# waiting first, so the summary it writes is never one answer behind, then
+# rewrites docs/feedback/digest.md and updates the tracking issue in place.
+#
+# The digest is derived, never authoritative: the answers themselves stay in
+# their own issues, and nothing here edits them.
+
+on:
+  schedule:
+    - cron: '0 5,17 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: feedback-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # anything parked in the last hour would otherwise miss this digest
+      - name: Collect what is waiting
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/feedback_drain.py
+
+      - name: Write the digest
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/feedback_digest.py
+
+      - name: Commit it if it changed
+        run: |
+          git config user.name "hapoel-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/feedback/
+          if git diff --cached --quiet; then
+            echo "digest unchanged."
+          else
+            git commit -m "סיכום משוב מאוהדים"
+            # the schedule can collide with a push; rebase and retry rather
+            # than failing a run that produced a perfectly good digest
+            for i in 1 2 3; do
+              if git pull --rebase --autostash origin "$GITHUB_REF_NAME" \
+                 && git push origin "HEAD:$GITHUB_REF_NAME"; then
+                exit 0
+              fi
+              sleep $((i * 5))
+            done
+            echo "could not push the digest after three tries." >&2
+            exit 1
+          fi
