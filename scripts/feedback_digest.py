@@ -111,6 +111,13 @@ def parse(issue):
     }
 
 
+def he(n, one, many):
+    """Hebrew counts one thing differently. ״1 אוהדים נתנו״ is not a sentence
+    a person would write, and a report that reads like a machine wrote it is
+    a report that gets skimmed."""
+    return one if n == 1 else many.format(n=n)
+
+
 def bar(n, top, width=22):
     return "█" * (0 if not top else round(width * n / top)) + "·" * (
         width - (0 if not top else round(width * n / top)))
@@ -154,18 +161,25 @@ def digest(rows, state):
 
     add("## בשורה אחת")
     add("")
-    add(f"- **{len(rows)} תשובות** בסך הכול"
-        + (f", מתוכן **{len(fresh)} חדשות** מאז הסיכום הקודם" if since else ""))
+    new = ""
+    if since and fresh:
+        new = (" **והיא חדשה** מאז הסיכום הקודם" if len(rows) == 1 else
+               ", מתוכן " + he(len(fresh), "**אחת חדשה**", "**{n} חדשות**") +
+               " מאז הסיכום הקודם")
+    add("- " + he(len(rows), "**תשובה אחת**", "**{n} תשובות**") + " בסך הכול" + new)
     if avg:
         move = ""
         if prev_avg:
             d = avg - prev_avg
-            move = (f", ללא שינוי" if abs(d) < 0.05
+            move = (", ללא שינוי" if abs(d) < 0.05
                     else f", {'עלה' if d > 0 else 'ירד'} ב־{abs(d):.1f} מאז הסיכום הקודם")
-        add(f"- **שימושיות: {avg:.1f} מתוך 5** ({len(rated)} דירוגים){move}")
+        add(f"- **שימושיות: {avg:.1f} מתוך 5** ("
+            + he(len(rated), "דירוג אחד", "{n} דירוגים") + f"){move}")
     bugs = [r for r in rows if r["bug"]]
     if bugs:
-        add(f"- **{len(bugs)} דיווחים על משהו שלא עבד**, כולם למטה במילים שלהם")
+        add("- " + he(len(bugs),
+                      "**דיווח אחד על משהו שלא עבד**, למטה במילים שלו",
+                      "**{n} דיווחים על משהו שלא עבד**, כולם למטה במילים שלהם"))
     add("")
 
     # what to build, and for whom
@@ -191,8 +205,11 @@ def digest(rows, state):
             overall_first = top[0][0]
             for fan, c in sorted(by_fan.items(), key=lambda kv: -sum(kv[1].values())):
                 items = ", ".join(f"{k} ({v})" for k, v in c.most_common(3))
-                add(f"- **{fan}** ({sum(1 for r in rows if r['fan'] == fan)} עונים): {items}")
-                if c and c.most_common(1)[0][0] != overall_first:
+                n_fans = sum(1 for r in rows if r["fan"] == fan)
+                add(f"- **{fan}** ({he(n_fans, 'עונה אחד', '{n} עונים')}): {items}")
+                # a single answer is not a trend, and calling it one would be a
+                # claim the data cannot carry
+                if n_fans >= 2 and c and c.most_common(1)[0][0] != overall_first:
                     add(f"  - שימו לב: אצלם הראשון הוא **{c.most_common(1)[0][0]}**, "
                         f"ולא ״{overall_first}״ שמוביל בסך הכול")
             add("")
@@ -210,7 +227,9 @@ def digest(rows, state):
         add("")
         low = [r for r in rows if r["rating"] and r["rating"] <= 2]
         if low:
-            add(f"**{len(low)} אוהדים נתנו 1 או 2.** מה שהם כתבו:")
+            add(he(len(low),
+                   "**אוהד אחד נתן 1 או 2.** מה שהוא כתב:",
+                   "**{n} אוהדים נתנו 1 או 2.** מה שהם כתבו:"))
             add("")
             for r in low:
                 said = r["idea"] or r["bug"] or "(לא כתבו כלום)"
