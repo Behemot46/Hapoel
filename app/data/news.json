@@ -1,17 +1,23 @@
 {
-  "updated": "2026-08-16T08:32:13Z",
+  "updated": "2026-08-16T11:22:39Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ספורט 1",
     "אייס",
+    "ספורט 1",
     "ישראל היום",
     "ישראל ספורט",
     "ONE",
     "ספורט 5",
-    "C14",
-    "וואלה ספורט"
+    "C14"
   ],
   "items": [
+    {
+      "title": "דרמה בכדורסל הישראלי: הפועל ירושלים דורשת פיצוי מעופר ינאי",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5PVGI4UlRwdkl5UGRWVU45X3MwSTBNZVhRUmlPTHJpbDRLZHQweWRHUXpqX01pMU1WeW5jbjlkNFh5Ykg1ckNMU1JpTVFhQkpGY2g5X3o0eVhBUU8yWXpYLTlGRQ?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-16T11:02:00Z"
+    },
     {
       "title": "הפועל ירושלים החתימה את קפטן נבחרת הנוער ליאור הרשקו",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNczBBS0V1UjFLOHoxcmRYcEQzcTRHSVdPQWRWQkhhTXk0TFFVdFNWcldsV0NZTzZqSEx4dHZCYURZUEx4a0xwSUFxOTF0SmlBVUNJMGdsVzA4bEpRM0ZHTlpsbkpjUVlPbTBKeXhzYTVOWUxuR1NDR0FkenRSWGpIbkpPUV92N29STjYtNndEVzYtQQ?oc=5",
@@ -171,13 +177,6 @@
       "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOeFpMb28zSUVDamJobVU3LV9wUVNWYXJ6UVFsUml6WmdlRnFQbjljNmh5Q0lpUllZaXJnTUx6NVQtSGRCRjZVN3I4dlhqZ0dsRUZBV1NhSlFzYjE5MExvUUl4TGtDWURRaWgxVW9qcXNVNE1Ld05veUpwNC0yUUd1UUJVTGgzN0VhcmhoRWdzMA?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-07-21T07:00:00Z"
-    },
-    {
-      "title": "יש גם סנטר בדרך: הפועל ירושלים ממשיכה לעבוד",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1zQURwdkpsNGktUkJLbEZQVy1WQVZ6MlN5bldIaFM4emhFOUZOaU1BS3l2WGhGVkNhV1IzaTY3b0loVDJvc1VmckpiaGpKUXRU?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-07-21T07:00:00Z"
     }
   ]
