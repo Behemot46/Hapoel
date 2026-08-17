@@ -30,6 +30,7 @@ from bs4 import BeautifulSoup
 import club_roster
 import news_feed
 import photo_crop
+import podcast_feed
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "app" / "data"
@@ -1388,6 +1389,7 @@ def main():
                      ("eurocup", update_eurocup_standings),
                      ("seasonStats", update_season_stats),
                      ("news", news_feed.update_news),
+                     ("podcasts", podcast_feed.update_podcasts),
                      ("roster", update_roster)]:
         try:
             fn()
