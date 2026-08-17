@@ -44,8 +44,19 @@ jobs:
             echo "pushed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "עדכון נתונים אוטומטי"
-            git push
-            echo "pushed=true" >> "$GITHUB_OUTPUT"
+            # main has more than one writer: סיכום המשוב דוחף ב־05:00 UTC,
+            # בדיוק כשהאיסוף הזה רץ, ואז git push נדחה והעדכון נזרק לפח.
+            # rebase ונסה שוב, במקום להפיל ריצה שכבר אספה נתונים תקינים.
+            for i in 1 2 3; do
+              if git pull --rebase --autostash origin "$GITHUB_REF_NAME" \
+                 && git push origin "HEAD:$GITHUB_REF_NAME"; then
+                echo "pushed=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+              sleep $((i * 5))
+            done
+            echo "לא הצלחתי לדחוף את העדכון אחרי שלושה ניסיונות." >&2
+            exit 1
           fi
 
       # bot pushes don't trigger the deploy workflow on their own,
