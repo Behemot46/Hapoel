@@ -1,16 +1,24 @@
 {
-  "updated": "2026-08-16T13:33:08Z",
+  "updated": "2026-08-17T03:52:23Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "C14",
     "אייס",
     "ישראל ספורט",
     "ספורט 1",
-    "ישראל היום",
     "ONE",
     "ספורט 5",
-    "C14"
+    "ישראל היום",
+    "וואלה ספורט"
   ],
   "items": [
+    {
+      "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9Oa0NqN1gtVHYxYUpGcVdhUldZVVFOcHZaNWllcmc3MUlaejE2dW1PSjVQczJjcjF5QWVmak0tbzhPd1NoVHE4S3Q3V0ZnZw?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-08-16T13:09:35Z"
+    },
     {
       "title": "דרמה בכדורסל הישראלי: הפועל ירושלים דורשת פיצוי מעופר ינאי",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5PVGI4UlRwdkl5UGRWVU45X3MwSTBNZVhRUmlPTHJpbDRLZHQweWRHUXpqX01pMU1WeW5jbjlkNFh5Ykg1ckNMU1JpTVFhQkpGY2g5X3o0eVhBUU8yWXpYLTlGRQ?oc=5",
@@ -40,20 +48,6 @@
       "published": "2026-08-11T13:47:37Z"
     },
     {
-      "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1FTzdEaV9mM3BBQS1SUE5hdTVWV09KV2Y5VF82WFQwMXppc0tTd25fNmlrWENGZkVqOEl6bDZlTTNuZE1BdWFPRkJpVk44ZWloOWNaWV9CVlNZQ1NJSzBZMkxMWjFOSDJsWFRGS0lIcHNuQW5vSU1KbmdvRdIBgwFBVV95cUxOSi1wTm51OXA5Yk9UMWNXSlozSmVvMjN3c185Mm5sRlVyckdib2EwYlJLU3hsXzBZdy0zdkxJLTU4d29KTFV0WnN6V05xcUstZXpaZUE4NXNaM19pZGRRNnEzRGNEeDRiMnFMS29tYnRvVXR4MXE1MDNRZkFNei1qakQxMA?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-11T07:20:22Z"
-    },
-    {
-      "title": "פתחו יומנים: לוח המשחקים של הפועל ירושלים ביורוקאפ",
-      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxOTXpDWEt4eU9pT0plOHlnb3VqcmNtRXFWWERFOEtwRWRfQ0czSzV5R3gyclVpTExCUTVPZG9uTU1zaTlFMlRDbWo2aWV0b3c0QlREaGNEZGpBY0JKM2xESDRDYmZPYXNiWmhqWXFpZlNsR2FyT0RXWGZaT1pBb3pSYUxzOXdLeEdRZ3ZQMV9FQmxoeDlsbTVQSnVnWXVqV3lSTjhxOGNVMTJ1aFlzVDB6VXlyUl9JY3V5Q2FhOUI4MmNsb2lnZUVVRFFZTElkcVlRcDVTTkRUVVZPZGhUajBjTk94LXduQXFwM2F1b1JPRWRQS0xDRm8tdXg0TUJLZElHTHF3SVh1Z2puS1pqN21TSDk2V3FITWl2ajNyYlVkcjI0WnhLX0tqVGoyVHFJZ2hRSjhGRWxpVUE1aUpYUW1pQ3hR?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-08-10T16:31:04Z"
-    },
-    {
       "title": "מהפכה בסגל: סיכום הקיץ של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE90ZkQ3a3p0M183UHhISmRVMVZiU200eGpQdXUxMFNCZU11RHlYNjFmaU44bzNDVU56d19DbjVtMVQ5QUlPbkhjT3V4MTI5UnRoWXJB?oc=5",
       "source": "ONE",
@@ -68,18 +62,11 @@
       "published": "2026-08-04T07:00:00Z"
     },
     {
-      "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-04T07:00:00Z"
-    },
-    {
       "title": "\"הקשבתי לאוהדים\": אדלסון שובר שתיקה בסרטון לאוהדי הפועל י-ם",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFB5NFViY3MtNTVqVTVSV1pyeldPUXFIYkZqRUFQbUJuaXFaM09hbWdkT0tmME5naGFoYVE2Q3JuZHNHZEZaNnpaYjBTdjUxUQ?oc=5",
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-03T09:04:01Z"
+      "published": "2026-08-03T07:00:00Z"
     },
     {
       "title": "משלימה את הסגל: הפועל ירושלים במו\"מ מתקדם עם שחקן ישראלי",
@@ -131,17 +118,17 @@
       "published": "2026-07-26T07:00:00Z"
     },
     {
-      "title": "אחרי מכבי תל אביב: שחקן היורוליג מבוקש בהפועל ירושלים | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB0bXlhLTlVdmpGQy1FZG1fSkV5WHNaLXRNYVBZNjFwd1lIN3U2LS1jaUZaLVFxakVfQVNVX2lJdXdKRzRKYmxzZDhWUkYzc25hT0k3YXhJU3lSQ1BGcmVRQVJ6cUpMUGNvYUl4MExIYmhOMU1uczRhLWg1MNIBgwFBVV95cUxQSUJ1N2JUX2xQME4wR3dWX1JZVHk5Y1hmb3h1eGs0aTZyUmhMeGZtbXNnMlQtV240M2RoYW9YRDJFNmZza2w4ZktiYkdiUEtHbWQtOFpxSXhXOU1kdEVCb05kU2ZrbWVXN1hRc0g3c3c0WVYyWlVCbE85QVhSd04tcDd1RQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-26T07:00:00Z"
-    },
-    {
       "title": "בשכר גבוה: קני לופטון ג`וניור חתם בהפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9LTW42Ny1wNkFkcUJpSUlTeEo4NkpDM18tclI0VS1UbmFpMFY5VndVMzltWWJvVUlhTENYWDZuQ0s5NDJ3WDZkbkRfcXVjZGlaVXlSNTQ4NmRuVnlnMnVMcFY4NVpzWFd5a3dLaUhSNDR4dWdJ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-26T07:00:00Z"
+    },
+    {
+      "title": "אחרי מכבי תל אביב: שחקן היורוליג מבוקש בהפועל ירושלים | פרסום ראשון",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB0bXlhLTlVdmpGQy1FZG1fSkV5WHNaLXRNYVBZNjFwd1lIN3U2LS1jaUZaLVFxakVfQVNVX2lJdXdKRzRKYmxzZDhWUkYzc25hT0k3YXhJU3lSQ1BGcmVRQVJ6cUpMUGNvYUl4MExIYmhOMU1uczRhLWg1MNIBgwFBVV95cUxQSUJ1N2JUX2xQME4wR3dWX1JZVHk5Y1hmb3h1eGs0aTZyUmhMeGZtbXNnMlQtV240M2RoYW9YRDJFNmZza2w4ZktiYkdiUEtHbWQtOFpxSXhXOU1kdEVCb05kU2ZrbWVXN1hRc0g3c3c0WVYyWlVCbE85QVhSd04tcDd1RQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-07-26T07:00:00Z"
     },
     {
@@ -173,11 +160,25 @@
       "published": "2026-07-23T07:00:00Z"
     },
     {
+      "title": "יש גם סנטר בדרך: הפועל ירושלים ממשיכה לעבוד",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1zQURwdkpsNGktUkJLbEZQVy1WQVZ6MlN5bldIaFM4emhFOUZOaU1BS3l2WGhGVkNhV1IzaTY3b0loVDJvc1VmckpiaGpKUXRU?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-07-21T07:00:00Z"
+    },
+    {
       "title": "סשה אוברדוביץ' מאמן הפועל ירושלים, מתן אדלסון הבעלים של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOeFpMb28zSUVDamJobVU3LV9wUVNWYXJ6UVFsUml6WmdlRnFQbjljNmh5Q0lpUllZaXJnTUx6NVQtSGRCRjZVN3I4dlhqZ0dsRUZBV1NhSlFzYjE5MExvUUl4TGtDWURRaWgxVW9qcXNVNE1Ld05veUpwNC0yUUd1UUJVTGgzN0VhcmhoRWdzMA?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-07-21T07:00:00Z"
+    },
+    {
+      "title": "בשכר גבוה: דייויד רודי סיכם בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBSZWd4QWJRdXJodFJVOHNJbnVDQTMyTjNsZFpKdGFERXpGZTFENEdmSW8zLUQxSjhWOUVFYnVsei1PTHZaNFVVM0ZIYWNYM2xpQkNIRjFiTjBXLXloaDZRdnlzYVNJbjdNSXQ4akpHN1dxN3hM?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-20T07:00:00Z"
     }
   ]
 }
