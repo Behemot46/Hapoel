@@ -1,17 +1,24 @@
 {
-  "updated": "2026-08-17T08:46:19Z",
+  "updated": "2026-08-17T11:28:59Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ישראל היום",
     "C14",
     "אייס",
     "ישראל ספורט",
     "ספורט 1",
     "ONE",
     "ספורט 5",
-    "ישראל היום",
     "וואלה ספורט"
   ],
   "items": [
+    {
+      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-17T09:40:38Z"
+    },
     {
       "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9Oa0NqN1gtVHYxYUpGcVdhUldZVVFOcHZaNWllcmc3MUlaejE2dW1PSjVQczJjcjF5QWVmak0tbzhPd1NoVHE4S3Q3V0ZnZw?oc=5",
@@ -172,13 +179,6 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-07-21T07:00:00Z"
-    },
-    {
-      "title": "בשכר גבוה: דייויד רודי סיכם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBSZWd4QWJRdXJodFJVOHNJbnVDQTMyTjNsZFpKdGFERXpGZTFENEdmSW8zLUQxSjhWOUVFYnVsei1PTHZaNFVVM0ZIYWNYM2xpQkNIRjFiTjBXLXloaDZRdnlzYVNJbjdNSXQ4akpHN1dxN3hM?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-20T07:00:00Z"
     }
   ]
 }
