@@ -3,7 +3,7 @@
 const state = {
   games: null, standings: null, meta: null, club: null,
   gamesTab: "upcoming", tableTab: "league", diaryScope: "season",
-  hofTab: "israeli", statsTab: "now",
+  hofTab: "israeli", statsTab: "now", podcastsTab: "team",
 };
 
 const view = document.getElementById("view");
@@ -243,6 +243,9 @@ function render() {
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
     a.classList.toggle("active", a.dataset.route === routeName));
+  // leaving the podcasts screen ends the visit, so the next arrival
+  // recomputes what is new
+  if (hash !== "#/podcasts") podcastFresh = null;
   noteScreen(hash); // distinct screens: four taps around the app, not four taps
   stopCountdown(); // the view is about to be wiped from under the ticking element
   view.innerHTML = "";
@@ -805,6 +808,10 @@ const PODCASTS_KEY = "hapoel-podcasts-v1";
 // how stale the list has to be before returning to the app refetches it
 const PODCAST_STALE = 10 * 60 * 1000;
 let podcastsFetched = Date.now();
+// What was new when the fan walked into the screen. Held for the length of
+// the visit, because opening the screen marks everything seen, and without
+// this the marks would vanish the moment they switched tabs and looked back.
+let podcastFresh = null;
 
 function podcastItems() {
   const p = state.podcasts;
@@ -852,7 +859,10 @@ function podcastLength(sec) {
   return hours + (m === 1 ? " ודקה" : " ו־" + m + " דקות");
 }
 
-function podcastItemEl(item, isNew) {
+// inGroup: the full screen already prints the show name above the rows,
+// so repeating it under every title there is noise. The home card has no
+// such heading and needs it.
+function podcastItemEl(item, isNew, inGroup) {
   const a = el("a", "pod-item");
   a.href = item.url;
   a.target = "_blank";
@@ -865,20 +875,20 @@ function podcastItemEl(item, isNew) {
   a.appendChild(head);
 
   const meta = el("div", "pod-meta");
-  if (item.show) {
+  if (item.show && !inGroup) {
     meta.appendChild(text("span", "pod-show" + (isLatin(item.show) ? " latin" : ""),
       item.show));
   }
   const len = podcastLength(item.duration);
   if (len) {
-    meta.appendChild(text("span", "dot", "·"));
+    if (meta.childNodes.length) meta.appendChild(text("span", "dot", "·"));
     meta.appendChild(text("span", "", len));
   }
   // the news section already turns a timestamp into what a fan actually
   // reads, and freshness means the same thing here
   const when = newsWhen(item.published);
   if (when) {
-    meta.appendChild(text("span", "dot", "·"));
+    if (meta.childNodes.length) meta.appendChild(text("span", "dot", "·"));
     meta.appendChild(text("span", "", when));
   }
   a.appendChild(meta);
@@ -921,25 +931,51 @@ function renderPodcasts() {
     return;
   }
 
+  // two kinds of show, and a fan looking for one is not looking for the
+  // other: the ones about us, and the ones about the league as a whole
+  const seg = el("div", "seg");
+  const bUs = text("button", state.podcastsTab === "team" ? "active" : "", "על הפועל");
+  const bAll = text("button", state.podcastsTab === "league" ? "active" : "", "כדורסל ישראלי");
+  bUs.onclick = () => { state.podcastsTab = "team"; render(); };
+  bAll.onclick = () => { state.podcastsTab = "league"; render(); };
+  seg.appendChild(bUs);
+  seg.appendChild(bAll);
+  view.appendChild(seg);
+
   // work out what is new before the screen marks everything as seen
-  const freshUrls = new Set(newEpisodes().map(i => i.url));
+  if (!podcastFresh) {
+    podcastFresh = new Set(newEpisodes().map(i => i.url));
+    // seen means "you opened the screen", not "you scrolled past the card"
+    const newest = items.reduce((max, i) => {
+      const t = new Date(i.published).getTime();
+      return t > max ? t : max;
+    }, 0);
+    if (newest) savePodcastSeen(newest);
+  }
+  const freshUrls = podcastFresh;
 
   const shows = (state.podcasts && state.podcasts.shows) || [];
+  const shown = items.filter(i => i.about === state.podcastsTab);
   const order = [];
-  items.forEach(i => { if (!order.includes(i.showId)) order.push(i.showId); });
+  shown.forEach(i => { if (!order.includes(i.showId)) order.push(i.showId); });
+
+  if (!order.length) {
+    view.appendChild(el("div", "card")).appendChild(text("div", "empty",
+      state.podcastsTab === "team"
+        ? "עוד לא נאספו פרקים על הפועל, נעדכן ברגע שיהיו"
+        : "עוד לא נאספו פרקים על הכדורסל הישראלי, נעדכן ברגע שיהיו"));
+  }
 
   order.forEach(id => {
-    const mine = items.filter(i => i.showId === id);
+    const mine = shown.filter(i => i.showId === id);
     if (!mine.length) return;
     const info = shows.find(s => s.id === id) || {};
     const c = el("div", "card pod-card");
     const head = el("div", "pod-group");
     head.appendChild(text("div", "pod-group-name" + (isLatin(mine[0].show) ? " latin" : ""),
       mine[0].show));
-    head.appendChild(text("div", "pod-group-about",
-      mine[0].about === "team" ? "אוהדים מדברים על הפועל" : "כדורסל ישראלי"));
     c.appendChild(head);
-    mine.forEach(i => c.appendChild(podcastItemEl(i, freshUrls.has(i.url))));
+    mine.forEach(i => c.appendChild(podcastItemEl(i, freshUrls.has(i.url), true)));
     if (info.url) {
       const all = el("a", "link-btn");
       all.href = info.url;
@@ -959,13 +995,6 @@ function renderPodcasts() {
   if (state.podcasts && state.podcasts.updated) {
     view.appendChild(text("div", "table-note", "נאסף " + newsWhen(state.podcasts.updated)));
   }
-
-  // seen means "you opened the screen", not "you scrolled past the card"
-  const newest = items.reduce((max, i) => {
-    const t = new Date(i.published).getTime();
-    return t > max ? t : max;
-  }, 0);
-  if (newest) savePodcastSeen(newest);
 
   footer();
 }
