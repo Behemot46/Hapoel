@@ -1,9 +1,9 @@
 {
-  "updated": "2026-08-18T05:32:04Z",
+  "updated": "2026-08-18T08:39:41Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
-    "c14.co.il",
+    "C14",
     "אייס",
     "ישראל ספורט",
     "ONE",
@@ -21,7 +21,7 @@
     {
       "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9Oa0NqN1gtVHYxYUpGcVdhUldZVVFOcHZaNWllcmc3MUlaejE2dW1PSjVQczJjcjF5QWVmak0tbzhPd1NoVHE4S3Q3V0ZnZw?oc=5",
-      "source": "c14.co.il",
+      "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-16T13:09:35Z"
     },
@@ -63,7 +63,7 @@
     {
       "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
-      "source": "c14.co.il",
+      "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-04T07:00:00Z"
     },
@@ -84,7 +84,7 @@
     {
       "title": "\"הקשבתי לאוהדים\": אדלסון שובר שתיקה בסרטון לאוהדי הפועל י-ם",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFB5NFViY3MtNTVqVTVSV1pyeldPUXFIYkZqRUFQbUJuaXFaM09hbWdkT0tmME5naGFoYVE2Q3JuZHNHZEZaNnpaYjBTdjUxUQ?oc=5",
-      "source": "c14.co.il",
+      "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-03T07:00:00Z"
     },
@@ -110,17 +110,17 @@
       "published": "2026-07-28T07:00:00Z"
     },
     {
-      "title": "\"יהפוך לכוכב יורוליג\": ההחתמה של הפועל י-ם במוקד",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5kOEpYX21CR3A3MVlZNHlQaTByTmVkVG1qekN5b0Y0czBZWGpMdXF1Q0NUTGhVNE54c2gtY3BRYjlkUVRXVWt1T3RYcVVSN3E4NWdNNTV5WVRlWXkxSnBYS0VIWXNISEdRWHhCZGJTdGNsXzg?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-27T07:00:00Z"
-    },
-    {
       "title": "אחרי הכישלון: הפועל ירושלים העבירה מסר חד וברור להפועל ומכבי תל אביב",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE02MU5EUmIwOTI2c2s0UGpJdnQ2TzVqRzlMbDZtSGVkWjhmN1BoM3BZTTRNNWk2MWFGZVhSTnN6ZWNNYkwwSWNYT1VNYnhNWDh3Q0pIYkNyMVY4QTk2Q29tTHJ4UHFoNWRpOUd6ZU4yTWxPSlJ1aGFNeTV1ONIBgwFBVV95cUxQMDZNbFgwM3pXdVZlVTVidlF0Yl9IR2NjMXNZcFpQNHg4TDdJd2d2WEJUSk1XSjBRMVdmUjhRMFV1N3BmTjNHN2g0N1FtUnR3TVpWdDJBSkt4amhzdlhFYTFuczg4Mk9iT015OTNiRjk3Vk9zZHh4ejBFYk1VS1ZvLTBUOA?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-07-27T07:00:00Z"
+    },
+    {
+      "title": "\"יהפוך לכוכב יורוליג\": ההחתמה של הפועל י-ם במוקד",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5kOEpYX21CR3A3MVlZNHlQaTByTmVkVG1qekN5b0Y0czBZWGpMdXF1Q0NUTGhVNE54c2gtY3BRYjlkUVRXVWt1T3RYcVVSN3E4NWdNNTV5WVRlWXkxSnBYS0VIWXNISEdRWHhCZGJTdGNsXzg?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-27T07:00:00Z"
     },
     {
