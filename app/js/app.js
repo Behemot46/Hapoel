@@ -1,10 +1,9 @@
 "use strict";
 
-const TEAM = "הפועל ירושלים";
 const state = {
   games: null, standings: null, meta: null, club: null,
   gamesTab: "upcoming", tableTab: "league", diaryScope: "season",
-  hofTab: "israeli", statsTab: "now",
+  hofTab: "israeli", statsTab: "now", podcastsTab: "team",
 };
 
 const view = document.getElementById("view");
@@ -74,7 +73,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -92,6 +91,7 @@ async function boot() {
       loadJSON("data/feedback.json").catch(() => (null)),
       loadJSON("data/venue-names.json").catch(() => (null)),
       loadJSON("data/news.json").catch(() => (null)),
+      loadJSON("data/podcasts.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -110,6 +110,7 @@ async function boot() {
     state.feedback = feedback;
     state.venues = venues;
     state.news = news;
+    state.podcasts = podcasts;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -129,7 +130,7 @@ async function boot() {
   watchInstall();
   render();
   // a frozen single-file copy has no site to poll
-  if (!window.__HAPOEL_SNAPSHOT__) watchLive();
+  if (!window.__HAPOEL_SNAPSHOT__) { watchLive(); watchPodcasts(); }
   pollWhenQuiet(countVisit());
 }
 
@@ -223,6 +224,7 @@ const routes = {
   "#/table": renderTable, "#/roster": renderRoster, "#/diary": renderDiary,
   "#/meet": renderMeet, "#/history": renderHistory,
   "#/hof": renderHof, "#/stats": renderStats, "#/news": renderNews,
+  "#/podcasts": renderPodcasts,
 };
 
 function render() {
@@ -235,11 +237,15 @@ function render() {
   const routeName = hash === "#/games" ? "games"
     : hash === "#/table" ? "table"
     : (hash === "#/roster" || hash === "#/meet" || playerMatch) ? "roster"
-    : (hash === "#/history" || hash === "#/hof" || hash === "#/news") ? "home"
+    : (hash === "#/history" || hash === "#/hof" || hash === "#/news"
+       || hash === "#/podcasts") ? "home"
     : hash === "#/stats" ? "table"
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
     a.classList.toggle("active", a.dataset.route === routeName));
+  // leaving the podcasts screen ends the visit, so the next arrival
+  // recomputes what is new
+  if (hash !== "#/podcasts") podcastFresh = null;
   noteScreen(hash); // distinct screens: four taps around the app, not four taps
   stopCountdown(); // the view is about to be wiped from under the ticking element
   view.innerHTML = "";
@@ -791,6 +797,231 @@ function renderNews() {
   footer();
 }
 
+/* ---------- podcasts: what people are saying out loud ---------- */
+
+// Same deal as the news section, and for the same reason. The episode
+// belongs to whoever recorded it, so the app carries the title, the show
+// and how long it runs, and sends the fan there to listen. No embedded
+// player, no description, nothing lifted beyond the name of the episode.
+
+const PODCASTS_KEY = "hapoel-podcasts-v1";
+// how stale the list has to be before returning to the app refetches it
+const PODCAST_STALE = 10 * 60 * 1000;
+let podcastsFetched = Date.now();
+// What was new when the fan walked into the screen. Held for the length of
+// the visit, because opening the screen marks everything seen, and without
+// this the marks would vanish the moment they switched tabs and looked back.
+let podcastFresh = null;
+
+function podcastItems() {
+  const p = state.podcasts;
+  return (p && Array.isArray(p.items)) ? p.items : [];
+}
+
+function podcastSeen() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(PODCASTS_KEY));
+    return (raw && raw.seen) ? new Date(raw.seen).getTime() : null;
+  } catch (e) { return null; }
+}
+
+function savePodcastSeen(ms) {
+  try {
+    localStorage.setItem(PODCASTS_KEY,
+      JSON.stringify({ seen: new Date(ms).toISOString() }));
+  } catch (e) {}
+}
+
+// Episodes that dropped since the fan last opened the podcasts screen.
+// On a first visit there is nothing to compare against, and marking the
+// whole list as new would be a lie, so the clock simply starts now.
+function newEpisodes() {
+  const items = podcastItems();
+  if (!items.length) return [];
+  const seen = podcastSeen();
+  if (seen === null) {
+    savePodcastSeen(Date.now());
+    return [];
+  }
+  return items.filter(i => new Date(i.published).getTime() > seen);
+}
+
+// "48 דקות", "שעה ו־12 דקות". An episode the feed gave no length for
+// simply does not get the line.
+function podcastLength(sec) {
+  if (!sec || sec < 60) return "";
+  const mins = Math.round(sec / 60);
+  if (mins === 1) return "דקה";
+  if (mins < 60) return mins + " דקות";
+  const h = Math.floor(mins / 60), m = mins % 60;
+  const hours = h === 1 ? "שעה" : h === 2 ? "שעתיים" : h + " שעות";
+  if (!m) return hours;
+  return hours + (m === 1 ? " ודקה" : " ו־" + m + " דקות");
+}
+
+// inGroup: the full screen already prints the show name above the rows,
+// so repeating it under every title there is noise. The home card has no
+// such heading and needs it.
+function podcastItemEl(item, isNew, inGroup) {
+  const a = el("a", "pod-item");
+  a.href = item.url;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  const head = el("div", "pod-head");
+  // an episode name carries its number, and often a score from the game
+  // it is about, and both flip inside an RTL line
+  head.appendChild(prose("div", "pod-title", item.title));
+  if (isNew) head.appendChild(text("span", "pod-new", "חדש"));
+  a.appendChild(head);
+
+  const meta = el("div", "pod-meta");
+  if (item.show && !inGroup) {
+    meta.appendChild(text("span", "pod-show" + (isLatin(item.show) ? " latin" : ""),
+      item.show));
+  }
+  const len = podcastLength(item.duration);
+  if (len) {
+    if (meta.childNodes.length) meta.appendChild(text("span", "dot", "·"));
+    meta.appendChild(text("span", "", len));
+  }
+  // the news section already turns a timestamp into what a fan actually
+  // reads, and freshness means the same thing here
+  const when = newsWhen(item.published);
+  if (when) {
+    if (meta.childNodes.length) meta.appendChild(text("span", "dot", "·"));
+    meta.appendChild(text("span", "", when));
+  }
+  a.appendChild(meta);
+  return a;
+}
+
+function podcastCard() {
+  const items = podcastItems();
+  if (!items.length) return null;
+  const fresh = newEpisodes();
+  if (!fresh.length) {
+    const promo = el("a", "card promo");
+    promo.href = "#/podcasts";
+    const t = el("div");
+    t.appendChild(text("div", "promo-title", "🎧 פודקאסטים"));
+    t.appendChild(text("div", "promo-sub",
+      "מה מדברים על הפועל ועל הכדורסל הישראלי"));
+    promo.appendChild(t);
+    promo.appendChild(text("div", "chevron", "‹"));
+    return promo;
+  }
+  const c = el("div", "card pod-card");
+  c.appendChild(text("div", "eyebrow",
+    fresh.length === 1 ? "פרק חדש" : fresh.length + " פרקים חדשים"));
+  fresh.slice(0, 2).forEach(i => c.appendChild(podcastItemEl(i, true)));
+  const more = el("a", "link-btn");
+  more.href = "#/podcasts";
+  more.textContent = "לכל הפודקאסטים";
+  c.appendChild(more);
+  return c;
+}
+
+function renderPodcasts() {
+  const items = podcastItems();
+  view.appendChild(text("div", "section-title", "פודקאסטים"));
+  if (!items.length) {
+    view.appendChild(el("div", "card")).appendChild(
+      text("div", "empty", "עוד לא נאספו פרקים, נעדכן ברגע שיהיו"));
+    footer();
+    return;
+  }
+
+  // two kinds of show, and a fan looking for one is not looking for the
+  // other: the ones about us, and the ones about the league as a whole
+  const seg = el("div", "seg");
+  const bUs = text("button", state.podcastsTab === "team" ? "active" : "", "על הפועל");
+  const bAll = text("button", state.podcastsTab === "league" ? "active" : "", "כדורסל ישראלי");
+  bUs.onclick = () => { state.podcastsTab = "team"; render(); };
+  bAll.onclick = () => { state.podcastsTab = "league"; render(); };
+  seg.appendChild(bUs);
+  seg.appendChild(bAll);
+  view.appendChild(seg);
+
+  // work out what is new before the screen marks everything as seen
+  if (!podcastFresh) {
+    podcastFresh = new Set(newEpisodes().map(i => i.url));
+    // seen means "you opened the screen", not "you scrolled past the card"
+    const newest = items.reduce((max, i) => {
+      const t = new Date(i.published).getTime();
+      return t > max ? t : max;
+    }, 0);
+    if (newest) savePodcastSeen(newest);
+  }
+  const freshUrls = podcastFresh;
+
+  const shows = (state.podcasts && state.podcasts.shows) || [];
+  const shown = items.filter(i => i.about === state.podcastsTab);
+  const order = [];
+  shown.forEach(i => { if (!order.includes(i.showId)) order.push(i.showId); });
+
+  if (!order.length) {
+    view.appendChild(el("div", "card")).appendChild(text("div", "empty",
+      state.podcastsTab === "team"
+        ? "עוד לא נאספו פרקים על הפועל, נעדכן ברגע שיהיו"
+        : "עוד לא נאספו פרקים על הכדורסל הישראלי, נעדכן ברגע שיהיו"));
+  }
+
+  order.forEach(id => {
+    const mine = shown.filter(i => i.showId === id);
+    if (!mine.length) return;
+    const info = shows.find(s => s.id === id) || {};
+    const c = el("div", "card pod-card");
+    const head = el("div", "pod-group");
+    head.appendChild(text("div", "pod-group-name" + (isLatin(mine[0].show) ? " latin" : ""),
+      mine[0].show));
+    c.appendChild(head);
+    mine.forEach(i => c.appendChild(podcastItemEl(i, freshUrls.has(i.url), true)));
+    if (info.url) {
+      const all = el("a", "link-btn");
+      all.href = info.url;
+      all.target = "_blank";
+      all.rel = "noopener noreferrer";
+      all.textContent = "כל הפרקים של " + mine[0].show;
+      c.appendChild(all);
+    }
+    view.appendChild(c);
+  });
+
+  const note = el("div", "table-note");
+  note.appendChild(document.createTextNode(
+    "כותרות הפרקים בלבד. לחיצה על פרק פותחת אותו אצל מי שהקליט, " +
+    "והזכויות עליו שלו. אף אחת מהתוכניות אינה קשורה למועדון ולא לאפליקציה."));
+  view.appendChild(note);
+  if (state.podcasts && state.podcasts.updated) {
+    view.appendChild(text("div", "table-note", "נאסף " + newsWhen(state.podcasts.updated)));
+  }
+
+  footer();
+}
+
+// A fan leaves the app open on the phone for days. Coming back to it should
+// show what came out meanwhile, without a pull to refresh, so the list is
+// refetched when the tab returns to the front and has gone stale.
+function watchPodcasts() {
+  document.addEventListener("visibilitychange", async () => {
+    if (document.hidden) return;
+    if (Date.now() - podcastsFetched < PODCAST_STALE) return;
+    podcastsFetched = Date.now();
+    let next;
+    try {
+      const res = await fetch("data/podcasts.json?t=" + Date.now(), { cache: "no-store" });
+      if (!res.ok) return;
+      next = await res.json();
+    } catch (e) {
+      return; // offline is not an error worth putting on the screen
+    }
+    if (JSON.stringify(next) === JSON.stringify(state.podcasts || null)) return;
+    state.podcasts = next;
+    const hash = location.hash || "#/";
+    if (hash === "#/" || hash === "#/podcasts") render();
+  });
+}
+
 function shareCard() {
   const c = el("div", "card share-card");
   const t = el("div");
@@ -1293,6 +1524,9 @@ function renderHome() {
 
   const nc = newsCard();
   if (nc) view.appendChild(nc);
+
+  const pc = podcastCard();
+  if (pc) view.appendChild(pc);
 
   const rows = state.standings.rows;
   if (rows && rows.length && seasonStarted(rows)) {
@@ -1991,7 +2225,7 @@ function renderPlayer(slug) {
     row.appendChild(sal);
     cc.appendChild(row);
     if (det.contract && det.contract.note) {
-      cc.appendChild(text("div", "contract-note", det.contract.note));
+      cc.appendChild(prose("div", "contract-note", det.contract.note));
     }
     if (det.salary && det.salary.reported) {
       cc.appendChild(text("div", "disclaimer-line",
@@ -2050,7 +2284,7 @@ function coachCard(c) {
   const top = el("div", "coach-top");
   const who = el("div");
   who.appendChild(text("div", "coach-name", c.name));
-  if (c.title) who.appendChild(text("div", "coach-title", c.title));
+  if (c.title) who.appendChild(prose("div", "coach-title", c.title));
   top.appendChild(who);
   const yr = el("div", "coach-years" + (c.current ? " now" : ""));
   yr.textContent = c.years;
@@ -2124,7 +2358,7 @@ function renderHof() {
   const intro = el("div", "card meet-intro");
   intro.appendChild(text("div", "eyebrow", "אולם התהילה"));
   intro.appendChild(text("div", "meet-title", "מי שזוכרים בשמם"));
-  intro.appendChild(text("p", "", h.intro));
+  intro.appendChild(prose("p", "", h.intro));
   view.appendChild(intro);
 
   // coaches live in history.json, one list, shown in both places
@@ -2338,7 +2572,7 @@ function renderLastSeason() {
 
   (l.headlines || []).forEach(h => {
     const b = el("div", "card");
-    b.appendChild(text("div", "notice-title", h.title));
+    b.appendChild(prose("div", "notice-title", h.title));
     b.appendChild(prose("div", "notice-body", h.text));
     view.appendChild(b);
   });
@@ -2437,7 +2671,7 @@ function renderHistory() {
       const item = el("div", "tl-item" + (e.highlight ? " tl-big" : ""));
       item.appendChild(text("div", "tl-year", e.year));
       const body = el("div", "tl-body");
-      body.appendChild(text("div", "tl-title", e.title));
+      body.appendChild(prose("div", "tl-title", e.title));
       body.appendChild(prose("p", "tl-text", e.text));
       if (e.source) {
         const a = el("a", "meet-link muted-link");
@@ -2475,7 +2709,7 @@ function renderHistory() {
       const c = el("div", "card affair-card");
       const head = el("div", "affair-head");
       head.appendChild(text("span", "affair-year", a.year));
-      head.appendChild(text("span", "affair-title", a.title));
+      head.appendChild(prose("span", "affair-title", a.title));
       c.appendChild(head);
       c.appendChild(prose("p", "affair-text", a.text));
       if (a.source) {
@@ -2579,12 +2813,12 @@ function reportBody(prof, opts) {
   if (prof.role) {
     const r = el("div", "role-box");
     r.appendChild(text("span", "watch-label", "התפקיד בהפועל"));
-    r.appendChild(text("span", "", prof.role));
+    r.appendChild(prose("span", "", prof.role));
     frag.appendChild(r);
   }
   if (prof.comparison) {
     const c = el("div", "chips-row");
-    c.appendChild(text("span", "strength compare", "משווים אותו ל" + prof.comparison));
+    c.appendChild(prose("span", "strength compare", "משווים אותו ל" + prof.comparison));
     frag.appendChild(c);
   }
   const srcs = prof.sources || (prof.source ? [prof.source] : []);
