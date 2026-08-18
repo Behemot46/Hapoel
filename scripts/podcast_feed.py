@@ -102,14 +102,23 @@ def _duration(item):
     return secs
 
 
-def _episode_url(item):
-    """רוב הפידים נותנים <link> לעמוד הפרק. כשאין, נופלים לקובץ עצמו, שהוא
-    עדיין כתובת אצל מי שהקליט ולא העתקה שלה."""
+def _episode_url(item, show_url):
+    """כתובת שאפשר לפתוח, לפי הסדר: <link> לעמוד הפרק, guid שהוא כתובת
+    אמיתית, ואם אין אף אחד מהם, עמוד התוכנית.
+
+    מה שבכוונה לא נבחר הוא ה־enclosure. הוא כתובת של קובץ mp3, ולחיצה
+    עליו בטלפון פותחת נגן עירום או מתחילה הורדה, בלי שם הפרק, בלי התוכנית
+    ובלי דרך חזרה. הפיד של ״שוט״ יושב על megaphone ואין לו <link>, וכך
+    בדיוק זה נראה בריצה הראשונה."""
     link = (item.findtext("link") or "").strip()
     if link:
         return link
-    enc = item.find("enclosure")
-    return ((enc.get("url") if enc is not None else "") or "").strip()
+    guid = item.find("guid")
+    if guid is not None:
+        g = (guid.text or "").strip()
+        if g.startswith("http") and (guid.get("isPermaLink") or "").lower() != "false":
+            return g
+    return show_url
 
 
 def _apple(url, params):
@@ -142,7 +151,10 @@ def _resolve(show):
             continue
         return {
             "id": str(r.get("collectionId") or show.get("appleId") or name),
-            "title": name,
+            # the store title often carries a descriptor after the name
+            # ("ספיק נ' רול - פודקאסט כדורסל ישראלי"), and the screen already
+            # says what the section is. name in the config shortens it.
+            "title": (show.get("name") or "").strip() or name,
             "feed": feed,
             "url": (r.get("collectionViewUrl") or "").strip(),
         }
@@ -153,7 +165,7 @@ def _resolve(show):
     return None
 
 
-def _episodes(feed_url, limit):
+def _episodes(feed_url, limit, show_url):
     r = requests.get(feed_url, headers=UA, timeout=30)
     r.raise_for_status()
     r.encoding = r.encoding or "utf-8"
@@ -161,7 +173,7 @@ def _episodes(feed_url, limit):
     out, seen = [], set()
     for it in root.findall(".//item"):
         title = _clean(it.findtext("title"))
-        url = _episode_url(it)
+        url = _episode_url(it, show_url)
         when = _published(it)
         if not title or not url or when is None:
             continue
@@ -191,7 +203,7 @@ def collect():
             continue
         try:
             # מושכים קצת יותר מהמכסה, כי פרקים ישנים ייפלו על הגיל
-            eps = _episodes(info["feed"], per_show * 3)
+            eps = _episodes(info["feed"], per_show * 3, info["url"])
         except Exception as e:
             log("דילוג:", info["title"], "הפיד לא נקרא,", e)
             skipped += 1
