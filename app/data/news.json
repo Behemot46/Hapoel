@@ -1,14 +1,14 @@
 {
-  "updated": "2026-08-18T03:37:58Z",
+  "updated": "2026-08-18T03:41:42Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
     "C14",
     "אייס",
     "ישראל ספורט",
-    "ספורט 1",
     "ONE",
-    "ספורט 5"
+    "ספורט 5",
+    "ספורט 1"
   ],
   "items": [
     {
@@ -38,13 +38,6 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-16T05:51:00Z"
-    },
-    {
-      "title": "הפועל ירושלים החתימה את קפטן נבחרת הנוער ליאור הרשקו",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNczBBS0V1UjFLOHoxcmRYcEQzcTRHSVdPQWRWQkhhTXk0TFFVdFNWcldsV0NZTzZqSEx4dHZCYURZUEx4a0xwSUFxOTF0SmlBVUNJMGdsVzA4bEpRM0ZHTlpsbkpjUVlPbTBKeXhzYTVOWUxuR1NDR0FkenRSWGpIbkpPUV92N29STjYtNndEVzYtQQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-12T10:02:38Z"
     },
     {
       "title": "בגיל 56: אגדת הכדורסל פפי תורג'מן חוזר להפועל ירושלים בג'וב חדש",
@@ -178,6 +171,13 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-07-24T07:00:00Z"
+    },
+    {
+      "title": "אקס מכבי תל אביב מועמד להפועל ירושלים | פרסום ראשון",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1CNVVKNUhibGhGd3EyRm1HYVRzU2MwUHlseGhObUhtRWhibWlWRENqZElwa2xzOGYyVmc1U2gwRWxHdHhRZWRqb1dSMUw2UWVqSmVUMk9qdkluVVNkNy13R0tjUmtxWjl5Rkc4Y0F4QXpPc2pHQlRoOFNLRdIBgwFBVV95cUxNWGRsX0kxNWR1ZXZNdEptY1dkTHBXOUVSM3hlVmRVM1IzTnRmanVwZXFiMUVyQnMwSzhvbU1oSk8wYTVleXJ3WkxGZXhoOTJyaG5keEQ1WXVlcjY3UFRFU05Mc0JoU0pYejlCU3VXTEJKanVZcUx6QXA2ZDJSdGFsOGthdw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-07-23T07:00:00Z"
     }
   ]
 }
