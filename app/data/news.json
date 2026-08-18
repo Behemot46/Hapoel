@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18T11:27:26Z",
+  "updated": "2026-08-18T13:44:05Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
@@ -8,7 +8,8 @@
     "ישראל ספורט",
     "ONE",
     "ספורט 5",
-    "ספורט 1"
+    "ספורט 1",
+    "וואלה ספורט"
   ],
   "items": [
     {
@@ -38,13 +39,6 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-16T05:51:00Z"
-    },
-    {
-      "title": "בגיל 56: אגדת הכדורסל פפי תורג'מן חוזר להפועל ירושלים בג'וב חדש",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9lanJTa0lqdk1uQmE1YTc0YmV2OFBEZzM4Yms1VU1RZnBCaHZVRC0xZnZZTnJFSWpNQmE2QUVFYnhlQWdtX2JWeDA5Z3RCRFdwX3RZOTJuTmtDQjEzM0cybXhWOA?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
-      "published": "2026-08-11T13:47:37Z"
     },
     {
       "title": "מהפכה בסגל: סיכום הקיץ של הפועל ירושלים",
@@ -178,6 +172,13 @@
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-07-23T07:00:00Z"
+    },
+    {
+      "title": "יש גם סנטר בדרך: הפועל ירושלים ממשיכה לעבוד",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1zQURwdkpsNGktUkJLbEZQVy1WQVZ6MlN5bldIaFM4emhFOUZOaU1BS3l2WGhGVkNhV1IzaTY3b0loVDJvc1VmckpiaGpKUXRU?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-07-21T07:00:00Z"
     }
   ]
 }
