@@ -48,11 +48,21 @@ jobs:
             # בדיוק כשהאיסוף הזה רץ, ואז git push נדחה והעדכון נזרק לפח.
             # rebase ונסה שוב, במקום להפיל ריצה שכבר אספה נתונים תקינים.
             for i in 1 2 3; do
-              if git pull --rebase --autostash origin "$GITHUB_REF_NAME" \
+              # --strategy-option=theirs: בתוך rebase ״theirs״ הוא הקומיט
+              # שמוחל, כלומר האיסוף הטרי שלנו. קובצי הנתונים נכתבים מחדש
+              # במלואם בכל ריצה, אז כשהם מתנגשים האיסוף החדש הוא התשובה
+              # הנכונה. קבצים שהריצה הזאת לא נגעה בהם נשארים כפי שהם
+              # ב־origin, כי rebase נוגע רק במה שיש בקומיט שלנו.
+              if git pull --rebase --strategy-option=theirs --autostash \
+                   origin "$GITHUB_REF_NAME" \
                  && git push origin "HEAD:$GITHUB_REF_NAME"; then
                 echo "pushed=true" >> "$GITHUB_OUTPUT"
                 exit 0
               fi
+              # בלי abort העץ נשאר תקוע בקונפליקט, וכל ניסיון נוסף מת מיד
+              # על ״Pulling is not possible because you have unmerged files״.
+              # ככה בדיוק נכשלו שלושת הניסיונות ב־18.8.
+              git rebase --abort 2>/dev/null || true
               sleep $((i * 5))
             done
             echo "לא הצלחתי לדחוף את העדכון אחרי שלושה ניסיונות." >&2
