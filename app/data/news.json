@@ -1,12 +1,14 @@
 {
-  "updated": "2026-08-19T05:32:51Z",
+  "updated": "2026-08-19T08:40:31Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
     "ישראל היום",
     "אייס",
     "C14",
-    "ONE"
+    "ספורט 1",
+    "ONE",
+    "הארץ"
   ],
   "items": [
     {
@@ -50,6 +52,13 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-16T08:59:00Z"
+    },
+    {
+      "title": "הפועל ירושלים החתימה את קפטן נבחרת הנוער ליאור הרשקו",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNczBBS0V1UjFLOHoxcmRYcEQzcTRHSVdPQWRWQkhhTXk0TFFVdFNWcldsV0NZTzZqSEx4dHZCYURZUEx4a0xwSUFxOTF0SmlBVUNJMGdsVzA4bEpRM0ZHTlpsbkpjUVlPbTBKeXhzYTVOWUxuR1NDR0FkenRSWGpIbkpPUV92N29STjYtNndEVzYtQQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-12T10:02:38Z"
     },
     {
       "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
@@ -115,6 +124,13 @@
       "published": "2026-08-01T07:00:00Z"
     },
     {
+      "title": "הפועל ירושלים הודיעה על החתמת הגארד שייק מילטון לעונה אחת",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPbWhMTklFemNCdXIzMFI1elZTNTJmYjlyNHJfMFNEYU5KZUxvWE5ReUtUbEdaazY0TTVvc0Jkam82S1JFS3ZHUTZERFdjVTc2M1BoVFg3TGZORzVYS2RfOVpmRTZQOUlWZHdpRm1HYmk0Y0lZOWVRbEtEbkRCM0RGWnU5dVZLb1NKYkhKU2oycE5YWm1faThiVDRrMTNNVGFSclhV?oc=5",
+      "source": "הארץ",
+      "sourceUrl": "https://www.haaretz.co.il",
+      "published": "2026-07-31T07:00:00Z"
+    },
+    {
       "title": "לוח המשחקים של הפועל ירושלים ביורוקאפ",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
       "source": "ספורט 5",
@@ -136,6 +152,13 @@
       "published": "2026-07-28T07:00:00Z"
     },
     {
+      "title": "שייק מילטון סיכם בהפועל ירושלים: זה השכר שירוויח",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9jM1BUb0swRHJkVjJrYjJIdlo0UmFadXBacmI1eUszZ0lGM0JGTDdlN2JYbkVPUGZsaXF3WU81S0lqNnBRbHI4b3J3VWl1WVI2ZWpObk1DNlpMMExmMjBqUjJoZ21YcWdqZGdLSHM0RC1Xdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-28T07:00:00Z"
+    },
+    {
       "title": "אחרי הכישלון: הפועל ירושלים העבירה מסר חד וברור להפועל ומכבי תל אביב",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE02MU5EUmIwOTI2c2s0UGpJdnQ2TzVqRzlMbDZtSGVkWjhmN1BoM3BZTTRNNWk2MWFGZVhSTnN6ZWNNYkwwSWNYT1VNYnhNWDh3Q0pIYkNyMVY4QTk2Q29tTHJ4UHFoNWRpOUd6ZU4yTWxPSlJ1aGFNeTV1ONIBgwFBVV95cUxQMDZNbFgwM3pXdVZlVTVidlF0Yl9IR2NjMXNZcFpQNHg4TDdJd2d2WEJUSk1XSjBRMVdmUjhRMFV1N3BmTjNHN2g0N1FtUnR3TVpWdDJBSkt4amhzdlhFYTFuczg4Mk9iT015OTNiRjk3Vk9zZHh4ejBFYk1VS1ZvLTBUOA?oc=5",
       "source": "ישראל היום",
@@ -154,28 +177,7 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1RSGtuYVA1a3BlUlhLV2xyeEhkcjI3SnlrOXN5VW5WZUpfcUEyUFFTZS1JZDJlR0lVWjFEcjNBU09qWEdJeFlVVzZYWHpVNnhIRTE0UDZhSUxCald6azV4aXhtTXFWTU0yZmxCWHcxVUw2RXB4LUJjeC0tUdIBgwFBVV95cUxPWEZtMG1uYnpaUlhRWXhxUXRNOXpOMktsMmlsS0pDZENmckFfYlJOX2hFcUxqOG42VEs4c2Fkem56cWU2THQ1WWhyYjJjTXJ5RVRKQ0loTi04QnFhVUlZUkNTVElOay1lSFhjN1AxR01Ld093TGJkZ2VCV2ctTGJUQlViaw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-26T07:00:00Z"
-    },
-    {
-      "title": "צפו במופע 42 הנק' של הרכש החדש של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1jNzM3TkpmaUVTUnlqQjBGX3pobjJ3dWpuWmFVUEZaTFRSWm1WQW5rT0VPSGdUYmxqODRUOG8xUXdTMGhKOWlhMUptdFo1d3plejFJVTZqY0YtY2xHYzB1bEloaDZQRkxUUTZiZk5TUmRqUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-26T07:00:00Z"
-    },
-    {
-      "title": "כולל שחקן NBA: הפועל ירושלים סיכמה עם שני זרים חדשים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5SVFVHRllNazY2Y2NBWWRYTTdYVGVVRDc3ak5NZEVuUWFwX2NVNDlrUFIyX0FYeUN3ZldnQ1JrdHZYM1B5VVBzcGhEOFB1RlpJd1dfTlFYZTRkWHI0amFkNXJDVWhwcHh1ei1nLVozZ2o0N1lsaC1HQjNYSdIBgwFBVV95cUxNVUlDV2pFYUVRd2MwdnRXRjM0b1NVU1ZncnZIZkYycURkanEtV0dGT1NOMkhOV0dpY3BleW5kOEc0aGc2Q3h4ZUhEMnJjYmI1cWhTaVFpMWpGT3NUUjluOWxtNHF0ZmdHaV8tdFByTmlrYXlmQ1B6ajVXVDdBTHJxYW9SMA?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-26T07:00:00Z"
-    },
-    {
-      "title": "בשכר גבוה: קני לופטון ג`וניור חתם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9LTW42Ny1wNkFkcUJpSUlTeEo4NkpDM18tclI0VS1UbmFpMFY5VndVMzltWWJvVUlhTENYWDZuQ0s5NDJ3WDZkbkRfcXVjZGlaVXlSNTQ4NmRuVnlnMnVMcFY4NVpzWFd5a3dLaUhSNDR4dWdJ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-26T07:00:00Z"
+      "published": "2026-07-27T07:00:00Z"
     }
   ]
 }
