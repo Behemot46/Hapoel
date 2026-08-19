@@ -1,36 +1,22 @@
 {
-  "updated": "2026-08-19T08:40:31Z",
+  "updated": "2026-08-19T11:27:35Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ספורט 5",
-    "ישראל היום",
-    "אייס",
+    "כל העיר",
     "C14",
     "ספורט 1",
+    "ישראל היום",
     "ONE",
+    "ספורט 5",
     "הארץ"
   ],
   "items": [
     {
-      "title": "רשמי: הפועל ירושלים תולבש ע\"י ריבוק",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5OVGZsUEIySUVFZW5yTUxHMENoU0FocXFzRXFhdmFYdl9FY1ZrVzNqQTAzbEdXZWdZdUhHdnN2Zi1uTUNPNHpuRU0tWnZCd2ZfTENfd0t4WDhGLXdkcmdXYnIyMzkyZERVbGNObTN1VXRCUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-17T09:42:10Z"
-    },
-    {
-      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T09:40:38Z"
-    },
-    {
-      "title": "הפועל ירושלים מעלה הילוך: שיתוף פעולה חדש עם ריבוק העולמית",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9VVVFCd2tXMkFvTlQwNVhjNkcyMVp5eVRuS3BjLVpNdDF5eWE3RWhGWW1GNnRpWjVoOExKTVNiNmtKYlVHM2dBdlQ3dUVkdWVqLUlvcWpId0l5SjhkN2Q0ZnhnQQ?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
-      "published": "2026-08-17T09:38:00Z"
+      "title": "הזרים נחתו, הציפיות בשמיים: הפועל ירושלים סימנה מטרה ברורה",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5yWEIxVnMwaW5taWdELW5iUUdKMXFlMkg1UEZ0UXFhMDhMUGRxY3haSG94SHotenh6VzN1TWoxa2FRX0hyaE1iUGdZa3hHeF9u?oc=5",
+      "source": "כל העיר",
+      "sourceUrl": "https://www.kolhair.co.il",
+      "published": "2026-08-18T12:19:07Z"
     },
     {
       "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
@@ -38,20 +24,6 @@
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-16T13:09:35Z"
-    },
-    {
-      "title": "דרמה בכדורסל הישראלי: הפועל ירושלים דורשת פיצוי מעופר ינאי",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5PVGI4UlRwdkl5UGRWVU45X3MwSTBNZVhRUmlPTHJpbDRLZHQweWRHUXpqX01pMU1WeW5jbjlkNFh5Ykg1ckNMU1JpTVFhQkpGY2g5X3o0eVhBUU8yWXpYLTlGRQ?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
-      "published": "2026-08-16T11:02:00Z"
-    },
-    {
-      "title": "הפועל ירושלים דורשת דמי העברה/השבחה על קרינגטון",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBUbVpRLWhsUGwzSW13SzlEU1pYandxQVd0aHFxM2phSWdjNmtDRGFaaEJXdzdsaHg2Q3ZmZFo4QnoyZEJYalBjUmVORXZlSE0tc0dacy10M2NJT2RHeDVkUXVWcmZ2cW5PLTNJWXN1RzQ1UQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-16T08:59:00Z"
     },
     {
       "title": "הפועל ירושלים החתימה את קפטן נבחרת הנוער ליאור הרשקו",
@@ -178,6 +150,34 @@
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-07-27T07:00:00Z"
+    },
+    {
+      "title": "צפו במופע 42 הנק' של הרכש החדש של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1jNzM3TkpmaUVTUnlqQjBGX3pobjJ3dWpuWmFVUEZaTFRSWm1WQW5rT0VPSGdUYmxqODRUOG8xUXdTMGhKOWlhMUptdFo1d3plejFJVTZqY0YtY2xHYzB1bEloaDZQRkxUUTZiZk5TUmRqUQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-26T07:00:00Z"
+    },
+    {
+      "title": "כולל שחקן NBA: הפועל ירושלים סיכמה עם שני זרים חדשים",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5SVFVHRllNazY2Y2NBWWRYTTdYVGVVRDc3ak5NZEVuUWFwX2NVNDlrUFIyX0FYeUN3ZldnQ1JrdHZYM1B5VVBzcGhEOFB1RlpJd1dfTlFYZTRkWHI0amFkNXJDVWhwcHh1ei1nLVozZ2o0N1lsaC1HQjNYSdIBgwFBVV95cUxNVUlDV2pFYUVRd2MwdnRXRjM0b1NVU1ZncnZIZkYycURkanEtV0dGT1NOMkhOV0dpY3BleW5kOEc0aGc2Q3h4ZUhEMnJjYmI1cWhTaVFpMWpGT3NUUjluOWxtNHF0ZmdHaV8tdFByTmlrYXlmQ1B6ajVXVDdBTHJxYW9SMA?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-07-26T07:00:00Z"
+    },
+    {
+      "title": "בשכר גבוה: קני לופטון ג`וניור חתם בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9LTW42Ny1wNkFkcUJpSUlTeEo4NkpDM18tclI0VS1UbmFpMFY5VndVMzltWWJvVUlhTENYWDZuQ0s5NDJ3WDZkbkRfcXVjZGlaVXlSNTQ4NmRuVnlnMnVMcFY4NVpzWFd5a3dLaUhSNDR4dWdJ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-26T07:00:00Z"
+    },
+    {
+      "title": "השכר שירוויח קני לופטון ג'וניור ומטרת החיזוק הבאה של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQYzBoZHBJOUxIOFJYemg0eUZVSHFTV0NrQzI3MURBQk5qMHdMbmYxbnMzdTJBenBnanlJYlFCRklNdmpvVXJEQVJBTVp2cFF6Sll2LUJkUTdudU9tZ2hmZmZ5U1hNbUlUaEdXOU5xUERqT3l5YjRWMUNLNE5NU2xhR3VMaVRCcXlYQmhlMHFVUFdCQQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-07-26T07:00:00Z"
     }
   ]
 }
