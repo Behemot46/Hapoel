@@ -1,23 +1,34 @@
 {
-  "updated": "2026-08-18T13:44:05Z",
+  "updated": "2026-08-19T03:48:58Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ישראל היום",
-    "C14",
-    "אייס",
-    "ישראל ספורט",
-    "ONE",
     "ספורט 5",
-    "ספורט 1",
-    "וואלה ספורט"
+    "ישראל היום",
+    "אייס",
+    "C14",
+    "ONE"
   ],
   "items": [
+    {
+      "title": "רשמי: הפועל ירושלים תולבש ע\"י ריבוק",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5OVGZsUEIySUVFZW5yTUxHMENoU0FocXFzRXFhdmFYdl9FY1ZrVzNqQTAzbEdXZWdZdUhHdnN2Zi1uTUNPNHpuRU0tWnZCd2ZfTENfd0t4WDhGLXdkcmdXYnIyMzkyZERVbGNObTN1VXRCUQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-17T09:42:10Z"
+    },
     {
       "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-17T09:40:38Z"
+    },
+    {
+      "title": "הפועל ירושלים מעלה הילוך: שיתוף פעולה חדש עם ריבוק העולמית",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9VVVFCd2tXMkFvTlQwNVhjNkcyMVp5eVRuS3BjLVpNdDF5eWE3RWhGWW1GNnRpWjVoOExKTVNiNmtKYlVHM2dBdlQ3dUVkdWVqLUlvcWpId0l5SjhkN2Q0ZnhnQQ?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-17T09:38:00Z"
     },
     {
       "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
@@ -34,11 +45,18 @@
       "published": "2026-08-16T11:02:00Z"
     },
     {
-      "title": "הפועל ירושלים דורשת דמי השבחה על קרינגטון, איך ינאי הגיב?",
-      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxOd1RhMG5kOGVCNExENWRXWklUcjZmN3JIRXRVTjdCY1NLQnhjR0dzRGsyaHNLSm1WZWZlMkQwc3RHdnNQZEl1dzZ4VVBfS0t2UmthOHFsQnY5S3dNTDg4Q3RTNkQ5aEhkM2tqU2xzRy1ydy1Jb0hxZ3czSWEwcTZDLWFOOXVjUTZuS1NTY3B2eWxBZDRtTnNBbm1rMUZzcFRPS1Ntc3RkdW5QR1lvZTd6WW1KOThtNmNoS2w0NjJmOVY1V1dQa3YxYzBmcjV2c3hibnl6Z1lsSncydk1IUHltLWVBQVBMbENOTnMxUzM4cDQyWUkwTUNyZ1pqV3lhd0xKY1lJbi1uZ3V4WndSNXRzQ3A0R1BxbWNxMG5HeGNYOHNZVW1DcWxieXMxODRpZWxES05BR3RwbTlELTItU0U5QWhn?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-08-16T05:51:00Z"
+      "title": "הפועל ירושלים דורשת דמי העברה/השבחה על קרינגטון",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBUbVpRLWhsUGwzSW13SzlEU1pYandxQVd0aHFxM2phSWdjNmtDRGFaaEJXdzdsaHg2Q3ZmZFo4QnoyZEJYalBjUmVORXZlSE0tc0dacy10M2NJT2RHeDVkUXVWcmZ2cW5PLTNJWXN1RzQ1UQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-16T08:59:00Z"
+    },
+    {
+      "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1FTzdEaV9mM3BBQS1SUE5hdTVWV09KV2Y5VF82WFQwMXppc0tTd25fNmlrWENGZkVqOEl6bDZlTTNuZE1BdWFPRkJpVk44ZWloOWNaWV9CVlNZQ1NJSzBZMkxMWjFOSDJsWFRGS0lIcHNuQW5vSU1KbmdvRdIBgwFBVV95cUxOSi1wTm51OXA5Yk9UMWNXSlozSmVvMjN3c185Mm5sRlVyckdib2EwYlJLU3hsXzBZdy0zdkxJLTU4d29KTFV0WnN6V05xcUstZXpaZUE4NXNaM19pZGRRNnEzRGNEeDRiMnFMS29tYnRvVXR4MXE1MDNRZkFNei1qakQxMA?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-11T07:20:22Z"
     },
     {
       "title": "מהפכה בסגל: סיכום הקיץ של הפועל ירושלים",
@@ -46,6 +64,13 @@
       "source": "ONE",
       "sourceUrl": "https://www.one.co.il",
       "published": "2026-08-09T15:39:49Z"
+    },
+    {
+      "title": "\"חווה הרבה לחץ\": הרכש של הפועל י-ם הגן על אקס מכבי ת\"א",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5HQVlYZjlYems5bEJIeWZFV00tZ29zaHJwVFdUVXAzYXdCOHlvNFlEVjB1TGJydnUyRW5yRTdjX21CSWlreUhTaF93R1ZXSVZsZU4tUm1HdzBLcmp4T1IyMHljYWZqdnZjcmJQTjA5NnJ2WWc?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-05T07:00:00Z"
     },
     {
       "title": "השלימה את הסגל: כך תיראה הפועל ירושלים",
@@ -90,6 +115,13 @@
       "published": "2026-08-01T07:00:00Z"
     },
     {
+      "title": "לוח המשחקים של הפועל ירושלים ביורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-29T07:00:00Z"
+    },
+    {
       "title": "רשמי: היעד בו תארח הפועל ירושלים ביורוקאפ",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9peU9QSlB0Z3A0YzVaNjFHRkoxZmw3NU1zZ1dxdkdldVJxZF9nQ19HRGRVNmNYQkFZZF9qbzMxY1hYUERONkd3dDFVeExETUlMY21LWkdCSGYtMWVoNnpwcVh3T3JfRGRfR211bHNIVTdUTXM?oc=5",
       "source": "ספורט 5",
@@ -118,17 +150,17 @@
       "published": "2026-07-27T07:00:00Z"
     },
     {
-      "title": "צפו במופע 42 הנק' של הרכש החדש של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1jNzM3TkpmaUVTUnlqQjBGX3pobjJ3dWpuWmFVUEZaTFRSWm1WQW5rT0VPSGdUYmxqODRUOG8xUXdTMGhKOWlhMUptdFo1d3plejFJVTZqY0YtY2xHYzB1bEloaDZQRkxUUTZiZk5TUmRqUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-26T07:00:00Z"
-    },
-    {
       "title": "מחטף? המועמד למכבי תל אביב במו\"מ מתקדם עם הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1RSGtuYVA1a3BlUlhLV2xyeEhkcjI3SnlrOXN5VW5WZUpfcUEyUFFTZS1JZDJlR0lVWjFEcjNBU09qWEdJeFlVVzZYWHpVNnhIRTE0UDZhSUxCald6azV4aXhtTXFWTU0yZmxCWHcxVUw2RXB4LUJjeC0tUdIBgwFBVV95cUxPWEZtMG1uYnpaUlhRWXhxUXRNOXpOMktsMmlsS0pDZENmckFfYlJOX2hFcUxqOG42VEs4c2Fkem56cWU2THQ1WWhyYjJjTXJ5RVRKQ0loTi04QnFhVUlZUkNTVElOay1lSFhjN1AxR01Ld093TGJkZ2VCV2ctTGJUQlViaw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-07-26T07:00:00Z"
+    },
+    {
+      "title": "צפו במופע 42 הנק' של הרכש החדש של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1jNzM3TkpmaUVTUnlqQjBGX3pobjJ3dWpuWmFVUEZaTFRSWm1WQW5rT0VPSGdUYmxqODRUOG8xUXdTMGhKOWlhMUptdFo1d3plejFJVTZqY0YtY2xHYzB1bEloaDZQRkxUUTZiZk5TUmRqUQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-26T07:00:00Z"
     },
     {
@@ -144,41 +176,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-26T07:00:00Z"
-    },
-    {
-      "title": "אחרי מכבי תל אביב: שחקן היורוליג מבוקש בהפועל ירושלים | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB0bXlhLTlVdmpGQy1FZG1fSkV5WHNaLXRNYVBZNjFwd1lIN3U2LS1jaUZaLVFxakVfQVNVX2lJdXdKRzRKYmxzZDhWUkYzc25hT0k3YXhJU3lSQ1BGcmVRQVJ6cUpMUGNvYUl4MExIYmhOMU1uczRhLWg1MNIBgwFBVV95cUxQSUJ1N2JUX2xQME4wR3dWX1JZVHk5Y1hmb3h1eGs0aTZyUmhMeGZtbXNnMlQtV240M2RoYW9YRDJFNmZza2w4ZktiYkdiUEtHbWQtOFpxSXhXOU1kdEVCb05kU2ZrbWVXN1hRc0g3c3c0WVYyWlVCbE85QVhSd04tcDd1RQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-26T07:00:00Z"
-    },
-    {
-      "title": "שחקן הפועל ירושלים בעונה החולפת חתם בקבוצה מהליגה הבכירה בספרד",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE44R2s5ZDJGZk0yalVhTUptYlN1OHBFTU1MU1VkbGRTMURfaW11X0s0eVJBUEVXeUdleEp2dW0wTzVNajVMNzl1ZkNnZHBRa1pOX3ctV09YSnFYMVVhSElRanBRdXZFWGRuRmY2WXJQRWY?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-07-25T07:00:00Z"
-    },
-    {
-      "title": "רשמית: דייויד רודי חתם בהפועל ירושלים. אורך החוזה והשכר שירוויח",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOQ0xZTm9CYmVhTXloMGprTmtKTVJERE9vTnkwTnVXY3Y0bkxjM3NmY3Y0aHI4bzVkUGlyRVdDTS1mVklhYnM2c0VCbFo1WlFGVVZnUXo1OGJNdzRPSlJpVEtibzZCc29XcnN2elE5ekJvTjlmeURBemVNNURqdnlLbXRjZW54NWhNdUo4eUloekt4dw?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-07-24T07:00:00Z"
-    },
-    {
-      "title": "אקס מכבי תל אביב מועמד להפועל ירושלים | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1CNVVKNUhibGhGd3EyRm1HYVRzU2MwUHlseGhObUhtRWhibWlWRENqZElwa2xzOGYyVmc1U2gwRWxHdHhRZWRqb1dSMUw2UWVqSmVUMk9qdkluVVNkNy13R0tjUmtxWjl5Rkc4Y0F4QXpPc2pHQlRoOFNLRdIBgwFBVV95cUxNWGRsX0kxNWR1ZXZNdEptY1dkTHBXOUVSM3hlVmRVM1IzTnRmanVwZXFiMUVyQnMwSzhvbU1oSk8wYTVleXJ3WkxGZXhoOTJyaG5keEQ1WXVlcjY3UFRFU05Mc0JoU0pYejlCU3VXTEJKanVZcUx6QXA2ZDJSdGFsOGthdw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-23T07:00:00Z"
-    },
-    {
-      "title": "יש גם סנטר בדרך: הפועל ירושלים ממשיכה לעבוד",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1zQURwdkpsNGktUkJLbEZQVy1WQVZ6MlN5bldIaFM4emhFOUZOaU1BS3l2WGhGVkNhV1IzaTY3b0loVDJvc1VmckpiaGpKUXRU?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-07-21T07:00:00Z"
     }
   ]
 }

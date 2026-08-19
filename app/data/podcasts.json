@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18T13:44:07Z",
+  "updated": "2026-08-19T03:48:59Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,7 +14,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-08-10T16:23:01Z"
+      "latest": "2026-08-18T16:47:12Z"
     },
     {
       "id": "1675729649",
@@ -25,6 +25,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "זה מה שנשאר",
+      "url": "https://omny.fm/shows/speaknrolisrael/7c57cb81-ed25-47de-b258-b4aa0112d062",
+      "published": "2026-08-18T16:47:12Z",
+      "duration": 3906
+    },
     {
       "showId": "1573775015",
       "show": "כיפה אדומה",
@@ -87,15 +96,6 @@
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
       "published": "2026-07-26T15:50:00Z",
       "duration": 6186
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "ראיון עם תומר אסייג",
-      "url": "https://omny.fm/shows/speaknrolisrael/9b2755e3-2762-480f-9922-b48f00a6f76a",
-      "published": "2026-07-22T10:12:16Z",
-      "duration": 3519
     },
     {
       "showId": "1573775015",
