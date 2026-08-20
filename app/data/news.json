@@ -1,11 +1,11 @@
 {
-  "updated": "2026-08-20T05:33:47Z",
+  "updated": "2026-08-20T08:41:25Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "כל העיר",
+    "ישראל היום",
     "C14",
     "ספורט 1",
-    "ישראל היום",
     "ONE",
     "ספורט 5",
     "הארץ"
@@ -17,6 +17,13 @@
       "source": "כל העיר",
       "sourceUrl": "https://www.kolhair.co.il",
       "published": "2026-08-18T12:19:07Z"
+    },
+    {
+      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-17T09:40:38Z"
     },
     {
       "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
@@ -61,17 +68,17 @@
       "published": "2026-08-04T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים בנתה מפלצת זרים - אבל הבעיה נמצאת במקום אחר",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1zQjN0MnViQ0RhWHp1MkgxMEwxcktVUTZUYk9FZEZobk5ET2p5MnZPSkphOGpvdE4xTnp0VUhqU0UwU25BemVkeUdob2Z2Z0pBZ1NuLTNkOFROd0JQdXVPaTBQVmc2VzB0aXhIUVpGOUxaelpEUXpLcm5pb9IBgwFBVV95cUxOcmE0engxaGJTY0QzTF9fUDVmZG9scE5jOVF6cUY4dmJRaW5ONmw1ZGhGN0tTMU51R09wc2FtX0Y1RXQ3S0Z4bE1ZSUZiZjVTWVppR1g1U0lfek5hejVFVUdwZUVRX0pwdE83RTJHeC1iS2FqUHRjN3VEZ0E3TU5Uc2hlaw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-04T07:00:00Z"
-    },
-    {
       "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-08-04T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים בנתה מפלצת זרים - אבל הבעיה נמצאת במקום אחר",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1zQjN0MnViQ0RhWHp1MkgxMEwxcktVUTZUYk9FZEZobk5ET2p5MnZPSkphOGpvdE4xTnp0VUhqU0UwU25BemVkeUdob2Z2Z0pBZ1NuLTNkOFROd0JQdXVPaTBQVmc2VzB0aXhIUVpGOUxaelpEUXpLcm5pb9IBgwFBVV95cUxOcmE0engxaGJTY0QzTF9fUDVmZG9scE5jOVF6cUY4dmJRaW5ONmw1ZGhGN0tTMU51R09wc2FtX0Y1RXQ3S0Z4bE1ZSUZiZjVTWVppR1g1U0lfek5hejVFVUdwZUVRX0pwdE83RTJHeC1iS2FqUHRjN3VEZ0E3TU5Uc2hlaw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-04T07:00:00Z"
     },
     {
@@ -171,13 +178,6 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-07-25T07:00:00Z"
-    },
-    {
-      "title": "יש גם סנטר בדרך: הפועל ירושלים ממשיכה לעבוד",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNQ1M2MXhsU0pqQjdjNGwwM1lKRzdPZzM4ZjY2c21HVW04SDh2RW8xTWRmSTBDRFBnNWJpYUlTZGdCMkFUOG5ZUi1CcC0xZEdCQ1VLOFZpZ2FlTm1JOTZDVGY3TmVldWt1NTdlNDk5S0hVU3pmdVdnbWZaNDByRkxuSThvVWJIcmw2Znp4c2FoNWlXUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-07-21T07:00:00Z"
     }
   ]
 }
