@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-20T08:41:25Z",
+  "updated": "2026-08-20T11:28:53Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "כל העיר",
@@ -37,7 +37,7 @@
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNczBBS0V1UjFLOHoxcmRYcEQzcTRHSVdPQWRWQkhhTXk0TFFVdFNWcldsV0NZTzZqSEx4dHZCYURZUEx4a0xwSUFxOTF0SmlBVUNJMGdsVzA4bEpRM0ZHTlpsbkpjUVlPbTBKeXhzYTVOWUxuR1NDR0FkenRSWGpIbkpPUV92N29STjYtNndEVzYtQQ?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-12T10:02:38Z"
+      "published": "2026-08-12T07:00:00Z"
     },
     {
       "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
@@ -68,17 +68,17 @@
       "published": "2026-08-04T07:00:00Z"
     },
     {
-      "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-04T07:00:00Z"
-    },
-    {
       "title": "הפועל ירושלים בנתה מפלצת זרים - אבל הבעיה נמצאת במקום אחר",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1zQjN0MnViQ0RhWHp1MkgxMEwxcktVUTZUYk9FZEZobk5ET2p5MnZPSkphOGpvdE4xTnp0VUhqU0UwU25BemVkeUdob2Z2Z0pBZ1NuLTNkOFROd0JQdXVPaTBQVmc2VzB0aXhIUVpGOUxaelpEUXpLcm5pb9IBgwFBVV95cUxOcmE0engxaGJTY0QzTF9fUDVmZG9scE5jOVF6cUY4dmJRaW5ONmw1ZGhGN0tTMU51R09wc2FtX0Y1RXQ3S0Z4bE1ZSUZiZjVTWVppR1g1U0lfek5hejVFVUdwZUVRX0pwdE83RTJHeC1iS2FqUHRjN3VEZ0E3TU5Uc2hlaw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-04T07:00:00Z"
+    },
+    {
+      "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-04T07:00:00Z"
     },
     {
@@ -114,6 +114,13 @@
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-29T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים תפתח בבית נגד רוסטוק ביורוקאפ, ומתי אריס?",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBReGZGZnk4dTlvSFBaSms4RXBxOU9wTmtseTZTUjVfYXpGd1NNX3lURDVxcTZmMHowdkJNbktIVGVTY254dThqcTlNR3ltbEZ6ckE3bDdtVTZWN0dBcWtSTm4yNmdacUJOLVZQc1JpSDI?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-07-29T07:00:00Z"
     },
     {
@@ -163,13 +170,6 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5SVFVHRllNazY2Y2NBWWRYTTdYVGVVRDc3ak5NZEVuUWFwX2NVNDlrUFIyX0FYeUN3ZldnQ1JrdHZYM1B5VVBzcGhEOFB1RlpJd1dfTlFYZTRkWHI0amFkNXJDVWhwcHh1ei1nLVozZ2o0N1lsaC1HQjNYSdIBgwFBVV95cUxNVUlDV2pFYUVRd2MwdnRXRjM0b1NVU1ZncnZIZkYycURkanEtV0dGT1NOMkhOV0dpY3BleW5kOEc0aGc2Q3h4ZUhEMnJjYmI1cWhTaVFpMWpGT3NUUjluOWxtNHF0ZmdHaV8tdFByTmlrYXlmQ1B6ajVXVDdBTHJxYW9SMA?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-26T07:00:00Z"
-    },
-    {
-      "title": "השכר שירוויח קני לופטון ג'וניור ומטרת החיזוק הבאה של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQYzBoZHBJOUxIOFJYemg0eUZVSHFTV0NrQzI3MURBQk5qMHdMbmYxbnMzdTJBenBnanlJYlFCRklNdmpvVXJEQVJBTVp2cFF6Sll2LUJkUTdudU9tZ2hmZmZ5U1hNbUlUaEdXOU5xUERqT3l5YjRWMUNLNE5NU2xhR3VMaVRCcXlYQmhlMHFVUFdCQQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-07-26T07:00:00Z"
     },
     {
