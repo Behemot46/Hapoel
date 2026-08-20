@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-19T13:46:21Z",
+  "updated": "2026-08-20T03:49:21Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,10 +21,19 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-08-12T16:44:00Z"
+      "latest": "2026-08-19T17:57:00Z"
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "אל תשימו אותי בקטגוריה, עם גיא פלטין | שוט, פרק 190",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-08-19T17:57:00Z",
+      "duration": 5353
+    },
     {
       "showId": "1623083958",
       "show": "ספיק נ׳ רול",
@@ -105,15 +114,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/96-e3mbiv0",
       "published": "2026-07-21T12:45:00Z",
       "duration": 3379
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "לא מתחרט על אף שריקה, עם ספי שמש| שוט, פרק 186",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-07-21T05:00:00Z",
-      "duration": 5854
     },
     {
       "showId": "1573775015",
