@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-21T03:52:14Z",
+  "updated": "2026-08-21T05:35:19Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "כל העיר",
@@ -9,6 +9,7 @@
     "ספורט 1",
     "ONE",
     "ספורט 5",
+    "וואלה ספורט",
     "הארץ"
   ],
   "items": [
@@ -118,6 +119,13 @@
       "published": "2026-08-01T07:00:00Z"
     },
     {
+      "title": "עם סגל כזה, בהחלט אפשר לחלום: הפועל ירושלים תלך עד הסוף ביורוקאפ?",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1aRUo2Y1lvaTJnUGZFNXdkQ2FNTjNrdExpaHZ3U3J2VWM4VDU3dk1QRHBDS3JjcHQ4UDRBb3RLQkJzbFl6MGtCZnNjNUtld2NB?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-01T07:00:00Z"
+    },
+    {
       "title": "הפועל ירושלים הודיעה על החתמת הגארד שייק מילטון לעונה אחת",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPbWhMTklFemNCdXIzMFI1elZTNTJmYjlyNHJfMFNEYU5KZUxvWE5ReUtUbEdaazY0TTVvc0Jkam82S1JFS3ZHUTZERFdjVTc2M1BoVFg3TGZORzVYS2RfOVpmRTZQOUlWZHdpRm1HYmk0Y0lZOWVRbEtEbkRCM0RGWnU5dVZLb1NKYkhKU2oycE5YWm1faThiVDRrMTNNVGFSclhV?oc=5",
       "source": "הארץ",
@@ -171,13 +179,6 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1RSGtuYVA1a3BlUlhLV2xyeEhkcjI3SnlrOXN5VW5WZUpfcUEyUFFTZS1JZDJlR0lVWjFEcjNBU09qWEdJeFlVVzZYWHpVNnhIRTE0UDZhSUxCald6azV4aXhtTXFWTU0yZmxCWHcxVUw2RXB4LUJjeC0tUdIBgwFBVV95cUxPWEZtMG1uYnpaUlhRWXhxUXRNOXpOMktsMmlsS0pDZENmckFfYlJOX2hFcUxqOG42VEs4c2Fkem56cWU2THQ1WWhyYjJjTXJ5RVRKQ0loTi04QnFhVUlZUkNTVElOay1lSFhjN1AxR01Ld093TGJkZ2VCV2ctTGJUQlViaw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-26T07:00:00Z"
-    },
-    {
-      "title": "בשכר גבוה: קני לופטון ג`וניור חתם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9LTW42Ny1wNkFkcUJpSUlTeEo4NkpDM18tclI0VS1UbmFpMFY5VndVMzltWWJvVUlhTENYWDZuQ0s5NDJ3WDZkbkRfcXVjZGlaVXlSNTQ4NmRuVnlnMnVMcFY4NVpzWFd5a3dLaUhSNDR4dWdJ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-26T07:00:00Z"
     }
   ]
