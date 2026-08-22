@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-22T05:29:45Z",
+  "updated": "2026-08-22T08:33:15Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "כל העיר",
@@ -10,7 +10,8 @@
     "ספורט 5",
     "ספורט 1",
     "וואלה ספורט",
-    "הארץ"
+    "הארץ",
+    "ynet"
   ],
   "items": [
     {
@@ -147,6 +148,13 @@
       "published": "2026-07-31T07:00:00Z"
     },
     {
+      "title": "חיזוק מרשים: שייק מילטון חתם בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBpTFpUakYwZkpVY3Awd0wxZ19CZkk2cjFHMGZnVTk5SkdoQng0MnNVclgtOGJtLXN1cEhHOFBTTEU1QVgxa2tZYkF4WkRlN3hDTHRCUkR3ZVBTbEp5ZGdHMnVOTFkyd2ZBVlQwUF93MzJNRGs?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-07-31T07:00:00Z"
+    },
+    {
       "title": "לוח המשחקים של הפועל ירושלים ביורוקאפ",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
       "source": "ספורט 5",
@@ -173,13 +181,6 @@
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-07-28T07:00:00Z"
-    },
-    {
-      "title": "אחרי הכישלון: הפועל ירושלים העבירה מסר חד וברור להפועל ומכבי תל אביב",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE02MU5EUmIwOTI2c2s0UGpJdnQ2TzVqRzlMbDZtSGVkWjhmN1BoM3BZTTRNNWk2MWFGZVhSTnN6ZWNNYkwwSWNYT1VNYnhNWDh3Q0pIYkNyMVY4QTk2Q29tTHJ4UHFoNWRpOUd6ZU4yTWxPSlJ1aGFNeTV1ONIBgwFBVV95cUxQMDZNbFgwM3pXdVZlVTVidlF0Yl9IR2NjMXNZcFpQNHg4TDdJd2d2WEJUSk1XSjBRMVdmUjhRMFV1N3BmTjNHN2g0N1FtUnR3TVpWdDJBSkt4amhzdlhFYTFuczg4Mk9iT015OTNiRjk3Vk9zZHh4ejBFYk1VS1ZvLTBUOA?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-27T07:00:00Z"
     }
   ]
 }
