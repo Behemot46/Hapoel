@@ -1,17 +1,16 @@
 {
-  "updated": "2026-08-22T11:22:20Z",
+  "updated": "2026-08-22T13:33:40Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "כל העיר",
     "ישראל היום",
     "C14",
     "ישראל ספורט",
+    "ספורט 1",
     "ONE",
     "ספורט 5",
-    "ספורט 1",
     "וואלה ספורט",
-    "הארץ",
-    "ynet"
+    "הארץ"
   ],
   "items": [
     {
@@ -41,6 +40,13 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-16T05:51:00Z"
+    },
+    {
+      "title": "הפועל ירושלים החתימה את קפטן נבחרת הנוער ליאור הרשקו",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNczBBS0V1UjFLOHoxcmRYcEQzcTRHSVdPQWRWQkhhTXk0TFFVdFNWcldsV0NZTzZqSEx4dHZCYURZUEx4a0xwSUFxOTF0SmlBVUNJMGdsVzA4bEpRM0ZHTlpsbkpjUVlPbTBKeXhzYTVOWUxuR1NDR0FkenRSWGpIbkpPUV92N29STjYtNndEVzYtQQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-12T07:00:00Z"
     },
     {
       "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
@@ -145,13 +151,6 @@
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9iNk82OXlVT01XQjN5bjZwWXFHaWkzdVBjX1FuakhPeXNJMk1fNjBJMjdCMXdSejhHclBYekNJQWNzQkhYNUp1RWd0TjlzQQ?oc=5",
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-07-31T07:00:00Z"
-    },
-    {
-      "title": "חיזוק מרשים: שייק מילטון חתם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBpTFpUakYwZkpVY3Awd0wxZ19CZkk2cjFHMGZnVTk5SkdoQng0MnNVclgtOGJtLXN1cEhHOFBTTEU1QVgxa2tZYkF4WkRlN3hDTHRCUkR3ZVBTbEp5ZGdHMnVOTFkyd2ZBVlQwUF93MzJNRGs?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-07-31T07:00:00Z"
     },
     {
