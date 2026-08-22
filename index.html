@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>יושב סופר את הדקות</title>
+  <meta name="description" content="אפליקציית האוהדים של הפועל ירושלים: לוח משחקים, תוצאות, טבלה ויומן אוהד אישי. מיזם אוהדים לא רשמי.">
+  <meta name="theme-color" content="#17090D">
+
+  <!--
+    The preview card a fan sees when the link is pasted into WhatsApp.
+    Crawlers do not run JavaScript, so unlike everything else in the app
+    this address cannot come from club.json and has to be written here.
+    Moving hosts means changing these three lines too.
+  -->
+  <link rel="canonical" href="https://hapoel.site/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hapoel.site/">
+  <meta property="og:site_name" content="יושב סופר את הדקות">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:title" content="יושב סופר את הדקות · הפועל ירושלים">
+  <meta property="og:description" content="מונה הדקות למשחק הבא, תוצאה חיה, טבלה, סגל ויומן אוהד אישי. חינם, בלי הרשמה.">
+  <!--
+    A picture with the app's own name on it, not the bare crest. This is the
+    one image a fan sees before they have seen anything else, and a crest on
+    its own there reads as the club's official app.
+  -->
+  <meta property="og:image" content="https://hapoel.site/icons/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="יושב סופר את הדקות, מיזם אוהדים לא רשמי של הפועל ירושלים">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="סופר את הדקות">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="wordmark">
+      <!--
+        The club crest. This is an unofficial fan project and says so on
+        every screen; the mark belongs to Hapoel Jerusalem B.C.
+        Source file: app/icons/crest.png, replace it and re-run
+        scripts/make_icons.py to regenerate the whole icon set.
+      -->
+      <img class="ball" src="icons/crest.png" alt="" width="38" height="38">
+      <span>
+        <strong>יושב סופר את הדקות</strong>
+        <small>מיזם אוהדים לא רשמי · הפועל</small>
+      </span>
+    </div>
+    <button id="shareBtn" class="share-icon" type="button" aria-label="שיתוף האפליקציה בוואטסאפ">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.84-.85 2.04s.87 2.37 1 2.53c.12.16 1.72 2.63 4.17 3.69.58.25 1.04.4 1.39.51.58.19 1.12.16 1.54.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="sampleBanner" class="sample-banner" hidden>
+  נתוני דוגמה להמחשה, האיסוף האוטומטי יופעל עם עליית האתר
+</div>
+
+<main id="view" class="view" aria-live="polite"></main>
+
+<nav class="tabbar" aria-label="ניווט ראשי">
+  <a href="#/" data-route="home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 10.5V21h6v-6h6v6h6V10.5L12 3z"/></svg>
+    בית
+  </a>
+  <a href="#/games" data-route="games">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 5v10h12V9H6zm2-6h2v3H8V3zm6 0h2v3h-2V3z"/></svg>
+    משחקים
+  </a>
+  <a href="#/table" data-route="table">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v3H4V5zm0 5.5h16v3H4v-3zM4 16h16v3H4v-3z"/></svg>
+    טבלה
+  </a>
+  <a href="#/roster" data-route="roster">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-4 0-8 2-8 4.5V21h16v-2.5C20 16 16 14 12 14z"/></svg>
+    סגל
+  </a>
+  <a href="#/diary" data-route="diary">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5 4.8 13.3a4.6 4.6 0 0 1 0-6.5 4.6 4.6 0 0 1 6.5 0l.7.7.7-.7a4.6 4.6 0 0 1 6.5 0 4.6 4.6 0 0 1 0 6.5L12 20.5z"/></svg>
+    היומן שלי
+  </a>
+</nav>
+
+<script src="js/app.js"></script>
+<script>
+  // a single-file copy opened from disk has no service worker scope
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    // updateViaCache:none, always revalidate the worker itself, so a new
+    // version reaches fans instead of being served from the HTTP cache
+    var hadController = !!navigator.serviceWorker.controller;
+    var reloading = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      // only when replacing an older worker, so a first visit doesn't reload
+      if (hadController && !reloading) { reloading = true; location.reload(); }
+    });
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" })
+        .then(function (reg) { if (reg) reg.update(); })
+        .catch(function () { /* no worker is fine, the app works online regardless */ });
+    });
+  }
+</script>
+</body>
+</html>
