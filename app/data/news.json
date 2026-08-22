@@ -1,14 +1,14 @@
 {
-  "updated": "2026-08-21T13:48:12Z",
+  "updated": "2026-08-22T03:43:27Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "כל העיר",
     "ישראל היום",
     "C14",
     "ישראל ספורט",
-    "ספורט 1",
     "ONE",
     "ספורט 5",
+    "ספורט 1",
     "וואלה ספורט",
     "הארץ"
   ],
@@ -40,13 +40,6 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-16T05:51:00Z"
-    },
-    {
-      "title": "הפועל ירושלים החתימה את קפטן נבחרת הנוער ליאור הרשקו",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNczBBS0V1UjFLOHoxcmRYcEQzcTRHSVdPQWRWQkhhTXk0TFFVdFNWcldsV0NZTzZqSEx4dHZCYURZUEx4a0xwSUFxOTF0SmlBVUNJMGdsVzA4bEpRM0ZHTlpsbkpjUVlPbTBKeXhzYTVOWUxuR1NDR0FkenRSWGpIbkpPUV92N29STjYtNndEVzYtQQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-12T07:00:00Z"
     },
     {
       "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
@@ -105,6 +98,13 @@
       "published": "2026-08-03T07:00:00Z"
     },
     {
+      "title": "מתן אדלסון סיפר: הצד שלו לסערת הסמל של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB4NjVycmZMa2ppWnhjM2I5YjVSOVhXS0FHNHkwaWkxb2wtaUFneWR4Rk9UWmxCX2ZldWRJX0RpSkNWMVdZWWsxM2g2dWNFWVR5dThEUS1QZTRwNGJld2gyZEVGZlF5NjBVaWs2WE1LZ2FUdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-03T07:00:00Z"
+    },
+    {
       "title": "\"סשה אוברדוביץ' רצה שאוביל את הפועל ירושלים, הוא דיבר איתי\"",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1rRHlQbVBwenB5WjNEX1lEWHdUZ19MYU50SHVnenJPQldsSWdGdmxXX1NYRzJ0OUJaVzRpNUtyRl9FU1YySTgwNnF6c2J4TUtydmVSRkZiQmhQT0FES2hmX0dzTmJYS05sRGg2R2RBd2RsN2dBSE1FbENlY9IBgwFBVV95cUxNMzlmcEdrc0I1U2g3YjdKM1FwcU1SUlNFTEF3by16QS1rX0U0cF9JZ2ZWSDZ2Q0plQW1NdmZ1WlBoaEZXR2tXQmNZSEMyWGpJZElJZ1BobkJheFhTM25DMXJNX0JOY3VfRmZmckV2MzRKV214QXBrVnVDWUlQX2NEcnhrbw?oc=5",
       "source": "ישראל היום",
@@ -140,6 +140,13 @@
       "published": "2026-07-31T07:00:00Z"
     },
     {
+      "title": "חיזוק מרשים בבירה: שייק מילטון חתם בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9iNk82OXlVT01XQjN5bjZwWXFHaWkzdVBjX1FuakhPeXNJMk1fNjBJMjdCMXdSejhHclBYekNJQWNzQkhYNUp1RWd0TjlzQQ?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-07-31T07:00:00Z"
+    },
+    {
       "title": "לוח המשחקים של הפועל ירושלים ביורוקאפ",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
       "source": "ספורט 5",
@@ -172,13 +179,6 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE02MU5EUmIwOTI2c2s0UGpJdnQ2TzVqRzlMbDZtSGVkWjhmN1BoM3BZTTRNNWk2MWFGZVhSTnN6ZWNNYkwwSWNYT1VNYnhNWDh3Q0pIYkNyMVY4QTk2Q29tTHJ4UHFoNWRpOUd6ZU4yTWxPSlJ1aGFNeTV1ONIBgwFBVV95cUxQMDZNbFgwM3pXdVZlVTVidlF0Yl9IR2NjMXNZcFpQNHg4TDdJd2d2WEJUSk1XSjBRMVdmUjhRMFV1N3BmTjNHN2g0N1FtUnR3TVpWdDJBSkt4amhzdlhFYTFuczg4Mk9iT015OTNiRjk3Vk9zZHh4ejBFYk1VS1ZvLTBUOA?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-27T07:00:00Z"
-    },
-    {
-      "title": "\"יהפוך לכוכב יורוליג\": ההחתמה של הפועל י-ם במוקד",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5kOEpYX21CR3A3MVlZNHlQaTByTmVkVG1qekN5b0Y0czBZWGpMdXF1Q0NUTGhVNE54c2gtY3BRYjlkUVRXVWt1T3RYcVVSN3E4NWdNNTV5WVRlWXkxSnBYS0VIWXNISEdRWHhCZGJTdGNsXzg?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-27T07:00:00Z"
     }
   ]
