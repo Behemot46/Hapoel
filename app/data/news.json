@@ -1,18 +1,40 @@
 {
-  "updated": "2026-08-23T08:32:55Z",
+  "updated": "2026-08-23T11:23:21Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "כל העיר",
     "C14",
+    "אייס",
+    "וואלה ספורט",
+    "כל העיר",
     "ספורט 1",
     "ישראל היום",
     "ONE",
     "ספורט 5",
-    "וואלה ספורט",
     "הארץ",
     "ynet"
   ],
   "items": [
+    {
+      "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-08-23T09:44:19Z"
+    },
+    {
+      "title": "הפועל ירושלים עם סמל חדש, מתן אדלסון: \"להצעיד את המועדון קדימה\"",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9GUUpBZHh0SU5wNG5rTzd5ck9QS2hOeUNyZWp1X1NqWmN4SmtlekdWU0R3ZWUzTUl2UGhkbU15RlhGVHFDOEEtN0t1UEs2aE5FRmpCNDBRMEhVc0g0aHNqaXBDQl9IQWZfcXpSYTh4eXQ1QQ?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-23T09:37:00Z"
+    },
+    {
+      "title": "הפועל ירושלים הציגה סמל חדש: \"צועדים קדימה בכל היבט\"",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9pZHlEbV9sVWVJd0lzRXFGd091d3JNQXJ0YmY3Y3g5cnpvSHA2VTIyWFpBWVVzcTVoT3ZwdkdFWFQtWnJaZE1mZ0pzOENfT21R?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-23T09:17:00Z"
+    },
     {
       "title": "הזרים נחתו, הציפיות בשמיים: הפועל ירושלים סימנה מטרה ברורה",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5yWEIxVnMwaW5taWdELW5iUUdKMXFlMkg1UEZ0UXFhMDhMUGRxY3haSG94SHotenh6VzN1TWoxa2FRX0hyaE1iUGdZa3hHeF9u?oc=5",
@@ -159,27 +181,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-29T07:00:00Z"
-    },
-    {
-      "title": "לוח המשחקים של הפועל ירושלים ביורוקאפ",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-29T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים תפתח בבית נגד רוסטוק ביורוקאפ, ומתי אריס?",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBReGZGZnk4dTlvSFBaSms4RXBxOU9wTmtseTZTUjVfYXpGd1NNX3lURDVxcTZmMHowdkJNbktIVGVTY254dThqcTlNR3ltbEZ6ckE3bDdtVTZWN0dBcWtSTm4yNmdacUJOLVZQc1JpSDI?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-07-29T07:00:00Z"
-    },
-    {
-      "title": "שייק מילטון סיכם בהפועל ירושלים: זה השכר שירוויח",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9jM1BUb0swRHJkVjJrYjJIdlo0UmFadXBacmI1eUszZ0lGM0JGTDdlN2JYbkVPUGZsaXF3WU81S0lqNnBRbHI4b3J3VWl1WVI2ZWpObk1DNlpMMExmMjBqUjJoZ21YcWdqZGdLSHM0RC1Xdw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-28T07:00:00Z"
     }
   ]
 }
