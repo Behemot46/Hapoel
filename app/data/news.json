@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23T05:31:43Z",
+  "updated": "2026-08-23T08:32:55Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "כל העיר",
@@ -33,6 +33,13 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-12T07:00:00Z"
+    },
+    {
+      "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1FTzdEaV9mM3BBQS1SUE5hdTVWV09KV2Y5VF82WFQwMXppc0tTd25fNmlrWENGZkVqOEl6bDZlTTNuZE1BdWFPRkJpVk44ZWloOWNaWV9CVlNZQ1NJSzBZMkxMWjFOSDJsWFRGS0lIcHNuQW5vSU1KbmdvRdIBgwFBVV95cUxOSi1wTm51OXA5Yk9UMWNXSlozSmVvMjN3c185Mm5sRlVyckdib2EwYlJLU3hsXzBZdy0zdkxJLTU4d29KTFV0WnN6V05xcUstZXpaZUE4NXNaM19pZGRRNnEzRGNEeDRiMnFMS29tYnRvVXR4MXE1MDNRZkFNei1qakQxMA?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-11T07:00:00Z"
     },
     {
       "title": "הכישרון הצעיר שקרוב לסיכום בהפועל ירושלים | פרסום ראשון",
@@ -116,7 +123,7 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5LaV9NcThUa3F5eEEzZVZpN0VtcXdTeUphOG5TTHRlT2I4NW83SWlLNVE5am85U3pQVnl3ZU9rV0luamFoN2JIUXpfQW5MUHNyRmtZWDBQZ2NZN3NCM3RjbG44eFNsaUZrQjlHYU9RbUxaT2FIaGlWSThzRdIBgwFBVV95cUxORnkwaWZyMVJGNEZrVEFJOGlLSTJHM2Q3T3pVVF9Xai1lYTRRRmh3eGw1THQ4TkFnMVVtQ2dxNUhtX3pYem83V2J3V2szbXZVMWU5TXF3NlVabFZLcW10VENJQVFTWG9TT3VINHdMMGIyWlhhZ2ZaOElQSmd1N3dJVjFJdw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-01T07:00:00Z"
+      "published": "2026-08-02T07:00:00Z"
     },
     {
       "title": "עם סגל כזה, בהחלט אפשר לחלום: הפועל ירושלים תלך עד הסוף ביורוקאפ?",
@@ -147,15 +154,15 @@
       "published": "2026-07-31T07:00:00Z"
     },
     {
-      "title": "לוח המשחקים של הפועל ירושלים ביורוקאפ",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
+      "title": "רשמי: היעד בו תארח הפועל ירושלים ביורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9peU9QSlB0Z3A0YzVaNjFHRkoxZmw3NU1zZ1dxdkdldVJxZF9nQ19HRGRVNmNYQkFZZF9qbzMxY1hYUERONkd3dDFVeExETUlMY21LWkdCSGYtMWVoNnpwcVh3T3JfRGRfR211bHNIVTdUTXM?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-29T07:00:00Z"
     },
     {
-      "title": "רשמי: היעד בו תארח הפועל ירושלים ביורוקאפ",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9peU9QSlB0Z3A0YzVaNjFHRkoxZmw3NU1zZ1dxdkdldVJxZF9nQ19HRGRVNmNYQkFZZF9qbzMxY1hYUERONkd3dDFVeExETUlMY21LWkdCSGYtMWVoNnpwcVh3T3JfRGRfR211bHNIVTdUTXM?oc=5",
+      "title": "לוח המשחקים של הפועל ירושלים ביורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-29T07:00:00Z"
@@ -168,18 +175,11 @@
       "published": "2026-07-29T07:00:00Z"
     },
     {
-      "title": "אחרי שייק מילטון: המטרות הבאות של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE90VUdxeEk1M212RzdzX3Z2S2k2ZnpWbkVsOE9YeWNLc2NBZERVV0pwdkE3dFQ3M1FYM1gyZldJeEtfSnBablJndWtoUG5kcDhSZ3lWazZpNjdyU0lFMnVfejJQcDJaUXg0RGdLbEtTQWFydWZQV3drMk1ub9IBgwFBVV95cUxOdW1QOF9KM2Q5OVlHblMtTXc0Vy1qeC1IcXdJZ2cteWtaMVlRRUxjZURuYXROUXJjQm56MzQyblpKSmJudkdWa0hpVW1QUDdiUTkzRUk4MC1JUGhMbWR0emw1cE1qV19oSHc1VVdRSVFrOC1OUnA1WXNJNHpCZ05zbXdhaw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-29T07:00:00Z"
-    },
-    {
-      "title": "אחרי הכישלון: הפועל ירושלים העבירה מסר חד וברור להפועל ומכבי תל אביב",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE02MU5EUmIwOTI2c2s0UGpJdnQ2TzVqRzlMbDZtSGVkWjhmN1BoM3BZTTRNNWk2MWFGZVhSTnN6ZWNNYkwwSWNYT1VNYnhNWDh3Q0pIYkNyMVY4QTk2Q29tTHJ4UHFoNWRpOUd6ZU4yTWxPSlJ1aGFNeTV1ONIBgwFBVV95cUxQMDZNbFgwM3pXdVZlVTVidlF0Yl9IR2NjMXNZcFpQNHg4TDdJd2d2WEJUSk1XSjBRMVdmUjhRMFV1N3BmTjNHN2g0N1FtUnR3TVpWdDJBSkt4amhzdlhFYTFuczg4Mk9iT015OTNiRjk3Vk9zZHh4ejBFYk1VS1ZvLTBUOA?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-07-27T07:00:00Z"
+      "title": "שייק מילטון סיכם בהפועל ירושלים: זה השכר שירוויח",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9jM1BUb0swRHJkVjJrYjJIdlo0UmFadXBacmI1eUszZ0lGM0JGTDdlN2JYbkVPUGZsaXF3WU81S0lqNnBRbHI4b3J3VWl1WVI2ZWpObk1DNlpMMExmMjBqUjJoZ21YcWdqZGdLSHM0RC1Xdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-28T07:00:00Z"
     }
   ]
 }
