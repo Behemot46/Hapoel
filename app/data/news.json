@@ -1,16 +1,17 @@
 {
-  "updated": "2026-08-24T11:31:13Z",
+  "updated": "2026-08-24T13:53:59Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
     "C14",
     "אייס",
-    "ספורט 1",
-    "ספורט 5",
-    "ONE",
-    "כל העיר",
     "וואלה ספורט",
-    "הארץ"
+    "ONE",
+    "ספורט 5",
+    "כל העיר",
+    "ספורט 1",
+    "הארץ",
+    "ynet"
   ],
   "items": [
     {
@@ -43,24 +44,10 @@
     },
     {
       "title": "הפועל ירושלים הציגה סמל חדש: \"צועדים קדימה בכל היבט\"",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxObldQZmlWNlQ4d2ZFcUp3QUd2bkJCY1VfUFNSMHZsOEhBT3lfLUtaN3p6dGtxZVhCdHJWOXVWY2tlUjJibVhnNGNsV0NOY25KR0VUMXE4UVFydzFkS21FNHhxSHFiSzNRck4zdnlfcnBrZzRKTzktWVhxSklNMklCaW1oZUwxR2JyTlRTNmxRemplUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-23T09:26:50Z"
-    },
-    {
-      "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-23T09:10:00Z"
-    },
-    {
-      "title": "נחשף מדוע מכבי תל אביב לא דחתה את משחק הליגה מול הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1yeExuWGV5Z2tMNkRJZDhPM1NTZUNBZWZLcFFXeGYwMVkxYkNPQzB6LVhFaEQxNzNHQVNWZnM3UG5XYl9zRE5YODBrQnMybEMtSWFWZmc2MVFsbzJYU2Z5M21IUVpwOGpBOE96Ujh1TXZzM1BWVVgxLXdR?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-20T09:44:01Z"
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9pZHlEbV9sVWVJd0lzRXFGd091d3JNQXJ0YmY3Y3g5cnpvSHA2VTIyWFpBWVVzcTVoT3ZwdkdFWFQtWnJaZE1mZ0pzOENfT21R?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-23T09:17:00Z"
     },
     {
       "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
@@ -72,13 +59,6 @@
     {
       "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1FTzdEaV9mM3BBQS1SUE5hdTVWV09KV2Y5VF82WFQwMXppc0tTd25fNmlrWENGZkVqOEl6bDZlTTNuZE1BdWFPRkJpVk44ZWloOWNaWV9CVlNZQ1NJSzBZMkxMWjFOSDJsWFRGS0lIcHNuQW5vSU1KbmdvRdIBgwFBVV95cUxOSi1wTm51OXA5Yk9UMWNXSlozSmVvMjN3c185Mm5sRlVyckdib2EwYlJLU3hsXzBZdy0zdkxJLTU4d29KTFV0WnN6V05xcUstZXpaZUE4NXNaM19pZGRRNnEzRGNEeDRiMnFMS29tYnRvVXR4MXE1MDNRZkFNei1qakQxMA?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-11T07:00:00Z"
-    },
-    {
-      "title": "הכישרון הצעיר שקרוב לסיכום בהפועל ירושלים | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBvZi11YnI3S3FYWUQ2dWI2T3M0VG82TzYwTTNjbjY3bzAwd0Q1c3N4Vm5tSE13aW9jLUQ1MTFsbnd2dm1FNzh4eXZLNEhXTllqVFN2d0FJTXFuMUVvQWc5cVhnQXpJWXc0OFZFX1FrNVlBaElqN25hOG9DRdIBgwFBVV95cUxOVmpLS2JtelI2Uy1pX25jWlpJV2w4bmVROTJKcHQ5WTF4NVkxRUlmVVFIV2FHTS1TWnBSZk4yeXl4RWl6Sm9qUllmRUxyZnQ1V2x2RFVpamljWkFWdTlEaFdqYk5mNmozVEdkejdrZEV5Q05iZEc0ZVZtbXVvM0ZVT2dhSQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-11T07:00:00Z"
@@ -158,7 +138,7 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5LaV9NcThUa3F5eEEzZVZpN0VtcXdTeUphOG5TTHRlT2I4NW83SWlLNVE5am85U3pQVnl3ZU9rV0luamFoN2JIUXpfQW5MUHNyRmtZWDBQZ2NZN3NCM3RjbG44eFNsaUZrQjlHYU9RbUxaT2FIaGlWSThzRdIBgwFBVV95cUxORnkwaWZyMVJGNEZrVEFJOGlLSTJHM2Q3T3pVVF9Xai1lYTRRRmh3eGw1THQ4TkFnMVVtQ2dxNUhtX3pYem83V2J3V2szbXZVMWU5TXF3NlVabFZLcW10VENJQVFTWG9TT3VINHdMMGIyWlhhZ2ZaOElQSmd1N3dJVjFJdw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-02T07:00:00Z"
+      "published": "2026-08-01T07:00:00Z"
     },
     {
       "title": "עם סגל כזה, בהחלט אפשר לחלום: הפועל ירושלים תלך עד הסוף ביורוקאפ?",
@@ -180,6 +160,27 @@
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-07-31T07:00:00Z"
+    },
+    {
+      "title": "חיזוק מרשים: שייק מילטון חתם בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBpTFpUakYwZkpVY3Awd0wxZ19CZkk2cjFHMGZnVTk5SkdoQng0MnNVclgtOGJtLXN1cEhHOFBTTEU1QVgxa2tZYkF4WkRlN3hDTHRCUkR3ZVBTbEp5ZGdHMnVOTFkyd2ZBVlQwUF93MzJNRGs?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-07-31T07:00:00Z"
+    },
+    {
+      "title": "רשמי: היעד בו תארח הפועל ירושלים ביורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9peU9QSlB0Z3A0YzVaNjFHRkoxZmw3NU1zZ1dxdkdldVJxZF9nQ19HRGRVNmNYQkFZZF9qbzMxY1hYUERONkd3dDFVeExETUlMY21LWkdCSGYtMWVoNnpwcVh3T3JfRGRfR211bHNIVTdUTXM?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-29T07:00:00Z"
+    },
+    {
+      "title": "לוח המשחקים של הפועל ירושלים ביורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-29T07:00:00Z"
     }
   ]
 }
