@@ -71,15 +71,17 @@
       "slug": "p-26156"
     },
     {
-      "name": "יותם חנוכי",
-      "nameHe": "יותם חנוכי",
+      "name": "Yotam Hanochi",
       "number": 8,
+      "position": "פורוורד",
+      "country": "ישראל",
+      "nameHe": "יותם חנוכי",
       "birthDate": "2000-12-08",
       "born": 2000,
       "clubId": "26042",
-      "source": "club",
+      "source": "club+eurocup",
       "height": 204,
-      "slug": "p-26042"
+      "slug": "yotam-hanochi"
     },
     {
       "name": "Shake Milton",
@@ -158,26 +160,32 @@
       "photo": "img/players/david-roddy.jpg"
     },
     {
-      "name": "גבריאל צאצאשוילי",
-      "nameHe": "גבריאל צאצאשוילי",
+      "name": "Gabriel Chachashvili",
       "number": 33,
-      "birthDate": "1999-12-08",
-      "born": 1999,
-      "clubId": "26039",
-      "source": "club",
+      "position": "סנטר",
       "height": 210,
-      "slug": "p-26039"
+      "born": 1999,
+      "country": "ישראל",
+      "code": "013279",
+      "nameHe": "גבריאל צאצאשוילי",
+      "birthDate": "1999-12-08",
+      "clubId": "26039",
+      "source": "club+eurocup",
+      "slug": "gabriel-chachashvili",
+      "photo": "img/players/gabriel-chachashvili.jpg"
     },
     {
-      "name": "איתן בורג",
-      "nameHe": "איתן בורג",
+      "name": "Ethan Burg",
       "number": 35,
+      "position": "גארד",
+      "country": "ישראל",
+      "nameHe": "איתן בורג",
       "birthDate": "2002-09-04",
       "born": 2002,
       "height": 191,
       "clubId": "26044",
-      "source": "club",
-      "slug": "p-26044"
+      "source": "club+eurocup",
+      "slug": "ethan-burg"
     },
     {
       "name": "Yovel Zoosman",

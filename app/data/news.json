@@ -1,19 +1,25 @@
 {
-  "updated": "2026-08-24T08:51:10Z",
+  "updated": "2026-08-24T11:31:13Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
     "C14",
     "אייס",
-    "וואלה ספורט",
     "ספורט 1",
-    "ONE",
     "ספורט 5",
+    "ONE",
     "כל העיר",
-    "הארץ",
-    "ynet"
+    "וואלה ספורט",
+    "הארץ"
   ],
   "items": [
+    {
+      "title": "\"הפועל ירושלים רוצה יורוליג, הגעתי בזמן לא אידאלי והשתלבתי\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBFZnJZRmhROC1XNldXT19hUy1vZjZSQVNZRkVoellhUUhIZlFOUk80elF3TXJNZ3h5RVNzMEY2NjNJWXhVWjBja2w5dVB3MVNUTFZlZ1NsTUlESFhKck9WNHRiN2QyQ3Y2UEJPeVl2bjk5Z2FRUEl5Y2F4TdIBgwFBVV95cUxQYTNtQUplc2lqQjVqVjdXNnFBTFRJVG9sc1Vnb0ZZNk5iSEpMc21FNVctcWRPR1VqTHI5aEphWURQRXFzcThLLWNqSnVoSWl5aEhxWDE2UkdWc09IaXZXVlNWMFRjZmhHMVY2SDBmNTZ5RlpvTlVWQ0p2S3JvbFlCelNoTQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-24T09:57:12Z"
+    },
     {
       "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tOHFNY2lYQlVwdW1Rc2VnbXZIWFBRZHV1TV9FakluWnJ4Q1I0NnZ6TU45Rm1ITlBKZE1uZmp2ajZRWklBaWw5Q3B3NmZCZ1RqX3d2T01WOUpHaERtczlKR0NRT3lUMHFaSHVHNC1vRThHTVctYjQ2RUpkc9IBgwFBVV95cUxNN2N5bXBYREVVY3ZnYmNXc04tNmUyWk9DRk1HS0NvMV80bDBTNU5WX3RqNWlHRXNGbW9Sa0ZvQlhDUGRDY3BZcXpIS2pWQW16aW1OQUhPaktRWUY4ZW10Nm10YXBtZXl6Q19lbDN3dFBzMk93UHBxU3k0cUZLMkoyaWZIQQ?oc=5",
@@ -37,10 +43,17 @@
     },
     {
       "title": "הפועל ירושלים הציגה סמל חדש: \"צועדים קדימה בכל היבט\"",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9pZHlEbV9sVWVJd0lzRXFGd091d3JNQXJ0YmY3Y3g5cnpvSHA2VTIyWFpBWVVzcTVoT3ZwdkdFWFQtWnJaZE1mZ0pzOENfT21R?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-23T09:17:00Z"
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxObldQZmlWNlQ4d2ZFcUp3QUd2bkJCY1VfUFNSMHZsOEhBT3lfLUtaN3p6dGtxZVhCdHJWOXVWY2tlUjJibVhnNGNsV0NOY25KR0VUMXE4UVFydzFkS21FNHhxSHFiSzNRck4zdnlfcnBrZzRKTzktWVhxSklNMklCaW1oZUwxR2JyTlRTNmxRemplUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-23T09:26:50Z"
+    },
+    {
+      "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-23T09:10:00Z"
     },
     {
       "title": "נחשף מדוע מכבי תל אביב לא דחתה את משחק הליגה מול הפועל ירושלים",
@@ -167,20 +180,6 @@
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-07-31T07:00:00Z"
-    },
-    {
-      "title": "חיזוק מרשים: שייק מילטון חתם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBpTFpUakYwZkpVY3Awd0wxZ19CZkk2cjFHMGZnVTk5SkdoQng0MnNVclgtOGJtLXN1cEhHOFBTTEU1QVgxa2tZYkF4WkRlN3hDTHRCUkR3ZVBTbEp5ZGdHMnVOTFkyd2ZBVlQwUF93MzJNRGs?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-07-31T07:00:00Z"
-    },
-    {
-      "title": "רשמי: היעד בו תארח הפועל ירושלים ביורוקאפ",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9peU9QSlB0Z3A0YzVaNjFHRkoxZmw3NU1zZ1dxdkdldVJxZF9nQ19HRGRVNmNYQkFZZF9qbzMxY1hYUERONkd3dDFVeExETUlMY21LWkdCSGYtMWVoNnpwcVh3T3JfRGRfR211bHNIVTdUTXM?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-29T07:00:00Z"
     }
   ]
 }
