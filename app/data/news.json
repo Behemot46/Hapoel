@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-24T03:56:23Z",
+  "updated": "2026-08-24T05:40:11Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
@@ -63,8 +63,8 @@
       "published": "2026-08-12T07:00:00Z"
     },
     {
-      "title": "הכישרון הצעיר שקרוב לסיכום בהפועל ירושלים | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBvZi11YnI3S3FYWUQ2dWI2T3M0VG82TzYwTTNjbjY3bzAwd0Q1c3N4Vm5tSE13aW9jLUQ1MTFsbnd2dm1FNzh4eXZLNEhXTllqVFN2d0FJTXFuMUVvQWc5cVhnQXpJWXc0OFZFX1FrNVlBaElqN25hOG9DRdIBgwFBVV95cUxOVmpLS2JtelI2Uy1pX25jWlpJV2w4bmVROTJKcHQ5WTF4NVkxRUlmVVFIV2FHTS1TWnBSZk4yeXl4RWl6Sm9qUllmRUxyZnQ1V2x2RFVpamljWkFWdTlEaFdqYk5mNmozVEdkejdrZEV5Q05iZEc0ZVZtbXVvM0ZVT2dhSQ?oc=5",
+      "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1FTzdEaV9mM3BBQS1SUE5hdTVWV09KV2Y5VF82WFQwMXppc0tTd25fNmlrWENGZkVqOEl6bDZlTTNuZE1BdWFPRkJpVk44ZWloOWNaWV9CVlNZQ1NJSzBZMkxMWjFOSDJsWFRGS0lIcHNuQW5vSU1KbmdvRdIBgwFBVV95cUxOSi1wTm51OXA5Yk9UMWNXSlozSmVvMjN3c185Mm5sRlVyckdib2EwYlJLU3hsXzBZdy0zdkxJLTU4d29KTFV0WnN6V05xcUstZXpaZUE4NXNaM19pZGRRNnEzRGNEeDRiMnFMS29tYnRvVXR4MXE1MDNRZkFNei1qakQxMA?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-11T07:00:00Z"
@@ -75,13 +75,6 @@
       "source": "ONE",
       "sourceUrl": "https://www.one.co.il",
       "published": "2026-08-09T15:39:49Z"
-    },
-    {
-      "title": "רשמית: כוכב הפועל ירושלים בעונה החולפת חתם בקבוצה חדשה",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1nM2s4dEZHR1hLVHRfbFN6X3JHa1pDT3hiNE5XMi14Q19UWGFlSHlqcGZ5NWMydnZULTRfTFpRYnJZcmppTUlKLXVzUnpXWHhHWkN0S2RFSF80dDNtYUtlWjlwWnE1T3dsWElucnZ3?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-09T07:00:00Z"
     },
     {
       "title": "\"חווה הרבה לחץ\": הרכש של הפועל י-ם הגן על אקס מכבי ת\"א",
@@ -177,6 +170,13 @@
     {
       "title": "רשמי: היעד בו תארח הפועל ירושלים ביורוקאפ",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9peU9QSlB0Z3A0YzVaNjFHRkoxZmw3NU1zZ1dxdkdldVJxZF9nQ19HRGRVNmNYQkFZZF9qbzMxY1hYUERONkd3dDFVeExETUlMY21LWkdCSGYtMWVoNnpwcVh3T3JfRGRfR211bHNIVTdUTXM?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-29T07:00:00Z"
+    },
+    {
+      "title": "לוח המשחקים של הפועל ירושלים ביורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE56bzdrYkZFekN4YUVTT1NnTHhDNEl3clhkNVdDdmJMUFZZR21GNHlfRTRkUTR6RjNXQ0pXVzc2Wk5hT0FoRkx4ZnVzcXA1MnNyUmVYaUltRHhmLXhFRUlHaEFGZVdfcmtWSGJyV2Y3SDVCbkU?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-29T07:00:00Z"
