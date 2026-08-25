@@ -1,15 +1,14 @@
 {
-  "updated": "2026-08-24T13:53:59Z",
+  "updated": "2026-08-25T03:50:58Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
     "C14",
-    "אייס",
-    "וואלה ספורט",
-    "ONE",
     "ספורט 5",
+    "ONE",
     "כל העיר",
     "ספורט 1",
+    "וואלה ספורט",
     "הארץ",
     "ynet"
   ],
@@ -22,13 +21,6 @@
       "published": "2026-08-24T09:57:12Z"
     },
     {
-      "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tOHFNY2lYQlVwdW1Rc2VnbXZIWFBRZHV1TV9FakluWnJ4Q1I0NnZ6TU45Rm1ITlBKZE1uZmp2ajZRWklBaWw5Q3B3NmZCZ1RqX3d2T01WOUpHaERtczlKR0NRT3lUMHFaSHVHNC1vRThHTVctYjQ2RUpkc9IBgwFBVV95cUxNN2N5bXBYREVVY3ZnYmNXc04tNmUyWk9DRk1HS0NvMV80bDBTNU5WX3RqNWlHRXNGbW9Sa0ZvQlhDUGRDY3BZcXpIS2pWQW16aW1OQUhPaktRWUY4ZW10Nm10YXBtZXl6Q19lbDN3dFBzMk93UHBxU3k0cUZLMkoyaWZIQQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-23T13:14:53Z"
-    },
-    {
       "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
       "source": "C14",
@@ -36,18 +28,11 @@
       "published": "2026-08-23T09:44:19Z"
     },
     {
-      "title": "הפועל ירושלים עם סמל חדש, מתן אדלסון: \"להצעיד את המועדון קדימה\"",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9GUUpBZHh0SU5wNG5rTzd5ck9QS2hOeUNyZWp1X1NqWmN4SmtlekdWU0R3ZWUzTUl2UGhkbU15RlhGVHFDOEEtN0t1UEs2aE5FRmpCNDBRMEhVc0g0aHNqaXBDQl9IQWZfcXpSYTh4eXQ1QQ?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
-      "published": "2026-08-23T09:37:00Z"
-    },
-    {
-      "title": "הפועל ירושלים הציגה סמל חדש: \"צועדים קדימה בכל היבט\"",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9pZHlEbV9sVWVJd0lzRXFGd091d3JNQXJ0YmY3Y3g5cnpvSHA2VTIyWFpBWVVzcTVoT3ZwdkdFWFQtWnJaZE1mZ0pzOENfT21R?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-23T09:17:00Z"
+      "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-23T09:10:00Z"
     },
     {
       "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
@@ -57,8 +42,8 @@
       "published": "2026-08-16T13:09:35Z"
     },
     {
-      "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1FTzdEaV9mM3BBQS1SUE5hdTVWV09KV2Y5VF82WFQwMXppc0tTd25fNmlrWENGZkVqOEl6bDZlTTNuZE1BdWFPRkJpVk44ZWloOWNaWV9CVlNZQ1NJSzBZMkxMWjFOSDJsWFRGS0lIcHNuQW5vSU1KbmdvRdIBgwFBVV95cUxOSi1wTm51OXA5Yk9UMWNXSlozSmVvMjN3c185Mm5sRlVyckdib2EwYlJLU3hsXzBZdy0zdkxJLTU4d29KTFV0WnN6V05xcUstZXpaZUE4NXNaM19pZGRRNnEzRGNEeDRiMnFMS29tYnRvVXR4MXE1MDNRZkFNei1qakQxMA?oc=5",
+      "title": "הכישרון הצעיר שקרוב לסיכום בהפועל ירושלים | פרסום ראשון",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBvZi11YnI3S3FYWUQ2dWI2T3M0VG82TzYwTTNjbjY3bzAwd0Q1c3N4Vm5tSE13aW9jLUQ1MTFsbnd2dm1FNzh4eXZLNEhXTllqVFN2d0FJTXFuMUVvQWc5cVhnQXpJWXc0OFZFX1FrNVlBaElqN25hOG9DRdIBgwFBVV95cUxOVmpLS2JtelI2Uy1pX25jWlpJV2w4bmVROTJKcHQ5WTF4NVkxRUlmVVFIV2FHTS1TWnBSZk4yeXl4RWl6Sm9qUllmRUxyZnQ1V2x2RFVpamljWkFWdTlEaFdqYk5mNmozVEdkejdrZEV5Q05iZEc0ZVZtbXVvM0ZVT2dhSQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-11T07:00:00Z"
@@ -181,6 +166,20 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-29T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים תפתח בבית נגד רוסטוק ביורוקאפ, ומתי אריס?",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBReGZGZnk4dTlvSFBaSms4RXBxOU9wTmtseTZTUjVfYXpGd1NNX3lURDVxcTZmMHowdkJNbktIVGVTY254dThqcTlNR3ltbEZ6ckE3bDdtVTZWN0dBcWtSTm4yNmdacUJOLVZQc1JpSDI?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-07-29T07:00:00Z"
+    },
+    {
+      "title": "אחרי שייק מילטון: המטרות הבאות של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE90VUdxeEk1M212RzdzX3Z2S2k2ZnpWbkVsOE9YeWNLc2NBZERVV0pwdkE3dFQ3M1FYM1gyZldJeEtfSnBablJndWtoUG5kcDhSZ3lWazZpNjdyU0lFMnVfejJQcDJaUXg0RGdLbEtTQWFydWZQV3drMk1ub9IBgwFBVV95cUxOdW1QOF9KM2Q5OVlHblMtTXc0Vy1qeC1IcXdJZ2cteWtaMVlRRUxjZURuYXROUXJjQm56MzQyblpKSmJudkdWa0hpVW1QUDdiUTkzRUk4MC1JUGhMbWR0emw1cE1qV19oSHc1VVdRSVFrOC1OUnA1WXNJNHpCZ05zbXdhaw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-07-28T07:00:00Z"
     }
   ]
 }
