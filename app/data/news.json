@@ -1,16 +1,23 @@
 {
-  "updated": "2026-08-26T08:47:13Z",
+  "updated": "2026-08-26T11:32:12Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ישראל היום",
     "ספורט 5",
+    "ישראל היום",
     "C14",
-    "ספורט 1",
-    "ONE",
     "וואלה ספורט",
+    "ONE",
+    "ספורט 1",
     "הארץ"
   ],
   "items": [
+    {
+      "title": "בהפועל ירושלים עדכנו: הצעה תוגש ליורוליג",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BOVhKd1J6UUpkYUJjZFV6QkxiN3RtTWhQWUpyejZfUEdiWFgzSTBsb0IwRFh5ZmYzY3BuMEtORVRQU0xUVThzcW1SdFVLZzdFT3NTZzdfNVFiSDQwQXhzT1FfaVJ4dDhwbVh2dXEycU45Zw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-26T10:25:00Z"
+    },
     {
       "title": "הפועל ירושלים מתרחקת מהיורוליג: 11 הקבוצות שהליגה רוצה",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE55MEVqWmRFaWdJQU1hZ0s3Q3NjbklSZ0diU1E1d1ZyUWtyNFlqSHBZUDVZZU5OZ2t1Zm5kS0lyNGVucVBEMm91b1dqaVZkcmh6ZzFCXzkxQ0RQZTZ0aGxxeTdtQ2dSQ042V2xxN1FEOEpocmxpdTcxMGU2MNIBgwFBVV95cUxOdmlyU2pERnlvNmNjLXA0aGxlc1FNYUVvbDdmMUFsVEd5aDZvRG92Q0xFTDBXQW9DUUtlVFJtMXBXdThlYzE1cTRjRnV2WEF2OHdGeHp5bFh6R3QtMTduSmxkR0dDM3R3b21aS2pldzFmZXhXMF9Ja25qRng0ZEpqdkhiZw?oc=5",
@@ -40,6 +47,13 @@
       "published": "2026-08-24T09:57:12Z"
     },
     {
+      "title": "בהפועל ירושלים מבהירים: \"מועמדים לקבלת רישיון קבע ביורוליג\"",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE92Ykx0ajlRc3dHQmlnbHZiTnJESnBJSmZzQUFDaDUzdGxLWWtUUEpMRnpCX3ViSTBxS2V3eVk4TW5pZWJPeEkwelZiemV3Zw?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-08-24T07:00:00Z"
+    },
+    {
       "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tOHFNY2lYQlVwdW1Rc2VnbXZIWFBRZHV1TV9FakluWnJ4Q1I0NnZ6TU45Rm1ITlBKZE1uZmp2ajZRWklBaWw5Q3B3NmZCZ1RqX3d2T01WOUpHaERtczlKR0NRT3lUMHFaSHVHNC1vRThHTVctYjQ2RUpkc9IBgwFBVV95cUxNN2N5bXBYREVVY3ZnYmNXc04tNmUyWk9DRk1HS0NvMV80bDBTNU5WX3RqNWlHRXNGbW9Sa0ZvQlhDUGRDY3BZcXpIS2pWQW16aW1OQUhPaktRWUY4ZW10Nm10YXBtZXl6Q19lbDN3dFBzMk93UHBxU3k0cUZLMkoyaWZIQQ?oc=5",
       "source": "ישראל היום",
@@ -55,10 +69,10 @@
     },
     {
       "title": "הפועל ירושלים הציגה סמל חדש: \"צועדים קדימה בכל היבט\"",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxObldQZmlWNlQ4d2ZFcUp3QUd2bkJCY1VfUFNSMHZsOEhBT3lfLUtaN3p6dGtxZVhCdHJWOXVWY2tlUjJibVhnNGNsV0NOY25KR0VUMXE4UVFydzFkS21FNHhxSHFiSzNRck4zdnlfcnBrZzRKTzktWVhxSklNMklCaW1oZUwxR2JyTlRTNmxRemplUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-23T09:26:50Z"
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9pZHlEbV9sVWVJd0lzRXFGd091d3JNQXJ0YmY3Y3g5cnpvSHA2VTIyWFpBWVVzcTVoT3ZwdkdFWFQtWnJaZE1mZ0pzOENfT21R?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-23T09:17:00Z"
     },
     {
       "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
@@ -164,20 +178,6 @@
       "source": "הארץ",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-07-31T07:00:00Z"
-    },
-    {
-      "title": "חיזוק מרשים בבירה: שייק מילטון חתם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9iNk82OXlVT01XQjN5bjZwWXFHaWkzdVBjX1FuakhPeXNJMk1fNjBJMjdCMXdSejhHclBYekNJQWNzQkhYNUp1RWd0TjlzQQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-07-31T07:00:00Z"
-    },
-    {
-      "title": "רשמי: היעד בו תארח הפועל ירושלים ביורוקאפ",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9peU9QSlB0Z3A0YzVaNjFHRkoxZmw3NU1zZ1dxdkdldVJxZF9nQ19HRGRVNmNYQkFZZF9qbzMxY1hYUERONkd3dDFVeExETUlMY21LWkdCSGYtMWVoNnpwcVh3T3JfRGRfR211bHNIVTdUTXM?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-07-29T07:00:00Z"
     }
   ]
 }
