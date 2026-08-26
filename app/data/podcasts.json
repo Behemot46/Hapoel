@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-26T03:55:17Z",
+  "updated": "2026-08-26T05:36:47Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,10 +21,19 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-08-19T17:57:00Z"
+      "latest": "2026-08-26T05:00:00Z"
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "מסלול לא שגרתי | שוט, פרק 191",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-08-26T05:00:00Z",
+      "duration": 4111
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -96,15 +105,6 @@
       "url": "https://omny.fm/shows/speaknrolisrael/ac304e7c-a95c-4557-af70-b495011222dd",
       "published": "2026-07-28T16:41:36Z",
       "duration": 3592
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "הפספוס הכי גדול? עם יואב ספר ושמוליק ברנר | שוט, פרק 187",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-07-26T15:50:00Z",
-      "duration": 6186
     },
     {
       "showId": "1573775015",
