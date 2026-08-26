@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-26T11:32:12Z",
+  "updated": "2026-08-26T13:56:34Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -7,8 +7,7 @@
     "C14",
     "וואלה ספורט",
     "ONE",
-    "ספורט 1",
-    "הארץ"
+    "ספורט 1"
   ],
   "items": [
     {
@@ -96,6 +95,13 @@
       "published": "2026-08-11T07:00:00Z"
     },
     {
+      "title": "הכישרון הצעיר שקרוב לסיכום בהפועל ירושלים | פרסום ראשון",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBvZi11YnI3S3FYWUQ2dWI2T3M0VG82TzYwTTNjbjY3bzAwd0Q1c3N4Vm5tSE13aW9jLUQ1MTFsbnd2dm1FNzh4eXZLNEhXTllqVFN2d0FJTXFuMUVvQWc5cVhnQXpJWXc0OFZFX1FrNVlBaElqN25hOG9DRdIBgwFBVV95cUxOVmpLS2JtelI2Uy1pX25jWlpJV2w4bmVROTJKcHQ5WTF4NVkxRUlmVVFIV2FHTS1TWnBSZk4yeXl4RWl6Sm9qUllmRUxyZnQ1V2x2RFVpamljWkFWdTlEaFdqYk5mNmozVEdkejdrZEV5Q05iZEc0ZVZtbXVvM0ZVT2dhSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-11T07:00:00Z"
+    },
+    {
       "title": "מהפכה בסגל: סיכום הקיץ של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE90ZkQ3a3p0M183UHhISmRVMVZiU200eGpQdXUxMFNCZU11RHlYNjFmaU44bzNDVU56d19DbjVtMVQ5QUlPbkhjT3V4MTI5UnRoWXJB?oc=5",
       "source": "ONE",
@@ -171,13 +177,6 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-08-01T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים הודיעה על החתמת הגארד שייק מילטון לעונה אחת",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPbWhMTklFemNCdXIzMFI1elZTNTJmYjlyNHJfMFNEYU5KZUxvWE5ReUtUbEdaazY0TTVvc0Jkam82S1JFS3ZHUTZERFdjVTc2M1BoVFg3TGZORzVYS2RfOVpmRTZQOUlWZHdpRm1HYmk0Y0lZOWVRbEtEbkRCM0RGWnU5dVZLb1NKYkhKU2oycE5YWm1faThiVDRrMTNNVGFSclhV?oc=5",
-      "source": "הארץ",
-      "sourceUrl": "https://www.haaretz.co.il",
-      "published": "2026-07-31T07:00:00Z"
     }
   ]
 }
