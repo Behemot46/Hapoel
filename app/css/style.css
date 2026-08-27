@@ -146,6 +146,7 @@ body {
 .badge.home { background: var(--red); color: var(--red-ink); }
 /* a home game that is not at home, marked, not hidden */
 .badge.away-home { background: var(--surface-2); color: var(--text); border: 1px dashed var(--red); }
+.badge.note { background: var(--surface-2); color: var(--red-text); border: 1px dashed var(--red); }
 .game-row .sub .away-home { color: var(--red-text); font-weight: 700; }
 
 /* The live counter the app is named after */
@@ -438,6 +439,13 @@ body {
 .game-row .info { flex: 1; min-width: 0; }
 .game-row .info .opp { font-weight: 700; font-size: 15px; }
 .game-row .info .sub { color: var(--muted); font-size: 12.5px; margin-top: 1px; }
+/* מה שהמועדון פרסם על המשחק עצמו, למשל ״עם קהל״. נבדל מהשורה שמעליו
+   כדי שלא ייקרא כחלק משם התחרות, ובאדום כי זה מה שמשנה לאוהד שמתכנן להגיע. */
+.game-note {
+  margin-top: 4px;
+  font-size: 12.5px; font-weight: 700;
+  color: var(--red-text);
+}
 .game-row .end { text-align: center; }
 .game-row .end .t { font-weight: 800; font-variant-numeric: tabular-nums; }
 .month-label { font-size: 13px; font-weight: 800; color: var(--muted); margin: 18px 4px 8px; }

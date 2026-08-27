@@ -331,6 +331,18 @@ def update_games():
             games.extend(kept)
             log(f"kept {len(kept)} previously known european games")
 
+    # משחקי הכנה אינם קיימים באתר הליגה ולא בפיד של אירופה, כי אף אחד
+    # מהם לא מנהל אותם. המועדון מכריז עליהם לבד, ולכן הם נכתבים ביד
+    # ב־friendlies.json ומתמזגים כאן. בלי זה האפליקציה מכריזה על משחק
+    # שבעוד שבועיים בזמן שהקבוצה משחקת מחר.
+    friendly = (load_json("friendlies.json") or {}).get("games", [])
+    if friendly:
+        # משחק שכבר הופיע במקור אמיתי גובר, כי שם הוא מתעדכן לבד
+        have = {g["date"][:10] for g in games}
+        fresh = [g for g in friendly if g["date"][:10] not in have]
+        games.extend(fresh)
+        log(f"friendlies added: {len(fresh)} of {len(friendly)}")
+
     games.sort(key=lambda g: g["date"])
     log("games total:", len(games))
     current = load_json("games.json") or {}

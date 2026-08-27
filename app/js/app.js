@@ -1493,6 +1493,7 @@ function renderHome() {
       (isDisplacedHome(next) ? " away-home" : ""),
       homeAwayLabel(next, true)));
     if (next.venue) meta.appendChild(text("span", "badge", venueLabel(next.venue)));
+    if (next.note) meta.appendChild(proseInto(text("span", "badge note", ""), next.note));
     c.appendChild(meta);
     c.appendChild(calButton([next], "הוספה ליומן", "hapoel-next-game.ics"));
     c.appendChild(calNote());
@@ -1727,6 +1728,9 @@ function gameRow(g) {
     homeAwayLabel(g, false)));
   if (g.venue) sub.appendChild(document.createTextNode(" · " + venueLabel(g.venue)));
   info.appendChild(sub);
+  // מה שהמועדון עצמו פרסם על המשחק, למשל ״עם קהל״ או יריבה שטרם נקבעה.
+  // אוהד שמתכנן להגיע צריך לדעת את זה לפני שהוא יוצא מהבית.
+  if (g.note) info.appendChild(proseInto(text("div", "game-note", ""), g.note));
   row.appendChild(info);
 
   const end = el("div", "end");
