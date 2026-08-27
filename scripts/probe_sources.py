@@ -1,101 +1,83 @@
-"""Diagnostic probe, round three: all 19 fixtures on hapoel.co.il/games, one
-line each, so the conventions can be read off the whole board at once.
+"""בדיקת מקורות: האם מילת שלילה בשאילתה חותכת את הכדורגל במקור.
 
-Round two settled the shape of a single block:
+הכותרות שנכנסות בטעות הן כדורגל של הקבוצה שחולקת את השם, וחלקן כתובות
+בלי אף מילה שמסגירה את הענף: ״הפועל י-ם גברה על מכבי פ״ת״, ״השינוי
+המסתמן בהרכב מכבי תל אביב מול הפועל ירושלים״. רשימת מילים אף פעם לא
+תדביק את זה, כי כל כותרת כזאת היא מילה חדשה.
 
-    .game
-      .date-data .date-time   "12 בספטמבר, שבת 16:30"   (no year)
-      .date-data .cycle       "משחקי הכנה"
-      .league .game-type .text  "וילנה"                  (venue)
-      .teams .teams-container img[alt] x2                (the two sides, in order)
-      .game-data .score       "0:0"
+אבל גוגל מחפשת בכל הכתבה, לא בכותרת. כתבה על משחק כדורגל כמעט תמיד
+מכילה את המילה כדורגל איפשהו: מדור, תגית, גוף הידיעה. אז זו השאלה
+שנמדדת כאן: מה מפילה ״-כדורגל״ בשאילתה, וכמה כתבות כדורסל אמיתיות היא
+מפילה יחד איתן.
 
-Three things still have to be read off real data before a parser can be
-trusted, and each is the kind of thing that silently inverts:
-
-  1. is the first team the home side, or is the club always printed first?
-     If it is always first, home and away can only come from the venue.
-  2. the dates carry no year, so the season rollover has to be inferred.
-  3. which side of the score belongs to whom, and what an unplayed game
-     looks like.
-
-So: every block, every field, verbatim, plus the alt text order.
+מודפס הכול, כי את התשובה קוראים בעיניים ולא סופרים.
 """
+import datetime
+import email.utils
+import html
 import json
+import pathlib
 import re
+import sys
+import urllib.parse
+import xml.etree.ElementTree as ET
 
 import requests
-from bs4 import BeautifulSoup
 
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-      "Accept-Language": "he-IL,he;q=0.9"}
-URL = "https://hapoel.co.il/games"
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import news_feed
+
+UA = news_feed.UA
+RSS = "https://news.google.com/rss/search"
+
+QUERIES = [
+    '"הפועל ירושלים"',
+    '"הפועל ירושלים" -כדורגל',
+    '"הפועל י-ם"',
+    '"הפועל י-ם" -כדורגל',
+]
+
+# הכותרות שכבר ידוע שהן כדורגל, מהריצות היבשות של היום
+KNOWN_SOCCER = ("מכבי פ", "שלושער", "(נוער)", "בהרכב", "שחקני הרכב")
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def txt(node):
-    return re.sub(r"\s+", " ", node.get_text(" ", strip=True)).strip() if node else ""
+def clean(s):
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", s or ""))).strip()
 
 
-r = requests.get(URL, headers=UA, timeout=30)
-r.raise_for_status()
-r.encoding = r.apparent_encoding or "utf-8"
-soup = BeautifulSoup(r.text, "html.parser")
-blocks = soup.select(".game")
-log(f"{URL} -> {len(blocks)} blocks")
-log("")
+cutoff = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=45)
 
-rows = []
-for g in blocks:
-    teams = [i.get("alt", "").strip()
-             for i in g.select(".teams-container img") if i.get("alt")]
-    row = {
-        "when": txt(g.select_one(".date-time")),
-        "cycle": txt(g.select_one(".cycle")),
-        "venue": txt(g.select_one(".game-type .container .text")),
-        "team1": teams[0] if len(teams) > 0 else "",
-        "team2": teams[1] if len(teams) > 1 else "",
-        "line": txt(g.select_one(".game-data .text")),
-        "score": txt(g.select_one(".score")),
-        "href": (g.select_one(".date-time a") or {}).get("href", "")
-        if g.select_one(".date-time a") else "",
-    }
-    rows.append(row)
+for q in QUERIES:
+    url = RSS + "?q=" + urllib.parse.quote_plus(q) + "&hl=iw&gl=IL&ceid=IL:iw"
+    try:
+        r = requests.get(url, headers=UA, timeout=30)
+        r.raise_for_status()
+        r.encoding = "utf-8"
+        items = ET.fromstring(r.text.encode("utf-8")).findall(".//item")
+    except Exception as e:
+        log(f"{q}: נפל, {e}")
+        continue
 
-log("=" * 74)
-log("every fixture, escaped so the log cannot mangle it")
-log("=" * 74)
-for i, row in enumerate(rows, 1):
-    log(f"  [{i:>2}] {json.dumps(row, ensure_ascii=True)}")
-log("")
+    kept, raw = [], 0
+    for it in items:
+        raw += 1
+        src = it.find("source")
+        src_raw = clean(src.text if src is not None else "")
+        title = news_feed._strip_source(clean(it.findtext("title")), src_raw)
+        when = news_feed._published(it)
+        if not title or when is None or when < cutoff:
+            continue
+        if not news_feed.about_us(title):
+            continue
+        kept.append((when, src_raw, title))
 
-log("=" * 74)
-log("readable form")
-log("=" * 74)
-for i, row in enumerate(rows, 1):
-    log(f"  [{i:>2}] {row['when']:<26} | {row['cycle']:<14} | "
-        f"{row['venue']:<14} | {row['team1']} vs {row['team2']} | {row['score']}")
-log("")
-
-log("=" * 74)
-log("conventions")
-log("=" * 74)
-first = [r["team1"] for r in rows]
-us = [t for t in first if "הפועל י" in t or "ירושלים" in t]
-log(f"  blocks where the club is printed FIRST: {len(us)} of {len(rows)}")
-log(f"  distinct first-position teams: {json.dumps(sorted(set(first)), ensure_ascii=True)}")
-second = sorted({r['team2'] for r in rows})
-log(f"  distinct second-position teams: {json.dumps(second, ensure_ascii=True)}")
-log(f"  distinct venues: {json.dumps(sorted({r['venue'] for r in rows}), ensure_ascii=True)}")
-log(f"  distinct cycles: {json.dumps(sorted({r['cycle'] for r in rows}), ensure_ascii=True)}")
-log(f"  distinct scores: {json.dumps(sorted({r['score'] for r in rows}), ensure_ascii=True)}")
-log("")
-log("  months seen, in page order (tells us where the year rolls over):")
-months = [re.sub(r"^\d+\s+ב?", "", r["when"].split(",")[0]) for r in rows]
-log(f"    {json.dumps(months, ensure_ascii=True)}")
-
-log("done. nothing was written.")
+    kept.sort(reverse=True)
+    log(f"===== {q} =====")
+    log(f"{raw} פריטים, {len(kept)} עוברים את הסינון הקיים")
+    for when, src, title in kept:
+        mark = "  <== חשוד ככדורגל" if any(w in title for w in KNOWN_SOCCER) else ""
+        log(f"  {when:%Y-%m-%d}  {src:<14.14} {title[:100]}{mark}")

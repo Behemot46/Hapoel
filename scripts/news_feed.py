@@ -27,6 +27,13 @@ The filter is the delicate part. "הפועל ירושלים" is also a football 
 and a search for the name alone returned items about Maccabi Tel Aviv that
 merely mentioned us in the body. So an item is kept only when the club is
 named in the *headline*, and dropped when the headline reads as football.
+
+The obvious shortcut, asking Google for the name minus the word כדורגל, was
+measured on 27.8.2026 and rejected. Google matches the whole page, sidebars
+and tags included, so a basketball article on a sports site loses just as
+often as a football one: the short-name query fell from 17 kept headlines
+to 4, and among the dead were the EuroLeague bid coverage and the new kit.
+The filtering has to happen here, on the headline, one rule at a time.
 """
 import datetime
 import email.utils
@@ -51,12 +58,51 @@ FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
 # spellings the press actually uses for the club
 US = ("הפועל ירושלים", "הפועל י-ם", "הפועל י־ם", 'הפועל י"ם', "הפועל י״ם",
       "הפועל בנק יהב", "הפועל מידטאון", "אדומי הבירה")
-# a headline that reads as football, or as the other Jerusalem club
+# כותרת שנקראת ככדורגל, או ככדורסל של מישהו אחר. הרשימה הזאת התארכה
+# כשהשאילתות התרחבו: כל עוד כל שאילתה דרשה את המילה ״כדורסל״, גוגל סיננה
+# בשבילנו וכמעט שום כדורגל לא הגיע. בלי הדרישה הזאת מגיעות גם כותרות על
+# קבוצת הכדורגל שחולקת את השם, ולכן הסינון חייב לעמוד בזה לבד.
 NOT_US = ("כדורגל", "בית\"ר", "ביתר ירושלים", "ליגת העל בכדורגל", "גביע הטוטו",
-          "המכבייה", "כדורעף", "כדוריד")
+          "המכבייה", "כדורעף", "כדוריד",
+          # אוצר מילים שהוא כדורגל ולא כדורסל
+          "ליגה לאומית", "ליגת העל", "שוער", "פנדל", "בעיטה", "בעיטת",
+          "קרן", "אדום ישיר", "כרטיס צהוב", "צהוב שני", "הארכה בכדורגל",
+          "מחצית", "דקה ה־", "דקה ה-", "מהספסל בכדורגל", "שער בדקה",
+          "ליגת אלופות", "הליגה האנגלית", "פרמייר ליג", "לה ליגה",
+          "שלושער", "הבקיע", "כבש שער", "בעיטת עונשין",
+          # תצוגה מקדימה של הרכב היא כדורגל. בכדורסל כותבים חמישייה
+          # פותחת, לא הרכב, וכך נכנסו שתי כותרות על משחק הפתיחה של
+          # קבוצת הכדורגל מול מכבי ת״א ב־23.8.
+          "בהרכב", "שחקני הרכב", "הרכבים",
+          # קבוצת הנוער היא לא הקבוצה שהאפליקציה עוסקת בה
+          "(נוער)", "לנוער",
+          # 365Scores מייצר עמודי משחק אוטומטיים, לא ידיעות. אלה הביטויים
+          # שמופיעים בכולם, בכל ענף.
+          "תוצאות לייב", "מפגשי עבר")
+
+# הכלל החלש מבין השלושה, וזה שיצטרך תוספות: מועדוני כדורגל ישראליים
+# שהופיעו בכותרת לצידנו. כותרת כמו ״הפועל י-ם גברה על מכבי פ״ת״ היא
+# כדורגל, ואין בה אף מילה שמסגירה את זה חוץ מהשם של היריבה. כל שם כאן
+# הוצלב מול טבלת ליגת ווינר סל כדי לוודא שהוא לא קבוצת כדורסל שאנחנו
+# משחקים מולה.
+NOT_US_CLUBS = ("מכבי פתח תקווה", "מכבי פ\"ת", "מכבי פ״ת", "מכבי פ''ת",
+                "הפועל רעננה", "בני סכנין", "עירוני קרית שמונה",
+                "מכבי בני ריינה", "הפועל כפר סבא")
+
+# תוצאה בכדורסל לא נגמרת 2-1. כותרת עם שני מספרים קטנים היא כדורגל, והיא
+# עוברת את רשימת המילים בקלות כי אפשר לכתוב אותה בלי אף מילה מהכדורגל.
+SCORE = re.compile(r"(?<!\d)(\d{1,2})\s*[-:]\s*(\d{1,2})(?!\d)")
+# חוץ ממקום אחד שבו מספרים קטנים הם דווקא כדורסל: תוצאה בסדרת פלייאוף.
+BASKET = ("כדורסל", "יורוליג", "יורוקאפ", "ווינר", "סדרה", "פלייאוף",
+          "פיס ארנה")
 
 DEFAULTS = {
-    "queries": ['"הפועל ירושלים" כדורסל', '"הפועל י-ם" כדורסל'],
+    # שתי השאילתות הראשונות דרשו את המילה ״כדורסל״, וזה מה שהחניק את המדור:
+    # רוב הכותרות על המועדון לא כותבות ״כדורסל״ בכותרת. פרוב מ־27.8.2026
+    # מדד את זה: השאילתה הרחבה החזירה 58 פריטים טריים ורלוונטיים שלא היו
+    # אצלנו, ובהם שלושה מאותו יום שהמדור פשוט לא הכיר.
+    "queries": ['"הפועל ירושלים"', '"הפועל י-ם"',
+                '"הפועל ירושלים" כדורסל', '"הפועל י-ם" כדורסל'],
     "names": {},
     "block": [],
     "maxItems": 24,
@@ -105,11 +151,20 @@ def _host(url):
         return ""
 
 
+def _soccer_score(title):
+    """A basketball game does not end 2-1."""
+    if any(w in title for w in BASKET):
+        return False
+    return any(int(a) <= 20 and int(b) <= 20 for a, b in SCORE.findall(title))
+
+
 def about_us(title):
     """True when the headline itself is about our basketball club."""
     if not any(w in title for w in US):
         return False
-    return not any(w in title for w in NOT_US)
+    if any(w in title for w in NOT_US) or any(w in title for w in NOT_US_CLUBS):
+        return False
+    return not _soccer_score(title)
 
 
 def _published(item):

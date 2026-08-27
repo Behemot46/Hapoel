@@ -731,9 +731,14 @@ function newsWhen(iso) {
   if (days === 2) return "שלשום";
   if (days <= 6) return "לפני " + days + " ימים";
   // past a week a relative count stops meaning anything, but "4.8" can be
-  // read as the fourth of August or the eighth of April, so name the month
+  // read as the fourth of August or the eighth of April, so name the month.
+  // and past the turn of the year the month alone is worse than useless:
+  // "17 באוג׳" read in January looks like this year's August. a headline
+  // from another year says so.
   const d = new Date(t);
-  return d.getDate() + " ב" + MONTHS_SHORT[d.getMonth()];
+  const stamp = d.getDate() + " ב" + MONTHS_SHORT[d.getMonth()];
+  return d.getFullYear() === new Date().getFullYear()
+    ? stamp : stamp + " " + d.getFullYear();
 }
 
 function newsItemEl(item) {

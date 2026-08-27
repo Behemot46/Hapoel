@@ -75,8 +75,11 @@ jobs:
           else:
               n = json.loads(np.read_text())
               print(len(n['items']), 'headlines from', ', '.join(n['sources']))
-              for i in n['items'][:6]:
-                  print(' ', i['published'][:10], '|', i['source'], '|', i['title'][:70])
+              # כל הכותרות, לא רק השש הראשונות: מדור החדשות נקרא בעיניים
+              # לפני שהוא מגיע לאוהד, וכותרת כדורגל שנכנסה בטעות מתחבאת
+              # בדיוק במקום שהחיתוך הזה הסתיר.
+              for i in n['items']:
+                  print(' ', i['published'][:10], '|', i['source'], '|', i['title'][:110])
           print('===== live.json =====')
           lp = pathlib.Path('app/data/live.json')
           print(lp.read_text() if lp.exists() else 'MISSING')
