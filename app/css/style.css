@@ -953,6 +953,36 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
 .pod-group-name { font-size: 16px; font-weight: 800; }
 .pod-card .link-btn { border-top: 1px solid var(--line); }
 
+/* מי מסקר את הקבוצה */
+.section-title.small { font-size: 13.5px; color: var(--muted); margin: 18px 0 8px; }
+.press-card { padding: 0; }
+.press-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 16px;
+}
+.press-name { font-size: 16px; font-weight: 800; }
+.press-sub { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.press-handle { direction: ltr; unicode-bidi: isolate; }
+.press-toggle {
+  flex: none;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--red-text);
+  font: inherit; font-size: 14px; font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.press-toggle:hover { background: var(--red-soft); }
+.press-feed {
+  border-top: 1px solid var(--line);
+  padding: 4px 12px 8px;
+  /* ההטמעה של X מגיעה ברוחב משלה, וסרגל גלילה אופקי בעמוד כולו הוא באג */
+  overflow-x: auto;
+}
+.press-feed iframe { max-width: 100% !important; }
+.press-feed .empty { padding: 14px 4px; }
+
 /* Share the app */
 .share-card {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;

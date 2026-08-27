@@ -4,6 +4,7 @@ const state = {
   games: null, standings: null, meta: null, club: null,
   gamesTab: "upcoming", tableTab: "league", diaryScope: "season",
   hofTab: "israeli", statsTab: "now", podcastsTab: "team",
+  pressOpen: null,
 };
 
 const view = document.getElementById("view");
@@ -73,7 +74,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts, press] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -92,6 +93,7 @@ async function boot() {
       loadJSON("data/venue-names.json").catch(() => (null)),
       loadJSON("data/news.json").catch(() => (null)),
       loadJSON("data/podcasts.json").catch(() => (null)),
+      loadJSON("data/press.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -111,6 +113,7 @@ async function boot() {
     state.venues = venues;
     state.news = news;
     state.podcasts = podcasts;
+    state.press = press;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -224,7 +227,7 @@ const routes = {
   "#/table": renderTable, "#/roster": renderRoster, "#/diary": renderDiary,
   "#/meet": renderMeet, "#/history": renderHistory,
   "#/hof": renderHof, "#/stats": renderStats, "#/news": renderNews,
-  "#/podcasts": renderPodcasts,
+  "#/podcasts": renderPodcasts, "#/press": renderPress,
 };
 
 function render() {
@@ -238,7 +241,7 @@ function render() {
     : hash === "#/table" ? "table"
     : (hash === "#/roster" || hash === "#/meet" || playerMatch) ? "roster"
     : (hash === "#/history" || hash === "#/hof" || hash === "#/news"
-       || hash === "#/podcasts") ? "home"
+       || hash === "#/podcasts" || hash === "#/press") ? "home"
     : hash === "#/stats" ? "table"
     : hash === "#/diary" ? "diary" : "home";
   document.querySelectorAll(".tabbar a").forEach(a =>
@@ -246,6 +249,8 @@ function render() {
   // leaving the podcasts screen ends the visit, so the next arrival
   // recomputes what is new
   if (hash !== "#/podcasts") podcastFresh = null;
+  // יציאה מהמסך סוגרת פיד פתוח, כדי שחזרה אליו לא תפנה ל־X מעצמה
+  if (hash !== "#/press") state.pressOpen = null;
   noteScreen(hash); // distinct screens: four taps around the app, not four taps
   stopCountdown(); // the view is about to be wiped from under the ticking element
   view.innerHTML = "";
@@ -799,6 +804,184 @@ function renderNews() {
   if (state.news && state.news.updated) {
     view.appendChild(text("div", "table-note", "נאסף " + newsWhen(state.news.updated)));
   }
+  if (pressPeople().length) {
+    const more = el("a", "link-btn");
+    more.href = "#/press";
+    more.textContent = "מי מסקר את הקבוצה ב־X";
+    view.appendChild(more);
+  }
+  footer();
+}
+
+/* ---------- מי מסקר את הקבוצה: ציוצים, לפי בקשה ---------- */
+
+// אין דרך חינמית לקרוא ציוצים בצד השרת. זה נמדד ב־27.8.2026 ולא נוחש:
+// nitter.net מחזיר 410 ושתי מראות אחרות לא עונות בכלל, rsshub מחזיר 404,
+// נקודת ה־CDN של X מחזירה גוף ריק, ונקודת ה־syndication מחזירה 429.
+// היחיד שעונה הוא publish.twitter.com/oembed, והוא מחזיר תגית הטמעה בלי
+// שום תוכן. לכן, בשונה מהחדשות והפודקאסטים, אין כאן קובץ שנאסף מראש:
+// הציוצים נטענים בדפדפן של האוהד, מההטמעה הרשמית של X, ורק כשהוא לוחץ.
+// ככה זה גם לא מעמיס את הפתיחה של האפליקציה ולא שולח אף אחד ל־X בלי
+// שביקש.
+const X_WIDGETS = "https://platform.twitter.com/widgets.js";
+let xLoading = null;
+
+function loadX() {
+  if (window.twttr && window.twttr.widgets) return Promise.resolve(window.twttr);
+  if (xLoading) return xLoading;
+  xLoading = new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = X_WIDGETS;
+    s.async = true;
+    s.charset = "utf-8";
+    s.onload = () => (window.twttr && window.twttr.widgets)
+      ? resolve(window.twttr)
+      : reject(new Error("widgets.js נטען בלי twttr"));
+    s.onerror = () => reject(new Error("widgets.js לא נטען"));
+    document.head.appendChild(s);
+  }).catch(e => {
+    // בלי האיפוס הזה נסיון שני, אחרי שהרשת חוזרת, היה נכשל מיד על אותה
+    // הבטחה דחויה
+    xLoading = null;
+    throw e;
+  });
+  return xLoading;
+}
+
+function pressPeople() {
+  const p = state.press;
+  return (p && Array.isArray(p.people)) ? p.people : [];
+}
+
+function xProfileLink(person, label) {
+  const a = el("a", "link-btn");
+  a.href = "https://x.com/" + encodeURIComponent(person.handle);
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.textContent = label;
+  return a;
+}
+
+// מה שרואים כשההטמעה לא נטענה: לא מסך ריק, אלא משפט שאומר מה קרה ודרך
+// להגיע לאותו מקום בכל זאת
+function pressFallback(host, person, why) {
+  host.innerHTML = "";
+  host.appendChild(text("div", "empty", why));
+  host.appendChild(xProfileLink(person, "פתיחת הפרופיל ב־X"));
+}
+
+function pressTimeline(host, person) {
+  if (navigator.onLine === false) {
+    pressFallback(host, person, "אין רשת עכשיו, והציוצים מגיעים ישירות מ־X.");
+    return;
+  }
+  const loading = text("div", "empty", "טוען ציוצים מ־X…");
+  host.appendChild(loading);
+  let done = false;
+  const giveUp = setTimeout(() => {
+    if (!done) {
+      done = true;
+      pressFallback(host, person, "X לא ענה בזמן.");
+    }
+  }, 12000);
+  const dark = window.matchMedia
+    && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  loadX()
+    .then(t => t.widgets.createTimeline(
+      { sourceType: "profile", screenName: person.handle },
+      host,
+      {
+        lang: "he",
+        theme: dark ? "dark" : "light",
+        height: 520,
+        chrome: "noheader nofooter transparent",
+        dnt: true,
+      }))
+    .then(frame => {
+      if (done) return;
+      done = true;
+      clearTimeout(giveUp);
+      if (!frame) {
+        pressFallback(host, person, "X לא החזיר ציוצים לחשבון הזה.");
+        return;
+      }
+      loading.remove();
+      host.appendChild(xProfileLink(person, "לפרופיל המלא ב־X"));
+    })
+    .catch(() => {
+      if (done) return;
+      done = true;
+      clearTimeout(giveUp);
+      pressFallback(host, person,
+        "X לא נטען כאן, אולי בגלל הרשת או חוסם פרסומות.");
+    });
+}
+
+function pressCardEl(person) {
+  const c = el("div", "card press-card");
+  const head = el("div", "press-head");
+  const who = el("div");
+  who.appendChild(text("div", "press-name" + (isLatin(person.name) ? " latin" : ""),
+    person.name));
+  const sub = el("div", "press-sub");
+  sub.appendChild(text("span", "press-handle", "@" + person.handle));
+  if (person.role) {
+    sub.appendChild(document.createTextNode(" · "));
+    sub.appendChild(document.createTextNode(person.role));
+  }
+  who.appendChild(sub);
+  head.appendChild(who);
+
+  const open = state.pressOpen === person.handle;
+  const btn = text("button", "press-toggle", open ? "סגירה" : "הציוצים");
+  btn.setAttribute("aria-expanded", open ? "true" : "false");
+  // ״הציוצים״ לבד לא אומר של מי, ומי שמקשיב למסך שומע שבע פעמים את אותה מילה
+  btn.setAttribute("aria-label",
+    (open ? "סגירת הציוצים של " : "הציוצים של ") + person.name);
+  btn.onclick = () => {
+    state.pressOpen = open ? null : person.handle;
+    render();
+  };
+  head.appendChild(btn);
+  c.appendChild(head);
+
+  if (open) {
+    const host = el("div", "press-feed");
+    c.appendChild(host);
+    pressTimeline(host, person);
+  }
+  return c;
+}
+
+function renderPress() {
+  const people = pressPeople();
+  view.appendChild(text("div", "section-title", "מי מסקר את הקבוצה"));
+  if (!people.length) {
+    view.appendChild(el("div", "card")).appendChild(
+      text("div", "empty", "הרשימה עוד לא נטענה"));
+    footer();
+    return;
+  }
+  view.appendChild(text("div", "table-note",
+    "לחיצה על ״הציוצים״ טוענת את הציוצים האחרונים ישירות מ־X. " +
+    "עד שלוחצים, שום דבר לא נטען משם."));
+
+  const groups = [
+    ["press", "אנשי תקשורת"],
+    ["official", "חשבונות רשמיים"],
+  ];
+  groups.forEach(([kind, title]) => {
+    const mine = people.filter(p => (p.kind || "press") === kind);
+    if (!mine.length) return;
+    view.appendChild(text("div", "section-title small", title));
+    mine.forEach(p => view.appendChild(pressCardEl(p)));
+  });
+
+  const note = el("div", "table-note");
+  note.appendChild(document.createTextNode(
+    (state.press && state.press.note)
+    || "הציוצים נטענים ישירות מ־X ואינם קשורים לאפליקציה."));
+  view.appendChild(note);
   footer();
 }
 
@@ -1533,6 +1716,18 @@ function renderHome() {
 
   const pc = podcastCard();
   if (pc) view.appendChild(pc);
+
+  if (pressPeople().length) {
+    const promo = el("a", "card promo");
+    promo.href = "#/press";
+    const t = el("div");
+    t.appendChild(text("div", "promo-title", "📣 מי מסקר את הקבוצה"));
+    t.appendChild(text("div", "promo-sub",
+      "הציוצים של מי שכותב על הפועל ועל הכדורסל הישראלי"));
+    promo.appendChild(t);
+    promo.appendChild(text("div", "chevron", "‹"));
+    view.appendChild(promo);
+  }
 
   const rows = state.standings.rows;
   if (rows && rows.length && seasonStarted(rows)) {

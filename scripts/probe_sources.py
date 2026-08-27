@@ -1,83 +1,43 @@
-"""בדיקת מקורות: האם מילת שלילה בשאילתה חותכת את הכדורגל במקור.
+"""בדיקת מקורות: השם המוצג מאחורי כל ידית.
 
-הכותרות שנכנסות בטעות הן כדורגל של הקבוצה שחולקת את השם, וחלקן כתובות
-בלי אף מילה שמסגירה את הענף: ״הפועל י-ם גברה על מכבי פ״ת״, ״השינוי
-המסתמן בהרכב מכבי תל אביב מול הפועל ירושלים״. רשימת מילים אף פעם לא
-תדביק את זה, כי כל כותרת כזאת היא מילה חדשה.
+בסבב הקודם התברר ש־oembed מבחין בין ידית קיימת (200) לידית מומצאת
+(404), אבל קיום זה לא זהות. מסתבר שהתשובה מכילה גם את השם המוצג, בתוך
+טקסט העוגן: ״Posts by ...״. זה בדיוק מה שחסר כדי לוודא שהחשבון שייך
+לאדם שאני חושב, ולא לאדם אחר עם ידית דומה.
 
-אבל גוגל מחפשת בכל הכתבה, לא בכותרת. כתבה על משחק כדורגל כמעט תמיד
-מכילה את המילה כדורגל איפשהו: מדור, תגית, גוף הידיעה. אז זו השאלה
-שנמדדת כאן: מה מפילה ״-כדורגל״ בשאילתה, וכמה כתבות כדורסל אמיתיות היא
-מפילה יחד איתן.
-
-מודפס הכול, כי את התשובה קוראים בעיניים ולא סופרים.
+וגם: @JerusalemBasket החזיר 404 בזמן ש־@HJerusalem החזיר 200 עם כתיב
+מדויק. אם המועדון החליף ידית בעקבות המיתוג החדש, השם המוצג יגיד את זה.
 """
-import datetime
-import email.utils
-import html
-import json
-import pathlib
+import html as html_mod
 import re
-import sys
-import urllib.parse
-import xml.etree.ElementTree as ET
 
 import requests
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import news_feed
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 
-UA = news_feed.UA
-RSS = "https://news.google.com/rss/search"
-
-QUERIES = [
-    '"הפועל ירושלים"',
-    '"הפועל ירושלים" -כדורגל',
-    '"הפועל י-ם"',
-    '"הפועל י-ם" -כדורגל',
-]
-
-# הכותרות שכבר ידוע שהן כדורגל, מהריצות היבשות של היום
-KNOWN_SOCCER = ("מכבי פ", "שלושער", "(נוער)", "בהרכב", "שחקני הרכב")
+HANDLES = ["shay_hausmann", "Barakhaklai", "HJerusalem", "JerusalemBasket",
+           "WinnerLeague", "TherealIBBA", "thebasket13", "thesportsrabbi",
+           "HapoelJLMfc"]
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def clean(s):
-    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", s or ""))).strip()
-
-
-cutoff = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=45)
-
-for q in QUERIES:
-    url = RSS + "?q=" + urllib.parse.quote_plus(q) + "&hl=iw&gl=IL&ceid=IL:iw"
+for h in HANDLES:
     try:
-        r = requests.get(url, headers=UA, timeout=30)
-        r.raise_for_status()
-        r.encoding = "utf-8"
-        items = ET.fromstring(r.text.encode("utf-8")).findall(".//item")
+        r = requests.get("https://publish.twitter.com/oembed",
+                         params={"url": f"https://twitter.com/{h}", "lang": "he"},
+                         headers=UA, timeout=25)
     except Exception as e:
-        log(f"{q}: נפל, {e}")
+        log(f"  @{h:<18} נפל: {type(e).__name__}")
         continue
-
-    kept, raw = [], 0
-    for it in items:
-        raw += 1
-        src = it.find("source")
-        src_raw = clean(src.text if src is not None else "")
-        title = news_feed._strip_source(clean(it.findtext("title")), src_raw)
-        when = news_feed._published(it)
-        if not title or when is None or when < cutoff:
-            continue
-        if not news_feed.about_us(title):
-            continue
-        kept.append((when, src_raw, title))
-
-    kept.sort(reverse=True)
-    log(f"===== {q} =====")
-    log(f"{raw} פריטים, {len(kept)} עוברים את הסינון הקיים")
-    for when, src, title in kept:
-        mark = "  <== חשוד ככדורגל" if any(w in title for w in KNOWN_SOCCER) else ""
-        log(f"  {when:%Y-%m-%d}  {src:<14.14} {title[:100]}{mark}")
+    if r.status_code != 200:
+        log(f"  @{h:<18} HTTP {r.status_code}")
+        continue
+    d = r.json()
+    anchor = re.sub(r"<[^>]+>", "", d.get("html", ""))
+    anchor = html_mod.unescape(anchor).strip()
+    log(f"  @{h:<18} url={d.get('url')}")
+    log(f"  {'':<20} {anchor[:120]}")
