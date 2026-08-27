@@ -132,6 +132,22 @@ def _resolve(show):
     """מזהה או ביטוי חיפוש בחנות של אפל, החוצה שם התוכנית, כתובת הפיד
     וכתובת העמוד. מחזיר None כשאין התאמה, אחרי שרשם למה."""
     expect = (show.get("expect") or "").strip()
+
+    # A show that is not in Apple's store at all cannot be resolved through
+    # it, and ״מאחורי הסלים״ is exactly that case: a probe asked the store
+    # for four spellings, with and without country=IL, and got zero results
+    # every time. For such a show the config may carry the feed address
+    # itself. It is the weaker option, because a show that changes host
+    # breaks silently here while a store id would have followed it, so use
+    # it only when there is no id to use.
+    if show.get("feed"):
+        return {
+            "id": str(show.get("appleId") or expect or show["feed"]),
+            "title": (show.get("name") or expect or "").strip(),
+            "feed": show["feed"].strip(),
+            "url": (show.get("page") or "").strip(),
+        }
+
     try:
         if show.get("appleId"):
             data = _apple(LOOKUP, {"id": str(show["appleId"]), "entity": "podcast"})
