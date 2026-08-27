@@ -1,113 +1,101 @@
-"""Diagnostic probe: two shows to add, and one Spotify link to identify.
+"""Diagnostic probe, round three: all 19 fixtures on hapoel.co.il/games, one
+line each, so the conventions can be read off the whole board at once.
 
-The ask is to add ״דאבל דריבל״ and ״אנחנו במפה״, with a single Spotify show
-link that can only belong to one of them. So this answers three questions,
-in order, and writes nothing:
+Round two settled the shape of a single block:
 
-  1. which show is behind that Spotify id. Spotify's oEmbed endpoint is
-     public and keyless, so the title can be read without an API key.
-  2. whether either show is in Apple's store. If it is, it gets an appleId
-     like the others and the collector follows it across hosts by itself.
-  3. if it is there, what its feedUrl and its newest episodes look like, so
-     the entry can be verified before it reaches fans rather than after.
+    .game
+      .date-data .date-time   "12 בספטמבר, שבת 16:30"   (no year)
+      .date-data .cycle       "משחקי הכנה"
+      .league .game-type .text  "וילנה"                  (venue)
+      .teams .teams-container img[alt] x2                (the two sides, in order)
+      .game-data .score       "0:0"
+
+Three things still have to be read off real data before a parser can be
+trusted, and each is the kind of thing that silently inverts:
+
+  1. is the first team the home side, or is the club always printed first?
+     If it is always first, home and away can only come from the venue.
+  2. the dates carry no year, so the season rollover has to be inferred.
+  3. which side of the score belongs to whom, and what an unplayed game
+     looks like.
+
+So: every block, every field, verbatim, plus the alt text order.
 """
 import json
+import re
 
 import requests
+from bs4 import BeautifulSoup
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
       "Accept-Language": "he-IL,he;q=0.9"}
-SEARCH = "https://itunes.apple.com/search"
-SPOTIFY_SHOW = "https://open.spotify.com/show/0345nCU3sMSN0lpBVs6osA"
-
-TERMS = ["דאבל דריבל", "אנחנו במפה", "דאבל דריבל כדורסל", "אנחנו במפה כדורסל"]
+URL = "https://hapoel.co.il/games"
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-log("=" * 74)
-log("A. who is behind the Spotify link")
-log("=" * 74)
-log(f"  {SPOTIFY_SHOW}")
-try:
-    r = requests.get("https://open.spotify.com/oembed",
-                     params={"url": SPOTIFY_SHOW}, headers=UA, timeout=30)
-    log(f"  oembed HTTP {r.status_code}")
-    if r.ok:
-        d = json.loads(r.text)
-        for k in ("title", "provider_name", "thumbnail_url"):
-            log(f"    {k}: {str(d.get(k))[:120]}")
-except Exception as e:
-    log(f"  oembed failed: {e}")
+def txt(node):
+    return re.sub(r"\s+", " ", node.get_text(" ", strip=True)).strip() if node else ""
 
-# the page itself carries og: tags server side, which name the show too
-try:
-    r = requests.get(SPOTIFY_SHOW, headers=UA, timeout=30)
-    log(f"  page HTTP {r.status_code}, {len(r.content)} bytes")
-    import re
-    for prop in ("og:title", "og:description", "og:type"):
-        m = re.search(r'<meta[^>]+property="' + prop + r'"[^>]+content="([^"]*)"',
-                      r.text)
-        log(f"    {prop}: {(m.group(1) if m else '(not found)')[:160]}")
-except Exception as e:
-    log(f"  page fetch failed: {e}")
+
+r = requests.get(URL, headers=UA, timeout=30)
+r.raise_for_status()
+r.encoding = r.apparent_encoding or "utf-8"
+soup = BeautifulSoup(r.text, "html.parser")
+blocks = soup.select(".game")
+log(f"{URL} -> {len(blocks)} blocks")
+log("")
+
+rows = []
+for g in blocks:
+    teams = [i.get("alt", "").strip()
+             for i in g.select(".teams-container img") if i.get("alt")]
+    row = {
+        "when": txt(g.select_one(".date-time")),
+        "cycle": txt(g.select_one(".cycle")),
+        "venue": txt(g.select_one(".game-type .container .text")),
+        "team1": teams[0] if len(teams) > 0 else "",
+        "team2": teams[1] if len(teams) > 1 else "",
+        "line": txt(g.select_one(".game-data .text")),
+        "score": txt(g.select_one(".score")),
+        "href": (g.select_one(".date-time a") or {}).get("href", "")
+        if g.select_one(".date-time a") else "",
+    }
+    rows.append(row)
+
+log("=" * 74)
+log("every fixture, escaped so the log cannot mangle it")
+log("=" * 74)
+for i, row in enumerate(rows, 1):
+    log(f"  [{i:>2}] {json.dumps(row, ensure_ascii=True)}")
 log("")
 
 log("=" * 74)
-log("B. are they in Apple's store")
+log("readable form")
 log("=" * 74)
-hits = {}
-for term in TERMS:
-    for country in ("IL", None):
-        p = {"term": term, "media": "podcast", "limit": 10}
-        if country:
-            p["country"] = country
-        try:
-            r = requests.get(SEARCH, params=p, headers=UA, timeout=30)
-            r.raise_for_status()
-            res = json.loads(r.text).get("results") or []
-        except Exception as e:
-            log(f'  term="{term}" country={country or "(none)"}: ERROR {e}')
-            continue
-        log(f'  term="{term}" country={country or "(none)"}  ->  {len(res)} results')
-        for i, x in enumerate(res[:6], 1):
-            name = (x.get("collectionName") or "").strip()
-            feed = (x.get("feedUrl") or "").strip()
-            log(f"    {i}. {name[:80]}")
-            log(f"       artist : {(x.get('artistName') or '')[:60]}")
-            log(f"       id     : {x.get('collectionId')}   episodes: {x.get('trackCount')}")
-            log(f"       feedUrl: {feed[:105] or '(NONE)'}")
-            log(f"       genres : {', '.join(x.get('genres') or [])[:70]}")
-            if feed and name:
-                hits[name] = (x.get("collectionId"), feed)
-        log("")
+for i, row in enumerate(rows, 1):
+    log(f"  [{i:>2}] {row['when']:<26} | {row['cycle']:<14} | "
+        f"{row['venue']:<14} | {row['team1']} vs {row['team2']} | {row['score']}")
+log("")
 
 log("=" * 74)
-log("C. feeds that turned up, newest episodes")
+log("conventions")
 log("=" * 74)
-if not hits:
-    log("  none.")
-for name, (cid, feed) in hits.items():
-    log(f"  {name}  (id {cid})")
-    log(f"  {feed}")
-    try:
-        x = requests.get(feed, headers=UA, timeout=30)
-        x.raise_for_status()
-        import xml.etree.ElementTree as ET
-        root = ET.fromstring(x.content)
-        items = root.findall(".//item")
-        chan_title = root.findtext(".//channel/title") or "(no title)"
-        log(f"    channel title: {chan_title[:90]}")
-        log(f"    parsed ok, {len(items)} items. newest three:")
-        for it in items[:3]:
-            log(f"      - {(it.findtext('title') or '')[:85]}")
-            log(f"        pubDate: {(it.findtext('pubDate') or '')[:40]}")
-            log(f"        link   : {(it.findtext('link') or '(none)')[:95]}")
-    except Exception as e:
-        log(f"    feed fetch/parse FAILED: {e}")
-    log("")
+first = [r["team1"] for r in rows]
+us = [t for t in first if "הפועל י" in t or "ירושלים" in t]
+log(f"  blocks where the club is printed FIRST: {len(us)} of {len(rows)}")
+log(f"  distinct first-position teams: {json.dumps(sorted(set(first)), ensure_ascii=True)}")
+second = sorted({r['team2'] for r in rows})
+log(f"  distinct second-position teams: {json.dumps(second, ensure_ascii=True)}")
+log(f"  distinct venues: {json.dumps(sorted({r['venue'] for r in rows}), ensure_ascii=True)}")
+log(f"  distinct cycles: {json.dumps(sorted({r['cycle'] for r in rows}), ensure_ascii=True)}")
+log(f"  distinct scores: {json.dumps(sorted({r['score'] for r in rows}), ensure_ascii=True)}")
+log("")
+log("  months seen, in page order (tells us where the year rolls over):")
+months = [re.sub(r"^\d+\s+ב?", "", r["when"].split(",")[0]) for r in rows]
+log(f"    {json.dumps(months, ensure_ascii=True)}")
 
 log("done. nothing was written.")
