@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-26T13:56:35Z",
+  "updated": "2026-08-27T06:35:07Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,7 +14,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-08-18T16:47:12Z"
+      "latest": "2026-08-26T17:49:58Z"
     },
     {
       "id": "1675729649",
@@ -25,6 +25,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "החלום ושברו",
+      "url": "https://omny.fm/shows/speaknrolisrael/4300c54a-e1a1-4e6c-afc8-b4b201225186",
+      "published": "2026-08-26T17:49:58Z",
+      "duration": 5669
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -96,15 +105,6 @@
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
       "published": "2026-08-03T14:49:00Z",
       "duration": 5651
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "קיץ מלא באקשן",
-      "url": "https://omny.fm/shows/speaknrolisrael/ac304e7c-a95c-4557-af70-b495011222dd",
-      "published": "2026-07-28T16:41:36Z",
-      "duration": 3592
     },
     {
       "showId": "1573775015",

@@ -1,21 +1,23 @@
 {
-  "updated": "2026-08-26T13:56:34Z",
+  "updated": "2026-08-27T06:35:06Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ספורט 5",
+    "ישראל ספורט",
     "ישראל היום",
     "C14",
-    "וואלה ספורט",
+    "ספורט 5",
     "ONE",
-    "ספורט 1"
+    "ספורט 1",
+    "וואלה ספורט",
+    "הארץ"
   ],
   "items": [
     {
-      "title": "בהפועל ירושלים עדכנו: הצעה תוגש ליורוליג",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BOVhKd1J6UUpkYUJjZFV6QkxiN3RtTWhQWUpyejZfUEdiWFgzSTBsb0IwRFh5ZmYzY3BuMEtORVRQU0xUVThzcW1SdFVLZzdFT3NTZzdfNVFiSDQwQXhzT1FfaVJ4dDhwbVh2dXEycU45Zw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-26T10:25:00Z"
+      "title": "הפועל ירושלים: \"מועמדים משמעותיים לרישיון קבוע ביורוליג\"",
+      "url": "https://news.google.com/rss/articles/CBMivwJBVV95cUxQSF9TNFJKNHQzTEU3Qno2RjV2REFZTldwMHBuMFFUREtybTRvUjVwSHNCRThweUFPRm5FalI5S2lnUllzZlNGNGczcGpLd0oyaE1fbVl6MTBFcU1BZXV2VUJwQ2tybDRWdzFaZmZFTHJyamJzd05GS2g3QXNmSVFnNnRfRFNHVUxWVXJFZUhJMnRtMm9lZjllOGZTSWFjYnRMSG9GU2E2RnlXLW1LUmgxbHhwUGtkWjRtOUZWZEFVS01OR2piY2J2bHVaRlFFZDE1UWlLOFJmQ0Nhc0xtVE1sekJPR2hqVE1iRDJKdG9rV2dzRjRmQmZkYnpSMzIxc3JFUHBlc3I1WGxkSWhBY3BhT2czM29rRDJobjdONTdYYkZQa1YwUC1Hc3pBTGNQSEp2T2k1a2p4SnNFN0pUX2lB?oc=5",
+      "source": "ישראל ספורט",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-08-26T05:45:00Z"
     },
     {
       "title": "הפועל ירושלים מתרחקת מהיורוליג: 11 הקבוצות שהליגה רוצה",
@@ -23,13 +25,6 @@
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-25T16:23:48Z"
-    },
-    {
-      "title": "הפועל ירושלים חשפה: המדים שלה לעונת 2026/27",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1VXJrYjE2Rkdpa0xkZXZiNUw0eUNmRWpWZ1Z3cWp5RDA2NkFYNDdSRHRKLXVKb2pGTW9MeDNTb1RRX3hVQnNFeHAyV0hpOTBjZDY0ajdFb19HMGhBSmZkVmUxR3FPbjlSdE9rSjZIUkM0UQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-25T13:11:05Z"
     },
     {
       "title": "יותר מג'ארד הארפר: זה השחקן הכי חשוב של הפועל ירושלים",
@@ -67,13 +62,6 @@
       "published": "2026-08-23T09:44:19Z"
     },
     {
-      "title": "הפועל ירושלים הציגה סמל חדש: \"צועדים קדימה בכל היבט\"",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9pZHlEbV9sVWVJd0lzRXFGd091d3JNQXJ0YmY3Y3g5cnpvSHA2VTIyWFpBWVVzcTVoT3ZwdkdFWFQtWnJaZE1mZ0pzOENfT21R?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-23T09:17:00Z"
-    },
-    {
       "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
       "source": "ספורט 5",
@@ -81,11 +69,18 @@
       "published": "2026-08-23T09:10:00Z"
     },
     {
+      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-17T07:00:00Z"
+    },
+    {
       "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9Oa0NqN1gtVHYxYUpGcVdhUldZVVFOcHZaNWllcmc3MUlaejE2dW1PSjVQczJjcjF5QWVmak0tbzhPd1NoVHE4S3Q3V0ZnZw?oc=5",
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-16T13:09:35Z"
+      "published": "2026-08-16T07:00:00Z"
     },
     {
       "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
@@ -177,6 +172,13 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-08-01T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים הודיעה על החתמת הגארד שייק מילטון לעונה אחת",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPbWhMTklFemNCdXIzMFI1elZTNTJmYjlyNHJfMFNEYU5KZUxvWE5ReUtUbEdaazY0TTVvc0Jkam82S1JFS3ZHUTZERFdjVTc2M1BoVFg3TGZORzVYS2RfOVpmRTZQOUlWZHdpRm1HYmk0Y0lZOWVRbEtEbkRCM0RGWnU5dVZLb1NKYkhKU2oycE5YWm1faThiVDRrMTNNVGFSclhV?oc=5",
+      "source": "הארץ",
+      "sourceUrl": "https://www.haaretz.co.il",
+      "published": "2026-07-31T07:00:00Z"
     }
   ]
 }
