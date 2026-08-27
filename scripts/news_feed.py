@@ -27,6 +27,13 @@ The filter is the delicate part. "הפועל ירושלים" is also a football 
 and a search for the name alone returned items about Maccabi Tel Aviv that
 merely mentioned us in the body. So an item is kept only when the club is
 named in the *headline*, and dropped when the headline reads as football.
+
+The obvious shortcut, asking Google for the name minus the word כדורגל, was
+measured on 27.8.2026 and rejected. Google matches the whole page, sidebars
+and tags included, so a basketball article on a sports site loses just as
+often as a football one: the short-name query fell from 17 kept headlines
+to 4, and among the dead were the EuroLeague bid coverage and the new kit.
+The filtering has to happen here, on the headline, one rule at a time.
 """
 import datetime
 import email.utils
@@ -63,6 +70,10 @@ NOT_US = ("כדורגל", "בית\"ר", "ביתר ירושלים", "ליגת ה�
           "מחצית", "דקה ה־", "דקה ה-", "מהספסל בכדורגל", "שער בדקה",
           "ליגת אלופות", "הליגה האנגלית", "פרמייר ליג", "לה ליגה",
           "שלושער", "הבקיע", "כבש שער", "בעיטת עונשין",
+          # תצוגה מקדימה של הרכב היא כדורגל. בכדורסל כותבים חמישייה
+          # פותחת, לא הרכב, וכך נכנסו שתי כותרות על משחק הפתיחה של
+          # קבוצת הכדורגל מול מכבי ת״א ב־23.8.
+          "בהרכב", "שחקני הרכב", "הרכבים",
           # קבוצת הנוער היא לא הקבוצה שהאפליקציה עוסקת בה
           "(נוער)", "לנוער",
           # 365Scores מייצר עמודי משחק אוטומטיים, לא ידיעות. אלה הביטויים
