@@ -1,23 +1,21 @@
 {
-  "updated": "2026-08-27T06:57:03Z",
+  "updated": "2026-08-27T12:17:57Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "חדשות 04",
+    "ספורט 5",
     "ישראל ספורט",
     "ישראל היום",
     "C14",
-    "ספורט 5",
     "ONE",
-    "ספורט 1",
-    "וואלה ספורט"
+    "ספורט 1"
   ],
   "items": [
     {
-      "title": "כדורסל: הפועל ת\"א הביסה בארנה את הפועל י-ם 64:91, האנאס עם 23 נק'",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE43SXY2eGRYOFRRMVA5QUplNEN2eTBTaVdKSm1WVzRCZjRHLVZaZW5WaUF1UWJlZHMyV2pZNG5DVkxRUG1PQWt6SQ?oc=5",
-      "source": "חדשות 04",
-      "sourceUrl": "https://0404.co.il",
-      "published": "2026-08-26T13:24:18Z"
+      "title": "בהפועל ירושלים עדכנו: הצעה תוגש ליורוליג",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BOVhKd1J6UUpkYUJjZFV6QkxiN3RtTWhQWUpyejZfUEdiWFgzSTBsb0IwRFh5ZmYzY3BuMEtORVRQU0xUVThzcW1SdFVLZzdFT3NTZzdfNVFiSDQwQXhzT1FfaVJ4dDhwbVh2dXEycU45Zw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-26T10:25:00Z"
     },
     {
       "title": "הפועל ירושלים: \"מועמדים משמעותיים לרישיון קבוע ביורוליג\"",
@@ -83,6 +81,13 @@
       "published": "2026-08-17T07:00:00Z"
     },
     {
+      "title": "הפועל ירושלים דורשת דמי העברה/השבחה על קרינגטון",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBUbVpRLWhsUGwzSW13SzlEU1pYandxQVd0aHFxM2phSWdjNmtDRGFaaEJXdzdsaHg2Q3ZmZFo4QnoyZEJYalBjUmVORXZlSE0tc0dacy10M2NJT2RHeDVkUXVWcmZ2cW5PLTNJWXN1RzQ1UQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-16T07:00:00Z"
+    },
+    {
       "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9Oa0NqN1gtVHYxYUpGcVdhUldZVVFOcHZaNWllcmc3MUlaejE2dW1PSjVQczJjcjF5QWVmak0tbzhPd1NoVHE4S3Q3V0ZnZw?oc=5",
       "source": "C14",
@@ -109,6 +114,13 @@
       "source": "ONE",
       "sourceUrl": "https://www.one.co.il",
       "published": "2026-08-09T15:39:49Z"
+    },
+    {
+      "title": "רשמית: כוכב הפועל ירושלים בעונה החולפת חתם בקבוצה חדשה",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1nM2s4dEZHR1hLVHRfbFN6X3JHa1pDT3hiNE5XMi14Q19UWGFlSHlqcGZ5NWMydnZULTRfTFpRYnJZcmppTUlKLXVzUnpXWHhHWkN0S2RFSF80dDNtYUtlWjlwWnE1T3dsWElucnZ3?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-09T07:00:00Z"
     },
     {
       "title": "\"חווה הרבה לחץ\": הרכש של הפועל י-ם הגן על אקס מכבי ת\"א",
@@ -146,17 +158,17 @@
       "published": "2026-08-03T07:00:00Z"
     },
     {
-      "title": "מתן אדלסון סיפר: הצד שלו לסערת הסמל של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB4NjVycmZMa2ppWnhjM2I5YjVSOVhXS0FHNHkwaWkxb2wtaUFneWR4Rk9UWmxCX2ZldWRJX0RpSkNWMVdZWWsxM2g2dWNFWVR5dThEUS1QZTRwNGJld2gyZEVGZlF5NjBVaWs2WE1LZ2FUdw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-03T07:00:00Z"
-    },
-    {
       "title": "\"לא כולם יקבלו את ההחלטה\": המסר החריג של אדלסון לאוהדי הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNdS1Xdl9Ic1ZiQzAwb3JON2llRURaUTZXRE0wR1JvbVcxM3FDam1oUm1lNk1kVnNLZ25IT193aHY2MmJfaWpmajFJY1JTaXJEQmhjbzFYSzN4djgwelU2YXpWY3lNajR1eUNsTGNRM0FDOC1Ob2NFYUVnOXlpTmtScDN2ejJ5U2FJcE9PV2NuRGRGZw?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-03T07:00:00Z"
+    },
+    {
+      "title": "מתן אדלסון סיפר: הצד שלו לסערת הסמל של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB4NjVycmZMa2ppWnhjM2I5YjVSOVhXS0FHNHkwaWkxb2wtaUFneWR4Rk9UWmxCX2ZldWRJX0RpSkNWMVdZWWsxM2g2dWNFWVR5dThEUS1QZTRwNGJld2gyZEVGZlF5NjBVaWs2WE1LZ2FUdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-03T07:00:00Z"
     },
     {
@@ -165,20 +177,6 @@
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-03T07:00:00Z"
-    },
-    {
-      "title": "משלימה את הסגל: הפועל ירושלים במו\"מ מתקדם עם שחקן ישראלי",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5LaV9NcThUa3F5eEEzZVZpN0VtcXdTeUphOG5TTHRlT2I4NW83SWlLNVE5am85U3pQVnl3ZU9rV0luamFoN2JIUXpfQW5MUHNyRmtZWDBQZ2NZN3NCM3RjbG44eFNsaUZrQjlHYU9RbUxaT2FIaGlWSThzRdIBgwFBVV95cUxORnkwaWZyMVJGNEZrVEFJOGlLSTJHM2Q3T3pVVF9Xai1lYTRRRmh3eGw1THQ4TkFnMVVtQ2dxNUhtX3pYem83V2J3V2szbXZVMWU5TXF3NlVabFZLcW10VENJQVFTWG9TT3VINHdMMGIyWlhhZ2ZaOElQSmd1N3dJVjFJdw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-01T07:00:00Z"
-    },
-    {
-      "title": "עם סגל כזה, בהחלט אפשר לחלום: הפועל ירושלים תלך עד הסוף ביורוקאפ?",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1aRUo2Y1lvaTJnUGZFNXdkQ2FNTjNrdExpaHZ3U3J2VWM4VDU3dk1QRHBDS3JjcHQ4UDRBb3RLQkJzbFl6MGtCZnNjNUtld2NB?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-01T07:00:00Z"
     }
   ]
 }
