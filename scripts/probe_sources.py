@@ -1,16 +1,25 @@
-"""Diagnostic probe, round two: the shape of one fixture on hapoel.co.il/games.
+"""Diagnostic probe, round three: all 19 fixtures on hapoel.co.il/games, one
+line each, so the conventions can be read off the whole board at once.
 
-Round one found the page and that it holds 19 blocks with classes game /
-game-type / game-data, and times that match the schedule the club published.
-What it could not answer is where the date lives, since no dd/mm token
-appeared in the visible text at all.
+Round two settled the shape of a single block:
 
-So this dumps the blocks themselves: the full inner HTML of the first few,
-every descendant class, and every attribute, because a date that is not in
-the text is usually in an attribute or split across elements.
+    .game
+      .date-data .date-time   "12 בספטמבר, שבת 16:30"   (no year)
+      .date-data .cycle       "משחקי הכנה"
+      .league .game-type .text  "וילנה"                  (venue)
+      .teams .teams-container img[alt] x2                (the two sides, in order)
+      .game-data .score       "0:0"
 
-Hebrew is printed twice, once raw and once JSON escaped, because the runner
-log mangled the raw form last time and the escapes survive it.
+Three things still have to be read off real data before a parser can be
+trusted, and each is the kind of thing that silently inverts:
+
+  1. is the first team the home side, or is the club always printed first?
+     If it is always first, home and away can only come from the venue.
+  2. the dates carry no year, so the season rollover has to be inferred.
+  3. which side of the score belongs to whom, and what an unplayed game
+     looks like.
+
+So: every block, every field, verbatim, plus the alt text order.
 """
 import json
 import re
@@ -28,68 +37,65 @@ def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def both(label, s):
-    """raw for reading, escaped for certainty."""
-    s = re.sub(r"\s+", " ", (s or "")).strip()
-    log(f"    {label}: {s[:150]}")
-    log(f"    {label} (escaped): {json.dumps(s[:150], ensure_ascii=True)}")
+def txt(node):
+    return re.sub(r"\s+", " ", node.get_text(" ", strip=True)).strip() if node else ""
 
 
 r = requests.get(URL, headers=UA, timeout=30)
 r.raise_for_status()
 r.encoding = r.apparent_encoding or "utf-8"
-log(f"{URL} -> HTTP {r.status_code}, {len(r.content)} bytes, encoding={r.encoding}")
 soup = BeautifulSoup(r.text, "html.parser")
-
 blocks = soup.select(".game")
-log(f"blocks with class 'game': {len(blocks)}")
+log(f"{URL} -> {len(blocks)} blocks")
 log("")
 
-for i, g in enumerate(blocks[:4], 1):
-    log("=" * 74)
-    log(f"BLOCK {i}")
-    log("=" * 74)
-    both("full text", g.get_text(" ", strip=True))
-    log(f"    own attrs: {dict(g.attrs)}")
-    log("")
-    log("    descendants with a class or a data attribute:")
-    for d in g.find_all(True):
-        cls = " ".join(d.get("class") or [])
-        data = {k: v for k, v in d.attrs.items()
-                if k.startswith("data-") or k in ("datetime", "title", "href", "content")}
-        txt = re.sub(r"\s+", " ", d.get_text(" ", strip=True))[:70]
-        if not cls and not data:
-            continue
-        log(f"      <{d.name}> class={cls!r} attrs={data}")
-        if txt:
-            log(f"          text: {txt}")
-            log(f"          text (escaped): {json.dumps(txt, ensure_ascii=True)}")
-    log("")
-    log("    raw html of this block:")
-    raw = re.sub(r"\s+", " ", str(g))
-    for start in range(0, min(len(raw), 1600), 400):
-        log(f"      {raw[start:start + 400]}")
-    log("")
+rows = []
+for g in blocks:
+    teams = [i.get("alt", "").strip()
+             for i in g.select(".teams-container img") if i.get("alt")]
+    row = {
+        "when": txt(g.select_one(".date-time")),
+        "cycle": txt(g.select_one(".cycle")),
+        "venue": txt(g.select_one(".game-type .container .text")),
+        "team1": teams[0] if len(teams) > 0 else "",
+        "team2": teams[1] if len(teams) > 1 else "",
+        "line": txt(g.select_one(".game-data .text")),
+        "score": txt(g.select_one(".score")),
+        "href": (g.select_one(".date-time a") or {}).get("href", "")
+        if g.select_one(".date-time a") else "",
+    }
+    rows.append(row)
 
-# where do the dates live, if anywhere
 log("=" * 74)
-log("date hunting across the whole page")
+log("every fixture, escaped so the log cannot mangle it")
 log("=" * 74)
-text = soup.get_text(" ", strip=True)
-for pat, name in (
-        (r"\d{1,2}[./]\d{1,2}[./]\d{2,4}", "dd.mm.yyyy"),
-        (r"\d{1,2}[./]\d{1,2}", "dd.mm"),
-        (r"\d{4}-\d{2}-\d{2}", "iso"),
-        (r"\d{1,2}:\d{2}", "time")):
-    found = re.findall(pat, text)
-    log(f"  {name:<12} in visible text: {len(found)} {found[:12]}")
-attrs_with_dates = []
-for d in soup.find_all(True):
-    for k, v in d.attrs.items():
-        if isinstance(v, str) and re.search(r"\d{4}-\d{2}-\d{2}|\d{1,2}[./]\d{1,2}[./]\d{2,4}", v):
-            attrs_with_dates.append((d.name, k, v[:60]))
-log(f"  attributes that carry a date: {len(attrs_with_dates)}")
-for a in attrs_with_dates[:12]:
-    log(f"    {a}")
+for i, row in enumerate(rows, 1):
+    log(f"  [{i:>2}] {json.dumps(row, ensure_ascii=True)}")
+log("")
+
+log("=" * 74)
+log("readable form")
+log("=" * 74)
+for i, row in enumerate(rows, 1):
+    log(f"  [{i:>2}] {row['when']:<26} | {row['cycle']:<14} | "
+        f"{row['venue']:<14} | {row['team1']} vs {row['team2']} | {row['score']}")
+log("")
+
+log("=" * 74)
+log("conventions")
+log("=" * 74)
+first = [r["team1"] for r in rows]
+us = [t for t in first if "הפועל י" in t or "ירושלים" in t]
+log(f"  blocks where the club is printed FIRST: {len(us)} of {len(rows)}")
+log(f"  distinct first-position teams: {json.dumps(sorted(set(first)), ensure_ascii=True)}")
+second = sorted({r['team2'] for r in rows})
+log(f"  distinct second-position teams: {json.dumps(second, ensure_ascii=True)}")
+log(f"  distinct venues: {json.dumps(sorted({r['venue'] for r in rows}), ensure_ascii=True)}")
+log(f"  distinct cycles: {json.dumps(sorted({r['cycle'] for r in rows}), ensure_ascii=True)}")
+log(f"  distinct scores: {json.dumps(sorted({r['score'] for r in rows}), ensure_ascii=True)}")
+log("")
+log("  months seen, in page order (tells us where the year rolls over):")
+months = [re.sub(r"^\d+\s+ב?", "", r["when"].split(",")[0]) for r in rows]
+log(f"    {json.dumps(months, ensure_ascii=True)}")
 
 log("done. nothing was written.")
