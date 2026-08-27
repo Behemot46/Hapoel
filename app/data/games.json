@@ -125,6 +125,17 @@
       "awayPartials": null
     },
     {
+      "id": "20261018-הפועלבש",
+      "date": "2026-10-18T20:00:00+03:00",
+      "competition": "ליגת Winner סל, מחזור 2",
+      "home": "הפועל ירושלים",
+      "away": "הפועל ב\"ש",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "20261021-euro-RigaZelli",
       "date": "2026-10-21T18:00:00Z",
       "competition": "יורוקאפ",
@@ -137,6 +148,17 @@
       "awayScore": null,
       "homePartials": null,
       "awayPartials": null
+    },
+    {
+      "id": "20261025-הפועלתא",
+      "date": "2026-10-25T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 3",
+      "home": "הפועל ת\"א",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
     },
     {
       "id": "20261028-euro-LeMansSarthe",
@@ -153,6 +175,17 @@
       "awayPartials": null
     },
     {
+      "id": "20261101-הפועלאילת",
+      "date": "2026-11-01T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 4",
+      "home": "הפועל ירושלים",
+      "away": "הפועל אילת",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "20261104-euro-ArisThessalo",
       "date": "2026-11-04T19:00:00Z",
       "competition": "יורוקאפ",
@@ -165,6 +198,17 @@
       "awayScore": null,
       "homePartials": null,
       "awayPartials": null
+    },
+    {
+      "id": "20261108-הפועלהעמק",
+      "date": "2026-11-08T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 5",
+      "home": "הפועל ירושלים",
+      "away": "הפועל העמק",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
     },
     {
       "id": "20261111-euro-BagliettoDer",
@@ -181,6 +225,17 @@
       "awayPartials": null
     },
     {
+      "id": "20261115-מכביתא",
+      "date": "2026-11-15T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 6",
+      "home": "מכבי ת\"א",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "20261117-euro-RostockSeawo",
       "date": "2026-11-17T19:00:00Z",
       "competition": "יורוקאפ",
@@ -193,6 +248,28 @@
       "awayScore": null,
       "homePartials": null,
       "awayPartials": null
+    },
+    {
+      "id": "20261122-מכביאשדוד",
+      "date": "2026-11-22T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 7",
+      "home": "הפועל ירושלים",
+      "away": "מכבי אשדוד",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20261206-בניהרצליה",
+      "date": "2026-12-06T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 8",
+      "home": "בני הרצליה",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
     },
     {
       "id": "20261209-euro-CedevitaOlim",
@@ -209,6 +286,17 @@
       "awayPartials": null
     },
     {
+      "id": "20261213-נסציונה",
+      "date": "2026-12-13T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 9",
+      "home": "נס ציונה",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "20261216-euro-RecoletasSal",
       "date": "2026-12-16T19:00:00Z",
       "competition": "יורוקאפ",
@@ -221,6 +309,17 @@
       "awayScore": null,
       "homePartials": null,
       "awayPartials": null
+    },
+    {
+      "id": "20261220-מכבירמתגן",
+      "date": "2026-12-20T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 10",
+      "home": "הפועל ירושלים",
+      "away": "מכבי רמת גן",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
     },
     {
       "id": "20261223-euro-RigaZelli",
@@ -237,6 +336,17 @@
       "awayPartials": null
     },
     {
+      "id": "20261227-קרייתאתא",
+      "date": "2026-12-27T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 11",
+      "home": "הפועל ירושלים",
+      "away": "קריית אתא",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "20261230-euro-LeMansSarthe",
       "date": "2026-12-30T19:00:00Z",
       "competition": "יורוקאפ",
@@ -249,6 +359,17 @@
       "awayScore": null,
       "homePartials": null,
       "awayPartials": null
+    },
+    {
+      "id": "20270103-ראשוןלציון",
+      "date": "2027-01-03T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 12",
+      "home": "ראשון לציון",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
     },
     {
       "id": "20270105-euro-ArisThessalo",
@@ -265,6 +386,17 @@
       "awayPartials": null
     },
     {
+      "id": "20270110-גלילעליון",
+      "date": "2027-01-10T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 13",
+      "home": "הפועל ירושלים",
+      "away": "גליל עליון",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "20270113-euro-BagliettoDer",
       "date": "2027-01-13T19:00:00Z",
       "competition": "יורוקאפ",
@@ -277,10 +409,109 @@
       "awayScore": null,
       "homePartials": null,
       "awayPartials": null
+    },
+    {
+      "id": "20270117-מכביאשדוד",
+      "date": "2027-01-17T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 14",
+      "home": "מכבי אשדוד",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270124-הפועלאילת",
+      "date": "2027-01-24T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 15",
+      "home": "הפועל אילת",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270207-נסציונה",
+      "date": "2027-02-07T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 16",
+      "home": "הפועל ירושלים",
+      "away": "נס ציונה",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270221-הפועלהעמק",
+      "date": "2027-02-21T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 17",
+      "home": "הפועל העמק",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270307-הפועלתא",
+      "date": "2027-03-07T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 18",
+      "home": "הפועל ירושלים",
+      "away": "הפועל ת\"א",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270307-הפועלתא",
+      "date": "2027-03-07T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 18",
+      "home": "הפועל ירושלים",
+      "away": "הפועל ת\"א",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270314-מכבירמתגן",
+      "date": "2027-03-14T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 19",
+      "home": "מכבי רמת גן",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270321-קרייתאתא",
+      "date": "2027-03-21T20:00:00+02:00",
+      "competition": "ליגת Winner סל, מחזור 20",
+      "home": "קריית אתא",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "20270328-הפועלבש",
+      "date": "2027-03-28T20:00:00+03:00",
+      "competition": "ליגת Winner סל, מחזור 21",
+      "home": "הפועל ב\"ש",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
     }
   ],
   "league": {
-    "count": 5,
+    "count": 26,
     "published": true
   }
 }
