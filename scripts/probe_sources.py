@@ -1,113 +1,137 @@
-"""Diagnostic probe: two shows to add, and one Spotify link to identify.
+"""Diagnostic probe: where the club publishes its own fixture list.
 
-The ask is to add ״דאבל דריבל״ and ״אנחנו במפה״, with a single Spotify show
-link that can only belong to one of them. So this answers three questions,
-in order, and writes nothing:
+The club site is already the source for the squad (/team), and it is the only
+place that carries pre-season games at all. So the question is narrow: which
+URL holds the schedule, and what does its markup look like, so a parser can
+be written against real structure instead of a guess.
 
-  1. which show is behind that Spotify id. Spotify's oEmbed endpoint is
-     public and keyless, so the title can be read without an API key.
-  2. whether either show is in Apple's store. If it is, it gets an appleId
-     like the others and the collector follows it across hosts by itself.
-  3. if it is there, what its feedUrl and its newest episodes look like, so
-     the entry can be verified before it reaches fans rather than after.
+Three things, in order:
+  1. crawl the home page for any internal link that reads like a schedule
+  2. try the paths a site like this usually uses, and report status + size
+  3. for anything that answers, dump the repeating structure: tables, and
+     the most common repeated class names, with a sample of their text
+
+Nothing is written. This is a scratch tool, rewritten per question.
 """
-import json
+import collections
+import re
+import urllib.parse
 
 import requests
+from bs4 import BeautifulSoup
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
       "Accept-Language": "he-IL,he;q=0.9"}
-SEARCH = "https://itunes.apple.com/search"
-SPOTIFY_SHOW = "https://open.spotify.com/show/0345nCU3sMSN0lpBVs6osA"
+BASE = "https://hapoel.co.il"
 
-TERMS = ["דאבל דריבל", "אנחנו במפה", "דאבל דריבל כדורסל", "אנחנו במפה כדורסל"]
+HINT = re.compile(r"משחק|לוח|מחזור|תוצא|game|match|schedul|fixtur|calendar", re.I)
+
+CANDIDATES = [
+    "/games", "/game", "/schedule", "/fixtures", "/matches", "/calendar",
+    "/לוח-משחקים", "/משחקים", "/תוצאות", "/לוח", "/season", "/results",
+    "/wp-json/wp/v2/pages?per_page=100", "/sitemap.xml", "/sitemap_index.xml",
+]
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-log("=" * 74)
-log("A. who is behind the Spotify link")
-log("=" * 74)
-log(f"  {SPOTIFY_SHOW}")
-try:
-    r = requests.get("https://open.spotify.com/oembed",
-                     params={"url": SPOTIFY_SHOW}, headers=UA, timeout=30)
-    log(f"  oembed HTTP {r.status_code}")
-    if r.ok:
-        d = json.loads(r.text)
-        for k in ("title", "provider_name", "thumbnail_url"):
-            log(f"    {k}: {str(d.get(k))[:120]}")
-except Exception as e:
-    log(f"  oembed failed: {e}")
-
-# the page itself carries og: tags server side, which name the show too
-try:
-    r = requests.get(SPOTIFY_SHOW, headers=UA, timeout=30)
-    log(f"  page HTTP {r.status_code}, {len(r.content)} bytes")
-    import re
-    for prop in ("og:title", "og:description", "og:type"):
-        m = re.search(r'<meta[^>]+property="' + prop + r'"[^>]+content="([^"]*)"',
-                      r.text)
-        log(f"    {prop}: {(m.group(1) if m else '(not found)')[:160]}")
-except Exception as e:
-    log(f"  page fetch failed: {e}")
-log("")
-
-log("=" * 74)
-log("B. are they in Apple's store")
-log("=" * 74)
-hits = {}
-for term in TERMS:
-    for country in ("IL", None):
-        p = {"term": term, "media": "podcast", "limit": 10}
-        if country:
-            p["country"] = country
-        try:
-            r = requests.get(SEARCH, params=p, headers=UA, timeout=30)
-            r.raise_for_status()
-            res = json.loads(r.text).get("results") or []
-        except Exception as e:
-            log(f'  term="{term}" country={country or "(none)"}: ERROR {e}')
-            continue
-        log(f'  term="{term}" country={country or "(none)"}  ->  {len(res)} results')
-        for i, x in enumerate(res[:6], 1):
-            name = (x.get("collectionName") or "").strip()
-            feed = (x.get("feedUrl") or "").strip()
-            log(f"    {i}. {name[:80]}")
-            log(f"       artist : {(x.get('artistName') or '')[:60]}")
-            log(f"       id     : {x.get('collectionId')}   episodes: {x.get('trackCount')}")
-            log(f"       feedUrl: {feed[:105] or '(NONE)'}")
-            log(f"       genres : {', '.join(x.get('genres') or [])[:70]}")
-            if feed and name:
-                hits[name] = (x.get("collectionId"), feed)
-        log("")
-
-log("=" * 74)
-log("C. feeds that turned up, newest episodes")
-log("=" * 74)
-if not hits:
-    log("  none.")
-for name, (cid, feed) in hits.items():
-    log(f"  {name}  (id {cid})")
-    log(f"  {feed}")
+def get(url):
     try:
-        x = requests.get(feed, headers=UA, timeout=30)
-        x.raise_for_status()
-        import xml.etree.ElementTree as ET
-        root = ET.fromstring(x.content)
-        items = root.findall(".//item")
-        chan_title = root.findtext(".//channel/title") or "(no title)"
-        log(f"    channel title: {chan_title[:90]}")
-        log(f"    parsed ok, {len(items)} items. newest three:")
-        for it in items[:3]:
-            log(f"      - {(it.findtext('title') or '')[:85]}")
-            log(f"        pubDate: {(it.findtext('pubDate') or '')[:40]}")
-            log(f"        link   : {(it.findtext('link') or '(none)')[:95]}")
+        r = requests.get(url, headers=UA, timeout=30, allow_redirects=True)
+        return r
     except Exception as e:
-        log(f"    feed fetch/parse FAILED: {e}")
+        log(f"   !! {e}")
+        return None
+
+
+log("=" * 76)
+log("A. internal links on the home page that read like a schedule")
+log("=" * 76)
+home = get(BASE + "/")
+seen = set()
+if home is not None and home.ok:
+    log(f"  home: HTTP {home.status_code}, {len(home.content)} bytes")
+    soup = BeautifulSoup(home.text, "html.parser")
+    for a in soup.find_all("a", href=True):
+        href = a["href"].strip()
+        label = a.get_text(" ", strip=True)
+        if not HINT.search(href) and not HINT.search(label):
+            continue
+        full = urllib.parse.urljoin(BASE, href)
+        if not full.startswith(BASE) or full in seen:
+            continue
+        seen.add(full)
+        log(f"    {label[:38]:<38} -> {full[:96]}")
+    if not seen:
+        log("    (no link matched the hint)")
+else:
+    log(f"  home failed: {home.status_code if home is not None else 'no response'}")
+
+log("")
+log("=" * 76)
+log("B. likely paths")
+log("=" * 76)
+alive = []
+for path in CANDIDATES:
+    r = get(BASE + path)
+    if r is None:
+        log(f"  {path:<40} ERROR")
+        continue
+    ctype = (r.headers.get("content-type") or "")[:40]
+    log(f"  {path:<40} {r.status_code}  {len(r.content):>8} bytes  {ctype}")
+    if r.ok and len(r.content) > 2000:
+        alive.append((path, r))
+
+# anything found by crawling counts too
+for full in list(seen)[:6]:
+    r = get(full)
+    if r is not None and r.ok and len(r.content) > 2000:
+        alive.append((full.replace(BASE, ""), r))
+
+log("")
+log("=" * 76)
+log("C. structure of the pages that answered")
+log("=" * 76)
+for path, r in alive[:6]:
+    log("-" * 70)
+    log(f"  {path}")
+    log("-" * 70)
+    soup = BeautifulSoup(r.text, "html.parser")
+    title = soup.find("title")
+    log(f"    <title>: {(title.get_text(strip=True) if title else '')[:90]}")
+
+    tables = soup.find_all("table")
+    log(f"    tables: {len(tables)}")
+    for t in tables[:2]:
+        rows = t.find_all("tr")
+        log(f"      table with {len(rows)} rows, first three:")
+        for tr in rows[:3]:
+            cells = [c.get_text(" ", strip=True) for c in tr.find_all(["th", "td"])]
+            log(f"        {' | '.join(c for c in cells if c)[:140]}")
+
+    # the repeating block is usually the fixture card
+    classes = collections.Counter()
+    for el in soup.find_all(class_=True):
+        for c in el.get("class"):
+            classes[c] += 1
+    common = [(c, n) for c, n in classes.most_common(40)
+              if n >= 3 and HINT.search(c)]
+    log(f"    repeated classes that read like fixtures: {common[:10] or '(none)'}")
+    if not common:
+        log(f"    most repeated classes overall: {classes.most_common(8)}")
+
+    # dates in the visible text are the strongest hint the page holds a schedule
+    text = soup.get_text(" ", strip=True)
+    dates = re.findall(r"\b\d{1,2}[./]\d{1,2}(?:[./]\d{2,4})?\b", text)
+    times = re.findall(r"\b\d{1,2}:\d{2}\b", text)
+    log(f"    date-like tokens: {len(dates)} {dates[:10]}")
+    log(f"    time-like tokens: {len(times)} {times[:10]}")
+    for word in ("הפועל ירושלים", "מכבי", "הכנה", "גביע", "יורוקאפ", "ליגת"):
+        if word in text:
+            log(f"    mentions ״{word}״")
     log("")
 
 log("done. nothing was written.")
