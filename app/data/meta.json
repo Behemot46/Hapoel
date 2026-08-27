@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-27T13:12:48+00:00",
+  "lastUpdated": "2026-08-27T13:18:15+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -19,8 +19,8 @@
       "detail": "עודכן בהצלחה"
     },
     "news": {
-      "ok": false,
-      "detail": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/search?q=%22%D7%94%D7%A4%D7%95%D7%A2%D7%9C+%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D%22&hl=iw&gl=IL&ceid=IL:iw"
+      "ok": true,
+      "detail": "עודכן בהצלחה"
     },
     "podcasts": {
       "ok": true,

@@ -1,15 +1,79 @@
 {
-  "updated": "2026-08-27T12:37:51Z",
+  "updated": "2026-08-27T13:17:26Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ערוץ 7",
+    "וואלה ספורט",
+    "103FM",
+    "ספורט 1",
+    "אייס",
+    "ynet",
+    "סרוגים",
     "ספורט 5",
     "ישראל ספורט",
     "ישראל היום",
-    "C14",
     "ONE",
-    "ספורט 1"
+    "כאן 11",
+    "C14",
+    "הארץ"
   ],
   "items": [
+    {
+      "title": "בעקבות חשיפת הקשר למיסיון: הפועל ירושלים ביטלה את התמיכה בבית הקפה",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE53WWFDUHBpdThfNERNNktCOG9NSnNfQzNrcExnc0QxWHVLMnN3dV8wbHJ4WXA4S0NQaGJCZEc4WC00M2gxRS1pNw?oc=5",
+      "source": "ערוץ 7",
+      "sourceUrl": "https://www.inn.co.il",
+      "published": "2026-08-27T11:09:00Z"
+    },
+    {
+      "title": "אחרי שנפגע בראשו: אוהד הפועל ירושלים שוחרר לביתו",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBhS2JzZEFVT0w3TUN3anNmWVFxNnM3WmVheDNWTWsyRWtsV3FjYkhjMDlDTUVNcjNpLUhwRlNyTXhVXzRiTnZRa0VLb0NubGxt?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-27T08:23:00Z"
+    },
+    {
+      "title": "ספורט - הפועל ירושלים תקפוץ מדרגה?",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CYUh0eDgtZDltQ3lMYm9ZNmtTcGVjdGU2WkxkSGVBZ081YXRnd1BBRmNLbVNuVVdsNWc2Ql9qZUVHUGZMMXhDVklZYWczWlVtYzF1THVSekg3cWNWSUp1dHgtRGR6RXd1NTV1TE81d1ZaQjFnLTBnWUsxeXd6d1k?oc=5",
+      "source": "103FM",
+      "sourceUrl": "https://103fm.maariv.co.il",
+      "published": "2026-08-27T04:42:09Z"
+    },
+    {
+      "title": "\"אירוע מתוכנן וברוטלי\": הפועל ירושלים הגישה מכתב חריף למשטרת רחובות",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5Gd3FzZ3B3dUJkc3BzaVU4RXl5TXMwT3A3M2NqLWFCV3YzdnJqVEw1WFhFX0pnNWVicEZlcnZIRE9razY2ellmUVdLdUx6OFhWN1JxbzBzNFJTdDlnY1gwRnotZWdZeDY1SVlKTnBBcVBJaUthYjFXQlBn?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-26T12:03:52Z"
+    },
+    {
+      "title": "הפועל ירושלים בדרך להיכנס ליורוליג; אדלסון: \"הצעה כלכלית חזקה\"",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE55N011Z1JYdXZvLUtwSF9FSFZ2RlFBSC1KZEVWT2llLWhqNVdxYlpwOTl2MUpuUHdjTDZzZW10WDZKcTlBQU5NdE5YdmZPTkkydjF0MXNXS2dKOVNnUHdxZ3RhYw?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-26T11:43:00Z"
+    },
+    {
+      "title": "לא מוותרת: הפועל ירושלים הגישה בקשה לרישיון קבע ביורוליג",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9tc0xFT0U4NXo5OWtjWVpnWTQ5cjB1TS05Q3BiQTRXMlVvSG1Uak9jYzV3dGVmTExGbGtYcVdlS0k2WVZ2S2NWZ0hXX2pIWnpleVVmWE5TT3kzTkN6dy1qenhrb1JtSkZPLUdMMGRDZ3JuMzg?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-08-26T11:06:40Z"
+    },
+    {
+      "title": "\"לא נעבור לסדר היום\": הפועל ירושלים במסר למשטרת רחובות",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBJbDBDSFpfc0xMWjZQMzRuaDdySDVUS2hTLUhTdDlQTTdHZUFMZkNDT1gyUmNQVjUxYVRnMGdHdWtnbEdFRndLb0tQT3RLTHp4?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-26T10:32:00Z"
+    },
+    {
+      "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
+      "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
+      "source": "סרוגים",
+      "sourceUrl": "https://www.srugim.co.il",
+      "published": "2026-08-26T10:28:44Z"
+    },
     {
       "title": "בהפועל ירושלים עדכנו: הצעה תוגש ליורוליג",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BOVhKd1J6UUpkYUJjZFV6QkxiN3RtTWhQWUpyejZfUEdiWFgzSTBsb0IwRFh5ZmYzY3BuMEtORVRQU0xUVThzcW1SdFVLZzdFT3NTZzdfNVFiSDQwQXhzT1FfaVJ4dDhwbVh2dXEycU45Zw?oc=5",
@@ -32,11 +96,46 @@
       "published": "2026-08-25T16:23:48Z"
     },
     {
+      "title": "הפועל י-ם השיקה את המדים החדשים לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE44VHRKeHJxbHhZUWpoYUJRVmU2MmdHWVVwdF9waldyQW9JM21JOXZ2VDVxZ2ZGRWVXYkdlNXVsVGJzeThHSThWVzNSWklSemU2WXpv?oc=5",
+      "source": "ONE",
+      "sourceUrl": "https://www.one.co.il",
+      "published": "2026-08-25T14:40:20Z"
+    },
+    {
+      "title": "הפועל ירושלים חשפה: המדים שלה לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1VXJrYjE2Rkdpa0xkZXZiNUw0eUNmRWpWZ1Z3cWp5RDA2NkFYNDdSRHRKLXVKb2pGTW9MeDNTb1RRX3hVQnNFeHAyV0hpOTBjZDY0ajdFb19HMGhBSmZkVmUxR3FPbjlSdE9rSjZIUkM0UQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-25T13:11:05Z"
+    },
+    {
       "title": "יותר מג'ארד הארפר: זה השחקן הכי חשוב של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NnhMcXZCMkNrajBqVURsZnl5cUN2bUxLSlJWSzV4d0k2YWN6Ym9qWG8zVmVmUlNDbjE4Q3V3WDQtZU52M0gyZWhtaFpYbWIydVZJbFRNYzBzZTUzSUxyem1XQjZxYXk0eC1nSmlaSXcydW5mek9KTVB0ONIBgwFBVV95cUxNQThyYnZDSWNfejhkVkRUOXFfLUkydi13b2h6RUdTOGhIMThhMkZQM0hiY0xPOVU1cXB0TDdNRjczQ2pfVmpTSW5Sem0wMnBnOXU3cGw0dTBsbVJsNk8xck9Sei1DYU1XMloydFIyRnZ1aWxLQWxITGJtV2VmNGpmbHZ5bw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-25T11:14:42Z"
+    },
+    {
+      "title": "הפועל ירושלים השיקה את המדים החדשים לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxQc1FXOFk0TGhrODlFT2ZjaFhIeXMtc1ZlUndFaXMzLURUUlJhaEpkRGpQSlJ6TnAtLUxaa01Ha2E5dE1LMVI4ZERsN0Vvb3o3WGxRZXNaajllcWxQWHo1SmJ1dTM5M3paWFJiVmNFWEVadkpQamd3M2Y3ZWNMV2c0NXYxcjFMSWU5eUtwZnBseDN3YXRFZlQ0OXVzTDJZU2x5MmY5eHVZb0RtQks3cnNpcy1BVGxUcnpqY0huSTF5VnpRVkRuSFhSYy00NDJlR3pPMFZPOGNvVWdzVlhuQVZ4Zy1XM2FIWERyQmV4YUlxWlBJN1BiNFBHWFhfbGV1N3dOeVYtMV9IdmhXdTA1Um1JTXJhMHVXd20wWGxKVHAwTVhTRXpFSmFOQnFCeVVKRU1lR0ltMjhnOVJuSkswVlpGRnln?oc=5",
+      "source": "ישראל ספורט",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-08-25T06:35:00Z"
+    },
+    {
+      "title": "המונולוג של אוהד הפועל ירושלים שהותקף: \"הכו אותי באלות, אח שלי חטף סלע בראש\"",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBGVGVDc19oSWVDaS1jYUdHTXFiN012ei1xcWUtNmxOMnpVTFNVTUxiek5TaGFxa0xSdzBTazc5RUF1LUhHREtldTNSRmhhUGFPUFljNS1mekExZVBkdXEzRmpxQ09FVms5SGRjRWdpUQ?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-08-24T10:39:29Z"
+    },
+    {
+      "title": "\"זרקו על אחי סלע\": העדות הקשה של אוהד הפועל ירושלים שהותקף",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9fSG5wcjAxQ3FFaTVxRkNsczV0Q2loajFBY0ZtanVaRDZuRUliUUttd3hmenFBRWU0LXpmTXJmcDZJWGdvSEZZSGh6ZWV1NmwzRlFaLXhEWm9IeGNpdjN6ZFEyRDJJWWFDSy1zQmdDTzRHUlpBSGtCUmJ3?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-24T10:05:27Z"
     },
     {
       "title": "\"הפועל ירושלים רוצה יורוליג, הגעתי בזמן לא אידאלי והשתלבתי\"",
@@ -46,11 +145,60 @@
       "published": "2026-08-24T09:57:12Z"
     },
     {
+      "title": "אוהדי הפועל י-ם הותקפו ע\"י אוהדי מכבי ת\"א, שניים נעצרו",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5YMU5YRDU3UE9PYktxOWRUeVhDNnVWZE5oWWprYlJabllDdlE0cFh5V0Q5Tk1vT1FjdWliandhRkN6TGx1Wl95OXlOV2xnZFZheThhUFFtMURWamYtZ01MOFB4VW0?oc=5",
+      "source": "כאן 11",
+      "sourceUrl": "https://www.kan.org.il",
+      "published": "2026-08-24T09:23:38Z"
+    },
+    {
+      "title": "\"לינץ' של ממש\": אוהדי הפועל ירושלים הותקפו באבנים ואלות",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9KM196a25yNlk2YlA0X1JNTnlFQl9aSVJPaW9sMkJWclBETWlndnZVd05LaHRSTlRqMzlPbFRTaFMwWElnbjNLZGZhNVBVdw?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-08-24T09:01:03Z"
+    },
+    {
       "title": "בהפועל ירושלים מבהירים: \"מועמדים לקבלת רישיון קבע ביורוליג\"",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE92Ykx0ajlRc3dHQmlnbHZiTnJESnBJSmZzQUFDaDUzdGxLWWtUUEpMRnpCX3ViSTBxS2V3eVk4TW5pZWJPeEkwelZiemV3Zw?oc=5",
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-24T07:00:00Z"
+    },
+    {
+      "title": "אוהדי הפועל ירושלים הותקפו על ידי אוהדי מכבי ת\"א: \"ריססו גז והרביצו\"",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNd1I0X1duTGhNanQwb24taVhoYzR4MDlqLTdwLW9pUS0zUFg5UUZkd3JmcXh6U1JxZHV6UGhPV0FXN3h4VjhiYjMzRWRXdGx4bTJ2eVJDNlUtV21LclowU2JHN0VYcFlGbjd4MWlMOWtVS2JCRmd0UHZVVHZoRU1mazBhbjFYZ0FwNWZUNWh5Q2E3a3p2N1A0OHc3Y3dJQmpEemczby1CUQ?oc=5",
+      "source": "הארץ",
+      "sourceUrl": "https://www.haaretz.co.il",
+      "published": "2026-08-24T06:18:00Z"
+    },
+    {
+      "title": "הפועל ירושלים תוקפת: \"אוהדינו הותקפו על ידי אוהדי מכבי תל אביב\"",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5fdmhIdmpuZ0tOQS1oZHZpejdIc0xidTZYUThnOFNVMUtPTEJwMlhJRXN1c0RMcUh5QUdnSmZ2WjJhMXYtV2xBdjQ2YlhiOEplUXBROTIxdURMeUhaUEJnVndTVFBFNkF0RjFlM3YwNk03Q0U4cjNVRjFB?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-24T05:01:38Z"
+    },
+    {
+      "title": "הפועל י-ם: \"דורשים מהמשטרה לטפל בפורעים\"",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBPQjBqYlBnRWVoME5RbWhuYkpqSEgydld4cjBEbVVNZk9LZ1FvVjlKbVQ2SmdMOTBSRWRKdmxVMU50YlNpRHRuYWdKX1dDSy1FUWJobk5fMGRfejhBMWFkaVZ0eS0wczI3MjYydTMtbW4?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-23T21:57:40Z"
+    },
+    {
+      "title": "אוהדי הפועל ירושלים טוענים: \"תקפו אותנו בגז פלפל ואלות\"",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBmLVBOV3Bhai1Ccm5DQlUxc2tMMTQ1VVJCbk9iWkRwRWlFdTRmbmVTOWFqNWhfZ1hlN3FtbWk3OGZWbHFtSzdqUkJtOTRVZ0NwWkMtakZ6QmJTcF92RUdLSG9GVXJrc1RkU0pmRWxn?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-08-23T20:57:54Z"
+    },
+    {
+      "title": "הפועל ירושלים יוצאת לדרך חדשה",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
+      "source": "ערוץ 7",
+      "sourceUrl": "https://www.inn.co.il",
+      "published": "2026-08-23T20:01:00Z"
     },
     {
       "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
@@ -60,6 +208,13 @@
       "published": "2026-08-23T13:14:53Z"
     },
     {
+      "title": "סגל אחר, שיטה אחרת, מיקום שונה? המבחן של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE45SThxcVpiNjYxUXVSM2NVOW42WHg4SHpCM0E5cGNwSjFlVWtiazk4Y2tSX1dnOEQxMVNTMS1jRGRzSlNFdlUxUmpwSTRMZFVJ?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-23T10:20:00Z"
+    },
+    {
       "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
       "source": "C14",
@@ -67,116 +222,11 @@
       "published": "2026-08-23T09:44:19Z"
     },
     {
-      "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-23T09:10:00Z"
-    },
-    {
-      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים דורשת דמי העברה/השבחה על קרינגטון",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBUbVpRLWhsUGwzSW13SzlEU1pYandxQVd0aHFxM2phSWdjNmtDRGFaaEJXdzdsaHg2Q3ZmZFo4QnoyZEJYalBjUmVORXZlSE0tc0dacy10M2NJT2RHeDVkUXVWcmZ2cW5PLTNJWXN1RzQ1UQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-16T07:00:00Z"
-    },
-    {
-      "title": "שחקנו לשעבר של מאמן הפועל י-ם: \"אנשים לא תפקדו על הפרקט\"",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9Oa0NqN1gtVHYxYUpGcVdhUldZVVFOcHZaNWllcmc3MUlaejE2dW1PSjVQczJjcjF5QWVmak0tbzhPd1NoVHE4S3Q3V0ZnZw?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-16T07:00:00Z"
-    },
-    {
-      "title": "הגבוה בתולדות המועדון: שכר שחקני הפועל ירושלים לעונת 2026/27",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1FTzdEaV9mM3BBQS1SUE5hdTVWV09KV2Y5VF82WFQwMXppc0tTd25fNmlrWENGZkVqOEl6bDZlTTNuZE1BdWFPRkJpVk44ZWloOWNaWV9CVlNZQ1NJSzBZMkxMWjFOSDJsWFRGS0lIcHNuQW5vSU1KbmdvRdIBgwFBVV95cUxOSi1wTm51OXA5Yk9UMWNXSlozSmVvMjN3c185Mm5sRlVyckdib2EwYlJLU3hsXzBZdy0zdkxJLTU4d29KTFV0WnN6V05xcUstZXpaZUE4NXNaM19pZGRRNnEzRGNEeDRiMnFMS29tYnRvVXR4MXE1MDNRZkFNei1qakQxMA?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-11T07:00:00Z"
-    },
-    {
-      "title": "הכישרון הצעיר שקרוב לסיכום בהפועל ירושלים | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBvZi11YnI3S3FYWUQ2dWI2T3M0VG82TzYwTTNjbjY3bzAwd0Q1c3N4Vm5tSE13aW9jLUQ1MTFsbnd2dm1FNzh4eXZLNEhXTllqVFN2d0FJTXFuMUVvQWc5cVhnQXpJWXc0OFZFX1FrNVlBaElqN25hOG9DRdIBgwFBVV95cUxOVmpLS2JtelI2Uy1pX25jWlpJV2w4bmVROTJKcHQ5WTF4NVkxRUlmVVFIV2FHTS1TWnBSZk4yeXl4RWl6Sm9qUllmRUxyZnQ1V2x2RFVpamljWkFWdTlEaFdqYk5mNmozVEdkejdrZEV5Q05iZEc0ZVZtbXVvM0ZVT2dhSQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-11T07:00:00Z"
-    },
-    {
-      "title": "מהפכה בסגל: סיכום הקיץ של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE90ZkQ3a3p0M183UHhISmRVMVZiU200eGpQdXUxMFNCZU11RHlYNjFmaU44bzNDVU56d19DbjVtMVQ5QUlPbkhjT3V4MTI5UnRoWXJB?oc=5",
-      "source": "ONE",
-      "sourceUrl": "https://www.one.co.il",
-      "published": "2026-08-09T15:39:49Z"
-    },
-    {
-      "title": "\"חווה הרבה לחץ\": הרכש של הפועל י-ם הגן על אקס מכבי ת\"א",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5HQVlYZjlYems5bEJIeWZFV00tZ29zaHJwVFdUVXAzYXdCOHlvNFlEVjB1TGJydnUyRW5yRTdjX21CSWlreUhTaF93R1ZXSVZsZU4tUm1HdzBLcmp4T1IyMHljYWZqdnZjcmJQTjA5NnJ2WWc?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-05T07:00:00Z"
-    },
-    {
-      "title": "השלימה את הסגל: כך תיראה הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9aNjVaVHJxWEJVcVNvVi1JR3hRbnVzR0dENjB2b2hzZlVGTFNlOWp6U3N5a09wODNZTnhBOVp3NDdKc3liSlhSYVVoNVE3ZTJ5a21IMG1jcGh3LTFKeXFnMFhCenprODZBci1sTzJlTDBwUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-04T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים בנתה מפלצת זרים - אבל הבעיה נמצאת במקום אחר",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1zQjN0MnViQ0RhWHp1MkgxMEwxcktVUTZUYk9FZEZobk5ET2p5MnZPSkphOGpvdE4xTnp0VUhqU0UwU25BemVkeUdob2Z2Z0pBZ1NuLTNkOFROd0JQdXVPaTBQVmc2VzB0aXhIUVpGOUxaelpEUXpLcm5pb9IBgwFBVV95cUxOcmE0engxaGJTY0QzTF9fUDVmZG9scE5jOVF6cUY4dmJRaW5ONmw1ZGhGN0tTMU51R09wc2FtX0Y1RXQ3S0Z4bE1ZSUZiZjVTWVppR1g1U0lfek5hejVFVUdwZUVRX0pwdE83RTJHeC1iS2FqUHRjN3VEZ0E3TU5Uc2hlaw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-04T07:00:00Z"
-    },
-    {
-      "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-04T07:00:00Z"
-    },
-    {
-      "title": "\"סשה אוברדוביץ' רצה שאוביל את הפועל ירושלים, הוא דיבר איתי\"",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1rRHlQbVBwenB5WjNEX1lEWHdUZ19MYU50SHVnenJPQldsSWdGdmxXX1NYRzJ0OUJaVzRpNUtyRl9FU1YySTgwNnF6c2J4TUtydmVSRkZiQmhQT0FES2hmX0dzTmJYS05sRGg2R2RBd2RsN2dBSE1FbENlY9IBgwFBVV95cUxNMzlmcEdrc0I1U2g3YjdKM1FwcU1SUlNFTEF3by16QS1rX0U0cF9JZ2ZWSDZ2Q0plQW1NdmZ1WlBoaEZXR2tXQmNZSEMyWGpJZElJZ1BobkJheFhTM25DMXJNX0JOY3VfRmZmckV2MzRKV214QXBrVnVDWUlQX2NEcnhrbw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-03T07:00:00Z"
-    },
-    {
-      "title": "\"לא כולם יקבלו את ההחלטה\": המסר החריג של אדלסון לאוהדי הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNdS1Xdl9Ic1ZiQzAwb3JON2llRURaUTZXRE0wR1JvbVcxM3FDam1oUm1lNk1kVnNLZ25IT193aHY2MmJfaWpmajFJY1JTaXJEQmhjbzFYSzN4djgwelU2YXpWY3lNajR1eUNsTGNRM0FDOC1Ob2NFYUVnOXlpTmtScDN2ejJ5U2FJcE9PV2NuRGRGZw?oc=5",
+      "title": "הפועל ירושלים הציגה סמל חדש: \"צועדים קדימה בכל היבט\"",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxObldQZmlWNlQ4d2ZFcUp3QUd2bkJCY1VfUFNSMHZsOEhBT3lfLUtaN3p6dGtxZVhCdHJWOXVWY2tlUjJibVhnNGNsV0NOY25KR0VUMXE4UVFydzFkS21FNHhxSHFiSzNRck4zdnlfcnBrZzRKTzktWVhxSklNMklCaW1oZUwxR2JyTlRTNmxRemplUQ?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-03T07:00:00Z"
-    },
-    {
-      "title": "מתן אדלסון סיפר: הצד שלו לסערת הסמל של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB4NjVycmZMa2ppWnhjM2I5YjVSOVhXS0FHNHkwaWkxb2wtaUFneWR4Rk9UWmxCX2ZldWRJX0RpSkNWMVdZWWsxM2g2dWNFWVR5dThEUS1QZTRwNGJld2gyZEVGZlF5NjBVaWs2WE1LZ2FUdw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-03T07:00:00Z"
-    },
-    {
-      "title": "\"הקשבתי לאוהדים\": אדלסון שובר שתיקה בסרטון לאוהדי הפועל י-ם",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFB5NFViY3MtNTVqVTVSV1pyeldPUXFIYkZqRUFQbUJuaXFaM09hbWdkT0tmME5naGFoYVE2Q3JuZHNHZEZaNnpaYjBTdjUxUQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-03T07:00:00Z"
-    },
-    {
-      "title": "משלימה את הסגל: הפועל ירושלים במו\"מ מתקדם עם שחקן ישראלי",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5LaV9NcThUa3F5eEEzZVZpN0VtcXdTeUphOG5TTHRlT2I4NW83SWlLNVE5am85U3pQVnl3ZU9rV0luamFoN2JIUXpfQW5MUHNyRmtZWDBQZ2NZN3NCM3RjbG44eFNsaUZrQjlHYU9RbUxaT2FIaGlWSThzRdIBgwFBVV95cUxORnkwaWZyMVJGNEZrVEFJOGlLSTJHM2Q3T3pVVF9Xai1lYTRRRmh3eGw1THQ4TkFnMVVtQ2dxNUhtX3pYem83V2J3V2szbXZVMWU5TXF3NlVabFZLcW10VENJQVFTWG9TT3VINHdMMGIyWlhhZ2ZaOElQSmd1N3dJVjFJdw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-01T07:00:00Z"
+      "published": "2026-08-23T09:26:50Z"
     }
   ]
 }

@@ -100,6 +100,17 @@
       "awayPartials": null
     },
     {
+      "id": "20261011-הפועלחולון",
+      "date": "2026-10-11T20:00:00+03:00",
+      "competition": "ליגת Winner סל, מחזור 1",
+      "home": "הפועל חולון",
+      "away": "הפועל ירושלים",
+      "venue": null,
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "20261014-euro-RecoletasSal",
       "date": "2026-10-14T18:30:00Z",
       "competition": "יורוקאפ",
@@ -269,7 +280,7 @@
     }
   ],
   "league": {
-    "count": 4,
+    "count": 5,
     "published": true
   }
 }
