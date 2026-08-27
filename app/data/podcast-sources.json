@@ -22,9 +22,20 @@
       "appleId": "1675729649",
       "expect": "שוט",
       "about": "league"
+    },
+    {
+      "appleId": "1698308776",
+      "expect": "דאבל דריבל",
+      "about": "league"
+    },
+    {
+      "appleId": "1648115499",
+      "expect": "אנחנו במפה",
+      "about": "league",
+      "name": "אנחנו במפה"
     }
   ],
   "maxPerShow": 4,
-  "maxItems": 20,
+  "maxItems": 28,
   "maxAgeDays": 120
 }

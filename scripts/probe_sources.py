@@ -1,105 +1,113 @@
-"""Diagnostic probe: why ״מאחורי הסלים״ does not reach the podcast section.
+"""Diagnostic probe: two shows to add, and one Spotify link to identify.
 
-The config asks for it by search phrase, and every collection run so far has
-skipped it. Three explanations fit that, and they need different fixes:
+The ask is to add ״דאבל דריבל״ and ״אנחנו במפה״, with a single Spotify show
+link that can only belong to one of them. So this answers three questions,
+in order, and writes nothing:
 
-  1. the show is not in Apple's store at all, so there is nothing to find
-  2. it is there, but its title does not contain the expect string, so our
-     own guard rejects a correct match
-  3. it is there and the title matches, but Apple returns no feedUrl, which
-     is what happens to a show distributed only inside a walled platform
-
-So this prints, verbatim, what the store answers for several spellings, with
-every field the resolver actually reads. It also prints the runner up
-results, because ״not in the top five״ is a fourth explanation and the
-current search asks for only five.
-
-Nothing here is written anywhere. This is a scratch tool, rewritten per
-question by design.
+  1. which show is behind that Spotify id. Spotify's oEmbed endpoint is
+     public and keyless, so the title can be read without an API key.
+  2. whether either show is in Apple's store. If it is, it gets an appleId
+     like the others and the collector follows it across hosts by itself.
+  3. if it is there, what its feedUrl and its newest episodes look like, so
+     the entry can be verified before it reaches fans rather than after.
 """
 import json
 
 import requests
 
-UA = {"User-Agent": "Mozilla/5.0 (compatible; HapoelFanApp/1.0; podcast-probe)"}
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+      "Accept-Language": "he-IL,he;q=0.9"}
 SEARCH = "https://itunes.apple.com/search"
+SPOTIFY_SHOW = "https://open.spotify.com/show/0345nCU3sMSN0lpBVs6osA"
 
-TERMS = [
-    "מאחורי הסלים",
-    "מאחורי הסלים פודקאסט",
-    "מאחורי הסלים כדורסל",
-    "maachorei hasalim",
-]
+TERMS = ["דאבל דריבל", "אנחנו במפה", "דאבל דריבל כדורסל", "אנחנו במפה כדורסל"]
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def ask(term, country, limit=15):
-    p = {"term": term, "media": "podcast", "limit": limit}
-    if country:
-        p["country"] = country
-    try:
-        r = requests.get(SEARCH, params=p, headers=UA, timeout=30)
-        r.raise_for_status()
-        return json.loads(r.text)
-    except Exception as e:
-        log(f"  !! {e}")
-        return {"results": []}
+log("=" * 74)
+log("A. who is behind the Spotify link")
+log("=" * 74)
+log(f"  {SPOTIFY_SHOW}")
+try:
+    r = requests.get("https://open.spotify.com/oembed",
+                     params={"url": SPOTIFY_SHOW}, headers=UA, timeout=30)
+    log(f"  oembed HTTP {r.status_code}")
+    if r.ok:
+        d = json.loads(r.text)
+        for k in ("title", "provider_name", "thumbnail_url"):
+            log(f"    {k}: {str(d.get(k))[:120]}")
+except Exception as e:
+    log(f"  oembed failed: {e}")
 
+# the page itself carries og: tags server side, which name the show too
+try:
+    r = requests.get(SPOTIFY_SHOW, headers=UA, timeout=30)
+    log(f"  page HTTP {r.status_code}, {len(r.content)} bytes")
+    import re
+    for prop in ("og:title", "og:description", "og:type"):
+        m = re.search(r'<meta[^>]+property="' + prop + r'"[^>]+content="([^"]*)"',
+                      r.text)
+        log(f"    {prop}: {(m.group(1) if m else '(not found)')[:160]}")
+except Exception as e:
+    log(f"  page fetch failed: {e}")
+log("")
 
+log("=" * 74)
+log("B. are they in Apple's store")
+log("=" * 74)
+hits = {}
 for term in TERMS:
     for country in ("IL", None):
-        tag = f'term="{term}" country={country or "(none)"}'
-        data = ask(term, country)
-        res = data.get("results") or []
-        log("=" * 74)
-        log(f"{tag}  ->  {len(res)} results")
-        log("=" * 74)
-        for i, r in enumerate(res, 1):
-            name = (r.get("collectionName") or "").strip()
-            feed = (r.get("feedUrl") or "").strip()
-            log(f"  {i:>2}. name   : {name[:90]}")
-            log(f"      artist : {(r.get('artistName') or '')[:70]}")
-            log(f"      id     : {r.get('collectionId')}")
-            log(f"      feedUrl: {feed[:110] or '(NONE, this is what would skip it)'}")
-            log(f"      view   : {(r.get('collectionViewUrl') or '')[:110]}")
-            log(f"      expect ״מאחורי הסלים״ in name? {'YES' if 'מאחורי הסלים' in name else 'no'}")
-            log("")
-        if not res:
-            log("  (nothing)")
+        p = {"term": term, "media": "podcast", "limit": 10}
+        if country:
+            p["country"] = country
+        try:
+            r = requests.get(SEARCH, params=p, headers=UA, timeout=30)
+            r.raise_for_status()
+            res = json.loads(r.text).get("results") or []
+        except Exception as e:
+            log(f'  term="{term}" country={country or "(none)"}: ERROR {e}')
+            continue
+        log(f'  term="{term}" country={country or "(none)"}  ->  {len(res)} results')
+        for i, x in enumerate(res[:6], 1):
+            name = (x.get("collectionName") or "").strip()
+            feed = (x.get("feedUrl") or "").strip()
+            log(f"    {i}. {name[:80]}")
+            log(f"       artist : {(x.get('artistName') or '')[:60]}")
+            log(f"       id     : {x.get('collectionId')}   episodes: {x.get('trackCount')}")
+            log(f"       feedUrl: {feed[:105] or '(NONE)'}")
+            log(f"       genres : {', '.join(x.get('genres') or [])[:70]}")
+            if feed and name:
+                hits[name] = (x.get("collectionId"), feed)
         log("")
 
-# If any feed turned up, show that it actually parses and what it carries.
 log("=" * 74)
-log("feed check: fetching any feedUrl whose title matched")
+log("C. feeds that turned up, newest episodes")
 log("=" * 74)
-seen = set()
-for term in TERMS:
-    for r in (ask(term, "IL").get("results") or []):
-        name = (r.get("collectionName") or "").strip()
-        feed = (r.get("feedUrl") or "").strip()
-        if "מאחורי הסלים" not in name or not feed or feed in seen:
-            continue
-        seen.add(feed)
-        log(f"  {name}")
-        log(f"  {feed}")
-        try:
-            x = requests.get(feed, headers=UA, timeout=30)
-            x.raise_for_status()
-            import xml.etree.ElementTree as ET
-            root = ET.fromstring(x.content)
-            items = root.findall(".//item")
-            log(f"  parsed ok, {len(items)} items. newest three:")
-            for it in items[:3]:
-                log(f"    - {(it.findtext('title') or '')[:80]}")
-                log(f"      pubDate: {(it.findtext('pubDate') or '')[:40]}")
-                log(f"      link   : {(it.findtext('link') or '(none)')[:90]}")
-        except Exception as e:
-            log(f"  feed fetch/parse FAILED: {e}")
-        log("")
-if not seen:
-    log("  no matching feedUrl found anywhere above.")
+if not hits:
+    log("  none.")
+for name, (cid, feed) in hits.items():
+    log(f"  {name}  (id {cid})")
+    log(f"  {feed}")
+    try:
+        x = requests.get(feed, headers=UA, timeout=30)
+        x.raise_for_status()
+        import xml.etree.ElementTree as ET
+        root = ET.fromstring(x.content)
+        items = root.findall(".//item")
+        chan_title = root.findtext(".//channel/title") or "(no title)"
+        log(f"    channel title: {chan_title[:90]}")
+        log(f"    parsed ok, {len(items)} items. newest three:")
+        for it in items[:3]:
+            log(f"      - {(it.findtext('title') or '')[:85]}")
+            log(f"        pubDate: {(it.findtext('pubDate') or '')[:40]}")
+            log(f"        link   : {(it.findtext('link') or '(none)')[:95]}")
+    except Exception as e:
+        log(f"    feed fetch/parse FAILED: {e}")
+    log("")
 
 log("done. nothing was written.")
