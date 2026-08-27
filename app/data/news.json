@@ -1,17 +1,24 @@
 {
-  "updated": "2026-08-27T06:35:06Z",
+  "updated": "2026-08-27T06:57:03Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "חדשות 04",
     "ישראל ספורט",
     "ישראל היום",
     "C14",
     "ספורט 5",
     "ONE",
     "ספורט 1",
-    "וואלה ספורט",
-    "הארץ"
+    "וואלה ספורט"
   ],
   "items": [
+    {
+      "title": "כדורסל: הפועל ת\"א הביסה בארנה את הפועל י-ם 64:91, האנאס עם 23 נק'",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE43SXY2eGRYOFRRMVA5QUplNEN2eTBTaVdKSm1WVzRCZjRHLVZaZW5WaUF1UWJlZHMyV2pZNG5DVkxRUG1PQWt6SQ?oc=5",
+      "source": "חדשות 04",
+      "sourceUrl": "https://0404.co.il",
+      "published": "2026-08-26T13:24:18Z"
+    },
     {
       "title": "הפועל ירושלים: \"מועמדים משמעותיים לרישיון קבוע ביורוליג\"",
       "url": "https://news.google.com/rss/articles/CBMivwJBVV95cUxQSF9TNFJKNHQzTEU3Qno2RjV2REFZTldwMHBuMFFUREtybTRvUjVwSHNCRThweUFPRm5FalI5S2lnUllzZlNGNGczcGpLd0oyaE1fbVl6MTBFcU1BZXV2VUJwQ2tybDRWdzFaZmZFTHJyamJzd05GS2g3QXNmSVFnNnRfRFNHVUxWVXJFZUhJMnRtMm9lZjllOGZTSWFjYnRMSG9GU2E2RnlXLW1LUmgxbHhwUGtkWjRtOUZWZEFVS01OR2piY2J2bHVaRlFFZDE1UWlLOFJmQ0Nhc0xtVE1sekJPR2hqVE1iRDJKdG9rV2dzRjRmQmZkYnpSMzIxc3JFUHBlc3I1WGxkSWhBY3BhT2czM29rRDJobjdONTdYYkZQa1YwUC1Hc3pBTGNQSEp2T2k1a2p4SnNFN0pUX2lB?oc=5",
@@ -172,13 +179,6 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-08-01T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים הודיעה על החתמת הגארד שייק מילטון לעונה אחת",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPbWhMTklFemNCdXIzMFI1elZTNTJmYjlyNHJfMFNEYU5KZUxvWE5ReUtUbEdaazY0TTVvc0Jkam82S1JFS3ZHUTZERFdjVTc2M1BoVFg3TGZORzVYS2RfOVpmRTZQOUlWZHdpRm1HYmk0Y0lZOWVRbEtEbkRCM0RGWnU5dVZLb1NKYkhKU2oycE5YWm1faThiVDRrMTNNVGFSclhV?oc=5",
-      "source": "הארץ",
-      "sourceUrl": "https://www.haaretz.co.il",
-      "published": "2026-07-31T07:00:00Z"
     }
   ]
 }
