@@ -27,6 +27,7 @@ import zoneinfo
 import requests
 from bs4 import BeautifulSoup
 
+import club_games
 import club_roster
 import news_feed
 import photo_crop
@@ -331,17 +332,35 @@ def update_games():
             games.extend(kept)
             log(f"kept {len(kept)} previously known european games")
 
-    # משחקי הכנה אינם קיימים באתר הליגה ולא בפיד של אירופה, כי אף אחד
-    # מהם לא מנהל אותם. המועדון מכריז עליהם לבד, ולכן הם נכתבים ביד
-    # ב־friendlies.json ומתמזגים כאן. בלי זה האפליקציה מכריזה על משחק
-    # שבעוד שבועיים בזמן שהקבוצה משחקת מחר.
+    # לוח המועדון הוא מקור האמת הראשי, והוא היחיד שמפרסם משחקי הכנה בכלל.
+    # אתר הליגה והפיד של אירופה מנהלים רק את התחרויות שלהם, ולכן לוח
+    # שנשען רק עליהם מכריז על משחק שבעוד שבועיים בזמן שהקבוצה משחקת מחר.
+    # מה שכבר הגיע ממקור רשמי נשאר, כי שם השעה מדויקת והתוצאה מתעדכנת
+    # לבד; מה שחסר שם נלקח מהמועדון.
+    try:
+        club = club_games.fetch_games(fetch, log=log)
+    except Exception as e:
+        log("club schedule failed:", e)
+        club = []
+    if club:
+        have = {g["date"][:10] for g in games}
+        fresh = [g for g in club if g["date"][:10] not in have]
+        games.extend(fresh)
+        log(f"club schedule: {len(club)} games, {len(fresh)} of them new to the board")
+        for g in fresh:
+            log(f"    + {g['date'][:16]}  {g['competition']}  "
+                f"{g['home']} vs {g['away']}  {g.get('venue') or ''}")
+    else:
+        log("club schedule empty, board relies on the official feeds alone")
+
+    # קובץ ידני למה שגם המועדון לא פרסם, למשל משחק בטורניר שהיריבה בו
+    # תלויה בתוצאות. נשאר אחרון, ורק למה שאף מקור לא כיסה.
     friendly = (load_json("friendlies.json") or {}).get("games", [])
     if friendly:
-        # משחק שכבר הופיע במקור אמיתי גובר, כי שם הוא מתעדכן לבד
         have = {g["date"][:10] for g in games}
         fresh = [g for g in friendly if g["date"][:10] not in have]
         games.extend(fresh)
-        log(f"friendlies added: {len(fresh)} of {len(friendly)}")
+        log(f"manual entries added: {len(fresh)} of {len(friendly)}")
 
     games.sort(key=lambda g: g["date"])
     log("games total:", len(games))
