@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-27T12:17:57Z",
+  "updated": "2026-08-27T12:37:51Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -116,13 +116,6 @@
       "published": "2026-08-09T15:39:49Z"
     },
     {
-      "title": "רשמית: כוכב הפועל ירושלים בעונה החולפת חתם בקבוצה חדשה",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1nM2s4dEZHR1hLVHRfbFN6X3JHa1pDT3hiNE5XMi14Q19UWGFlSHlqcGZ5NWMydnZULTRfTFpRYnJZcmppTUlKLXVzUnpXWHhHWkN0S2RFSF80dDNtYUtlWjlwWnE1T3dsWElucnZ3?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-09T07:00:00Z"
-    },
-    {
       "title": "\"חווה הרבה לחץ\": הרכש של הפועל י-ם הגן על אקס מכבי ת\"א",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5HQVlYZjlYems5bEJIeWZFV00tZ29zaHJwVFdUVXAzYXdCOHlvNFlEVjB1TGJydnUyRW5yRTdjX21CSWlreUhTaF93R1ZXSVZsZU4tUm1HdzBLcmp4T1IyMHljYWZqdnZjcmJQTjA5NnJ2WWc?oc=5",
       "source": "ספורט 5",
@@ -177,6 +170,13 @@
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-03T07:00:00Z"
+    },
+    {
+      "title": "משלימה את הסגל: הפועל ירושלים במו\"מ מתקדם עם שחקן ישראלי",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5LaV9NcThUa3F5eEEzZVZpN0VtcXdTeUphOG5TTHRlT2I4NW83SWlLNVE5am85U3pQVnl3ZU9rV0luamFoN2JIUXpfQW5MUHNyRmtZWDBQZ2NZN3NCM3RjbG44eFNsaUZrQjlHYU9RbUxaT2FIaGlWSThzRdIBgwFBVV95cUxORnkwaWZyMVJGNEZrVEFJOGlLSTJHM2Q3T3pVVF9Xai1lYTRRRmh3eGw1THQ4TkFnMVVtQ2dxNUhtX3pYem83V2J3V2szbXZVMWU5TXF3NlVabFZLcW10VENJQVFTWG9TT3VINHdMMGIyWlhhZ2ZaOElQSmd1N3dJVjFJdw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-01T07:00:00Z"
     }
   ]
 }

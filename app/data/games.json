@@ -2,18 +2,19 @@
   "season": "2026/27",
   "games": [
     {
-      "id": "20260831-הכנה-הפועלחולון",
+      "id": "20260831-club-הפועלחולון",
       "date": "2026-08-31T13:00:00+03:00",
       "competition": "משחק הכנה",
-      "home": "הפועל ירושלים",
-      "away": "הפועל חולון",
+      "home": "הפועל חולון",
+      "away": "הפועל ירושלים",
       "venue": "מלחה",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "source": "club"
     },
     {
-      "id": "20260904-הכנה-הפועלהעמק",
+      "id": "20260904-club-הפועלהעמק",
       "date": "2026-09-04T13:00:00+03:00",
       "competition": "משחק הכנה",
       "home": "הפועל ירושלים",
@@ -22,7 +23,7 @@
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "עם קהל"
+      "source": "club"
     },
     {
       "id": "20260908-מכביאשדוד",
@@ -36,15 +37,16 @@
       "awayScore": null
     },
     {
-      "id": "20260912-הכנה-JLBourg",
+      "id": "20260912-club-בורג",
       "date": "2026-09-12T16:30:00+03:00",
-      "competition": "טורניר הכנה",
+      "competition": "משחק הכנה",
       "home": "הפועל ירושלים",
-      "away": "JL Bourg",
-      "venue": "Active Vilnius Arena, ליטא",
+      "away": "בורג",
+      "venue": "וילנה",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "source": "club"
     },
     {
       "id": "20260913-הכנה-טורניר",
