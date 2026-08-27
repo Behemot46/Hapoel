@@ -1,99 +1,83 @@
-"""Diagnostic probe: why the news section goes quiet for days.
+"""בדיקת מקורות: האם מילת שלילה בשאילתה חותכת את הכדורגל במקור.
 
-Two facts from the repo history frame the question. First, no version of
-news.json ever held an item older than 60 days, so ״ידיעות מלפני שנים״
-cannot come from the collected data; the age cutoff is enforced at 45 days.
-Second, the newest headline sat frozen on 18.8 for five days straight,
-21.8 through 23.8, which is exactly ״חסר חדשות עדכניות״.
+הכותרות שנכנסות בטעות הן כדורגל של הקבוצה שחולקת את השם, וחלקן כתובות
+בלי אף מילה שמסגירה את הענף: ״הפועל י-ם גברה על מכבי פ״ת״, ״השינוי
+המסתמן בהרכב מכבי תל אביב מול הפועל ירושלים״. רשימת מילים אף פעם לא
+תדביק את זה, כי כל כותרת כזאת היא מילה חדשה.
 
-The collector asks Google News two questions, both demanding the exact
-quoted club name next to the word כדורסל. The club now brands itself
-Hapoel Midtown Jerusalem, so a headline using the sponsored name, or the
-short form, or no כדורסל at all, is invisible to us.
+אבל גוגל מחפשת בכל הכתבה, לא בכותרת. כתבה על משחק כדורגל כמעט תמיד
+מכילה את המילה כדורגל איפשהו: מדור, תגית, גוף הידיעה. אז זו השאלה
+שנמדדת כאן: מה מפילה ״-כדורגל״ בשאילתה, וכמה כתבות כדורסל אמיתיות היא
+מפילה יחד איתן.
 
-So this measures candidate queries against the live feed and reports, for
-each: how many items come back, how many survive the club-in-headline
-filter and the 45 day cutoff, and crucially how many are NOT already in
-our file. A query that only re-finds what we have is not worth adding.
+מודפס הכול, כי את התשובה קוראים בעיניים ולא סופרים.
 """
 import datetime
+import email.utils
+import html
 import json
 import pathlib
 import re
+import sys
 import urllib.parse
 import xml.etree.ElementTree as ET
 
 import requests
 
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-      "Accept-Language": "he-IL,he;q=0.9"}
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import news_feed
+
+UA = news_feed.UA
 RSS = "https://news.google.com/rss/search"
 
-CANDIDATES = [
-    '"הפועל ירושלים" כדורסל',        # קיים
-    '"הפועל י-ם" כדורסל',            # קיים
-    '"הפועל מידטאון ירושלים"',
-    '"מידטאון ירושלים"',
-    '"הפועל ירושלים" סל',
-    'הפועל ירושלים כדורסל יורוקאפ',
+QUERIES = [
     '"הפועל ירושלים"',
+    '"הפועל ירושלים" -כדורגל',
+    '"הפועל י-ם"',
+    '"הפועל י-ם" -כדורגל',
 ]
 
-FOOTBALL = re.compile(r"כדורגל|ליגת העל|בית\"ר|ביתר|שער|גול\b")
-CLUB = re.compile(r"הפועל\s*(ירושלים|י-ם|י״ם|מידטאון)")
+# הכותרות שכבר ידוע שהן כדורגל, מהריצות היבשות של היום
+KNOWN_SOCCER = ("מכבי פ", "שלושער", "(נוער)", "בהרכב", "שחקני הרכב")
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-have = set()
-try:
-    n = json.loads(pathlib.Path("app/data/news.json").read_text(encoding="utf-8"))
-    have = {re.sub(r"\W+", "", i["title"]) for i in n["items"]}
-    log(f"already in our file: {len(have)} headlines, newest {n['items'][0]['published'][:10]}")
-except Exception as e:
-    log("could not read our file:", e)
+def clean(s):
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", s or ""))).strip()
+
 
 cutoff = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=45)
-log(f"cutoff: {cutoff:%Y-%m-%d}")
-log("")
 
-for q in CANDIDATES:
-    url = f"{RSS}?q={urllib.parse.quote(q)}&hl=iw&gl=IL&ceid=IL:iw"
+for q in QUERIES:
+    url = RSS + "?q=" + urllib.parse.quote_plus(q) + "&hl=iw&gl=IL&ceid=IL:iw"
     try:
         r = requests.get(url, headers=UA, timeout=30)
         r.raise_for_status()
-        root = ET.fromstring(r.content)
+        r.encoding = "utf-8"
+        items = ET.fromstring(r.text.encode("utf-8")).findall(".//item")
     except Exception as e:
-        log(f'  {q!r}: ERROR {e}')
+        log(f"{q}: נפל, {e}")
         continue
-    items = root.findall(".//item")
-    kept, fresh_new, samples = 0, [], []
-    for it in items:
-        title = (it.findtext("title") or "").strip()
-        raw = (it.findtext("pubDate") or "").strip()
-        try:
-            import email.utils
-            when = email.utils.parsedate_to_datetime(raw)
-            if when.tzinfo is None:
-                when = when.replace(tzinfo=datetime.timezone.utc)
-        except Exception:
-            continue
-        if when < cutoff:
-            continue
-        if not CLUB.search(title) or FOOTBALL.search(title):
-            continue
-        kept += 1
-        key = re.sub(r"\W+", "", title)
-        if key not in have:
-            fresh_new.append((when, title))
-    fresh_new.sort(reverse=True)
-    log(f'  {q}')
-    log(f'    raw {len(items):>3} | on-topic and fresh {kept:>3} | NOT already ours {len(fresh_new):>3}')
-    for when, t in fresh_new[:4]:
-        log(f'      + {when:%Y-%m-%d}  {t[:74]}')
-    log("")
 
-log("done. nothing was written.")
+    kept, raw = [], 0
+    for it in items:
+        raw += 1
+        src = it.find("source")
+        src_raw = clean(src.text if src is not None else "")
+        title = news_feed._strip_source(clean(it.findtext("title")), src_raw)
+        when = news_feed._published(it)
+        if not title or when is None or when < cutoff:
+            continue
+        if not news_feed.about_us(title):
+            continue
+        kept.append((when, src_raw, title))
+
+    kept.sort(reverse=True)
+    log(f"===== {q} =====")
+    log(f"{raw} פריטים, {len(kept)} עוברים את הסינון הקיים")
+    for when, src, title in kept:
+        mark = "  <== חשוד ככדורגל" if any(w in title for w in KNOWN_SOCCER) else ""
+        log(f"  {when:%Y-%m-%d}  {src:<14.14} {title[:100]}{mark}")
