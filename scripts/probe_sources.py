@@ -1,83 +1,39 @@
-"""בדיקת מקורות: האם מילת שלילה בשאילתה חותכת את הכדורגל במקור.
+"""בדיקת מקורות: מה אוהד באמת מקבל עכשיו במדור החדשות.
 
-הכותרות שנכנסות בטעות הן כדורגל של הקבוצה שחולקת את השם, וחלקן כתובות
-בלי אף מילה שמסגירה את הענף: ״הפועל י-ם גברה על מכבי פ״ת״, ״השינוי
-המסתמן בהרכב מכבי תל אביב מול הפועל ירושלים״. רשימת מילים אף פעם לא
-תדביק את זה, כי כל כותרת כזאת היא מילה חדשה.
-
-אבל גוגל מחפשת בכל הכתבה, לא בכותרת. כתבה על משחק כדורגל כמעט תמיד
-מכילה את המילה כדורגל איפשהו: מדור, תגית, גוף הידיעה. אז זו השאלה
-שנמדדת כאן: מה מפילה ״-כדורגל״ בשאילתה, וכמה כתבות כדורסל אמיתיות היא
-מפילה יחד איתן.
-
-מודפס הכול, כי את התשובה קוראים בעיניים ולא סופרים.
+הקובץ בריפו תוקן ואומת, אבל האוהד לא קורא את הריפו. זה מושך את
+hapoel.site ואת גיטהאב פייג׳ס בדיוק כמו שהאפליקציה מושכת, ומדפיס מה
+חזר: כמה כותרות, מאיזה תאריך, ואם הכותרת החדשה ביותר היא של היום.
 """
 import datetime
-import email.utils
-import html
 import json
-import pathlib
-import re
-import sys
-import urllib.parse
-import xml.etree.ElementTree as ET
 
 import requests
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import news_feed
-
-UA = news_feed.UA
-RSS = "https://news.google.com/rss/search"
-
-QUERIES = [
-    '"הפועל ירושלים"',
-    '"הפועל ירושלים" -כדורגל',
-    '"הפועל י-ם"',
-    '"הפועל י-ם" -כדורגל',
+TARGETS = [
+    ("hapoel.site", "https://hapoel.site/data/news.json"),
+    ("github pages", "https://behemot46.github.io/Hapoel/data/news.json"),
 ]
-
-# הכותרות שכבר ידוע שהן כדורגל, מהריצות היבשות של היום
-KNOWN_SOCCER = ("מכבי פ", "שלושער", "(נוער)", "בהרכב", "שחקני הרכב")
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def clean(s):
-    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", s or ""))).strip()
+today = datetime.datetime.now(datetime.timezone.utc).date()
 
-
-cutoff = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=45)
-
-for q in QUERIES:
-    url = RSS + "?q=" + urllib.parse.quote_plus(q) + "&hl=iw&gl=IL&ceid=IL:iw"
+for name, url in TARGETS:
     try:
-        r = requests.get(url, headers=UA, timeout=30)
+        r = requests.get(url, timeout=30)
+        log(f"===== {name} ===== HTTP {r.status_code} · "
+            f"cache-control: {r.headers.get('cache-control', '-')}")
         r.raise_for_status()
-        r.encoding = "utf-8"
-        items = ET.fromstring(r.text.encode("utf-8")).findall(".//item")
+        d = r.json()
     except Exception as e:
-        log(f"{q}: נפל, {e}")
+        log(f"{name}: נפל, {e}")
         continue
-
-    kept, raw = [], 0
-    for it in items:
-        raw += 1
-        src = it.find("source")
-        src_raw = clean(src.text if src is not None else "")
-        title = news_feed._strip_source(clean(it.findtext("title")), src_raw)
-        when = news_feed._published(it)
-        if not title or when is None or when < cutoff:
-            continue
-        if not news_feed.about_us(title):
-            continue
-        kept.append((when, src_raw, title))
-
-    kept.sort(reverse=True)
-    log(f"===== {q} =====")
-    log(f"{raw} פריטים, {len(kept)} עוברים את הסינון הקיים")
-    for when, src, title in kept:
-        mark = "  <== חשוד ככדורגל" if any(w in title for w in KNOWN_SOCCER) else ""
-        log(f"  {when:%Y-%m-%d}  {src:<14.14} {title[:100]}{mark}")
+    items = d.get("items", [])
+    newest = items[0]["published"][:10] if items else "-"
+    log(f"{len(items)} כותרות · עודכן {d.get('updated', '-')} · "
+        f"הכי חדשה {newest}" + ("  (היום)" if newest == str(today) else ""))
+    for i in items[:6]:
+        log(f"  {i['published'][:10]}  {i.get('source', '?'):<14.14} {i['title'][:90]}")
