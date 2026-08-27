@@ -41,6 +41,7 @@ import html
 import json
 import pathlib
 import re
+import time
 import urllib.parse
 import xml.etree.ElementTree as ET
 
@@ -178,14 +179,22 @@ def _published(item):
     return d.astimezone(datetime.timezone.utc)
 
 
-def _fetch_query(q):
+def _fetch_query(q, tries=3):
+    """גוגל מחזירה 503 מדי פעם, במיוחד כששואלים אותה כמה פעמים ברצף
+    מאותה כתובת. זה חולף, אז מנסים שוב לפני שמוותרים."""
     url = FEED.format(q=urllib.parse.quote_plus(q))
     log("GET", q)
-    r = requests.get(url, headers=UA, timeout=30)
-    r.raise_for_status()
-    r.encoding = "utf-8"
-    root = ET.fromstring(r.text.encode("utf-8"))
-    return root.findall(".//item")
+    for attempt in range(1, tries + 1):
+        try:
+            r = requests.get(url, headers=UA, timeout=30)
+            r.raise_for_status()
+            r.encoding = "utf-8"
+            return ET.fromstring(r.text.encode("utf-8")).findall(".//item")
+        except Exception as e:
+            if attempt == tries:
+                raise
+            log(f"  ניסיון {attempt} נכשל ({e}), עוד רגע ננסה שוב")
+            time.sleep(attempt * 3)
 
 
 def collect():
@@ -197,8 +206,18 @@ def collect():
 
     seen, items = set(), []
     stats = {"raw": 0, "off_topic": 0, "old": 0, "blocked": 0, "dupe": 0}
+    # שאילתה אחת שנופלת היא לא סיבה לזרוק את השלוש האחרות. ב־27.8.2026
+    # גוגל החזירה 503 על הראשונה, וכל האיסוף מת איתה: המדור נשאר עם
+    # הקובץ הישן בזמן ששלוש שאילתות תקינות חיכו בתור.
+    dead = []
     for q in cfg["queries"]:
-        for it in _fetch_query(q):
+        try:
+            batch = _fetch_query(q)
+        except Exception as e:
+            dead.append(q)
+            log(f"שאילתה נפלה, ממשיכים בלעדיה: {q} ({e})")
+            continue
+        for it in batch:
             stats["raw"] += 1
             src_el = it.find("source")
             src_raw = _clean(src_el.text if src_el is not None else "")
@@ -233,6 +252,13 @@ def collect():
                 "sourceUrl": src_url,
                 "published": when.isoformat(timespec="seconds").replace("+00:00", "Z"),
             })
+
+    if dead and len(dead) == len(cfg["queries"]):
+        raise RuntimeError("כל השאילתות נפלו")
+    if dead:
+        log("שאילתה אחת" if len(dead) == 1 else f"{len(dead)} שאילתות",
+            f"מתוך {len(cfg['queries'])} לא ענתה" if len(dead) == 1
+            else f"מתוך {len(cfg['queries'])} לא ענו")
 
     items.sort(key=lambda i: i["published"], reverse=True)
     items = items[: int(cfg["maxItems"])]
