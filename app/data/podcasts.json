@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-27T13:55:20Z",
+  "updated": "2026-08-28T15:07:04Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-08-20T12:25:24Z"
+      "latest": "2026-08-27T14:27:07Z"
     },
     {
       "id": "1648115499",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "על המפה | מיקי ברקוביץ' והיכל התהילה, נועם יעקב משנה כיוון, התל אביביות פותחות עונה והישראלי שאימן את קווין דוראנט באולפן",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3nvh6v",
+      "published": "2026-08-27T14:27:07Z",
+      "duration": 5385
+    },
     {
       "showId": "1623083958",
       "show": "ספיק נ׳ רול",
@@ -182,15 +191,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3042757",
       "published": "2026-08-03T08:10:55Z",
       "duration": 7167
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "יורש העצר | אריק שטילמן באולפן",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3ms0e9",
-      "published": "2026-08-02T13:47:04Z",
-      "duration": 5070
     },
     {
       "showId": "1573775015",
