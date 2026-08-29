@@ -1871,8 +1871,16 @@ function renderGames() {
   if (state.gamesTab === "upcoming") {
     const c = el("div", "card cal-card");
     c.appendChild(text("div", "share-title", "כל המשחקים ביומן שלך"));
-    c.appendChild(text("div", "share-sub",
-      list.length + " משחקים, עם תזכורת שעתיים לפני כל אחד"));
+    // ההבטחה הזאת נכונה רק למשחק שיש לו שעה. משחק שהשעה שלו טרם נקבעה
+    // נכנס ליומן כאירוע של יום שלם ובלי תזכורת, ואסור להבטיח אחרת.
+    const timed = list.filter(g => !g.timeTbd).length;
+    const tbd = list.length - timed;
+    c.appendChild(prose("div", "share-sub", !tbd
+      ? list.length + " משחקים, עם תזכורת שעתיים לפני כל אחד"
+      : list.length + " משחקים. ל־" + timed + " מהם כבר יש שעה, ואליהם " +
+        "תיכנס תזכורת שעתיים לפני. " +
+        (tbd === 1 ? "המשחק שעוד אין לו שעה נכנס כיום שלם ביומן."
+                   : "ה־" + tbd + " שעוד אין להם שעה נכנסים כיום שלם ביומן.")));
     c.appendChild(calButton(list, "הוספה ליומן", "hapoel-season.ics"));
     c.appendChild(calNote());
     view.appendChild(c);
