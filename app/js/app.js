@@ -74,7 +74,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts, press] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts, press, playerStatus] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -94,6 +94,7 @@ async function boot() {
       loadJSON("data/news.json").catch(() => (null)),
       loadJSON("data/podcasts.json").catch(() => (null)),
       loadJSON("data/press.json").catch(() => (null)),
+      loadJSON("data/player-status.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -114,6 +115,7 @@ async function boot() {
     state.news = news;
     state.podcasts = podcasts;
     state.press = press;
+    state.playerStatus = playerStatus;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -2168,6 +2170,12 @@ function prefixHe(letter, word) {
 
 /* ---------- roster ---------- */
 
+// שחקן שלא זמין. הקובץ ידני ומצוטט, ראו app/data/player-status.json
+function statusOf(p) {
+  const all = (state.playerStatus && state.playerStatus.players) || {};
+  return all[p.slug || slugOf(p)] || null;
+}
+
 function renderRoster() {
   const r = state.roster || {};
   const players = r.players || [];
@@ -2215,6 +2223,9 @@ function renderRoster() {
     if (p.position) bits.push(p.position);
     if (p.height) bits.push(p.height + " ס״מ");
     if (bits.length) info.appendChild(text("div", "sub", bits.join(" · ")));
+    // אוהד שסורק את הסגל צריך לראות מיד מי לא משחק, בלי להיכנס לכרטיס
+    const st = statusOf(p);
+    if (st) info.appendChild(text("span", "chip out", st.label));
     row.appendChild(info);
     row.appendChild(text("div", "chevron", "‹"));
     view.appendChild(row);
@@ -2407,6 +2418,20 @@ function renderPlayer(slug) {
   card.appendChild(playerNameEl(p, "player-title"));
   if (p.position) card.appendChild(text("div", "player-pos", p.position));
   view.appendChild(card);
+
+  const status = statusOf(p);
+  if (status) {
+    const c = el("div", "card status-card");
+    c.appendChild(text("div", "status-label", status.label));
+    if (status.detail) {
+      c.appendChild(proseInto(text("div", "status-detail", ""), status.detail));
+    }
+    const from = [];
+    if (status.reported) from.push("דווח " + newsWhen(status.reported));
+    if (status.sources) from.push(status.sources);
+    if (from.length) c.appendChild(text("div", "status-src", from.join(" · ")));
+    view.appendChild(c);
+  }
 
   const prof = profileOf(p);
   if (prof) {
