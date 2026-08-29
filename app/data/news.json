@@ -1,15 +1,15 @@
 {
-  "updated": "2026-08-29T11:06:16Z",
+  "updated": "2026-08-29T15:40:21Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 1",
-    "וואלה ספורט",
     "ספורט 5",
     "סרוגים",
     "ישראל היום",
     "חרדים10",
     "בחדרי חרדים",
     "ערוץ 7",
+    "וואלה ספורט",
     "103FM",
     "חדשות 04",
     "אייס",
@@ -18,8 +18,7 @@
     "ONE",
     "Sport5",
     "כאן 11",
-    "C14",
-    "הארץ"
+    "C14"
   ],
   "items": [
     {
@@ -35,13 +34,6 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-29T09:38:55Z"
-    },
-    {
-      "title": "יחמיץ את הפועל ירושלים: חוזהו של ארויו טרם אושר בבקרה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFAyX0t0Rmo3NTZPOENXem9LODB2S282MjBxb3F1Y1lwSXNsZGs1bHU2Q1BzSWJOSzRqa0RoN1FUVHEyeFhTM0doU2ViRGEydElE?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-29T09:14:00Z"
     },
     {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
@@ -135,6 +127,13 @@
       "published": "2026-08-26T11:06:40Z"
     },
     {
+      "title": "\"לא נעבור לסדר היום\": הפועל ירושלים במסר למשטרת רחובות",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBJbDBDSFpfc0xMWjZQMzRuaDdySDVUS2hTLUhTdDlQTTdHZUFMZkNDT1gyUmNQVjUxYVRnMGdHdWtnbEdFRndLb0tQT3RLTHp4?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-26T10:32:00Z"
+    },
+    {
       "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
       "source": "סרוגים",
@@ -184,6 +183,13 @@
       "published": "2026-08-25T13:10:06Z"
     },
     {
+      "title": "ללא הפועל ירושלים: 11 הקבוצות שבדרך לרשיון יורוליג",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE43X2xHVWV4RTlRUVFqdGZYTXBwWjU2ZC1XRThCd3lTblFrZmQxMXpiRGhTZ1ZqRTBvcWFoZmR0RGNLbVlhU3Q4UFlnaEU0eS1uRm9pckQ3d2lsTTZHY1FuaEVOSEFXaU82Z3ZmMTJaSUNFdWpx?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-25T13:08:00Z"
+    },
+    {
       "title": "יותר מג'ארד הארפר: זה השחקן הכי חשוב של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NnhMcXZCMkNrajBqVURsZnl5cUN2bUxLSlJWSzV4d0k2YWN6Ym9qWG8zVmVmUlNDbjE4Q3V3WDQtZU52M0gyZWhtaFpYbWIydVZJbFRNYzBzZTUzSUxyem1XQjZxYXk0eC1nSmlaSXcydW5mek9KTVB0ONIBgwFBVV95cUxNQThyYnZDSWNfejhkVkRUOXFfLUkydi13b2h6RUdTOGhIMThhMkZQM0hiY0xPOVU1cXB0TDdNRjczQ2pfVmpTSW5Sem0wMnBnOXU3cGw0dTBsbVJsNk8xck9Sei1DYU1XMloydFIyRnZ1aWxLQWxITGJtV2VmNGpmbHZ5bw?oc=5",
       "source": "ישראל היום",
@@ -224,13 +230,6 @@
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-24T09:01:03Z"
-    },
-    {
-      "title": "אוהדי הפועל ירושלים הותקפו על ידי אוהדי מכבי ת\"א: \"ריססו גז והרביצו\"",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNd1I0X1duTGhNanQwb24taVhoYzR4MDlqLTdwLW9pUS0zUFg5UUZkd3JmcXh6U1JxZHV6UGhPV0FXN3h4VjhiYjMzRWRXdGx4bTJ2eVJDNlUtV21LclowU2JHN0VYcFlGbjd4MWlMOWtVS2JCRmd0UHZVVHZoRU1mazBhbjFYZ0FwNWZUNWh5Q2E3a3p2N1A0OHc3Y3dJQmpEemczby1CUQ?oc=5",
-      "source": "הארץ",
-      "sourceUrl": "https://www.haaretz.co.il",
-      "published": "2026-08-24T06:18:00Z"
     }
   ]
 }
