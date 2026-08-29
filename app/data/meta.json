@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-28T15:07:51+00:00",
+  "lastUpdated": "2026-08-29T06:35:16+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -19,8 +19,8 @@
       "detail": "עודכן בהצלחה"
     },
     "news": {
-      "ok": true,
-      "detail": "עודכן בהצלחה"
+      "ok": false,
+      "detail": "כל השאילתות נפלו"
     },
     "podcasts": {
       "ok": true,
