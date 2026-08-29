@@ -84,5 +84,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          echo "הנתונים ישנים ב־${{ steps.age.outputs.hours }} שעות, מזמן איסוף."
+          if [ "${{ steps.age.outputs.stale }}" = "yes" ]; then
+            echo "הנתונים ישנים ב־${{ steps.age.outputs.hours }} שעות, מזמן איסוף."
+          else
+            # אחרת השורה הזאת הייתה משקרת ללוג: force מזמן דווקא כשטרי
+            echo "הנתונים טריים (${{ steps.age.outputs.hours }} שעות), מזמן איסוף כי התבקשה בדיקה."
+          fi
           gh workflow run update-data.yml --ref main -R "$GITHUB_REPOSITORY"
