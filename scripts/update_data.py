@@ -253,8 +253,14 @@ def parse_team_games(soup):
             day, month, year = (int(x) for x in dm.groups())
             if year < 100:
                 year += 2000
+            # שעה חסרה היא לא 20:00. עד היום היא הייתה: המשחק מול מכבי
+            # אשדוד ב־8.9 הופיע אצלנו כ־20:00 בזמן שאתר הליגה עוד לא
+            # פרסם שעה בכלל, ואוהד שקרא את זה לא היה יכול לדעת שהמספר
+            # הזה הומצא אצלנו. כשהליגה פרסמה, התברר ש־17:00. אז אותה
+            # מוסכמה כמו בלוח של המועדון: חצות והערה גלויה, ולא ניחוש
+            # שנראה כמו עובדה.
             tm = TIME_RE.search(cell(j_time))
-            hh, mm = (int(x) for x in tm.groups()) if tm else (20, 0)
+            hh, mm = (int(x) for x in tm.groups()) if tm else (0, 0)
             home_raw, away_raw = cell(j_home), cell(j_away)
             if not home_raw or not away_raw:
                 continue
@@ -265,7 +271,7 @@ def parse_team_games(soup):
             sm = SCORE_RE.search(cell(j_score))
             opp = away_raw if is_us(home_raw) else home_raw
 
-            games.append({
+            game = {
                 "id": f"{year:04d}{month:02d}{day:02d}-{re.sub(r'[^א-ת]', '', opp)[:12]}",
                 "date": israel_iso(year, month, day, hh, mm),
                 "competition": cell(j_stage) or "ליגת ווינר סל",
@@ -275,7 +281,10 @@ def parse_team_games(soup):
                 "status": "finished" if sm else "scheduled",
                 "homeScore": int(sm.group(1)) if sm else None,
                 "awayScore": int(sm.group(2)) if sm else None,
-            })
+            }
+            if not tm:
+                game["note"] = "שעת הפתיחה טרם נקבעה"
+            games.append(game)
     return games
 
 def find_team_link():
