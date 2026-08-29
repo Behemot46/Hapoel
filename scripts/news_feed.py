@@ -86,9 +86,60 @@ NOT_US = ("כדורגל", "בית\"ר", "ביתר ירושלים", "ליגת ה�
 # כדורגל, ואין בה אף מילה שמסגירה את זה חוץ מהשם של היריבה. כל שם כאן
 # הוצלב מול טבלת ליגת ווינר סל כדי לוודא שהוא לא קבוצת כדורסל שאנחנו
 # משחקים מולה.
-NOT_US_CLUBS = ("מכבי פתח תקווה", "מכבי פ\"ת", "מכבי פ״ת", "מכבי פ''ת",
+# מועדוני כדורגל ישראליים. כותרת שמזכירה אותנו לצד אחד מהם היא כדורגל,
+# וזה הכלל היחיד שתופס כותרת כמו ״מדמון ייעדר מול הפועל פ״ת״, שאין בה אף
+# מילה מהכדורגל חוץ מהשם של היריבה.
+#
+# **הרשימה הזאת לא נסמכת על הזיכרון שלי לגבי מי משחק באיזה ענף.** לפני
+# שהיא מופעלת היא מוצלבת מול יקום הכדורסל שלנו, כלומר טבלת הליגה
+# והיריבות שלנו העונה, וכל שם שנמצא שם יורד ממנה. כך שם שמשמש את שני
+# הענפים, או מועדון שיעלה לליגת הכדורסל בעונה הבאה, לא יחסום לנו חדשות
+# כדורסל אמיתיות. מה שיורד נרשם בלוג של האיסוף.
+SOCCER_CLUBS = ("מכבי פתח תקווה", "מכבי פ\"ת", "מכבי פ״ת", "מכבי פ''ת",
+                "הפועל פתח תקווה", "הפועל פ\"ת", "הפועל פ״ת", "הפועל פ''ת",
                 "הפועל רעננה", "בני סכנין", "עירוני קרית שמונה",
-                "מכבי בני ריינה", "הפועל כפר סבא")
+                "מכבי בני ריינה", "הפועל כפר סבא", "מכבי נתניה",
+                "עירוני טבריה", "הפועל חדרה", "מ.ס. אשדוד", "מ.ס אשדוד",
+                "הפועל עכו", "הפועל ניר רמת השרון", "מכבי הרצליה",
+                "הפועל רמת גן", "הפועל נוף הגליל", "הפועל אום אל פחם",
+                "הפועל ראשון לציון", "מכבי חיפה", "הפועל חיפה",
+                "מכבי קריית ים", "הפועל כפר שלם", "הפועל ירושלים בכדורגל")
+
+
+def _our_basketball_world():
+    """השמות שאנחנו חיים בתוכם: טבלת הליגה והיריבות שלנו העונה."""
+    names = set()
+    for fn, key in (("standings.json", "rows"), ("games.json", "games")):
+        try:
+            d = json.loads((DATA / fn).read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for row in (d.get(key) or []):
+            for k in ("team", "home", "away"):
+                v = (row.get(k) or "").strip()
+                if v:
+                    names.add(v)
+    return names
+
+
+_clubs_cache = None
+
+
+def soccer_clubs():
+    global _clubs_cache
+    if _clubs_cache is not None:
+        return _clubs_cache
+    world = _our_basketball_world()
+    live, dropped = [], []
+    for name in SOCCER_CLUBS:
+        if any(name in team or team in name for team in world):
+            dropped.append(name)
+        else:
+            live.append(name)
+    if dropped:
+        log("לא ייחסמו, כי הם ביקום הכדורסל שלנו:", ", ".join(dropped))
+    _clubs_cache = tuple(live)
+    return _clubs_cache
 
 # תוצאה בכדורסל לא נגמרת 2-1. כותרת עם שני מספרים קטנים היא כדורגל, והיא
 # עוברת את רשימת המילים בקלות כי אפשר לכתוב אותה בלי אף מילה מהכדורגל.
@@ -163,7 +214,7 @@ def about_us(title):
     """True when the headline itself is about our basketball club."""
     if not any(w in title for w in US):
         return False
-    if any(w in title for w in NOT_US) or any(w in title for w in NOT_US_CLUBS):
+    if any(w in title for w in NOT_US) or any(w in title for w in soccer_clubs()):
         return False
     return not _soccer_score(title)
 

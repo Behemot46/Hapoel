@@ -953,6 +953,21 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
 .pod-group-name { font-size: 16px; font-weight: 800; }
 .pod-card .link-btn { border-top: 1px solid var(--line); }
 
+/* שחקן שלא זמין */
+.chip.out {
+  display: inline-block;
+  margin-top: 4px;
+  background: var(--red-soft);
+  color: var(--red-text);
+  border: 1px solid var(--red);
+  font-size: 12px; font-weight: 700;
+  padding: 1px 8px; border-radius: 999px;
+}
+.status-card { border-color: var(--red); background: var(--red-soft); }
+.status-label { font-weight: 800; font-size: 15px; color: var(--red-text); }
+.status-detail { margin-top: 4px; font-size: 14.5px; line-height: 1.5; }
+.status-src { margin-top: 6px; font-size: 12.5px; color: var(--muted); }
+
 /* משחק שהשעה שלו טרם נקבעה */
 .end .t.tbd { font-size: 13px; font-weight: 700; color: var(--muted); }
 .when .time.tbd { color: var(--muted); font-weight: 600; }
