@@ -253,8 +253,21 @@ def parse_team_games(soup):
             day, month, year = (int(x) for x in dm.groups())
             if year < 100:
                 year += 2000
+            # שעה חסרה היא לא 20:00. עד היום היא הייתה: המשחק מול מכבי
+            # אשדוד ב־8.9 הופיע אצלנו כ־20:00 בזמן שאתר הליגה עוד לא
+            # פרסם שעה בכלל, ואוהד שקרא את זה לא היה יכול לדעת שהמספר
+            # הזה הומצא אצלנו. כשהליגה פרסמה, התברר ש־17:00. אז אותה
+            # מוסכמה כמו בלוח של המועדון: אמצע היום והערה גלויה, ולא ניחוש
+            # שנראה כמו עובדה. נמדד ב־29.8.2026: 26 מ־28 השורות בעמוד
+            # מגיעות עם תא שעה ריק.
             tm = TIME_RE.search(cell(j_time))
-            hh, mm = (int(x) for x in tm.groups()) if tm else (20, 0)
+            # 12:00 ולא חצות: האפליקציה מציגה תאריכים בשעון של המכשיר,
+            # וחצות בישראל היא היום הקודם אצל אוהד שנמצא ממערב לנו.
+            hh, mm = (int(x) for x in tm.groups()) if tm else (12, 0)
+            # והליגה גם אומרת בעצמה מתי המועד עוד לא סופי, בתוך תא
+            # התאריך: ״22/11/2026לא סופי״. עד היום המילה הזאת נזרקה,
+            # והתאריך הוצג לאוהד כאילו הוא סגור.
+            provisional = "לא סופי" in cell(j_date)
             home_raw, away_raw = cell(j_home), cell(j_away)
             if not home_raw or not away_raw:
                 continue
@@ -265,7 +278,7 @@ def parse_team_games(soup):
             sm = SCORE_RE.search(cell(j_score))
             opp = away_raw if is_us(home_raw) else home_raw
 
-            games.append({
+            game = {
                 "id": f"{year:04d}{month:02d}{day:02d}-{re.sub(r'[^א-ת]', '', opp)[:12]}",
                 "date": israel_iso(year, month, day, hh, mm),
                 "competition": cell(j_stage) or "ליגת ווינר סל",
@@ -275,7 +288,20 @@ def parse_team_games(soup):
                 "status": "finished" if sm else "scheduled",
                 "homeScore": int(sm.group(1)) if sm else None,
                 "awayScore": int(sm.group(2)) if sm else None,
-            })
+            }
+            if provisional and not tm:
+                game["note"] = "המועד לא סופי, והשעה טרם נקבעה"
+            elif provisional:
+                game["note"] = "המועד לא סופי"
+            elif not tm:
+                game["note"] = "שעת הפתיחה טרם נקבעה"
+            if not tm:
+                # דגל מפורש, כי ההערה היא טקסט חופשי והאפליקציה צריכה
+                # לדעת בוודאות מתי אסור לה להדפיס שעון
+                game["timeTbd"] = True
+            if provisional:
+                game["provisional"] = True
+            games.append(game)
     return games
 
 def find_team_link():

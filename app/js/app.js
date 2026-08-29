@@ -485,15 +485,30 @@ function gameLocation(g) {
   return isHome(g) ? ((state.club && state.club.arena) || "") : "";
 }
 
+// yyyymmdd in Israel time, for an event that owns a day and not an hour
+function icsDay(d, shift) {
+  const t = new Date(d.getTime() + (shift || 0));
+  const p = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Jerusalem", year: "numeric", month: "2-digit", day: "2-digit",
+  }).formatToParts(t).reduce((a, x) => (a[x.type] = x.value, a), {});
+  return p.year + p.month + p.day;
+}
+
 function vevent(g, stamp) {
   const start = new Date(g.date);
   const end = new Date(start.getTime() + GAME_MINUTES * 60000);
+  // משחק שהשעה שלו טרם נקבעה נכנס ליומן כאירוע של יום שלם. אירוע
+  // בשעה שהומצאה אצלנו הוא הדבר הגרוע ביותר שאפשר לשתול ביומן של מישהו,
+  // כי הוא נראה שם בדיוק כמו פגישה אמיתית.
+  const allDay = !!g.timeTbd;
   const lines = [
     "BEGIN:VEVENT",
     "UID:" + icsUid(g),
     "DTSTAMP:" + stamp,
-    "DTSTART:" + icsStamp(start),
-    "DTEND:" + icsStamp(end),
+    allDay ? "DTSTART;VALUE=DATE:" + icsDay(start)
+           : "DTSTART:" + icsStamp(start),
+    allDay ? "DTEND;VALUE=DATE:" + icsDay(start, 24 * 3600 * 1000)
+           : "DTEND:" + icsStamp(end),
     "SUMMARY:" + icsEscape("🏀 " + gameTitle(g)),
     "DESCRIPTION:" + icsEscape(
       g.competition + " · " + (isHome(g) ? "משחק בית" : "משחק חוץ") +
@@ -501,15 +516,18 @@ function vevent(g, stamp) {
   ];
   const loc = gameLocation(g);
   if (loc) lines.push("LOCATION:" + icsEscape(loc));
-  lines.push(
-    "URL:" + appUrl(),
-    // one reminder, two hours before, enough time to get to מלחה
-    "BEGIN:VALARM",
-    "ACTION:DISPLAY",
-    "DESCRIPTION:" + icsEscape("היום " + gameTitle(g)),
-    "TRIGGER:-PT2H",
-    "END:VALARM",
-    "END:VEVENT");
+  lines.push("URL:" + appUrl());
+  // תזכורת שעתיים לפני שעה שלא פורסמה היא תזכורת לשעה מומצאת
+  if (!allDay) {
+    lines.push(
+      // one reminder, two hours before, enough time to get to מלחה
+      "BEGIN:VALARM",
+      "ACTION:DISPLAY",
+      "DESCRIPTION:" + icsEscape("היום " + gameTitle(g)),
+      "TRIGGER:-PT2H",
+      "END:VALARM");
+  }
+  lines.push("END:VEVENT");
   return lines;
 }
 
@@ -1672,9 +1690,11 @@ function renderHome() {
     const when = el("div", "when");
     const d = new Date(next.date);
     when.appendChild(text("span", "", fmtFull.format(d)));
-    when.appendChild(text("span", "time", fmtTime.format(d)));
+    if (next.timeTbd) when.appendChild(text("span", "time tbd", "השעה טרם נקבעה"));
+    else when.appendChild(text("span", "time", fmtTime.format(d)));
     c.appendChild(when);
-    c.appendChild(countdownEl(next));
+    // ספירה לאחור לחצות של אותו יום היא ספירה למועד שאיש לא פרסם
+    if (!next.timeTbd) c.appendChild(countdownEl(next));
     const meta = el("div", "meta-row");
     meta.appendChild(text("span",
       "badge" + (isHome(next) && !isDisplacedHome(next) ? " home" : "") +
@@ -1937,6 +1957,10 @@ function gameRow(g) {
   if (g.status === "finished") {
     end.appendChild(text("div", "t score", ourScore(g) + "-" + theirScore(g)));
     end.appendChild(text("span", "chip " + (won(g) ? "win" : "loss"), won(g) ? "נ׳" : "ה׳"));
+  } else if (g.timeTbd) {
+    // ״00:00״ נראה לאוהד כמו שעה אמיתית בדיוק כמו ״20:00״ שהומצאה קודם
+    end.appendChild(text("div", "t tbd", "טרם"));
+    end.appendChild(text("span", "chip", "נקבע"));
   } else {
     end.appendChild(text("div", "t", fmtTime.format(d)));
   }
