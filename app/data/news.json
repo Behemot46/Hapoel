@@ -1,7 +1,9 @@
 {
-  "updated": "2026-08-29T06:41:42Z",
+  "updated": "2026-08-29T09:49:44Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ספורט 1",
+    "ספורט 5",
     "וואלה ספורט",
     "סרוגים",
     "ישראל היום",
@@ -10,10 +12,8 @@
     "ערוץ 7",
     "103FM",
     "חדשות 04",
-    "ספורט 1",
     "אייס",
     "ynet",
-    "ספורט 5",
     "ישראל ספורט",
     "ONE",
     "Sport5",
@@ -23,11 +23,32 @@
   ],
   "items": [
     {
+      "title": "ארויו לא בסגל הפועל פ\"ת לקראת הפועל ירושלים: מה מעכב את הבכורה שלו?",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBaZTV0OUdfVHBuOC1Calo2aldRT05IdGtITnlzTThib0Y1RDVUeTNRSHhfRHZqTHljNVJQWkd1bVJ3SFhQNV9wUzEyWDZHMnRfbUJwM2xZNHpPalA3RE12YmxibFlhcjN0VmgySS00d2tfRUgzZkJFb2RR?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-29T09:38:55Z"
+    },
+    {
+      "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-29T08:52:36Z"
+    },
+    {
       "title": "הפועל ירושלים נמצאת בדרך להחלטה קריטית לעונה הקרובה",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1RZ3dmaV9PVDJsZHEwU1UzU2xLaE13d0VnZmh3cjd4bXhudVFRSVY5V0dQT0R3SzlFYU9nM3p0VTRVRWJNQWlCckVxV3c2MHkt?oc=5",
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-29T05:44:50Z"
+      "published": "2026-08-29T05:45:00Z"
+    },
+    {
+      "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ295bjdtSjFvekl2d2ZCSG01WTlKRTdiOHk3c1N3ajF0NjREWFg4dXhFSm1QclowWThVZTBpNXlHeWpGUlJFM0pRb2x0eUxIVkM1WHlrMloyZXktcVptRTMzZ1YyZTEyQnNqeVVtUlBlMS1WMk9lb25qZnBrU0I0eF9CS0NBc1JNakExXzRVc3FRUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-29T05:42:28Z"
     },
     {
       "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
@@ -210,27 +231,6 @@
       "source": "הארץ",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-08-24T06:18:00Z"
-    },
-    {
-      "title": "הפועל ירושלים תוקפת: \"אוהדינו הותקפו על ידי אוהדי מכבי תל אביב\"",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5fdmhIdmpuZ0tOQS1oZHZpejdIc0xidTZYUThnOFNVMUtPTEJwMlhJRXN1c0RMcUh5QUdnSmZ2WjJhMXYtV2xBdjQ2YlhiOEplUXBROTIxdURMeUhaUEJnVndTVFBFNkF0RjFlM3YwNk03Q0U4cjNVRjFB?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-24T05:01:38Z"
-    },
-    {
-      "title": "הפועל י-ם: \"דורשים מהמשטרה לטפל בפורעים\"",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBPQjBqYlBnRWVoME5RbWhuYkpqSEgydld4cjBEbVVNZk9LZ1FvVjlKbVQ2SmdMOTBSRWRKdmxVMU50YlNpRHRuYWdKX1dDSy1FUWJobk5fMGRfejhBMWFkaVZ0eS0wczI3MjYydTMtbW4?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-23T21:57:40Z"
-    },
-    {
-      "title": "אוהדי הפועל ירושלים טוענים: \"תקפו אותנו בגז פלפל ואלות\"",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBmLVBOV3Bhai1Ccm5DQlUxc2tMMTQ1VVJCbk9iWkRwRWlFdTRmbmVTOWFqNWhfZ1hlN3FtbWk3OGZWbHFtSzdqUkJtOTRVZ0NwWkMtakZ6QmJTcF92RUdLSG9GVXJrc1RkU0pmRWxn?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-23T20:57:54Z"
     }
   ]
 }
