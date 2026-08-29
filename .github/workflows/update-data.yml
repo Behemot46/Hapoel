@@ -2,17 +2,33 @@ name: עדכון נתונים אוטומטי
 
 on:
   schedule:
-    # five times a day: ~06:00, ~08:00, ~11:00, ~14:00, ~16:00 Israel time.
-    # Deliberately outside the live-score window (15:00-22:00 UTC), a deploy
-    # rebuilds gh-pages from scratch and would drop live.json mid-game.
-    # The morning and midday runs were added for the news feed: a fixture
-    # changes twice a season, a headline changes twice a morning.
-    - cron: '0 3,5,8,11,13 * * *'
+    # כל שעתיים, 03:23 עד 13:23 UTC, כלומר 06:23 עד 16:23 שעון ישראל.
+    #
+    # **הדקה 23 היא לא קפריזה.** גיטהאב מתעדת שריצות מתוזמנות נדחות
+    # ונופלות בשעות עומס, ושתחילת כל שעה עגולה היא שיא העומס, ולכן ממליצה
+    # במפורש לתזמן בדקה אחרת. עד 29.8.2026 התזמון היה על הדקה 0, ובשלושה
+    # ימים נורו 6 סלוטים מתוך 15. הנתונים היו ישנים ב־16.5 שעות ב־27.8
+    # וב־15.4 שעות ב־29.8.
+    #
+    # לוח קבוע של כל שעתיים ולא חמישה סלוטים מפוזרים, כדי ש״כמה זמן סביר
+    # שיעברו בלי עדכון״ תהיה שאלה עם תשובה אחת. השומר ב־watchdog.yml
+    # נשען על זה.
+    #
+    # הערב נשאר פנוי בכוונה: חלון התוצאה החיה הוא 15:00-22:00 UTC, ואין
+    # סיבה להוסיף שם רעש של בנייה מחדש של האתר בזמן משחק.
+    - cron: '23 3-13/2 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
   actions: write
+
+# השומר עלול לזמן ריצה בזמן שריצה מתוזמנת כבר רצה. שתי ריצות במקביל
+# נלחמות על אותו push, וה־rebase למטה אמנם יטפל בזה, אבל עדיף פשוט לא
+# להגיע לשם.
+concurrency:
+  group: update-data
+  cancel-in-progress: false
 
 jobs:
   update:

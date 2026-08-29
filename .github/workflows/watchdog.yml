@@ -1,0 +1,88 @@
+name: שומר רעננות
+
+# ריצה מתוזמנת שלא התחילה בכלל לעולם לא תהיה אדומה. זה לא תיאורטי: בין
+# 26.8 ל־29.8.2026 נורו 6 סלוטים מתוך 15, ופעמיים הנתונים באתר היו ישנים
+# ביותר מ־15 שעות בלי שאף ריצה נכשלה ובלי שאף התראה יצאה. הדבר היחיד
+# שסיפר על זה היה בן אדם שהסתכל.
+#
+# אי אפשר להכריח את גיטהאב לירות סלוט. אפשר לבקש בדקה פחות עמוסה (וזה
+# מה שנעשה ב־update-data.yml), ואפשר לשים שומר שמזהה את החֶסֶר ומתקן
+# אותו לבד. זה השומר.
+#
+# הוא רץ חצי שעה אחרי כל סלוט של איסוף, קורא כמה זמן עבר מאז העדכון
+# האחרון, ואם עבר יותר מדי הוא מזמן איסוף. כשהכול תקין הוא לא עושה כלום
+# ולא כותב כלום.
+#
+# למה זה עובד: השומר והאיסוף הם שני תזמונים נפרדים, וגיטהאב מפילה אותם
+# באופן בלתי תלוי. שניהם ייפלו יחד הרבה יותר נדיר מכל אחד לחוד.
+
+on:
+  schedule:
+    # חצי שעה אחרי כל סלוט של update-data (שרץ ב־23 של כל שעה זוגית),
+    # ושוב בדקה לא עגולה מאותה סיבה בדיוק.
+    - cron: '53 3-13/2 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'לזמן איסוף גם אם הנתונים טריים, כדי לבדוק שהשומר באמת מזמן'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: watchdog
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: כמה זמן הנתונים ישנים
+        id: age
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import datetime
+          import json
+          import pathlib
+
+          # הסלוטים רצים כל שעתיים, והשומר בודק חצי שעה אחרי כל אחד. אם
+          # הסלוט האחרון נורה, הגיל כאן הוא כחצי שעה. אם הוא הופל, הגיל
+          # הוא שעתיים וחצי. הסף באמצע, ורחוק משני הצדדים.
+          LIMIT_HOURS = 1.5
+
+          p = pathlib.Path("app/data/meta.json")
+          now = datetime.datetime.now(datetime.timezone.utc)
+          try:
+              meta = json.loads(p.read_text(encoding="utf-8"))
+              last = datetime.datetime.fromisoformat(meta["lastUpdated"])
+              hours = (now - last).total_seconds() / 3600
+              print(f"hours={hours:.2f}")
+              print(f"stale={'yes' if hours > LIMIT_HOURS else 'no'}")
+              print(f"last={meta['lastUpdated']}")
+          except Exception as e:
+              # קובץ חסר או שבור הוא לא סיבה לשתוק, הוא סיבה לאסוף
+              print("hours=-1")
+              print("stale=yes")
+              print(f"last=unreadable: {e}")
+          PY
+
+      - name: מה נמצא
+        run: |
+          echo "עודכן לאחרונה: ${{ steps.age.outputs.last }}"
+          echo "גיל בשעות: ${{ steps.age.outputs.hours }}"
+          echo "ישן מדי: ${{ steps.age.outputs.stale }}"
+
+      - name: לזמן איסוף כשחסר עדכון
+        # שומר שאיש לא ראה אותו מזמן איסוף הוא שומר שאיש לא יודע אם הוא
+        # עובד. force מריץ את הענף הזה גם כשהנתונים טריים.
+        if: steps.age.outputs.stale == 'yes' || inputs.force
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "הנתונים ישנים ב־${{ steps.age.outputs.hours }} שעות, מזמן איסוף."
+          gh workflow run update-data.yml --ref main -R "$GITHUB_REPOSITORY"
