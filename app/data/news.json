@@ -1,10 +1,10 @@
 {
-  "updated": "2026-08-29T09:49:44Z",
+  "updated": "2026-08-29T11:06:16Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 1",
-    "ספורט 5",
     "וואלה ספורט",
+    "ספורט 5",
     "סרוגים",
     "ישראל היום",
     "חרדים10",
@@ -23,6 +23,13 @@
   ],
   "items": [
     {
+      "title": "מכה להפועל ירושלים: מדמון ייעדר מול הפועל פ\"ת – זה מי שנכנס לסגל",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE4wNDZUMWRxTlZ6NmlGclRaWFVndEZ6UGNyWXk3alFhbWZyWFZPUXhLMkZmZzhjVFZrNVQ1NzJZUEtVaHZJUE5iT1ZuX1RkNVUwaTBreWJ1Q2JlQU9nUllaSHROQk1XY0o0dVBZZzlvMjhYZk9ERjhqckRR?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-29T10:16:03Z"
+    },
+    {
       "title": "ארויו לא בסגל הפועל פ\"ת לקראת הפועל ירושלים: מה מעכב את הבכורה שלו?",
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBaZTV0OUdfVHBuOC1Calo2aldRT05IdGtITnlzTThib0Y1RDVUeTNRSHhfRHZqTHljNVJQWkd1bVJ3SFhQNV9wUzEyWDZHMnRfbUJwM2xZNHpPalA3RE12YmxibFlhcjN0VmgySS00d2tfRUgzZkJFb2RR?oc=5",
       "source": "ספורט 1",
@@ -30,18 +37,18 @@
       "published": "2026-08-29T09:38:55Z"
     },
     {
+      "title": "יחמיץ את הפועל ירושלים: חוזהו של ארויו טרם אושר בבקרה",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFAyX0t0Rmo3NTZPOENXem9LODB2S282MjBxb3F1Y1lwSXNsZGs1bHU2Q1BzSWJOSzRqa0RoN1FUVHEyeFhTM0doU2ViRGEydElE?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-29T09:14:00Z"
+    },
+    {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-29T08:52:36Z"
-    },
-    {
-      "title": "הפועל ירושלים נמצאת בדרך להחלטה קריטית לעונה הקרובה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1RZ3dmaV9PVDJsZHEwU1UzU2xLaE13d0VnZmh3cjd4bXhudVFRSVY5V0dQT0R3SzlFYU9nM3p0VTRVRWJNQWlCckVxV3c2MHkt?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-29T05:45:00Z"
     },
     {
       "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
@@ -126,13 +133,6 @@
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-08-26T11:06:40Z"
-    },
-    {
-      "title": "\"לא נעבור לסדר היום\": הפועל ירושלים במסר למשטרת רחובות",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBJbDBDSFpfc0xMWjZQMzRuaDdySDVUS2hTLUhTdDlQTTdHZUFMZkNDT1gyUmNQVjUxYVRnMGdHdWtnbEdFRndLb0tQT3RLTHp4?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-26T10:32:00Z"
     },
     {
       "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
