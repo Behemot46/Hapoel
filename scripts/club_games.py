@@ -123,9 +123,13 @@ def parse_games(html, season_start, log=None):
         a, b = _score(_txt(g.select_one(".score")))
         played = a is not None
 
-        # השעה נכתבת בשעון ישראל. משחק בלי שעה נשמר על חצות עם סימון,
+        # השעה נכתבת בשעון ישראל. משחק בלי שעה נשמר על אמצע היום עם סימון,
         # כי תאריך נכון בלי שעה עדיף על שעה מומצאת.
-        hh, mm = time if time else (0, 0)
+        # למה 12:00 ולא חצות: האפליקציה מציגה תאריכים בשעון של המכשיר,
+        # ולכן חצות בישראל היא היום הקודם אצל כל אוהד שנמצא ממערב לנו.
+        # אמצע היום שורד כל אזור זמן סביר, והשעה עצמה לא מוצגת ממילא כי
+        # timeTbd מסמן שאין מה להציג.
+        hh, mm = time if time else (12, 0)
         when = datetime.datetime(date.year, date.month, date.day, hh, mm,
                                  tzinfo=datetime.timezone(datetime.timedelta(hours=3)))
         opp = away_raw if is_us(home_raw) else home_raw
@@ -144,6 +148,8 @@ def parse_games(html, season_start, log=None):
         }
         if not time:
             game["note"] = "שעת הפתיחה טרם נקבעה"
+            # דגל מפורש לצד ההערה, כדי שהאפליקציה תדע לא להדפיס שעון
+            game["timeTbd"] = True
         out.append(game)
     return out
 

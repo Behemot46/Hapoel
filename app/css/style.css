@@ -953,6 +953,10 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
 .pod-group-name { font-size: 16px; font-weight: 800; }
 .pod-card .link-btn { border-top: 1px solid var(--line); }
 
+/* משחק שהשעה שלו טרם נקבעה */
+.end .t.tbd { font-size: 13px; font-weight: 700; color: var(--muted); }
+.when .time.tbd { color: var(--muted); font-weight: 600; }
+
 /* מי מסקר את הקבוצה */
 .section-title.small { font-size: 13.5px; color: var(--muted); margin: 18px 0 8px; }
 .press-card { padding: 0; }
