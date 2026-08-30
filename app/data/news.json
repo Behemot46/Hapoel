@@ -1,8 +1,7 @@
 {
-  "updated": "2026-08-30T04:03:35Z",
+  "updated": "2026-08-30T04:07:17Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "וואלה ספורט",
     "ספורט 5",
     "ספורט 1",
     "סרוגים",
@@ -21,13 +20,6 @@
     "כל העיר"
   ],
   "items": [
-    {
-      "title": "יחמיץ את הפועל ירושלים: חוזהו של ארויו טרם אושר בבקרה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFAyX0t0Rmo3NTZPOENXem9LODB2S282MjBxb3F1Y1lwSXNsZGs1bHU2Q1BzSWJOSzRqa0RoN1FUVHEyeFhTM0doU2ViRGEydElE?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-29T09:14:00Z"
-    },
     {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
@@ -230,6 +222,13 @@
       "source": "כל העיר",
       "sourceUrl": "https://www.kolhair.co.il",
       "published": "2026-08-18T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHc?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-17T07:00:00Z"
     }
   ]
 }
