@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-30T04:07:17Z",
+  "updated": "2026-08-30T09:20:40Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -16,16 +16,36 @@
     "ישראל ספורט",
     "ONE",
     "C14",
-    "מועדון הכדורגל מכבי תל אביב",
     "כל העיר"
   ],
   "items": [
+    {
+      "title": "\"עד מתי נכיל את זה?\": זעם בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE56MXNNVlBsb0RTdVNYS2lweWpDekEtR3U0bDRIekpxRHM4ekZZTXNpN2ZjQU5vSlVYOTFNd0h6UDFSX2VQMjJWUmo0Yy1vdzQzYkJfcFVqaGNNaFZtcU56dDlfR0hhRkNLZkNxWHRuRDc?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-30T08:20:00Z"
+    },
+    {
+      "title": "הפועל ירושלים עדיין בהלם מההחלטה של דוד פוקסמן",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE82VTMtdm9iODVyMmRmOGEyZDE5aXVMWWRRQVRJdFBJS1I4RER3UkVRZ1VsRlJGWHdHVThkVmpKcTJQUy1KZVZIQ04xZkVFUWpkN3JhUVZ4b3NWczdhckV3Z3dtU0ZvNnlITnFUV18wWWhiMVJPWE1CaTV3?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-30T04:32:53Z"
+    },
     {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-29T08:52:36Z"
+    },
+    {
+      "title": "דימה סקפינצב: \"כן, יש תחושת פספוס. הפועל ירושלים לא רצתה שאשאר\"",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1oQS1FTUpiTVJRRzZUODZKSVBwdkI3X0JOVUJKRmpfNlQtZHVhV0t5MzlxN012ckJoRFo5WnU2Y2N1SDg3VHlmUGI0cWdUc3RjTkdONG1TZk05Q3hTaGJoUFJESUljajdjTHpxalR1QlR6Zw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-29T06:58:00Z"
     },
     {
       "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
@@ -119,13 +139,6 @@
       "published": "2026-08-26T05:45:00Z"
     },
     {
-      "title": "הפועל ירושלים מתרחקת מהיורוליג: 11 הקבוצות שהליגה רוצה",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE55MEVqWmRFaWdJQU1hZ0s3Q3NjbklSZ0diU1E1d1ZyUWtyNFlqSHBZUDVZZU5OZ2t1Zm5kS0lyNGVucVBEMm91b1dqaVZkcmh6ZzFCXzkxQ0RQZTZ0aGxxeTdtQ2dSQ042V2xxN1FEOEpocmxpdTcxMGU2MNIBgwFBVV95cUxOdmlyU2pERnlvNmNjLXA0aGxlc1FNYUVvbDdmMUFsVEd5aDZvRG92Q0xFTDBXQW9DUUtlVFJtMXBXdThlYzE1cTRjRnV2WEF2OHdGeHp5bFh6R3QtMTduSmxkR0dDM3R3b21aS2pldzFmZXhXMF9Ja25qRng0ZEpqdkhiZw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-25T16:23:48Z"
-    },
-    {
       "title": "הפועל י-ם השיקה את המדים החדשים לעונת 2026/27",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE44VHRKeHJxbHhZUWpoYUJRVmU2MmdHWVVwdF9waldyQW9JM21JOXZ2VDVxZ2ZGRWVXYkdlNXVsVGJzeThHSThWVzNSWklSemU2WXpv?oc=5",
       "source": "ONE",
@@ -210,25 +223,11 @@
       "published": "2026-08-23T07:17:00Z"
     },
     {
-      "title": "מכירת הכרטיסים למשחק מול הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMi2wJBVV95cUxOOGxyQ0NYX09BMDZzQ3BnRGl1U2ZvRlRqd3E4MVFuM2toalI3ZnNRQndyelo4MGROTWtrb01zODBRT0V3QzRpWnhMT2p3MDZMSE9uSm12X1VwZE1DUTdlZ040VGZJeTFYbTBUXzJxLXd6TkxCc0NmbXNIaklEcS0tbVM0NEQzT19LcHhUS0R3Q1oyWVVnaDVyUkg0V0hPZURuLTQ2TmVsWk9NdVdQS1RGUklQbWVaZlRMdzFHbHNnTHAyaHZwQkt6eVBfRjFvU1VqMGlhcVkyeDZKYkxublFRakZDeF9NQzFqdEpGY1VuQnhBcVRua2hfUFZ4MHFfTmV4NFBNVDNaU0dCdS05QXlCNnFNRkNvZEJqel9wUTlyelBwSW9IT0JIRy1Uemk0Zl84MnU2NE0ydFd2UkJWN1VYMzB4SnB6Njd3Ykx4cEtHTG5MUzIyZ0l2ODFUVQ?oc=5",
-      "source": "מועדון הכדורגל מכבי תל אביב",
-      "sourceUrl": "https://www.maccabi-tlv.co.il",
-      "published": "2026-08-18T07:00:00Z"
-    },
-    {
       "title": "הזרים נחתו, הציפיות בשמיים: הפועל ירושלים סימנה מטרה ברורה",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5yWEIxVnMwaW5taWdELW5iUUdKMXFlMkg1UEZ0UXFhMDhMUGRxY3haSG94SHotenh6VzN1TWoxa2FRX0hyaE1iUGdZa3hHeF9u?oc=5",
       "source": "כל העיר",
       "sourceUrl": "https://www.kolhair.co.il",
       "published": "2026-08-18T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHc?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
     }
   ]
 }
