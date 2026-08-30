@@ -122,6 +122,17 @@ def _our_basketball_world():
     return names
 
 
+_phrases_cache = None
+
+
+def blocked_phrases():
+    """ביטויים שנחסמו ביד ב־news-sources.json."""
+    global _phrases_cache
+    if _phrases_cache is None:
+        _phrases_cache = tuple(_config().get("blockPhrases") or ())
+    return _phrases_cache
+
+
 _clubs_cache = None
 
 
@@ -157,6 +168,10 @@ DEFAULTS = {
                 '"הפועל ירושלים" כדורסל', '"הפועל י-ם" כדורסל'],
     "names": {},
     "block": [],
+    # ביטויים שנחסמים ביד. יש סיפורים ששום כלל אוטומטי לא יסווג נכון, כי
+    # הם על ״הפועל ירושלים״ בלי שום רמז לענף. הרשימה הזאת היא המקום
+    # להגיד ״הסיפור הזה הוא של הכדורגל״ בלי לגעת בקוד.
+    "blockPhrases": [],
     "maxItems": 24,
     "maxAgeDays": 45,
 }
@@ -215,6 +230,8 @@ def about_us(title):
     if not any(w in title for w in US):
         return False
     if any(w in title for w in NOT_US) or any(w in title for w in soccer_clubs()):
+        return False
+    if any(w in title for w in blocked_phrases()):
         return False
     return not _soccer_score(title)
 
