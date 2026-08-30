@@ -1,11 +1,12 @@
 {
-  "updated": "2026-08-30T09:20:40Z",
+  "updated": "2026-08-30T14:27:36Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ישראל היום",
+    "וואלה ספורט",
     "ספורט 5",
     "ספורט 1",
     "סרוגים",
-    "ישראל היום",
     "חרדים10",
     "בחדרי חרדים",
     "ערוץ 7",
@@ -15,10 +16,23 @@
     "ynet",
     "ישראל ספורט",
     "ONE",
-    "C14",
-    "כל העיר"
+    "C14"
   ],
   "items": [
+    {
+      "title": "רצה להיות היסטוריה: הסיפור המוזר של המועמד להפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tb29EU0VhSldRMDJXdWozSm9BNmh2cXB6eG9jbW5pcFBPelVjZlBXZGhDckx6M01iajYyajlGN25JMjdLel90bHdGbDRfLWxhVW0zektfeWdrb0ZpR1N2V3FOeU5qa3dweGczd3lPTU1sV2NCSTV4a3VfNNIBgwFBVV95cUxPX1BNeDlmWWNwUXFDLXY0d0FDTWUyUS1uTFZNZTQ3UnJEci1ISzJNekJ5bWNLXzl6bTFyMWdHSGloM2lvMmRlV19TMnRjQXBsWnJhTmxrUzBQaEY4MERMODVxenVxeFMyQlA5eWdidkl6OEFTenZ6MzJGaEdCSmpIQVFNbw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-30T13:27:52Z"
+    },
+    {
+      "title": "המועמד המוביל של הפועל ירושלים להחליף את ג'ארד הארפר",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9tMmtTZnRtYlVWNzdrYU1IWk4yRF9fbzFJRXZRNmx6bTVjVFpoM3d3a3pwcG5uMnV4VE9MWm96Ymlha2RxSkxnR1QxbTdXaFFh?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-30T12:12:00Z"
+    },
     {
       "title": "\"עד מתי נכיל את זה?\": זעם בהפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE56MXNNVlBsb0RTdVNYS2lweWpDekEtR3U0bDRIekpxRHM4ekZZTXNpN2ZjQU5vSlVYOTFNd0h6UDFSX2VQMjJWUmo0Yy1vdzQzYkJfcFVqaGNNaFZtcU56dDlfR0hhRkNLZkNxWHRuRDc?oc=5",
@@ -32,6 +46,13 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-30T04:32:53Z"
+    },
+    {
+      "title": "שוב פעם? הפועל ירושלים חוששת מעוד עונה קשה, והמומה מפוקסמן",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE54WHhQUUUycGlDMFZPa3k0YmlZbE1md1IyV0g1MFEzeFNEYUVGTHU0OGd6R2RScFJVZEFmX3dGNDdNNkYxWi11Wkw0YVF3cURC?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-30T04:17:00Z"
     },
     {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
@@ -150,7 +171,7 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1VXJrYjE2Rkdpa0xkZXZiNUw0eUNmRWpWZ1Z3cWp5RDA2NkFYNDdSRHRKLXVKb2pGTW9MeDNTb1RRX3hVQnNFeHAyV0hpOTBjZDY0ajdFb19HMGhBSmZkVmUxR3FPbjlSdE9rSjZIUkM0UQ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-25T13:09:00Z"
+      "published": "2026-08-25T13:11:05Z"
     },
     {
       "title": "ללא הפועל ירושלים: 11 הקבוצות שבדרך לרשיון יורוליג",
@@ -207,27 +228,6 @@
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-08-23T09:16:36Z"
-    },
-    {
-      "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-23T09:10:00Z"
-    },
-    {
-      "title": "\"הפועל ירושלים אחרת\": התכנית של ליאור זדה",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE12RGtkOGFvaDN1WGJIRWl0UnltQzRabDVzdlVCbjc2SERRbWt4RGgxaWwzd1lUWEs5cDFEYm9VVmVEdFhCYWRVUUdBWjQyWlF3Ym1SYm1ma3RTZ0RIbUxVQWxRN0FrTFdLLUR6N193azA?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-23T07:17:00Z"
-    },
-    {
-      "title": "הזרים נחתו, הציפיות בשמיים: הפועל ירושלים סימנה מטרה ברורה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5yWEIxVnMwaW5taWdELW5iUUdKMXFlMkg1UEZ0UXFhMDhMUGRxY3haSG94SHotenh6VzN1TWoxa2FRX0hyaE1iUGdZa3hHeF9u?oc=5",
-      "source": "כל העיר",
-      "sourceUrl": "https://www.kolhair.co.il",
-      "published": "2026-08-18T07:00:00Z"
     }
   ]
 }
