@@ -1,28 +1,37 @@
 name: משחק חי
 
-# Runs often, but only during the hours games are actually played, and the
-# script itself exits in a second when nothing is on. The result is written
-# straight to the published branch rather than to main, so a game night does
-# not fill the history with commits and the score reaches fans in ~30s
-# instead of going the long way round through the deploy workflow.
+# ריצה אחת מכסה משחק שלם.
+#
+# **למה זה בנוי ככה, ולא כמו שהיה:** עד 31.8.2026 היו כאן שני תזמונים
+# צפופים, כל 5 דקות בערב וכל 10 באחר הצהריים, בהנחה שכל דקירה כזאת תרוץ.
+# היא לא רצה. הנתונים מהריפו עצמו: 20 ריצות ביום הטוב מול 84 שהתזמון
+# מבקש, 5 ריצות ב־30.8, **ואפס ביום המשחק הראשון של העונה**. לכן
+# live.json נשאר תקוע על idle לאורך כל המשחק מול הפועל חולון, בלי שאף
+# ריצה נכשלה ובלי שום סימן שמשהו לא בסדר.
+#
+# המסקנה היא לא ״לבקש עוד דקירות״ אלא להפסיק להיות תלויים בהן: הריצה
+# מחזיקה את עצמה ודוגמת בלולאה פנימית עד שהמשחק נגמר, כך שמספיק **סלוט
+# אחד שנורה** כדי לכסות משחק שלם, במקום 84 שרובם לא ייורו. בנוסף,
+# update-data מזמן את הריצה הזאת כשהוא רואה משחק מתקרב, וזו דרך התחלה
+# שנייה ובלתי תלויה.
+#
+# כשאין משחק ההתנהגות זהה לקודם: דגימה אחת, יציאה תוך שניות.
 
 on:
   schedule:
-    # ערב: כל 5 דקות, 15:00-22:00 UTC, כלומר 17:00-00:00 בחורף
-    # ו־18:00-01:00 בקיץ. זה מכסה את משחקי אירופה ואת משחקי הערב בליגה.
-    - cron: '*/5 15-22 * * *'
-    # אחר הצהריים: כל 10 דקות, 09:00-14:00 UTC. החלון הזה נוסף ב־29.8.2026
-    # אחרי שהתברר שהוא חסר לגמרי: משחק הגביע מול מכבי אשדוד ב־8.9 מתחיל
-    # ב־17:00 שעון ישראל, כלומר 14:00 UTC, והמשחק מול ב״ש ב־18.9 מתחיל
-    # ב־14:30 שעון ישראל, כלומר 11:30 UTC. שניהם היו נגמרים לפני שהפולר
-    # בכלל מתעורר, ושני משחקי הגביע הראשונים של העונה היו נשארים בלי
-    # תוצאה חיה. עשר דקות ולא חמש, כדי לא להכפיל את מספר הריצות ביום.
-    - cron: '*/10 9-14 * * *'
+    # ערב: 15:00-22:00 UTC, כלומר 17:00-00:00 בחורף ו־18:00-01:00 בקיץ.
+    # אחר הצהריים: 09:00-14:00 UTC, בשביל משחקי גביע וקדם־עונה.
+    # הדקירות דלילות בכוונה, כי כל אחת מהן מספיקה למשחק שלם, והדקה אינה
+    # עגולה כי גיטהאב ממליצה לא לתזמן על תחילת שעה עמוסה.
+    - cron: '7,37 15-22 * * *'
+    - cron: '7,37 9-14 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+# ריצה שנייה שתתחיל באמצע משחק תמצא את הראשונה עובדת. אין טעם בשתיהן,
+# והשנייה תמתין בתור ואז תצא מיד כי המשחק כבר ייגמר.
 concurrency:
   group: live-score
   cancel-in-progress: false
@@ -30,6 +39,8 @@ concurrency:
 jobs:
   live:
     runs-on: ubuntu-latest
+    # תקרה קשיחה, כדי שריצה תקועה לא תחזיק את התור לנצח
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
 
@@ -40,53 +51,80 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Poll the game
-        run: python scripts/update_live.py
-
-      # The score has to reach both hosts. Vercel serves main, GitHub Pages
-      # serves gh-pages, and a file written to only one of them is a live
-      # score that silently never appears on the other.
-      - name: Publish live.json
+      - name: Poll until the game is over
         run: |
-          set -euo pipefail
-          if [ ! -f app/data/live.json ]; then
-            echo "nothing to publish"
-            exit 0
-          fi
-          cp app/data/live.json /tmp/live.json
+          set -uo pipefail
           git config user.name "hapoel-data-bot"
           git config user.email "actions@users.noreply.github.com"
 
-          # main, this is what Vercel publishes at the custom domain
-          git add app/data/live.json
-          if git diff --cached --quiet; then
-            echo "main: score unchanged since last poll"
-          else
-            git commit -m "עדכון תוצאה חיה"
-            # the data collector may have pushed while we were polling
-            for i in 1 2 3; do
-              if git pull --rebase --autostash origin main && git push origin HEAD:main; then
-                echo "main: published"
-                break
-              fi
-              echo "main: push race, retry $i"
-              sleep $((i * 5))
-            done
-          fi
+          # חלון המשחק ב־update_live.py נסגר שלוש שעות אחרי הקפיצה, וזה
+          # משאיר מרווח לקפיצה מאוחרת ולהארכה.
+          DEADLINE=$(( $(date +%s) + 210 * 60 ))
+          # כל שתי דקות. פחות מזה מציף את ההיסטוריה בקומיטים, יותר מזה
+          # והתוצאה על המסך מתחילה להרגיש ישנה.
+          EVERY=120
 
-          # gh-pages, the published branch, so the score reaches fans there
-          # in ~30s instead of waiting on a full redeploy
-          if ! git fetch origin gh-pages --depth=1; then
-            echo "no gh-pages branch yet, nothing to publish to"
+          state_of() {
+            python -c 'import json;print(json.load(open("app/data/live.json")).get("state","idle"))' 2>/dev/null || echo idle
+          }
+
+          # התוצאה חייבת להגיע לשני המארחים: ורסל מגיש את main וגיטהאב
+          # פייג׳ס מגיש את gh-pages, וקובץ שנכתב רק לאחד מהם הוא תוצאה
+          # חיה שלא מופיעה אצל חצי מהאוהדים.
+          #
+          # gh-pages נכתב דרך worktree ולא דרך checkout, כי בלולאה
+          # checkout היה מעביר את עץ העבודה לענף הפרסום, והדגימה הבאה
+          # הייתה מחפשת שם את scripts/ ולא מוצאת.
+          publish() {
+            [ -f app/data/live.json ] || { echo "אין מה לפרסם"; return 0; }
+            cp app/data/live.json /tmp/live.json
+
+            git add app/data/live.json
+            if git diff --cached --quiet; then
+              echo "main: התוצאה לא השתנתה"
+            else
+              git commit -q -m "עדכון תוצאה חיה"
+              for i in 1 2 3; do
+                if git pull --rebase --autostash -q origin main \
+                   && git push -q origin HEAD:main; then
+                  echo "main: פורסם"
+                  break
+                fi
+                echo "main: התנגשות בדחיפה, ניסיון $i"
+                sleep $((i * 5))
+              done
+            fi
+
+            git fetch -q origin gh-pages --depth=1 || {
+              echo "אין ענף gh-pages, אין לאן לפרסם"; return 0; }
+            rm -rf /tmp/ghp
+            git worktree add -q --detach /tmp/ghp origin/gh-pages || return 0
+            mkdir -p /tmp/ghp/data
+            cp /tmp/live.json /tmp/ghp/data/live.json
+            git -C /tmp/ghp add data/live.json
+            if git -C /tmp/ghp diff --cached --quiet; then
+              echo "gh-pages: התוצאה לא השתנתה"
+            else
+              git -C /tmp/ghp commit -q -m "עדכון תוצאה חיה"
+              git -C /tmp/ghp push -q origin HEAD:gh-pages || echo "gh-pages: הדחיפה נכשלה"
+            fi
+            git worktree remove --force /tmp/ghp || true
+          }
+
+          python scripts/update_live.py || true
+          publish
+          if [ "$(state_of)" = "idle" ]; then
+            echo "אין משחק עכשיו, יוצאים."
             exit 0
           fi
-          git checkout -B gh-pages origin/gh-pages
-          mkdir -p data
-          cp /tmp/live.json data/live.json
-          git add data/live.json
-          if git diff --cached --quiet; then
-            echo "gh-pages: score unchanged since last poll"
-          else
-            git commit -m "עדכון תוצאה חיה"
-            git push origin gh-pages
-          fi
+
+          echo "יש משחק. נשארים ודוגמים כל ${EVERY} שניות."
+          while [ "$(date +%s)" -lt "$DEADLINE" ]; do
+            sleep "$EVERY"
+            python scripts/update_live.py || true
+            publish
+            if [ "$(state_of)" = "idle" ]; then
+              echo "חלון המשחק נסגר, יוצאים."
+              break
+            fi
+          done
