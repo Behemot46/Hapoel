@@ -579,6 +579,158 @@ function calNote() {
   return text("div", "cal-note", "הקובץ יורד למכשיר, פתיחה שלו מוסיפה את המשחקים ליומן");
 }
 
+/* ---------- כרטיס תוצאה לשיתוף ---------- */
+
+// אוהד ששולח תוצאה לקבוצת וואטסאפ שולח טקסט, והטקסט נבלע. תמונה נפתחת
+// בעין אחת, ועליה גם הכתובת של האפליקציה. הכל נצייר כאן ב־canvas ולא
+// נלקח משום שירות: אין שרת, אין מפתח, וזה עובד גם בלי רשת, כי הסמל
+// עצמו כבר שמור אצל האוהד במטמון של האפליקציה.
+const CARD = 1080;
+const CARD_FONT = '"Segoe UI", "Noto Sans Hebrew", Arial, sans-serif';
+
+function crestImage() {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = "icons/crest.png";
+  });
+}
+
+// טקסט שנחתך באמצע מילה הוא כרטיס מביך. מקטינים עד שנכנס.
+function fitFont(ctx, str, weight, start, min, maxWidth) {
+  let size = start;
+  do {
+    ctx.font = weight + " " + size + "px " + CARD_FONT;
+    if (ctx.measureText(str).width <= maxWidth) return size;
+    size -= 4;
+  } while (size > min);
+  return min;
+}
+
+async function resultCardBlob(g) {
+  const c = document.createElement("canvas");
+  c.width = c.height = CARD;
+  const ctx = c.getContext("2d");
+  const win = won(g);
+
+  ctx.fillStyle = "#17090D";
+  ctx.fillRect(0, 0, CARD, CARD);
+  // פס אלכסוני בצבע המועדון, אותו רעיון כמו הכותרת באפליקציה
+  ctx.save();
+  ctx.fillStyle = win ? "#E4002B" : "#3A1B22";
+  ctx.beginPath();
+  ctx.moveTo(0, 0); ctx.lineTo(CARD, 0); ctx.lineTo(CARD, 150); ctx.lineTo(0, 250);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+
+  const crest = await crestImage();
+  if (crest) {
+    const size = 150;
+    ctx.drawImage(crest, (CARD - size) / 2, 210, size, size);
+  }
+
+  ctx.textAlign = "center";
+  ctx.direction = "rtl";
+
+  // התוצאה שלנו תמיד ראשונה, כמו בכל מקום אחר באפליקציה. הציור נעשה
+  // ב־ltr במפורש, כי ב־rtl אלגוריתם ה־bidi הופך את סדר המספרים והכרטיס
+  // היה מראה 78-92 במקום 92-78. באפליקציה עצמה זה נפתר ב־CSS
+  // (direction: ltr על .score), וכאן צריך לומר את זה לקנבס.
+  const score = ourScore(g) + " - " + theirScore(g);
+  ctx.direction = "ltr";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 " + fitFont(ctx, score, "800", 200, 120, CARD - 160) + "px " + CARD_FONT;
+  ctx.fillText(score, CARD / 2, 560);
+  ctx.direction = "rtl";
+
+  ctx.fillStyle = win ? "#7CE0A0" : "#FF9AA8";
+  ctx.font = "700 46px " + CARD_FONT;
+  ctx.fillText(win ? "ניצחון" : "הפסד", CARD / 2, 640);
+
+  const opp = "מול " + teamName(opponent(g));
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "700 " + fitFont(ctx, opp, "700", 64, 34, CARD - 140) + "px " + CARD_FONT;
+  ctx.fillText(opp, CARD / 2, 740);
+
+  const d = new Date(g.date);
+  const where = isHome(g) ? "בית" : "חוץ";
+  const sub = g.competition + " · " + where + " · " + fmtFull.format(d);
+  ctx.fillStyle = "#C9BDC0";
+  ctx.font = "500 " + fitFont(ctx, sub, "500", 38, 22, CARD - 120) + "px " + CARD_FONT;
+  ctx.fillText(sub, CARD / 2, 806);
+
+  // ״הייתי שם״ מופיע רק אם האוהד באמת סימן נוכחות. זה הקטע שהופך את
+  // הכרטיס לשלו ולא לסתם גרפיקה של תוצאה.
+  if (attended(g.id)) {
+    ctx.fillStyle = "#E4002B";
+    const badge = "הייתי שם";
+    ctx.font = "800 44px " + CARD_FONT;
+    const w = ctx.measureText(badge).width + 70;
+    const x = (CARD - w) / 2;
+    ctx.beginPath();
+    ctx.roundRect(x, 850, w, 84, 42);
+    ctx.fill();
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillText(badge, CARD / 2, 906);
+  }
+
+  ctx.direction = "ltr";
+  ctx.fillStyle = "#8C7B80";
+  ctx.font = "600 30px " + CARD_FONT;
+  ctx.fillText(appHost(), CARD / 2, 1010);
+
+  return new Promise(resolve => c.toBlob(resolve, "image/png"));
+}
+
+function resultCardText(g) {
+  return [
+    (won(g) ? "ניצחון" : "הפסד") + " " + ourScore(g) + "-" + theirScore(g) +
+      " מול " + teamName(opponent(g)),
+    g.competition,
+    appUrl(),
+  ].join("\n");
+}
+
+async function shareResultCard(g, btn) {
+  const was = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "מכין…";
+  try {
+    const blob = await resultCardBlob(g);
+    const file = blob && new File([blob], "hapoel-" + (g.date || "").slice(0, 10) + ".png",
+                                  { type: "image/png" });
+    // שיתוף של קובץ הוא הדרך שבה תמונה מגיעה לקבוצה בלי לעבור דרך
+    // הורדה. לא כל דפדפן תומך, ולכן יש נפילה מסודרת.
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], text: resultCardText(g) });
+    } else if (blob) {
+      const url = URL.createObjectURL(blob);
+      const a = el("a");
+      a.href = url;
+      a.download = file.name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+    }
+  } catch (e) {
+    // ביטול של דיאלוג השיתוף הוא לא שגיאה, ואין על מה להתריע
+  }
+  btn.disabled = false;
+  btn.textContent = was;
+}
+
+function shareResultButton(g, cls) {
+  const b = el("button", "cal-btn" + (cls ? " " + cls : ""));
+  b.type = "button";
+  b.appendChild(text("span", "cal-ico", "📸"));
+  b.appendChild(text("span", "", "שיתוף התוצאה"));
+  b.setAttribute("aria-label", "שיתוף התוצאה מול " + teamName(opponent(g)) + " כתמונה");
+  b.onclick = () => shareResultCard(g, b);
+  return b;
+}
+
 /* ---------- sharing the app itself ---------- */
 
 // always the live site, never location.href, a standalone copy opened
@@ -1733,6 +1885,7 @@ function renderHome() {
     left.appendChild(text("span", "chip " + (won(last) ? "win" : "loss"), won(last) ? "ניצחון" : "הפסד"));
     line.appendChild(left);
     c.appendChild(line);
+    c.appendChild(shareResultButton(last));
     view.appendChild(c);
   }
 
@@ -1984,7 +2137,9 @@ function gameRow(g) {
   // בבת אחת, ולא למשחק אחד שבחרת מהרשימה.
   const actions = el("div", "row-actions");
   actions.appendChild(attendButton(g));
-  if (g.status !== "finished") {
+  if (g.status === "finished") {
+    actions.appendChild(shareResultButton(g, "slim"));
+  } else {
     const cal = calButton([g], "ליומן", icsName(g), "slim");
     cal.setAttribute("aria-label", "הוספת המשחק מול " + teamName(opponent(g)) + " ליומן");
     actions.appendChild(cal);

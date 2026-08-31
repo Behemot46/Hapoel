@@ -974,6 +974,8 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
   background: var(--surface-2);
 }
 .row-actions .cal-btn.slim:hover { color: var(--red-text); }
+/* כפתור שיתוף התוצאה בכרטיס הבית, מתחת לתוצאה עצמה */
+.result-line + .cal-btn { margin-top: 14px; }
 
 /* שחקן שלא זמין */
 .chip.out {
