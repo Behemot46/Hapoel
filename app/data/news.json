@@ -1,23 +1,35 @@
 {
-  "updated": "2026-08-31T09:54:51Z",
+  "updated": "2026-08-31T16:03:44Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ספורט 5",
+    "וואלה ספורט",
     "אייס",
     "ספורט 1",
-    "וואלה ספורט",
     "ynet",
-    "ספורט 5",
     "ישראל היום",
     "סרוגים",
-    "חרדים10",
     "בחדרי חרדים",
     "ערוץ 7",
     "103FM",
-    "חדשות 04",
     "ישראל ספורט",
     "ONE"
   ],
   "items": [
+    {
+      "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92NU5NMnVrNEJyVmtkY0tuYjNQbXB3RktJOWI4VFJwSE1QSTFhSlYtYThnUm9BX0JjVmYwLVM1NmpnaUZxeUEzZzF2QkROY1FFYnFjdnhFU3NkRUlrQVlyd3NuaVFZSmMwRWFoRVR1ajRkdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-31T12:41:40Z"
+    },
+    {
+      "title": "במעמד צד אחד: הפועל ירושלים הביסה את הפועל חולון בהכנה",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9sdHBVbnhsaW9fUzE4Z1lRRnREWFRXSm9tdlpYYWFDQzVPbjI1ZzRreno0WnVuSnlVTTUxZWlxdllGLW15dExhTGVUc2sxSjZJ?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-31T12:04:00Z"
+    },
     {
       "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RX1NtUGZlMWU1Ulk3ZFBuRFl6OVRydTUwOElhZENyalBhZzF3MU1INjdCQlYzWHBEb19LQWE1eW0wNDdfc1BPVmRMMFVmM2xwMTlEcnVUM0RZdEtLdlYteTc2cw?oc=5",
@@ -82,6 +94,13 @@
       "published": "2026-08-30T04:32:53Z"
     },
     {
+      "title": "שוב פעם? הפועל ירושלים חוששת מעוד עונה קשה, והמומה מפוקסמן",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE54WHhQUUUycGlDMFZPa3k0YmlZbE1md1IyV0g1MFEzeFNEYUVGTHU0OGd6R2RScFJVZEFmX3dGNDdNNkYxWi11Wkw0YVF3cURC?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-30T04:17:00Z"
+    },
+    {
       "title": "צפו: קימבידי כבש, הפועל פתח תקוה השיגה נקודות ראשונות העונה מול הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5zaC1FaGg1Q1d2a0d1VmduRmlSM29BMVRXR29idXRCNUs2WTl4VDJ2RzM5OUlWdnY3bUxRZGR6anRjVUhvT3J4Q3NyWVZRd240cGFFbzVWN3JMV2hOWmFjMXYxV1ZZNlRVTWZfVWtVcEFCVDlESXMw?oc=5",
       "source": "ספורט 1",
@@ -124,13 +143,6 @@
       "published": "2026-08-28T09:39:49Z"
     },
     {
-      "title": "'הפועל ירושלים' חזרה מהתמיכה בקפה 'בסמטה' עקב חשיפת הקשר למיסיון",
-      "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE84TnNhcmc2Tk9qTUljYVNTMDJiLTdBZmxjeGFVSlJrTlhCbUduX0JpUDNFdGhud2RpT3JjSG1sczh4dDdmMkJR?oc=5",
-      "source": "חרדים10",
-      "sourceUrl": "https://ch10.co.il",
-      "published": "2026-08-27T22:29:45Z"
-    },
-    {
       "title": "'הפועל ירושלים' חזרה בה מהתמיכה בקפה \"בסמטה\" בעקבות חשיפת הקשר למיסיון",
       "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFB2Qm82U0JubU5KaDJNQ1dMcXZiakdVS3c3VkJKNEprZDNtUHpSdks0MElTTXc4aGQ1d1hHOWxUcDgtWlpIcFVITWpHSQ?oc=5",
       "source": "בחדרי חרדים",
@@ -152,13 +164,6 @@
       "published": "2026-08-27T04:42:09Z"
     },
     {
-      "title": "כדורסל: הפועל ת\"א הביסה בארנה את הפועל י-ם 64:91, האנאס עם 23 נק'",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE43SXY2eGRYOFRRMVA5QUplNEN2eTBTaVdKSm1WVzRCZjRHLVZaZW5WaUF1UWJlZHMyV2pZNG5DVkxRUG1PQWt6SQ?oc=5",
-      "source": "חדשות 04",
-      "sourceUrl": "https://0404.co.il",
-      "published": "2026-08-26T13:24:18Z"
-    },
-    {
       "title": "הפועל ירושלים בדרך להיכנס ליורוליג; אדלסון: \"הצעה כלכלית חזקה\"",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE55N011Z1JYdXZvLUtwSF9FSFZ2RlFBSC1KZEVWT2llLWhqNVdxYlpwOTl2MUpuUHdjTDZzZW10WDZKcTlBQU5NdE5YdmZPTkkydjF0MXNXS2dKOVNnUHdxZ3RhYw?oc=5",
       "source": "אייס",
@@ -178,13 +183,6 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-26T05:45:00Z"
-    },
-    {
-      "title": "הפועל ירושלים מתרחקת מהיורוליג: 11 הקבוצות שהליגה רוצה",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE55MEVqWmRFaWdJQU1hZ0s3Q3NjbklSZ0diU1E1d1ZyUWtyNFlqSHBZUDVZZU5OZ2t1Zm5kS0lyNGVucVBEMm91b1dqaVZkcmh6ZzFCXzkxQ0RQZTZ0aGxxeTdtQ2dSQ042V2xxN1FEOEpocmxpdTcxMGU2MNIBgwFBVV95cUxOdmlyU2pERnlvNmNjLXA0aGxlc1FNYUVvbDdmMUFsVEd5aDZvRG92Q0xFTDBXQW9DUUtlVFJtMXBXdThlYzE1cTRjRnV2WEF2OHdGeHp5bFh6R3QtMTduSmxkR0dDM3R3b21aS2pldzFmZXhXMF9Ja25qRng0ZEpqdkhiZw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-25T16:23:48Z"
     },
     {
       "title": "הפועל י-ם השיקה את המדים החדשים לעונת 2026/27",
