@@ -977,6 +977,38 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
 /* כפתור שיתוף התוצאה בכרטיס הבית, מתחת לתוצאה עצמה */
 .result-line + .cal-btn { margin-top: 14px; }
 
+/* הניחוש של האוהד */
+.pick-box { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.pick-title { font-size: 13.5px; font-weight: 800; color: var(--muted); margin-bottom: 8px; }
+/* שלנו משמאל, כמו התוצאה בכל מקום אחר */
+.pick-row { display: flex; direction: ltr; align-items: flex-end; gap: 10px; }
+.pick-field { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.pick-field input {
+  width: 74px; padding: 8px 6px;
+  font: inherit; font-size: 22px; font-weight: 800;
+  text-align: center;
+  color: var(--text); background: var(--surface-2);
+  border: 1px solid var(--line); border-radius: 10px;
+}
+.pick-field input:focus { outline: 2px solid var(--red); outline-offset: 1px; }
+.pick-label { font-size: 11.5px; color: var(--muted); font-weight: 600; }
+.pick-dash { font-size: 20px; font-weight: 800; color: var(--muted); padding-bottom: 22px; }
+.pick-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pick-save, .pick-share, .pick-clear {
+  font: inherit; font-size: 13.5px; font-weight: 700;
+  padding: 8px 14px; border-radius: 999px; cursor: pointer;
+}
+.pick-save { background: var(--red); color: var(--red-ink); border: none; }
+.pick-share { background: transparent; color: var(--red-text); border: 1px solid var(--red); }
+.pick-clear { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.pick-err { margin-top: 8px; font-size: 12.5px; color: var(--red-text); }
+.pick-chip {
+  margin-top: 5px; font-size: 12.5px; font-weight: 700; color: var(--muted);
+}
+.pick-nums { direction: ltr; unicode-bidi: isolate; }
+.pick-chip.exact { color: var(--win); }
+.pick-chip.side { color: var(--text); }
+
 /* שחקן שלא זמין */
 .chip.out {
   display: inline-block;

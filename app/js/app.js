@@ -26,6 +26,51 @@ function saveDiary() {
 
 function attended(id) { return Object.prototype.hasOwnProperty.call(diary, id); }
 
+/* ---------- הניחוש של האוהד ---------- */
+
+// נשמר על המכשיר בלבד, כמו היומן. אין חשבון, אין שרת, ואין טבלת
+// מובילים: מה שהופך ניחוש למשהו שמדברים עליו הוא לשלוח אותו לקבוצה
+// לפני המשחק, לא לצבור נקודות אצלנו.
+const PICKS_KEY = "hapoel-picks-v1";
+
+function loadPicks() {
+  try { return JSON.parse(localStorage.getItem(PICKS_KEY)) || {}; }
+  catch (e) { return {}; }
+}
+let picks = loadPicks();
+
+function savePicks() {
+  try { localStorage.setItem(PICKS_KEY, JSON.stringify(picks)); } catch (e) {}
+}
+
+function pickFor(g) { return g && picks[g.id] ? picks[g.id] : null; }
+
+function setPick(g, us, them) {
+  picks[g.id] = { us: us, them: them, at: Date.now() };
+  savePicks();
+}
+
+function clearPick(g) {
+  delete picks[g.id];
+  savePicks();
+}
+
+// כמה הניחוש קלע. ״בול״ הוא התוצאה המדויקת, ואחריו רק אם ניחשת נכון מי
+// מנצח. מרחק בנקודות נשאר מספר ולא מקבל שבחים, כי אוהד יודע לקרוא אותו.
+function pickVerdict(g) {
+  const p = pickFor(g);
+  if (!p || g.status !== "finished") return null;
+  const us = ourScore(g), them = theirScore(g);
+  if (p.us === us && p.them === them) return { kind: "exact", label: "בול!" };
+  const rightSide = (p.us > p.them) === (us > them);
+  const off = Math.abs((p.us - p.them) - (us - them));
+  return {
+    kind: rightSide ? "side" : "miss",
+    label: rightSide ? "צדקת במנצחת" : "לא הפעם",
+    off: off,
+  };
+}
+
 function snapshot(g) {
   return {
     date: g.date,
@@ -729,6 +774,157 @@ function shareResultButton(g, cls) {
   b.setAttribute("aria-label", "שיתוף התוצאה מול " + teamName(opponent(g)) + " כתמונה");
   b.onclick = () => shareResultCard(g, b);
   return b;
+}
+
+// כרטיס ניחוש, לפני המשחק. אותה שפה של כרטיס התוצאה, כי זה אותו דבר
+// בזמן אחר: משהו אחד ששולחים לקבוצה.
+async function pickCardBlob(g, p) {
+  const c = document.createElement("canvas");
+  c.width = c.height = CARD;
+  const ctx = c.getContext("2d");
+
+  ctx.fillStyle = "#17090D";
+  ctx.fillRect(0, 0, CARD, CARD);
+  ctx.save();
+  ctx.fillStyle = "#E4002B";
+  ctx.beginPath();
+  ctx.moveTo(0, 0); ctx.lineTo(CARD, 0); ctx.lineTo(CARD, 150); ctx.lineTo(0, 250);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+
+  const crest = await crestImage();
+  if (crest) ctx.drawImage(crest, (CARD - 150) / 2, 210, 150, 150);
+
+  ctx.textAlign = "center";
+  ctx.direction = "rtl";
+  ctx.fillStyle = "#C9BDC0";
+  ctx.font = "700 44px " + CARD_FONT;
+  ctx.fillText("הניחוש שלי", CARD / 2, 450);
+
+  const score = p.us + " - " + p.them;
+  ctx.direction = "ltr";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 " + fitFont(ctx, score, "800", 190, 110, CARD - 160) + "px " + CARD_FONT;
+  ctx.fillText(score, CARD / 2, 610);
+  ctx.direction = "rtl";
+
+  const opp = "מול " + teamName(opponent(g));
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "700 " + fitFont(ctx, opp, "700", 62, 34, CARD - 140) + "px " + CARD_FONT;
+  ctx.fillText(opp, CARD / 2, 720);
+
+  const d = new Date(g.date);
+  const when = g.timeTbd
+    ? fmtFull.format(d) + " · השעה טרם נקבעה"
+    : fmtFull.format(d) + " · " + fmtTime.format(d);
+  ctx.fillStyle = "#C9BDC0";
+  ctx.font = "500 " + fitFont(ctx, when, "500", 36, 22, CARD - 120) + "px " + CARD_FONT;
+  ctx.fillText(when, CARD / 2, 786);
+
+  ctx.fillStyle = "#E4002B";
+  ctx.font = "800 46px " + CARD_FONT;
+  const call = "ומה אתם אומרים?";
+  const w = ctx.measureText(call).width + 80;
+  ctx.beginPath();
+  ctx.roundRect((CARD - w) / 2, 850, w, 88, 44);
+  ctx.fill();
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText(call, CARD / 2, 909);
+
+  ctx.direction = "ltr";
+  ctx.fillStyle = "#8C7B80";
+  ctx.font = "600 30px " + CARD_FONT;
+  ctx.fillText(appHost(), CARD / 2, 1010);
+
+  return new Promise(resolve => c.toBlob(resolve, "image/png"));
+}
+
+async function sharePickCard(g, p, btn) {
+  const was = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "מכין…";
+  try {
+    const blob = await pickCardBlob(g, p);
+    const file = blob && new File([blob], "hapoel-pick-" + (g.date || "").slice(0, 10) + ".png",
+                                  { type: "image/png" });
+    const txt = "הניחוש שלי: " + p.us + "-" + p.them + " מול " +
+      teamName(opponent(g)) + "\nומה אתם אומרים?\n" + appUrl();
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], text: txt });
+    } else if (blob) {
+      const url = URL.createObjectURL(blob);
+      const a = el("a");
+      a.href = url;
+      a.download = file.name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+    }
+  } catch (e) { /* ביטול השיתוף הוא לא שגיאה */ }
+  btn.disabled = false;
+  btn.textContent = was;
+}
+
+// הטופס עצמו. שני שדות, ובסדר של המסך: שלנו משמאל, כמו התוצאה בכל
+// מקום אחר באפליקציה.
+function pickBox(g) {
+  const box = el("div", "pick-box");
+  const existing = pickFor(g);
+
+  const title = el("div", "pick-title");
+  title.appendChild(document.createTextNode(existing ? "הניחוש שלך" : "מה יהיה?"));
+  box.appendChild(title);
+
+  const row = el("div", "pick-row");
+  const mk = (label, val) => {
+    const wrap = el("label", "pick-field");
+    const inp = el("input");
+    inp.type = "number";
+    inp.inputMode = "numeric";
+    inp.min = "0";
+    inp.max = "199";
+    inp.placeholder = "-";
+    if (val != null) inp.value = val;
+    inp.setAttribute("aria-label", label);
+    wrap.appendChild(inp);
+    wrap.appendChild(text("span", "pick-label", label));
+    return { wrap: wrap, inp: inp };
+  };
+  const us = mk("אנחנו", existing ? existing.us : null);
+  const them = mk("היריבה", existing ? existing.them : null);
+  row.appendChild(us.wrap);
+  row.appendChild(text("span", "pick-dash", "-"));
+  row.appendChild(them.wrap);
+  box.appendChild(row);
+
+  const actions = el("div", "pick-actions");
+  const save = text("button", "pick-save", existing ? "עדכון" : "שמירה");
+  save.type = "button";
+  const err = text("div", "pick-err", "");
+  const valid = v => v !== "" && !Number.isNaN(+v) && +v >= 0 && +v <= 199;
+  save.onclick = () => {
+    if (!valid(us.inp.value) || !valid(them.inp.value)) {
+      err.textContent = "שני המספרים, בין 0 ל־199.";
+      return;
+    }
+    setPick(g, +us.inp.value, +them.inp.value);
+    render();
+  };
+  actions.appendChild(save);
+  if (existing) {
+    const share = text("button", "pick-share", "שיתוף הניחוש");
+    share.type = "button";
+    share.onclick = () => sharePickCard(g, existing, share);
+    actions.appendChild(share);
+    const drop = text("button", "pick-clear", "מחיקה");
+    drop.type = "button";
+    drop.onclick = () => { clearPick(g); render(); };
+    actions.appendChild(drop);
+  }
+  box.appendChild(actions);
+  box.appendChild(err);
+  return box;
 }
 
 /* ---------- sharing the app itself ---------- */
@@ -1862,6 +2058,7 @@ function renderHome() {
     c.appendChild(meta);
     c.appendChild(calButton([next], "הוספה ליומן", "hapoel-next-game.ics"));
     c.appendChild(calNote());
+    c.appendChild(pickBox(next));
     view.appendChild(c);
   } else if (!next) {
     const c = el("div", "card");
@@ -2117,6 +2314,15 @@ function gameRow(g) {
   // מה שהמועדון עצמו פרסם על המשחק, למשל ״עם קהל״ או יריבה שטרם נקבעה.
   // אוהד שמתכנן להגיע צריך לדעת את זה לפני שהוא יוצא מהבית.
   if (g.note) info.appendChild(proseInto(text("div", "game-note", ""), g.note));
+  const myPick = pickFor(g);
+  if (myPick) {
+    const v = pickVerdict(g);
+    const chip = el("div", "pick-chip" + (v ? " " + v.kind : ""));
+    chip.appendChild(document.createTextNode("ניחשת "));
+    chip.appendChild(text("span", "pick-nums", myPick.us + "-" + myPick.them));
+    if (v) chip.appendChild(document.createTextNode(" · " + v.label));
+    info.appendChild(chip);
+  }
   row.appendChild(info);
 
   const end = el("div", "end");
