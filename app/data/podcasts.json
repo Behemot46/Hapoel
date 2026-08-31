@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-30T14:27:39Z",
+  "updated": "2026-08-31T09:54:52Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,14 +14,14 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-08-26T17:49:58Z"
+      "latest": "2026-08-30T20:02:12Z"
     },
     {
       "id": "1675729649",
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-08-26T06:48:00Z"
+      "latest": "2026-08-31T05:00:00Z"
     },
     {
       "id": "1698308776",
@@ -39,6 +39,24 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "דור הזהב של נבחרת ישראל? עם שרון אברהמי | שוט, פרק 192",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-08-31T05:00:00Z",
+      "duration": 6173
+    },
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "מציאות כואבת",
+      "url": "https://omny.fm/shows/speaknrolisrael/9ae471ed-02ab-466c-81f0-b4b6014886bf",
+      "published": "2026-08-30T20:02:12Z",
+      "duration": 3701
+    },
     {
       "showId": "1698308776",
       "show": "דאבל דריבל",
@@ -164,24 +182,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3n2en7",
       "published": "2026-08-06T14:28:27Z",
       "duration": 5450
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "תמונת מצב אצל הגדולות",
-      "url": "https://omny.fm/shows/speaknrolisrael/75b53a2d-241e-4084-bc7a-b49c011a063d",
-      "published": "2026-08-04T17:12:33Z",
-      "duration": 4637
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "כבר לא שחקן אמיתי? עם עידן אבשלום | שוט, פרק 188",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-08-03T14:49:00Z",
-      "duration": 5651
     },
     {
       "showId": "1648115499",

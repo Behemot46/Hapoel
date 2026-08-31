@@ -1,26 +1,60 @@
 {
-  "updated": "2026-08-30T14:27:36Z",
+  "updated": "2026-08-31T09:54:51Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ישראל היום",
-    "וואלה ספורט",
-    "ספורט 5",
+    "אייס",
     "ספורט 1",
+    "וואלה ספורט",
+    "ynet",
+    "ספורט 5",
+    "ישראל היום",
     "סרוגים",
     "חרדים10",
     "בחדרי חרדים",
     "ערוץ 7",
     "103FM",
     "חדשות 04",
-    "אייס",
-    "ynet",
     "ישראל ספורט",
-    "ONE",
-    "C14"
+    "ONE"
   ],
   "items": [
     {
-      "title": "רצה להיות היסטוריה: הסיפור המוזר של המועמד להפועל ירושלים",
+      "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RX1NtUGZlMWU1Ulk3ZFBuRFl6OVRydTUwOElhZENyalBhZzF3MU1INjdCQlYzWHBEb19LQWE1eW0wNDdfc1BPVmRMMFVmM2xwMTlEcnVUM0RZdEtLdlYteTc2cw?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-30T17:59:20Z"
+    },
+    {
+      "title": "הפועל ירושלים תובעת את הפועל תל אביב: זה הסכום שהיא דורשת",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPUzlWa1ltN0w4bUFfRzVURDhzenlKUXgtd3RaOUgxU3NvbGlVZVB0NGJwRkpyX21UbjZGMzFJNFJnYks5bGZtUlBuWEk3a0JqTmtiazBJb0dBenVsT2hBZDV6aWFBZTNsLWp0MUtYUDFCQ09zQVBnc1FyTDcwUTFHaE5PUndtUnYwWmgxSlI1dU9CUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-30T15:03:55Z"
+    },
+    {
+      "title": "לפחות 2.3 מיליון שקל: תביעת הפועל ירושלים נגד הפועל ת\"א",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9HeVpYSzJHRFN6RGE2S1pxbWVKVTdEOEowR1Q1M2tEMnlYYnFUN1loU2dqbWZNTHNIYm92T0FDU1RBRlBuaWNTbHRtYUN1cjVo?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-30T14:51:00Z"
+    },
+    {
+      "title": "הפועל ירושלים דורשת מהפועל ת\"א: 2.3 מיליון שקל על קאדין קרינגטון",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1Rd21rTkNVOEdpeTNBZVF5UDZ2NGhJNTB0VG1rRzR1WW1jNldxODZTNUNkS1VyRVJUMzdRT0JZRXlkbXE3cGJ4VjVhZ0JzWUZEdnBnQnRCbVVQdHZjdnZDUU1IRldVNVNYWnViSG14WEYzdWc?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-08-30T14:46:56Z"
+    },
+    {
+      "title": "הסכום שהפועל י-ם תתבע על קאדין קרינגטון",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Xc3g5MTJQWHk1bzRlWmw0RW1Vc2pCS19CdzV4Sm9qeVhIa0pZOFNLYjdpVE9vak9UTU4ycEQxV1diMHRZUG1mZzdsZkFVdTZSc2lNcmlrWU14TUtBLXBmNW14cXEwZHJZOEZwMnFXcjZBUQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-30T14:43:20Z"
+    },
+    {
+      "title": "רצה לעשות היסטוריה: הסיפור המוזר של המועמד להפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tb29EU0VhSldRMDJXdWozSm9BNmh2cXB6eG9jbW5pcFBPelVjZlBXZGhDckx6M01iajYyajlGN25JMjdLel90bHdGbDRfLWxhVW0zektfeWdrb0ZpR1N2V3FOeU5qa3dweGczd3lPTU1sV2NCSTV4a3VfNNIBgwFBVV95cUxPX1BNeDlmWWNwUXFDLXY0d0FDTWUyUS1uTFZNZTQ3UnJEci1ISzJNekJ5bWNLXzl6bTFyMWdHSGloM2lvMmRlV19TMnRjQXBsWnJhTmxrUzBQaEY4MERMODVxenVxeFMyQlA5eWdidkl6OEFTenZ6MzJGaEdCSmpIQVFNbw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
@@ -38,7 +72,7 @@
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE56MXNNVlBsb0RTdVNYS2lweWpDekEtR3U0bDRIekpxRHM4ekZZTXNpN2ZjQU5vSlVYOTFNd0h6UDFSX2VQMjJWUmo0Yy1vdzQzYkJfcFVqaGNNaFZtcU56dDlfR0hhRkNLZkNxWHRuRDc?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-30T08:20:00Z"
+      "published": "2026-08-30T08:21:17Z"
     },
     {
       "title": "הפועל ירושלים עדיין בהלם מההחלטה של דוד פוקסמן",
@@ -48,11 +82,11 @@
       "published": "2026-08-30T04:32:53Z"
     },
     {
-      "title": "שוב פעם? הפועל ירושלים חוששת מעוד עונה קשה, והמומה מפוקסמן",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE54WHhQUUUycGlDMFZPa3k0YmlZbE1md1IyV0g1MFEzeFNEYUVGTHU0OGd6R2RScFJVZEFmX3dGNDdNNkYxWi11Wkw0YVF3cURC?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-30T04:17:00Z"
+      "title": "צפו: קימבידי כבש, הפועל פתח תקוה השיגה נקודות ראשונות העונה מול הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5zaC1FaGg1Q1d2a0d1VmduRmlSM29BMVRXR29idXRCNUs2WTl4VDJ2RzM5OUlWdnY3bUxRZGR6anRjVUhvT3J4Q3NyWVZRd240cGFFbzVWN3JMV2hOWmFjMXYxV1ZZNlRVTWZfVWtVcEFCVDlESXMw?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-29T20:29:42Z"
     },
     {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
@@ -80,7 +114,7 @@
       "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
       "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
-      "published": "2026-08-28T21:39:54Z"
+      "published": "2026-08-28T09:41:58Z"
     },
     {
       "title": "השחקן שהפועל ירושלים רוצה בעקבות פציעת ג'ארד הארפר | פרסום ראשון",
@@ -132,13 +166,6 @@
       "published": "2026-08-26T11:43:00Z"
     },
     {
-      "title": "לא מוותרת: הפועל ירושלים הגישה בקשה לרישיון קבע ביורוליג",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9tc0xFT0U4NXo5OWtjWVpnWTQ5cjB1TS05Q3BiQTRXMlVvSG1Uak9jYzV3dGVmTExGbGtYcVdlS0k2WVZ2S2NWZ0hXX2pIWnpleVVmWE5TT3kzTkN6dy1qenhrb1JtSkZPLUdMMGRDZ3JuMzg?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-26T11:06:40Z"
-    },
-    {
       "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
       "source": "סרוגים",
@@ -146,18 +173,18 @@
       "published": "2026-08-26T10:28:44Z"
     },
     {
-      "title": "הפועל ירושלים טוענת: אנחנו עדיין במגעים עם היורוליג",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8ta20xdDdFZ0lGMHdMUFJCd3hNZzJiY3U4b242eHFMRVpJZ3pLS1g3QUxibmlReW9xZXRZeFRwbzFJSzIwRGt6VjR1cFVvb2pQTFJDRTd3NzBlUTB1V2U0V3Z30gFqQVVfeXFMTi1rMXlrN2hKY2M1a0hGLUZMQnNNWDhDNGpzb1lWOVA5SWY2RUtvdURiNmpFaW8yalRubW1kcmxLWTdOVzI3V1hpc2RkQ2tRSUN5c2Rlb3hPaU9DNjIzdjZUbUFSM3lqMFFHZw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-26T10:22:45Z"
-    },
-    {
       "title": "הפועל ירושלים: \"מועמדים משמעותיים לרישיון קבוע ביורוליג\"",
       "url": "https://news.google.com/rss/articles/CBMivwJBVV95cUxQSF9TNFJKNHQzTEU3Qno2RjV2REFZTldwMHBuMFFUREtybTRvUjVwSHNCRThweUFPRm5FalI5S2lnUllzZlNGNGczcGpLd0oyaE1fbVl6MTBFcU1BZXV2VUJwQ2tybDRWdzFaZmZFTHJyamJzd05GS2g3QXNmSVFnNnRfRFNHVUxWVXJFZUhJMnRtMm9lZjllOGZTSWFjYnRMSG9GU2E2RnlXLW1LUmgxbHhwUGtkWjRtOUZWZEFVS01OR2piY2J2bHVaRlFFZDE1UWlLOFJmQ0Nhc0xtVE1sekJPR2hqVE1iRDJKdG9rV2dzRjRmQmZkYnpSMzIxc3JFUHBlc3I1WGxkSWhBY3BhT2czM29rRDJobjdONTdYYkZQa1YwUC1Hc3pBTGNQSEp2T2k1a2p4SnNFN0pUX2lB?oc=5",
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-26T05:45:00Z"
+    },
+    {
+      "title": "הפועל ירושלים מתרחקת מהיורוליג: 11 הקבוצות שהליגה רוצה",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE55MEVqWmRFaWdJQU1hZ0s3Q3NjbklSZ0diU1E1d1ZyUWtyNFlqSHBZUDVZZU5OZ2t1Zm5kS0lyNGVucVBEMm91b1dqaVZkcmh6ZzFCXzkxQ0RQZTZ0aGxxeTdtQ2dSQ042V2xxN1FEOEpocmxpdTcxMGU2MNIBgwFBVV95cUxOdmlyU2pERnlvNmNjLXA0aGxlc1FNYUVvbDdmMUFsVEd5aDZvRG92Q0xFTDBXQW9DUUtlVFJtMXBXdThlYzE1cTRjRnV2WEF2OHdGeHp5bFh6R3QtMTduSmxkR0dDM3R3b21aS2pldzFmZXhXMF9Ja25qRng0ZEpqdkhiZw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-25T16:23:48Z"
     },
     {
       "title": "הפועל י-ם השיקה את המדים החדשים לעונת 2026/27",
@@ -200,34 +227,6 @@
       "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T20:01:00Z"
-    },
-    {
-      "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tOHFNY2lYQlVwdW1Rc2VnbXZIWFBRZHV1TV9FakluWnJ4Q1I0NnZ6TU45Rm1ITlBKZE1uZmp2ajZRWklBaWw5Q3B3NmZCZ1RqX3d2T01WOUpHaERtczlKR0NRT3lUMHFaSHVHNC1vRThHTVctYjQ2RUpkc9IBgwFBVV95cUxNN2N5bXBYREVVY3ZnYmNXc04tNmUyWk9DRk1HS0NvMV80bDBTNU5WX3RqNWlHRXNGbW9Sa0ZvQlhDUGRDY3BZcXpIS2pWQW16aW1OQUhPaktRWUY4ZW10Nm10YXBtZXl6Q19lbDN3dFBzMk93UHBxU3k0cUZLMkoyaWZIQQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-23T13:14:53Z"
-    },
-    {
-      "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-23T09:44:19Z"
-    },
-    {
-      "title": "הפועל ירושלים עם סמל חדש, מתן אדלסון: \"להצעיד את המועדון קדימה\"",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9GUUpBZHh0SU5wNG5rTzd5ck9QS2hOeUNyZWp1X1NqWmN4SmtlekdWU0R3ZWUzTUl2UGhkbU15RlhGVHFDOEEtN0t1UEs2aE5FRmpCNDBRMEhVc0g0aHNqaXBDQl9IQWZfcXpSYTh4eXQ1QQ?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
-      "published": "2026-08-23T09:37:00Z"
-    },
-    {
-      "title": "אחרי הסערה: הפועל ירושלים מציגה את המיתוג והסמל החדש",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5rdjdXVW5DSHBFSG0tVGIxTUZ5REQ5cV93U0QtdGJvUGtHR092NDVjcXNral83M2E2Z1hSMmFHR250TG1DV2FjeHVXdkN5a1VrcEMtWG0wSXZuSUI1MVFyMkJteG9lQWNxeW4xdGdqbERCRjhab3c?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-23T09:16:36Z"
     }
   ]
 }
