@@ -1,56 +1,44 @@
-"""בדיקת מקורות: האם אתר הליגה באמת לא מפרסם שעות, או שאנחנו לא קוראים
-אותן.
+"""בדיקת מקורות: לאן נעלם המשחק של 31.8, ומה התוצאה.
 
-כל 26 משחקי הליגה אצלנו יושבים על 20:00 בדיוק, וזו בדיוק ברירת המחדל
-בפרסר. שתי אפשרויות שדורשות תיקון הפוך: או שהעמוד באמת ריק בעמודת
-״שעה״, ואז אסור להמציא שעה, או שהעמוד מפרסם שעה ואנחנו לא מצליחים
-לקרוא אותה, ואז צריך לתקן את הקריאה. לכן מודפס כאן התא הגולמי כמו שהוא.
+אחרי שהמשחק מול הפועל חולון שוחק, הוא נעלם מ־games.json לגמרי במקום
+לקבל תוצאה. שתי אפשרויות שדורשות תיקון הפוך: או שאתר המועדון מוריד
+משחק ששוחק מהעמוד, ואז אנחנו חייבים לשמור היסטוריה בעצמנו, או שהוא
+עדיין שם עם תוצאה ואנחנו לא קוראים אותה.
+
+מודפס מה שהעמוד מחזיר בפועל, כולל כל בלוק משחק גולמי, ומה הפרסר שלנו
+מוציא ממנו.
 """
-import re
 import sys
 import pathlib
 
-import requests
-from bs4 import BeautifulSoup
-
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import club_games
 import update_data as u
+from bs4 import BeautifulSoup
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-link = u.find_team_link()
-log("עמוד הקבוצה:", link)
-soup = BeautifulSoup(u.fetch(link), "html.parser")
+html = u.fetch(club_games.GAMES_URL)
+log("עמוד המשחקים:", club_games.GAMES_URL, "|", len(html), "תווים")
+soup = BeautifulSoup(html, "html.parser")
+blocks = soup.select(".game")
+log("בלוקים של משחק בעמוד:", len(blocks))
+for i, g in enumerate(blocks[:8]):
+    when = club_games._txt(g.select_one(".date-data .date-time"))
+    score = club_games._txt(g.select_one(".game-data .score"))
+    teams = [t.get("alt") for t in g.select(".teams-container img[alt]")]
+    log(f"  [{i}] when={when!r} score={score!r} teams={teams}")
 
-for table in soup.find_all("table"):
-    rows = table.find_all("tr")
-    hdr_idx = hdr = None
-    for i, r in enumerate(rows[:3]):
-        cells = [c.get_text(strip=True) for c in r.find_all(["td", "th"])]
-        if any("תאריך" in c for c in cells) and any("מארחת" in c for c in cells):
-            hdr_idx, hdr = i, cells
-            break
-    if hdr_idx is None:
-        continue
-    log("כותרת הטבלה:", hdr)
-    j_time = next((j for j, c in enumerate(hdr) if "שעה" in c), None)
-    log("אינדקס עמודת שעה:", j_time)
-    shown = 0
-    empty = filled = 0
-    for r in rows[hdr_idx + 1:]:
-        cells = [c.get_text(strip=True) for c in r.find_all("td")]
-        if len(cells) < 3:
-            continue
-        raw = cells[j_time] if j_time is not None and j_time < len(cells) else "<אין תא>"
-        if u.TIME_RE.search(raw or ""):
-            filled += 1
-        else:
-            empty += 1
-        if shown < 14:
-            shown += 1
-            log(f"  שורה: {cells}")
-    log(f"סיכום: {filled} שורות עם שעה, {empty} בלי")
-    break
+log("--- מה הפרסר מוציא ---")
+games = club_games.fetch_games(u.fetch, log=log)
+for g in games[:8]:
+    log(f"  {g['date'][:16]} {g['home']} {g.get('homeScore')} : {g.get('awayScore')} "
+        f"{g['away']}  status={g['status']}")
+log("--- חיפוש 31.8 ---")
+hit = [g for g in games if g["date"].startswith("2026-08-31")]
+log("נמצא בפרסר:" , hit if hit else "לא נמצא")
+if "31" in html and "אוגוסט" in html:
+    log("המחרוזת ״אוגוסט״ מופיעה בעמוד")

@@ -388,6 +388,34 @@ def update_games():
         games.extend(fresh)
         log(f"manual entries added: {len(fresh)} of {len(friendly)}")
 
+    # משחק ששוחק נעלם מהמקורות. אתר המועדון מוריד משחק מהעמוד ברגע
+    # שהוא נגמר, וכך המשחק מול הפועל חולון ב־31.8.2026 פשוט נמחק מהלוח
+    # שלנו במקום לקבל תוצאה: הוא היה שם בבוקר ונעלם בערב. יומן האוהד
+    # מסמן נוכחות לפי מזהה משחק, אז משחק שנמחק גורר איתו גם את הסימון.
+    #
+    # לכן כל מה שכבר שוחק ואינו מוצע יותר על ידי אף מקור נשמר מהקובץ
+    # הקודם. השעתיים הן מרווח: משחק שהתחיל ממש עכשיו עדיין יכול להופיע
+    # ולהיעלם מהמקורות בזמן שהוא רץ.
+    keep_after = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=2)
+    known = {g.get("id") for g in games if g.get("id")}
+    dates = {g["date"][:10] for g in games}
+    previous = (load_json("games.json") or {}).get("games", [])
+    revived = []
+    for g in previous:
+        if g.get("id") in known or g["date"][:10] in dates:
+            continue
+        try:
+            when = datetime.datetime.fromisoformat(g["date"])
+        except Exception:
+            continue
+        if when < keep_after:
+            revived.append(g)
+    if revived:
+        games.extend(revived)
+        log(f"שמרנו {len(revived)} משחקים ששוחקו וכבר לא מופיעים באף מקור:")
+        for g in revived:
+            log(f"    = {g['date'][:16]}  {g['home']} vs {g['away']}  status={g['status']}")
+
     games.sort(key=lambda g: g["date"])
     log("games total:", len(games))
     current = load_json("games.json") or {}
