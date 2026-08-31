@@ -953,6 +953,28 @@ table.standings { border-collapse: collapse; width: 100%; font-size: 14.5px; }
 .pod-group-name { font-size: 16px; font-weight: 800; }
 .pod-card .link-btn { border-top: 1px solid var(--line); }
 
+/* שתי הפעולות על שורת משחק: אני מגיע, וליומן. הן יושבות באותה שורה
+   ונראות כמו פס אחד מתחת למשחק, כמו שהיה כשהייתה רק אחת. */
+.row-actions {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--line);
+}
+.row-actions .attend { flex: 1; border-top: none; }
+.row-actions .cal-btn.slim {
+  flex: none;
+  margin: 0;
+  border: none;
+  border-right: 1px solid var(--line);
+  border-radius: 0;
+  padding: 9px 14px;
+  gap: 5px;
+  font-size: 13.5px;
+  color: var(--muted);
+  background: var(--surface-2);
+}
+.row-actions .cal-btn.slim:hover { color: var(--red-text); }
+
 /* שחקן שלא זמין */
 .chip.out {
   display: inline-block;

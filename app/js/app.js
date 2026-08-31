@@ -1979,8 +1979,23 @@ function gameRow(g) {
   }
   row.appendChild(end);
   wrap.appendChild(row);
-  wrap.appendChild(attendButton(g));
+  // שתי הפעולות שאוהד רוצה על משחק בודד: לסמן שהוא מגיע, ולשים אותו
+  // ביומן. עד היום ההוספה ליומן הייתה קיימת רק למשחק הבא ולכל העונה
+  // בבת אחת, ולא למשחק אחד שבחרת מהרשימה.
+  const actions = el("div", "row-actions");
+  actions.appendChild(attendButton(g));
+  if (g.status !== "finished") {
+    const cal = calButton([g], "ליומן", icsName(g), "slim");
+    cal.setAttribute("aria-label", "הוספת המשחק מול " + teamName(opponent(g)) + " ליומן");
+    actions.appendChild(cal);
+  }
+  wrap.appendChild(actions);
   return wrap;
+}
+
+// שם קובץ שאומר איזה משחק הוא, בלי עברית שנשברת אצל חלק מהדפדפנים
+function icsName(g) {
+  return "hapoel-" + (g.date || "").slice(0, 10) + ".ics";
 }
 
 function attendButton(g) {
