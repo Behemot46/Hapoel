@@ -85,6 +85,44 @@ jobs:
             exit 1
           fi
 
+      # הפולר של התוצאה החיה לא יכול לסמוך על התזמון שלו: ב־31.8.2026 הוא
+      # לא רץ אפילו פעם אחת ביום המשחק הראשון. האיסוף הזה רץ כמה פעמים
+      # ביום, ויש לו שומר משלו, ולכן הוא דרך התחלה שנייה ובלתי תלויה.
+      # ריצה אחת של הפולר מכסה משחק שלם, ואם הוא כבר רץ, ה־concurrency
+      # שלו ידאג שהשנייה תמתין ותצא מיד.
+      - name: Start the live poller when a game is close
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          near=$(python - <<'PY'
+          import datetime, json, pathlib
+          SOON = datetime.timedelta(hours=2, minutes=30)
+          # גם משחק שכבר התחיל: אם כל הסלוטים לפני המשחק הופלו והריצה
+          # היחידה שנורתה היא באמצע המשחק, עדיין כדאי להתחיל לדגום.
+          # חלון המשחק של הפולר נסגר שלוש שעות אחרי הקפיצה.
+          STARTED = datetime.timedelta(hours=2)
+          now = datetime.datetime.now(datetime.timezone.utc)
+          games = json.loads(pathlib.Path("app/data/games.json").read_text(
+              encoding="utf-8")).get("games") or []
+          for g in games:
+              if g.get("status") == "finished" or g.get("timeTbd"):
+                  continue
+              try:
+                  start = datetime.datetime.fromisoformat(g["date"])
+              except Exception:
+                  continue
+              if now - STARTED <= start <= now + SOON:
+                  print(f"{g['id']} {g['date']}")
+                  break
+          PY
+          )
+          if [ -n "$near" ]; then
+            echo "משחק מתקרב ($near), מפעיל את הפולר."
+            gh workflow run live.yml --ref main -R "$GITHUB_REPOSITORY"
+          else
+            echo "אין משחק בשעתיים וחצי הקרובות."
+          fi
+
       # bot pushes don't trigger the deploy workflow on their own,
       # so dispatch it explicitly whenever data changed
       - name: Trigger site deploy

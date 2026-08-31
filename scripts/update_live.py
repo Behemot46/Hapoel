@@ -76,6 +76,12 @@ def current_game():
     for g in games:
         if g.get("status") == "finished":
             continue
+        # משחק שהליגה עוד לא פרסמה לו שעה נשמר על 12:00 כמציין מקום
+        # (ראו parse_team_games ב־update_data.py). בלי הדילוג הזה הפולר
+        # היה מכריז ״משחק עכשיו״ בצהריים של יום המשחק, על סמך שעה שאיש
+        # לא פרסם, ומראה לאוהד משחק חי שלא מתקיים.
+        if g.get("timeTbd"):
+            continue
         start = parse_dt(g.get("date"))
         if start and start - BEFORE <= t <= start + AFTER:
             return g, start
