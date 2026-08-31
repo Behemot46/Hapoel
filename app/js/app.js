@@ -212,8 +212,11 @@ function theirScore(g) { return isHome(g) ? g.awayScore : g.homeScore; }
 function won(g) { return ourScore(g) > theirScore(g); }
 
 function upcoming() {
+  // משחק ששוחק ולא קיבל תוצאה הוא עדיין לא ״המשחק הבא״. זה קורה כשהמקור
+  // מוריד משחק מהעמוד אחרי שהוא נגמר, ואז הוא נשמר אצלנו בלי תוצאה.
+  const cutoff = Date.now() - 4 * 3600 * 1000;
   return state.games.games
-    .filter(g => g.status !== "finished")
+    .filter(g => g.status !== "finished" && new Date(g.date).getTime() > cutoff)
     .sort((a, b) => new Date(a.date) - new Date(b.date));
 }
 function finished() {

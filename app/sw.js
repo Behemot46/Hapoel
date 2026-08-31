@@ -2,7 +2,7 @@
 
 // Bump VERSION whenever the app shell changes. It names the caches, so a
 // new version drops the old ones instead of serving them forever.
-const VERSION = "v16";
+const VERSION = "v17";
 const SHELL_CACHE = "shell-" + VERSION;
 const DATA_CACHE = "data-" + VERSION;
 
