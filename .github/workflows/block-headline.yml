@@ -1,0 +1,74 @@
+name: חסימת כותרת מהמדור
+
+# כותרת כדורגל שמצליחה להיכנס למדור היא באג שרואים רק בעיניים, והאוהד
+# שרואה אותה הוא בדרך כלל לא זה שיכול לשנות קוד. עד היום כל כותרת כזאת
+# חיכתה לסבב איתי; מכאן היא נחסמת מהטלפון תוך חצי דקה.
+#
+# הריצה מוסיפה את הביטוי ל־blockPhrases, מנקה מיד את הקובץ החי, ודוחפת.
+# הדחיפה ל־app/data מפעילה בעצמה את פרסום האתר, כך שזה מגיע לאוהדים בלי
+# צעד נוסף.
+#
+# מה שנחסם אפשר לבטל: מוחקים את השורה מ־app/data/news-sources.json
+# והכותרות חוזרות באיסוף הבא.
+
+on:
+  workflow_dispatch:
+    inputs:
+      phrases:
+        description: 'מילים לחסימה בכותרת, מופרדות בפסיק. למשל: פוקסמן, בסמטה'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: block-headline
+
+jobs:
+  block:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: לחסום ולנקות את המדור
+        run: |
+          python - <<'PY' > /tmp/args.txt
+          import os
+          raw = os.environ["PHRASES"]
+          print("\n".join(p.strip() for p in raw.split(",") if p.strip()))
+          PY
+          mapfile -t ARGS < /tmp/args.txt
+          printf 'ביטויים: %s\n' "${ARGS[*]}"
+          python scripts/block_headline.py "${ARGS[@]}"
+        env:
+          PHRASES: ${{ inputs.phrases }}
+
+      - name: לדחוף
+        run: |
+          git config user.name "hapoel-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add app/data/news-sources.json app/data/news.json
+          if git diff --cached --quiet; then
+            echo "שום דבר לא השתנה, אין מה לדחוף."
+            exit 0
+          fi
+          git commit -q -m "חסימת כותרת מהמדור: ${{ inputs.phrases }}"
+          for i in 1 2 3; do
+            if git pull --rebase --autostash -q origin main && git push -q origin HEAD:main; then
+              echo "פורסם."
+              exit 0
+            fi
+            echo "התנגשות בדחיפה, ניסיון $i"
+            sleep $((i * 5))
+          done
+          echo "הדחיפה נכשלה"
+          exit 1
