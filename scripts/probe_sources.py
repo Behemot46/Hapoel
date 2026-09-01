@@ -1,44 +1,91 @@
-"""בדיקת מקורות: לאן נעלם המשחק של 31.8, ומה התוצאה.
+"""בדיקת מקורות: איפה נמצא הסמל החדש של המועדון.
 
-אחרי שהמשחק מול הפועל חולון שוחק, הוא נעלם מ־games.json לגמרי במקום
-לקבל תוצאה. שתי אפשרויות שדורשות תיקון הפוך: או שאתר המועדון מוריד
-משחק ששוחק מהעמוד, ואז אנחנו חייבים לשמור היסטוריה בעצמנו, או שהוא
-עדיין שם עם תוצאה ואנחנו לא קוראים אותה.
+המועדון השיק סמל חדש ומיתוג חדש ב־23.8.2026, וזה הופיע גם במדור החדשות
+שלנו. הסמל באפליקציה הוא עדיין הישן. הקובץ אצלנו הוא 160x160, הכי גדול
+שנמצא בזמנו, וכל שאר האייקונים נגזרים ממנו.
 
-מודפס מה שהעמוד מחזיר בפועל, כולל כל בלוק משחק גולמי, ומה הפרסר שלנו
-מוציא ממנו.
+כאן מחפשים את הקובץ הרשמי החדש: כל תמונה בעמוד הבית של המועדון, תגיות
+og:image ו־favicon, וכל כתובת שנראית כמו לוגו. מודפס גם הגודל האמיתי של
+כל מועמד, כי סמל ב־48 פיקסלים לא שווה כלום לאייקון של 512.
+
+ובסוף, המועמד הטוב ביותר מודפס כ־base64 כדי שאפשר יהיה להסתכל עליו
+בעיניים לפני שהוא נכנס לריפו. סמל הוא הדבר היחיד באפליקציה שאסור
+״להתקין ולראות אחר כך״.
 """
+import base64
+import io
+import re
 import sys
 import pathlib
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import club_games
-import update_data as u
+import requests
 from bs4 import BeautifulSoup
+from PIL import Image
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import update_data as u
+
+SITE = "https://hapoel.co.il/"
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-html = u.fetch(club_games.GAMES_URL)
-log("עמוד המשחקים:", club_games.GAMES_URL, "|", len(html), "תווים")
-soup = BeautifulSoup(html, "html.parser")
-blocks = soup.select(".game")
-log("בלוקים של משחק בעמוד:", len(blocks))
-for i, g in enumerate(blocks[:8]):
-    when = club_games._txt(g.select_one(".date-data .date-time"))
-    score = club_games._txt(g.select_one(".game-data .score"))
-    teams = [t.get("alt") for t in g.select(".teams-container img[alt]")]
-    log(f"  [{i}] when={when!r} score={score!r} teams={teams}")
+def measure(url):
+    try:
+        r = requests.get(url, headers=u.UA if hasattr(u, "UA") else {}, timeout=25)
+        r.raise_for_status()
+        im = Image.open(io.BytesIO(r.content))
+        return r.content, im.size, im.mode
+    except Exception as e:
+        return None, ("שגיאה", str(e)[:60]), None
 
-log("--- מה הפרסר מוציא ---")
-games = club_games.fetch_games(u.fetch, log=log)
-for g in games[:8]:
-    log(f"  {g['date'][:16]} {g['home']} {g.get('homeScore')} : {g.get('awayScore')} "
-        f"{g['away']}  status={g['status']}")
-log("--- חיפוש 31.8 ---")
-hit = [g for g in games if g["date"].startswith("2026-08-31")]
-log("נמצא בפרסר:" , hit if hit else "לא נמצא")
-if "31" in html and "אוגוסט" in html:
-    log("המחרוזת ״אוגוסט״ מופיעה בעמוד")
+
+html = u.fetch(SITE)
+log("עמוד הבית:", len(html), "תווים")
+soup = BeautifulSoup(html, "html.parser")
+
+cands = []
+for tag in soup.find_all("img"):
+    src = tag.get("src") or tag.get("data-src") or ""
+    if src:
+        cands.append(("img", requests.compat.urljoin(SITE, src), tag.get("alt") or ""))
+for tag in soup.find_all("link", rel=True):
+    rel = " ".join(tag.get("rel"))
+    if "icon" in rel.lower():
+        cands.append((rel, requests.compat.urljoin(SITE, tag.get("href") or ""), ""))
+for tag in soup.find_all("meta", property=True):
+    if tag.get("property") in ("og:image", "twitter:image"):
+        cands.append((tag["property"], requests.compat.urljoin(SITE, tag.get("content") or ""), ""))
+
+seen, uniq = set(), []
+for kind, url, alt in cands:
+    if url in seen:
+        continue
+    seen.add(url)
+    uniq.append((kind, url, alt))
+
+log(f"מועמדים: {len(uniq)}")
+best = None
+for kind, url, alt in uniq[:40]:
+    looks = re.search(r"logo|crest|badge|symbol|icon|semel|סמל", url, re.I)
+    data, size, mode = measure(url)
+    mark = ""
+    if data and isinstance(size, tuple) and isinstance(size[0], int):
+        px = size[0] * size[1]
+        if looks and (best is None or px > best[0]):
+            best = (px, url, data, size)
+            mark = "  <== מועמד"
+    log(f"  [{kind}] {size} {mode or ''} {url[:95]} {('alt=' + alt[:30]) if alt else ''}{mark}")
+
+if best:
+    px, url, data, size = best
+    log("=== הטוב ביותר ===")
+    log(url, size, f"{len(data)} bytes")
+    b64 = base64.b64encode(data).decode()
+    log(f"base64 באורך {len(b64)}, ב־{(len(b64) + 2999) // 3000} חלקים")
+    for i in range(0, len(b64), 3000):
+        log(f"B64[{i // 3000}] {b64[i:i + 3000]}")
+else:
+    log("לא נמצא מועמד שנראה כמו לוגו")
