@@ -119,7 +119,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts, press, playerStatus] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts, press, playerStatus, boxscores] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -140,6 +140,7 @@ async function boot() {
       loadJSON("data/podcasts.json").catch(() => (null)),
       loadJSON("data/press.json").catch(() => (null)),
       loadJSON("data/player-status.json").catch(() => (null)),
+      loadJSON("data/boxscores.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -161,6 +162,7 @@ async function boot() {
     state.podcasts = podcasts;
     state.press = press;
     state.playerStatus = playerStatus;
+    state.boxscores = boxscores;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -284,10 +286,14 @@ function render() {
   const hash = location.hash || "#/";
   // player detail lives under #/player/<slug>
   const playerMatch = hash.match(/^#\/player\/(.+)$/);
+  // טופס משחק יושב תחת #/game/<id>
+  const gameMatch = hash.match(/^#\/game\/(.+)$/);
   const fn = playerMatch
     ? () => renderPlayer(decodeURIComponent(playerMatch[1]))
+    : gameMatch
+    ? () => renderGame(decodeURIComponent(gameMatch[1]))
     : (routes[hash] || renderHome);
-  const routeName = hash === "#/games" ? "games"
+  const routeName = (hash === "#/games" || gameMatch) ? "games"
     : hash === "#/table" ? "table"
     : (hash === "#/roster" || hash === "#/meet" || playerMatch) ? "roster"
     : (hash === "#/history" || hash === "#/hof" || hash === "#/news"
@@ -2095,7 +2101,14 @@ function renderHome() {
     left.appendChild(text("span", "chip " + (won(last) ? "win" : "loss"), won(last) ? "ניצחון" : "הפסד"));
     line.appendChild(left);
     c.appendChild(line);
-    c.appendChild(shareResultButton(last));
+    if (boxFor(last)) {
+      const row = el("div", "row-actions");
+      row.appendChild(statButton(last, "slim"));
+      row.appendChild(shareResultButton(last, "slim"));
+      c.appendChild(row);
+    } else {
+      c.appendChild(shareResultButton(last));
+    }
     view.appendChild(c);
   }
 
@@ -2357,6 +2370,7 @@ function gameRow(g) {
   const actions = el("div", "row-actions");
   actions.appendChild(attendButton(g));
   if (g.status === "finished") {
+    if (boxFor(g)) actions.appendChild(statButton(g, "slim"));
     actions.appendChild(shareResultButton(g, "slim"));
   } else {
     const cal = calButton([g], "ליומן", icsName(g), "slim");
@@ -2387,6 +2401,262 @@ function attendButton(g) {
   paint();
   b.onclick = () => { toggleAttend(g); paint(); };
   return b;
+}
+
+/* ---------- טופס משחק ---------- */
+
+// טופס המשחק הרשמי הוא הדבר הכי קרוב לאמת שיש על משחק שנגמר, והוא
+// מגיע כדף נייר. הנתונים כאן הועתקו ממנו ביד ואומתו מול הסכומים
+// המודפסים בו (scripts/boxscore_test.py), ולכן הם נשמרים בקובץ ידני
+// ולא נאספים: אין מקור אוטומטי שמפרסם אותם.
+function boxFor(g) {
+  const all = state.boxscores && state.boxscores.games;
+  return (g && all && all[g.id]) || null;
+}
+
+function gameById(id) {
+  return (state.games.games || []).find(g => g.id === id) || null;
+}
+
+// המספרים בתוך תא נשארים בסדר שנכתב בו. ״5/6״ בתוך עמוד מימין לשמאל
+// מתהפך ל־6/5 בדיוק כמו שתוצאה מתהפכת, וזה אותו באג שכבר תפס אותנו
+// בכרטיס התוצאה.
+function num(str) {
+  const n = text("span", "num", str);
+  return n;
+}
+
+function shot(pair) {
+  return pair[0] + "/" + pair[1];
+}
+
+function statButton(g, cls) {
+  const b = el("button", "cal-btn" + (cls ? " " + cls : ""));
+  b.type = "button";
+  b.appendChild(text("span", "cal-ico", "📋"));
+  b.appendChild(text("span", "", "טופס המשחק"));
+  b.setAttribute("aria-label", "טופס המשחק מול " + teamName(opponent(g)));
+  b.onclick = () => { location.hash = "#/game/" + encodeURIComponent(g.id); };
+  return b;
+}
+
+const BOX_COLS = [
+  ["דק׳", p => p.min, "min"],
+  ["נק׳", p => p.pts, "pts"],
+  ["שדה", p => shot(p.fg)],
+  ["2", p => shot(p.p2)],
+  ["3", p => shot(p.p3)],
+  ["עונשין", p => shot(p.ft)],
+  ["ריב׳", p => p.reb],
+  ["הת׳", p => p.oreb],
+  ["הג׳", p => p.dreb],
+  ["אס׳", p => p.ast],
+  ["איב׳", p => p.to],
+  ["חט׳", p => p.stl],
+  ["חס׳", p => p.blk],
+  ["עב׳", p => p.pf],
+  ["±", p => (p.plusMinus > 0 ? "+" : "") + p.plusMinus],
+  ["מדד", p => p.pir],
+];
+
+function playerCell(p) {
+  const td = el("td", "bs-name");
+  const label = p.he || p.name;
+  if (p.slug) {
+    const a = el("a", isLatin(label) ? "latin" : "");
+    a.href = "#/player/" + encodeURIComponent(p.slug);
+    a.textContent = label;
+    td.appendChild(a);
+  } else {
+    td.appendChild(text("span", isLatin(label) ? "latin" : "", label));
+  }
+  if (p.starter) td.appendChild(text("span", "bs-star", "★"));
+  return td;
+}
+
+function boxTable(team) {
+  const wrap = el("div", "bs-wrap");
+  const t = el("table", "bs-table");
+
+  const head = el("tr");
+  head.appendChild(text("th", "bs-name", "שחקן"));
+  BOX_COLS.forEach(([label]) => head.appendChild(text("th", "", label)));
+  t.appendChild(el("thead", "", "")).appendChild(head);
+
+  const body = el("tbody");
+  team.players.forEach(p => {
+    const tr = el("tr", p.starter ? "starter" : "");
+    tr.appendChild(playerCell(p));
+    BOX_COLS.forEach(([, get, cls]) => {
+      const td = el("td", cls || "");
+      td.appendChild(num(String(get(p))));
+      tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+  t.appendChild(body);
+
+  const tot = team.totals;
+  const foot = el("tr", "bs-totals");
+  foot.appendChild(text("td", "bs-name", "סה״כ"));
+  const mins = team.players.reduce((a, x) => {
+    const [m, sec] = x.min.split(":").map(Number);
+    return a + m * 60 + sec;
+  }, 0);
+  [Math.round(mins / 60), tot.pts, shot(tot.fg), shot(tot.p2), shot(tot.p3), shot(tot.ft),
+   tot.reb, tot.oreb, tot.dreb, tot.ast, tot.to, tot.stl, tot.blk, tot.pf, "", tot.pir]
+    .forEach(v => {
+      const td = el("td");
+      if (v !== "") td.appendChild(num(String(v)));
+      foot.appendChild(td);
+    });
+  t.appendChild(el("tfoot")).appendChild(foot);
+
+  wrap.appendChild(t);
+  return wrap;
+}
+
+// מי הוביל, ישירות מהטופס. זה לא ניתוח, זו קריאה של העמודה.
+function leaders(team) {
+  const best = key => team.players.reduce((a, b) => (b[key] > a[key] ? b : a), team.players[0]);
+  return [
+    ["נקודות", best("pts")],
+    ["ריבאונדים", best("reb")],
+    ["אסיסטים", best("ast")],
+  ].map(([what, p]) => ({ what, p, value: p[what === "נקודות" ? "pts" : what === "ריבאונדים" ? "reb" : "ast"] }));
+}
+
+function renderGame(id) {
+  const g = gameById(id);
+  const box = g && boxFor(g);
+  if (!g || !box) {
+    view.appendChild(text("div", "empty", "אין טופס משחק לזה."));
+    const back = el("a", "cal-btn");
+    back.href = "#/games";
+    back.textContent = "חזרה ללוח המשחקים";
+    view.appendChild(back);
+    return;
+  }
+
+  const us = box.teams.find(t => t.us) || box.teams[0];
+  const them = box.teams.find(t => t !== us);
+
+  // כותרת: מי, כמה, איפה
+  const head = el("div", "card");
+  head.appendChild(text("div", "eyebrow", "טופס המשחק"));
+  const line = el("div", "result-line");
+  const right = el("div");
+  right.appendChild(oppEl("teams", opponent(g)));
+  right.appendChild(prose("div", "sub", g.competition + " · " +
+    fmtFull.format(new Date(g.date)) + " · " + (isHome(g) ? "בית" : "חוץ") +
+    (g.venue ? " · " + g.venue : "")));
+  line.appendChild(right);
+  const left = el("div");
+  left.style.textAlign = "center";
+  left.appendChild(text("div", "score", us.score + "-" + them.score));
+  left.appendChild(text("span", "chip " + (us.score > them.score ? "win" : "loss"),
+    us.score > them.score ? "ניצחון" : "הפסד"));
+  line.appendChild(left);
+  head.appendChild(line);
+
+  // רבעים
+  const q = el("table", "bs-quarters");
+  const qh = el("tr");
+  qh.appendChild(text("th", "", ""));
+  box.quarters.forEach((_, i) => qh.appendChild(text("th", "", "ר׳ " + (i + 1))));
+  qh.appendChild(text("th", "", "סה״כ"));
+  q.appendChild(qh);
+  [[us.name, 0], [them.name, 1]].forEach(([name, idx]) => {
+    const tr = el("tr", idx === 0 ? "starter" : "");
+    tr.appendChild(text("td", "bs-name", teamName(name)));
+    box.quarters.forEach(pair => {
+      const td = el("td");
+      td.appendChild(num(String(pair[idx])));
+      tr.appendChild(td);
+    });
+    const td = el("td", "pts");
+    td.appendChild(num(String(box.quarters.reduce((a, pr) => a + pr[idx], 0))));
+    tr.appendChild(td);
+    q.appendChild(tr);
+  });
+  head.appendChild(q);
+  head.appendChild(shareResultButton(g));
+  view.appendChild(head);
+
+  // הדיווח
+  if (box.report && box.report.length) {
+    const c = el("div", "card");
+    c.appendChild(text("div", "eyebrow", "מה קרה שם"));
+    box.report.forEach(par => c.appendChild(prose("p", "report", par)));
+    view.appendChild(c);
+  }
+
+  // מי הוביל אצלנו
+  const lead = el("div", "card");
+  lead.appendChild(text("div", "eyebrow", "הובילו אותנו"));
+  const lg = el("div", "lead-grid");
+  leaders(us).forEach(({ what, p, value }) => {
+    const b = el("div", "lead-box");
+    b.appendChild(text("div", "lead-num", String(value)));
+    b.appendChild(text("div", "lead-what", what));
+    const label = p.he || p.name;
+    b.appendChild(text("div", "lead-who" + (isLatin(label) ? " latin" : ""), label));
+    lg.appendChild(b);
+  });
+  lead.appendChild(lg);
+  view.appendChild(lead);
+
+  // הטבלאות, קבוצה בכל פעם
+  const tables = el("div", "card");
+  const seg = el("div", "seg");
+  const bUs = text("button", state.boxTab === "them" ? "" : "active", teamName(us.name));
+  const bThem = text("button", state.boxTab === "them" ? "active" : "", teamName(them.name));
+  bUs.onclick = () => { state.boxTab = "us"; render(); };
+  bThem.onclick = () => { state.boxTab = "them"; render(); };
+  seg.appendChild(bUs);
+  seg.appendChild(bThem);
+  tables.appendChild(seg);
+  tables.appendChild(boxTable(state.boxTab === "them" ? them : us));
+  tables.appendChild(prose("div", "note", "★ חמישייה פותחת. הטבלה נגררת הצידה."));
+  view.appendChild(tables);
+
+  // השוואת קבוצות
+  if (box.teamStats && box.teamStats.length) {
+    const c = el("div", "card");
+    c.appendChild(text("div", "eyebrow", "קבוצה מול קבוצה"));
+    box.teamStats.forEach(row => {
+      const r = el("div", "ts-row");
+      const a = text("span", "ts-us", String(row.us));
+      const l = text("span", "ts-label", row.label);
+      const b = text("span", "ts-them", String(row.them));
+      r.appendChild(a); r.appendChild(l); r.appendChild(b);
+      c.appendChild(r);
+    });
+    c.appendChild(text("div", "note", "מימין הפועל ירושלים, משמאל היריבה."));
+    view.appendChild(c);
+  }
+
+  // מאיפה זה, ומה כתבו
+  const src = el("div", "card");
+  src.appendChild(text("div", "eyebrow", "מקורות"));
+  src.appendChild(prose("p", "report", "המספרים כאן הועתקו ביד מ" +
+    (box.source && box.source.name ? box.source.name : "טופס המשחק הרשמי") +
+    ", וכל עמודה אומתה מול הסכומים המודפסים בטופס עצמו."));
+  (box.links || []).forEach(l => {
+    const a = el("a", "src-link");
+    a.href = l.url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    proseInto(a, l.title);
+    a.appendChild(text("span", "src-name", l.name));
+    src.appendChild(a);
+  });
+  view.appendChild(src);
+
+  const back = el("a", "cal-btn");
+  back.href = "#/games";
+  back.textContent = "חזרה ללוח המשחקים";
+  view.appendChild(back);
 }
 
 /* ---------- table ---------- */

@@ -472,7 +472,9 @@ body {
 .latin { unicode-bidi: isolate; }
 /* a score or a record inside Hebrew prose: keep the numbers in the order
    they were written, instead of letting the RTL paragraph swap them */
-.numrun { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+/* nowrap כי ״25-21״ שנשבר בסוף שורה מתפצל לשני חלקים בשתי שורות, והמקף
+   נשאר לבד: בפסקה עברית זה נקרא כאילו התוצאה היא מספר אחד ועוד מספר */
+.numrun { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; white-space: nowrap; }
 a.player-row { text-decoration: none; color: inherit; }
 /* .game-row .info sets the flex; player rows need their own */
 .player-row .info { flex: 1; min-width: 0; }
@@ -1299,3 +1301,55 @@ a:focus-visible, button:focus-visible { outline: 2.5px solid var(--red); outline
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   background: var(--surface-2);
 }
+
+/* ---------- טופס משחק ---------- */
+
+/* טבלה עם שש עשרה עמודות לא נכנסת לרוחב של טלפון, ולכן היא נגררת בתוך
+   המסגרת שלה בלבד. הגוף של העמוד אף פעם לא נגרר הצידה. */
+.bs-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -4px; }
+.bs-table { border-collapse: collapse; width: 100%; font-size: 13px; white-space: nowrap; }
+.bs-table th, .bs-table td { padding: 7px 8px; text-align: center; border-bottom: 1px solid var(--line); }
+.bs-table th { font-size: 11.5px; color: var(--muted); font-weight: 700; }
+/* שם השחקן נשאר מוצמד לימין כשגוררים את הטבלה, אחרת אי אפשר לדעת של מי
+   השורה שקוראים */
+.bs-table .bs-name {
+  position: sticky; inset-inline-start: 0;
+  background: var(--surface);
+  text-align: start; font-weight: 700; min-width: 116px;
+  box-shadow: 1px 0 0 var(--line);
+}
+.bs-table tbody tr.starter .bs-name { background: var(--surface-2); }
+.bs-table tbody tr.starter { background: rgba(228, 0, 43, 0.035); }
+.bs-table .bs-name a { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--line); }
+.bs-star { color: var(--red-text); margin-inline-start: 4px; font-size: 10px; }
+.bs-table td.pts { font-weight: 800; }
+.bs-table tfoot .bs-totals td { font-weight: 800; border-top: 2px solid var(--line); border-bottom: none; }
+/* מספר בתוך תא שומר על הסדר שנכתב בו: ״5/6״ בעמוד מימין לשמאל מתהפך
+   ל־6/5, אותו באג שכבר תפס אותנו בכרטיס התוצאה */
+.num { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+
+.bs-quarters { border-collapse: collapse; width: 100%; margin-top: 12px; font-size: 13px; }
+.bs-quarters th, .bs-quarters td { padding: 6px 8px; text-align: center; border-bottom: 1px solid var(--line); }
+.bs-quarters th { font-size: 11.5px; color: var(--muted); }
+.bs-quarters .bs-name { text-align: start; font-weight: 700; }
+.bs-quarters td.pts { font-weight: 800; }
+
+.report { margin: 0 0 10px; line-height: 1.65; }
+.report:last-child { margin-bottom: 0; }
+
+.lead-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.lead-box { background: var(--surface-2); border-radius: 10px; padding: 10px 8px; text-align: center; }
+.lead-num { font-size: 24px; font-weight: 800; color: var(--red-text); font-variant-numeric: tabular-nums; }
+.lead-what { font-size: 11.5px; color: var(--muted); }
+.lead-who { font-size: 13px; font-weight: 700; margin-top: 2px; }
+
+.ts-row { display: grid; grid-template-columns: 3rem 1fr 3rem; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.ts-row:last-of-type { border-bottom: none; }
+.ts-label { text-align: center; font-size: 13px; color: var(--muted); }
+.ts-us, .ts-them { font-weight: 800; font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; }
+.ts-us { color: var(--red-text); text-align: start; }
+.ts-them { text-align: end; }
+
+.src-link { display: block; color: inherit; text-decoration: none; padding: 8px 0; border-bottom: 1px solid var(--line); font-weight: 700; }
+.src-link:last-child { border-bottom: none; }
+.src-name { display: block; font-size: 11.5px; color: var(--muted); font-weight: 400; margin-top: 2px; }
