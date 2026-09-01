@@ -22,6 +22,11 @@ SITE = "https://hapoel.co.il/"
 PAGES = ["", "games", "team", "about", "news", "club"]
 US = ("ירושלים", "מידטאון", "הפועל י")
 
+# האתר מכריז utf-8 רק בתגית meta ולא בכותרת ה־HTTP, ולכן requests מנחשת
+# latin-1 וכל העברית חוזרת כג׳יבריש. בסבב הקודם זה הפיל את כל ההתאמות
+# לאפס בלי שום שגיאה.
+ENC = "utf-8"
+
 
 def log(*a):
     print("[probe]", *a, flush=True)
@@ -32,6 +37,7 @@ for page in PAGES:
     url = requests.compat.urljoin(SITE, page)
     try:
         r = requests.get(url, headers=UA, timeout=30)
+        r.encoding = ENC
     except Exception as e:
         log(f"{page or '/'}: נפל {e}")
         continue
