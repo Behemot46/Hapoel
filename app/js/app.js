@@ -895,41 +895,78 @@ function pickBox(g) {
   title.appendChild(document.createTextNode(existing ? "הניחוש שלך" : "מה יהיה?"));
   box.appendChild(title);
 
+  // מי מול מי, בלי לכתוב את זה: הסמל שלנו מימין ושם היריבה משמאל. אוהד
+  // שמסתכל על התיבה יודע מיד איזה מספר שייך למי, וזה גם הכיוון שבו הוא
+  // קורא. שאר האפליקציה מציגה תוצאה ב־ltr, אבל שם אין מה שיסמן צד, וכאן
+  // הסמל והשם עושים את זה במקום סדר המספרים.
   const row = el("div", "pick-row");
-  const mk = (label, val) => {
+
+  const field = (who, val, label) => {
     const wrap = el("label", "pick-field");
+    wrap.appendChild(who);
     const inp = el("input");
     inp.type = "number";
     inp.inputMode = "numeric";
     inp.min = "0";
     inp.max = "199";
-    inp.placeholder = "-";
+    inp.placeholder = "00";
+    inp.autocomplete = "off";
     if (val != null) inp.value = val;
     inp.setAttribute("aria-label", label);
+    // הקשה על משבצת שכבר יש בה מספר מסמנת אותו, כדי שהקלדה תחליף אותו
+    // במקום להתווסף לו
+    inp.addEventListener("focus", () => inp.select());
     wrap.appendChild(inp);
-    wrap.appendChild(text("span", "pick-label", label));
     return { wrap: wrap, inp: inp };
   };
-  const us = mk("אנחנו", existing ? existing.us : null);
-  const them = mk("היריבה", existing ? existing.them : null);
+
+  const crest = el("img", "pick-crest crest-plate");
+  crest.src = "icons/crest.png";
+  crest.alt = "הפועל ירושלים";
+  crest.width = 56;
+  crest.height = 56;
+  const us = field(crest, existing ? existing.us : null, "הניחוש שלנו");
+
+  const oppName = teamName(opponent(g));
+  const them = field(text("span", "pick-team" + (isLatin(oppName) ? " latin" : ""), oppName),
+                     existing ? existing.them : null,
+                     "הניחוש של " + oppName);
+
   row.appendChild(us.wrap);
   row.appendChild(text("span", "pick-dash", "-"));
   row.appendChild(them.wrap);
   box.appendChild(row);
 
-  const actions = el("div", "pick-actions");
-  const save = text("button", "pick-save", existing ? "עדכון" : "שמירה");
-  save.type = "button";
   const err = text("div", "pick-err", "");
   const valid = v => v !== "" && !Number.isNaN(+v) && +v >= 0 && +v <= 199;
-  save.onclick = () => {
+  const submit = () => {
     if (!valid(us.inp.value) || !valid(them.inp.value)) {
       err.textContent = "שני המספרים, בין 0 ל־199.";
+      (valid(us.inp.value) ? them.inp : us.inp).focus();
       return;
     }
     setPick(g, +us.inp.value, +them.inp.value);
     render();
   };
+
+  // מקלדת של טלפון: אנטר במשבצת הראשונה קופץ לשנייה, ובשנייה שומר
+  us.inp.setAttribute("enterkeyhint", "next");
+  them.inp.setAttribute("enterkeyhint", "done");
+  us.inp.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); them.inp.focus(); }
+  });
+  them.inp.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); submit(); }
+  });
+
+  const hint = text("div", "pick-hint",
+    existing ? "אפשר לעדכן עד לקפיצה" : "הקישו על המשבצת והזינו תוצאה");
+  box.appendChild(hint);
+
+  const actions = el("div", "pick-actions");
+  const save = text("button", "pick-save", existing ? "עדכון" : "שמירת הניחוש");
+  save.type = "button";
+  save.onclick = submit;
   actions.appendChild(save);
   if (existing) {
     const share = text("button", "pick-share", "שיתוף הניחוש");
