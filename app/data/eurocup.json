@@ -264,16 +264,6 @@
       "rows": [
         {
           "pos": 1,
-          "team": "AS Monaco",
-          "code": "MCO",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
-          "pos": 2,
           "team": "Bahcesehir College Istanbul",
           "code": "BAH",
           "played": 0,
@@ -283,9 +273,19 @@
           "against": 0
         },
         {
-          "pos": 3,
+          "pos": 2,
           "team": "Balkan Botevgrad",
           "code": "BLK",
+          "played": 0,
+          "wins": 0,
+          "losses": 0,
+          "for": 0,
+          "against": 0
+        },
+        {
+          "pos": 3,
+          "team": "BOSNA BH Telecom Sarajevo",
+          "code": "BOS",
           "played": 0,
           "wins": 0,
           "losses": 0,
