@@ -106,6 +106,24 @@ SOCCER_CLUBS = ("מכבי פתח תקווה", "מכבי פ\"ת", "מכבי פ״�
                 "מכבי קריית ים", "הפועל כפר שלם", "הפועל ירושלים בכדורגל")
 
 
+def _norm(s):
+    """אותו שם נכתב בכמה צורות, וההשוואה חייבת להיות עיוורת להן.
+
+    ״הפועל פתח תקוה״ בכותרת מול ״הפועל פתח תקווה״ ברשימה הן אותה קבוצה,
+    וההבדל היחיד הוא וו אחת. בדיוק ההבדל הזה החזיר לנו את הכותרת
+    ״קימבידי כבש, הפועל פתח תקוה השיגה נקודות ראשונות העונה מול הפועל
+    ירושלים״, שהיא כדורגל מהמילה הראשונה עד האחרונה. אותו סיפור עם
+    גרשיים: פ״ת, פ"ת ופת הם אותו דבר.
+
+    הנרמול מופעל על שני הצדדים, על הכותרת ועל הרשימה, ולכן הוא לא יכול
+    ליצור אי־התאמה חדשה.
+    """
+    s = s or ""
+    for ch in ('"', "״", "'", "׳", "`"):
+        s = s.replace(ch, "")
+    return s.replace("וו", "ו")
+
+
 def _our_basketball_world():
     """השמות שאנחנו חיים בתוכם: טבלת הליגה והיריבות שלנו העונה."""
     names = set()
@@ -140,10 +158,11 @@ def soccer_clubs():
     global _clubs_cache
     if _clubs_cache is not None:
         return _clubs_cache
-    world = _our_basketball_world()
+    world = {_norm(t) for t in _our_basketball_world()}
     live, dropped = [], []
     for name in SOCCER_CLUBS:
-        if any(name in team or team in name for team in world):
+        n = _norm(name)
+        if any(n in team or team in n for team in world):
             dropped.append(name)
         else:
             live.append(name)
@@ -151,6 +170,23 @@ def soccer_clubs():
         log("לא ייחסמו, כי הם ביקום הכדורסל שלנו:", ", ".join(dropped))
     _clubs_cache = tuple(live)
     return _clubs_cache
+
+# תפקיד בכדורגל הוא לא תפקיד בכדורסל. אצלנו כותבים רכז, קלע, כנף,
+# פורוורד וסנטר, ואף פעם לא חלוץ, קיצוני או בלם. הכותרת ״קיצוני ממיטיולן
+# סיכם בהפועל ירושלים״ עברה את כל הסינון הקודם כי אין בה שום מילה
+# מהכדורגל חוץ מהתפקיד עצמו, וגם היריבה בה היא מועדון דני שלעולם לא יהיה
+# ברשימת המועדונים הישראליים. אותו סיפור פורסם אחר כך כ״חלוץ ממיטיולן״.
+#
+# הביטויים כתובים כביטוי רגולרי ולא כרשימת מילים, כי ״קיצוני״ הוא גם שם
+# תואר תמים (״שינוי קיצוני״) והוא נחשב תפקיד רק כשמגיע אחריו מקור או
+# שייכות, ו״כבש״ הוא גם כיבוש (״כבשה את אירופה״) והוא נחשב שער רק כשלא
+# בא אחריו ״את״.
+SOCCER_ROLE = (
+    re.compile(r"(^|\s)[הלכבו]?חלוץ(\s|,|\.|:|$)"),
+    re.compile(r"(^|\s)[הלכבו]?קיצוני\s+(מ|של|ה)"),
+    re.compile(r"(^|\s)[הלכבו]?בלם(\s|,|\.|:|$)"),
+    re.compile(r"כבש(?!\s+את)(\s|,|\.|$)"),
+)
 
 # תוצאה בכדורסל לא נגמרת 2-1. כותרת עם שני מספרים קטנים היא כדורגל, והיא
 # עוברת את רשימת המילים בקלות כי אפשר לכתוב אותה בלי אף מילה מהכדורגל.
@@ -227,11 +263,14 @@ def _soccer_score(title):
 
 def about_us(title):
     """True when the headline itself is about our basketball club."""
-    if not any(w in title for w in US):
+    flat = _norm(title)
+    if not any(_norm(w) in flat for w in US):
         return False
-    if any(w in title for w in NOT_US) or any(w in title for w in soccer_clubs()):
+    if any(_norm(w) in flat for w in NOT_US) or any(_norm(w) in flat for w in soccer_clubs()):
         return False
-    if any(w in title for w in blocked_phrases()):
+    if any(_norm(w) in flat for w in blocked_phrases()):
+        return False
+    if any(r.search(title) for r in SOCCER_ROLE):
         return False
     return not _soccer_score(title)
 
