@@ -10,12 +10,14 @@ preview card carry no surrounding text, so a bare crest there reads as the
 club's own app. Every icon produced here therefore carries the app's name
 across it, which is what a fan project's mark should look like.
 
-The source is 160x160, the largest that could be found; the club's own
-favicon is 48x48 and there is no public vector. So the icons are built to
-keep it as sharp as the source allows: the 192 is drawn at close to native
-size, and the 512 is upscaled with LANCZOS, which is soft at full size but
-is displayed far smaller than that in practice (Android uses the 192 on the
-home screen; the 512 is for splash and listings).
+The source is 300x300, the largest that could be found: the club's own
+site serves that file as its logo, and a sweep of every image on its pages,
+matched by the alt text the site gives them rather than by file size, turned
+up nothing bigger. So the icons are built to keep it as sharp as the source
+allows: the 192 is scaled down from the source, and the 512 is upscaled with
+LANCZOS, which is soft at full size but is displayed far smaller than that in
+practice (Android uses the 192 on the home screen; the 512 is for splash and
+listings).
 
 If crest.png is missing the script says so and leaves the icons alone,
 rather than silently shipping a blank badge.
