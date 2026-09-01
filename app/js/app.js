@@ -642,6 +642,22 @@ function crestImage() {
   });
 }
 
+// הסמל החדש של המועדון עטוף בטבעת שחורה, והכרטיס שחור, ולכן הקצה שלו
+// נבלע ברקע ונשאר רק העיגול האדום באמצע. אותו פתרון כמו באייקונים:
+// לוחית לבנה מתחתיו. זה גם מה שמפריד אותו מהפס האלכסוני שמעליו.
+function drawCrest(ctx, crest, size, top) {
+  const pad = Math.round(size * 0.12);
+  const plate = size + pad * 2;
+  const x = (CARD - plate) / 2;
+  ctx.save();
+  ctx.fillStyle = "#FFFFFF";
+  ctx.beginPath();
+  ctx.roundRect(x, top - pad, plate, plate, Math.round(plate * 0.22));
+  ctx.fill();
+  ctx.restore();
+  ctx.drawImage(crest, (CARD - size) / 2, top, size, size);
+}
+
 // טקסט שנחתך באמצע מילה הוא כרטיס מביך. מקטינים עד שנכנס.
 function fitFont(ctx, str, weight, start, min, maxWidth) {
   let size = start;
@@ -670,10 +686,7 @@ async function resultCardBlob(g) {
   ctx.restore();
 
   const crest = await crestImage();
-  if (crest) {
-    const size = 150;
-    ctx.drawImage(crest, (CARD - size) / 2, 210, size, size);
-  }
+  if (crest) drawCrest(ctx, crest, 150, 215);
 
   ctx.textAlign = "center";
   ctx.direction = "rtl";
@@ -793,7 +806,7 @@ async function pickCardBlob(g, p) {
   ctx.restore();
 
   const crest = await crestImage();
-  if (crest) ctx.drawImage(crest, (CARD - 150) / 2, 210, 150, 150);
+  if (crest) drawCrest(ctx, crest, 150, 215);
 
   ctx.textAlign = "center";
   ctx.direction = "rtl";

@@ -93,7 +93,16 @@ body {
 .share-icon svg { width: 21px; height: 21px; fill: currentColor; }
 .share-icon:hover { background: var(--red); }
 .wordmark { display: flex; align-items: center; gap: 10px; }
-.wordmark .ball { width: 38px; height: 38px; flex: 0 0 38px; display: block; }
+/* הטבעת החיצונית של הסמל שחורה, וגם הסרגל העליון שחור, ולכן בלי לוחית
+   בהירה מתחתיו נראה רק העיגול האדום שבאמצע. אותה לוחית קיימת גם
+   באייקונים ובכרטיסי השיתוף, מאותה סיבה בדיוק. */
+.wordmark .ball {
+  width: 38px; height: 38px; flex: 0 0 38px; display: block;
+  background: #FFF6F7;
+  border-radius: 9px;
+  padding: 2px;
+  box-sizing: border-box;
+}
 .wordmark strong { display: block; font-size: 18px; font-weight: 800; line-height: 1.2; }
 .wordmark small { display: block; font-size: 11.5px; color: #C9AEB5; }
 

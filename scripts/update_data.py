@@ -325,6 +325,32 @@ def find_team_link():
             log(f"  '{t[:45]}' -> {h[:100]}")
     return None
 
+def preserve_missing(games, previous, now=None):
+    """משחקים מהקובץ הקודם שאף מקור כבר לא מציע, ושצריך לשמור.
+
+    יורדת רשומה רק כשיש עדות חיובית שהיא הוזזה: אותה יריבה באותה תחרות
+    בתאריך אחר, והתאריך הישן עוד בעתיד. שתיקה של מקור אינה עדות.
+    """
+    now = now or datetime.datetime.now(datetime.timezone.utc)
+    known = {g.get("id") for g in games if g.get("id")}
+    dates = {g["date"][:10] for g in games}
+    pairs = {(g.get("home"), g.get("away"), g.get("competition")) for g in games}
+
+    keep = []
+    for g in previous:
+        if g.get("id") in known or g["date"][:10] in dates:
+            continue
+        try:
+            when = datetime.datetime.fromisoformat(g["date"])
+        except Exception:
+            continue
+        moved = (when > now
+                 and (g.get("home"), g.get("away"), g.get("competition")) in pairs)
+        if not moved:
+            keep.append(g)
+    return keep
+
+
 def update_games():
     team_link = find_team_link()
     if not team_link:
@@ -388,31 +414,26 @@ def update_games():
         games.extend(fresh)
         log(f"manual entries added: {len(fresh)} of {len(friendly)}")
 
-    # משחק ששוחק נעלם מהמקורות. אתר המועדון מוריד משחק מהעמוד ברגע
-    # שהוא נגמר, וכך המשחק מול הפועל חולון ב־31.8.2026 פשוט נמחק מהלוח
-    # שלנו במקום לקבל תוצאה: הוא היה שם בבוקר ונעלם בערב. יומן האוהד
-    # מסמן נוכחות לפי מזהה משחק, אז משחק שנמחק גורר איתו גם את הסימון.
+    # משחק שנעלם מהמקורות. אתר המועדון מוריד משחק מהעמוד ברגע שהוא
+    # נגמר, ויומן האוהד מסמן נוכחות לפי מזהה משחק, אז משחק שנמחק גורר
+    # איתו גם את הסימון. לכן מה שכבר היה על הלוח ואינו מוצע יותר על ידי
+    # אף מקור נשמר מהקובץ הקודם.
     #
-    # לכן כל מה שכבר שוחק ואינו מוצע יותר על ידי אף מקור נשמר מהקובץ
-    # הקודם. השעתיים הן מרווח: משחק שהתחיל ממש עכשיו עדיין יכול להופיע
-    # ולהיעלם מהמקורות בזמן שהוא רץ.
-    keep_after = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=2)
-    known = {g.get("id") for g in games if g.get("id")}
-    dates = {g["date"][:10] for g in games}
+    # **למה בלי חלון זמן:** הניסוח הקודם שמר רק משחקים שהתחילו לפני
+    # שעתיים ומעלה, מתוך הנחה שמשחק נעלם אחרי שהוא נגמר. המשחק מול
+    # הפועל חולון ב־31.8.2026 הראה שההנחה לא נכונה: הוא נמחק מהקובץ
+    # בריצה של 16:04 UTC, שעה **לפני** הקפיצה ב־17:05 UTC, ולכן הוא היה
+    # עדיין בעתיד, החלון פסל אותו, והוא ירד מהלוח ביום המשחק עצמו.
+    #
+    # מקור ששותק אינו עדות שהמשחק בוטל, ולכן ברירת המחדל היא לשמור. מה
+    # שכן מפיל רשומה הוא עדות חיובית להזזה: אותה יריבה באותה תחרות
+    # מופיעה בתאריך אחר, והתאריך הישן עוד לא הגיע. משחק ששוחק כבר לא
+    # יורד לעולם, מה שהיה גם הכוונה המקורית.
     previous = (load_json("games.json") or {}).get("games", [])
-    revived = []
-    for g in previous:
-        if g.get("id") in known or g["date"][:10] in dates:
-            continue
-        try:
-            when = datetime.datetime.fromisoformat(g["date"])
-        except Exception:
-            continue
-        if when < keep_after:
-            revived.append(g)
+    revived = preserve_missing(games, previous)
     if revived:
         games.extend(revived)
-        log(f"שמרנו {len(revived)} משחקים ששוחקו וכבר לא מופיעים באף מקור:")
+        log(f"שמרנו {len(revived)} משחקים שכבר לא מופיעים באף מקור:")
         for g in revived:
             log(f"    = {g['date'][:16]}  {g['home']} vs {g['away']}  status={g['status']}")
 

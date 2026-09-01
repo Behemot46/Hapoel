@@ -1,44 +1,69 @@
-"""בדיקת מקורות: לאן נעלם המשחק של 31.8, ומה התוצאה.
+"""בדיקת מקורות: כל תמונה שהאתר של המועדון מסמן כשלנו, עם הגודל שלה.
 
-אחרי שהמשחק מול הפועל חולון שוחק, הוא נעלם מ־games.json לגמרי במקום
-לקבל תוצאה. שתי אפשרויות שדורשות תיקון הפוך: או שאתר המועדון מוריד
-משחק ששוחק מהעמוד, ואז אנחנו חייבים לשמור היסטוריה בעצמנו, או שהוא
-עדיין שם עם תוצאה ואנחנו לא קוראים אותה.
+הסבב הקודם בחר ״את הגדולה מבין המועמדות״, וזה בדיוק הכלל שפעם בחר את
+הסמל של הפועל חולון. הגודל לא מעיד על כלום: הבאנר של הליגה בפוטר גדול
+יותר מהסמל שלנו.
 
-מודפס מה שהעמוד מחזיר בפועל, כולל כל בלוק משחק גולמי, ומה הפרסר שלנו
-מוציא ממנו.
+לכן כאן הזיהוי הוא לא לפי שם הקובץ ולא לפי הגודל, אלא לפי מה שהאתר של
+המועדון כותב על התמונה: תגית img שה־alt שלה מזכיר את המועדון. רק
+הרשימה מודפסת, בלי base64, כדי שאפשר יהיה לקרוא אותה.
 """
-import sys
-import pathlib
+import io
+import re
+import urllib.parse
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import club_games
-import update_data as u
+import requests
 from bs4 import BeautifulSoup
+from PIL import Image
+
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+SITE = "https://hapoel.co.il/"
+PAGES = ["", "games", "team", "about", "news", "club"]
+US = ("ירושלים", "מידטאון", "הפועל י")
+
+# האתר מכריז utf-8 רק בתגית meta ולא בכותרת ה־HTTP, ולכן requests מנחשת
+# latin-1 וכל העברית חוזרת כג׳יבריש. בסבב הקודם זה הפיל את כל ההתאמות
+# לאפס בלי שום שגיאה.
+ENC = "utf-8"
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-html = u.fetch(club_games.GAMES_URL)
-log("עמוד המשחקים:", club_games.GAMES_URL, "|", len(html), "תווים")
-soup = BeautifulSoup(html, "html.parser")
-blocks = soup.select(".game")
-log("בלוקים של משחק בעמוד:", len(blocks))
-for i, g in enumerate(blocks[:8]):
-    when = club_games._txt(g.select_one(".date-data .date-time"))
-    score = club_games._txt(g.select_one(".game-data .score"))
-    teams = [t.get("alt") for t in g.select(".teams-container img[alt]")]
-    log(f"  [{i}] when={when!r} score={score!r} teams={teams}")
+found = {}
+for page in PAGES:
+    url = requests.compat.urljoin(SITE, page)
+    try:
+        r = requests.get(url, headers=UA, timeout=30)
+        r.encoding = ENC
+    except Exception as e:
+        log(f"{page or '/'}: נפל {e}")
+        continue
+    if r.status_code != 200 or "html" not in r.headers.get("content-type", ""):
+        log(f"{page or '/'}: {r.status_code}, מדלגים")
+        continue
+    soup = BeautifulSoup(r.text, "html.parser")
+    hits = 0
+    for im in soup.find_all("img"):
+        alt = im.get("alt") or ""
+        src = im.get("src") or im.get("data-src") or ""
+        if not src or not any(w in alt for w in US):
+            continue
+        full = requests.compat.urljoin(url, src)
+        found.setdefault(full, set()).add(alt.strip())
+        hits += 1
+    log(f"{page or '/'}: {hits} תמונות שה־alt שלהן מזכיר אותנו")
 
-log("--- מה הפרסר מוציא ---")
-games = club_games.fetch_games(u.fetch, log=log)
-for g in games[:8]:
-    log(f"  {g['date'][:16]} {g['home']} {g.get('homeScore')} : {g.get('awayScore')} "
-        f"{g['away']}  status={g['status']}")
-log("--- חיפוש 31.8 ---")
-hit = [g for g in games if g["date"].startswith("2026-08-31")]
-log("נמצא בפרסר:" , hit if hit else "לא נמצא")
-if "31" in html and "אוגוסט" in html:
-    log("המחרוזת ״אוגוסט״ מופיעה בעמוד")
+log("=== מה שנמצא, עם הגודל האמיתי ===")
+for u, alts in sorted(found.items()):
+    try:
+        r = requests.get(u, headers=UA, timeout=30)
+        im = Image.open(io.BytesIO(r.content))
+        size = f"{im.size[0]}x{im.size[1]} {im.mode}"
+    except Exception as e:
+        size = f"נפל: {e}"
+    log(f"  {size:<18} {len(r.content):>7} בתים")
+    log(f"     alt: {' | '.join(sorted(alts))}")
+    log(f"     {urllib.parse.unquote(u)}")
