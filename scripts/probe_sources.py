@@ -1,22 +1,20 @@
-"""בדיקת מקורות: איפה נמצא הסמל החדש של המועדון.
+"""בדיקת מקורות: הסמל החדש של המועדון, הפעם עם הכתובת המלאה.
 
-המועדון השיק סמל חדש ומיתוג חדש ב־23.8.2026, וזה הופיע גם במדור החדשות
-שלנו. הסמל באפליקציה הוא עדיין הישן. הקובץ אצלנו הוא 160x160, הכי גדול
-שנמצא בזמנו, וכל שאר האייקונים נגזרים ממנו.
+הסבב הקודם מצא את הכיוון וגם הראה למה אסור לתת להיוריסטיקה להחליט: היא
+בחרה את הלוגו של הפועל חולון, כי הוא הכי גדול והמילה logo מופיעה
+בכתובת שלו. הסמל שלנו הופיע שורה אחת מעליו, בגודל 300x300, עם
+alt=״הפועל ׳מידטאון׳ ירושלים״ ובתיקייה 2026-2027.
 
-כאן מחפשים את הקובץ הרשמי החדש: כל תמונה בעמוד הבית של המועדון, תגיות
-og:image ו־favicon, וכל כתובת שנראית כמו לוגו. מודפס גם הגודל האמיתי של
-כל מועמד, כי סמל ב־48 פיקסלים לא שווה כלום לאייקון של 512.
-
-הסמל עצמו לא מודפס כאן, אבל הוא גם לא נכנס לריפו על סמך הרשימה הזאת:
-אחרי שיודעים איזו כתובת נכונה, ההורדה נעשית בוורקפלואו נפרד שדוחף את
-הקובץ לענף בלבד, כדי שאפשר להסתכל על הסמל בעיניים לפני שהוא מגיע
-לאוהדים. סמל הוא הדבר האחרון באפליקציה שמתקינים ובודקים אחר כך.
+כאן מסננים לפי מה שבאמת מזהה אותנו, מדפיסים את הכתובת המלאה, ומדפיסים
+את התמונה עצמה ב־base64 כדי שאפשר יהיה להסתכל עליה בעיניים לפני שהיא
+נכנסת לאפליקציה. יש תקרת גודל, כי סמל של 1.8 מגה בלוג הוא מה שקרה בסבב
+הקודם.
 """
+import base64
 import io
-import re
 import sys
 import pathlib
+import urllib.parse
 
 import requests
 from bs4 import BeautifulSoup
@@ -26,63 +24,57 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import update_data as u
 
 SITE = "https://hapoel.co.il/"
+US = ("ירושלים", "מידטאון", "hapoel-jer")
+NOT_US = ("חולון", "העמק", "אשדוד", "מכבי", "ווינר", "winner", "ספונסר", "יורוקאפ")
+MAX_B64 = 400_000
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def measure(url):
-    try:
-        r = requests.get(url, headers=u.UA if hasattr(u, "UA") else {}, timeout=25)
-        r.raise_for_status()
-        im = Image.open(io.BytesIO(r.content))
-        return r.content, im.size, im.mode
-    except Exception as e:
-        return None, ("שגיאה", str(e)[:60]), None
-
-
-html = u.fetch(SITE)
-log("עמוד הבית:", len(html), "תווים")
-soup = BeautifulSoup(html, "html.parser")
-
-cands = []
+soup = BeautifulSoup(u.fetch(SITE), "html.parser")
+seen, ours = set(), []
 for tag in soup.find_all("img"):
     src = tag.get("src") or tag.get("data-src") or ""
-    if src:
-        cands.append(("img", requests.compat.urljoin(SITE, src), tag.get("alt") or ""))
-for tag in soup.find_all("link", rel=True):
-    rel = " ".join(tag.get("rel"))
-    if "icon" in rel.lower():
-        cands.append((rel, requests.compat.urljoin(SITE, tag.get("href") or ""), ""))
-for tag in soup.find_all("meta", property=True):
-    if tag.get("property") in ("og:image", "twitter:image"):
-        cands.append((tag["property"], requests.compat.urljoin(SITE, tag.get("content") or ""), ""))
-
-seen, uniq = set(), []
-for kind, url, alt in cands:
+    if not src:
+        continue
+    url = requests.compat.urljoin(SITE, src)
     if url in seen:
         continue
     seen.add(url)
-    uniq.append((kind, url, alt))
+    alt = (tag.get("alt") or "").strip()
+    hay = alt + " " + urllib.parse.unquote(url)
+    if any(w in hay for w in US) and not any(w.lower() in hay.lower() for w in NOT_US):
+        ours.append((url, alt))
 
-log(f"מועמדים: {len(uniq)}")
+log(f"תמונות שמזוהות איתנו: {len(ours)}")
 best = None
-for kind, url, alt in uniq[:40]:
-    looks = re.search(r"logo|crest|badge|symbol|icon|semel|סמל", url, re.I)
-    data, size, mode = measure(url)
-    mark = ""
-    if data and isinstance(size, tuple) and isinstance(size[0], int):
-        px = size[0] * size[1]
-        if looks and (best is None or px > best[0]):
-            best = (px, url, data, size)
-            mark = "  <== מועמד"
-    log(f"  [{kind}] {size} {mode or ''} {url[:95]} {('alt=' + alt[:30]) if alt else ''}{mark}")
+for url, alt in ours:
+    try:
+        r = requests.get(url, timeout=25)
+        r.raise_for_status()
+        im = Image.open(io.BytesIO(r.content))
+        log(f"  {im.size} {im.mode} {len(r.content)} bytes  alt={alt!r}")
+        log(f"    {url}")
+        log(f"    מפוענח: {urllib.parse.unquote(url)}")
+        square = abs(im.size[0] - im.size[1]) <= 2
+        if square and (best is None or im.size[0] > best[1].size[0]):
+            best = (url, im, r.content, alt)
+    except Exception as e:
+        log(f"  נפל: {url[:90]} · {e}")
 
-if best:
-    px, url, data, size = best
-    log("=== הטוב ביותר ===")
-    log(url)
-    log(f"{size[0]}x{size[1]} · {len(data)} bytes")
+if not best:
+    log("לא נמצא סמל ריבועי שמזוהה איתנו")
 else:
-    log("לא נמצא מועמד שנראה כמו לוגו")
+    url, im, data, alt = best
+    log("=== המועמד ===")
+    log(url)
+    log(f"{im.size[0]}x{im.size[1]} {im.mode} · {len(data)} bytes · alt={alt!r}")
+    b64 = base64.b64encode(data).decode()
+    if len(b64) > MAX_B64:
+        log(f"גדול מדי להדפסה ({len(b64)} תווים), לא מודפס")
+    else:
+        log(f"base64, {len(b64)} תווים ב־{(len(b64) + 2999) // 3000} חלקים")
+        for i in range(0, len(b64), 3000):
+            log(f"B64 {b64[i:i + 3000]}")
