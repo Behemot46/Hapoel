@@ -1,71 +1,86 @@
-"""בדיקת מקורות: לשאול את גוגל איזה ענף כל כתבה במדור.
+"""בדיקת מקורות: שתי הכותרות החשודות, דרך החיפוש של המפרסם עצמו.
 
-שני הסבבים הקודמים נכשלו מסיבות טובות: הקישורים של גוגל ניוז מובילים
-לעמוד ביניים ואי אפשר ללכת אחריהם, ומנוע חיפוש חיצוני חוסם את הריצות
-של גיטהאב. אז במקום להביא את הכתבה, שואלים עליה את מי שכבר קרא אותה.
+גבי מדווח על כתבה במדור שעוסקת באכזבה מפתיחת העונה, והיא כדורגל.
+עונת הכדורסל בכלל לא נפתחה, ולכן זה בטוח נכון, אבל שתי כותרות במדור
+יכולות להתאים לתיאור ואי אפשר לחסום את שתיהן בלי לדעת.
 
-גוגל מחפשת בכל העמוד ולא רק בכותרת, וזאת בדיוק התכונה שהכשילה אותנו
-פעם כשניסינו מילת שלילה בשאילתה. כאן היא עובדת לטובתנו: אם הכותרת
-המדויקת חוזרת בשאילתה שדורשת ״כדורסל״, העמוד מזכיר כדורסל. אם היא
-חוזרת רק בשאילתה שדורשת ״כדורגל״, זאת כתבת כדורגל.
+שלושה סבבים קודמים נכשלו: הקישורים של גוגל ניוז מובילים לעמוד ביניים,
+מנוע חיפוש חיצוני חוסם את הריצות של גיטהאב, ושאילתה לגוגל עם ״כדורסל״
+מול ״כדורגל״ לא מבדילה, כי אתר ספורט מזכיר את שני הענפים בסרגל הצד.
+זאת בדיוק הסיבה שמילת שלילה בשאילתה נפסלה בזמנו.
 
-הכל דרך אותו פיד שהאפליקציה כבר משתמשת בו, בלי תלות חדשה.
+לכן כאן פונים לחיפוש של המפרסם עצמו, ואז קוראים את הכתבה ומודדים מה
+יש בה: לא מילים שיכולות להגיע מהתפריט, אלא מילים שיכולות להופיע רק
+בגוף של כתבה על משחק.
 """
-import json
-import pathlib
 import re
-import time
 import urllib.parse
-import xml.etree.ElementTree as ET
 
 import requests
+from bs4 import BeautifulSoup
 
-DATA = pathlib.Path(__file__).resolve().parent.parent / "app" / "data"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
+
+SUSPECTS = [
+    ("כל העיר", "https://www.kolhair.co.il/?s={q}", "האמת הלא נעימה מאחורי המאבק של הפועל ירושלים"),
+    ("וואלה ספורט", "https://sports.walla.co.il/search?q={q}", "שוב פעם? הפועל ירושלים חוששת מעוד עונה קשה, והמומה מפוקסמן"),
+    ("ספורט 1", "https://www.sport1.co.il/?s={q}", "הפועל ירושלים עדיין בהלם מההחלטה של דוד פוקסמן"),
+    ("בחדרי חרדים", "https://www.bhol.co.il/search?q={q}", "'הפועל ירושלים' חזרה בה מהתמיכה בקפה \"בסמטה\" בעקבות חשיפת הקשר למיסיון"),
+]
+
+# מילים שיכולות להופיע רק בגוף של כתבה, לא בתפריט של אתר ספורט
+BASKET = ("ריבאונד", "שלשה", "חמישייה", "עונשין", "סלים", "אובראדוביץ",
+          "אוברדוביץ", "ליגת ווינר", "יורוליג", "יורוקאפ", "פיס ארנה", "אולם")
+SOCCER = ("שוער", "בעיטה", "פנדל", "קרן", "מחצית", "הבקיע", "כדרור",
+          "אצטדיון", "טדי", "דשא", "ליגה לאומית", "מגרש", "הרכב פותח")
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def norm(s):
-    return re.sub(r"[^֐-׿0-9a-zA-Z]+", "", s or "")
+def count(text, words):
+    hits = {w: len(re.findall(re.escape(w), text)) for w in words}
+    return sum(hits.values()), {k: v for k, v in hits.items() if v}
 
 
-def asks(title, marker):
-    """האם הכותרת המדויקת חוזרת כשדורשים מהעמוד את המילה הזאת."""
-    q = urllib.parse.quote(f'"{title[:80]}" {marker}')
+def words_of(title):
+    return " ".join(re.sub(r"[\"'״׳:?!.,]", " ", title).split()[:6])
+
+
+for name, search, title in SUSPECTS:
+    log(f"=== {name}: {title}")
+    url = search.format(q=urllib.parse.quote(words_of(title)))
     try:
-        r = requests.get(FEED.format(q=q), headers=UA, timeout=30)
-        root = ET.fromstring(r.content)
+        r = requests.get(url, headers=UA, timeout=30)
+        r.encoding = r.encoding or "utf-8"
+        soup = BeautifulSoup(r.text, "html.parser")
     except Exception as e:
-        return None
-    want = norm(title)[:40]
-    for item in root.iter("item"):
-        got = norm(item.findtext("title") or "")
-        if want and want in got:
-            return True
-    return False
+        log(f"    החיפוש נפל: {e}")
+        continue
+    log(f"    חיפוש: {r.status_code}, {len(r.text)} תווים")
 
-
-items = json.loads((DATA / "news.json").read_text(encoding="utf-8"))["items"]
-log(f"{len(items)} פריטים במדור")
-for i, it in enumerate(items):
-    t = it["title"]
-    b = asks(t, "כדורסל")
-    time.sleep(1.2)
-    s = asks(t, "כדורגל")
-    time.sleep(1.2)
-    if b is None or s is None:
-        verdict = "נפל   "
-    elif b and not s:
-        verdict = "כדורסל"
-    elif s and not b:
-        verdict = "כדורגל!"
-    elif b and s:
-        verdict = "שניהם "
-    else:
-        verdict = "לא חזר"
-    log(f"[{i:2}] {verdict} | סל:{b} רגל:{s} | {it['source']} | {t}")
+    key = re.sub(r"[^֐-׿]", "", title)[:12]
+    hit = None
+    for a in soup.find_all("a", href=True):
+        txt = re.sub(r"[^֐-׿]", "", a.get_text(" ", strip=True))
+        if key and key in txt:
+            hit = requests.compat.urljoin(r.url, a["href"])
+            break
+    if not hit:
+        log("    לא נמצאה הכתבה בתוצאות החיפוש של האתר")
+        continue
+    log(f"    נמצאה: {hit}")
+    try:
+        p = requests.get(hit, headers=UA, timeout=30)
+        p.encoding = p.encoding or "utf-8"
+        body = re.sub(r"\s+", " ", BeautifulSoup(p.text, "html.parser").get_text(" ", strip=True))
+    except Exception as e:
+        log(f"    הכתבה נפלה: {e}")
+        continue
+    b, bh = count(body, BASKET)
+    s, sh = count(body, SOCCER)
+    log(f"    כדורסל:{b} {bh}")
+    log(f"    כדורגל:{s} {sh}")
+    log(f"    ==> {'כדורגל' if s > b else 'כדורסל' if b > s else 'לא ברור'}")
