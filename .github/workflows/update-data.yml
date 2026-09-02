@@ -155,11 +155,20 @@ jobs:
                   break
           PY
           )
-            if [ -n "$near" ]; then
-              echo "  משחק מתקרב ($near), מפעיל את הפולר."
-              # אם הפולר כבר רץ, ה־concurrency שלו ידאג שהשנייה תמתין ותצא
-              gh workflow run live.yml --ref main -R "$GITHUB_REPOSITORY" || true
+            [ -n "$near" ] || return 0
+            # הבדיקה הזאת רצה כל עשרים דקות, ולכן חלון של שעתיים וחצי לפני
+            # משחק היה מזמן את הפולר שבע פעמים. ה־concurrency שלו אמנם
+            # מונע ריצות מקבילות, אבל אין טעם למלא את התור בריצות שכל מה
+            # שהן יעשו הוא להתחיל אחרי שהמשחק נגמר ולצאת מיד.
+            local live
+            live=$(gh run list --workflow live.yml --repo "$GITHUB_REPOSITORY" \
+                     --status in_progress --limit 1 --json databaseId --jq 'length' 2>/dev/null || echo 0)
+            if [ "$live" != "0" ]; then
+              echo "  משחק מתקרב ($near), והפולר כבר עובד."
+              return 0
             fi
+            echo "  משחק מתקרב ($near), מפעיל את הפולר."
+            gh workflow run live.yml --ref main -R "$GITHUB_REPOSITORY" || true
           }
 
           echo "מתחילים משמרת של ${MINUTES} דקות."
