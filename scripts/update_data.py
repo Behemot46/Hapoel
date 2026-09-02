@@ -1485,18 +1485,49 @@ def update_season_stats():
     })
     return True
 
-def main():
+# order matters: the image lookups are the only greedy step, so everything
+# that shares the same API budget runs before them
+SOURCES = [("standings", update_standings), ("games", update_games),
+           ("eurocup", update_eurocup_standings),
+           ("seasonStats", update_season_stats),
+           ("news", news_feed.update_news),
+           ("podcasts", podcast_feed.update_podcasts),
+           ("roster", update_roster)]
+
+
+def main(argv=None):
+    """--only news,podcasts אוסף רק חלק מהמקורות.
+
+    האיסוף רץ עכשיו בלולאה ארוכה ולא פעם בכמה שעות, וזה מעלה שאלה של
+    דרך ארץ: לוח המשחקים, הטבלה והסגל משתנים אולי פעם ביום, ואין שום
+    סיבה לשלוח בשבילם בקשה לאתר הליגה ולאתר המועדון כל עשרים דקות.
+    החדשות והפודקאסטים כן זזים במהלך היום, והם גם מגיעים מפידים שנועדו
+    לקריאה תכופה.
+
+    לכן הלולאה עושה מעבר קל תכוף ומעבר מלא כל שעתיים, כמו קודם. הדגל
+    הזה הוא מה שמאפשר את זה.
+
+    מקור שלא נאסף בריצה הזאת שומר על הסטטוס הקודם שלו ב־meta.json, כדי
+    שמעבר קל לא יימחק לאתר את הידיעה שהאיסוף המלא הצליח.
+    """
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--only", default="",
+                    help="רשימת מקורות מופרדת בפסיק. ריק = הכל.")
+    args = ap.parse_args(argv)
+    wanted = [w.strip() for w in args.only.split(",") if w.strip()]
+    known = [n for n, _ in SOURCES]
+    unknown = [w for w in wanted if w not in known]
+    if unknown:
+        raise SystemExit(f"מקור לא מוכר: {unknown}. המוכרים: {known}")
+
     meta = load_json("meta.json") or {"sources": {}}
     ok_any = False
-    status = {}
-    # order matters: the image lookups are the only greedy step, so everything
-    # that shares the same API budget runs before them
-    for name, fn in [("standings", update_standings), ("games", update_games),
-                     ("eurocup", update_eurocup_standings),
-                     ("seasonStats", update_season_stats),
-                     ("news", news_feed.update_news),
-                     ("podcasts", podcast_feed.update_podcasts),
-                     ("roster", update_roster)]:
+    status = dict(meta.get("sources") or {})
+    running = [(n, f) for n, f in SOURCES if not wanted or n in wanted]
+    log("אוסף:", ", ".join(n for n, _ in running))
+    for name, fn in running:
         try:
             fn()
             status[name] = {"ok": True, "detail": "עודכן בהצלחה"}
