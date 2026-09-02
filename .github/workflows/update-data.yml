@@ -1,31 +1,50 @@
 name: עדכון נתונים אוטומטי
 
+# ריצה אחת מכסה חצי יום.
+#
+# **למה זה בנוי ככה, ולא כמו שהיה:** עד 2.9.2026 כל סלוט מתוזמן אסף פעם
+# אחת ויצא, בהנחה שהסלוטים ייורו. הם לא. המדידה, על הריפו הזה: בין 30.8
+# ל־2.9 נורו 5 סלוטים מתוך 12 מבוקשים, כלומר כשליש, והפער הגדול ביותר
+# בין שני איסופים היה 18 שעות.
+#
+# ואז התברר שגם רשת הביטחון לא עובדת: השומר ב־watchdog.yml נבנה על ההנחה
+# ששני תזמונים נפרדים ייפלו באופן בלתי תלוי, ולכן שניהם לא ייפלו יחד.
+# בפועל, בכל חמש הריצות שלו הוא נורה 8 עד 10 דקות **אחרי** איסוף מוצלח,
+# מצא נתונים טריים ולא עשה כלום, ובפערים האמיתיים הוא לא נורה בכלל.
+# גיטהאב יורה את שני התזמונים מאותו רגע עיבוד תור.
+#
+# המסקנה היא לא ״לבקש עוד סלוטים״ אלא להפסיק להיות תלויים בהם, בדיוק כמו
+# שנעשה בפולר של התוצאה החיה: הריצה מחזיקה את עצמה ודוגמת בלולאה במשך
+# כחמש שעות וחצי, כך שמספיק **סלוט אחד שנורה** כדי לכסות חצי יום. שני
+# סלוטים שנורים ברצף לא מתבזבזים: ה־concurrency מעמיד את השני בתור, והוא
+# מתחיל בדיוק כשהראשון מסיים.
+#
+# **ודרך ארץ מול המקורות:** לוח המשחקים, הטבלה והסגל משתנים אולי פעם
+# ביום, ואין סיבה לשלוח בשבילם בקשה לאתר הליגה ולאתר המועדון כל עשרים
+# דקות. לכן הלולאה עושה מעבר קל של חדשות ופודקאסטים כל 20 דקות, ומעבר
+# מלא כל שעתיים, כלומר בדיוק בקצב שהיה קודם. מה שהאוהד מרוויח הוא מדור
+# חדשות שמתעדכן בתוך עשרים דקות במקום פעמיים ביום.
+
 on:
   schedule:
-    # כל שעתיים, 03:23 עד 13:23 UTC, כלומר 06:23 עד 16:23 שעון ישראל.
-    #
-    # **הדקה 23 היא לא קפריזה.** גיטהאב מתעדת שריצות מתוזמנות נדחות
-    # ונופלות בשעות עומס, ושתחילת כל שעה עגולה היא שיא העומס, ולכן ממליצה
-    # במפורש לתזמן בדקה אחרת. עד 29.8.2026 התזמון היה על הדקה 0, ובשלושה
-    # ימים נורו 6 סלוטים מתוך 15. הנתונים היו ישנים ב־16.5 שעות ב־27.8
-    # וב־15.4 שעות ב־29.8.
-    #
-    # לוח קבוע של כל שעתיים ולא חמישה סלוטים מפוזרים, כדי ש״כמה זמן סביר
-    # שיעברו בלי עדכון״ תהיה שאלה עם תשובה אחת. השומר ב־watchdog.yml
-    # נשען על זה.
-    #
-    # הערב נשאר פנוי בכוונה: חלון התוצאה החיה הוא 15:00-22:00 UTC, ואין
-    # סיבה להוסיף שם רעש של בנייה מחדש של האתר בזמן משחק.
-    - cron: '23 3-13/2 * * *'
+    # שבעה סלוטים, כל שעתיים מ־03:23 עד 15:23 UTC. גם אם רק אחד מהם ייורה,
+    # הוא מכסה חמש שעות וחצי. הדקה 23 היא לא קפריזה: גיטהאב ממליצה במפורש
+    # לא לתזמן על תחילת שעה עגולה, שהיא שיא העומס.
+    - cron: '23 3-15/2 * * *'
   workflow_dispatch:
+    inputs:
+      minutes:
+        description: 'כמה דקות להישאר בלולאה (ברירת מחדל 330)'
+        required: false
+        default: '330'
 
 permissions:
   contents: write
   actions: write
 
-# השומר עלול לזמן ריצה בזמן שריצה מתוזמנת כבר רצה. שתי ריצות במקביל
-# נלחמות על אותו push, וה־rebase למטה אמנם יטפל בזה, אבל עדיף פשוט לא
-# להגיע לשם.
+# ריצה שנייה שתתחיל באמצע הלולאה תמצא את הראשונה עובדת ותמתין בתור. זה
+# לא בזבוז אלא בדיוק ההפך: כשהראשונה מסיימת, השנייה מתחילה, והכיסוי
+# ממשיך בלי סלוט נוסף.
 concurrency:
   group: update-data
   cancel-in-progress: false
@@ -33,6 +52,9 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    # תקרה קשיחה מתחת לגבול של גיטהאב (שש שעות למשימה), כדי שריצה תקועה
+    # לא תחזיק את התור לנצח
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
 
@@ -43,63 +65,80 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4 pillow
 
-      - name: Update data files
-        run: python scripts/update_data.py
-
-      - name: Commit and push if changed
-        id: commit
+      - name: Collect in a loop until the shift is over
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          set -uo pipefail
           git config user.name "hapoel-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          # app/img too, headshots are downloaded into the repo so the app
-          # works offline, and committing only app/data/ silently threw them
-          # away while roster.json still pointed at them
-          git add app/data/ app/img/
-          if git diff --cached --quiet; then
-            echo "No data changes."
-            echo "pushed=false" >> "$GITHUB_OUTPUT"
-          else
-            git commit -m "עדכון נתונים אוטומטי"
-            # main has more than one writer: סיכום המשוב דוחף ב־05:00 UTC,
-            # בדיוק כשהאיסוף הזה רץ, ואז git push נדחה והעדכון נזרק לפח.
-            # rebase ונסה שוב, במקום להפיל ריצה שכבר אספה נתונים תקינים.
+
+          MINUTES="${{ inputs.minutes || '330' }}"
+          DEADLINE=$(( $(date +%s) + MINUTES * 60 ))
+          EVERY=$(( 20 * 60 ))      # מעבר קל: חדשות ופודקאסטים
+          FULL_EVERY=$(( 2 * 3600 )) # מעבר מלא: גם ליגה, מועדון וסגל
+          # דופק: גם כשאין שום שינוי, נדחוף פעם בשעתיים כדי שגיל הקובץ
+          # באתר ימשיך להיות אמיתי, וכדי שהשומר יוכל למדוד שהריצה חיה
+          HEARTBEAT=$(( 2 * 3600 ))
+
+          last_full=0
+          last_push=0
+
+          push_if_changed() {
+            # app/img גם הוא: תמונות השחקנים יורדות לריפו כדי שהאפליקציה
+            # תעבוד בלי רשת, וקומיט של app/data בלבד היה זורק אותן בשקט
+            # בזמן ש־roster.json כבר מצביע עליהן.
+            git add app/data/ app/img/
+            if git diff --cached --quiet; then
+              return 1
+            fi
+            # שינוי היחיד הוא חותמת הזמן ב־meta.json: זה לא עדכון, זה
+            # דופק. דוחפים אותו רק אם עברו שעתיים מהדחיפה האחרונה, אחרת
+            # הלולאה תייצר קומיט כל עשרים דקות בלי שום תוכן.
+            local changed
+            changed=$(git diff --cached --name-only | grep -v '^app/data/meta.json$' || true)
+            local now
+            now=$(date +%s)
+            if [ -z "$changed" ] && [ $(( now - last_push )) -lt "$HEARTBEAT" ]; then
+              git reset -q
+              echo "  אין שינוי בתוכן, ועוד לא הגיע הזמן לדופק."
+              return 1
+            fi
+
+            git commit -q -m "עדכון נתונים אוטומטי"
             for i in 1 2 3; do
               # --strategy-option=theirs: בתוך rebase ״theirs״ הוא הקומיט
               # שמוחל, כלומר האיסוף הטרי שלנו. קובצי הנתונים נכתבים מחדש
               # במלואם בכל ריצה, אז כשהם מתנגשים האיסוף החדש הוא התשובה
               # הנכונה. קבצים שהריצה הזאת לא נגעה בהם נשארים כפי שהם
               # ב־origin, כי rebase נוגע רק במה שיש בקומיט שלנו.
-              if git pull --rebase --strategy-option=theirs --autostash \
+              if git pull --rebase --strategy-option=theirs --autostash -q \
                    origin "$GITHUB_REF_NAME" \
-                 && git push origin "HEAD:$GITHUB_REF_NAME"; then
-                echo "pushed=true" >> "$GITHUB_OUTPUT"
-                exit 0
+                 && git push -q origin "HEAD:$GITHUB_REF_NAME"; then
+                last_push=$(date +%s)
+                echo "  נדחף."
+                # דחיפה של בוט לא מפעילה את הפרסום מעצמה
+                gh workflow run deploy.yml --ref main -R "$GITHUB_REPOSITORY" \
+                  && echo "  פרסום זומן." || echo "  זימון הפרסום נכשל."
+                return 0
               fi
               # בלי abort העץ נשאר תקוע בקונפליקט, וכל ניסיון נוסף מת מיד
-              # על ״Pulling is not possible because you have unmerged files״.
-              # ככה בדיוק נכשלו שלושת הניסיונות ב־18.8.
+              # על ״Pulling is not possible because you have unmerged files״
               git rebase --abort 2>/dev/null || true
-              sleep $((i * 5))
+              sleep $(( i * 5 ))
             done
-            echo "לא הצלחתי לדחוף את העדכון אחרי שלושה ניסיונות." >&2
-            exit 1
-          fi
+            echo "  שלוש דחיפות נכשלו, ממשיכים ללולאה הבאה." >&2
+            return 1
+          }
 
-      # הפולר של התוצאה החיה לא יכול לסמוך על התזמון שלו: ב־31.8.2026 הוא
-      # לא רץ אפילו פעם אחת ביום המשחק הראשון. האיסוף הזה רץ כמה פעמים
-      # ביום, ויש לו שומר משלו, ולכן הוא דרך התחלה שנייה ובלתי תלויה.
-      # ריצה אחת של הפולר מכסה משחק שלם, ואם הוא כבר רץ, ה־concurrency
-      # שלו ידאג שהשנייה תמתין ותצא מיד.
-      - name: Start the live poller when a game is close
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          near=$(python - <<'PY'
+          start_poller_if_game_is_close() {
+            local near
+            near=$(python - <<'PY'
           import datetime, json, pathlib
           SOON = datetime.timedelta(hours=2, minutes=30)
-          # גם משחק שכבר התחיל: אם כל הסלוטים לפני המשחק הופלו והריצה
-          # היחידה שנורתה היא באמצע המשחק, עדיין כדאי להתחיל לדגום.
-          # חלון המשחק של הפולר נסגר שלוש שעות אחרי הקפיצה.
+          # גם משחק שכבר התחיל: אם הריצה היחידה שנורתה היא באמצע המשחק,
+          # עדיין כדאי להתחיל לדגום. חלון המשחק של הפולר נסגר שלוש שעות
+          # אחרי הקפיצה.
           STARTED = datetime.timedelta(hours=2)
           now = datetime.datetime.now(datetime.timezone.utc)
           games = json.loads(pathlib.Path("app/data/games.json").read_text(
@@ -116,17 +155,33 @@ jobs:
                   break
           PY
           )
-          if [ -n "$near" ]; then
-            echo "משחק מתקרב ($near), מפעיל את הפולר."
-            gh workflow run live.yml --ref main -R "$GITHUB_REPOSITORY"
-          else
-            echo "אין משחק בשעתיים וחצי הקרובות."
-          fi
+            if [ -n "$near" ]; then
+              echo "  משחק מתקרב ($near), מפעיל את הפולר."
+              # אם הפולר כבר רץ, ה־concurrency שלו ידאג שהשנייה תמתין ותצא
+              gh workflow run live.yml --ref main -R "$GITHUB_REPOSITORY" || true
+            fi
+          }
 
-      # bot pushes don't trigger the deploy workflow on their own,
-      # so dispatch it explicitly whenever data changed
-      - name: Trigger site deploy
-        if: steps.commit.outputs.pushed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run deploy.yml --ref main -R "$GITHUB_REPOSITORY"
+          echo "מתחילים משמרת של ${MINUTES} דקות."
+          while :; do
+            now=$(date +%s)
+            if [ $(( now - last_full )) -ge "$FULL_EVERY" ]; then
+              echo "[$(date -u +%H:%M)] מעבר מלא"
+              python scripts/update_data.py || true
+              last_full=$now
+            else
+              echo "[$(date -u +%H:%M)] מעבר קל"
+              python scripts/update_data.py --only news,podcasts || true
+            fi
+
+            push_if_changed || true
+            start_poller_if_game_is_close
+
+            now=$(date +%s)
+            left=$(( DEADLINE - now ))
+            if [ "$left" -le "$EVERY" ]; then
+              echo "המשמרת נגמרה."
+              break
+            fi
+            sleep "$EVERY"
+          done
