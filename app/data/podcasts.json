@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-01T14:11:59Z",
+  "updated": "2026-09-02T07:59:48Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-08-27T14:27:07Z"
+      "latest": "2026-09-02T04:00:00Z"
     },
     {
       "id": "1648115499",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "נסיך בלי כתר | נועם יעקב באולפן, הנבחרת מתרסקת, סורקין מאוכזב וירושלים בלי הארפר",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3o6e7a",
+      "published": "2026-09-02T04:00:00Z",
+      "duration": 5965
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -173,15 +182,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3055087",
       "published": "2026-08-09T04:05:43Z",
       "duration": 4332
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "ירושלים החדשה? | גל מקל באולפן",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3n2en7",
-      "published": "2026-08-06T14:28:27Z",
-      "duration": 5450
     },
     {
       "showId": "1648115499",

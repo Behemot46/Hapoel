@@ -11,8 +11,7 @@
       "status": "finished",
       "homeScore": 102,
       "awayScore": 76,
-      "note": "התוצאה והסטטיסטיקה מתוך טופס המשחק הרשמי",
-      "source": "manual"
+      "note": "התוצאה והסטטיסטיקה מתוך טופס המשחק הרשמי"
     },
     {
       "id": "20260904-club-הפועלהעמק",
@@ -634,7 +633,7 @@
     }
   ],
   "league": {
-    "count": 29,
+    "count": 30,
     "published": true
   }
 }
