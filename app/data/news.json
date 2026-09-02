@@ -1,14 +1,13 @@
 {
-  "updated": "2026-09-02T20:18:25Z",
+  "updated": "2026-09-02T20:38:31Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "וואלה ספורט",
-    "Sport5",
+    "ספורט 5",
     "ישראל ספורט",
     "אייס",
     "ספורט 1",
     "ynet",
-    "ספורט 5",
     "סרוגים",
     "ישראל היום",
     "ערוץ 7",
@@ -24,17 +23,10 @@
     },
     {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE42RlcwYzJ5Q0FPQTVZUzJlU3FnbTZ5T1cwNUhPRlVoQU5BaTZmUHE4Y284aTZhaGtvajktRTI4MHBUaUdzS1I5dkhnZVFtT2dibWhnZW54U2Q3QUVubDZTZUxyQk1MQm1hN3RoNTFmNA?oc=5",
-      "source": "Sport5",
-      "sourceUrl": "https://m.sport5.co.il",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92NU5NMnVrNEJyVmtkY0tuYjNQbXB3RktJOWI4VFJwSE1QSTFhSlYtYThnUm9BX0JjVmYwLVM1NmpnaUZxeUEzZzF2QkROY1FFYnFjdnhFU3NkRUlrQVlyd3NuaVFZSmMwRWFoRVR1ajRkdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-31T12:41:40Z"
-    },
-    {
-      "title": "במעמד צד אחד: הפועל ירושלים הביסה את הפועל חולון בהכנה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9sdHBVbnhsaW9fUzE4Z1lRRnREWFRXSm9tdlpYYWFDQzVPbjI1ZzRreno0WnVuSnlVTTUxZWlxdllGLW15dExhTGVUc2sxSjZJ?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-31T12:04:00Z"
     },
     {
       "title": "הפועל ירושלים הביסה 76:102 את חולון בהכנה, אוברדוביץ’ מרוצה",
@@ -65,13 +57,6 @@
       "published": "2026-08-30T14:46:56Z"
     },
     {
-      "title": "במיליונים: הסכום שהפועל ירושלים תובעת מהפועל ת\"א על קרינגטון",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Xc3g5MTJQWHk1bzRlWmw0RW1Vc2pCS19CdzV4Sm9qeVhIa0pZOFNLYjdpVE9vak9UTU4ycEQxV1diMHRZUG1mZzdsZkFVdTZSc2lNcmlrWU14TUtBLXBmNW14cXEwZHJZOEZwMnFXcjZBUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-30T14:41:00Z"
-    },
-    {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
       "source": "ספורט 5",
@@ -86,11 +71,11 @@
       "published": "2026-08-29T06:58:00Z"
     },
     {
-      "title": "הפועל ירושלים נמצאת בדרך להחלטה קריטית לעונה הקרובה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1RZ3dmaV9PVDJsZHEwU1UzU2xLaE13d0VnZmh3cjd4bXhudVFRSVY5V0dQT0R3SzlFYU9nM3p0VTRVRWJNQWlCckVxV3c2MHkt?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-29T05:45:00Z"
+      "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ295bjdtSjFvekl2d2ZCSG01WTlKRTdiOHk3c1N3ajF0NjREWFg4dXhFSm1QclowWThVZTBpNXlHeWpGUlJFM0pRb2x0eUxIVkM1WHlrMloyZXktcVptRTMzZ1YyZTEyQnNqeVVtUlBlMS1WMk9lb25qZnBrU0I0eF9CS0NBc1JNakExXzRVc3FRUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-29T05:42:28Z"
     },
     {
       "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
@@ -142,13 +127,6 @@
       "published": "2026-08-23T20:01:00Z"
     },
     {
-      "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tOHFNY2lYQlVwdW1Rc2VnbXZIWFBRZHV1TV9FakluWnJ4Q1I0NnZ6TU45Rm1ITlBKZE1uZmp2ajZRWklBaWw5Q3B3NmZCZ1RqX3d2T01WOUpHaERtczlKR0NRT3lUMHFaSHVHNC1vRThHTVctYjQ2RUpkc9IBgwFBVV95cUxNN2N5bXBYREVVY3ZnYmNXc04tNmUyWk9DRk1HS0NvMV80bDBTNU5WX3RqNWlHRXNGbW9Sa0ZvQlhDUGRDY3BZcXpIS2pWQW16aW1OQUhPaktRWUY4ZW10Nm10YXBtZXl6Q19lbDN3dFBzMk93UHBxU3k0cUZLMkoyaWZIQQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
       "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
       "source": "ספורט 5",
@@ -163,10 +141,10 @@
       "published": "2026-08-23T07:00:00Z"
     },
     {
-      "title": "\"הפועל ירושלים אחרת\": התכנית של ליאור זדה",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE12RGtkOGFvaDN1WGJIRWl0UnltQzRabDVzdlVCbjc2SERRbWt4RGgxaWwzd1lUWEs5cDFEYm9VVmVEdFhCYWRVUUdBWjQyWlF3Ym1SYm1ma3RTZ0RIbUxVQWxRN0FrTFdLLUR6N193azA?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
+      "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tOHFNY2lYQlVwdW1Rc2VnbXZIWFBRZHV1TV9FakluWnJ4Q1I0NnZ6TU45Rm1ITlBKZE1uZmp2ajZRWklBaWw5Q3B3NmZCZ1RqX3d2T01WOUpHaERtczlKR0NRT3lUMHFaSHVHNC1vRThHTVctYjQ2RUpkc9IBgwFBVV95cUxNN2N5bXBYREVVY3ZnYmNXc04tNmUyWk9DRk1HS0NvMV80bDBTNU5WX3RqNWlHRXNGbW9Sa0ZvQlhDUGRDY3BZcXpIS2pWQW16aW1OQUhPaktRWUY4ZW10Nm10YXBtZXl6Q19lbDN3dFBzMk93UHBxU3k0cUZLMkoyaWZIQQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
     {
@@ -224,6 +202,27 @@
       "source": "אייס",
       "sourceUrl": "https://www.ice.co.il",
       "published": "2026-08-16T07:00:00Z"
+    },
+    {
+      "title": "מכבי ת\"א במו\"מ מתקדם לרכישת ישראל דאפה מהפועל ירושלים | בלעדי",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB3RGtQTURwdzYxcm5OU1EzS2pUS3dQWmlPaXBUQ1l2RjAzcWhvTXg0dzg5WnM3Z3BWZW45ZmdaS2llRFZKQ1JOQ3g5bDF2cDlza2JzRU1aR2tPdDZOQjJPS2lJOUpLbFBGNFljaTdn?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-08-13T07:00:00Z"
+    },
+    {
+      "title": "הפועל י-ם צירפה את שחקן סלובן ברטיסלבה",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1WcTlCNUE3WmpMaGJyOHlzZFZra3N0cVlaVE5GRFNDc3lKNkF0Mkpac205UDBaNi1RNktPOGd4M05EMmlfVXZVR2RKRFhBNFh6UktFSTlnQVRBVXlSUVRuVTBJOUVrQnhvTjdLemIxMkQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-13T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים החתימה את קפטן נבחרת הנוער ליאור הרשקו",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNczBBS0V1UjFLOHoxcmRYcEQzcTRHSVdPQWRWQkhhTXk0TFFVdFNWcldsV0NZTzZqSEx4dHZCYURZUEx4a0xwSUFxOTF0SmlBVUNJMGdsVzA4bEpRM0ZHTlpsbkpjUVlPbTBKeXhzYTVOWUxuR1NDR0FkenRSWGpIbkpPUV92N29STjYtNndEVzYtQQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-12T07:00:00Z"
     }
   ]
 }
