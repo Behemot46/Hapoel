@@ -1,16 +1,15 @@
 {
-  "updated": "2026-09-02T23:00:23Z",
+  "updated": "2026-09-02T23:20:31Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "וואלה ספורט",
-    "מכבי Rapyd תל אביב",
     "ספורט 5",
     "ספורט 1",
     "ynet",
     "סרוגים",
     "ישראל היום",
     "ישראל ספורט",
-    "inn.co.il",
+    "ערוץ 7",
     "כל העיר",
     "אייס"
   ],
@@ -21,13 +20,6 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-09-01T20:58:47Z"
-    },
-    {
-      "title": "הפועל ירושלים 80:86",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPdFktNUgtWUZTdUVpWUU5eEpSNkhjdDNoOEZta2pSaWtPdEJ2SmRsWjVFcXJVY0hUUXlkaTVjWm9IOUc2S2QwaGJrZ0JCRGdVS2xyWTEtdVB3Ry0zYWdDd0V6MjNTdmUyZGpOQjJ2WERjVUNnQi1JNEh0RS1NMEd4MjRSd3pnTzA?oc=5",
-      "source": "מכבי Rapyd תל אביב",
-      "sourceUrl": "https://maccabi.co.il",
-      "published": "2026-08-31T21:24:36Z"
     },
     {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
@@ -51,6 +43,13 @@
       "published": "2026-08-30T14:46:56Z"
     },
     {
+      "title": "במיליונים: הסכום שהפועל ירושלים תובעת מהפועל ת\"א על קרינגטון",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Xc3g5MTJQWHk1bzRlWmw0RW1Vc2pCS19CdzV4Sm9qeVhIa0pZOFNLYjdpVE9vak9UTU4ycEQxV1diMHRZUG1mZzdsZkFVdTZSc2lNcmlrWU14TUtBLXBmNW14cXEwZHJZOEZwMnFXcjZBUQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-30T14:41:00Z"
+    },
+    {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
       "source": "ספורט 5",
@@ -63,13 +62,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-29T06:58:00Z"
-    },
-    {
-      "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ295bjdtSjFvekl2d2ZCSG01WTlKRTdiOHk3c1N3ajF0NjREWFg4dXhFSm1QclowWThVZTBpNXlHeWpGUlJFM0pRb2x0eUxIVkM1WHlrMloyZXktcVptRTMzZ1YyZTEyQnNqeVVtUlBlMS1WMk9lb25qZnBrU0I0eF9CS0NBc1JNakExXzRVc3FRUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-29T05:42:28Z"
     },
     {
       "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
@@ -116,7 +108,7 @@
     {
       "title": "הפועל ירושלים יוצאת לדרך חדשה",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "inn.co.il",
+      "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T20:01:00Z"
     },
@@ -223,6 +215,13 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1FTzdEaV9mM3BBQS1SUE5hdTVWV09KV2Y5VF82WFQwMXppc0tTd25fNmlrWENGZkVqOEl6bDZlTTNuZE1BdWFPRkJpVk44ZWloOWNaWV9CVlNZQ1NJSzBZMkxMWjFOSDJsWFRGS0lIcHNuQW5vSU1KbmdvRQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-11T07:00:00Z"
+    },
+    {
+      "title": "עומר אגבדיש הוא הקפטן החדש של הפועל י-ם",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBRYk9yNFM3bGZ6V0RCd1ljeHEzNkRlOVY5cEtSM3UyRmFKVGNmRVRwazFqa1gwcVFjeXhKSFBZTDg2MWV6bTRldVRDbVdrd1RIUEpnNWNrc0ZJT2lVY1REN2QwZHR6Yll1QnBDX000VjI?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-11T07:00:00Z"
     }
   ]
