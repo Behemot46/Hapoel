@@ -1,12 +1,11 @@
 {
-  "updated": "2026-09-02T22:19:59Z",
+  "updated": "2026-09-02T22:40:05Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "וואלה ספורט",
-    "Sport5",
+    "ספורט 5",
     "ספורט 1",
     "ynet",
-    "ספורט 5",
     "סרוגים",
     "ישראל היום",
     "ישראל ספורט",
@@ -25,7 +24,7 @@
     {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE42RlcwYzJ5Q0FPQTVZUzJlU3FnbTZ5T1cwNUhPRlVoQU5BaTZmUHE4Y284aTZhaGtvajktRTI4MHBUaUdzS1I5dkhnZVFtT2dibWhnZW54U2Q3QUVubDZTZUxyQk1MQm1hN3RoNTFmNA?oc=5",
-      "source": "Sport5",
+      "source": "ספורט 5",
       "sourceUrl": "https://m.sport5.co.il",
       "published": "2026-08-31T12:41:40Z"
     },
@@ -212,18 +211,18 @@
       "published": "2026-08-11T07:00:00Z"
     },
     {
+      "title": "עומר אגבדיש הוא הקפטן החדש של הפועל י-ם",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBRYk9yNFM3bGZ6V0RCd1ljeHEzNkRlOVY5cEtSM3UyRmFKVGNmRVRwazFqa1gwcVFjeXhKSFBZTDg2MWV6bTRldVRDbVdrd1RIUEpnNWNrc0ZJT2lVY1REN2QwZHR6Yll1QnBDX000VjI?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-11T07:00:00Z"
+    },
+    {
       "title": "הכישרון הצעיר שקרוב לסיכום בהפועל ירושלים | פרסום ראשון",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBvZi11YnI3S3FYWUQ2dWI2T3M0VG82TzYwTTNjbjY3bzAwd0Q1c3N4Vm5tSE13aW9jLUQ1MTFsbnd2dm1FNzh4eXZLNEhXTllqVFN2d0FJTXFuMUVvQWc5cVhnQXpJWXc0OFZFX1FrNVlBaElqN25hOG9DRdIBgwFBVV95cUxOVmpLS2JtelI2Uy1pX25jWlpJV2w4bmVROTJKcHQ5WTF4NVkxRUlmVVFIV2FHTS1TWnBSZk4yeXl4RWl6Sm9qUllmRUxyZnQ1V2x2RFVpamljWkFWdTlEaFdqYk5mNmozVEdkejdrZEV5Q05iZEc0ZVZtbXVvM0ZVT2dhSQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-11T07:00:00Z"
-    },
-    {
-      "title": "\"תשוקה בלתי נגמרת\": האח הצעיר למשפחת דאפה מלהיב את הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5qX2ZKZExvQURVOFEwSHNHM25wTkttQmR0U1FpYjJ4aENWdEF2dGcxal9HeGlfdjJnZ01uUFc2ZHYyRFc0TWN0bk9TXzFZdHFLWDh2NllaM240NnRqTEZQU1ktWUN1eFF2N1FBSkhjWTdpX3dkT2dkb0t3?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-10T07:00:00Z"
     }
   ]
 }
