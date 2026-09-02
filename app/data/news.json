@@ -1,23 +1,30 @@
 {
-  "updated": "2026-09-02T19:33:24Z",
+  "updated": "2026-09-02T19:37:12Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "Sport5",
     "וואלה ספורט",
+    "ספורט 5",
     "ישראל ספורט",
     "אייס",
     "ספורט 1",
     "ynet",
-    "ספורט 5",
-    "srugim.co.il",
+    "סרוגים",
     "ישראל היום",
-    "ערוץ 7"
+    "ערוץ 7",
+    "כל העיר"
   ],
   "items": [
     {
+      "title": "צפו: הפועל ירושלים ניצחה 80:87 את מכבי תל אביב בבלגרד",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9NUWZGdHpXQ2cyVWFTMU5EOTQwdGtnOVozS05nelFUeHdUcy04bG9JUnZBRW9ObWxIUUpZTHBObWFOZUE2YnBEelB0RHNCRmdU?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-01T20:58:47Z"
+    },
+    {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE42RlcwYzJ5Q0FPQTVZUzJlU3FnbTZ5T1cwNUhPRlVoQU5BaTZmUHE4Y284aTZhaGtvajktRTI4MHBUaUdzS1I5dkhnZVFtT2dibWhnZW54U2Q3QUVubDZTZUxyQk1MQm1hN3RoNTFmNA?oc=5",
-      "source": "Sport5",
+      "source": "ספורט 5",
       "sourceUrl": "https://m.sport5.co.il",
       "published": "2026-08-31T12:41:40Z"
     },
@@ -87,7 +94,7 @@
     {
       "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
       "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
-      "source": "srugim.co.il",
+      "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T09:41:58Z"
     },
@@ -169,6 +176,13 @@
       "published": "2026-08-20T07:00:00Z"
     },
     {
+      "title": "הזרים נחתו, הציפיות בשמיים: הפועל ירושלים סימנה מטרה ברורה",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5yWEIxVnMwaW5taWdELW5iUUdKMXFlMkg1UEZ0UXFhMDhMUGRxY3haSG94SHotenh6VzN1TWoxa2FRX0hyaE1iUGdZa3hHeF9u?oc=5",
+      "source": "כל העיר",
+      "sourceUrl": "https://www.kolhair.co.il",
+      "published": "2026-08-18T07:00:00Z"
+    },
+    {
       "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
       "source": "ישראל היום",
@@ -209,20 +223,6 @@
       "source": "אייס",
       "sourceUrl": "https://www.ice.co.il",
       "published": "2026-08-16T07:00:00Z"
-    },
-    {
-      "title": "מכבי ת\"א במו\"מ מתקדם לרכישת ישראל דאפה מהפועל ירושלים | בלעדי",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB3RGtQTURwdzYxcm5OU1EzS2pUS3dQWmlPaXBUQ1l2RjAzcWhvTXg0dzg5WnM3Z3BWZW45ZmdaS2llRFZKQ1JOQ3g5bDF2cDlza2JzRU1aR2tPdDZOQjJPS2lJOUpLbFBGNFljaTdn?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-13T07:00:00Z"
-    },
-    {
-      "title": "הפועל י-ם צירפה את שחקן סלובן ברטיסלבה",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1WcTlCNUE3WmpMaGJyOHlzZFZra3N0cVlaVE5GRFNDc3lKNkF0Mkpac205UDBaNi1RNktPOGd4M05EMmlfVXZVR2RKRFhBNFh6UktFSTlnQVRBVXlSUVRuVTBJOUVrQnhvTjdLemIxMkQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-13T07:00:00Z"
     }
   ]
 }
