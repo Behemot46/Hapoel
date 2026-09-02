@@ -1,31 +1,23 @@
 {
-  "updated": "2026-09-02T20:58:39Z",
+  "updated": "2026-09-02T21:18:45Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ספורט 5",
     "וואלה ספורט",
-    "Sport5",
     "ישראל ספורט",
-    "אייס",
     "ספורט 1",
     "ynet",
-    "ספורט 5",
     "סרוגים",
     "ישראל היום",
-    "ערוץ 7",
-    "כל העיר"
+    "inn.co.il",
+    "כל העיר",
+    "אייס"
   ],
   "items": [
     {
-      "title": "צפו: הפועל ירושלים ניצחה 80:87 את מכבי תל אביב בבלגרד",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9NUWZGdHpXQ2cyVWFTMU5EOTQwdGtnOVozS05nelFUeHdUcy04bG9JUnZBRW9ObWxIUUpZTHBObWFOZUE2YnBEelB0RHNCRmdU?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-01T20:58:47Z"
-    },
-    {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE42RlcwYzJ5Q0FPQTVZUzJlU3FnbTZ5T1cwNUhPRlVoQU5BaTZmUHE4Y284aTZhaGtvajktRTI4MHBUaUdzS1I5dkhnZVFtT2dibWhnZW54U2Q3QUVubDZTZUxyQk1MQm1hN3RoNTFmNA?oc=5",
-      "source": "Sport5",
+      "source": "ספורט 5",
       "sourceUrl": "https://m.sport5.co.il",
       "published": "2026-08-31T12:41:40Z"
     },
@@ -42,13 +34,6 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-31T07:40:00Z"
-    },
-    {
-      "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RX1NtUGZlMWU1Ulk3ZFBuRFl6OVRydTUwOElhZENyalBhZzF3MU1INjdCQlYzWHBEb19LQWE1eW0wNDdfc1BPVmRMMFVmM2xwMTlEcnVUM0RZdEtLdlYteTc2cw?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
-      "published": "2026-08-30T17:59:20Z"
     },
     {
       "title": "הפועל ירושלים תובעת את הפועל תל אביב: זה הסכום שהיא דורשת",
@@ -130,7 +115,7 @@
     {
       "title": "הפועל ירושלים יוצאת לדרך חדשה",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "ערוץ 7",
+      "source": "inn.co.il",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T20:01:00Z"
     },
@@ -224,6 +209,20 @@
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-08-13T07:00:00Z"
+    },
+    {
+      "title": "הפועל י-ם צירפה את שחקן סלובן ברטיסלבה",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1WcTlCNUE3WmpMaGJyOHlzZFZra3N0cVlaVE5GRFNDc3lKNkF0Mkpac205UDBaNi1RNktPOGd4M05EMmlfVXZVR2RKRFhBNFh6UktFSTlnQVRBVXlSUVRuVTBJOUVrQnhvTjdLemIxMkQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-13T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים החתימה את קפטן נבחרת הנוער ליאור הרשקו",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNczBBS0V1UjFLOHoxcmRYcEQzcTRHSVdPQWRWQkhhTXk0TFFVdFNWcldsV0NZTzZqSEx4dHZCYURZUEx4a0xwSUFxOTF0SmlBVUNJMGdsVzA4bEpRM0ZHTlpsbkpjUVlPbTBKeXhzYTVOWUxuR1NDR0FkenRSWGpIbkpPUV92N29STjYtNndEVzYtQQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-12T07:00:00Z"
     }
   ]
 }
