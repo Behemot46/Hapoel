@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T23:29:40Z",
+  "updated": "2026-09-03T23:49:52Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -12,7 +12,7 @@
     "חדשות 04",
     "ישראל היום",
     "ערוץ 7",
-    "C14",
+    "c14.co.il",
     "כל העיר"
   ],
   "items": [
@@ -159,7 +159,7 @@
     {
       "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
-      "source": "C14",
+      "source": "c14.co.il",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
