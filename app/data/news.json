@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T21:27:52Z",
+  "updated": "2026-09-03T21:47:59Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -9,7 +9,7 @@
     "ספורט 1",
     "סרוגים",
     "ישראל היום",
-    "C14",
+    "c14.co.il",
     "כל העיר",
     "ynet",
     "ONE"
@@ -42,13 +42,6 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-08-30T12:12:00Z"
-    },
-    {
-      "title": "\"עד מתי נכיל את זה?\": זעם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE56MXNNVlBsb0RTdVNYS2lweWpDekEtR3U0bDRIekpxRHM4ekZZTXNpN2ZjQU5vSlVYOTFNd0h6UDFSX2VQMjJWUmo0Yy1vdzQzYkJfcFVqaGNNaFZtcU56dDlfR0hhRkNLZkNxWHRuRDc?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-30T08:20:00Z"
     },
     {
       "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
@@ -109,7 +102,7 @@
     {
       "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
-      "source": "C14",
+      "source": "c14.co.il",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
@@ -224,6 +217,13 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-05T07:00:00Z"
+    },
+    {
+      "title": "אלוף לבנון מגיע לבירה: מילטיץ' חתם רשמית בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPWWx1Mk9PZ0l0b0NtT2Fpb1FhRkY2aGVFaW1KLWZyYU1iNTZxbmF4UUZ5QWQ4T2VfVWhPWnlDellGRnRFeTdMaVp0WkZKLWxNS2p5X2puOEF3ejE0MVlyc0FvdnJVLWh3MFRQT2NUZUJjRkxaSV8wREpKM25DOVhIYVlob3NzWjFMVWplLU04ZFptUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-04T07:00:00Z"
     }
   ]
 }
