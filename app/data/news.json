@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T11:32:47Z",
+  "updated": "2026-09-03T11:52:53Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "וואלה ספורט",
@@ -12,7 +12,7 @@
     "אייס",
     "ynet",
     "ONE",
-    "C14"
+    "c14.co.il"
   ],
   "items": [
     {
@@ -63,13 +63,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-25T13:08:00Z"
-    },
-    {
-      "title": "הפועל ירושלים מתרחקת מהיורוליג: 11 הקבוצות שהליגה רוצה",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE55MEVqWmRFaWdJQU1hZ0s3Q3NjbklSZ0diU1E1d1ZyUWtyNFlqSHBZUDVZZU5OZ2t1Zm5kS0lyNGVucVBEMm91b1dqaVZkcmh6ZzFCXzkxQ0RQZTZ0aGxxeTdtQ2dSQ042V2xxN1FEOEpocmxpdTcxMGU2MNIBgwFBVV95cUxOdmlyU2pERnlvNmNjLXA0aGxlc1FNYUVvbDdmMUFsVEd5aDZvRG92Q0xFTDBXQW9DUUtlVFJtMXBXdThlYzE1cTRjRnV2WEF2OHdGeHp5bFh6R3QtMTduSmxkR0dDM3R3b21aS2pldzFmZXhXMF9Ja25qRng0ZEpqdkhiZw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-25T07:00:00Z"
     },
     {
       "title": "הפועל ירושלים חשפה: המדים שלה לעונת 2026/27",
@@ -142,13 +135,6 @@
       "published": "2026-08-13T07:00:00Z"
     },
     {
-      "title": "עומר אגבדיש הוא הקפטן החדש של הפועל י-ם",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBRYk9yNFM3bGZ6V0RCd1ljeHEzNkRlOVY5cEtSM3UyRmFKVGNmRVRwazFqa1gwcVFjeXhKSFBZTDg2MWV6bTRldVRDbVdrd1RIUEpnNWNrc0ZJT2lVY1REN2QwZHR6Yll1QnBDX000VjI?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-11T07:00:00Z"
-    },
-    {
       "title": "\"השפלה עצומה לשמעון ולמכבי\": אקס הפועל ירושלים בדרך למכבי תל אביב? | ספורט 1",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBpZVVxUFFiTjkweEhZYUJlZ3IxbHQyMVFvMTJnOXd1cTQ3NE9VY2lqV1pyckF1VG9UcTFyQm5tbEpKeHZCdU9FZERiMHZDOXZ3cE5CWVF1cFhpQVVNMklVZG5mWjh0RmhRVnhwYXh4Qkk?oc=5",
       "source": "ספורט 1",
@@ -191,17 +177,17 @@
       "published": "2026-08-04T07:00:00Z"
     },
     {
-      "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-04T07:00:00Z"
-    },
-    {
       "title": "השלימה את הסגל: כך תיראה הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9aNjVaVHJxWEJVcVNvVi1JR3hRbnVzR0dENjB2b2hzZlVGTFNlOWp6U3N5a09wODNZTnhBOVp3NDdKc3liSlhSYVVoNVE3ZTJ5a21IMG1jcGh3LTFKeXFnMFhCenprODZBci1sTzJlTDBwUQ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-04T07:00:00Z"
+    },
+    {
+      "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
+      "source": "c14.co.il",
+      "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-04T07:00:00Z"
     },
     {
@@ -223,6 +209,20 @@
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9qeGt6TDNsdmp5YUctTDZGYkJLSFpZSGl5WkhCUGRBMGlqTFVuUXFiRGJ6Mm41NERGNjVSSkMwT2dvSkZRaXV3ZzRoYkFDVklCR1hVVi14dFRwaWMwX2d1dTRGb2NKT3ktRjFNZ3B5TU1uM1JZQ0dkVDBB?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-03T07:00:00Z"
+    },
+    {
+      "title": "\"לא כולם יקבלו את ההחלטה\": המסר החריג של אדלסון לאוהדי הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNdS1Xdl9Ic1ZiQzAwb3JON2llRURaUTZXRE0wR1JvbVcxM3FDam1oUm1lNk1kVnNLZ25IT193aHY2MmJfaWpmajFJY1JTaXJEQmhjbzFYSzN4djgwelU2YXpWY3lNajR1eUNsTGNRM0FDOC1Ob2NFYUVnOXlpTmtScDN2ejJ5U2FJcE9PV2NuRGRGZw?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-03T07:00:00Z"
+    },
+    {
+      "title": "\"הקשבתי לאוהדים\": אדלסון שובר שתיקה בסרטון לאוהדי הפועל י-ם",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFB5NFViY3MtNTVqVTVSV1pyeldPUXFIYkZqRUFQbUJuaXFaM09hbWdkT0tmME5naGFoYVE2Q3JuZHNHZEZaNnpaYjBTdjUxUQ?oc=5",
+      "source": "c14.co.il",
+      "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-03T07:00:00Z"
     }
   ]
