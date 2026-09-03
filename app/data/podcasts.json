@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T00:01:41Z",
+  "updated": "2026-09-03T00:21:47Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -35,10 +35,19 @@
       "title": "אנחנו במפה",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%90%D7%A0%D7%97%D7%A0%D7%95-%D7%91%D7%9E%D7%A4%D7%94-%D7%94%D7%9B%D7%9C-%D7%A2%D7%9C-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%95%D7%AA-%D7%91%D7%90%D7%99%D7%A8%D7%95%D7%A4%D7%94/id1648115499?uo=4",
-      "latest": "2026-08-25T04:45:54Z"
+      "latest": "2026-09-03T00:16:40Z"
     }
   ],
   "items": [
+    {
+      "showId": "1648115499",
+      "show": "אנחנו במפה",
+      "about": "league",
+      "title": "הליגה במפה",
+      "url": "https://rss.com/podcasts/we-are-on-the-map/3116389",
+      "published": "2026-09-03T00:16:40Z",
+      "duration": 5163
+    },
     {
       "showId": "1698308776",
       "show": "דאבל דריבל",
@@ -182,15 +191,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3055087",
       "published": "2026-08-09T04:05:43Z",
       "duration": 4332
-    },
-    {
-      "showId": "1648115499",
-      "show": "אנחנו במפה",
-      "about": "league",
-      "title": "טורפים את הקיץ",
-      "url": "https://rss.com/podcasts/we-are-on-the-map/3042757",
-      "published": "2026-08-03T08:10:55Z",
-      "duration": 7167
     },
     {
       "showId": "1573775015",

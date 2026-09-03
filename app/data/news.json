@@ -1,11 +1,12 @@
 {
-  "updated": "2026-09-03T00:01:39Z",
+  "updated": "2026-09-03T00:21:46Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "וואלה ספורט",
-    "ספורט 5",
+    "Sport5",
     "ספורט 1",
     "ynet",
+    "ספורט 5",
     "סרוגים",
     "ישראל היום",
     "ישראל ספורט",
@@ -25,7 +26,7 @@
     {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE42RlcwYzJ5Q0FPQTVZUzJlU3FnbTZ5T1cwNUhPRlVoQU5BaTZmUHE4Y284aTZhaGtvajktRTI4MHBUaUdzS1I5dkhnZVFtT2dibWhnZW54U2Q3QUVubDZTZUxyQk1MQm1hN3RoNTFmNA?oc=5",
-      "source": "ספורט 5",
+      "source": "Sport5",
       "sourceUrl": "https://m.sport5.co.il",
       "published": "2026-08-31T12:41:40Z"
     },
