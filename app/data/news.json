@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T22:48:28Z",
+  "updated": "2026-09-03T23:08:44Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -16,6 +16,13 @@
     "כל העיר"
   ],
   "items": [
+    {
+      "title": "הפועל ירושלים וקרית גת בגמר גביע אתנה",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0wRGhuemRMTHZUYUdPTjNoOFB1R0JhQjVDT0x5amJmcHFhdU53ZW8tYldnZ0QtMjN2TjZXWE9GSzFxendReVJ1cHFDc19CbjVCNFh6SlJzNXhnMXdsTXVvMnRpQ2ZrWC14Vk1jRnk3NV9zY1E?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-03T18:22:00Z"
+    },
     {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92NU5NMnVrNEJyVmtkY0tuYjNQbXB3RktJOWI4VFJwSE1QSTFhSlYtYThnUm9BX0JjVmYwLVM1NmpnaUZxeUEzZzF2QkROY1FFYnFjdnhFU3NkRUlrQVlyd3NuaVFZSmMwRWFoRVR1ajRkdw?oc=5",
@@ -217,13 +224,6 @@
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBRYk9yNFM3bGZ6V0RCd1ljeHEzNkRlOVY5cEtSM3UyRmFKVGNmRVRwazFqa1gwcVFjeXhKSFBZTDg2MWV6bTRldVRDbVdrd1RIUEpnNWNrc0ZJT2lVY1REN2QwZHR6Yll1QnBDX000VjI?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-11T07:00:00Z"
-    },
-    {
-      "title": "בגיל 56: אגדת הכדורסל פפי תורג'מן חוזר להפועל ירושלים בג'וב חדש",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9lanJTa0lqdk1uQmE1YTc0YmV2OFBEZzM4Yms1VU1RZnBCaHZVRC0xZnZZTnJFSWpNQmE2QUVFYnhlQWdtX2JWeDA5Z3RCRFdwX3RZOTJuTmtDQjEzM0cybXhWOA?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
       "published": "2026-08-11T07:00:00Z"
     }
   ]
