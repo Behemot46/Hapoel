@@ -1,8 +1,7 @@
 {
-  "updated": "2026-09-03T16:22:46Z",
+  "updated": "2026-09-03T16:42:53Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "וואלה ספורט",
     "ספורט 5",
     "ישראל ספורט",
     "ספורט 1",
@@ -11,16 +10,10 @@
     "אייס",
     "ynet",
     "ONE",
-    "C14"
+    "C14",
+    "כל העיר"
   ],
   "items": [
-    {
-      "title": "צפו: הפועל ירושלים ניצחה 80:87 את מכבי תל אביב בבלגרד",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9NUWZGdHpXQ2cyVWFTMU5EOTQwdGtnOVozS05nelFUeHdUcy04bG9JUnZBRW9ObWxIUUpZTHBObWFOZUE2YnBEelB0RHNCRmdU?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-01T20:58:47Z"
-    },
     {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92NU5NMnVrNEJyVmtkY0tuYjNQbXB3RktJOWI4VFJwSE1QSTFhSlYtYThnUm9BX0JjVmYwLVM1NmpnaUZxeUEzZzF2QkROY1FFYnFjdnhFU3NkRUlrQVlyd3NuaVFZSmMwRWFoRVR1ajRkdw?oc=5",
@@ -183,10 +176,10 @@
       "published": "2026-08-04T07:00:00Z"
     },
     {
-      "title": "השלימה את הסגל: כך תיראה הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9aNjVaVHJxWEJVcVNvVi1JR3hRbnVzR0dENjB2b2hzZlVGTFNlOWp6U3N5a09wODNZTnhBOVp3NDdKc3liSlhSYVVoNVE3ZTJ5a21IMG1jcGh3LTFKeXFnMFhCenprODZBci1sTzJlTDBwUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
+      "title": "אחרי שלוש שנים של תהליך: האם הפועל ירושלים סוף סוף מוכנה לפרוץ?",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9yM1pJRjU4Rll5TGJMQjRsRjlhQmc0dF9xUGZTVDZDM0RrTVV4ZlUtOEZRZmxaSGg4ZE1CeEhISWRqdXBiYk5xeUVLNGpTQ3VW?oc=5",
+      "source": "כל העיר",
+      "sourceUrl": "https://www.kolhair.co.il",
       "published": "2026-08-04T07:00:00Z"
     },
     {
@@ -223,6 +216,13 @@
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-08-02T07:00:00Z"
+    },
+    {
+      "title": "מועדון המיליון: שכר הרכש ההיסטורי של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE96Wi1UZkN0dy14Y010SHkxTkV1UXFPOUptbUVkZVpHSlNVVGc5YmlManBkR2lzMDJiTWlfRFVza2lOT3o5MzJnd0l3RkI4TmNJOFFSNjhyYUVsWEVXTnRBZ1pqTlpWVW03RmxvejJxSk1wMmIz?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-07-31T07:00:00Z"
     }
   ]
 }
