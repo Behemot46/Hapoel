@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T18:44:29Z",
+  "updated": "2026-09-03T19:04:37Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -56,24 +56,10 @@
       "published": "2026-08-26T07:00:00Z"
     },
     {
-      "title": "ללא הפועל ירושלים: 11 הקבוצות שבדרך לרשיון יורוליג",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE43X2xHVWV4RTlRUVFqdGZYTXBwWjU2ZC1XRThCd3lTblFrZmQxMXpiRGhTZ1ZqRTBvcWFoZmR0RGNLbVlhU3Q4UFlnaEU0eS1uRm9pckQ3d2lsTTZHY1FuaEVOSEFXaU82Z3ZmMTJaSUNFdWpx?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-25T13:08:00Z"
-    },
-    {
       "title": "יותר מג'ארד הארפר: זה השחקן הכי חשוב של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NnhMcXZCMkNrajBqVURsZnl5cUN2bUxLSlJWSzV4d0k2YWN6Ym9qWG8zVmVmUlNDbjE4Q3V3WDQtZU52M0gyZWhtaFpYbWIydVZJbFRNYzBzZTUzSUxyem1XQjZxYXk0eC1nSmlaSXcydW5mek9KTVB0ONIBgwFBVV95cUxNQThyYnZDSWNfejhkVkRUOXFfLUkydi13b2h6RUdTOGhIMThhMkZQM0hiY0xPOVU1cXB0TDdNRjczQ2pfVmpTSW5Sem0wMnBnOXU3cGw0dTBsbVJsNk8xck9Sei1DYU1XMloydFIyRnZ1aWxLQWxITGJtV2VmNGpmbHZ5bw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-25T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים חשפה: המדים שלה לעונת 2026/27",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1VXJrYjE2Rkdpa0xkZXZiNUw0eUNmRWpWZ1Z3cWp5RDA2NkFYNDdSRHRKLXVKb2pGTW9MeDNTb1RRX3hVQnNFeHAyV0hpOTBjZDY0ajdFb19HMGhBSmZkVmUxR3FPbjlSdE9rSjZIUkM0UQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-25T07:00:00Z"
     },
     {
@@ -222,6 +208,20 @@
       "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-03T07:00:00Z"
+    },
+    {
+      "title": "\"לא כולם יקבלו את ההחלטה\": המסר החריג של אדלסון לאוהדי הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNdS1Xdl9Ic1ZiQzAwb3JON2llRURaUTZXRE0wR1JvbVcxM3FDam1oUm1lNk1kVnNLZ25IT193aHY2MmJfaWpmajFJY1JTaXJEQmhjbzFYSzN4djgwelU2YXpWY3lNajR1eUNsTGNRM0FDOC1Ob2NFYUVnOXlpTmtScDN2ejJ5U2FJcE9PV2NuRGRGZw?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-03T07:00:00Z"
+    },
+    {
+      "title": "דושאן מילטיץ' חתם בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE52WGh4dXliMVFVdVN4R3BYU3BEYzNwbVpYckxLbnlIZmhIMDVIUlp5RUx2VTE3VXlRR1ZYUjlkR2l2aDRsV3czNHZaeXgzVEkyWVhxYXJFcVFCaDZRdDVaejBqNHhkbllIZUx1SVN2aHJLSmRp?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-08-02T07:00:00Z"
     }
   ]
 }
