@@ -1,18 +1,18 @@
 {
-  "updated": "2026-09-03T11:12:40Z",
+  "updated": "2026-09-03T11:32:47Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "וואלה ספורט",
     "ספורט 5",
     "ישראל ספורט",
-    "ynet",
     "ספורט 1",
     "סרוגים",
     "ישראל היום",
     "כל העיר",
     "אייס",
+    "ynet",
     "ONE",
-    "c14.co.il"
+    "C14"
   ],
   "items": [
     {
@@ -35,13 +35,6 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-31T07:40:00Z"
-    },
-    {
-      "title": "הפועל ירושלים דורשת מהפועל ת\"א: 2.3 מיליון שקל על קאדין קרינגטון",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1Rd21rTkNVOEdpeTNBZVF5UDZ2NGhJNTB0VG1rRzR1WW1jNldxODZTNUNkS1VyRVJUMzdRT0JZRXlkbXE3cGJ4VjVhZ0JzWUZEdnBnQnRCbVVQdHZjdnZDUU1IRldVNVNYWnViSG14WEYzdWc?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-30T14:46:56Z"
     },
     {
       "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
@@ -72,17 +65,17 @@
       "published": "2026-08-25T13:08:00Z"
     },
     {
-      "title": "הפועל ירושלים חשפה: המדים שלה לעונת 2026/27",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1VXJrYjE2Rkdpa0xkZXZiNUw0eUNmRWpWZ1Z3cWp5RDA2NkFYNDdSRHRKLXVKb2pGTW9MeDNTb1RRX3hVQnNFeHAyV0hpOTBjZDY0ajdFb19HMGhBSmZkVmUxR3FPbjlSdE9rSjZIUkM0UQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-25T07:00:00Z"
-    },
-    {
       "title": "הפועל ירושלים מתרחקת מהיורוליג: 11 הקבוצות שהליגה רוצה",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE55MEVqWmRFaWdJQU1hZ0s3Q3NjbklSZ0diU1E1d1ZyUWtyNFlqSHBZUDVZZU5OZ2t1Zm5kS0lyNGVucVBEMm91b1dqaVZkcmh6ZzFCXzkxQ0RQZTZ0aGxxeTdtQ2dSQ042V2xxN1FEOEpocmxpdTcxMGU2MNIBgwFBVV95cUxOdmlyU2pERnlvNmNjLXA0aGxlc1FNYUVvbDdmMUFsVEd5aDZvRG92Q0xFTDBXQW9DUUtlVFJtMXBXdThlYzE1cTRjRnV2WEF2OHdGeHp5bFh6R3QtMTduSmxkR0dDM3R3b21aS2pldzFmZXhXMF9Ja25qRng0ZEpqdkhiZw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-25T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים חשפה: המדים שלה לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1VXJrYjE2Rkdpa0xkZXZiNUw0eUNmRWpWZ1Z3cWp5RDA2NkFYNDdSRHRKLXVKb2pGTW9MeDNTb1RRX3hVQnNFeHAyV0hpOTBjZDY0ajdFb19HMGhBSmZkVmUxR3FPbjlSdE9rSjZIUkM0UQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-25T07:00:00Z"
     },
     {
@@ -149,13 +142,6 @@
       "published": "2026-08-13T07:00:00Z"
     },
     {
-      "title": "הפועל י-ם צירפה את שחקן סלובן ברטיסלבה",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1WcTlCNUE3WmpMaGJyOHlzZFZra3N0cVlaVE5GRFNDc3lKNkF0Mkpac205UDBaNi1RNktPOGd4M05EMmlfVXZVR2RKRFhBNFh6UktFSTlnQVRBVXlSUVRuVTBJOUVrQnhvTjdLemIxMkQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-13T07:00:00Z"
-    },
-    {
       "title": "עומר אגבדיש הוא הקפטן החדש של הפועל י-ם",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBRYk9yNFM3bGZ6V0RCd1ljeHEzNkRlOVY5cEtSM3UyRmFKVGNmRVRwazFqa1gwcVFjeXhKSFBZTDg2MWV6bTRldVRDbVdrd1RIUEpnNWNrc0ZJT2lVY1REN2QwZHR6Yll1QnBDX000VjI?oc=5",
       "source": "ספורט 5",
@@ -207,7 +193,7 @@
     {
       "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
-      "source": "c14.co.il",
+      "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-04T07:00:00Z"
     },
@@ -223,6 +209,20 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1rRHlQbVBwenB5WjNEX1lEWHdUZ19MYU50SHVnenJPQldsSWdGdmxXX1NYRzJ0OUJaVzRpNUtyRl9FU1YySTgwNnF6c2J4TUtydmVSRkZiQmhQT0FES2hmX0dzTmJYS05sRGg2R2RBd2RsN2dBSE1FbENlY9IBgwFBVV95cUxNMzlmcEdrc0I1U2g3YjdKM1FwcU1SUlNFTEF3by16QS1rX0U0cF9JZ2ZWSDZ2Q0plQW1NdmZ1WlBoaEZXR2tXQmNZSEMyWGpJZElJZ1BobkJheFhTM25DMXJNX0JOY3VfRmZmckV2MzRKV214QXBrVnVDWUlQX2NEcnhrbw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-03T07:00:00Z"
+    },
+    {
+      "title": "מתן אדלסון סיפר: הצד שלו לסערת הסמל של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB4NjVycmZMa2ppWnhjM2I5YjVSOVhXS0FHNHkwaWkxb2wtaUFneWR4Rk9UWmxCX2ZldWRJX0RpSkNWMVdZWWsxM2g2dWNFWVR5dThEUS1QZTRwNGJld2gyZEVGZlF5NjBVaWs2WE1LZ2FUdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-03T07:00:00Z"
+    },
+    {
+      "title": "\"הבסיס טוב\": בהפועל ירושלים מחכים לשני שחקני חיזוק שישדרגו אותה",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9qeGt6TDNsdmp5YUctTDZGYkJLSFpZSGl5WkhCUGRBMGlqTFVuUXFiRGJ6Mm41NERGNjVSSkMwT2dvSkZRaXV3ZzRoYkFDVklCR1hVVi14dFRwaWMwX2d1dTRGb2NKT3ktRjFNZ3B5TU1uM1JZQ0dkVDBB?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-03T07:00:00Z"
     }
   ]
