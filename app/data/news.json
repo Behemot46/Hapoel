@@ -1,9 +1,10 @@
 {
-  "updated": "2026-09-03T19:05:07Z",
+  "updated": "2026-09-03T19:26:05Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
     "ישראל ספורט",
+    "וואלה ספורט",
     "ספורט 1",
     "סרוגים",
     "ישראל היום",
@@ -26,6 +27,13 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-31T07:40:00Z"
+    },
+    {
+      "title": "המועמד המוביל של הפועל ירושלים להחליף את ג'ארד הארפר",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9tMmtTZnRtYlVWNzdrYU1IWk4yRF9fbzFJRXZRNmx6bTVjVFpoM3d3a3pwcG5uMnV4VE9MWm96Ymlha2RxSkxnR1QxbTdXaFFh?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-30T12:12:00Z"
     },
     {
       "title": "\"עד מתי נכיל את זה?\": זעם בהפועל ירושלים",
@@ -215,13 +223,6 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-03T07:00:00Z"
-    },
-    {
-      "title": "דושאן מילטיץ' חתם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE52WGh4dXliMVFVdVN4R3BYU3BEYzNwbVpYckxLbnlIZmhIMDVIUlp5RUx2VTE3VXlRR1ZYUjlkR2l2aDRsV3czNHZaeXgzVEkyWVhxYXJFcVFCaDZRdDVaejBqNHhkbllIZUx1SVN2aHJLSmRp?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-02T07:00:00Z"
     }
   ]
 }
