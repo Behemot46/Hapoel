@@ -1,17 +1,18 @@
 {
-  "updated": "2026-09-03T12:13:05Z",
+  "updated": "2026-09-03T12:33:58Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "וואלה ספורט",
+    "ספורט 5",
     "ישראל ספורט",
     "סרוגים",
     "ספורט 1",
     "ישראל היום",
-    "ספורט 5",
     "אייס",
     "ONE",
-    "c14.co.il",
+    "C14",
     "הארץ",
+    "רשת 13",
     "ynet"
   ],
   "items": [
@@ -21,6 +22,13 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-09-01T20:58:47Z"
+    },
+    {
+      "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92NU5NMnVrNEJyVmtkY0tuYjNQbXB3RktJOWI4VFJwSE1QSTFhSlYtYThnUm9BX0JjVmYwLVM1NmpnaUZxeUEzZzF2QkROY1FFYnFjdnhFU3NkRUlrQVlyd3NuaVFZSmMwRWFoRVR1ajRkdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-31T12:41:40Z"
     },
     {
       "title": "הפועל ירושלים הביסה 76:102 את חולון בהכנה, אוברדוביץ’ מרוצה",
@@ -72,6 +80,13 @@
       "published": "2026-08-16T07:00:00Z"
     },
     {
+      "title": "עומר אגבדיש הוא הקפטן החדש של הפועל י-ם",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBRYk9yNFM3bGZ6V0RCd1ljeHEzNkRlOVY5cEtSM3UyRmFKVGNmRVRwazFqa1gwcVFjeXhKSFBZTDg2MWV6bTRldVRDbVdrd1RIUEpnNWNrc0ZJT2lVY1REN2QwZHR6Yll1QnBDX000VjI?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-11T07:00:00Z"
+    },
+    {
       "title": "\"השפלה עצומה לשמעון ולמכבי\": אקס הפועל ירושלים בדרך למכבי תל אביב? | ספורט 1",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBpZVVxUFFiTjkweEhZYUJlZ3IxbHQyMVFvMTJnOXd1cTQ3NE9VY2lqV1pyckF1VG9UcTFyQm5tbEpKeHZCdU9FZERiMHZDOXZ3cE5CWVF1cFhpQVVNMklVZG5mWjh0RmhRVnhwYXh4Qkk?oc=5",
       "source": "ספורט 1",
@@ -100,6 +115,13 @@
       "published": "2026-08-05T07:00:00Z"
     },
     {
+      "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-08-04T07:00:00Z"
+    },
+    {
       "title": "השלימה את הסגל: כך תיראה הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9aNjVaVHJxWEJVcVNvVi1JR3hRbnVzR0dENjB2b2hzZlVGTFNlOWp6U3N5a09wODNZTnhBOVp3NDdKc3liSlhSYVVoNVE3ZTJ5a21IMG1jcGh3LTFKeXFnMFhCenprODZBci1sTzJlTDBwUQ?oc=5",
       "source": "ספורט 5",
@@ -107,11 +129,11 @@
       "published": "2026-08-04T07:00:00Z"
     },
     {
-      "title": "אחרי עונת שיא ביורוקאפ: הפועל י-ם הודיעה על החתמת סנטר חדש",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuMlk2bnFwRHRZMzE4OUFxR0hWcm1TUGRQbXUzbHZMUWhXbnJhOXBXanlKdVNyLTc5ZVl3azF4VjNHUjg3Um9KeldCTW5BQQ?oc=5",
-      "source": "c14.co.il",
+      "title": "\"הקשבתי לאוהדים\": אדלסון שובר שתיקה בסרטון לאוהדי הפועל י-ם",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFB5NFViY3MtNTVqVTVSV1pyeldPUXFIYkZqRUFQbUJuaXFaM09hbWdkT0tmME5naGFoYVE2Q3JuZHNHZEZaNnpaYjBTdjUxUQ?oc=5",
+      "source": "C14",
       "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-04T07:00:00Z"
+      "published": "2026-08-03T07:00:00Z"
     },
     {
       "title": "\"סשה אוברדוביץ' רצה שאוביל את הפועל ירושלים, הוא דיבר איתי\"",
@@ -156,6 +178,13 @@
       "published": "2026-07-29T07:00:00Z"
     },
     {
+      "title": "מסע בעקבות הגביע הנעלם של הפועל י-ם -",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9fWXZoZVF1TTVYTTN1dklmZFVPT09vYUI0SnhEMXRwam1MVXJKdExuWXdQWDFuLTNhb3owLUNvaXJKbHJ1bTVPMjVJQWE?oc=5",
+      "source": "רשת 13",
+      "sourceUrl": "https://13tv.co.il",
+      "published": "2026-07-26T07:00:00Z"
+    },
+    {
       "title": "מחטף? המועמד למכבי תל אביב במו\"מ מתקדם עם הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1RSGtuYVA1a3BlUlhLV2xyeEhkcjI3SnlrOXN5VW5WZUpfcUEyUFFTZS1JZDJlR0lVWjFEcjNBU09qWEdJeFlVVzZYWHpVNnhIRTE0UDZhSUxCald6azV4aXhtTXFWTU0yZmxCWHcxVUw2RXB4LUJjeC0tUdIBgwFBVV95cUxPWEZtMG1uYnpaUlhRWXhxUXRNOXpOMktsMmlsS0pDZENmckFfYlJOX2hFcUxqOG42VEs4c2Fkem56cWU2THQ1WWhyYjJjTXJ5RVRKQ0loTi04QnFhVUlZUkNTVElOay1lSFhjN1AxR01Ld093TGJkZ2VCV2ctTGJUQlViaw?oc=5",
       "source": "ישראל היום",
@@ -175,6 +204,13 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-07-26T07:00:00Z"
+    },
+    {
+      "title": "כ-50 שנה אחרי שהונף: מסע בעקבות הגביע הנעלם של הפועל י-ם",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE02YllrbUwyNklaQlNuNVBlSE9VTFFWREhLZEhobnNtbV83WFJZUGI3SHVNSnVUb2I3aEhtUVVWTlRKdUo0ZjM1dDR6OXVrTV9vZUY5cUxQMlpUZzBkbF9VYV90b1dPLU9LVzhPc2M3d3g?oc=5",
+      "source": "רשת 13",
+      "sourceUrl": "https://13tv.co.il",
+      "published": "2026-07-25T07:00:00Z"
     },
     {
       "title": "יש גם סנטר בדרך: הפועל ירושלים ממשיכה לעבוד",
