@@ -1,18 +1,18 @@
 {
-  "updated": "2026-09-04T11:48:40Z",
+  "updated": "2026-09-04T12:08:59Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 1",
     "וואלה ספורט",
     "ספורט 5",
     "ישראל ספורט",
+    "אייס",
     "ynet",
     "סרוגים",
     "103fm.maariv.co.il",
     "חדשות 04",
     "ישראל היום",
-    "ערוץ 7",
-    "כל העיר"
+    "ערוץ 7"
   ],
   "items": [
     {
@@ -56,6 +56,13 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-31T07:40:00Z"
+    },
+    {
+      "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RX1NtUGZlMWU1Ulk3ZFBuRFl6OVRydTUwOElhZENyalBhZzF3MU1INjdCQlYzWHBEb19LQWE1eW0wNDdfc1BPVmRMMFVmM2xwMTlEcnVUM0RZdEtLdlYteTc2cw?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-30T17:59:20Z"
     },
     {
       "title": "הפועל ירושלים תובעת את הפועל תל אביב: זה הסכום שהיא דורשת",
@@ -217,13 +224,6 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-20T07:00:00Z"
-    },
-    {
-      "title": "הזרים נחתו, הציפיות בשמיים: הפועל ירושלים סימנה מטרה ברורה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5yWEIxVnMwaW5taWdELW5iUUdKMXFlMkg1UEZ0UXFhMDhMUGRxY3haSG94SHotenh6VzN1TWoxa2FRX0hyaE1iUGdZa3hHeF9u?oc=5",
-      "source": "כל העיר",
-      "sourceUrl": "https://www.kolhair.co.il",
-      "published": "2026-08-18T07:00:00Z"
     }
   ]
 }
