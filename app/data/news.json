@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-04T08:05:09Z",
+  "updated": "2026-09-04T08:26:07Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -7,7 +7,6 @@
     "אייס",
     "ספורט 1",
     "ynet",
-    "וואלה ספורט",
     "סרוגים",
     "103FM",
     "חדשות 04",
@@ -64,13 +63,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-30T14:41:00Z"
-    },
-    {
-      "title": "המועמד המוביל של הפועל ירושלים להחליף את ג'ארד הארפר",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9tMmtTZnRtYlVWNzdrYU1IWk4yRF9fbzFJRXZRNmx6bTVjVFpoM3d3a3pwcG5uMnV4VE9MWm96Ymlha2RxSkxnR1QxbTdXaFFh?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-30T12:12:00Z"
     },
     {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
@@ -225,6 +217,13 @@
       "source": "כל העיר",
       "sourceUrl": "https://www.kolhair.co.il",
       "published": "2026-08-18T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-17T07:00:00Z"
     }
   ]
 }
