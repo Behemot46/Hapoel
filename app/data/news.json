@@ -1,11 +1,10 @@
 {
-  "updated": "2026-09-04T20:37:23Z",
+  "updated": "2026-09-04T22:38:32Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ONE",
     "ספורט 5",
     "וואלה ספורט",
-    "ישראל ספורט",
+    "isport.co.il",
     "אייס",
     "ספורט 1",
     "ynet",
@@ -16,13 +15,6 @@
     "כל העיר"
   ],
   "items": [
-    {
-      "title": "מתחממת: הפועל ירושלים גברה 82:86 על הפועל העמק",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE01dTdfdmpxY25vM0hncHROR1k0Zjl4T3lyLUFIUE5KMnlybjZrZi14Qnl4MEtPTnVmbmw2eGxYa0x0ZERhblRoOF9CQmNTTVNld2RZ?oc=5",
-      "source": "ONE",
-      "sourceUrl": "https://www.one.co.il",
-      "published": "2026-09-04T15:40:43Z"
-    },
     {
       "title": "הפועל ירושלים במו\"מ מתקדם עם הגארד היהודי אמארי ביילי",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Oel9lWUl5TUpxVzd2NUtpME1SOE5PNFBjNG9vb2JPei04S2ZCU2pQLVNKNWh1bGt3UG0wZG9uS3NSX1RxZnlfR0xKczBNNUhuODc3RDVudWFDNF9yZXFfZXhEVHdlWmhaTkJ1d0tkQjJNUQ?oc=5",
@@ -47,7 +39,7 @@
     {
       "title": "הפועל ירושלים הביסה 76:102 את חולון בהכנה, אוברדוביץ’ מרוצה",
       "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNYWF2RExNeWRnWUNGR3gtcG1malhzZWI4dTdGQVA2WlVwSDNPa2lUTWJtOGl4Uk8xcEtLczlpdFlieGFuZjE4ZDB5dVhGNkNaSGNVQ0pEX1cyMjc0MG5MR2xkdlFEZGowRi1YMjk2dGxhbFJtdUk1VEQyc3R4ajhaU0lSUUpoaU1ORUk3cFpMZ0xFSkh5V0cxeEhFTmRLaDF3S25Zemp6STh2LTNRUnpHRlllQ0ZEZURySjEtU1o5aFhGSy1WV1hGX3l1cW5uS0JqaHZmS3czUkRNbzNlbXMwVDlkOGRsU3p2VFFZdWs1YWkyNVhKdm15OGswWnZWYTNPczF2cE1wdXlQUFZ3Y3FiVEY0MkNsZV9mLXVCVEpTYWpwNlJ6VEE2VkZJbFlac3JTRll0cUwwUjJFRmoyNkJVMVFB?oc=5",
-      "source": "ישראל ספורט",
+      "source": "isport.co.il",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-31T07:40:00Z"
     },
@@ -129,6 +121,13 @@
       "published": "2026-08-25T07:00:00Z"
     },
     {
+      "title": "הפועל ירושלים השיקה את המדים החדשים לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxQc1FXOFk0TGhrODlFT2ZjaFhIeXMtc1ZlUndFaXMzLURUUlJhaEpkRGpQSlJ6TnAtLUxaa01Ha2E5dE1LMVI4ZERsN0Vvb3o3WGxRZXNaajllcWxQWHo1SmJ1dTM5M3paWFJiVmNFWEVadkpQamd3M2Y3ZWNMV2c0NXYxcjFMSWU5eUtwZnBseDN3YXRFZlQ0OXVzTDJZU2x5MmY5eHVZb0RtQks3cnNpcy1BVGxUcnpqY0huSTF5VnpRVkRuSFhSYy00NDJlR3pPMFZPOGNvVWdzVlhuQVZ4Zy1XM2FIWERyQmV4YUlxWlBJN1BiNFBHWFhfbGV1N3dOeVYtMV9IdmhXdTA1Um1JTXJhMHVXd20wWGxKVHAwTVhTRXpFSmFOQnFCeVVKRU1lR0ltMjhnOVJuSkswVlpGRnln?oc=5",
+      "source": "isport.co.il",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-08-25T06:35:00Z"
+    },
+    {
       "title": "\"הפועל ירושלים רוצה יורוליג, הגעתי בזמן לא אידאלי והשתלבתי\"",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBFZnJZRmhROC1XNldXT19hUy1vZjZSQVNZRkVoellhUUhIZlFOUk80elF3TXJNZ3h5RVNzMEY2NjNJWXhVWjBja2w5dVB3MVNUTFZlZ1NsTUlESFhKck9WNHRiN2QyQ3Y2UEJPeVl2bjk5Z2FRUEl5Y2F4TdIBgwFBVV95cUxQYTNtQUplc2lqQjVqVjdXNnFBTFRJVG9sc1Vnb0ZZNk5iSEpMc21FNVctcWRPR1VqTHI5aEphWURQRXFzcThLLWNqSnVoSWl5aEhxWDE2UkdWc09IaXZXVlNWMFRjZmhHMVY2SDBmNTZ5RlpvTlVWQ0p2S3JvbFlCelNoTQ?oc=5",
       "source": "ישראל היום",
@@ -199,13 +198,6 @@
       "published": "2026-08-18T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
-    },
-    {
       "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
       "source": "ישראל היום",
@@ -224,6 +216,13 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5OVGZsUEIySUVFZW5yTUxHMENoU0FocXFzRXFhdmFYdl9FY1ZrVzNqQTAzbEdXZWdZdUhHdnN2Zi1uTUNPNHpuRU0tWnZCd2ZfTENfd0t4WDhGLXdkcmdXYnIyMzkyZERVbGNObTN1VXRCUQ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-17T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים מעלה הילוך: שיתוף פעולה חדש עם ריבוק העולמית",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9VVVFCd2tXMkFvTlQwNVhjNkcyMVp5eVRuS3BjLVpNdDF5eWE3RWhGWW1GNnRpWjVoOExKTVNiNmtKYlVHM2dBdlQ3dUVkdWVqLUlvcWpId0l5SjhkN2Q0ZnhnQQ?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
       "published": "2026-08-17T07:00:00Z"
     }
   ]
