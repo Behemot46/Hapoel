@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-04T10:28:05Z",
+  "updated": "2026-09-04T10:48:14Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -8,7 +8,7 @@
     "ספורט 1",
     "ynet",
     "סרוגים",
-    "103FM",
+    "103fm.maariv.co.il",
     "חדשות 04",
     "ישראל היום",
     "ערוץ 7",
@@ -102,7 +102,7 @@
     {
       "title": "ספורט - הפועל ירושלים תקפוץ מדרגה?",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CYUh0eDgtZDltQ3lMYm9ZNmtTcGVjdGU2WkxkSGVBZ081YXRnd1BBRmNLbVNuVVdsNWc2Ql9qZUVHUGZMMXhDVklZYWczWlVtYzF1THVSekg3cWNWSUp1dHgtRGR6RXd1NTV1TE81d1ZaQjFnLTBnWUsxeXd6d1k?oc=5",
-      "source": "103FM",
+      "source": "103fm.maariv.co.il",
       "sourceUrl": "https://103fm.maariv.co.il",
       "published": "2026-08-27T04:42:09Z"
     },
@@ -125,13 +125,6 @@
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
       "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
-      "published": "2026-08-26T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים: \"מועמדים משמעותיים לרישיון קבוע ביורוליג\"",
-      "url": "https://news.google.com/rss/articles/CBMivwJBVV95cUxQSF9TNFJKNHQzTEU3Qno2RjV2REFZTldwMHBuMFFUREtybTRvUjVwSHNCRThweUFPRm5FalI5S2lnUllzZlNGNGczcGpLd0oyaE1fbVl6MTBFcU1BZXV2VUJwQ2tybDRWdzFaZmZFTHJyamJzd05GS2g3QXNmSVFnNnRfRFNHVUxWVXJFZUhJMnRtMm9lZjllOGZTSWFjYnRMSG9GU2E2RnlXLW1LUmgxbHhwUGtkWjRtOUZWZEFVS01OR2piY2J2bHVaRlFFZDE1UWlLOFJmQ0Nhc0xtVE1sekJPR2hqVE1iRDJKdG9rV2dzRjRmQmZkYnpSMzIxc3JFUHBlc3I1WGxkSWhBY3BhT2czM29rRDJobjdONTdYYkZQa1YwUC1Hc3pBTGNQSEp2T2k1a2p4SnNFN0pUX2lB?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
       "published": "2026-08-26T07:00:00Z"
     },
     {
@@ -224,6 +217,13 @@
       "source": "כל העיר",
       "sourceUrl": "https://www.kolhair.co.il",
       "published": "2026-08-18T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-17T07:00:00Z"
     }
   ]
 }
