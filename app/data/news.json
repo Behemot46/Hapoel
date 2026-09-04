@@ -1,20 +1,29 @@
 {
-  "updated": "2026-09-04T17:34:45Z",
+  "updated": "2026-09-04T18:35:42Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ONE",
     "ספורט 5",
     "וואלה ספורט",
-    "isport.co.il",
+    "ישראל ספורט",
     "אייס",
     "ספורט 1",
     "ynet",
     "srugim.co.il",
     "103FM",
+    "0404",
     "ישראל היום",
     "ערוץ 7",
     "כל העיר"
   ],
   "items": [
+    {
+      "title": "מתחממת: הפועל ירושלים גברה 82:86 על הפועל העמק",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE01dTdfdmpxY25vM0hncHROR1k0Zjl4T3lyLUFIUE5KMnlybjZrZi14Qnl4MEtPTnVmbmw2eGxYa0x0ZERhblRoOF9CQmNTTVNld2RZ?oc=5",
+      "source": "ONE",
+      "sourceUrl": "https://www.one.co.il",
+      "published": "2026-09-04T15:40:43Z"
+    },
     {
       "title": "הפועל ירושלים במו\"מ מתקדם עם הגארד היהודי אמארי ביילי",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Oel9lWUl5TUpxVzd2NUtpME1SOE5PNFBjNG9vb2JPei04S2ZCU2pQLVNKNWh1bGt3UG0wZG9uS3NSX1RxZnlfR0xKczBNNUhuODc3RDVudWFDNF9yZXFfZXhEVHdlWmhaTkJ1d0tkQjJNUQ?oc=5",
@@ -39,7 +48,7 @@
     {
       "title": "הפועל ירושלים הביסה 76:102 את חולון בהכנה, אוברדוביץ’ מרוצה",
       "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNYWF2RExNeWRnWUNGR3gtcG1malhzZWI4dTdGQVA2WlVwSDNPa2lUTWJtOGl4Uk8xcEtLczlpdFlieGFuZjE4ZDB5dVhGNkNaSGNVQ0pEX1cyMjc0MG5MR2xkdlFEZGowRi1YMjk2dGxhbFJtdUk1VEQyc3R4ajhaU0lSUUpoaU1ORUk3cFpMZ0xFSkh5V0cxeEhFTmRLaDF3S25Zemp6STh2LTNRUnpHRlllQ0ZEZURySjEtU1o5aFhGSy1WV1hGX3l1cW5uS0JqaHZmS3czUkRNbzNlbXMwVDlkOGRsU3p2VFFZdWs1YWkyNVhKdm15OGswWnZWYTNPczF2cE1wdXlQUFZ3Y3FiVEY0MkNsZV9mLXVCVEpTYWpwNlJ6VEE2VkZJbFlac3JTRll0cUwwUjJFRmoyNkJVMVFB?oc=5",
-      "source": "isport.co.il",
+      "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-31T07:40:00Z"
     },
@@ -100,11 +109,11 @@
       "published": "2026-08-27T04:42:09Z"
     },
     {
-      "title": "לא מוותרת: הפועל ירושלים הגישה בקשה לרישיון קבע ביורוליג",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9tc0xFT0U4NXo5OWtjWVpnWTQ5cjB1TS05Q3BiQTRXMlVvSG1Uak9jYzV3dGVmTExGbGtYcVdlS0k2WVZ2S2NWZ0hXX2pIWnpleVVmWE5TT3kzTkN6dy1qenhrb1JtSkZPLUdMMGRDZ3JuMzg?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-26T07:00:00Z"
+      "title": "כדורסל: הפועל ת\"א הביסה בארנה את הפועל י-ם 64:91, האנאס עם 23 נק'",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE43SXY2eGRYOFRRMVA5QUplNEN2eTBTaVdKSm1WVzRCZjRHLVZaZW5WaUF1UWJlZHMyV2pZNG5DVkxRUG1PQWt6SQ?oc=5",
+      "source": "0404",
+      "sourceUrl": "https://0404.co.il",
+      "published": "2026-08-26T13:24:18Z"
     },
     {
       "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
@@ -116,13 +125,6 @@
     {
       "title": "יותר מג'ארד הארפר: זה השחקן הכי חשוב של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NnhMcXZCMkNrajBqVURsZnl5cUN2bUxLSlJWSzV4d0k2YWN6Ym9qWG8zVmVmUlNDbjE4Q3V3WDQtZU52M0gyZWhtaFpYbWIydVZJbFRNYzBzZTUzSUxyem1XQjZxYXk0eC1nSmlaSXcydW5mek9KTVB0ONIBgwFBVV95cUxNQThyYnZDSWNfejhkVkRUOXFfLUkydi13b2h6RUdTOGhIMThhMkZQM0hiY0xPOVU1cXB0TDdNRjczQ2pfVmpTSW5Sem0wMnBnOXU3cGw0dTBsbVJsNk8xck9Sei1DYU1XMloydFIyRnZ1aWxLQWxITGJtV2VmNGpmbHZ5bw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-25T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים מתרחקת מהיורוליג: 11 הקבוצות שהליגה רוצה",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE55MEVqWmRFaWdJQU1hZ0s3Q3NjbklSZ0diU1E1d1ZyUWtyNFlqSHBZUDVZZU5OZ2t1Zm5kS0lyNGVucVBEMm91b1dqaVZkcmh6ZzFCXzkxQ0RQZTZ0aGxxeTdtQ2dSQ042V2xxN1FEOEpocmxpdTcxMGU2MNIBgwFBVV95cUxOdmlyU2pERnlvNmNjLXA0aGxlc1FNYUVvbDdmMUFsVEd5aDZvRG92Q0xFTDBXQW9DUUtlVFJtMXBXdThlYzE1cTRjRnV2WEF2OHdGeHp5bFh6R3QtMTduSmxkR0dDM3R3b21aS2pldzFmZXhXMF9Ja25qRng0ZEpqdkhiZw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-25T07:00:00Z"
