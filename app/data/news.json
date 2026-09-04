@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-04T22:38:32Z",
+  "updated": "2026-09-04T23:39:26Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -12,6 +12,7 @@
     "103FM",
     "ישראל היום",
     "ערוץ 7",
+    "C14",
     "כל העיר"
   ],
   "items": [
@@ -184,6 +185,13 @@
       "published": "2026-08-23T07:00:00Z"
     },
     {
+      "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-08-23T07:00:00Z"
+    },
+    {
       "title": "נחשף מדוע מכבי תל אביב לא דחתה את משחק הליגה מול הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1yeExuWGV5Z2tMNkRJZDhPM1NTZUNBZWZLcFFXeGYwMVkxYkNPQzB6LVhFaEQxNzNHQVNWZnM3UG5XYl9zRE5YODBrQnMybEMtSWFWZmc2MVFsbzJYU2Z5M21IUVpwOGpBOE96Ujh1TXZzM1BWVVgxLXdR?oc=5",
       "source": "ספורט 1",
@@ -216,13 +224,6 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5OVGZsUEIySUVFZW5yTUxHMENoU0FocXFzRXFhdmFYdl9FY1ZrVzNqQTAzbEdXZWdZdUhHdnN2Zi1uTUNPNHpuRU0tWnZCd2ZfTENfd0t4WDhGLXdkcmdXYnIyMzkyZERVbGNObTN1VXRCUQ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-17T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים מעלה הילוך: שיתוף פעולה חדש עם ריבוק העולמית",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9VVVFCd2tXMkFvTlQwNVhjNkcyMVp5eVRuS3BjLVpNdDF5eWE3RWhGWW1GNnRpWjVoOExKTVNiNmtKYlVHM2dBdlQ3dUVkdWVqLUlvcWpId0l5SjhkN2Q0ZnhnQQ?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
       "published": "2026-08-17T07:00:00Z"
     }
   ]
