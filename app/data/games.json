@@ -20,9 +20,9 @@
       "home": "הפועל ירושלים",
       "away": "הפועל העמק",
       "venue": "מלחה",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
+      "status": "finished",
+      "homeScore": 86,
+      "awayScore": 82,
       "source": "club"
     },
     {

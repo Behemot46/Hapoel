@@ -325,6 +325,33 @@ def find_team_link():
             log(f"  '{t[:45]}' -> {h[:100]}")
     return None
 
+def apply_manual_results(games, manual):
+    """תוצאה שנכתבה ביד לא נמחקת על ידי מקור שאין לו תוצאה.
+
+    משחקי הכנה הם המקרה: אף מקור חינמי לא מפרסם להם תוצאה, אבל אתר
+    המועדון כן מפרסם את המשחק עצמו. כל עוד הוא מופיע שם, האיסוף היה
+    דורס את התוצאה שהוזנה מטופס המשחק וכותב שוב scheduled בלי מספרים.
+    הכיוון כאן הפוך: מי שיש לו תוצאה מנצח את מי שאין לו.
+
+    מחזירה כמה רשומות תוקנו.
+    """
+    by_id = {g.get("id"): g for g in games if g.get("id")}
+    patched = 0
+    for m in manual:
+        if m.get("homeScore") is None:
+            continue
+        live = by_id.get(m.get("id"))
+        if live is None or live is m or live.get("homeScore") is not None:
+            continue
+        live["homeScore"] = m["homeScore"]
+        live["awayScore"] = m["awayScore"]
+        live["status"] = m.get("status") or "finished"
+        patched += 1
+        log(f"    = תוצאה ידנית נשמרה: {live['date'][:10]} "
+            f"{live['home']} {live['homeScore']}-{live['awayScore']} {live['away']}")
+    return patched
+
+
 def preserve_missing(games, previous, now=None):
     """משחקים מהקובץ הקודם שאף מקור כבר לא מציע, ושצריך לשמור.
 
@@ -413,6 +440,7 @@ def update_games():
         fresh = [g for g in friendly if g["date"][:10] not in have]
         games.extend(fresh)
         log(f"manual entries added: {len(fresh)} of {len(friendly)}")
+        apply_manual_results(games, friendly)
 
     # משחק שנעלם מהמקורות. אתר המועדון מוריד משחק מהעמוד ברגע שהוא
     # נגמר, ויומן האוהד מסמן נוכחות לפי מזהה משחק, אז משחק שנמחק גורר
