@@ -1,27 +1,21 @@
 {
-  "updated": "2026-09-04T13:10:12Z",
+  "updated": "2026-09-04T13:30:20Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ספורט 1",
     "וואלה ספורט",
     "ספורט 5",
     "isport.co.il",
     "אייס",
+    "ספורט 1",
     "ynet",
     "סרוגים",
     "103FM",
     "חדשות 04",
     "ישראל היום",
-    "ערוץ 7"
+    "ערוץ 7",
+    "כל העיר"
   ],
   "items": [
-    {
-      "title": "בהפועל ירושלים מבינים: זה מה שחסר לנו בשביל להשיג נקודות ראשונות",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9XelF4ZzMzSzJBRGFNdVg2RUNNOF9GX2pyVEtJSW52ZGxFdDFyQi14V0FabWtWdXdaZUMtWkg2QllOWXF3VmxDdDlJOWpnUUhLekJPZUNreVJfc3BrTlVkNnh2ZWxaNmZHc0JZck5MRlhZckpzOGZjU1Zn?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-04T11:20:09Z"
-    },
     {
       "title": "נקודות ראשונות? הפועל ירושלים יודעת: \"צריך יותר איכות ותכל'ס\"",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9sYmVLTUJlU2pzdHlUQ3dPU3V4amxZbV9NNTdpVzE5U0gzbndxOUQ4ekpfUDY5eGpiUjU1R2VNSjkydGotdV9ka0hpdUZWYTRS?oc=5",
@@ -224,6 +218,13 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-20T07:00:00Z"
+    },
+    {
+      "title": "הזרים נחתו, הציפיות בשמיים: הפועל ירושלים סימנה מטרה ברורה",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5yWEIxVnMwaW5taWdELW5iUUdKMXFlMkg1UEZ0UXFhMDhMUGRxY3haSG94SHotenh6VzN1TWoxa2FRX0hyaE1iUGdZa3hHeF9u?oc=5",
+      "source": "כל העיר",
+      "sourceUrl": "https://www.kolhair.co.il",
+      "published": "2026-08-18T07:00:00Z"
     }
   ]
 }
