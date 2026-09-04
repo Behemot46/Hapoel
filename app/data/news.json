@@ -1,20 +1,34 @@
 {
-  "updated": "2026-09-04T11:08:23Z",
+  "updated": "2026-09-04T11:28:32Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ספורט 1",
+    "וואלה ספורט",
     "ספורט 5",
     "ישראל ספורט",
     "אייס",
-    "ספורט 1",
     "ynet",
     "סרוגים",
     "103fm.maariv.co.il",
     "חדשות 04",
     "ישראל היום",
-    "ערוץ 7",
-    "כל העיר"
+    "ערוץ 7"
   ],
   "items": [
+    {
+      "title": "בהפועל ירושלים מבינים: זה מה שחסר לנו בשביל להשיג נקודות ראשונות",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9XelF4ZzMzSzJBRGFNdVg2RUNNOF9GX2pyVEtJSW52ZGxFdDFyQi14V0FabWtWdXdaZUMtWkg2QllOWXF3VmxDdDlJOWpnUUhLekJPZUNreVJfc3BrTlVkNnh2ZWxaNmZHc0JZck5MRlhZckpzOGZjU1Zn?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-04T11:20:09Z"
+    },
+    {
+      "title": "נקודות ראשונות? הפועל ירושלים יודעת: \"צריך יותר איכות ותכל'ס\"",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9sYmVLTUJlU2pzdHlUQ3dPU3V4amxZbV9NNTdpVzE5U0gzbndxOUQ4ekpfUDY5eGpiUjU1R2VNSjkydGotdV9ka0hpdUZWYTRS?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-04T11:17:00Z"
+    },
     {
       "title": "הפועל ירושלים במו\"מ מתקדם עם הגארד היהודי אמארי ביילי",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Oel9lWUl5TUpxVzd2NUtpME1SOE5PNFBjNG9vb2JPei04S2ZCU2pQLVNKNWh1bGt3UG0wZG9uS3NSX1RxZnlfR0xKczBNNUhuODc3RDVudWFDNF9yZXFfZXhEVHdlWmhaTkJ1d0tkQjJNUQ?oc=5",
@@ -210,20 +224,6 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-20T07:00:00Z"
-    },
-    {
-      "title": "הזרים נחתו, הציפיות בשמיים: הפועל ירושלים סימנה מטרה ברורה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5yWEIxVnMwaW5taWdELW5iUUdKMXFlMkg1UEZ0UXFhMDhMUGRxY3haSG94SHotenh6VzN1TWoxa2FRX0hyaE1iUGdZa3hHeF9u?oc=5",
-      "source": "כל העיר",
-      "sourceUrl": "https://www.kolhair.co.il",
-      "published": "2026-08-18T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
     }
   ]
 }
