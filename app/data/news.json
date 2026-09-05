@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05T11:47:50Z",
+  "updated": "2026-09-05T12:48:44Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -49,6 +49,13 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-04T09:40:06Z"
+    },
+    {
+      "title": "צפו: הפועל ירושלים ניצחה 80:87 את מכבי תל אביב בבלגרד",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9NUWZGdHpXQ2cyVWFTMU5EOTQwdGtnOVozS05nelFUeHdUcy04bG9JUnZBRW9ObWxIUUpZTHBObWFOZUE2YnBEelB0RHNCRmdU?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-01T20:58:47Z"
     },
     {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
@@ -217,13 +224,6 @@
       "source": "כל העיר",
       "sourceUrl": "https://www.kolhair.co.il",
       "published": "2026-08-18T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
     }
   ]
 }
