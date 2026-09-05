@@ -1,0 +1,34 @@
+{
+  "lastUpdated": "2026-09-05T17:56:36+00:00",
+  "sample": false,
+  "sources": {
+    "standings": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "games": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "eurocup": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "seasonStats": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "news": {
+      "ok": false,
+      "detail": "כל השאילתות נפלו"
+    },
+    "podcasts": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "roster": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    }
+  }
+}
