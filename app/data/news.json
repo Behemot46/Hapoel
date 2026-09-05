@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05T13:50:56Z",
+  "updated": "2026-09-05T14:51:11Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -11,7 +11,7 @@
     "סרוגים",
     "103FM",
     "ישראל היום",
-    "inn.co.il",
+    "ערוץ 7",
     "כל העיר"
   ],
   "items": [
@@ -149,13 +149,6 @@
       "published": "2026-08-25T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים השיקה את המדים החדשים לעונת 2026/27",
-      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxQc1FXOFk0TGhrODlFT2ZjaFhIeXMtc1ZlUndFaXMzLURUUlJhaEpkRGpQSlJ6TnAtLUxaa01Ha2E5dE1LMVI4ZERsN0Vvb3o3WGxRZXNaajllcWxQWHo1SmJ1dTM5M3paWFJiVmNFWEVadkpQamd3M2Y3ZWNMV2c0NXYxcjFMSWU5eUtwZnBseDN3YXRFZlQ0OXVzTDJZU2x5MmY5eHVZb0RtQks3cnNpcy1BVGxUcnpqY0huSTF5VnpRVkRuSFhSYy00NDJlR3pPMFZPOGNvVWdzVlhuQVZ4Zy1XM2FIWERyQmV4YUlxWlBJN1BiNFBHWFhfbGV1N3dOeVYtMV9IdmhXdTA1Um1JTXJhMHVXd20wWGxKVHAwTVhTRXpFSmFOQnFCeVVKRU1lR0ltMjhnOVJuSkswVlpGRnln?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-08-25T06:35:00Z"
-    },
-    {
       "title": "\"הפועל ירושלים רוצה יורוליג, הגעתי בזמן לא אידאלי והשתלבתי\"",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBFZnJZRmhROC1XNldXT19hUy1vZjZSQVNZRkVoellhUUhIZlFOUk80elF3TXJNZ3h5RVNzMEY2NjNJWXhVWjBja2w5dVB3MVNUTFZlZ1NsTUlESFhKck9WNHRiN2QyQ3Y2UEJPeVl2bjk5Z2FRUEl5Y2F4TdIBgwFBVV95cUxQYTNtQUplc2lqQjVqVjdXNnFBTFRJVG9sc1Vnb0ZZNk5iSEpMc21FNVctcWRPR1VqTHI5aEphWURQRXFzcThLLWNqSnVoSWl5aEhxWDE2UkdWc09IaXZXVlNWMFRjZmhHMVY2SDBmNTZ5RlpvTlVWQ0p2S3JvbFlCelNoTQ?oc=5",
       "source": "ישראל היום",
@@ -165,7 +158,7 @@
     {
       "title": "הפועל ירושלים יוצאת לדרך חדשה",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "inn.co.il",
+      "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T20:01:00Z"
     },
@@ -221,6 +214,13 @@
     {
       "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-17T07:00:00Z"
+    },
+    {
+      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-17T07:00:00Z"
