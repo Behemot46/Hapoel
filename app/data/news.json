@@ -1,7 +1,8 @@
 {
-  "updated": "2026-09-05T07:45:38Z",
+  "updated": "2026-09-05T08:46:32Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "Sport5",
     "ספורט 1",
     "וואלה ספורט",
     "ישראל ספורט",
@@ -9,12 +10,19 @@
     "אייס",
     "ynet",
     "סרוגים",
-    "103fm.maariv.co.il",
+    "103FM",
     "ישראל היום",
     "ערוץ 7",
     "כל העיר"
   ],
   "items": [
+    {
+      "title": "רמז להפועל ירושלים? העדכון של מנכ\"ל היורוליג",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5rQmFKYnVlRVA2TVZqWmc0bERJTEZ5QjNfQVhPRE9mZG9BeTVRdmctYlJqTUxYMFZMRnBKSHhxSGhWR3cwNmtOR2ctR3FidEwyMlUtbjUwTW5SR2haN2RUQjRZVXhGMVA1SVZSSy1pVQ?oc=5",
+      "source": "Sport5",
+      "sourceUrl": "https://m.sport5.co.il",
+      "published": "2026-09-05T08:28:37Z"
+    },
     {
       "title": "אחרי שנים של שחקנים זרים זולים: המהלך החריג של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9VUmlkS3VQTDI0a1hkNVdjcFh3RWRKemxDS1VKRFBvTUJIaUFJcy1vM2dtc3lRYVdhWEdUWGhJaVpIRzBwWHpzLXdOT21GdWtGeUhIRWtnczNmV1BnTks2RU1VNUlQTE9DZkJ1SXRJbVhuVTdQaXYwVlNn?oc=5",
@@ -116,7 +124,7 @@
     {
       "title": "ספורט - הפועל ירושלים תקפוץ מדרגה?",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CYUh0eDgtZDltQ3lMYm9ZNmtTcGVjdGU2WkxkSGVBZ081YXRnd1BBRmNLbVNuVVdsNWc2Ql9qZUVHUGZMMXhDVklZYWczWlVtYzF1THVSekg3cWNWSUp1dHgtRGR6RXd1NTV1TE81d1ZaQjFnLTBnWUsxeXd6d1k?oc=5",
-      "source": "103fm.maariv.co.il",
+      "source": "103FM",
       "sourceUrl": "https://103fm.maariv.co.il",
       "published": "2026-08-27T04:42:09Z"
     },
@@ -214,13 +222,6 @@
     {
       "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
-    },
-    {
-      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-17T07:00:00Z"
