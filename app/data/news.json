@@ -1,10 +1,11 @@
 {
-  "updated": "2026-09-04T23:39:26Z",
+  "updated": "2026-09-05T00:39:40Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ONE",
     "ספורט 5",
     "וואלה ספורט",
-    "isport.co.il",
+    "ישראל ספורט",
     "אייס",
     "ספורט 1",
     "ynet",
@@ -12,10 +13,16 @@
     "103FM",
     "ישראל היום",
     "ערוץ 7",
-    "C14",
     "כל העיר"
   ],
   "items": [
+    {
+      "title": "מתחממת: הפועל ירושלים גברה 82:86 על הפועל העמק",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE01dTdfdmpxY25vM0hncHROR1k0Zjl4T3lyLUFIUE5KMnlybjZrZi14Qnl4MEtPTnVmbmw2eGxYa0x0ZERhblRoOF9CQmNTTVNld2RZ?oc=5",
+      "source": "ONE",
+      "sourceUrl": "https://www.one.co.il",
+      "published": "2026-09-04T15:40:44Z"
+    },
     {
       "title": "הפועל ירושלים במו\"מ מתקדם עם הגארד היהודי אמארי ביילי",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Oel9lWUl5TUpxVzd2NUtpME1SOE5PNFBjNG9vb2JPei04S2ZCU2pQLVNKNWh1bGt3UG0wZG9uS3NSX1RxZnlfR0xKczBNNUhuODc3RDVudWFDNF9yZXFfZXhEVHdlWmhaTkJ1d0tkQjJNUQ?oc=5",
@@ -40,7 +47,7 @@
     {
       "title": "הפועל ירושלים הביסה 76:102 את חולון בהכנה, אוברדוביץ’ מרוצה",
       "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNYWF2RExNeWRnWUNGR3gtcG1malhzZWI4dTdGQVA2WlVwSDNPa2lUTWJtOGl4Uk8xcEtLczlpdFlieGFuZjE4ZDB5dVhGNkNaSGNVQ0pEX1cyMjc0MG5MR2xkdlFEZGowRi1YMjk2dGxhbFJtdUk1VEQyc3R4ajhaU0lSUUpoaU1ORUk3cFpMZ0xFSkh5V0cxeEhFTmRLaDF3S25Zemp6STh2LTNRUnpHRlllQ0ZEZURySjEtU1o5aFhGSy1WV1hGX3l1cW5uS0JqaHZmS3czUkRNbzNlbXMwVDlkOGRsU3p2VFFZdWs1YWkyNVhKdm15OGswWnZWYTNPczF2cE1wdXlQUFZ3Y3FiVEY0MkNsZV9mLXVCVEpTYWpwNlJ6VEE2VkZJbFlac3JTRll0cUwwUjJFRmoyNkJVMVFB?oc=5",
-      "source": "isport.co.il",
+      "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-31T07:40:00Z"
     },
@@ -124,7 +131,7 @@
     {
       "title": "הפועל ירושלים השיקה את המדים החדשים לעונת 2026/27",
       "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxQc1FXOFk0TGhrODlFT2ZjaFhIeXMtc1ZlUndFaXMzLURUUlJhaEpkRGpQSlJ6TnAtLUxaa01Ha2E5dE1LMVI4ZERsN0Vvb3o3WGxRZXNaajllcWxQWHo1SmJ1dTM5M3paWFJiVmNFWEVadkpQamd3M2Y3ZWNMV2c0NXYxcjFMSWU5eUtwZnBseDN3YXRFZlQ0OXVzTDJZU2x5MmY5eHVZb0RtQks3cnNpcy1BVGxUcnpqY0huSTF5VnpRVkRuSFhSYy00NDJlR3pPMFZPOGNvVWdzVlhuQVZ4Zy1XM2FIWERyQmV4YUlxWlBJN1BiNFBHWFhfbGV1N3dOeVYtMV9IdmhXdTA1Um1JTXJhMHVXd20wWGxKVHAwTVhTRXpFSmFOQnFCeVVKRU1lR0ltMjhnOVJuSkswVlpGRnln?oc=5",
-      "source": "isport.co.il",
+      "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-08-25T06:35:00Z"
     },
@@ -182,13 +189,6 @@
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxObldQZmlWNlQ4d2ZFcUp3QUd2bkJCY1VfUFNSMHZsOEhBT3lfLUtaN3p6dGtxZVhCdHJWOXVWY2tlUjJibVhnNGNsV0NOY25KR0VUMXE4UVFydzFkS21FNHhxSHFiSzNRck4zdnlfcnBrZzRKTzktWVhxSklNMklCaW1oZUwxR2JyTlRTNmxRemplUQ?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
     {
