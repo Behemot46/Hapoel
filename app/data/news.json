@@ -1,10 +1,10 @@
 {
-  "updated": "2026-09-05T18:56:42Z",
+  "updated": "2026-09-05T19:56:56Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 1",
-    "ספורט 5",
     "וואלה ספורט",
+    "ספורט 5",
     "ישראל ספורט",
     "אייס",
     "ynet",
@@ -16,11 +16,18 @@
   ],
   "items": [
     {
-      "title": "הפועל ירושלים: עברנו שלב בדרך לרישיון קבוע ליורוליג | ספורט 1",
+      "title": "בדרך לרישיון קבוע ביורוליג: ההודעה של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPRmNHanhFLTZRYWVxZWFDSGlrSzlIZXFWNzZZRmNLUmEtZDNJYnlDSmVaa1hkMHZRQkxNSVZxRThlOFJFdUtvaVo5Mk5RTGk1ZGRIQVoxd3poY0VfMEdIanZ3MlFrZDBVSnhWXzBQbWFSRGtrOFBoa0wzU21YZC04TVdjMDhWSVB5eWIwNmxDMHBqdw?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-09-05T18:48:46Z"
+    },
+    {
+      "title": "הפועל ירושלים הודיעה: עברנו שלב בדרך לרישיון קבוע ליורוליג",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9JdDJHOEFESUdKS0lvSnJsNG5qWWNid1hMdUk5QWVEcGU2MVNiQ2FhdHVNcmxDWkROUmRIUmh3bWRQMVQwamJ2dTdyZkFsbXVM?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-05T18:43:00Z"
     },
     {
       "title": "הפועל י-ם: \"עברנו שלב בתהליך לרישיון\"",
@@ -31,10 +38,10 @@
     },
     {
       "title": "גבאי בהתקפת קרית שמונה, הפועל ירושלים תשיג נקודות בכורה?",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9WR3VxZWhZbjBTWjREODFHaWVBTWZOSE1Mb2UtM2dRMTRYVmZKV29FUTdzMHR5X3dkNENTMnRsbl93MDhLQWU2YUthVkl2QXRR?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-05T15:26:00Z"
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBRYmxqaHRBeGNmNDVkR05peVZNNnhJWi0xcFlNTE5wZ3hLQ2F0SU5SeFVJQTJ4dTc5cVZBSnhUcGp0YTFNdC16TnNLWTJrcFNlZWRxZDQ4WkZhZ2pzcFYxM2Iwb01Hbl9YbnU4ZE5xNEdKYTRCV1JmSnl3?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-05T15:30:15Z"
     },
     {
       "title": "רמז להפועל ירושלים? העדכון של מנכ\"ל היורוליג",
@@ -217,13 +224,6 @@
       "source": "כל העיר",
       "sourceUrl": "https://www.kolhair.co.il",
       "published": "2026-08-18T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
     }
   ]
 }
