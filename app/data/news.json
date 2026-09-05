@@ -1,10 +1,10 @@
 {
-  "updated": "2026-09-05T17:53:15Z",
+  "updated": "2026-09-05T18:56:42Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "וואלה ספורט",
-    "ספורט 5",
     "ספורט 1",
+    "ספורט 5",
+    "וואלה ספורט",
     "ישראל ספורט",
     "אייס",
     "ynet",
@@ -15,6 +15,20 @@
     "כל העיר"
   ],
   "items": [
+    {
+      "title": "הפועל ירושלים: עברנו שלב בדרך לרישיון קבוע ליורוליג | ספורט 1",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPRmNHanhFLTZRYWVxZWFDSGlrSzlIZXFWNzZZRmNLUmEtZDNJYnlDSmVaa1hkMHZRQkxNSVZxRThlOFJFdUtvaVo5Mk5RTGk1ZGRIQVoxd3poY0VfMEdIanZ3MlFrZDBVSnhWXzBQbWFSRGtrOFBoa0wzU21YZC04TVdjMDhWSVB5eWIwNmxDMHBqdw?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-05T18:48:46Z"
+    },
+    {
+      "title": "הפועל י-ם: \"עברנו שלב בתהליך לרישיון\"",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1QQ2lCTEJsNmxkZmdPUlNHWm9BWDZ1ZklLQkM5MHgwZ21pR2loejNvZ1ZNWl9Kdkl2SWROZzVZamw0dlo4RXJyZHZhVjJOeTgxZWlZbUp0LU9KVkgxNHYxSGZGQkM2VXpPSkgxSFpmNnVOZw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-05T18:34:13Z"
+    },
     {
       "title": "גבאי בהתקפת קרית שמונה, הפועל ירושלים תשיג נקודות בכורה?",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9WR3VxZWhZbjBTWjREODFHaWVBTWZOSE1Mb2UtM2dRMTRYVmZKV29FUTdzMHR5X3dkNENTMnRsbl93MDhLQWU2YUthVkl2QXRR?oc=5",
@@ -98,13 +112,6 @@
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-08-30T14:46:56Z"
-    },
-    {
-      "title": "במיליונים: תביעת הפועל ירושלים נגד הפועל ת\"א",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Xc3g5MTJQWHk1bzRlWmw0RW1Vc2pCS19CdzV4Sm9qeVhIa0pZOFNLYjdpVE9vak9UTU4ycEQxV1diMHRZUG1mZzdsZkFVdTZSc2lNcmlrWU14TUtBLXBmNW14cXEwZHJZOEZwMnFXcjZBUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-30T14:41:00Z"
     },
     {
       "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
@@ -195,13 +202,6 @@
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE12RGtkOGFvaDN1WGJIRWl0UnltQzRabDVzdlVCbjc2SERRbWt4RGgxaWwzd1lUWEs5cDFEYm9VVmVEdFhCYWRVUUdBWjQyWlF3Ym1SYm1ma3RTZ0RIbUxVQWxRN0FrTFdLLUR6N193azA?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "לקראת משחק הפועל ירושלים-מכבי ת\"א: חסימות תנועה ברחובות",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9fZUF0ZEtUSm5uR21VTGhFVnI5LU90LTNiUEoybzA2U3M1NkpyREo3Ni10eHNVY19sX0U4VHR0QmhIVzVuOVBvZm5tVnZraGNOMkdPdVhoMUZYWk1zTEVJMlNjcTVzWmPSAW9BVV95cUxOSkU4Rk50ME9wNXZUTS13SmJqaDdHaTFTamg3czBXQXZUTFY0UnlKdXVkNnRwNGNHWk4xMnJnRUpQc0FYTmNZX2hlZWY0OVlJZXR0d0JBVzVyTUNsT1o1UWtjb1JvbFNLRzRrNFpxVjA?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
     {
