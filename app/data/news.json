@@ -1,15 +1,14 @@
 {
-  "updated": "2026-09-05T09:46:44Z",
+  "updated": "2026-09-05T10:47:37Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "Sport5",
+    "ספורט 5",
     "ספורט 1",
     "וואלה ספורט",
     "ישראל ספורט",
-    "ספורט 5",
     "אייס",
     "ynet",
-    "סרוגים",
+    "srugim.co.il",
     "103FM",
     "ישראל היום",
     "ערוץ 7",
@@ -18,9 +17,9 @@
   "items": [
     {
       "title": "רמז להפועל ירושלים? העדכון של מנכ\"ל היורוליג",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5rQmFKYnVlRVA2TVZqWmc0bERJTEZ5QjNfQVhPRE9mZG9BeTVRdmctYlJqTUxYMFZMRnBKSHhxSGhWR3cwNmtOR2ctR3FidEwyMlUtbjUwTW5SR2haN2RUQjRZVXhGMVA1SVZSSy1pVQ?oc=5",
-      "source": "Sport5",
-      "sourceUrl": "https://m.sport5.co.il",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5JSXlIYmxZcXdzancteEhoUTFSUGRuYXFOZ2d1NDVJNnBiek1XaUh2d1U0REdvVl9DcDUwdVZ0X09BR0Z2YzYtWW15Vk5XbXV2NnMySUpPbkpQZkdQbHNUM01oVUI3eTJubnk4elJ2V2Nndw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-05T08:28:37Z"
     },
     {
@@ -117,7 +116,7 @@
     {
       "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
       "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
-      "source": "סרוגים",
+      "source": "srugim.co.il",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T09:41:58Z"
     },
@@ -131,7 +130,7 @@
     {
       "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
-      "source": "סרוגים",
+      "source": "srugim.co.il",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-26T07:00:00Z"
     },
