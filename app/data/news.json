@@ -1,14 +1,13 @@
 {
-  "updated": "2026-09-06T13:03:36Z",
+  "updated": "2026-09-06T14:04:30Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ספורט 5",
-    "ישראל היום",
     "ספורט 1",
     "וואלה ספורט",
+    "ספורט 5",
+    "ישראל היום",
     "חדשות 04",
     "ישראל ספורט",
-    "אייס",
     "ynet",
     "סרוגים",
     "103FM",
@@ -16,11 +15,25 @@
   ],
   "items": [
     {
+      "title": "הפועל ירושלים בהודעה חריפה: \"השוטרים יצרו עימות אגרסיבי כ'נקמה'\"",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE11R0hIWlpaTHpQTWNSa3lKY0pjUml1cmJvSXY1VVNFMU54TVFxNHhRLVhKNkdudXpEMXJaMnp1a3M1ZEF1QzVNLUUxbWJxY2hCMzhicjVFVHlGTk1MbW1JSFRhb3dRdkpTRFVvSVZWbGFqd0k3OVZiVFp3?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-06T13:44:40Z"
+    },
+    {
+      "title": "הפועל ירושלים תוקפת: \"שוטרים יצרו עימות אגרסיבי עם אוהדים כ'נקמה'\"",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBzRlV1WVJtQlVkNnZOTXFHREg1Q1RNNnFTYjNfaGJERDVkT1JCdEgweHE5dG9Sd0VwdDh0RkREZDdmSzVIbmtvYndsSlBLcVEt?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-06T13:39:18Z"
+    },
+    {
       "title": "תפנית: המועמד להפועל י-ם סיכם בבאר שבע",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9EM3M5QlMyTFM1VjI5OG1Zc1FKQ193WHp1eXFfaVNwdWdJd29RdWR4TTl0NnZRMjRnU1oyX0NLNUw2a3pGa2YwWUlSUjhMall5amlFM3M0X1NzVEhtd3lJM0hzNzBMSE1HVTRIMUQxc0xEUQ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-06T08:41:00Z"
+      "published": "2026-09-06T08:58:12Z"
     },
     {
       "title": "הפועל ירושלים הגיעה לסיכום עם אמארי ביילי - שיעבור לקבוצה אחרת",
@@ -119,20 +132,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-31T12:41:40Z"
-    },
-    {
-      "title": "הפועל ירושלים הביסה 76:102 את חולון בהכנה, אוברדוביץ’ מרוצה",
-      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNYWF2RExNeWRnWUNGR3gtcG1malhzZWI4dTdGQVA2WlVwSDNPa2lUTWJtOGl4Uk8xcEtLczlpdFlieGFuZjE4ZDB5dVhGNkNaSGNVQ0pEX1cyMjc0MG5MR2xkdlFEZGowRi1YMjk2dGxhbFJtdUk1VEQyc3R4ajhaU0lSUUpoaU1ORUk3cFpMZ0xFSkh5V0cxeEhFTmRLaDF3S25Zemp6STh2LTNRUnpHRlllQ0ZEZURySjEtU1o5aFhGSy1WV1hGX3l1cW5uS0JqaHZmS3czUkRNbzNlbXMwVDlkOGRsU3p2VFFZdWs1YWkyNVhKdm15OGswWnZWYTNPczF2cE1wdXlQUFZ3Y3FiVEY0MkNsZV9mLXVCVEpTYWpwNlJ6VEE2VkZJbFlac3JTRll0cUwwUjJFRmoyNkJVMVFB?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-08-31T07:40:00Z"
-    },
-    {
-      "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RX1NtUGZlMWU1Ulk3ZFBuRFl6OVRydTUwOElhZENyalBhZzF3MU1INjdCQlYzWHBEb19LQWE1eW0wNDdfc1BPVmRMMFVmM2xwMTlEcnVUM0RZdEtLdlYteTc2cw?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
-      "published": "2026-08-30T17:59:20Z"
     },
     {
       "title": "הפועל ירושלים דורשת מהפועל ת\"א: 2.3 מיליון שקל על קאדין קרינגטון",
