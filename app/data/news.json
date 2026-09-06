@@ -1,27 +1,33 @@
 {
-  "updated": "2026-09-06T19:07:59Z",
+  "updated": "2026-09-06T20:08:12Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ספורט 1",
     "ספורט 5",
     "ישראל היום",
     "וואלה ספורט",
-    "ישראל ספורט",
+    "isport.co.il",
     "אייס",
     "ynet",
     "סרוגים",
     "103FM",
     "ערוץ 7",
-    "מועדון הכדורגל מכבי תל אביב",
-    "ספורט 1",
     "כל העיר"
   ],
   "items": [
+    {
+      "title": "קבוצה גדולה תקפוץ על המציאה? \"הוא יהיה עוד אקזיט של הפועל ירושלים\"",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBQMDdOb2hCQUdwaHRaeGY4ajY3WkRlajY1YXVDSFZ4Z0xlc3VOWm41UmEwSWpYX2pMeTNVVEdGYWlHT1pzbHJQTDBfUUZVQ19fdkc0SUlJX3NDdV9mZ0lNTFpFZzNZMzB1eW5sWlNyLVQ0d0IyZS1sR3hB?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-06T17:43:38Z"
+    },
     {
       "title": "תפנית: המועמד להפועל י-ם סיכם בבאר שבע",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9EM3M5QlMyTFM1VjI5OG1Zc1FKQ193WHp1eXFfaVNwdWdJd29RdWR4TTl0NnZRMjRnU1oyX0NLNUw2a3pGa2YwWUlSUjhMall5amlFM3M0X1NzVEhtd3lJM0hzNzBMSE1HVTRIMUQxc0xEUQ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-06T08:58:12Z"
+      "published": "2026-09-06T08:41:00Z"
     },
     {
       "title": "הפועל ירושלים הגיעה לסיכום עם אמארי ביילי - שיעבור לקבוצה אחרת",
@@ -54,7 +60,7 @@
     {
       "title": "הפועל ירושלים ניצחה את העמק, גם חולון ואשדוד רשמו ניצחונות",
       "url": "https://news.google.com/rss/articles/CBMiwwJBVV95cUxOenhFV1RiRVlrYjN6czRZMFgzVmIwY3R6VFhlTEhnTDJOaUVvZUZSeEVoNGVXc1JOTVFfZWV3N0RyWWNQbkhXM0JUM0MzTC1iaUZKT1RCMnhqajNNbERJaVhJSlV1R1NVY0tRU2VBYVhvaXN5UFZxdnRVdWdXbGhTcW1WMjlTZFNiNFgwMnlQMUY1NFdmbl9CYjRVdnFCVWNvaWtMVUNPTG1wcGl1aEMtSy11WEgyenNkYlNpY3F3WUY1ekkwZXo1a0xVMnVIcGtOMEFSRmh5SjRpT05JQmIyMy1SV2xVTWU0eklySW5pRVNMblBhUEJWYWc4V05QcmU2MnFIblFGU2dRV20zQldUdl9wUkN3bVJvUGlJQ2t2S0ZKdWx6eHJSVlFoU0N4RVE3ZFljVi01VElkUUlfVzFxU1ZoTQ?oc=5",
-      "source": "ישראל ספורט",
+      "source": "isport.co.il",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-09-04T10:40:00Z"
     },
@@ -190,13 +196,6 @@
       "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "מילר לקראת הפועל י-ם: \"נרגשים לפתוח את הליגה\"",
-      "url": "https://news.google.com/rss/articles/CBMi0wJBVV95cUxPdmJ5TnJhM1dzd2txay1KdDlZWU8zTUdtUFNkQy1rTmFmR0hnWkxJUmRRNDZKUHp2aGNyN3NycWh1MEF2SE1xNEM5TzVzemhmSEdLbWdJR3hCX1VfUlZ0cTBzS1R5YVFMMWlzNlB5VU9KV1dqdnZoNlhqOW05UU05RGtmbHZhLUhTZlBqd1p2U1RQTVJIWV9EUzVMaks2N0JyUjdpYXJ0bWs5bWlLSWR1NHlJREQ5Q0Y3eUVHVVpzV1lOdFBRbEtrTWdNbmg2NF9RZXp4QVJib0FBcDVLZXhpTDBqZGlaOHlzeEtqcjVFUUJZek5fZ1Y5M3U5S1RlMTZ6UThZVjZGdDZpR24tNExFd1FRamJIclZaWFBiREFvN21kbTFwNVJPckhlT1k3bTFBSHh2OVFMV2g2MWFPZ0NLOFYxVHViak9VNDExaWlaMFVrNGc?oc=5",
-      "source": "מועדון הכדורגל מכבי תל אביב",
-      "sourceUrl": "https://www.maccabi-tlv.co.il",
-      "published": "2026-08-22T07:00:00Z"
     },
     {
       "title": "נחשף מדוע מכבי תל אביב לא דחתה את משחק הליגה מול הפועל ירושלים",
