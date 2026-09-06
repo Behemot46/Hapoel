@@ -1,18 +1,18 @@
 {
-  "updated": "2026-09-06T22:09:18Z",
+  "updated": "2026-09-06T23:10:11Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
     "ישראל היום",
     "ספורט 1",
-    "וואלה ספורט",
     "ישראל ספורט",
+    "וואלה ספורט",
     "אייס",
     "ynet",
     "סרוגים",
-    "103FM",
     "ערוץ 7",
-    "מועדון הכדורגל מכבי תל אביב"
+    "מועדון הכדורגל מכבי תל אביב",
+    "כל העיר"
   ],
   "items": [
     {
@@ -20,7 +20,7 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9EM3M5QlMyTFM1VjI5OG1Zc1FKQ193WHp1eXFfaVNwdWdJd29RdWR4TTl0NnZRMjRnU1oyX0NLNUw2a3pGa2YwWUlSUjhMall5amlFM3M0X1NzVEhtd3lJM0hzNzBMSE1HVTRIMUQxc0xEUQ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-06T08:58:12Z"
+      "published": "2026-09-06T08:41:00Z"
     },
     {
       "title": "הפועל ירושלים הגיעה לסיכום עם אמארי ביילי - שיעבור לקבוצה אחרת",
@@ -37,18 +37,18 @@
       "published": "2026-09-05T18:48:46Z"
     },
     {
-      "title": "הפועל ירושלים הודיעה: עברנו שלב בדרך לרישיון קבוע ליורוליג",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9JdDJHOEFESUdKS0lvSnJsNG5qWWNid1hMdUk5QWVEcGU2MVNiQ2FhdHVNcmxDWkROUmRIUmh3bWRQMVQwamJ2dTdyZkFsbXVM?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-05T18:43:00Z"
-    },
-    {
       "title": "הפועל י-ם: \"עברנו שלב בתהליך לרישיון\"",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1QQ2lCTEJsNmxkZmdPUlNHWm9BWDZ1ZklLQkM5MHgwZ21pR2loejNvZ1ZNWl9Kdkl2SWROZzVZamw0dlo4RXJyZHZhVjJOeTgxZWlZbUp0LU9KVkgxNHYxSGZGQkM2VXpPSkgxSFpmNnVOZw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-05T18:34:13Z"
+    },
+    {
+      "title": "הפועל ירושלים הודיעה: עברנו שלב בדרך לרישיון קבוע ליורוליג",
+      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxPV09hbWRwS01tT2J3N3dQeGlhX2JSTGdYdDQyQ0FhOWp0RFJkTW1wRXZONlNHRjBIempZTl9KUDRjb2dRU1VpVU1SNGlmaG5ObDJFd3ZGZlpUMHBpb1JwT2VLRXY2TWk2ZTVOalV2cTAxWXpjMnI0dHYyRFpKSGN6QlJjMlNjRWp3T2VFY1Bvc05NSGVTZnNmTlJOWkVaUmstUmpnd3JXeGo2dXFnRVpiUFJVOF9uZEYyQnU4U2VGQ1FMZ0VwRXFQN3g3UmdjV2hNc05YcXBjUWFtVnBiZVJBN0xCYTU4cXRJU05Kc0tCTkk3NndIbV9BcWV4S0Fpb2RBa1hNRW5sOUxYa01Lb3VZdmN5YWRaS2VGVWE0RzU2ZVBYOXJpaFk4QWl0ZkY1Y056UTBtQjdWcmdnN0FHVEhXSlZ3?oc=5",
+      "source": "ישראל ספורט",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-09-05T15:30:00Z"
     },
     {
       "title": "רמז להפועל ירושלים? העדכון של מנכ\"ל היורוליג",
@@ -142,13 +142,6 @@
       "published": "2026-08-26T07:00:00Z"
     },
     {
-      "title": "ספורט - הפועל ירושלים תקפוץ מדרגה?",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CYUh0eDgtZDltQ3lMYm9ZNmtTcGVjdGU2WkxkSGVBZ081YXRnd1BBRmNLbVNuVVdsNWc2Ql9qZUVHUGZMMXhDVklZYWczWlVtYzF1THVSekg3cWNWSUp1dHgtRGR6RXd1NTV1TE81d1ZaQjFnLTBnWUsxeXd6d1k?oc=5",
-      "source": "103FM",
-      "sourceUrl": "https://103fm.maariv.co.il",
-      "published": "2026-08-26T07:00:00Z"
-    },
-    {
       "title": "יותר מג'ארד הארפר: זה השחקן הכי חשוב של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NnhMcXZCMkNrajBqVURsZnl5cUN2bUxLSlJWSzV4d0k2YWN6Ym9qWG8zVmVmUlNDbjE4Q3V3WDQtZU52M0gyZWhtaFpYbWIydVZJbFRNYzBzZTUzSUxyem1XQjZxYXk0eC1nSmlaSXcydW5mek9KTVB0ONIBgwFBVV95cUxNQThyYnZDSWNfejhkVkRUOXFfLUkydi13b2h6RUdTOGhIMThhMkZQM0hiY0xPOVU1cXB0TDdNRjczQ2pfVmpTSW5Sem0wMnBnOXU3cGw0dTBsbVJsNk8xck9Sei1DYU1XMloydFIyRnZ1aWxLQWxITGJtV2VmNGpmbHZ5bw?oc=5",
       "source": "ישראל היום",
@@ -205,13 +198,6 @@
       "published": "2026-08-22T07:00:00Z"
     },
     {
-      "title": "נחשף מדוע מכבי תל אביב לא דחתה את משחק הליגה מול הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1yeExuWGV5Z2tMNkRJZDhPM1NTZUNBZWZLcFFXeGYwMVkxYkNPQzB6LVhFaEQxNzNHQVNWZnM3UG5XYl9zRE5YODBrQnMybEMtSWFWZmc2MVFsbzJYU2Z5M21IUVpwOGpBOE96Ujh1TXZzM1BWVVgxLXdR?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-20T07:00:00Z"
-    },
-    {
       "title": "נחשף מדוע מכבי תל אביב לא דחתה את משחק הליגה מול הפועל ירושלים | ספורט 1",
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1yeExuWGV5Z2tMNkRJZDhPM1NTZUNBZWZLcFFXeGYwMVkxYkNPQzB6LVhFaEQxNzNHQVNWZnM3UG5XYl9zRE5YODBrQnMybEMtSWFWZmc2MVFsbzJYU2Z5M21IUVpwOGpBOE96Ujh1TXZzM1BWVVgxLXdR?oc=5",
       "source": "ספורט 1",
@@ -219,11 +205,25 @@
       "published": "2026-08-20T07:00:00Z"
     },
     {
+      "title": "הזרים נחתו, הציפיות בשמיים: הפועל ירושלים סימנה מטרה ברורה",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5yWEIxVnMwaW5taWdELW5iUUdKMXFlMkg1UEZ0UXFhMDhMUGRxY3haSG94SHotenh6VzN1TWoxa2FRX0hyaE1iUGdZa3hHeF9u?oc=5",
+      "source": "כל העיר",
+      "sourceUrl": "https://www.kolhair.co.il",
+      "published": "2026-08-18T07:00:00Z"
+    },
+    {
       "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-18T07:00:00Z"
+      "published": "2026-08-17T07:00:00Z"
+    },
+    {
+      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-17T07:00:00Z"
     }
   ]
 }
