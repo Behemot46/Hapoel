@@ -1,86 +1,55 @@
-"""בדיקת מקורות: שתי הכותרות החשודות, דרך החיפוש של המפרסם עצמו.
+"""בדיקת מקורות: לאיזה ענף שייכת כותרת, לפי מה שגוגל מוצאת עליה.
 
-גבי מדווח על כתבה במדור שעוסקת באכזבה מפתיחת העונה, והיא כדורגל.
-עונת הכדורסל בכלל לא נפתחה, ולכן זה בטוח נכון, אבל שתי כותרות במדור
-יכולות להתאים לתיאור ואי אפשר לחסום את שתיהן בלי לדעת.
+חמש כותרות במדור נראות כדורגל, ואין בהן מילה שמכריעה. במקום לנחש,
+שואלים את אותה שאלה פעמיים: הכותרת יחד עם המילה ״כדורגל״, והכותרת יחד
+עם המילה ״כדורסל״. גוגל מחפשת בכל העמוד, כולל תגיות ומדור, ולכן הצד
+שמחזיר תוצאות הוא הצד שהסיפור יושב בו.
 
-שלושה סבבים קודמים נכשלו: הקישורים של גוגל ניוז מובילים לעמוד ביניים,
-מנוע חיפוש חיצוני חוסם את הריצות של גיטהאב, ושאילתה לגוגל עם ״כדורסל״
-מול ״כדורגל״ לא מבדילה, כי אתר ספורט מזכיר את שני הענפים בסרגל הצד.
-זאת בדיוק הסיבה שמילת שלילה בשאילתה נפסלה בזמנו.
-
-לכן כאן פונים לחיפוש של המפרסם עצמו, ואז קוראים את הכתבה ומודדים מה
-יש בה: לא מילים שיכולות להגיע מהתפריט, אלא מילים שיכולות להופיע רק
-בגוף של כתבה על משחק.
+זה לא מדע מדויק, ולכן התוצאה כאן היא ראיה ולא פסק דין: מה שמוכרע כאן
+נכנס ל־blockPhrases ביד, אחרי קריאה.
 """
-import re
+import time
 import urllib.parse
+import xml.etree.ElementTree as ET
 
 import requests
-from bs4 import BeautifulSoup
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
 
 SUSPECTS = [
-    ("כל העיר", "https://www.kolhair.co.il/?s={q}", "האמת הלא נעימה מאחורי המאבק של הפועל ירושלים"),
-    ("וואלה ספורט", "https://sports.walla.co.il/search?q={q}", "שוב פעם? הפועל ירושלים חוששת מעוד עונה קשה, והמומה מפוקסמן"),
-    ("ספורט 1", "https://www.sport1.co.il/?s={q}", "הפועל ירושלים עדיין בהלם מההחלטה של דוד פוקסמן"),
-    ("בחדרי חרדים", "https://www.bhol.co.il/search?q={q}", "'הפועל ירושלים' חזרה בה מהתמיכה בקפה \"בסמטה\" בעקבות חשיפת הקשר למיסיון"),
+    "הפועל ירושלים בהודעה חריפה: השוטרים יצרו עימות אגרסיבי",
+    "הפועל ירושלים ביצעה מהפך היסטורי לא נבקיע כל משחק רביעייה",
+    "השינוי של הפועל ירושלים והמסר צריך להיות יציבים הגנתית",
+    "הפועל ירושלים משנה גישה השחקן שמגיע ממועדון בכיר בדנמרק",
+    "פרופיל לא שגרתי הפועל ירושלים בדרך לצרף את צ׳ילופיה",
+    # ביקורת: כותרת שאני בטוח שהיא כדורסל, כדי לראות שהמדידה מבחינה
+    "הפועל ירושלים תובעת את הפועל תל אביב על קאדין קרינגטון",
 ]
-
-# מילים שיכולות להופיע רק בגוף של כתבה, לא בתפריט של אתר ספורט
-BASKET = ("ריבאונד", "שלשה", "חמישייה", "עונשין", "סלים", "אובראדוביץ",
-          "אוברדוביץ", "ליגת ווינר", "יורוליג", "יורוקאפ", "פיס ארנה", "אולם")
-SOCCER = ("שוער", "בעיטה", "פנדל", "קרן", "מחצית", "הבקיע", "כדרור",
-          "אצטדיון", "טדי", "דשא", "ליגה לאומית", "מגרש", "הרכב פותח")
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def count(text, words):
-    hits = {w: len(re.findall(re.escape(w), text)) for w in words}
-    return sum(hits.values()), {k: v for k, v in hits.items() if v}
-
-
-def words_of(title):
-    return " ".join(re.sub(r"[\"'״׳:?!.,]", " ", title).split()[:6])
-
-
-for name, search, title in SUSPECTS:
-    log(f"=== {name}: {title}")
-    url = search.format(q=urllib.parse.quote(words_of(title)))
+def hits(query):
+    url = FEED.format(q=urllib.parse.quote(query))
     try:
         r = requests.get(url, headers=UA, timeout=30)
-        r.encoding = r.encoding or "utf-8"
-        soup = BeautifulSoup(r.text, "html.parser")
+        root = ET.fromstring(r.content)
+        items = root.findall(".//item")
+        return len(items), [i.findtext("title", "")[:70] for i in items[:2]]
     except Exception as e:
-        log(f"    החיפוש נפל: {e}")
-        continue
-    log(f"    חיפוש: {r.status_code}, {len(r.text)} תווים")
+        return -1, [str(e)[:60]]
 
-    key = re.sub(r"[^֐-׿]", "", title)[:12]
-    hit = None
-    for a in soup.find_all("a", href=True):
-        txt = re.sub(r"[^֐-׿]", "", a.get_text(" ", strip=True))
-        if key and key in txt:
-            hit = requests.compat.urljoin(r.url, a["href"])
-            break
-    if not hit:
-        log("    לא נמצאה הכתבה בתוצאות החיפוש של האתר")
-        continue
-    log(f"    נמצאה: {hit}")
-    try:
-        p = requests.get(hit, headers=UA, timeout=30)
-        p.encoding = p.encoding or "utf-8"
-        body = re.sub(r"\s+", " ", BeautifulSoup(p.text, "html.parser").get_text(" ", strip=True))
-    except Exception as e:
-        log(f"    הכתבה נפלה: {e}")
-        continue
-    b, bh = count(body, BASKET)
-    s, sh = count(body, SOCCER)
-    log(f"    כדורסל:{b} {bh}")
-    log(f"    כדורגל:{s} {sh}")
-    log(f"    ==> {'כדורגל' if s > b else 'כדורסל' if b > s else 'לא ברור'}")
+
+for s in SUSPECTS:
+    a, ta = hits(s + " כדורגל")
+    time.sleep(1.5)
+    b, tb = hits(s + " כדורסל")
+    time.sleep(1.5)
+    verdict = "כדורגל!" if a > b else ("כדורסל " if b > a else "תיקו   ")
+    log(f"{verdict} רגל:{a:<3} סל:{b:<3} | {s[:60]}")
+    if ta: log(f"     רגל→ {ta[0]}")
+    if tb: log(f"     סל → {tb[0]}")
