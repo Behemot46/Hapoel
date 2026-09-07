@@ -1,17 +1,18 @@
 {
-  "updated": "2026-09-07T18:09:21Z",
+  "updated": "2026-09-07T19:09:40Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ashdodnet.com",
-    "ישראל היום",
     "ספורט 1",
+    "ישראל היום",
     "ספורט 5",
     "ONE",
     "וואלה ספורט",
     "ynet",
     "אייס",
     "סרוגים",
-    "inn.co.il",
+    "חדשות 04",
+    "ערוץ 7",
     "מועדון הכדורגל מכבי תל אביב",
     "כל העיר"
   ],
@@ -22,6 +23,13 @@
       "source": "ashdodnet.com",
       "sourceUrl": "https://ashdodnet.com",
       "published": "2026-09-07T14:10:32Z"
+    },
+    {
+      "title": "קבוצה גדולה תקפוץ על המציאה? \"הוא יהיה עוד אקזיט של הפועל ירושלים\"",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBQMDdOb2hCQUdwaHRaeGY4ajY3WkRlajY1YXVDSFZ4Z0xlc3VOWm41UmEwSWpYX2pMeTNVVEdGYWlHT1pzbHJQTDBfUUZVQ19fdkc0SUlJX3NDdV9mZ0lNTFpFZzNZMzB1eW5sWlNyLVQ0d0IyZS1sR3hB?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-06T17:43:38Z"
     },
     {
       "title": "הפועל ירושלים הגיעה לסיכום עם אמארי ביילי - שיעבור לקבוצה אחרת",
@@ -122,6 +130,13 @@
       "published": "2026-08-28T07:00:00Z"
     },
     {
+      "title": "כדורסל: הפועל ת\"א הביסה בארנה את הפועל י-ם 64:91, האנאס עם 23 נק'",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE43SXY2eGRYOFRRMVA5QUplNEN2eTBTaVdKSm1WVzRCZjRHLVZaZW5WaUF1UWJlZHMyV2pZNG5DVkxRUG1PQWt6SQ?oc=5",
+      "source": "חדשות 04",
+      "sourceUrl": "https://0404.co.il",
+      "published": "2026-08-26T13:24:18Z"
+    },
+    {
       "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
       "source": "סרוגים",
@@ -143,17 +158,17 @@
       "published": "2026-08-24T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים יוצאת לדרך חדשה",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "inn.co.il",
-      "sourceUrl": "https://www.inn.co.il",
-      "published": "2026-08-23T20:02:51Z"
-    },
-    {
       "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tOHFNY2lYQlVwdW1Rc2VnbXZIWFBRZHV1TV9FakluWnJ4Q1I0NnZ6TU45Rm1ITlBKZE1uZmp2ajZRWklBaWw5Q3B3NmZCZ1RqX3d2T01WOUpHaERtczlKR0NRT3lUMHFaSHVHNC1vRThHTVctYjQ2RUpkc9IBgwFBVV95cUxNN2N5bXBYREVVY3ZnYmNXc04tNmUyWk9DRk1HS0NvMV80bDBTNU5WX3RqNWlHRXNGbW9Sa0ZvQlhDUGRDY3BZcXpIS2pWQW16aW1OQUhPaktRWUY4ZW10Nm10YXBtZXl6Q19lbDN3dFBzMk93UHBxU3k0cUZLMkoyaWZIQQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-23T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים יוצאת לדרך חדשה",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
+      "source": "ערוץ 7",
+      "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
     {
@@ -210,20 +225,6 @@
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1welhpM2UwclU5U0NmTG9jajYteUZDcWNLSGxIYU14TmlqQkZwQTlfVGs4U2dfZzZZVzVmcW5RRTlJbmwzUWNjUDlRRXczYkIwTlRMb01zZ2lQT0EzSHJ3ZGVVLXBDUENLcXlKNGc0Z1JDeUQzRS1iTXFB?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-17T07:00:00Z"
-    },
-    {
-      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
-    },
-    {
-      "title": "רשמי: הפועל ירושלים תולבש ע\"י ריבוק",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5OVGZsUEIySUVFZW5yTUxHMENoU0FocXFzRXFhdmFYdl9FY1ZrVzNqQTAzbEdXZWdZdUhHdnN2Zi1uTUNPNHpuRU0tWnZCd2ZfTENfd0t4WDhGLXdkcmdXYnIyMzkyZERVbGNObTN1VXRCUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-17T07:00:00Z"
     }
   ]
