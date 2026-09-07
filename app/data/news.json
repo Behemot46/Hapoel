@@ -1,18 +1,19 @@
 {
-  "updated": "2026-09-07T11:30:43Z",
+  "updated": "2026-09-07T12:30:55Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 1",
     "ישראל היום",
     "ספורט 5",
     "ישראל ספורט",
+    "ONE",
     "וואלה ספורט",
     "אייס",
     "ynet",
     "סרוגים",
     "103FM",
-    "ערוץ 7",
-    "מועדון הכדורגל מכבי תל אביב",
+    "inn.co.il",
+    "maccabi-tlv.co.il",
     "כל העיר"
   ],
   "items": [
@@ -45,18 +46,18 @@
       "published": "2026-09-05T15:30:00Z"
     },
     {
+      "title": "מכבי אשדוד נגד הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBCNGR4M2Naazk5M0otTC1pWU5WYlZOSUlmeV83amJqRVNHZGFWZFZ5RnptME43ZTVCM3d6MnRTNGVrYnVfRl9xMUhR?oc=5",
+      "source": "ONE",
+      "sourceUrl": "https://www.one.co.il",
+      "published": "2026-09-05T15:17:29Z"
+    },
+    {
       "title": "רמז להפועל ירושלים? העדכון של מנכ\"ל היורוליג",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5JSXlIYmxZcXdzancteEhoUTFSUGRuYXFOZ2d1NDVJNnBiek1XaUh2d1U0REdvVl9DcDUwdVZ0X09BR0Z2YzYtWW15Vk5XbXV2NnMySUpPbkpQZkdQbHNUM01oVUI3eTJubnk4elJ2V2Nndw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-05T08:28:37Z"
-    },
-    {
-      "title": "הפועל ירושלים ניצחה את העמק, גם חולון ואשדוד רשמו ניצחונות",
-      "url": "https://news.google.com/rss/articles/CBMiwwJBVV95cUxOenhFV1RiRVlrYjN6czRZMFgzVmIwY3R6VFhlTEhnTDJOaUVvZUZSeEVoNGVXc1JOTVFfZWV3N0RyWWNQbkhXM0JUM0MzTC1iaUZKT1RCMnhqajNNbERJaVhJSlV1R1NVY0tRU2VBYVhvaXN5UFZxdnRVdWdXbGhTcW1WMjlTZFNiNFgwMnlQMUY1NFdmbl9CYjRVdnFCVWNvaWtMVUNPTG1wcGl1aEMtSy11WEgyenNkYlNpY3F3WUY1ekkwZXo1a0xVMnVIcGtOMEFSRmh5SjRpT05JQmIyMy1SV2xVTWU0eklySW5pRVNMblBhUEJWYWc4V05QcmU2MnFIblFGU2dRV20zQldUdl9wUkN3bVJvUGlJQ2t2S0ZKdWx6eHJSVlFoU0N4RVE3ZFljVi01VElkUUlfVzFxU1ZoTQ?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-09-04T10:40:00Z"
     },
     {
       "title": "הפועל ירושלים במו\"מ מתקדם עם הגארד היהודי אמארי ביילי",
@@ -150,6 +151,13 @@
       "published": "2026-08-24T07:00:00Z"
     },
     {
+      "title": "הפועל ירושלים יוצאת לדרך חדשה",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
+      "source": "inn.co.il",
+      "sourceUrl": "https://www.inn.co.il",
+      "published": "2026-08-23T20:02:51Z"
+    },
+    {
       "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tOHFNY2lYQlVwdW1Rc2VnbXZIWFBRZHV1TV9FakluWnJ4Q1I0NnZ6TU45Rm1ITlBKZE1uZmp2ajZRWklBaWw5Q3B3NmZCZ1RqX3d2T01WOUpHaERtczlKR0NRT3lUMHFaSHVHNC1vRThHTVctYjQ2RUpkc9IBgwFBVV95cUxNN2N5bXBYREVVY3ZnYmNXc04tNmUyWk9DRk1HS0NvMV80bDBTNU5WX3RqNWlHRXNGbW9Sa0ZvQlhDUGRDY3BZcXpIS2pWQW16aW1OQUhPaktRWUY4ZW10Nm10YXBtZXl6Q19lbDN3dFBzMk93UHBxU3k0cUZLMkoyaWZIQQ?oc=5",
       "source": "ישראל היום",
@@ -171,13 +179,6 @@
       "published": "2026-08-23T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים יוצאת לדרך חדשה",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "ערוץ 7",
-      "sourceUrl": "https://www.inn.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
       "title": "\"הפועל ירושלים אחרת\": התכנית של ליאור זדה",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE12RGtkOGFvaDN1WGJIRWl0UnltQzRabDVzdlVCbjc2SERRbWt4RGgxaWwzd1lUWEs5cDFEYm9VVmVEdFhCYWRVUUdBWjQyWlF3Ym1SYm1ma3RTZ0RIbUxVQWxRN0FrTFdLLUR6N193azA?oc=5",
       "source": "ספורט 5",
@@ -187,7 +188,7 @@
     {
       "title": "מילר לקראת הפועל י-ם: \"נרגשים לפתוח את הליגה\"",
       "url": "https://news.google.com/rss/articles/CBMi0wJBVV95cUxPdmJ5TnJhM1dzd2txay1KdDlZWU8zTUdtUFNkQy1rTmFmR0hnWkxJUmRRNDZKUHp2aGNyN3NycWh1MEF2SE1xNEM5TzVzemhmSEdLbWdJR3hCX1VfUlZ0cTBzS1R5YVFMMWlzNlB5VU9KV1dqdnZoNlhqOW05UU05RGtmbHZhLUhTZlBqd1p2U1RQTVJIWV9EUzVMaks2N0JyUjdpYXJ0bWs5bWlLSWR1NHlJREQ5Q0Y3eUVHVVpzV1lOdFBRbEtrTWdNbmg2NF9RZXp4QVJib0FBcDVLZXhpTDBqZGlaOHlzeEtqcjVFUUJZek5fZ1Y5M3U5S1RlMTZ6UThZVjZGdDZpR24tNExFd1FRamJIclZaWFBiREFvN21kbTFwNVJPckhlT1k3bTFBSHh2OVFMV2g2MWFPZ0NLOFYxVHViak9VNDExaWlaMFVrNGc?oc=5",
-      "source": "מועדון הכדורגל מכבי תל אביב",
+      "source": "maccabi-tlv.co.il",
       "sourceUrl": "https://www.maccabi-tlv.co.il",
       "published": "2026-08-22T07:00:00Z"
     },
