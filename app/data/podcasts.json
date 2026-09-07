@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-06T23:10:13Z",
+  "updated": "2026-09-07T08:28:45Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-08-31T05:00:00Z"
+      "latest": "2026-09-07T05:00:00Z"
     },
     {
       "id": "1698308776",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "סערת החוזה והמלחמה על המגרש, עם רומן סורקין וויל ריימן | שוט, פרק 193",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-09-07T05:00:00Z",
+      "duration": 3576
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -164,15 +173,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3064604",
       "published": "2026-08-13T03:30:08Z",
       "duration": 4687
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "זה היה בסוף הקיץ | שוט, פרק 189",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-08-12T16:44:00Z",
-      "duration": 4523
     },
     {
       "showId": "1623083958",
