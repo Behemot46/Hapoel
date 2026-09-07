@@ -1,7 +1,8 @@
 {
-  "updated": "2026-09-07T10:29:50Z",
+  "updated": "2026-09-07T11:30:43Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ספורט 1",
     "ישראל היום",
     "ספורט 5",
     "ישראל ספורט",
@@ -12,10 +13,16 @@
     "103FM",
     "ערוץ 7",
     "מועדון הכדורגל מכבי תל אביב",
-    "ספורט 1",
     "כל העיר"
   ],
   "items": [
+    {
+      "title": "קבוצה גדולה תקפוץ על המציאה? \"הוא יהיה עוד אקזיט של הפועל ירושלים\"",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBQMDdOb2hCQUdwaHRaeGY4ajY3WkRlajY1YXVDSFZ4Z0xlc3VOWm41UmEwSWpYX2pMeTNVVEdGYWlHT1pzbHJQTDBfUUZVQ19fdkc0SUlJX3NDdV9mZ0lNTFpFZzNZMzB1eW5sWlNyLVQ0d0IyZS1sR3hB?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-06T17:43:38Z"
+    },
     {
       "title": "הפועל ירושלים צירפה את אמארי ביילי - שיעבור לקבוצה אחרת",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9VaTY4VkhzU00waUVwaHFhclRrZklFSWFwZUVUWjV5eVViVl9WVjVscVVXVnk0bV9SVzZOd09pYzlmMklPMENDV3VYQVpxS2RXMF84dk9fQnlnT0JYSmFad1V3Yi1OTUVpMk53VnVsdTZoU2FiMGFpUU1JY9IBgwFBVV95cUxQZm9NQUtaV2ZqTHFXNDk2OTk4dU9Cc1lVcFp4OEdxdzVFX05FR01GYVNuYkhsczZ4bnkzZUNVcExjRl9qV1pHckxKdUxHNkxvaWR1SWlvOW4yd2pyVERDX0FpemhhbnZYaFY4RjN5MmYxLWZHdlRnRDFONUljLU9XRHZUTQ?oc=5",
@@ -217,13 +224,6 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
-    },
-    {
-      "title": "רשמי: הפועל ירושלים תולבש ע\"י ריבוק",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5OVGZsUEIySUVFZW5yTUxHMENoU0FocXFzRXFhdmFYdl9FY1ZrVzNqQTAzbEdXZWdZdUhHdnN2Zi1uTUNPNHpuRU0tWnZCd2ZfTENfd0t4WDhGLXdkcmdXYnIyMzkyZERVbGNObTN1VXRCUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-17T07:00:00Z"
     }
   ]
