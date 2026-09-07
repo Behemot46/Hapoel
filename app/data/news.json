@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T22:12:13Z",
+  "updated": "2026-09-07T23:13:07Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "אשדוד נט",
@@ -11,7 +11,6 @@
     "ynet",
     "אייס",
     "סרוגים",
-    "חדשות 04",
     "ערוץ 7",
     "מועדון הכדורגל מכבי תל אביב",
     "כל העיר"
@@ -88,13 +87,6 @@
       "published": "2026-08-31T12:41:40Z"
     },
     {
-      "title": "במיליונים: תביעת הפועל ירושלים נגד הפועל ת\"א",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Xc3g5MTJQWHk1bzRlWmw0RW1Vc2pCS19CdzV4Sm9qeVhIa0pZOFNLYjdpVE9vak9UTU4ycEQxV1diMHRZUG1mZzdsZkFVdTZSc2lNcmlrWU14TUtBLXBmNW14cXEwZHJZOEZwMnFXcjZBUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-30T14:41:00Z"
-    },
-    {
       "title": "הפועל ירושלים דורשת מהפועל ת\"א: 2.3 מיליון שקל על קאדין קרינגטון",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1Rd21rTkNVOEdpeTNBZVF5UDZ2NGhJNTB0VG1rRzR1WW1jNldxODZTNUNkS1VyRVJUMzdRT0JZRXlkbXE3cGJ4VjVhZ0JzWUZEdnBnQnRCbVVQdHZjdnZDUU1IRldVNVNYWnViSG14WEYzdWc?oc=5",
       "source": "ynet",
@@ -130,13 +122,6 @@
       "published": "2026-08-28T07:00:00Z"
     },
     {
-      "title": "כדורסל: הפועל ת\"א הביסה בארנה את הפועל י-ם 64:91, האנאס עם 23 נק'",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE43SXY2eGRYOFRRMVA5QUplNEN2eTBTaVdKSm1WVzRCZjRHLVZaZW5WaUF1UWJlZHMyV2pZNG5DVkxRUG1PQWt6SQ?oc=5",
-      "source": "חדשות 04",
-      "sourceUrl": "https://0404.co.il",
-      "published": "2026-08-26T13:24:18Z"
-    },
-    {
       "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
       "source": "סרוגים",
@@ -148,6 +133,13 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NnhMcXZCMkNrajBqVURsZnl5cUN2bUxLSlJWSzV4d0k2YWN6Ym9qWG8zVmVmUlNDbjE4Q3V3WDQtZU52M0gyZWhtaFpYbWIydVZJbFRNYzBzZTUzSUxyem1XQjZxYXk0eC1nSmlaSXcydW5mek9KTVB0ONIBgwFBVV95cUxNQThyYnZDSWNfejhkVkRUOXFfLUkydi13b2h6RUdTOGhIMThhMkZQM0hiY0xPOVU1cXB0TDdNRjczQ2pfVmpTSW5Sem0wMnBnOXU3cGw0dTBsbVJsNk8xck9Sei1DYU1XMloydFIyRnZ1aWxLQWxITGJtV2VmNGpmbHZ5bw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-25T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים חשפה: המדים שלה לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1VXJrYjE2Rkdpa0xkZXZiNUw0eUNmRWpWZ1Z3cWp5RDA2NkFYNDdSRHRKLXVKb2pGTW9MeDNTb1RRX3hVQnNFeHAyV0hpOTBjZDY0ajdFb19HMGhBSmZkVmUxR3FPbjlSdE9rSjZIUkM0UQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-25T07:00:00Z"
     },
     {
@@ -225,6 +217,13 @@
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1welhpM2UwclU5U0NmTG9jajYteUZDcWNLSGxIYU14TmlqQkZwQTlfVGs4U2dfZzZZVzVmcW5RRTlJbmwzUWNjUDlRRXczYkIwTlRMb01zZ2lQT0EzSHJ3ZGVVLXBDUENLcXlKNGc0Z1JDeUQzRS1iTXFB?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-17T07:00:00Z"
+    },
+    {
+      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-17T07:00:00Z"
     }
   ]
