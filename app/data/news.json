@@ -1,31 +1,31 @@
 {
-  "updated": "2026-09-07T13:31:49Z",
+  "updated": "2026-09-07T15:07:11Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ספורט 1",
+    "ashdodnet.com",
     "ישראל היום",
+    "ספורט 1",
     "ספורט 5",
-    "ישראל ספורט",
     "ONE",
     "וואלה ספורט",
     "ynet",
     "אייס",
     "סרוגים",
-    "103FM",
-    "inn.co.il",
+    "103fm.maariv.co.il",
+    "ערוץ 7",
     "מועדון הכדורגל מכבי תל אביב",
     "כל העיר"
   ],
   "items": [
     {
-      "title": "קבוצה גדולה תקפוץ על המציאה? \"הוא יהיה עוד אקזיט של הפועל ירושלים\"",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBQMDdOb2hCQUdwaHRaeGY4ajY3WkRlajY1YXVDSFZ4Z0xlc3VOWm41UmEwSWpYX2pMeTNVVEdGYWlHT1pzbHJQTDBfUUZVQ19fdkc0SUlJX3NDdV9mZ0lNTFpFZzNZMzB1eW5sWlNyLVQ0d0IyZS1sR3hB?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-06T17:43:38Z"
+      "title": "שלישי ב- 19:00: מכבי אשדוד פוגשת את הפועל ירושלים בגביע ווינר",
+      "url": "https://news.google.com/rss/articles/CBMi6gNBVV95cUxQb09wMFUzYUVUREVhV0dsZ2dkRVRabXo0YzVQUjZHb056RGxScWM5Vk5kaU9hYTRnN014Si1USmZBRjdEa29GM1VLTG9ZWDNiQUxmdEZDbTFOQkNpOVMxNnZSTTd2ek1JamtUb0FHWkY4NTc4VmVfbFU0Z0x0bGtvSVd1UmNRNng4UXFvXzNpYTE2VFhSR0I5SnpYVU1sZzNReGJubVVCcGZxekFHbUNHMERZY0NKSU5xU3lXdGRoM3cxcFFpUWFSeEQ3Mmx5OE1tX196VU5WaDZYaG5mVnV4YTFNWENCR1hiOWVYdGs4RkhzTjVTdUtFM0NIOUF1ejdySUp0YVltb28xbXNqdHVmM3RJc09UNmtvN2lSa2UzaWJEUzBKaXFvWlJKRzkzd2VSczRNMVFVcHRyRU9TNVZkdGRxa2Z6blpHRHNpYlJtcWNlMEtJckRDSFJvYjhHUzNLazhiUGhDTzNIRUtPWE8wOGJGbTlvYjhoYS0ycXhGVjJQYTgzaUpDR2FTWXhBM2ZKSlNWcEhOWjhoalRaLXRLcjY1eUNlM2gtSzNsb1VFV2pmUHVJcDhYWUwxaUhMZWJsWnhVc3dIMW1veE16R1VhWnVKdkNSajJFcEhKcnNySW5NaThzbXNxS0NB?oc=5",
+      "source": "ashdodnet.com",
+      "sourceUrl": "https://ashdodnet.com",
+      "published": "2026-09-07T14:10:32Z"
     },
     {
-      "title": "הפועל ירושלים צירפה את אמארי ביילי - שיעבור לקבוצה אחרת",
+      "title": "הפועל ירושלים הגיעה לסיכום עם אמארי ביילי - שיעבור לקבוצה אחרת",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9VaTY4VkhzU00waUVwaHFhclRrZklFSWFwZUVUWjV5eVViVl9WVjVscVVXVnk0bV9SVzZOd09pYzlmMklPMENDV3VYQVpxS2RXMF84dk9fQnlnT0JYSmFad1V3Yi1OTUVpMk53VnVsdTZoU2FiMGFpUU1JY9IBgwFBVV95cUxQZm9NQUtaV2ZqTHFXNDk2OTk4dU9Cc1lVcFp4OEdxdzVFX05FR01GYVNuYkhsczZ4bnkzZUNVcExjRl9qV1pHckxKdUxHNkxvaWR1SWlvOW4yd2pyVERDX0FpemhhbnZYaFY4RjN5MmYxLWZHdlRnRDFONUljLU9XRHZUTQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
@@ -44,13 +44,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-05T18:34:13Z"
-    },
-    {
-      "title": "הפועל ירושלים הודיעה: עברנו שלב בדרך לרישיון קבוע ליורוליג",
-      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxPV09hbWRwS01tT2J3N3dQeGlhX2JSTGdYdDQyQ0FhOWp0RFJkTW1wRXZONlNHRjBIempZTl9KUDRjb2dRU1VpVU1SNGlmaG5ObDJFd3ZGZlpUMHBpb1JwT2VLRXY2TWk2ZTVOalV2cTAxWXpjMnI0dHYyRFpKSGN6QlJjMlNjRWp3T2VFY1Bvc05NSGVTZnNmTlJOWkVaUmstUmpnd3JXeGo2dXFnRVpiUFJVOF9uZEYyQnU4U2VGQ1FMZ0VwRXFQN3g3UmdjV2hNc05YcXBjUWFtVnBiZVJBN0xCYTU4cXRJU05Kc0tCTkk3NndIbV9BcWV4S0Fpb2RBa1hNRW5sOUxYa01Lb3VZdmN5YWRaS2VGVWE0RzU2ZVBYOXJpaFk4QWl0ZkY1Y056UTBtQjdWcmdnN0FHVEhXSlZ3?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-09-05T15:30:00Z"
     },
     {
       "title": "מכבי אשדוד נגד הפועל ירושלים",
@@ -139,7 +132,7 @@
     {
       "title": "ספורט - הפועל ירושלים תקפוץ מדרגה?",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CYUh0eDgtZDltQ3lMYm9ZNmtTcGVjdGU2WkxkSGVBZ081YXRnd1BBRmNLbVNuVVdsNWc2Ql9qZUVHUGZMMXhDVklZYWczWlVtYzF1THVSekg3cWNWSUp1dHgtRGR6RXd1NTV1TE81d1ZaQjFnLTBnWUsxeXd6d1k?oc=5",
-      "source": "103FM",
+      "source": "103fm.maariv.co.il",
       "sourceUrl": "https://103fm.maariv.co.il",
       "published": "2026-08-26T07:00:00Z"
     },
@@ -160,7 +153,7 @@
     {
       "title": "הפועל ירושלים יוצאת לדרך חדשה",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "inn.co.il",
+      "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T20:02:51Z"
     },
@@ -225,6 +218,13 @@
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1welhpM2UwclU5U0NmTG9jajYteUZDcWNLSGxIYU14TmlqQkZwQTlfVGs4U2dfZzZZVzVmcW5RRTlJbmwzUWNjUDlRRXczYkIwTlRMb01zZ2lQT0EzSHJ3ZGVVLXBDUENLcXlKNGc0Z1JDeUQzRS1iTXFB?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-17T07:00:00Z"
+    },
+    {
+      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-17T07:00:00Z"
     }
   ]
