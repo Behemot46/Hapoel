@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T11:14:20Z",
+  "updated": "2026-09-08T12:14:33Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "אשדוד נט",
@@ -50,6 +50,13 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-09-05T18:43:00Z"
+    },
+    {
+      "title": "הפועל ירושלים הודיעה: היורוליג העבירה אותנו שלב",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFA0YjRpUlppc2NNS0hVYjBtUHdVZGllajRZYUVNNWg1LUVKcGdWQlJjN2ttUmZMVHN6U3JLTS1SbDJJT2tRNHFvXzZ2SmpiZ2JXZHFXc2xrcXAxLVRObk9SS3ZB0gFqQVVfeXFMTkJqdGtzR201NHhLS0ZQQ2R1UUNVN1V0NnRyblV5OVlscXAwbllkT3BmLVlBRzA4Qm9rNWlQTmJRekNwMWowZ25sWnh5Mk1xZnlVZW9lWm41ZDV2XzB6ZWgyQll1LVRhVHZHZw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-09-05T18:34:54Z"
     },
     {
       "title": "הפועל י-ם: \"עברנו שלב בתהליך לרישיון\"",
@@ -217,13 +224,6 @@
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1welhpM2UwclU5U0NmTG9jajYteUZDcWNLSGxIYU14TmlqQkZwQTlfVGs4U2dfZzZZVzVmcW5RRTlJbmwzUWNjUDlRRXczYkIwTlRMb01zZ2lQT0EzSHJ3ZGVVLXBDUENLcXlKNGc0Z1JDeUQzRS1iTXFB?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-17T07:00:00Z"
-    },
-    {
-      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-17T07:00:00Z"
     }
   ]
