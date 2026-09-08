@@ -1,12 +1,12 @@
 {
-  "updated": "2026-09-08T13:42:33Z",
+  "updated": "2026-09-08T14:43:30Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ספורט 5",
     "אשדוד נט",
     "ספורט 1",
     "ישראל היום",
     "וואלה ספורט",
-    "ספורט 5",
     "ONE",
     "אייס",
     "סרוגים",
@@ -16,6 +16,13 @@
     "מועדון הכדורגל מכבי תל אביב"
   ],
   "items": [
+    {
+      "title": "דקה אחר דקה: מכבי אשדוד - הפועל ירושלים, קרית אתא - נס ציונה | דיווח חי מגביע ווינר",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE42ellSSDVVUmdtc3NQcTNWTjlmSGJ0UnRwa0NyN1ozUV9XWjZvaUV3cXNUcHFJaWF4MlozdENka2FPaGNNUHQwTTdybDZtMC1XSzV4Y0FLakNzT3JNTmR4NmlKTVFlazZOaENFR3ZuejRUemZw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-08T14:36:00Z"
+    },
     {
       "title": "שלישי ב- 19:00: מכבי אשדוד פוגשת את הפועל ירושלים בגביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMi6gNBVV95cUxQb09wMFUzYUVUREVhV0dsZ2dkRVRabXo0YzVQUjZHb056RGxScWM5Vk5kaU9hYTRnN014Si1USmZBRjdEa29GM1VLTG9ZWDNiQUxmdEZDbTFOQkNpOVMxNnZSTTd2ek1JamtUb0FHWkY4NTc4VmVfbFU0Z0x0bGtvSVd1UmNRNng4UXFvXzNpYTE2VFhSR0I5SnpYVU1sZzNReGJubVVCcGZxekFHbUNHMERZY0NKSU5xU3lXdGRoM3cxcFFpUWFSeEQ3Mmx5OE1tX196VU5WaDZYaG5mVnV4YTFNWENCR1hiOWVYdGs4RkhzTjVTdUtFM0NIOUF1ejdySUp0YVltb28xbXNqdHVmM3RJc09UNmtvN2lSa2UzaWJEUzBKaXFvWlJKRzkzd2VSczRNMVFVcHRyRU9TNVZkdGRxa2Z6blpHRHNpYlJtcWNlMEtJckRDSFJvYjhHUzNLazhiUGhDTzNIRUtPWE8wOGJGbTlvYjhoYS0ycXhGVjJQYTgzaUpDR2FTWXhBM2ZKSlNWcEhOWjhoalRaLXRLcjY1eUNlM2gtSzNsb1VFV2pmUHVJcDhYWUwxaUhMZWJsWnhVc3dIMW1veE16R1VhWnVKdkNSajJFcEhKcnNySW5NaThzbXNxS0NB?oc=5",
@@ -36,13 +43,6 @@
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-09-06T07:38:28Z"
-    },
-    {
-      "title": "בדרך לרישיון קבוע ביורוליג: ההודעה של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPRmNHanhFLTZRYWVxZWFDSGlrSzlIZXFWNzZZRmNLUmEtZDNJYnlDSmVaa1hkMHZRQkxNSVZxRThlOFJFdUtvaVo5Mk5RTGk1ZGRIQVoxd3poY0VfMEdIanZ3MlFrZDBVSnhWXzBQbWFSRGtrOFBoa0wzU21YZC04TVdjMDhWSVB5eWIwNmxDMHBqdw?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-05T18:48:46Z"
     },
     {
       "title": "הפועל ירושלים הודיעה: עברנו שלב בדרך לרישיון קבוע ליורוליג",
