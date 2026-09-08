@@ -1,55 +1,45 @@
-"""בדיקת מקורות: לאיזה ענף שייכת כותרת, לפי מה שגוגל מוצאת עליה.
+"""בדיקת מקורות: איך אתר המועדון מציג את התוצאה של 8.9.
 
-חמש כותרות במדור נראות כדורגל, ואין בהן מילה שמכריעה. במקום לנחש,
-שואלים את אותה שאלה פעמיים: הכותרת יחד עם המילה ״כדורגל״, והכותרת יחד
-עם המילה ״כדורסל״. גוגל מחפשת בכל העמוד, כולל תגיות ומדור, ולכן הצד
-שמחזיר תוצאות הוא הצד שהסיפור יושב בו.
-
-זה לא מדע מדויק, ולכן התוצאה כאן היא ראיה ולא פסק דין: מה שמוכרע כאן
-נכנס ל־blockPhrases ביד, אחרי קריאה.
+באתר המועדון כל קבוצה היא תמונה עם alt, והתוצאה היא מחרוזת ״A:B״ אחת.
+מה שצריך לדעת: איזה מספר שייך לאיזו קבוצה. את האמת אנחנו כבר יודעים
+משלוש כותרות עצמאיות (הפועל ירושלים ניצחה 110-77 את מכבי אשדוד), ולכן
+מה שנראה כאן מכריע את הסדר גם באתר המועדון וגם, בהצלבה, באתר הליגה.
 """
-import time
-import urllib.parse
-import xml.etree.ElementTree as ET
+import re
+import sys
+import pathlib
 
-import requests
+from bs4 import BeautifulSoup
 
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
-
-SUSPECTS = [
-    "הפועל ירושלים בהודעה חריפה: השוטרים יצרו עימות אגרסיבי",
-    "הפועל ירושלים ביצעה מהפך היסטורי לא נבקיע כל משחק רביעייה",
-    "השינוי של הפועל ירושלים והמסר צריך להיות יציבים הגנתית",
-    "הפועל ירושלים משנה גישה השחקן שמגיע ממועדון בכיר בדנמרק",
-    "פרופיל לא שגרתי הפועל ירושלים בדרך לצרף את צ׳ילופיה",
-    # ביקורת: כותרת שאני בטוח שהיא כדורסל, כדי לראות שהמדידה מבחינה
-    "הפועל ירושלים תובעת את הפועל תל אביב על קאדין קרינגטון",
-]
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import update_data as u
+import club_games
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def hits(query):
-    url = FEED.format(q=urllib.parse.quote(query))
-    try:
-        r = requests.get(url, headers=UA, timeout=30)
-        root = ET.fromstring(r.content)
-        items = root.findall(".//item")
-        return len(items), [i.findtext("title", "")[:70] for i in items[:2]]
-    except Exception as e:
-        return -1, [str(e)[:60]]
+html = u.fetch("https://hapoel.co.il/games")
+soup = BeautifulSoup(html, "html.parser")
+found = 0
+for g in soup.select(".game"):
+    teams = [i.get("alt", "").strip() for i in g.select(".teams-container img") if i.get("alt")]
+    when = club_games._txt(g.select_one(".date-time"))
+    score = club_games._txt(g.select_one(".score"))
+    if not teams:
+        continue
+    if "8/9" not in when and "08/09" not in when and "8.9" not in when:
+        continue
+    log(f"תאריך גולמי: {when!r}")
+    log(f"סדר הקבוצות (לפי alt של הלוגו): {teams}")
+    log(f"תא התוצאה: {score!r}")
+    log(f"מקום: {club_games._txt(g.select_one('.game-type .container .text'))!r}")
+    found += 1
 
-
-for s in SUSPECTS:
-    a, ta = hits(s + " כדורגל")
-    time.sleep(1.5)
-    b, tb = hits(s + " כדורסל")
-    time.sleep(1.5)
-    verdict = "כדורגל!" if a > b else ("כדורסל " if b > a else "תיקו   ")
-    log(f"{verdict} רגל:{a:<3} סל:{b:<3} | {s[:60]}")
-    if ta: log(f"     רגל→ {ta[0]}")
-    if tb: log(f"     סל → {tb[0]}")
+if not found:
+    log("לא נמצאה שורה של 8.9. כל המשחקים שיש בעמוד, עם התוצאה שלהם:")
+    for g in soup.select(".game")[:14]:
+        teams = [i.get("alt", "").strip() for i in g.select(".teams-container img") if i.get("alt")]
+        log(f"  {club_games._txt(g.select_one('.date-time'))!r} | {teams} | "
+            f"{club_games._txt(g.select_one('.score'))!r}")

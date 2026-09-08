@@ -34,7 +34,13 @@ GAMES_URL = "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/gam
 
 # a game is "on" from shortly before tip-off until well after it should have
 # ended, the second bound is generous because overtime and late tip-offs happen
-BEFORE = datetime.timedelta(minutes=20)
+# **למה 75 דקות ולא 20:** הפולר לא מתחיל לבד, האיסוף מזמן אותו כשהוא
+# רואה משחק מתקרב, והאיסוף דוגם כל שעה (מאז שהקצב הואט בגלל מכסת
+# הדיפלויים של ורסל). חלון של 20 דקות מול דגימה שעתית פירושו שרוב
+# הדקירות נופלות מחוצה לו: ב־8.9.2026 האיסוף דקר ב־13:43 וב־14:43,
+# שתיהן לפני שהחלון נפתח, ושתיהן יצאו מיד. הפולר עלה רק כי הופעל ביד.
+# חלון של 75 דקות מבטיח שכל דקירה שעתית תיפול בפנים.
+BEFORE = datetime.timedelta(minutes=75)
 AFTER = datetime.timedelta(hours=3)
 
 
@@ -51,9 +57,31 @@ def load(name):
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
 
+# כל כתיבה ל־live.json הופכת לקומיט ולדיפלוי בוורסל, ושם יש תקרה של 100
+# ביום. לפני הקפיצה שום דבר לא משתנה מלבד חותמת הזמן, ובחלון של 75 דקות
+# זה 25 דחיפות שכל מה שהן אומרות הוא ״עדיין רגע לפני״. לכן כותבים רק
+# כשהתוכן באמת השתנה, ומרעננים את החותמת פעם ברבע שעה כדי שהתווית
+# ״עודכן לפני״ באפליקציה לא תזדקן בלי סיבה.
+STAMP_EVERY = datetime.timedelta(minutes=15)
+
+
 def save_live(doc):
-    doc["updated"] = now().isoformat(timespec="seconds")
     p = DATA / "live.json"
+    try:
+        prev = json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        prev = None
+
+    if prev is not None:
+        same = {k: v for k, v in prev.items() if k != "updated"} == doc
+        if same:
+            last = parse_dt(prev.get("updated"))
+            if last and now() - last < STAMP_EVERY:
+                log("live.json לא השתנה, ועוד לא הגיע הזמן לרענן חותמת")
+                return
+
+    doc = dict(doc)
+    doc["updated"] = now().isoformat(timespec="seconds")
     p.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     log("wrote live.json:", json.dumps(doc, ensure_ascii=False)[:200])
 
@@ -173,7 +201,13 @@ def main():
         log("domestic game, no live feed available, reporting 'playing' only")
 
     if not snap:
-        snap = {"state": "playing"}
+        # לפני הקפיצה זה עדיין לא ״המשחק מתנהל״. עד היום הפולר כתב
+        # playing מהרגע שנכנס לחלון, והאפליקציה הכריזה ״עכשיו · המשחק
+        # מתנהל״ על משחק שלא התחיל: ב־8.9.2026 זה קרה ב־15:41 למשחק של
+        # 16:00. המצב starting כבר קיים והאפליקציה מציגה אותו כ״רגע לפני
+        # הקפיצה״, הוא פשוט לא היה בשימוש למשחקי בית. עם חלון של 75
+        # דקות זה קריטי: בלי זה היינו משקרים שעה ורבע.
+        snap = {"state": "playing" if now() >= start else "starting"}
     save_live({**snap, "game": base})
     return 0
 
