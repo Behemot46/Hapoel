@@ -1,12 +1,12 @@
 {
-  "updated": "2026-09-08T15:43:45Z",
+  "updated": "2026-09-08T16:44:40Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "וואלה ספורט",
+    "ספורט 1",
     "ספורט 5",
     "אשדוד נט",
-    "ספורט 1",
     "ישראל היום",
-    "וואלה ספורט",
     "ONE",
     "אייס",
     "סרוגים",
@@ -16,6 +16,20 @@
     "מועדון הכדורגל מכבי תל אביב"
   ],
   "items": [
+    {
+      "title": "גביע ווינר: מכבי אשדוד - הפועל ירושלים 0:0 (רבע 1)",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5uZi1KUUc5cEhKSk1uaFhBS0d1eWpQVm5Ga05JRVdlN2E4ZVZyLUcxdVFXUnpjdjNpSWROODY4T0NINEROVlVVTGctc3d0eFlm?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-08T16:00:00Z"
+    },
+    {
+      "title": "גביע ווינר: מכבי אשדוד – הפועל ירושלים 2:5 (רבע 1)",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOVTMwTW5OUzJ5cjA5ME1sOW5lci1CLXV2RHhaSHFwRnZubng5dmtnVksta1R3akgteG8zaFJvQnNSY2wtRzZpeFZJNjhybDVkZnk4WDBHdlhDTm1sZUhsNG5zYmllRzFkZlRlY2pob3gweHA2eklzamtpU3IyUVBmSzE1Sldja2xzNkhJT0JqdDdpQQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-08T15:54:14Z"
+    },
     {
       "title": "דקה אחר דקה: מכבי אשדוד - הפועל ירושלים, קרית אתא - נס ציונה | דיווח חי מגביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE42ellSSDVVUmdtc3NQcTNWTjlmSGJ0UnRwa0NyN1ozUV9XWjZvaUV3cXNUcHFJaWF4MlozdENka2FPaGNNUHQwTTdybDZtMC1XSzV4Y0FLakNzT3JNTmR4NmlKTVFlazZOaENFR3ZuejRUemZw?oc=5",
@@ -211,20 +225,6 @@
       "source": "מועדון הכדורגל מכבי תל אביב",
       "sourceUrl": "https://www.maccabi-tlv.co.il",
       "published": "2026-08-22T07:00:00Z"
-    },
-    {
-      "title": "נחשף מדוע מכבי תל אביב לא דחתה את משחק הליגה מול הפועל ירושלים | ספורט 1",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1yeExuWGV5Z2tMNkRJZDhPM1NTZUNBZWZLcFFXeGYwMVkxYkNPQzB6LVhFaEQxNzNHQVNWZnM3UG5XYl9zRE5YODBrQnMybEMtSWFWZmc2MVFsbzJYU2Z5M21IUVpwOGpBOE96Ujh1TXZzM1BWVVgxLXdR?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-20T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים דורשת מיליונים על ילד הפלא: \"לא נוותר\"",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8wR3o0WkxhNUkyZFNwVnk5VTgyTFBGVm9MYVhEaDdRNEs4SUN2Nm9Fcm93dV85Ym9mYXZ1VFdWRnl2Q1AyQmp3VGVteEd2NzVfVF81UFMzNGxOdXBpNlliYXRudmtSUlFBVkd6SzJOckZQYnFwVHfSAX5BVV95cUxNQ3ZEd2ZJZG1NT3RwZjMzeHh3REotT21KVGV1RndWdEVqUExNa1RLczA1OWZ4UWdKVVZheDJGeldldFVISGQxQ0k5N3NwRTN0U1RNNTZmb0ZxdmRpVXVyQTcxZllnd25GRmxDbWdDZ1J2MEZhTUIwYTZKQ3BoVFE?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-17T07:00:00Z"
     }
   ]
 }
