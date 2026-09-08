@@ -1,16 +1,17 @@
 {
-  "updated": "2026-09-08T22:52:31Z",
+  "updated": "2026-09-08T23:53:24Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ערוץ 7",
     "הארץ",
-    "Sport5",
+    "ישראל היום",
+    "vod.sport5.co.il",
+    "ישראל ספורט",
     "וואלה ספורט",
     "ספורט 5",
     "ynet",
     "אשדוד נט",
     "ספורט 1",
-    "ישראל היום",
     "ONE",
     "אייס",
     "סרוגים"
@@ -31,11 +32,25 @@
       "published": "2026-09-08T18:13:00Z"
     },
     {
+      "title": "קני לופטון הרשים, הפועל ירושלים הביסה את מכבי אשדוד",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE03SS1yWEhZZmtuMjRzNjlpazdueGdIcEZockE1RzNONEhOel9QTTRCcjQzTkFQVXZPSUtpOEVFUkdfSjI1Q0h1TFg3azJCR3FIM1BmVmloZmxsX3VCdExEbnBn0gFqQVVfeXFMTUI5b1EwS0FldWNmZHNPNGNMWGdxUGFBYUJhWTBCQ0hDU2dfaENVX3A3enJSSXdUdjUwdGtIMG9YbGZNNEZwV01pN1FETFVMdGJQdUJkQXZMZ1JrNjVHSXFGVVFuV3hlaVRCdw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-09-08T18:08:31Z"
+    },
+    {
       "title": "לופטון להט, הפועל ירושלים הביסה את אשדוד בגביע הווינר",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBRYXRRMm5JdmkxWHNqRkxYNWEybGhzVjMtUlhsN21LbXFWQWoyTW1pMTdQLU1xMTlOWm80bWJtVlo5VURBVzlFYWVUdzFQNkg3UDN6Uw?oc=5",
-      "source": "Sport5",
+      "source": "vod.sport5.co.il",
       "sourceUrl": "https://vod.sport5.co.il",
       "published": "2026-09-08T17:59:30Z"
+    },
+    {
+      "title": "הפועל ירושלים פתחה את גביע ווינר עם 77:110 על מכבי אשדוד",
+      "url": "https://news.google.com/rss/articles/CBMiwwJBVV95cUxPdHZ0RzZvR3dIZlFVVVRRbEdpTnhaaGhVQXMyVFUyLV9rQnZpTFc0M3EzdFVfdjJRVUhrZGttdlRBQV96VVJsOFpRanZZNFh4aW1KTzhUZHBzZURfaGJxQU9pTm9UUmZVSEN3VE43bDFCaG03TFlDMEUtT3RmMlJ1RDJtZFotdWMwbkJvTWlEUnhVWlZ3R2cxSnhBdTdHVVFKLXQzQ3ZHdGUzZGFKSUw5dDdiaW52NlJJYVllSWlxcjhMcldFZktvaTRYQ1BlRHllOVJydWNtU3pEUDJzWkpxQzhwMl9PUFZqRHhLSUhrSEVSaU1lSGpkeGhURWpCOS1jelJaa1NrVE5iekZTT1prWktnLUpGdnJMRnNjV1l0cEJHeC1EVkVvWFUzWUhZSUNDVGJKUnhmUFktOXJoNF80ZXlUaw?oc=5",
+      "source": "ישראל ספורט",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-09-08T17:50:00Z"
     },
     {
       "title": "הצהרת פתיחה: הפועל ירושלים פירקה 77:110 את מכבי אשדוד",
@@ -52,18 +67,18 @@
       "published": "2026-09-08T17:35:56Z"
     },
     {
+      "title": "דקה אחר דקה: מכבי אשדוד - הפועל ירושלים, קרית אתא - נס ציונה | דיווח חי מגביע ווינר",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE42ellSSDVVUmdtc3NQcTNWTjlmSGJ0UnRwa0NyN1ozUV9XWjZvaUV3cXNUcHFJaWF4MlozdENka2FPaGNNUHQwTTdybDZtMC1XSzV4Y0FLakNzT3JNTmR4NmlKTVFlazZOaENFR3ZuejRUemZw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-08T16:08:42Z"
+    },
+    {
       "title": "הפועל ירושלים חגגה עם 77:110 על מכבי אשדוד",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9BdEs2VlJPOEo3ZTNCU2h4ZHRxaW81ZzFsVF9IMy13NERqNzJMVUJHLVd4el83Vnk5dkFDUHpJRTVIUmE2WTlCbXVDLWFla0IxUW1jb25mMC1OQQ?oc=5",
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-09-08T15:59:27Z"
-    },
-    {
-      "title": "דקה אחר דקה: מכבי אשדוד - הפועל ירושלים, קרית אתא - נס ציונה | דיווח חי מגביע ווינר",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE42ellSSDVVUmdtc3NQcTNWTjlmSGJ0UnRwa0NyN1ozUV9XWjZvaUV3cXNUcHFJaWF4MlozdENka2FPaGNNUHQwTTdybDZtMC1XSzV4Y0FLakNzT3JNTmR4NmlKTVFlazZOaENFR3ZuejRUemZw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-08T14:36:00Z"
     },
     {
       "title": "שלישי ב- 19:00: מכבי אשדוד פוגשת את הפועל ירושלים בגביע ווינר",
@@ -208,20 +223,6 @@
     {
       "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "אחרי הסערה: הפועל ירושלים מציגה את המיתוג והסמל החדש",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5rdjdXVW5DSHBFSG0tVGIxTUZ5REQ5cV93U0QtdGJvUGtHR092NDVjcXNral83M2E2Z1hSMmFHR250TG1DV2FjeHVXdkN5a1VrcEMtWG0wSXZuSUI1MVFyMkJteG9lQWNxeW4xdGdqbERCRjhab3c?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "\"הפועל ירושלים אחרת\": התכנית של ליאור זדה",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE12RGtkOGFvaDN1WGJIRWl0UnltQzRabDVzdlVCbjc2SERRbWt4RGgxaWwzd1lUWEs5cDFEYm9VVmVEdFhCYWRVUUdBWjQyWlF3Ym1SYm1ma3RTZ0RIbUxVQWxRN0FrTFdLLUR6N193azA?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-23T07:00:00Z"
