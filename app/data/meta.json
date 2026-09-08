@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-08T16:44:41+00:00",
+  "lastUpdated": "2026-09-08T17:46:47+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -7,8 +7,8 @@
       "detail": "עודכן בהצלחה"
     },
     "games": {
-      "ok": true,
-      "detail": "עודכן בהצלחה"
+      "ok": false,
+      "detail": "HTTPSConnectionPool(host='basket.co.il', port=443): Read timed out. (read timeout=30)"
     },
     "eurocup": {
       "ok": true,

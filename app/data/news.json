@@ -1,34 +1,34 @@
 {
-  "updated": "2026-09-08T16:44:40Z",
+  "updated": "2026-09-08T17:45:40Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ONE",
     "וואלה ספורט",
-    "ספורט 1",
     "ספורט 5",
     "אשדוד נט",
+    "ספורט 1",
     "ישראל היום",
-    "ONE",
     "אייס",
-    "סרוגים",
-    "ערוץ 7",
+    "srugim.co.il",
+    "inn.co.il",
     "ynet",
     "C14",
     "מועדון הכדורגל מכבי תל אביב"
   ],
   "items": [
     {
+      "title": "רבע 4, 03:50: מכבי אשדוד - הפועל י-ם 96:68",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9UenlmTDZ0UEJHZmxuOUwxMUd3dUZ1QzJRZGh5MEV6V0JWS0oyckgzWXVTa3FFcy15b0hDeThsRmNHcVVoVmlFVVUzSDZhVHh6dWxj?oc=5",
+      "source": "ONE",
+      "sourceUrl": "https://www.one.co.il",
+      "published": "2026-09-08T16:10:07Z"
+    },
+    {
       "title": "גביע ווינר: מכבי אשדוד - הפועל ירושלים 0:0 (רבע 1)",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5uZi1KUUc5cEhKSk1uaFhBS0d1eWpQVm5Ga05JRVdlN2E4ZVZyLUcxdVFXUnpjdjNpSWROODY4T0NINEROVlVVTGctc3d0eFlm?oc=5",
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-09-08T16:00:00Z"
-    },
-    {
-      "title": "גביע ווינר: מכבי אשדוד – הפועל ירושלים 2:5 (רבע 1)",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOVTMwTW5OUzJ5cjA5ME1sOW5lci1CLXV2RHhaSHFwRnZubng5dmtnVksta1R3akgteG8zaFJvQnNSY2wtRzZpeFZJNjhybDVkZnk4WDBHdlhDTm1sZUhsNG5zYmllRzFkZlRlY2pob3gweHA2eklzamtpU3IyUVBmSzE1Sldja2xzNkhJT0JqdDdpQQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-08T15:54:14Z"
     },
     {
       "title": "דקה אחר דקה: מכבי אשדוד - הפועל ירושלים, קרית אתא - נס ציונה | דיווח חי מגביע ווינר",
@@ -138,14 +138,14 @@
     {
       "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
       "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
-      "source": "סרוגים",
+      "source": "srugim.co.il",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T07:00:00Z"
     },
     {
       "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
-      "source": "סרוגים",
+      "source": "srugim.co.il",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-26T07:00:00Z"
     },
@@ -180,7 +180,7 @@
     {
       "title": "הפועל ירושלים יוצאת לדרך חדשה",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "ערוץ 7",
+      "source": "inn.co.il",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
