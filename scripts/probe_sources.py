@@ -1,18 +1,15 @@
-"""בדיקת מקורות: מה הסדר בתא התוצאה, כשהמארחת היא זו שניצחה.
+"""בדיקת מקורות: עמוד המשחק עצמו, שבו כל מספר יושב ליד שם הקבוצה שלו.
 
-בתא של המשחק שלנו כתוב ״110-77״, המארחת היא מכבי אשדוד, האורחת היא
-הפועל י-ם, והעיתונות אומרת שאנחנו ניצחנו 110. מדגם אחד לא מבחין בין שתי
-השערות: ״האורחת ראשונה״ ו״המנצחת ראשונה״. שתיהן מסבירות אותו תא.
+בטבלת הקבוצה יש רק תא ״110-77״, ואי אפשר לדעת ממנו לבד אם הסדר הוא
+מארחת־אורחת, אורחת־מארחת או מנצחת קודם. בעמוד המשחק המספרים כתובים ליד
+השמות, וזה מקור ישיר במקום הסקה.
 
-לכן צריך משחק שבו המארחת ניצחה. הסבב הזה עובר על עמודי הקבוצות האחרות
-בליגה, מוצא משחקים גמורים שאנחנו לא בהם, ולכל אחד שואל את פיד החדשות מה
-הייתה התוצאה. הצלבה בין השניים מכריעה.
+הסבב הזה מוצא את הקישור מהשורה של המשחק שלנו, פותח אותו, ומדפיס את
+מה שכתוב שם: כותרת, שמות, מספרים, וגם את הטבלאות הראשונות.
 """
 import re
 import sys
 import pathlib
-import urllib.parse
-import xml.etree.ElementTree as ET
 
 import requests
 from bs4 import BeautifulSoup
@@ -20,61 +17,41 @@ from bs4 import BeautifulSoup
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import update_data as u
 
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
-
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-# כל הקבוצות בליגה, מתוך עמוד הטבלה
-table = BeautifulSoup(u.fetch("https://basket.co.il/table.asp?cYear=2027"), "html.parser")
-links = []
-for a in table.find_all("a", href=True):
-    if "team.asp" in a["href"]:
-        href = requests.compat.urljoin("https://basket.co.il/", a["href"])
-        if href not in [l for l, _ in links]:
-            links.append((href, a.get_text(strip=True)))
-log(f"{len(links)} עמודי קבוצות")
+link = u.find_team_link()
+soup = BeautifulSoup(u.fetch(link), "html.parser")
 
-found = 0
-for href, name in links:
-    if found >= 4:
+target = None
+for tr in soup.find_all("tr"):
+    cells = [c.get_text(strip=True) for c in tr.find_all("td")]
+    if any("08/09/2026" in c for c in cells) and any(re.search(r"\d{2,3}-\d{2,3}", c) for c in cells):
+        target = tr
         break
-    try:
-        soup = BeautifulSoup(u.fetch(href), "html.parser")
-    except Exception as e:
+
+if target is None:
+    log("לא נמצאה שורה של 08/09")
+    raise SystemExit
+
+log("תאי השורה:", [c.get_text(strip=True) for c in target.find_all("td")])
+hrefs = [requests.compat.urljoin(link, a["href"]) for a in target.find_all("a", href=True)]
+log("קישורים בשורה:", hrefs)
+
+for href in hrefs:
+    if "team.asp" in href:
         continue
-    for tbl in soup.find_all("table"):
-        rows = tbl.find_all("tr")
-        hdr = None
-        for r in rows[:3]:
-            cells = [c.get_text(strip=True) for c in r.find_all(["td", "th"])]
-            if any("תאריך" in c for c in cells) and any("מארחת" in c for c in cells):
-                hdr = cells
-                break
-        if not hdr:
-            continue
-        j = {n: hdr.index(next(c for c in hdr if n in c)) for n in ("מארחת", "אורחת", "תוצאה")}
-        for r in rows[1:]:
-            cells = [c.get_text(strip=True) for c in r.find_all("td")]
-            if len(cells) <= max(j.values()):
-                continue
-            host, guest, score = cells[j["מארחת"]], cells[j["אורחת"]], cells[j["תוצאה"]]
-            if not re.search(r"\d{2,3}\s*[-:]\s*\d{2,3}", score):
-                continue
-            if u.is_us(host) or u.is_us(guest):
-                continue
-            log(f"משחק: מארחת {host!r} | אורחת {guest!r} | תא התוצאה {score!r}")
-            q = urllib.parse.quote(f"{host} {guest} גביע ווינר")
-            try:
-                root = ET.fromstring(requests.get(FEED.format(q=q), headers=UA, timeout=30).content)
-                for it in root.findall(".//item")[:3]:
-                    log("   כותרת:", (it.findtext("title") or "")[:110])
-            except Exception as e:
-                log("   פיד נפל:", e)
-            found += 1
-            break
-        break
+    log("=== פותח:", href)
+    page = BeautifulSoup(u.fetch(href), "html.parser")
+    title = page.find("title")
+    log("title:", (title.get_text(strip=True) if title else "אין")[:120])
+    text = re.sub(r"\s+", " ", page.get_text(" ", strip=True))
+    log("600 התווים הראשונים:", text[:600])
+    for i, tbl in enumerate(page.find_all("table")[:3]):
+        rows = tbl.find_all("tr")[:4]
+        log(f"טבלה {i}:")
+        for r in rows:
+            log("   ", [c.get_text(strip=True)[:22] for c in r.find_all(["td", "th"])][:8])
+    break
