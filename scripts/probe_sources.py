@@ -1,55 +1,53 @@
-"""בדיקת מקורות: לאיזה ענף שייכת כותרת, לפי מה שגוגל מוצאת עליה.
+"""בדיקת מקורות: איך תא התוצאה באתר הליגה כתוב באמת.
 
-חמש כותרות במדור נראות כדורגל, ואין בהן מילה שמכריעה. במקום לנחש,
-שואלים את אותה שאלה פעמיים: הכותרת יחד עם המילה ״כדורגל״, והכותרת יחד
-עם המילה ״כדורסל״. גוגל מחפשת בכל העמוד, כולל תגיות ומדור, ולכן הצד
-שמחזיר תוצאות הוא הצד שהסיפור יושב בו.
+הלוח שלנו אומר שמכבי אשדוד קלעה 110 ואנחנו 77. שלוש כותרות עצמאיות
+אומרות בדיוק ההפך: ״הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על
+מכבי אשדוד״ (הארץ), ״פירקה 77:110 את מכבי אשדוד״ (וואלה), ״הביסה את
+אשדוד״ (ספורט 5). כלומר אנחנו קלענו 110.
 
-זה לא מדע מדויק, ולכן התוצאה כאן היא ראיה ולא פסק דין: מה שמוכרע כאן
-נכנס ל־blockPhrases ביד, אחרי קריאה.
+מה שצריך לראות כאן הוא התא עצמו: מה בדיוק כתוב בעמודת התוצאה, באיזה
+סדר, ואילו תווי כיווניות מוסתרים יש בו. מזה נגזר איזה מספר שייך למארחת
+ואיזה לאורחת, במקום להמשיך לנחש.
 """
-import time
-import urllib.parse
-import xml.etree.ElementTree as ET
+import re
+import sys
+import pathlib
 
-import requests
-
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
-
-SUSPECTS = [
-    "הפועל ירושלים בהודעה חריפה: השוטרים יצרו עימות אגרסיבי",
-    "הפועל ירושלים ביצעה מהפך היסטורי לא נבקיע כל משחק רביעייה",
-    "השינוי של הפועל ירושלים והמסר צריך להיות יציבים הגנתית",
-    "הפועל ירושלים משנה גישה השחקן שמגיע ממועדון בכיר בדנמרק",
-    "פרופיל לא שגרתי הפועל ירושלים בדרך לצרף את צ׳ילופיה",
-    # ביקורת: כותרת שאני בטוח שהיא כדורסל, כדי לראות שהמדידה מבחינה
-    "הפועל ירושלים תובעת את הפועל תל אביב על קאדין קרינגטון",
-]
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import update_data as u
 
 
 def log(*a):
     print("[probe]", *a, flush=True)
 
 
-def hits(query):
-    url = FEED.format(q=urllib.parse.quote(query))
-    try:
-        r = requests.get(url, headers=UA, timeout=30)
-        root = ET.fromstring(r.content)
-        items = root.findall(".//item")
-        return len(items), [i.findtext("title", "")[:70] for i in items[:2]]
-    except Exception as e:
-        return -1, [str(e)[:60]]
-
-
-for s in SUSPECTS:
-    a, ta = hits(s + " כדורגל")
-    time.sleep(1.5)
-    b, tb = hits(s + " כדורסל")
-    time.sleep(1.5)
-    verdict = "כדורגל!" if a > b else ("כדורסל " if b > a else "תיקו   ")
-    log(f"{verdict} רגל:{a:<3} סל:{b:<3} | {s[:60]}")
-    if ta: log(f"     רגל→ {ta[0]}")
-    if tb: log(f"     סל → {tb[0]}")
+from bs4 import BeautifulSoup
+link = u.find_team_link()
+log("עמוד הקבוצה:", link)
+soup = BeautifulSoup(u.fetch(link), "html.parser")
+for table in soup.find_all("table"):
+    rows = table.find_all("tr")
+    hdr_idx = hdr = None
+    for i, r in enumerate(rows[:3]):
+        cells = [c.get_text(strip=True) for c in r.find_all(["td", "th"])]
+        if any("תאריך" in c for c in cells) and any("מארחת" in c for c in cells):
+            hdr_idx, hdr = i, cells
+            break
+    if hdr_idx is None:
+        continue
+    log("כותרות הטבלה:", hdr)
+    for r in rows[hdr_idx + 1:]:
+        cells = [c.get_text(strip=True) for c in r.find_all("td")]
+        if len(cells) < 3:
+            continue
+        joined = " | ".join(cells)
+        if not re.search(r"\d{2,3}\s*[:\-]\s*\d{2,3}", joined):
+            continue
+        log("שורה עם תוצאה:")
+        for j, c in enumerate(cells):
+            name = hdr[j] if j < len(hdr) else f"עמודה {j}"
+            # repr כדי לראות תווי כיווניות מוסתרים, שהם בדיוק מה שיכול
+            # להפוך את הסדר על המסך בלי לשנות את הטקסט
+            log(f"   [{j}] {name}: {c!r}")
+        break
+    break
