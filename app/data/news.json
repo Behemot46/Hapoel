@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T21:52:16Z",
+  "updated": "2026-09-08T22:52:31Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ערוץ 7",
@@ -7,11 +7,11 @@
     "Sport5",
     "וואלה ספורט",
     "ספורט 5",
-    "ONE",
     "ynet",
-    "ספורט 1",
     "אשדוד נט",
+    "ספורט 1",
     "ישראל היום",
+    "ONE",
     "אייס",
     "סרוגים"
   ],
@@ -32,9 +32,9 @@
     },
     {
       "title": "לופטון להט, הפועל ירושלים הביסה את אשדוד בגביע הווינר",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFA2Y0xMVmFfNmx0VWt6c1VTSGpCQXFkb3d1NmpFVkN4Z0pEYkRxZ1gydXRaMHJvZEpYczR5aDhuckRWcWNPV3VZRDBUcERMM3hWeXdrblhiQQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBRYXRRMm5JdmkxWHNqRkxYNWEybGhzVjMtUlhsN21LbXFWQWoyTW1pMTdQLU1xMTlOWm80bWJtVlo5VURBVzlFYWVUdzFQNkg3UDN6Uw?oc=5",
       "source": "Sport5",
-      "sourceUrl": "https://m.sport5.co.il",
+      "sourceUrl": "https://vod.sport5.co.il",
       "published": "2026-09-08T17:59:30Z"
     },
     {
@@ -52,25 +52,11 @@
       "published": "2026-09-08T17:35:56Z"
     },
     {
-      "title": "רבע 2, 03:37: מכבי אשדוד - הפועל י-ם 42:43",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9UenlmTDZ0UEJHZmxuOUwxMUd3dUZ1QzJRZGh5MEV6V0JWS0oyckgzWXVTa3FFcy15b0hDeThsRmNHcVVoVmlFVVUzSDZhVHh6dWxj?oc=5",
-      "source": "ONE",
-      "sourceUrl": "https://www.one.co.il",
-      "published": "2026-09-08T16:10:07Z"
-    },
-    {
       "title": "הפועל ירושלים חגגה עם 77:110 על מכבי אשדוד",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9BdEs2VlJPOEo3ZTNCU2h4ZHRxaW81ZzFsVF9IMy13NERqNzJMVUJHLVd4el83Vnk5dkFDUHpJRTVIUmE2WTlCbXVDLWFla0IxUW1jb25mMC1OQQ?oc=5",
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-09-08T15:59:27Z"
-    },
-    {
-      "title": "גביע ווינר: מכבי אשדוד – הפועל ירושלים 37:38 (רבע 2)",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOVTMwTW5OUzJ5cjA5ME1sOW5lci1CLXV2RHhaSHFwRnZubng5dmtnVksta1R3akgteG8zaFJvQnNSY2wtRzZpeFZJNjhybDVkZnk4WDBHdlhDTm1sZUhsNG5zYmllRzFkZlRlY2pob3gweHA2eklzamtpU3IyUVBmSzE1Sldja2xzNkhJT0JqdDdpQQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-08T15:54:14Z"
     },
     {
       "title": "דקה אחר דקה: מכבי אשדוד - הפועל ירושלים, קרית אתא - נס ציונה | דיווח חי מגביע ווינר",
@@ -147,7 +133,7 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92NU5NMnVrNEJyVmtkY0tuYjNQbXB3RktJOWI4VFJwSE1QSTFhSlYtYThnUm9BX0JjVmYwLVM1NmpnaUZxeUEzZzF2QkROY1FFYnFjdnhFU3NkRUlrQVlyd3NuaVFZSmMwRWFoRVR1ajRkdw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-31T12:41:40Z"
+      "published": "2026-08-31T07:00:00Z"
     },
     {
       "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
@@ -222,6 +208,20 @@
     {
       "title": "רשמי: הפועל ירושלים השיקה סמל חדש",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-23T07:00:00Z"
+    },
+    {
+      "title": "אחרי הסערה: הפועל ירושלים מציגה את המיתוג והסמל החדש",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5rdjdXVW5DSHBFSG0tVGIxTUZ5REQ5cV93U0QtdGJvUGtHR092NDVjcXNral83M2E2Z1hSMmFHR250TG1DV2FjeHVXdkN5a1VrcEMtWG0wSXZuSUI1MVFyMkJteG9lQWNxeW4xdGdqbERCRjhab3c?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-08-23T07:00:00Z"
+    },
+    {
+      "title": "\"הפועל ירושלים אחרת\": התכנית של ליאור זדה",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE12RGtkOGFvaDN1WGJIRWl0UnltQzRabDVzdlVCbjc2SERRbWt4RGgxaWwzd1lUWEs5cDFEYm9VVmVEdFhCYWRVUUdBWjQyWlF3Ym1SYm1ma3RTZ0RIbUxVQWxRN0FrTFdLLUR6N193azA?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-23T07:00:00Z"
