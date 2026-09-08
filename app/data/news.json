@@ -1,19 +1,19 @@
 {
-  "updated": "2026-09-08T18:49:23Z",
+  "updated": "2026-09-08T19:50:17Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "הארץ",
     "Sport5",
     "וואלה ספורט",
-    "ספורט 5",
     "ONE",
-    "ynet",
     "ספורט 1",
+    "ספורט 5",
     "אשדוד נט",
     "ישראל היום",
     "אייס",
     "סרוגים",
-    "inn.co.il"
+    "ערוץ 7",
+    "ynet"
   ],
   "items": [
     {
@@ -38,25 +38,18 @@
       "published": "2026-09-08T17:46:00Z"
     },
     {
-      "title": "חשש בהפועל י-ם: זוסמן נפצע בקרסול",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBoZ1l0cGE2SU5GM1RSTks0enBwR202SnVYZkZNZ2J0SjNSeDl6azlkYktxRGFiRUhrMWtMejV5YlVubGxlN1BBVmtURHFjVmtNTmdJaUNveHE3MHBOZFhSM2hvU3VkQ2J3TWR2b1ZxWEdmSzlz?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-08T17:35:56Z"
-    },
-    {
-      "title": "רבע 4, 03:50: מכבי אשדוד - הפועל י-ם 96:68",
+      "title": "הפועל ירושלים חגגה עם 77:110 על מכבי אשדוד",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9UenlmTDZ0UEJHZmxuOUwxMUd3dUZ1QzJRZGh5MEV6V0JWS0oyckgzWXVTa3FFcy15b0hDeThsRmNHcVVoVmlFVVUzSDZhVHh6dWxj?oc=5",
       "source": "ONE",
       "sourceUrl": "https://www.one.co.il",
       "published": "2026-09-08T16:10:07Z"
     },
     {
-      "title": "רבע 4, 08:31: מכבי אשדוד - הפועל י-ם 87:62",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9BdEs2VlJPOEo3ZTNCU2h4ZHRxaW81ZzFsVF9IMy13NERqNzJMVUJHLVd4el83Vnk5dkFDUHpJRTVIUmE2WTlCbXVDLWFla0IxUW1jb25mMC1OQQ?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-09-08T15:59:27Z"
+      "title": "רבע 2, 03:37: מכבי אשדוד - הפועל י-ם 42:43",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9UenlmTDZ0UEJHZmxuOUwxMUd3dUZ1QzJRZGh5MEV6V0JWS0oyckgzWXVTa3FFcy15b0hDeThsRmNHcVVoVmlFVVUzSDZhVHh6dWxj?oc=5",
+      "source": "ONE",
+      "sourceUrl": "https://www.one.co.il",
+      "published": "2026-09-08T16:10:07Z"
     },
     {
       "title": "גביע ווינר: מכבי אשדוד – הפועל ירושלים 37:38 (רבע 2)",
@@ -215,7 +208,7 @@
     {
       "title": "הפועל ירושלים יוצאת לדרך חדשה",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "inn.co.il",
+      "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
@@ -224,6 +217,13 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ucUVueFpjZGJXc1JYV18yVHU3SFNwb1RKTm1jZlZXZGlOaWZ3SUFEcWVjczV1dzg0NGZxSHdfQ0tQaHJITjZBYW5hOFVqa19LRHJqOFVTVURtaDJoRWxJeGt4MUpzU3Q2ZGJWZ0hoQndadw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-23T07:00:00Z"
+    },
+    {
+      "title": "אחרי הסערה: הפועל ירושלים מציגה את המיתוג והסמל החדש",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5rdjdXVW5DSHBFSG0tVGIxTUZ5REQ5cV93U0QtdGJvUGtHR092NDVjcXNral83M2E2Z1hSMmFHR250TG1DV2FjeHVXdkN5a1VrcEMtWG0wSXZuSUI1MVFyMkJteG9lQWNxeW4xdGdqbERCRjhab3c?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-08-23T07:00:00Z"
     }
   ]
