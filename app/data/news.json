@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T00:13:20Z",
+  "updated": "2026-09-08T01:14:14Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "אשדוד נט",
@@ -12,6 +12,7 @@
     "אייס",
     "סרוגים",
     "ערוץ 7",
+    "C14",
     "מועדון הכדורגל מכבי תל אביב",
     "כל העיר"
   ],
@@ -70,7 +71,7 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Oel9lWUl5TUpxVzd2NUtpME1SOE5PNFBjNG9vb2JPei04S2ZCU2pQLVNKNWh1bGt3UG0wZG9uS3NSX1RxZnlfR0xKczBNNUhuODc3RDVudWFDNF9yZXFfZXhEVHdlWmhaTkJ1d0tkQjJNUQ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-04T09:40:06Z"
+      "published": "2026-09-04T09:39:00Z"
     },
     {
       "title": "צפו: הפועל ירושלים ניצחה 80:87 את מכבי תל אביב בבלגרד",
@@ -185,6 +186,13 @@
       "published": "2026-08-23T07:00:00Z"
     },
     {
+      "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-08-23T07:00:00Z"
+    },
+    {
       "title": "מילר לקראת הפועל י-ם: \"נרגשים לפתוח את הליגה\"",
       "url": "https://news.google.com/rss/articles/CBMi0wJBVV95cUxPdmJ5TnJhM1dzd2txay1KdDlZWU8zTUdtUFNkQy1rTmFmR0hnWkxJUmRRNDZKUHp2aGNyN3NycWh1MEF2SE1xNEM5TzVzemhmSEdLbWdJR3hCX1VfUlZ0cTBzS1R5YVFMMWlzNlB5VU9KV1dqdnZoNlhqOW05UU05RGtmbHZhLUhTZlBqd1p2U1RQTVJIWV9EUzVMaks2N0JyUjdpYXJ0bWs5bWlLSWR1NHlJREQ5Q0Y3eUVHVVpzV1lOdFBRbEtrTWdNbmg2NF9RZXp4QVJib0FBcDVLZXhpTDBqZGlaOHlzeEtqcjVFUUJZek5fZ1Y5M3U5S1RlMTZ6UThZVjZGdDZpR24tNExFd1FRamJIclZaWFBiREFvN21kbTFwNVJPckhlT1k3bTFBSHh2OVFMV2g2MWFPZ0NLOFYxVHViak9VNDExaWlaMFVrNGc?oc=5",
       "source": "מועדון הכדורגל מכבי תל אביב",
@@ -217,13 +225,6 @@
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1welhpM2UwclU5U0NmTG9jajYteUZDcWNLSGxIYU14TmlqQkZwQTlfVGs4U2dfZzZZVzVmcW5RRTlJbmwzUWNjUDlRRXczYkIwTlRMb01zZ2lQT0EzSHJ3ZGVVLXBDUENLcXlKNGc0Z1JDeUQzRS1iTXFB?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-17T07:00:00Z"
-    },
-    {
-      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-17T07:00:00Z"
     }
   ]
