@@ -1,21 +1,49 @@
 {
-  "updated": "2026-09-08T17:45:40Z",
+  "updated": "2026-09-08T18:49:23Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ONE",
+    "הארץ",
+    "Sport5",
     "וואלה ספורט",
     "ספורט 5",
-    "אשדוד נט",
+    "ONE",
+    "ynet",
     "ספורט 1",
+    "אשדוד נט",
     "ישראל היום",
     "אייס",
-    "srugim.co.il",
-    "inn.co.il",
-    "ynet",
-    "C14",
-    "מועדון הכדורגל מכבי תל אביב"
+    "סרוגים",
+    "inn.co.il"
   ],
   "items": [
+    {
+      "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcFFEZTNLLXV5aFVlRWxhbmU0MmRPLW9HRnQ1MFg2Q01RSE5LSEIxTmlGdnJXOU0wdGRNYzdDRk0wcWVvT3FjbDV3QlZRUHZWMDhZQjZjd05BdmxZd05vS01heHpmbTQ0MTN2S080YVI2dmU2SWlGYWI4MEJiRExaMWhxQURxYzNHNUlua2N4dVlEc2dRUm9vWnNrUG9ra1hKejVr?oc=5",
+      "source": "הארץ",
+      "sourceUrl": "https://www.haaretz.co.il",
+      "published": "2026-09-08T18:13:00Z"
+    },
+    {
+      "title": "לופטון להט, הפועל ירושלים הביסה את אשדוד בגביע הווינר",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFA2Y0xMVmFfNmx0VWt6c1VTSGpCQXFkb3d1NmpFVkN4Z0pEYkRxZ1gydXRaMHJvZEpYczR5aDhuckRWcWNPV3VZRDBUcERMM3hWeXdrblhiQQ?oc=5",
+      "source": "Sport5",
+      "sourceUrl": "https://m.sport5.co.il",
+      "published": "2026-09-08T17:59:30Z"
+    },
+    {
+      "title": "הצהרת פתיחה: הפועל ירושלים פירקה 77:110 את מכבי אשדוד",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5uZi1KUUc5cEhKSk1uaFhBS0d1eWpQVm5Ga05JRVdlN2E4ZVZyLUcxdVFXUnpjdjNpSWROODY4T0NINEROVlVVTGctc3d0eFlm?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-08T17:46:00Z"
+    },
+    {
+      "title": "חשש בהפועל י-ם: זוסמן נפצע בקרסול",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBoZ1l0cGE2SU5GM1RSTks0enBwR202SnVYZkZNZ2J0SjNSeDl6azlkYktxRGFiRUhrMWtMejV5YlVubGxlN1BBVmtURHFjVmtNTmdJaUNveHE3MHBOZFhSM2hvU3VkQ2J3TWR2b1ZxWEdmSzlz?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-08T17:35:56Z"
+    },
     {
       "title": "רבע 4, 03:50: מכבי אשדוד - הפועל י-ם 96:68",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9UenlmTDZ0UEJHZmxuOUwxMUd3dUZ1QzJRZGh5MEV6V0JWS0oyckgzWXVTa3FFcy15b0hDeThsRmNHcVVoVmlFVVUzSDZhVHh6dWxj?oc=5",
@@ -24,11 +52,18 @@
       "published": "2026-09-08T16:10:07Z"
     },
     {
-      "title": "גביע ווינר: מכבי אשדוד - הפועל ירושלים 0:0 (רבע 1)",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5uZi1KUUc5cEhKSk1uaFhBS0d1eWpQVm5Ga05JRVdlN2E4ZVZyLUcxdVFXUnpjdjNpSWROODY4T0NINEROVlVVTGctc3d0eFlm?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-08T16:00:00Z"
+      "title": "רבע 4, 08:31: מכבי אשדוד - הפועל י-ם 87:62",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9BdEs2VlJPOEo3ZTNCU2h4ZHRxaW81ZzFsVF9IMy13NERqNzJMVUJHLVd4el83Vnk5dkFDUHpJRTVIUmE2WTlCbXVDLWFla0IxUW1jb25mMC1OQQ?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-09-08T15:59:27Z"
+    },
+    {
+      "title": "גביע ווינר: מכבי אשדוד – הפועל ירושלים 37:38 (רבע 2)",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOVTMwTW5OUzJ5cjA5ME1sOW5lci1CLXV2RHhaSHFwRnZubng5dmtnVksta1R3akgteG8zaFJvQnNSY2wtRzZpeFZJNjhybDVkZnk4WDBHdlhDTm1sZUhsNG5zYmllRzFkZlRlY2pob3gweHA2eklzamtpU3IyUVBmSzE1Sldja2xzNkhJT0JqdDdpQQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-08T15:54:14Z"
     },
     {
       "title": "דקה אחר דקה: מכבי אשדוד - הפועל ירושלים, קרית אתא - נס ציונה | דיווח חי מגביע ווינר",
@@ -138,14 +173,14 @@
     {
       "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
       "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
-      "source": "srugim.co.il",
+      "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T07:00:00Z"
     },
     {
       "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
-      "source": "srugim.co.il",
+      "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-26T07:00:00Z"
     },
@@ -190,41 +225,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "אחרי הסערה: הפועל ירושלים מציגה את המיתוג והסמל החדש",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5rdjdXVW5DSHBFSG0tVGIxTUZ5REQ5cV93U0QtdGJvUGtHR092NDVjcXNral83M2E2Z1hSMmFHR250TG1DV2FjeHVXdkN5a1VrcEMtWG0wSXZuSUI1MVFyMkJteG9lQWNxeW4xdGdqbERCRjhab3c?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "\"הפועל ירושלים אחרת\": התכנית של ליאור זדה",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE12RGtkOGFvaDN1WGJIRWl0UnltQzRabDVzdlVCbjc2SERRbWt4RGgxaWwzd1lUWEs5cDFEYm9VVmVEdFhCYWRVUUdBWjQyWlF3Ym1SYm1ma3RTZ0RIbUxVQWxRN0FrTFdLLUR6N193azA?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים הציגה סמל חדש: \"צועדים קדימה בכל היבט\"",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxObldQZmlWNlQ4d2ZFcUp3QUd2bkJCY1VfUFNSMHZsOEhBT3lfLUtaN3p6dGtxZVhCdHJWOXVWY2tlUjJibVhnNGNsV0NOY25KR0VUMXE4UVFydzFkS21FNHhxSHFiSzNRck4zdnlfcnBrZzRKTzktWVhxSklNMklCaW1oZUwxR2JyTlRTNmxRemplUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "מילר לקראת הפועל י-ם: \"נרגשים לפתוח את הליגה\"",
-      "url": "https://news.google.com/rss/articles/CBMi0wJBVV95cUxPdmJ5TnJhM1dzd2txay1KdDlZWU8zTUdtUFNkQy1rTmFmR0hnWkxJUmRRNDZKUHp2aGNyN3NycWh1MEF2SE1xNEM5TzVzemhmSEdLbWdJR3hCX1VfUlZ0cTBzS1R5YVFMMWlzNlB5VU9KV1dqdnZoNlhqOW05UU05RGtmbHZhLUhTZlBqd1p2U1RQTVJIWV9EUzVMaks2N0JyUjdpYXJ0bWs5bWlLSWR1NHlJREQ5Q0Y3eUVHVVpzV1lOdFBRbEtrTWdNbmg2NF9RZXp4QVJib0FBcDVLZXhpTDBqZGlaOHlzeEtqcjVFUUJZek5fZ1Y5M3U5S1RlMTZ6UThZVjZGdDZpR24tNExFd1FRamJIclZaWFBiREFvN21kbTFwNVJPckhlT1k3bTFBSHh2OVFMV2g2MWFPZ0NLOFYxVHViak9VNDExaWlaMFVrNGc?oc=5",
-      "source": "מועדון הכדורגל מכבי תל אביב",
-      "sourceUrl": "https://www.maccabi-tlv.co.il",
-      "published": "2026-08-22T07:00:00Z"
     }
   ]
 }

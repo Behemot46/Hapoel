@@ -32,9 +32,9 @@
       "home": "מכבי אשדוד",
       "away": "הפועל ירושלים",
       "venue": null,
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
+      "status": "finished",
+      "homeScore": 110,
+      "awayScore": 77
     },
     {
       "id": "20260912-club-בורג",
