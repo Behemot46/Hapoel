@@ -1,18 +1,17 @@
 {
-  "updated": "2026-09-08T01:14:14Z",
+  "updated": "2026-09-08T08:12:17Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "אשדוד נט",
     "ספורט 1",
     "ישראל היום",
+    "וואלה ספורט",
     "ספורט 5",
     "ONE",
-    "וואלה ספורט",
-    "ynet",
     "אייס",
     "סרוגים",
     "ערוץ 7",
-    "C14",
+    "ynet",
     "מועדון הכדורגל מכבי תל אביב",
     "כל העיר"
   ],
@@ -46,8 +45,15 @@
       "published": "2026-09-05T18:48:46Z"
     },
     {
+      "title": "הפועל ירושלים הודיעה: עברנו שלב בדרך לרישיון קבוע ליורוליג",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9JdDJHOEFESUdKS0lvSnJsNG5qWWNid1hMdUk5QWVEcGU2MVNiQ2FhdHVNcmxDWkROUmRIUmh3bWRQMVQwamJ2dTdyZkFsbXVM?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-05T18:43:00Z"
+    },
+    {
       "title": "הפועל י-ם: \"עברנו שלב בתהליך לרישיון\"",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE53bW42aGZTYlJjc2tJcm5uT1BCNXRrWEdJYjYwWjByY3ZXS2RSMjJrUzF4MlllU0t5cVBLQ0ZXdTRRYXdoYXpFb09DV3hXclRfN0hlNkRHX2ZDQlFkZHFvUTAxZ0NqR3gtQ1VYTU9kSXlLdw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1QQ2lCTEJsNmxkZmdPUlNHWm9BWDZ1ZklLQkM5MHgwZ21pR2loejNvZ1ZNWl9Kdkl2SWROZzVZamw0dlo4RXJyZHZhVjJOeTgxZWlZbUp0LU9KVkgxNHYxSGZGQkM2VXpPSkgxSFpmNnVOZw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-05T18:34:13Z"
@@ -86,13 +92,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-31T12:41:40Z"
-    },
-    {
-      "title": "הפועל ירושלים דורשת מהפועל ת\"א: 2.3 מיליון שקל על קאדין קרינגטון",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1Rd21rTkNVOEdpeTNBZVF5UDZ2NGhJNTB0VG1rRzR1WW1jNldxODZTNUNkS1VyRVJUMzdRT0JZRXlkbXE3cGJ4VjVhZ0JzWUZEdnBnQnRCbVVQdHZjdnZDUU1IRldVNVNYWnViSG14WEYzdWc?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-30T07:00:00Z"
     },
     {
       "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
@@ -151,17 +150,17 @@
       "published": "2026-08-24T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים יוצאת לדרך חדשה",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "ערוץ 7",
-      "sourceUrl": "https://www.inn.co.il",
-      "published": "2026-08-23T20:02:51Z"
-    },
-    {
       "title": "נקטו בגישה אחרת: המהפכה הגדולה של הפועל ירושלים",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tOHFNY2lYQlVwdW1Rc2VnbXZIWFBRZHV1TV9FakluWnJ4Q1I0NnZ6TU45Rm1ITlBKZE1uZmp2ajZRWklBaWw5Q3B3NmZCZ1RqX3d2T01WOUpHaERtczlKR0NRT3lUMHFaSHVHNC1vRThHTVctYjQ2RUpkc9IBgwFBVV95cUxNN2N5bXBYREVVY3ZnYmNXc04tNmUyWk9DRk1HS0NvMV80bDBTNU5WX3RqNWlHRXNGbW9Sa0ZvQlhDUGRDY3BZcXpIS2pWQW16aW1OQUhPaktRWUY4ZW10Nm10YXBtZXl6Q19lbDN3dFBzMk93UHBxU3k0cUZLMkoyaWZIQQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-23T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים יוצאת לדרך חדשה",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
+      "source": "ערוץ 7",
+      "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
     {
@@ -183,13 +182,6 @@
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE12RGtkOGFvaDN1WGJIRWl0UnltQzRabDVzdlVCbjc2SERRbWt4RGgxaWwzd1lUWEs5cDFEYm9VVmVEdFhCYWRVUUdBWjQyWlF3Ym1SYm1ma3RTZ0RIbUxVQWxRN0FrTFdLLUR6N193azA?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-23T07:00:00Z"
-    },
-    {
-      "title": "\"כמו תמר מג'הול\": הסמל החדש של הפועל ירושלים נחשף | צפו",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9meDhreTZXNjZBZVpvRVBQTlNZWGxvYlZBd2d4R3RwR3hWTG5FUEcwMEtvSkYtdWlEc2toVG9PdDVSOURaUjZHbW5NZ3dMUQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
     {
@@ -225,6 +217,13 @@
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1welhpM2UwclU5U0NmTG9jajYteUZDcWNLSGxIYU14TmlqQkZwQTlfVGs4U2dfZzZZVzVmcW5RRTlJbmwzUWNjUDlRRXczYkIwTlRMb01zZ2lQT0EzSHJ3ZGVVLXBDUENLcXlKNGc0Z1JDeUQzRS1iTXFB?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-17T07:00:00Z"
+    },
+    {
+      "title": "\"בהפועל ירושלים פגעו בי, ניסו להפוך אותי לאדם רע\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE94VHJOeHBPUjhmb3J6SUtsZWJaTWd6aDNjZ2thTktzRFFMbVhKMnczOC10QkUzdjhoOW1wOGQ4d21BdUppdXd4SGxRUldfV1dBTHZibE55NDNZU1dxYU0zN1pMcG01cm1HSGNGWm04dU9yWkxQUEhPSi1DONIBgwFBVV95cUxPeVp5SEl1Rk1UbEh5Y0plWGM4TXZhQ3RCRTZRMFVxTFlEazVyZVprWGM1eDRFcXJwTjVLV0FPd3R4UjU3MXhoMW05RzA1RDljLWZrcVNEZTdzcms2TEZpcDhjRDhzOVVPa1hqbUVyVklyOHlFTlVYUUw2U2h6Z0tZTVZGSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-17T07:00:00Z"
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T01:14:16Z",
+  "updated": "2026-09-08T08:12:18Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -7,7 +7,7 @@
       "title": "כיפה אדומה",
       "about": "team",
       "url": "https://podcasts.apple.com/us/podcast/%D7%9B%D7%99%D7%A4%D7%94-%D7%90%D7%93%D7%95%D7%9E%D7%94/id1573775015?uo=4",
-      "latest": "2026-08-16T03:00:00Z"
+      "latest": "2026-09-08T03:00:00Z"
     },
     {
       "id": "1623083958",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1573775015",
+      "show": "כיפה אדומה",
+      "about": "team",
+      "title": "פרק 98: סתיו מסוכן",
+      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/98-e3og5rj",
+      "published": "2026-09-08T03:00:00Z",
+      "duration": 3652
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
