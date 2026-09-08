@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T09:13:13Z",
+  "updated": "2026-09-08T10:13:26Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "אשדוד נט",
@@ -10,7 +10,7 @@
     "ONE",
     "אייס",
     "סרוגים",
-    "ערוץ 7",
+    "inn.co.il",
     "ynet",
     "מועדון הכדורגל מכבי תל אביב",
     "כל העיר"
@@ -159,7 +159,7 @@
     {
       "title": "הפועל ירושלים יוצאת לדרך חדשה",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9nczVETXd1V1ZwSUUyVnhmWFotWkp3aTZEOXIwX0MwaW1xd25vY05abm80T3plZTRlSzZLVVJYS093cHpSNElrNg?oc=5",
-      "source": "ערוץ 7",
+      "source": "inn.co.il",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-08-23T07:00:00Z"
     },
