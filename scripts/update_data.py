@@ -273,8 +273,22 @@ def parse_team_games(soup):
                 continue
             if not (is_us(home_raw) or is_us(away_raw)):
                 continue
-            # NOTE: score order vs. host/guest still unverified, no finished
-            # games on the page yet; recheck when first results appear
+            # **סדר התוצאה: המספר הראשון שייך לאורחת.** זה נראה הפוך
+            # מהאינטואיציה, וזאת בדיוק הסיבה שהוא חיכה למשחק אמיתי.
+            #
+            # מה שנמדד ב־8.9.2026, המשחק הרשמי הראשון של העונה: בטבלה
+            # של אתר הליגה מארחת=מכבי אשדוד, אורחת=הפועל י-ם, ותא
+            # התוצאה הוא ״110-77״. שלוש כותרות עצמאיות אומרות שאנחנו
+            # ניצחנו: ״הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על
+            # מכבי אשדוד״ (הארץ), ״פירקה 77:110 את מכבי אשדוד״ (וואלה),
+            # ״הביסה את אשדוד״ (ספורט 5). כלומר 110 הוא של האורחת.
+            #
+            # וזה גם מתיישב עם איך שהטבלה בנויה: העמודות הן מארחת ואז
+            # אורחת, ובעמוד מימין לשמאל עמודת האורחת יושבת משמאל
+            # למארחת. המספרים בתא נכתבים משמאל לימין, ולכן המספר השמאלי
+            # שבתא הוא זה שצמוד לעמודת האורחת.
+            #
+            # עד לתיקון הזה הלוח הראה הפסד 110-77 במקום ניצחון.
             sm = SCORE_RE.search(cell(j_score))
             opp = away_raw if is_us(home_raw) else home_raw
 
@@ -286,8 +300,9 @@ def parse_team_games(soup):
                 "away": TEAM if is_us(away_raw) else away_raw,
                 "venue": None,
                 "status": "finished" if sm else "scheduled",
-                "homeScore": int(sm.group(1)) if sm else None,
-                "awayScore": int(sm.group(2)) if sm else None,
+                # ראו ההסבר למעלה: הראשון הוא של האורחת
+                "homeScore": int(sm.group(2)) if sm else None,
+                "awayScore": int(sm.group(1)) if sm else None,
             }
             if provisional and not tm:
                 game["note"] = "המועד לא סופי, והשעה טרם נקבעה"
