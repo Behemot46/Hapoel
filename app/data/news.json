@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T14:48:03Z",
+  "updated": "2026-09-09T15:48:18Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ynet",
@@ -10,10 +10,9 @@
     "Sport5",
     "ישראל ספורט",
     "ספורט 5",
-    "אשדוד נט",
     "ספורט 1",
     "אייס",
-    "סרוגים"
+    "srugim.co.il"
   ],
   "items": [
     {
@@ -94,25 +93,11 @@
       "published": "2026-09-08T14:36:00Z"
     },
     {
-      "title": "שלישי ב- 19:00: מכבי אשדוד פוגשת את הפועל ירושלים בגביע ווינר",
-      "url": "https://news.google.com/rss/articles/CBMi6gNBVV95cUxQb09wMFUzYUVUREVhV0dsZ2dkRVRabXo0YzVQUjZHb056RGxScWM5Vk5kaU9hYTRnN014Si1USmZBRjdEa29GM1VLTG9ZWDNiQUxmdEZDbTFOQkNpOVMxNnZSTTd2ek1JamtUb0FHWkY4NTc4VmVfbFU0Z0x0bGtvSVd1UmNRNng4UXFvXzNpYTE2VFhSR0I5SnpYVU1sZzNReGJubVVCcGZxekFHbUNHMERZY0NKSU5xU3lXdGRoM3cxcFFpUWFSeEQ3Mmx5OE1tX196VU5WaDZYaG5mVnV4YTFNWENCR1hiOWVYdGs4RkhzTjVTdUtFM0NIOUF1ejdySUp0YVltb28xbXNqdHVmM3RJc09UNmtvN2lSa2UzaWJEUzBKaXFvWlJKRzkzd2VSczRNMVFVcHRyRU9TNVZkdGRxa2Z6blpHRHNpYlJtcWNlMEtJckRDSFJvYjhHUzNLazhiUGhDTzNIRUtPWE8wOGJGbTlvYjhoYS0ycXhGVjJQYTgzaUpDR2FTWXhBM2ZKSlNWcEhOWjhoalRaLXRLcjY1eUNlM2gtSzNsb1VFV2pmUHVJcDhYWUwxaUhMZWJsWnhVc3dIMW1veE16R1VhWnVKdkNSajJFcEhKcnNySW5NaThzbXNxS0NB?oc=5",
-      "source": "אשדוד נט",
-      "sourceUrl": "https://ashdodnet.com",
-      "published": "2026-09-07T14:10:32Z"
-    },
-    {
       "title": "קבוצה גדולה תקפוץ על המציאה? \"הוא יהיה עוד אקזיט של הפועל ירושלים\"",
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBQMDdOb2hCQUdwaHRaeGY4ajY3WkRlajY1YXVDSFZ4Z0xlc3VOWm41UmEwSWpYX2pMeTNVVEdGYWlHT1pzbHJQTDBfUUZVQ19fdkc0SUlJX3NDdV9mZ0lNTFpFZzNZMzB1eW5sWlNyLVQ0d0IyZS1sR3hB?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-09-06T17:43:38Z"
-    },
-    {
-      "title": "הפועל ירושלים צירפה את אמארי ביילי - שיעבור לקבוצה אחרת | היום",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9VaTY4VkhzU00waUVwaHFhclRrZklFSWFwZUVUWjV5eVViVl9WVjVscVVXVnk0bV9SVzZOd09pYzlmMklPMENDV3VYQVpxS2RXMF84dk9fQnlnT0JYSmFad1V3Yi1OTUVpMk53VnVsdTZoU2FiMGFpUU1JYw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-06T12:09:59Z"
     },
     {
       "title": "הפועל ירושלים צירפה את אמארי ביילי - שיעבור לקבוצה אחרת",
@@ -162,6 +147,13 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-04T09:40:06Z"
+    },
+    {
+      "title": "צפו: הפועל ירושלים ניצחה 80:87 את מכבי תל אביב בבלגרד",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9NUWZGdHpXQ2cyVWFTMU5EOTQwdGtnOVozS05nelFUeHdUcy04bG9JUnZBRW9ObWxIUUpZTHBObWFOZUE2YnBEelB0RHNCRmdU?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-01T20:58:47Z"
     },
     {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
@@ -215,7 +207,7 @@
     {
       "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
       "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
-      "source": "סרוגים",
+      "source": "srugim.co.il",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T07:00:00Z"
     },
@@ -224,6 +216,13 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NnhMcXZCMkNrajBqVURsZnl5cUN2bUxLSlJWSzV4d0k2YWN6Ym9qWG8zVmVmUlNDbjE4Q3V3WDQtZU52M0gyZWhtaFpYbWIydVZJbFRNYzBzZTUzSUxyem1XQjZxYXk0eC1nSmlaSXcydW5mek9KTVB0ONIBgwFBVV95cUxNQThyYnZDSWNfejhkVkRUOXFfLUkydi13b2h6RUdTOGhIMThhMkZQM0hiY0xPOVU1cXB0TDdNRjczQ2pfVmpTSW5Sem0wMnBnOXU3cGw0dTBsbVJsNk8xck9Sei1DYU1XMloydFIyRnZ1aWxLQWxITGJtV2VmNGpmbHZ5bw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-25T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים חשפה: המדים שלה לעונת 2026/27",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1VXJrYjE2Rkdpa0xkZXZiNUw0eUNmRWpWZ1Z3cWp5RDA2NkFYNDdSRHRKLXVKb2pGTW9MeDNTb1RRX3hVQnNFeHAyV0hpOTBjZDY0ajdFb19HMGhBSmZkVmUxR3FPbjlSdE9rSjZIUkM0UQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-25T07:00:00Z"
     }
   ]
