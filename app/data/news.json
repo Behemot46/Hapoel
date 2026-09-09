@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T12:18:07Z",
+  "updated": "2026-09-09T13:19:02Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ynet",
@@ -8,7 +8,7 @@
     "ערוץ 7",
     "הארץ",
     "ישראל היום",
-    "Sport5",
+    "vod.sport5.co.il",
     "ישראל ספורט",
     "ספורט 5",
     "אשדוד נט",
@@ -62,7 +62,7 @@
     {
       "title": "לופטון להט, הפועל ירושלים הביסה את אשדוד בגביע הווינר",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBRYXRRMm5JdmkxWHNqRkxYNWEybGhzVjMtUlhsN21LbXFWQWoyTW1pMTdQLU1xMTlOWm80bWJtVlo5VURBVzlFYWVUdzFQNkg3UDN6Uw?oc=5",
-      "source": "Sport5",
+      "source": "vod.sport5.co.il",
       "sourceUrl": "https://vod.sport5.co.il",
       "published": "2026-09-08T17:59:30Z"
     },
@@ -193,6 +193,13 @@
       "published": "2026-08-30T07:00:00Z"
     },
     {
+      "title": "במיליונים: תביעת הפועל ירושלים נגד הפועל ת\"א",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Xc3g5MTJQWHk1bzRlWmw0RW1Vc2pCS19CdzV4Sm9qeVhIa0pZOFNLYjdpVE9vak9UTU4ycEQxV1diMHRZUG1mZzdsZkFVdTZSc2lNcmlrWU14TUtBLXBmNW14cXEwZHJZOEZwMnFXcjZBUQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-30T07:00:00Z"
+    },
+    {
       "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ295bjdtSjFvekl2d2ZCSG01WTlKRTdiOHk3c1N3ajF0NjREWFg4dXhFSm1QclowWThVZTBpNXlHeWpGUlJFM0pRb2x0eUxIVkM1WHlrMloyZXktcVptRTMzZ1YyZTEyQnNqeVVtUlBlMS1WMk9lb25qZnBrU0I0eF9CS0NBc1JNakExXzRVc3FRUQ?oc=5",
       "source": "ספורט 1",
@@ -219,13 +226,6 @@
       "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T07:00:00Z"
-    },
-    {
-      "title": "יותר מג'ארד הארפר: זה השחקן הכי חשוב של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NnhMcXZCMkNrajBqVURsZnl5cUN2bUxLSlJWSzV4d0k2YWN6Ym9qWG8zVmVmUlNDbjE4Q3V3WDQtZU52M0gyZWhtaFpYbWIydVZJbFRNYzBzZTUzSUxyem1XQjZxYXk0eC1nSmlaSXcydW5mek9KTVB0ONIBgwFBVV95cUxNQThyYnZDSWNfejhkVkRUOXFfLUkydi13b2h6RUdTOGhIMThhMkZQM0hiY0xPOVU1cXB0TDdNRjczQ2pfVmpTSW5Sem0wMnBnOXU3cGw0dTBsbVJsNk8xck9Sei1DYU1XMloydFIyRnZ1aWxLQWxITGJtV2VmNGpmbHZ5bw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-25T07:00:00Z"
     }
   ]
 }
