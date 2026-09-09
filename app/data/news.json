@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T16:49:14Z",
+  "updated": "2026-09-09T17:49:29Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
@@ -7,14 +7,14 @@
     "וואלה ספורט",
     "ONE",
     "ערוץ 7",
-    "haaretz.co.il",
+    "הארץ",
     "Sport5",
     "ישראל ספורט",
     "ספורט 5",
     "אשדוד נט",
     "ספורט 1",
     "אייס",
-    "srugim.co.il"
+    "סרוגים"
   ],
   "items": [
     {
@@ -55,7 +55,7 @@
     {
       "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcFFEZTNLLXV5aFVlRWxhbmU0MmRPLW9HRnQ1MFg2Q01RSE5LSEIxTmlGdnJXOU0wdGRNYzdDRk0wcWVvT3FjbDV3QlZRUHZWMDhZQjZjd05BdmxZd05vS01heHpmbTQ0MTN2S080YVI2dmU2SWlGYWI4MEJiRExaMWhxQURxYzNHNUlua2N4dVlEc2dRUm9vWnNrUG9ra1hKejVr?oc=5",
-      "source": "haaretz.co.il",
+      "source": "הארץ",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-09-08T18:13:00Z"
     },
@@ -144,13 +144,6 @@
       "published": "2026-09-05T18:48:46Z"
     },
     {
-      "title": "הפועל ירושלים הודיעה: היורוליג העבירה אותנו שלב",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFA0YjRpUlppc2NNS0hVYjBtUHdVZGllajRZYUVNNWg1LUVKcGdWQlJjN2ttUmZMVHN6U3JLTS1SbDJJT2tRNHFvXzZ2SmpiZ2JXZHFXc2xrcXAxLVRObk9SS3ZB0gFqQVVfeXFMTkJqdGtzR201NHhLS0ZQQ2R1UUNVN1V0NnRyblV5OVlscXAwbllkT3BmLVlBRzA4Qm9rNWlQTmJRekNwMWowZ25sWnh5Mk1xZnlVZW9lWm41ZDV2XzB6ZWgyQll1LVRhVHZHZw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-05T18:34:54Z"
-    },
-    {
       "title": "הפועל י-ם: \"עברנו שלב בתהליך לרישיון\"",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1QQ2lCTEJsNmxkZmdPUlNHWm9BWDZ1ZklLQkM5MHgwZ21pR2loejNvZ1ZNWl9Kdkl2SWROZzVZamw0dlo4RXJyZHZhVjJOeTgxZWlZbUp0LU9KVkgxNHYxSGZGQkM2VXpPSkgxSFpmNnVOZw?oc=5",
       "source": "ספורט 5",
@@ -170,6 +163,13 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-04T09:40:06Z"
+    },
+    {
+      "title": "צפו: הפועל ירושלים ניצחה 80:87 את מכבי תל אביב בבלגרד",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9NUWZGdHpXQ2cyVWFTMU5EOTQwdGtnOVozS05nelFUeHdUcy04bG9JUnZBRW9ObWxIUUpZTHBObWFOZUE2YnBEelB0RHNCRmdU?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-01T20:58:47Z"
     },
     {
       "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
@@ -223,7 +223,7 @@
     {
       "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
       "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
-      "source": "srugim.co.il",
+      "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T07:00:00Z"
     }
