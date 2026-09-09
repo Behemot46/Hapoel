@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T13:19:04Z",
+  "updated": "2026-09-09T13:47:10Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-09-02T04:00:00Z"
+      "latest": "2026-09-09T13:16:35Z"
     },
     {
       "id": "1648115499",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "משחקי הרעב | במכבי רבים על השליטה, בהפועל על הכיסאות וירושלים על היורוליג",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3oj9ci",
+      "published": "2026-09-09T13:16:35Z",
+      "duration": 3978
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -164,15 +173,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/97-e3nesbi",
       "published": "2026-08-16T03:00:00Z",
       "duration": 5036
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "משלימים את התמונה | מכבי סוגרת סגל, הפועל סופרת 21 שחקנים וחולון בונה מחדש",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/21-e3nbr7v",
-      "published": "2026-08-13T12:26:28Z",
-      "duration": 4320
     },
     {
       "showId": "1648115499",

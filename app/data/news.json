@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T13:19:02Z",
+  "updated": "2026-09-09T13:47:08Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ynet",
@@ -8,7 +8,7 @@
     "ערוץ 7",
     "הארץ",
     "ישראל היום",
-    "vod.sport5.co.il",
+    "Sport5",
     "ישראל ספורט",
     "ספורט 5",
     "אשדוד נט",
@@ -62,7 +62,7 @@
     {
       "title": "לופטון להט, הפועל ירושלים הביסה את אשדוד בגביע הווינר",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBRYXRRMm5JdmkxWHNqRkxYNWEybGhzVjMtUlhsN21LbXFWQWoyTW1pMTdQLU1xMTlOWm80bWJtVlo5VURBVzlFYWVUdzFQNkg3UDN6Uw?oc=5",
-      "source": "vod.sport5.co.il",
+      "source": "Sport5",
       "sourceUrl": "https://vod.sport5.co.il",
       "published": "2026-09-08T17:59:30Z"
     },
