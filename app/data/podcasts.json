@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T09:16:40Z",
+  "updated": "2026-09-09T10:16:57Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-09-07T05:00:00Z"
+      "latest": "2026-09-09T10:05:00Z"
     },
     {
       "id": "1698308776",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "אריק VS עופר, הגיע הזמן לשבור שתיקה! | ספיישל שוט , פרק 194",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-09-09T10:05:00Z",
+      "duration": 4293
+    },
     {
       "showId": "1573775015",
       "show": "כיפה אדומה",
@@ -137,15 +146,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3nlers",
       "published": "2026-08-20T12:25:24Z",
       "duration": 3274
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "אל תשימו אותי בקטגוריה, עם גיא פלטין | שוט, פרק 190",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-08-19T17:57:00Z",
-      "duration": 5353
     },
     {
       "showId": "1623083958",
