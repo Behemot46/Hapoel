@@ -61,9 +61,13 @@ jobs:
           import json
           import pathlib
 
-          # הלולאה דוחפת דופק כל שעתיים גם כשאין חדשות, ולכן שעתיים וחצי
-          # הן עדיין תקין ורק מעבר לזה מעיד על ריצה שאיננה.
-          LIMIT_HOURS = 2.5
+          # הלולאה דוחפת דופק כל שמונה שעות גם כשאין חדשות, ולכן גיל של
+          # שמונה שעות הוא עדיין תקין, ורק מעבר לזה מעיד על ריצה שאיננה.
+          # התשע כאן הן השמונה של HEARTBEAT ב־update-data.yml ועוד שעת
+          # מרווח, כדי שהשומר לא יזמן איסוף בדיוק בשנייה שלפני הדופק.
+          # מי שמשנה את HEARTBEAT חייב לשנות גם כאן, ו־cadence_test.py
+          # בודק שזה קרה.
+          LIMIT_HOURS = 9.0
 
           p = pathlib.Path("app/data/meta.json")
           now = datetime.datetime.now(datetime.timezone.utc)
