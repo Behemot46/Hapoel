@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T19:22:34Z",
+  "updated": "2026-09-09T19:56:08Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
@@ -7,8 +7,7 @@
     "וואלה ספורט",
     "ONE",
     "ערוץ 7",
-    "Sport5",
-    "isport.co.il",
+    "ישראל ספורט",
     "ספורט 5",
     "אשדוד נט",
     "ספורט 1",
@@ -59,16 +58,9 @@
       "published": "2026-09-08T18:08:35Z"
     },
     {
-      "title": "לופטון להט, הפועל ירושלים הביסה את אשדוד בגביע הווינר",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBRYXRRMm5JdmkxWHNqRkxYNWEybGhzVjMtUlhsN21LbXFWQWoyTW1pMTdQLU1xMTlOWm80bWJtVlo5VURBVzlFYWVUdzFQNkg3UDN6Uw?oc=5",
-      "source": "Sport5",
-      "sourceUrl": "https://vod.sport5.co.il",
-      "published": "2026-09-08T17:59:30Z"
-    },
-    {
       "title": "הפועל ירושלים פתחה את גביע ווינר עם 77:110 על מכבי אשדוד",
       "url": "https://news.google.com/rss/articles/CBMiwwJBVV95cUxPdHZ0RzZvR3dIZlFVVVRRbEdpTnhaaGhVQXMyVFUyLV9rQnZpTFc0M3EzdFVfdjJRVUhrZGttdlRBQV96VVJsOFpRanZZNFh4aW1KTzhUZHBzZURfaGJxQU9pTm9UUmZVSEN3VE43bDFCaG03TFlDMEUtT3RmMlJ1RDJtZFotdWMwbkJvTWlEUnhVWlZ3R2cxSnhBdTdHVVFKLXQzQ3ZHdGUzZGFKSUw5dDdiaW52NlJJYVllSWlxcjhMcldFZktvaTRYQ1BlRHllOVJydWNtU3pEUDJzWkpxQzhwMl9PUFZqRHhLSUhrSEVSaU1lSGpkeGhURWpCOS1jelJaa1NrVE5iekZTT1prWktnLUpGdnJMRnNjV1l0cEJHeC1EVkVvWFUzWUhZSUNDVGJKUnhmUFktOXJoNF80ZXlUaw?oc=5",
-      "source": "isport.co.il",
+      "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-09-08T17:50:00Z"
     },
@@ -224,6 +216,13 @@
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
       "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
+      "published": "2026-08-26T07:00:00Z"
+    },
+    {
+      "title": "לא מוותרת: הפועל ירושלים הגישה בקשה לרישיון קבע ביורוליג",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9tc0xFT0U4NXo5OWtjWVpnWTQ5cjB1TS05Q3BiQTRXMlVvSG1Uak9jYzV3dGVmTExGbGtYcVdlS0k2WVZ2S2NWZ0hXX2pIWnpleVVmWE5TT3kzTkN6dy1qenhrb1JtSkZPLUdMMGRDZ3JuMzg?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-08-26T07:00:00Z"
     }
   ]
