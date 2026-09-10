@@ -2,7 +2,7 @@
 
 // Bump VERSION whenever the app shell changes. It names the caches, so a
 // new version drops the old ones instead of serving them forever.
-const VERSION = "v23";
+const VERSION = "v24";
 const SHELL_CACHE = "shell-" + VERSION;
 const DATA_CACHE = "data-" + VERSION;
 
@@ -46,6 +46,10 @@ self.addEventListener("fetch", e => {
   // the live score is meaningful only while it is fresh, and it is polled
   // with a cache-buster, caching it would both mislead and fill the store
   if (url.pathname.endsWith("/live.json")) return;
+
+  // ספירת הכניסות היא לא חלק מהאפליקציה ואין לה מה לעשות במטמון: קובץ
+  // מדידה מגרסה קודמת שמוגש מהמטמון מודד את מה שכבר לא קורה
+  if (url.pathname.startsWith("/_vercel/")) return;
 
   const cacheName = url.pathname.includes("/data/") ? DATA_CACHE : SHELL_CACHE;
 
