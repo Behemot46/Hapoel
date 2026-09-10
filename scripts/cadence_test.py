@@ -61,8 +61,15 @@ stamp = grab(live_py, r"^STAMP_EVERY = datetime\.timedelta\(minutes=(\d+)\)",
              "STAMP_EVERY", "update_live.py")[0]
 
 # האיסוף: כל כמה זמן הוא אוסף, כל כמה זמן הוא דוקר, וכל כמה זמן דופק
-collect = grab(data_yml, r"^          EVERY=\$\(\( (\d+) \* 3600 \)\)",
-               "EVERY", "update-data.yml")[0] * 60
+quiet = grab(data_yml, r"^          QUIET_EVERY=\$\(\( (\d+) \* 3600 \)\)",
+             "QUIET_EVERY", "update-data.yml")[0] * 60
+hot = grab(data_yml, r"^          GAME_EVERY=\$\(\( (\d+) \* 3600 \)\)",
+           "GAME_EVERY", "update-data.yml")[0] * 60
+# חלון ״סביב משחק״, שבתוכו הקצב הצפוף חל
+win_b, win_a = (grab(data_yml, r"BEFORE = datetime\.timedelta\(hours=(\d+)\)",
+                     "BEFORE של החלון", "update-data.yml")[0],
+                grab(data_yml, r"AFTER = datetime\.timedelta\(hours=(\d+)\)",
+                     "AFTER של החלון", "update-data.yml")[0])
 poke = grab(data_yml, r"^          POKE_EVERY=\$\(\( (\d+) \* 60 \)\)",
             "POKE_EVERY", "update-data.yml")[0]
 heartbeat = grab(data_yml, r"^          HEARTBEAT=\$\(\( (\d+) \* 3600 \)\)",
@@ -79,8 +86,10 @@ limit = grab(dog_yml, r"^          LIMIT_HOURS = (\d+)\.\d+$",
 print("מה שנקרא מהקבצים:")
 print(f"  פולר: דגימה כל {poll_every} דק׳, מחזיק {poll_minutes} דק׳, "
       f"חלון {before} דק׳ לפני ועד {after_h} שע׳ אחרי, חותמת כל {stamp} דק׳")
-print(f"  איסוף: אוסף כל {collect // 60} שע׳, דוקר כל {poke} דק׳, "
-      f"דופק כל {heartbeat // 60} שע׳, מחפש משחק עד {soon} דק׳ קדימה")
+print(f"  איסוף: כל {quiet // 60} שע׳ ביום רגוע, כל {hot // 60} שע׳ בחלון "
+      f"של {win_b}+{win_a} שע׳ סביב משחק")
+print(f"  איסוף: דוקר כל {poke} דק׳, דופק כל {heartbeat // 60} שע׳, "
+      f"מחפש משחק עד {soon} דק׳ קדימה")
 print(f"  שומר: ישן מדי מעל {limit // 60} שע׳")
 
 print("\nכיסוי פתיחת המשחק:")
@@ -100,17 +109,34 @@ print("\nהשומר מול הדופק:")
 # איסוף מיותר בכל סיבוב.
 check(limit > heartbeat,
       f"השומר מחכה {limit // 60} שע׳, יותר מהדופק של {heartbeat // 60} שע׳")
-check(heartbeat >= collect,
-      f"הדופק ({heartbeat // 60} שע׳) לא צפוף מהאיסוף ({collect // 60} שע׳)")
+check(limit > quiet,
+      f"השומר מחכה {limit // 60} שע׳, יותר ממרווח האיסוף של {quiet // 60} שע׳")
+check(heartbeat >= hot,
+      f"הדופק ({heartbeat // 60} שע׳) לא צפוף מהאיסוף הצפוף ({hot // 60} שע׳)")
+
+print("\n״פעמיים ביום״ באמת פעמיים ביום:")
+# בלי הזריעה מ־meta.json כל משמרת חדשה אוספת מיד, והתזמון מבקש שבעה
+# סלוטים ביום. זה בדיוק סוג הדבר שנשבר בלי שאף ריצה תיכשל.
+seeded = ('last_collect=$(python' in data_yml
+          and 'meta.json' in data_yml.split('last_collect=$(python')[1][:400])
+check(seeded,
+      "המשמרת קוראת את זמן האיסוף האחרון מ־meta.json ולא מתחילתה")
+check(quiet < 24 * 60,
+      f"מרווח של {quiet // 60} שע׳ מבטיח שני איסופים ביממה ולא אחד")
 
 print("\nתקציב הדיפלויים של ורסל, 100 ביום:")
 # כל דחיפה ל־main היא דיפלוי. gh-pages לא נספר, ורסל מגישה את main.
-from_collect = (24 * 60) // collect
+quiet_day = (24 * 60) // quiet
+# ביום משחק: החלון הצפוף רחב win_b+win_a שעות, ומחוצה לו הקצב הרגוע
+from_collect = ((win_b + win_a) * 60) // hot + quiet_day
 from_poller = poll_minutes // poll_every
 worst = from_collect + from_poller
-print(f"  איסוף: לכל היותר {from_collect} ביום")
+print(f"  איסוף ביום רגוע: {quiet_day}")
+print(f"  איסוף ביום משחק: לכל היותר {from_collect} ביום")
 print(f"  פולר במשחק: לכל היותר {from_poller}")
 print(f"  יום משחק במקרה הגרוע: {worst}")
+check(quiet_day <= 4,
+      f"יום רגוע סוגר על {quiet_day} דיפלויים")
 check(worst <= 80,
       f"{worst} ביום משחק, עם מרווח מתחת ל־100")
 # שני משחקים ביום קורים, למשל בטורניר הכנה
