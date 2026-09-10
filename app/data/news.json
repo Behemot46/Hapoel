@@ -1,34 +1,46 @@
 {
-  "updated": "2026-09-10T08:15:05Z",
+  "updated": "2026-09-10T11:16:00Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ישראל היום",
     "ספורט 1",
-    "ynet",
-    "ONE",
-    "ערוץ 7",
-    "הארץ",
-    "Sport5",
-    "isport.co.il",
-    "וואלה ספורט",
     "ספורט 5",
+    "וואלה ספורט",
+    "ישראל היום",
+    "ynet",
+    "ערוץ 7",
+    "Sport5",
+    "ישראל ספורט",
     "אשדוד נט",
     "אייס"
   ],
   "items": [
+    {
+      "title": "הפועל ירושלים החתימה את הכישרון בן ה-18 שאותר בטורניר כשרונות בניגריה",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBqcUhvNHFabWVDTjZxRDIxdC1lNkFjdVhhRVFNdzNJWkRqSWVrOVpKMUNjWlFwZkxpVE5naXJpWk56SFpzWWRXU1R4YWxrSWlHNUxpQ0JMMExPTHhRNUxLZjl3SWprUTNTRWpydFdpakZ4OHlCLW9zSW1R?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-10T08:35:48Z"
+    },
+    {
+      "title": "רשמי: הפועל ירושלים החתימה ריימונד אוקון",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBKTlNZSDliaXV1bjZSQlpTMXVpdGNNaEp0bWR4N2hRZWtnMU13OWY2NlBZYkJ3ekdGSXYxejdwMEk1dC10NkdfUkFXdUJHNjJ6MHNxQ3JfNE9yMUg3M1dOalB2bUwtN3FoVFg1UlVnTHE?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-10T08:21:25Z"
+    },
+    {
+      "title": "התגלית מניגריה מצטרף: ריימונד אוקון חתם בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9QdVdTeWVmRDNSZ3AxclFJemJ6eXdSdHVxOWI1QUZDNy14YVcyXzNkMFVwcUN4WEF2Q0dsTFFzU3RzLVloM05qcDhmc3ZkcUd0?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-10T08:09:00Z"
+    },
     {
       "title": "דומיננטי כמו הארפר: הפועל ירושלים הביאה שחקן שלא היה פה",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9hb2lPRlJsdnp4anNaTW9aVTFsS1o0N2lYR1pDY2ZBT0JDcVZFRXI0SUVzMHFKbXFwZ20wamZuSE4ydEV4MVlwaTJWWHJSUnhXREhoQWdZdHI0X1Bzc20yeWpHTVkweWRNTkRlWmczZWN2QkJIQ2fSAX5BVV95cUxQTTdjQ1QwNHdiNXlTaDRtUFhLb1UtWmU5d0tqZmtGV25KeE5XWHlMZDFMaEd0M1ZKS2RRSGE4Q0tBMFhnS25oekl4dXo5VjJselhEbHRsZkYxY3FHZVFyUDRWVkNCdnVSbkFNcjlkeldpMm9NSTZRRVc3TU9ZYmc?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-09-09T16:10:40Z"
-    },
-    {
-      "title": "הפועל ירושלים עדכנה: מתי יובל זוסמן יחזור לפעילות?",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNMldMM05LRFk0MVQ3OGtfWWdjdzhTN2FlNWl1WUNhdGg4eGxXWUpfbnBHY2gtV3FBcDZNc0JrbEl4dzc3N1pPVHI2MDNYTmlVOEpJMGw5a2J3eE5SRFZrYUQ1U0JUb0dQdGV5SU5EemJSa241aTE3cDBMaml5MlZMUkNpTkJTQzUwYlBseUlPM2FvQQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-09T07:12:43Z"
     },
     {
       "title": "הפועל ירושלים הודיעה: יובל זוסמן סובל מנקע",
@@ -38,11 +50,11 @@
       "published": "2026-09-09T07:03:42Z"
     },
     {
-      "title": "הפועל ירושלים הודיעה: יובל זוסמן אובחן עם נקע",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE80UTZOVUJtQzAwcEtNMWp2WHV1b1Juczg1T0NoNTJEQ1dLOWtoMXhmM1VkV3ZhOUdpWEFYYVp1SE52clhXblB3RFpHTXppNFNQT2Rr?oc=5",
-      "source": "ONE",
-      "sourceUrl": "https://www.one.co.il",
-      "published": "2026-09-09T06:56:03Z"
+      "title": "הפועל ירושלים עדכנה: מתי יובל זוסמן יחזור לפעילות?",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1BVWYyd195NWlNbURkTjJsalByaFdkcWtzWkRuTUN0eng2TkNORDRFOFZoN2N3S0V4WHRYWVVMYTM1ZFRIT2t3QnNVM2lnMWVv?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-09T07:02:00Z"
     },
     {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
@@ -50,13 +62,6 @@
       "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-09-08T19:47:00Z"
-    },
-    {
-      "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcFFEZTNLLXV5aFVlRWxhbmU0MmRPLW9HRnQ1MFg2Q01RSE5LSEIxTmlGdnJXOU0wdGRNYzdDRk0wcWVvT3FjbDV3QlZRUHZWMDhZQjZjd05BdmxZd05vS01heHpmbTQ0MTN2S080YVI2dmU2SWlGYWI4MEJiRExaMWhxQURxYzNHNUlua2N4dVlEc2dRUm9vWnNrUG9ra1hKejVr?oc=5",
-      "source": "הארץ",
-      "sourceUrl": "https://www.haaretz.co.il",
-      "published": "2026-09-08T18:13:00Z"
     },
     {
       "title": "לופטון להט, הפועל ירושלים הביסה את אשדוד בגביע הווינר",
@@ -68,7 +73,7 @@
     {
       "title": "הפועל ירושלים פתחה את גביע ווינר עם 77:110 על מכבי אשדוד",
       "url": "https://news.google.com/rss/articles/CBMiwwJBVV95cUxPdHZ0RzZvR3dIZlFVVVRRbEdpTnhaaGhVQXMyVFUyLV9rQnZpTFc0M3EzdFVfdjJRVUhrZGttdlRBQV96VVJsOFpRanZZNFh4aW1KTzhUZHBzZURfaGJxQU9pTm9UUmZVSEN3VE43bDFCaG03TFlDMEUtT3RmMlJ1RDJtZFotdWMwbkJvTWlEUnhVWlZ3R2cxSnhBdTdHVVFKLXQzQ3ZHdGUzZGFKSUw5dDdiaW52NlJJYVllSWlxcjhMcldFZktvaTRYQ1BlRHllOVJydWNtU3pEUDJzWkpxQzhwMl9PUFZqRHhLSUhrSEVSaU1lSGpkeGhURWpCOS1jelJaa1NrVE5iekZTT1prWktnLUpGdnJMRnNjV1l0cEJHeC1EVkVvWFUzWUhZSUNDVGJKUnhmUFktOXJoNF80ZXlUaw?oc=5",
-      "source": "isport.co.il",
+      "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-09-08T17:50:00Z"
     },
@@ -78,6 +83,13 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-09-08T17:46:00Z"
+    },
+    {
+      "title": "חשש בהפועל י-ם: זוסמן נפצע בקרסול",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBoZ1l0cGE2SU5GM1RSTks0enBwR202SnVYZkZNZ2J0SjNSeDl6azlkYktxRGFiRUhrMWtMejV5YlVubGxlN1BBVmtURHFjVmtNTmdJaUNveHE3MHBOZFhSM2hvU3VkQ2J3TWR2b1ZxWEdmSzlz?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-08T17:35:56Z"
     },
     {
       "title": "הפועל ירושלים חגגה עם 77:110 על מכבי אשדוד",
@@ -178,17 +190,10 @@
       "published": "2026-08-30T07:00:00Z"
     },
     {
-      "title": "המועמד המוביל של הפועל ירושלים להחליף את ג'ארד הארפר",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9tMmtTZnRtYlVWNzdrYU1IWk4yRF9fbzFJRXZRNmx6bTVjVFpoM3d3a3pwcG5uMnV4VE9MWm96Ymlha2RxSkxnR1QxbTdXaFFh?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-30T07:00:00Z"
-    },
-    {
-      "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RX1NtUGZlMWU1Ulk3ZFBuRFl6OVRydTUwOElhZENyalBhZzF3MU1INjdCQlYzWHBEb19LQWE1eW0wNDdfc1BPVmRMMFVmM2xwMTlEcnVUM0RZdEtLdlYteTc2cw?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
+      "title": "הפועל ירושלים תובעת את הפועל תל אביב: זה הסכום שהיא דורשת",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPUzlWa1ltN0w4bUFfRzVURDhzenlKUXgtd3RaOUgxU3NvbGlVZVB0NGJwRkpyX21UbjZGMzFJNFJnYks5bGZtUlBuWEk3a0JqTmtiazBJb0dBenVsT2hBZDV6aWFBZTNsLWp0MUtYUDFCQ09zQVBnc1FyTDcwUTFHaE5PUndtUnYwWmgxSlI1dU9CUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-30T07:00:00Z"
     },
     {
@@ -199,32 +204,25 @@
       "published": "2026-08-30T07:00:00Z"
     },
     {
-      "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ295bjdtSjFvekl2d2ZCSG01WTlKRTdiOHk3c1N3ajF0NjREWFg4dXhFSm1QclowWThVZTBpNXlHeWpGUlJFM0pRb2x0eUxIVkM1WHlrMloyZXktcVptRTMzZ1YyZTEyQnNqeVVtUlBlMS1WMk9lb25qZnBrU0I0eF9CS0NBc1JNakExXzRVc3FRUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-29T07:00:00Z"
+      "title": "המועמד המוביל של הפועל ירושלים להחליף את ג'ארד הארפר",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9tMmtTZnRtYlVWNzdrYU1IWk4yRF9fbzFJRXZRNmx6bTVjVFpoM3d3a3pwcG5uMnV4VE9MWm96Ymlha2RxSkxnR1QxbTdXaFFh?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-30T07:00:00Z"
     },
     {
-      "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-29T07:00:00Z"
-    },
-    {
-      "title": "דימה סקפינצב: \"כן, יש תחושת פספוס. הפועל ירושלים לא רצתה שאשאר\"",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1oQS1FTUpiTVJRRzZUODZKSVBwdkI3X0JOVUJKRmpfNlQtZHVhV0t5MzlxN012ckJoRFo5WnU2Y2N1SDg3VHlmUGI0cWdUc3RjTkdONG1TZk05Q3hTaGJoUFJESUljajdjTHpxalR1QlR6Zw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-29T06:58:00Z"
-    },
-    {
-      "title": "השחקן שהפועל ירושלים רוצה בעקבות פציעת ג'ארד הארפר | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRY0RwV0pkT3RCLVJSUVd5aFBvTnotcDVWSEtoQlVCRzFzNUh1QjZZd05iVGxuek8zaTZSMFdIME5pSGZkbHlZbUdKWnZFM2U4eW5xemdWanBUbUlKaG9idHVKS2FDa1dCUkliRWc2R2RsLXdpMUY5Vl9wc9IBgwFBVV95cUxPdTRncmJfQVpENVRGcUFkQnZ1WWl3S2c0WENLVXltS05EOTJpYmw1X040cGtmcVVGb0tyb2dUbXJORFBwQk5fSWxocTE2Wk9QMUlOUE1fd2F3b09GRG9DWjQtRElaUUtybHd3QlA3bU50eE9jSFZVOWc4OHJvalpPbEVXSQ?oc=5",
+      "title": "רצה לעשות היסטוריה: הסיפור המוזר של המועמד להפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tb29EU0VhSldRMDJXdWozSm9BNmh2cXB6eG9jbW5pcFBPelVjZlBXZGhDckx6M01iajYyajlGN25JMjdLel90bHdGbDRfLWxhVW0zektfeWdrb0ZpR1N2V3FOeU5qa3dweGczd3lPTU1sV2NCSTV4a3VfNNIBgwFBVV95cUxPX1BNeDlmWWNwUXFDLXY0d0FDTWUyUS1uTFZNZTQ3UnJEci1ISzJNekJ5bWNLXzl6bTFyMWdHSGloM2lvMmRlV19TMnRjQXBsWnJhTmxrUzBQaEY4MERMODVxenVxeFMyQlA5eWdidkl6OEFTenZ6MzJGaEdCSmpIQVFNbw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-28T07:00:00Z"
+      "published": "2026-08-30T07:00:00Z"
+    },
+    {
+      "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RX1NtUGZlMWU1Ulk3ZFBuRFl6OVRydTUwOElhZENyalBhZzF3MU1INjdCQlYzWHBEb19LQWE1eW0wNDdfc1BPVmRMMFVmM2xwMTlEcnVUM0RZdEtLdlYteTc2cw?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-30T07:00:00Z"
     }
   ]
 }

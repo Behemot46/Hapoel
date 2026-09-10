@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T08:15:06Z",
+  "updated": "2026-09-10T11:16:00Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,7 +14,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-08-30T20:02:12Z"
+      "latest": "2026-09-10T09:13:46Z"
     },
     {
       "id": "1675729649",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "בין הפרקט לבית המשפט",
+      "url": "https://omny.fm/shows/speaknrolisrael/bc8278de-3792-41db-8060-b4c100967a8c",
+      "published": "2026-09-10T09:13:46Z",
+      "duration": 3369
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -191,15 +200,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3064604",
       "published": "2026-08-13T03:30:08Z",
       "duration": 4687
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "האלטרנטיבות",
-      "url": "https://omny.fm/shows/speaknrolisrael/a08c82bd-4f4c-4f39-b9ac-b4a2010c08f0",
-      "published": "2026-08-10T16:23:01Z",
-      "duration": 4474
     },
     {
       "showId": "1573775015",
