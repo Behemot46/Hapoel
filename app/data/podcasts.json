@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T22:57:08Z",
+  "updated": "2026-09-10T08:15:06Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -35,10 +35,19 @@
       "title": "אנחנו במפה",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%90%D7%A0%D7%97%D7%A0%D7%95-%D7%91%D7%9E%D7%A4%D7%94-%D7%94%D7%9B%D7%9C-%D7%A2%D7%9C-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%95%D7%AA-%D7%91%D7%90%D7%99%D7%A8%D7%95%D7%A4%D7%94/id1648115499?uo=4",
-      "latest": "2026-09-03T00:16:40Z"
+      "latest": "2026-09-10T00:40:21Z"
     }
   ],
   "items": [
+    {
+      "showId": "1648115499",
+      "show": "אנחנו במפה",
+      "about": "league",
+      "title": "היורוליג במפה",
+      "url": "https://rss.com/podcasts/we-are-on-the-map/3138652",
+      "published": "2026-09-10T00:40:21Z",
+      "duration": 8329
+    },
     {
       "showId": "1698308776",
       "show": "דאבל דריבל",
@@ -191,15 +200,6 @@
       "url": "https://omny.fm/shows/speaknrolisrael/a08c82bd-4f4c-4f39-b9ac-b4a2010c08f0",
       "published": "2026-08-10T16:23:01Z",
       "duration": 4474
-    },
-    {
-      "showId": "1648115499",
-      "show": "אנחנו במפה",
-      "about": "league",
-      "title": "ראיון עם אלישי כדיר",
-      "url": "https://rss.com/podcasts/we-are-on-the-map/3055087",
-      "published": "2026-08-09T04:05:43Z",
-      "duration": 4332
     },
     {
       "showId": "1573775015",
