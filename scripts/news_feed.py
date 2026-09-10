@@ -28,6 +28,22 @@ and a search for the name alone returned items about Maccabi Tel Aviv that
 merely mentioned us in the body. So an item is kept only when the club is
 named in the *headline*, and dropped when the headline reads as football.
 
+**צינור השחקנים הניגרי של מועדון הכדורגל, 10.9.2026.** שלוש כותרות על
+החתמת ריימונד אוקון, ניגרי בן 18, עברו את כל הכללים. הפרוב שאל את הפיד
+על השחקן ומצא שהמועדון בשם הזה מחתים ניגרים כבר שנים: ״מלך הבישולים של
+ניגריה חתם בהפועל ירושלים״ (2025), עמודי שחקנים ב־365Scores לצד הפועל
+רמת גן והפועל אום אל פאחם, וכיסוי של אליפות אפריקה. כלומר כדורגל.
+
+מה שחשוב בזה הוא לא השחקן אלא הצורה: **בכותרת על החתמה אין שום סימן
+לענף.** לא ליגה, לא שער, לא תפקיד, ולא שם של יריבה. שלושת הכללים כאן
+קוראים כותרת, ולכן אף אחד מהם לא יכול לתפוס אותה, וגם לא יוכל. הכלי
+הנכון למקרים האלה הוא חסימה לפי שם, ‏blockPhrases, שהיא מיידית והפיכה.
+
+**וחסימה גורפת של ״ניגריה״ נשקלה ונדחתה.** היא הייתה תופסת את שלושתן
+בבת אחת, אבל היא חוסמת מדינה ולא ענף: ביום שבו נחתום סנטר ניגרי, החדשות
+עליו ייעלמו בשקט ואיש לא ידע. הפער נשאר פתוח בכוונה, והוא נסגר בבדיקת
+התחזוקה שקוראת את כל הכותרות אחת ליומיים.
+
 The obvious shortcut, asking Google for the name minus the word כדורגל, was
 measured on 27.8.2026 and rejected. Google matches the whole page, sidebars
 and tags included, so a basketball article on a sports site loses just as
