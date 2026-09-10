@@ -1,93 +1,84 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**השאלה הפעם:** ארבע כותרות במדור מדברות על ריימונד אוקון, ניגרי בן 18
-שאותר בטורניר כשרונות. אצלנו יש גם מועדון כדורגל בשם ״הפועל ירושלים״,
-והחתמת נער ניגרי מטורניר כשרונות היא סיפור בצורת כדורגל. אבל הכותרת
-הרביעית משווה אותו להארפר, שהוא הרכז שלנו בכדורסל, ולכן אי אפשר להכריע
-מהכותרות.
+**השאלה:** ריימונד אוקון, ניגרי בן 18 שאותר בטורניר כשרונות, חתם
+ב״הפועל ירושלים״. יש לנו גם מועדון כדורגל באותו שם, וסיפור כזה הוא
+בצורת כדורגל. אי אפשר להכריע מהכותרות.
 
-הכלי הולך לגוף הכתבות עצמן, סופר את המילים ״כדורגל״ ו״כדורסל״ ומדפיס
-את ההקשר שסביבן. הקישורים ב־news.json הם הפניות של גוגל, אז צריך
-לעקוב אחריהן עד המפרסם האמיתי.
+**מה שכבר נוסה ונכשל, כדי שלא ינוסה שוב:** ללכת לקישור שב־news.json.
+הוא הפניה של גוגל, והדף שמאחוריו הוא בדל של 267 תווים בלי הכתבה. גם
+פענוח base64 של האסימון לא עוזר: הפורמט החדש (AU_yqL...) אטום וצריך
+קריאה נוספת לגוגל כדי לפתוח אותו.
+
+**מה שכן עובד:** לשאול את הפיד עצמו על השחקן. אם הוא כדורגלן, כותרת
+כלשהי עליו תזכיר ליגה, מגרש או שער, ואם הוא כדורסלן, כותרת תזכיר סל.
+בנוסף אנחנו שואלים על מועדון הכדורגל בשמו המלא, כדי לראות איך הפיד
+מדבר עליו בכלל.
 """
 
-import json
-import pathlib
 import re
 import sys
+import urllib.parse
+import xml.etree.ElementTree as ET
 
 import requests
-from bs4 import BeautifulSoup
 
+FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 
-# מילים שמכריעות. הראשונות הן הענף עצמו, השאר הן ההקשר שסביבו.
-FOOT = ["כדורגל", "ליגת העל", "הליגה הלאומית", "שער", "בלם", "חלוץ",
-        "קיצוני", "מגרש הדשא", "טוטו"]
-BALL = ["כדורסל", "ליגת ווינר", "יורוליג", "יורוקאפ", "סל", "רכז",
-        "פורוורד", "סנטר", "ריבאונד"]
+FOOT = ["כדורגל", "ליגת העל", "הליגה הלאומית", "שער", "שערים", "בלם",
+        "חלוץ", "קיצוני", "כבש", "דשא", "בית״ר", "בית\"ר", "מכבי חיפה",
+        "הפועל באר שבע", "עירוני", "טוטו"]
+BALL = ["כדורסל", "ווינר", "יורוליג", "יורוקאפ", "סל", "רכז", "פורוורד",
+        "סנטר", "ריבאונד", "נקודות", "מלחה", "אשדוד"]
 
 
-def resolve(url):
-    """הקישור מ־news.json הוא הפניה של גוגל. עוקבים עד המפרסם."""
-    r = requests.get(url, headers={"User-Agent": UA}, timeout=25,
-                     allow_redirects=True)
+def ask(q):
+    url = FEED.format(q=urllib.parse.quote(q))
+    r = requests.get(url, headers={"User-Agent": UA}, timeout=30)
     r.raise_for_status()
-    r.encoding = r.apparent_encoding or "utf-8"
-    final = r.url
-    # גוגל מגישה לפעמים דף ביניים עם ריענון או עם קישור בגוף
-    if "news.google.com" in final:
-        m = re.search(r'https?://(?!news\.google)[^"\'<>\s]+', r.text)
-        if m:
-            final = m.group(0)
-            r = requests.get(final, headers={"User-Agent": UA}, timeout=25)
-            r.encoding = r.apparent_encoding or "utf-8"
-    return final, r.text
+    root = ET.fromstring(r.content)
+    out = []
+    for item in root.iter("item"):
+        title = (item.findtext("title") or "").strip()
+        src = item.find("{*}source")
+        src = (src.text if src is not None else "") or ""
+        out.append((title, src, (item.findtext("pubDate") or "")[:16]))
+    return out
 
 
-def words(text):
-    soup = BeautifulSoup(text, "html.parser")
-    for tag in soup(["script", "style", "noscript"]):
-        tag.decompose()
-    return re.sub(r"\s+", " ", soup.get_text(" "))
+def verdict(text):
+    f = [w for w in FOOT if w in text]
+    b = [w for w in BALL if w in text]
+    return f, b
 
 
 def main():
-    items = json.loads(
-        pathlib.Path("app/data/news.json").read_text(encoding="utf-8"))
-    items = items["items"] if isinstance(items, dict) else items
-    how_many = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else 4
-
-    for i, it in enumerate(items[:how_many], 1):
-        print("=" * 72)
-        print(f"{i}. {it.get('source')} | {it.get('title')}")
+    queries = sys.argv[1:] or [
+        '"ריימונד אוקון"',
+        'אוקון "הפועל ירושלים"',
+        '"הפועל ירושלים" כדורגל ניגריה',
+    ]
+    for q in queries:
+        print("=" * 74)
+        print(f"שאילתה: {q}")
         try:
-            final, html = resolve(it.get("link") or it.get("url"))
+            items = ask(q)
         except Exception as e:
-            print(f"   נכשל: {e}")
+            print(f"  נכשלה: {e}")
             continue
-        print(f"   המפרסם: {final[:120]}")
-        body = words(html)
-        print(f"   אורך הטקסט: {len(body)} תווים")
-
-        for name, bag in (("כדורגל", FOOT), ("כדורסל", BALL)):
-            hits = {w: body.count(w) for w in bag if body.count(w)}
-            total = sum(hits.values())
-            print(f"   {name}: {total} · {hits or 'אין'}")
-
-        # ההקשר סביב ההופעה הראשונה של כל אחת משתי המילים המכריעות
-        for w in ("כדורגל", "כדורסל"):
-            j = body.find(w)
-            if j >= 0:
-                print(f"   ...{body[max(0, j - 90):j + 90]}...")
-        # ההקשר סביב שם השחקן, אם הוא מופיע
-        for name in ("אוקון", "Okon"):
-            j = body.find(name)
-            if j >= 0:
-                print(f"   [{name}] ...{body[max(0, j - 130):j + 130]}...")
-                break
+        if not items:
+            print("  אין תוצאות.")
+            continue
+        blob = " ".join(t for t, _, _ in items)
+        f, b = verdict(blob)
+        print(f"  {len(items)} תוצאות · סימני כדורגל: {f or 'אין'} · "
+              f"סימני כדורסל: {b or 'אין'}")
+        for title, src, when in items[:14]:
+            ff, bb = verdict(title)
+            mark = "⚽" if ff and not bb else ("🏀" if bb and not ff else "  ")
+            print(f"   {mark} {when} · {src[:14]:<14} · {title[:100]}")
 
 
 if __name__ == "__main__":
