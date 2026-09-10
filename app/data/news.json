@@ -1,17 +1,20 @@
 {
-  "updated": "2026-09-10T11:16:00Z",
+  "updated": "2026-09-10T22:21:46Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ספורט 1",
-    "ספורט 5",
-    "וואלה ספורט",
     "ישראל היום",
-    "ynet",
+    "ספורט 1",
+    "ONE",
     "ערוץ 7",
+    "haaretz.co.il",
     "Sport5",
     "ישראל ספורט",
+    "וואלה ספורט",
     "אשדוד נט",
-    "אייס"
+    "ynet",
+    "ספורט 5",
+    "אייס",
+    "srugim.co.il"
   ],
   "items": [
     {
@@ -22,18 +25,18 @@
       "published": "2026-09-09T16:10:40Z"
     },
     {
-      "title": "הפועל ירושלים הודיעה: יובל זוסמן סובל מנקע",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBGSktrOXlMdnhkel9oQnlTd1ljYmRSc1JwVklmNnQ0OFE1YlFrR0x5Vm8yMVBTeHRzajVBZXQ2QXhDNzdma0RjaTlsTU42MU1OOEJpTnMzSHJWdDF3M3ZLRmxIM0RSd3MzTDAyYXNORFpILWc?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-09-09T07:03:42Z"
+      "title": "הפועל ירושלים עדכנה: מתי יובל זוסמן יחזור לפעילות?",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNMldMM05LRFk0MVQ3OGtfWWdjdzhTN2FlNWl1WUNhdGg4eGxXWUpfbnBHY2gtV3FBcDZNc0JrbEl4dzc3N1pPVHI2MDNYTmlVOEpJMGw5a2J3eE5SRFZrYUQ1U0JUb0dQdGV5SU5EemJSa241aTE3cDBMaml5MlZMUkNpTkJTQzUwYlBseUlPM2FvQQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-09T07:12:43Z"
     },
     {
-      "title": "הפועל ירושלים עדכנה: מתי יובל זוסמן יחזור לפעילות?",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1BVWYyd195NWlNbURkTjJsalByaFdkcWtzWkRuTUN0eng2TkNORDRFOFZoN2N3S0V4WHRYWVVMYTM1ZFRIT2t3QnNVM2lnMWVv?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-09T07:02:00Z"
+      "title": "הפועל ירושלים הודיעה: יובל זוסמן אובחן עם נקע",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE80UTZOVUJtQzAwcEtNMWp2WHV1b1Juczg1T0NoNTJEQ1dLOWtoMXhmM1VkV3ZhOUdpWEFYYVp1SE52clhXblB3RFpHTXppNFNQT2Rr?oc=5",
+      "source": "ONE",
+      "sourceUrl": "https://www.one.co.il",
+      "published": "2026-09-09T06:56:03Z"
     },
     {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
@@ -41,6 +44,13 @@
       "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-09-08T19:47:00Z"
+    },
+    {
+      "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcFFEZTNLLXV5aFVlRWxhbmU0MmRPLW9HRnQ1MFg2Q01RSE5LSEIxTmlGdnJXOU0wdGRNYzdDRk0wcWVvT3FjbDV3QlZRUHZWMDhZQjZjd05BdmxZd05vS01heHpmbTQ0MTN2S080YVI2dmU2SWlGYWI4MEJiRExaMWhxQURxYzNHNUlua2N4dVlEc2dRUm9vWnNrUG9ra1hKejVr?oc=5",
+      "source": "haaretz.co.il",
+      "sourceUrl": "https://www.haaretz.co.il",
+      "published": "2026-09-08T18:13:00Z"
     },
     {
       "title": "לופטון להט, הפועל ירושלים הביסה את אשדוד בגביע הווינר",
@@ -64,25 +74,11 @@
       "published": "2026-09-08T17:46:00Z"
     },
     {
-      "title": "חשש בהפועל י-ם: זוסמן נפצע בקרסול",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBoZ1l0cGE2SU5GM1RSTks0enBwR202SnVYZkZNZ2J0SjNSeDl6azlkYktxRGFiRUhrMWtMejV5YlVubGxlN1BBVmtURHFjVmtNTmdJaUNveHE3MHBOZFhSM2hvU3VkQ2J3TWR2b1ZxWEdmSzlz?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-08T17:35:56Z"
-    },
-    {
       "title": "הפועל ירושלים חגגה עם 77:110 על מכבי אשדוד",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9BdEs2VlJPOEo3ZTNCU2h4ZHRxaW81ZzFsVF9IMy13NERqNzJMVUJHLVd4el83Vnk5dkFDUHpJRTVIUmE2WTlCbXVDLWFla0IxUW1jb25mMC1OQQ?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-09-08T15:59:27Z"
-    },
-    {
-      "title": "דקה אחר דקה: מכבי אשדוד - הפועל ירושלים, קרית אתא - נס ציונה | דיווח חי מגביע ווינר",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE42ellSSDVVUmdtc3NQcTNWTjlmSGJ0UnRwa0NyN1ozUV9XWjZvaUV3cXNUcHFJaWF4MlozdENka2FPaGNNUHQwTTdybDZtMC1XSzV4Y0FLakNzT3JNTmR4NmlKTVFlazZOaENFR3ZuejRUemZw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-08T14:36:00Z"
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9UenlmTDZ0UEJHZmxuOUwxMUd3dUZ1QzJRZGh5MEV6V0JWS0oyckgzWXVTa3FFcy15b0hDeThsRmNHcVVoVmlFVVUzSDZhVHh6dWxj?oc=5",
+      "source": "ONE",
+      "sourceUrl": "https://www.one.co.il",
+      "published": "2026-09-08T16:10:07Z"
     },
     {
       "title": "קני לופטון הרשים, הפועל ירושלים הביסה את מכבי אשדוד",
@@ -118,13 +114,6 @@
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-09-05T21:27:00Z"
-    },
-    {
-      "title": "בדרך לרישיון קבוע ביורוליג: ההודעה של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPRmNHanhFLTZRYWVxZWFDSGlrSzlIZXFWNzZZRmNLUmEtZDNJYnlDSmVaa1hkMHZRQkxNSVZxRThlOFJFdUtvaVo5Mk5RTGk1ZGRIQVoxd3poY0VfMEdIanZ3MlFrZDBVSnhWXzBQbWFSRGtrOFBoa0wzU21YZC04TVdjMDhWSVB5eWIwNmxDMHBqdw?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-05T18:48:46Z"
     },
     {
       "title": "הפועל י-ם: \"עברנו שלב בתהליך לרישיון\"",
@@ -202,6 +191,41 @@
       "source": "אייס",
       "sourceUrl": "https://www.ice.co.il",
       "published": "2026-08-30T07:00:00Z"
+    },
+    {
+      "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ295bjdtSjFvekl2d2ZCSG01WTlKRTdiOHk3c1N3ajF0NjREWFg4dXhFSm1QclowWThVZTBpNXlHeWpGUlJFM0pRb2x0eUxIVkM1WHlrMloyZXktcVptRTMzZ1YyZTEyQnNqeVVtUlBlMS1WMk9lb25qZnBrU0I0eF9CS0NBc1JNakExXzRVc3FRUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-29T07:00:00Z"
+    },
+    {
+      "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-29T07:00:00Z"
+    },
+    {
+      "title": "דימה סקפינצב: \"כן, יש תחושת פספוס. הפועל ירושלים לא רצתה שאשאר\"",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1oQS1FTUpiTVJRRzZUODZKSVBwdkI3X0JOVUJKRmpfNlQtZHVhV0t5MzlxN012ckJoRFo5WnU2Y2N1SDg3VHlmUGI0cWdUc3RjTkdONG1TZk05Q3hTaGJoUFJESUljajdjTHpxalR1QlR6Zw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-29T06:58:00Z"
+    },
+    {
+      "title": "השחקן שהפועל ירושלים רוצה בעקבות פציעת ג'ארד הארפר | פרסום ראשון",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRY0RwV0pkT3RCLVJSUVd5aFBvTnotcDVWSEtoQlVCRzFzNUh1QjZZd05iVGxuek8zaTZSMFdIME5pSGZkbHlZbUdKWnZFM2U4eW5xemdWanBUbUlKaG9idHVKS2FDa1dCUkliRWc2R2RsLXdpMUY5Vl9wc9IBgwFBVV95cUxPdTRncmJfQVpENVRGcUFkQnZ1WWl3S2c0WENLVXltS05EOTJpYmw1X040cGtmcVVGb0tyb2dUbXJORFBwQk5fSWxocTE2Wk9QMUlOUE1fd2F3b09GRG9DWjQtRElaUUtybHd3QlA3bU50eE9jSFZVOWc4OHJvalpPbEVXSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-28T07:00:00Z"
+    },
+    {
+      "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
+      "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
+      "source": "srugim.co.il",
+      "sourceUrl": "https://www.srugim.co.il",
+      "published": "2026-08-28T07:00:00Z"
     }
   ]
 }
