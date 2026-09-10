@@ -55,7 +55,9 @@ def verdict(text):
 
 
 def main():
-    queries = sys.argv[1:] or [
+    # ה־workflow מעביר תמיד ״all״ כשלא נבחר משהו אחר, וזו לא שאילתה
+    args = [a for a in sys.argv[1:] if a not in ("all", "")]
+    queries = args or [
         '"ריימונד אוקון"',
         'אוקון "הפועל ירושלים"',
         '"הפועל ירושלים" כדורגל ניגריה',
