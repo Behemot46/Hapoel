@@ -1,45 +1,87 @@
-"""בדיקת מקורות: איך אתר המועדון מציג את התוצאה של 8.9.
+#!/usr/bin/env python3
+"""כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-באתר המועדון כל קבוצה היא תמונה עם alt, והתוצאה היא מחרוזת ״A:B״ אחת.
-מה שצריך לדעת: איזה מספר שייך לאיזו קבוצה. את האמת אנחנו כבר יודעים
-משלוש כותרות עצמאיות (הפועל ירושלים ניצחה 110-77 את מכבי אשדוד), ולכן
-מה שנראה כאן מכריע את הסדר גם באתר המועדון וגם, בהצלבה, באתר הליגה.
+**השאלה:** ריימונד אוקון, ניגרי בן 18 שאותר בטורניר כשרונות, חתם
+ב״הפועל ירושלים״. יש לנו גם מועדון כדורגל באותו שם, וסיפור כזה הוא
+בצורת כדורגל. אי אפשר להכריע מהכותרות.
+
+**מה שכבר נוסה ונכשל, כדי שלא ינוסה שוב:** ללכת לקישור שב־news.json.
+הוא הפניה של גוגל, והדף שמאחוריו הוא בדל של 267 תווים בלי הכתבה. גם
+פענוח base64 של האסימון לא עוזר: הפורמט החדש (AU_yqL...) אטום וצריך
+קריאה נוספת לגוגל כדי לפתוח אותו.
+
+**מה שכן עובד:** לשאול את הפיד עצמו על השחקן. אם הוא כדורגלן, כותרת
+כלשהי עליו תזכיר ליגה, מגרש או שער, ואם הוא כדורסלן, כותרת תזכיר סל.
+בנוסף אנחנו שואלים על מועדון הכדורגל בשמו המלא, כדי לראות איך הפיד
+מדבר עליו בכלל.
 """
+
 import re
 import sys
-import pathlib
+import urllib.parse
+import xml.etree.ElementTree as ET
 
-from bs4 import BeautifulSoup
+import requests
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import update_data as u
-import club_games
+FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
+
+FOOT = ["כדורגל", "ליגת העל", "הליגה הלאומית", "שער", "שערים", "בלם",
+        "חלוץ", "קיצוני", "כבש", "דשא", "בית״ר", "בית\"ר", "מכבי חיפה",
+        "הפועל באר שבע", "עירוני", "טוטו"]
+BALL = ["כדורסל", "ווינר", "יורוליג", "יורוקאפ", "סל", "רכז", "פורוורד",
+        "סנטר", "ריבאונד", "נקודות", "מלחה", "אשדוד"]
 
 
-def log(*a):
-    print("[probe]", *a, flush=True)
+def ask(q):
+    url = FEED.format(q=urllib.parse.quote(q))
+    r = requests.get(url, headers={"User-Agent": UA}, timeout=30)
+    r.raise_for_status()
+    root = ET.fromstring(r.content)
+    out = []
+    for item in root.iter("item"):
+        title = (item.findtext("title") or "").strip()
+        src = item.find("{*}source")
+        src = (src.text if src is not None else "") or ""
+        out.append((title, src, (item.findtext("pubDate") or "")[:16]))
+    return out
 
 
-html = u.fetch("https://hapoel.co.il/games")
-soup = BeautifulSoup(html, "html.parser")
-found = 0
-for g in soup.select(".game"):
-    teams = [i.get("alt", "").strip() for i in g.select(".teams-container img") if i.get("alt")]
-    when = club_games._txt(g.select_one(".date-time"))
-    score = club_games._txt(g.select_one(".score"))
-    if not teams:
-        continue
-    if "8/9" not in when and "08/09" not in when and "8.9" not in when:
-        continue
-    log(f"תאריך גולמי: {when!r}")
-    log(f"סדר הקבוצות (לפי alt של הלוגו): {teams}")
-    log(f"תא התוצאה: {score!r}")
-    log(f"מקום: {club_games._txt(g.select_one('.game-type .container .text'))!r}")
-    found += 1
+def verdict(text):
+    f = [w for w in FOOT if w in text]
+    b = [w for w in BALL if w in text]
+    return f, b
 
-if not found:
-    log("לא נמצאה שורה של 8.9. כל המשחקים שיש בעמוד, עם התוצאה שלהם:")
-    for g in soup.select(".game")[:14]:
-        teams = [i.get("alt", "").strip() for i in g.select(".teams-container img") if i.get("alt")]
-        log(f"  {club_games._txt(g.select_one('.date-time'))!r} | {teams} | "
-            f"{club_games._txt(g.select_one('.score'))!r}")
+
+def main():
+    # ה־workflow מעביר תמיד ״all״ כשלא נבחר משהו אחר, וזו לא שאילתה
+    args = [a for a in sys.argv[1:] if a not in ("all", "")]
+    queries = args or [
+        '"ריימונד אוקון"',
+        'אוקון "הפועל ירושלים"',
+        '"הפועל ירושלים" כדורגל ניגריה',
+    ]
+    for q in queries:
+        print("=" * 74)
+        print(f"שאילתה: {q}")
+        try:
+            items = ask(q)
+        except Exception as e:
+            print(f"  נכשלה: {e}")
+            continue
+        if not items:
+            print("  אין תוצאות.")
+            continue
+        blob = " ".join(t for t, _, _ in items)
+        f, b = verdict(blob)
+        print(f"  {len(items)} תוצאות · סימני כדורגל: {f or 'אין'} · "
+              f"סימני כדורסל: {b or 'אין'}")
+        for title, src, when in items[:14]:
+            ff, bb = verdict(title)
+            mark = "⚽" if ff and not bb else ("🏀" if bb and not ff else "  ")
+            print(f"   {mark} {when} · {src[:14]:<14} · {title[:100]}")
+
+
+if __name__ == "__main__":
+    main()
