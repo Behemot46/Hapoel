@@ -367,6 +367,37 @@ def apply_manual_results(games, manual):
     return patched
 
 
+def enrich_from_club(games, club, log=None):
+    """מה שרק אתר המועדון יודע, על משחק שכבר הגיע ממקור רשמי.
+
+    **למה זה צריך להיות צעד נפרד.** המיזוג של לוח המועדון מוסיף רק משחקים
+    שאינם על הלוח, לפי תאריך. משחק שכבר הגיע מאתר הליגה או מפיד היורוקאפ
+    נחשב כפילות ונזרק כולו, ואיתו נזרקים גם השדות שרק המועדון מפרסם.
+    הגביע מול ב״ש ב־18.9.2026 הוא המקרה: הליגה נתנה אותו בלי מקום ובלי
+    שידור, והמועדון פרסם ״פיס ארנה, ירושלים״ ו״5STARS״.
+
+    **ומה לא נדרס.** שעה ותוצאה מגיעות מהמקור הרשמי ושם הן מדויקות יותר,
+    ולכן נלקחים מכאן רק השידור, שאין לו מקור אחר בכלל, ומקום שחסר.
+    """
+    by_day = {}
+    for g in club:
+        by_day.setdefault(g["date"][:10], g)
+    filled = 0
+    for g in games:
+        src = by_day.get(g["date"][:10])
+        if not src:
+            continue
+        if src.get("broadcast") and not g.get("broadcast"):
+            g["broadcast"] = src["broadcast"]
+            filled += 1
+        if src.get("venue") and not g.get("venue"):
+            g["venue"] = src["venue"]
+            filled += 1
+    if log and filled:
+        log(f"  club schedule: filled {filled} missing fields on existing games")
+    return games
+
+
 def preserve_missing(games, previous, now=None):
     """משחקים מהקובץ הקודם שאף מקור כבר לא מציע, ושצריך לשמור.
 
@@ -444,6 +475,7 @@ def update_games():
         for g in fresh:
             log(f"    + {g['date'][:16]}  {g['competition']}  "
                 f"{g['home']} vs {g['away']}  {g.get('venue') or ''}")
+        enrich_from_club(games, club, log=log)
     else:
         log("club schedule empty, board relies on the official feeds alone")
 

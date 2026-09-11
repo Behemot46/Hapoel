@@ -16,6 +16,10 @@
   --line: #E6DCDD;
   --win: #1E7A3C;
   --win-soft: #E3F2E8;
+  /* השידור. כחול ולא אדום, כי אדום כאן הוא צבע המועדון ולא עוד תווית,
+     וכחול ירוק היה מתבלבל עם --win של ניצחון. 6.15:1, עובר AA. */
+  --tv-bg: #E7F0F8;
+  --tv-text: #1F5C8B;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -32,6 +36,9 @@
     --line: #3A2E32;
     --win: #5CC57E;
     --win-soft: #1E3226;
+    /* 7.89:1 בכהה */
+    --tv-bg: #1E2E3C;
+    --tv-text: #9AC9EA;
   }
 }
 
@@ -456,6 +463,22 @@ body {
   font-size: 12.5px; font-weight: 700;
   color: var(--red-text);
 }
+/* השידור. צ'יפ ולא עוד שורת טקסט אפור, כי זו שאלה שהאוהד שואל לפני
+   שהוא מחליט אם לצאת מהבית, והיא צריכה להיתפס בסריקה מהירה של הרשימה. */
+.tv-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 5px; padding: 2px 8px 2px 6px;
+  border-radius: 999px;
+  font-size: 12px; font-weight: 700;
+  background: var(--tv-bg); color: var(--tv-text);
+}
+/* ״טרם נקבע״ הוא מידע חלש יותר, ולכן הוא נראה חלש יותר */
+.tv-chip.pending { background: transparent; color: var(--muted);
+                   padding-right: 0; padding-left: 0; }
+.tv-chip .tv-icon { font-size: 11px; line-height: 1; }
+.badge.tv { background: var(--tv-bg); color: var(--tv-text); }
+.badge.tv.pending { background: var(--surface-2); color: var(--muted); }
+
 .game-row .end { text-align: center; }
 .game-row .end .t { font-weight: 800; font-variant-numeric: tabular-nums; }
 .month-label { font-size: 13px; font-weight: 800; color: var(--muted); margin: 18px 4px 8px; }

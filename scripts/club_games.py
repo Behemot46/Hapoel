@@ -11,6 +11,7 @@
       .date-data .date-time      ״12 בספטמבר, שבת 16:30״   בלי שנה
       .date-data .cycle          ״משחקי הכנה״
       .league .game-type .text   ״וילנה״                    המקום
+      .league .game-type .text   ״5STARS״                   השידור, אם יש
       .teams .teams-container img[alt] x2                    שתי הקבוצות, לפי סדר
       .game-data .score          ״0:0״
 
@@ -26,6 +27,17 @@
 
 **אין שנה בתאריך.** החודשים רצים אוגוסט עד ינואר, כלומר העונה חוצה שנה
 אזרחית. חודש מספטמבר ומעלה שייך לשנת הפתיחה, ינואר עד יולי לזו שאחריה.
+
+**השידור יושב באותו סלקטור של המקום, אחריו.** זה המקור **היחיד** שמפרסם
+אותו: אתר הליגה לא מחזיק עמודת שידור, ועמודי לוח השידורים של ספורט 5 ושל
+ONE מחזירים 404 (נמדד 11.9.2026). לכן `.game-type .container .text` מוחזר
+כרשימה ולא ב־select_one, ומיקום 0 הוא המקום ומיקום 1 השידור.
+
+ושלוש עובדות על השדה הזה, כדי שלא יצפו ממנו ליותר ממה שיש בו. על פני 42
+כרטיסים הוא הופיע **שלוש פעמים בלבד**: ״5STARS״ פעם אחת, ו״שידור טרם
+נקבע״ פעמיים. כלומר ברוב המשחקים המועדון לא כתב כלום, וזה **לא** אומר
+שהמשחק לא משודר, רק שאיננו יודעים. ההבחנה בין השלושה נשמרת בנתונים: ערוץ,
+״טרם נקבע״ שהוא אמירה של המועדון, והיעדר מוחלט שהוא היעדר ידיעה.
 """
 import datetime
 import re
@@ -102,6 +114,53 @@ def _score(raw):
     return a, b
 
 
+# מה שהמועדון כותב כשהוא יודע שיש משחק אבל עוד לא מי משדר אותו. זו
+# אמירה, לא היעדר ידיעה, ולכן היא נשמרת בנפרד מ״לא כתוב כלום״.
+TV_PENDING = "שידור טרם נקבע"
+
+
+def _venue_and_tv(g):
+    """המקום והשידור יושבים באותו סלקטור, בזה אחר זה.
+
+    לא לפי מיקום קשיח: כרטיס שאין לו מקום אבל יש לו שידור היה מציב את
+    הערוץ במיקום 0, ואז שם הערוץ היה מופיע לאוהד ככתובת האולם. לכן כל
+    תא נשאל מה הוא, והראשון שאינו שידור הוא המקום.
+    """
+    cells = [_txt(c) for c in g.select(".game-type .container .text")]
+    cells = [c for c in cells if c]
+    venue, tv = None, None
+    for c in cells:
+        if c == TV_PENDING:
+            tv = {"pending": True}
+        elif _looks_like_channel(c):
+            tv = {"channel": c}
+        elif venue is None:
+            venue = c
+    return venue, tv
+
+
+# שמות הערוצים שמשדרים כדורסל ישראלי, כפי שהמועדון כותב אותם. הרשימה
+# קצרה בכוונה: עדיף שערוץ חדש ייפול לכאן כ״מקום״ ויתוקן, מאשר שכתובת
+# אולם שלא הכרנו תוצג לאוהד כערוץ טלוויזיה.
+#
+# **וספקי הכבלים אינם ברשימה, וזה לא שכחה.** ״יס״ ו״הוט״ הם ספקים ולא
+# ערוצים, והם גם קצרים מדי: הגרסה הראשונה של הקוד כללה את ״יס״, והמחרוזת
+# הזאת יושבת בתוך ״פ**יס** ארנה, ירושלים״. התוצאה הייתה שהאולם הביתי שלנו
+# סווג כערוץ טלוויזיה והמשחק הוצג בלי מקום.
+CHANNELS = ("5STARS", "5 STARS", "ספורט 5", "SPORT 5", "SPORT5", "ONE",
+            "ערוץ הספורט", "כאן 11", "WinnerLeague.TV")
+
+# ההתאמה היא על מילה שלמה ולא על תת־מחרוזת, מאותה סיבה בדיוק.
+_CHANNEL_RE = re.compile(
+    "|".join(r"(?<![א-תA-Za-z0-9])" + re.escape(c) + r"(?![א-תA-Za-z0-9])"
+             for c in sorted(CHANNELS, key=len, reverse=True)),
+    re.IGNORECASE)
+
+
+def _looks_like_channel(s):
+    return bool(_CHANNEL_RE.search(s))
+
+
 def parse_games(html, season_start, log=None):
     soup = BeautifulSoup(html, "html.parser")
     out = []
@@ -134,13 +193,14 @@ def parse_games(html, season_start, log=None):
                                  tzinfo=datetime.timezone(datetime.timedelta(hours=3)))
         opp = away_raw if is_us(home_raw) else home_raw
         cycle = _txt(g.select_one(".cycle"))
+        venue, tv = _venue_and_tv(g)
         game = {
             "id": f"{date:%Y%m%d}-club-" + re.sub(r"[^א-תA-Za-z]", "", opp)[:12],
             "date": when.isoformat(),
             "competition": COMPETITION.get(cycle, cycle or "משחק"),
             "home": TEAM if is_us(home_raw) else home_raw,
             "away": TEAM if is_us(away_raw) else away_raw,
-            "venue": _txt(g.select_one(".game-type .container .text")) or None,
+            "venue": venue or None,
             "status": "finished" if played else "scheduled",
             "homeScore": a,
             "awayScore": b,
@@ -150,6 +210,8 @@ def parse_games(html, season_start, log=None):
             game["note"] = "שעת הפתיחה טרם נקבעה"
             # דגל מפורש לצד ההערה, כדי שהאפליקציה תדע לא להדפיס שעון
             game["timeTbd"] = True
+        if tv:
+            game["broadcast"] = tv
         out.append(game)
     return out
 
