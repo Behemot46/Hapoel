@@ -1,86 +1,109 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**השאלה:** ריימונד אוקון, ניגרי בן 18 שאותר בטורניר כשרונות, חתם
-ב״הפועל ירושלים״. יש לנו גם מועדון כדורגל באותו שם, וסיפור כזה הוא
-בצורת כדורגל. אי אפשר להכריע מהכותרות.
+**השאלה:** איפה משודר כל משחק, ובאיזה ערוץ. אין לנו היום שום שדה כזה,
+ולכן השאלה הראשונה היא בכלל האם מישהו מהמקורות שאנחנו כבר קוראים מפרסם
+את זה, ואם לא, מי כן.
 
-**מה שכבר נוסה ונכשל, כדי שלא ינוסה שוב:** ללכת לקישור שב־news.json.
-הוא הפניה של גוגל, והדף שמאחוריו הוא בדל של 267 תווים בלי הכתבה. גם
-פענוח base64 של האסימון לא עוזר: הפורמט החדש (AU_yqL...) אטום וצריך
-קריאה נוספת לגוגל כדי לפתוח אותו.
-
-**מה שכן עובד:** לשאול את הפיד עצמו על השחקן. אם הוא כדורגלן, כותרת
-כלשהי עליו תזכיר ליגה, מגרש או שער, ואם הוא כדורסלן, כותרת תזכיר סל.
-בנוסף אנחנו שואלים על מועדון הכדורגל בשמו המלא, כדי לראות איך הפיד
-מדבר עליו בכלל.
+הכלי לא מחפש מילה אחת אלא מדפיס מבנה: כמה עמודות יש בטבלת המשחקים של
+אתר הליגה ומה כתוב בכל אחת, מה יש בעמוד המשחקים של המועדון, ואיזה
+עמודי לוח שידורים בכלל עונים.
 """
 
 import re
 import sys
-import urllib.parse
-import xml.etree.ElementTree as ET
 
 import requests
+from bs4 import BeautifulSoup
 
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
-UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-      "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+      "Accept-Language": "he-IL,he;q=0.9"}
 
-FOOT = ["כדורגל", "ליגת העל", "הליגה הלאומית", "שער", "שערים", "בלם",
-        "חלוץ", "קיצוני", "כבש", "דשא", "בית״ר", "בית\"ר", "מכבי חיפה",
-        "הפועל באר שבע", "עירוני", "טוטו"]
-BALL = ["כדורסל", "ווינר", "יורוליג", "יורוקאפ", "סל", "רכז", "פורוורד",
-        "סנטר", "ריבאונד", "נקודות", "מלחה", "אשדוד"]
-
-
-def ask(q):
-    url = FEED.format(q=urllib.parse.quote(q))
-    r = requests.get(url, headers={"User-Agent": UA}, timeout=30)
-    r.raise_for_status()
-    root = ET.fromstring(r.content)
-    out = []
-    for item in root.iter("item"):
-        title = (item.findtext("title") or "").strip()
-        src = item.find("{*}source")
-        src = (src.text if src is not None else "") or ""
-        out.append((title, src, (item.findtext("pubDate") or "")[:16]))
-    return out
+# מילים שמסגירות שידור, בעברית ובאנגלית
+TV = ["שידור", "ערוץ", "משודר", "לצפייה", "שידורים", "ספורט 5", "sport5",
+      "sport 5", "ONE", "צפייה ישירה", "לייב", "broadcast", "tv", "live on",
+      "יס", "הוט", "cellcom", "סלקום", "פרטנר"]
 
 
-def verdict(text):
-    f = [w for w in FOOT if w in text]
-    b = [w for w in BALL if w in text]
-    return f, b
+def get(url, note=""):
+    print(f"\n--- GET {url}  {note}")
+    try:
+        r = requests.get(url, headers=UA, timeout=30)
+    except Exception as e:
+        print(f"    נכשל: {e}")
+        return None
+    print(f"    {r.status_code} · {len(r.content)} bytes · "
+          f"content-type={r.headers.get('content-type','?')[:40]}")
+    if r.status_code >= 400:
+        return None
+    # האתרים האלה מצהירים UTF-8 רק בתגית, ובלי זה העברית חוזרת ג'יבריש
+    r.encoding = "utf-8"
+    return r.text
+
+
+def hits(text, label):
+    soup = BeautifulSoup(text, "html.parser")
+    for t in soup(["script", "style", "noscript"]):
+        t.decompose()
+    flat = re.sub(r"\s+", " ", soup.get_text(" "))
+    found = {w: flat.count(w) for w in TV if flat.count(w)}
+    print(f"    [{label}] סימני שידור: {found or 'אין'}")
+    for w in ("שידור", "ערוץ", "משודר"):
+        i = flat.find(w)
+        if i >= 0:
+            print(f"      ...{flat[max(0,i-110):i+110]}...")
+    return flat
+
+
+def league_table(text):
+    """טבלת המשחקים של אתר הליגה: כמה עמודות, ומה יושב בכל אחת."""
+    soup = BeautifulSoup(text, "html.parser")
+    for tbl in soup.find_all("table"):
+        rows = tbl.find_all("tr")
+        if len(rows) < 4:
+            continue
+        widths = {len(r.find_all(["td", "th"])) for r in rows}
+        if max(widths) < 4:
+            continue
+        print(f"    טבלה עם {len(rows)} שורות, רוחב {sorted(widths)}")
+        for r in rows[:4]:
+            cells = [re.sub(r"\s+", " ", c.get_text(" ")).strip()[:34]
+                     for c in r.find_all(["td", "th"])]
+            print("      | " + " | ".join(cells))
+        break
 
 
 def main():
-    # ה־workflow מעביר תמיד ״all״ כשלא נבחר משהו אחר, וזו לא שאילתה
-    args = [a for a in sys.argv[1:] if a not in ("all", "")]
-    queries = args or [
-        '"ריימונד אוקון"',
-        'אוקון "הפועל ירושלים"',
-        '"הפועל ירושלים" כדורגל ניגריה',
-    ]
-    for q in queries:
-        print("=" * 74)
-        print(f"שאילתה: {q}")
-        try:
-            items = ask(q)
-        except Exception as e:
-            print(f"  נכשלה: {e}")
-            continue
-        if not items:
-            print("  אין תוצאות.")
-            continue
-        blob = " ".join(t for t, _, _ in items)
-        f, b = verdict(blob)
-        print(f"  {len(items)} תוצאות · סימני כדורגל: {f or 'אין'} · "
-              f"סימני כדורסל: {b or 'אין'}")
-        for title, src, when in items[:14]:
-            ff, bb = verdict(title)
-            mark = "⚽" if ff and not bb else ("🏀" if bb and not ff else "  ")
-            print(f"   {mark} {when} · {src[:14]:<14} · {title[:100]}")
+    which = (sys.argv[1] if len(sys.argv) > 1 else "all")
+
+    print("=" * 74)
+    print("1. אתר הליגה, עמוד הקבוצה. האם יש עמודת שידור בטבלה?")
+    t = get("https://basket.co.il/team.asp?TeamId=2114", "(המקור שאנחנו כבר קוראים)")
+    if t:
+        league_table(t)
+        hits(t, "basket.co.il/team")
+
+    print("\n" + "=" * 74)
+    print("2. אתר המועדון, עמוד המשחקים")
+    t = get("https://hapoel.co.il/games", "(המקור השני שאנחנו קוראים)")
+    if t:
+        hits(t, "hapoel.co.il/games")
+
+    print("\n" + "=" * 74)
+    print("3. עמודי לוח שידורים: מי בכלל עונה")
+    for url in [
+        "https://www.sport5.co.il/tv",
+        "https://www.sport5.co.il/schedule",
+        "https://www.sport5.co.il/broadcasts",
+        "https://www.one.co.il/cat/tv/",
+        "https://basket.co.il/games.asp",
+        "https://basket.co.il/schedule.asp",
+        "https://www.winner-league.co.il/",
+    ]:
+        t = get(url)
+        if t:
+            hits(t, url.split("/")[2])
 
 
 if __name__ == "__main__":
