@@ -2112,6 +2112,12 @@ function renderHome() {
       homeAwayLabel(next, true)));
     if (next.venue) meta.appendChild(text("span", "badge", venueLabel(next.venue)));
     if (next.note) meta.appendChild(proseInto(text("span", "badge note", ""), next.note));
+    const nextTv = broadcastLabel(next);
+    if (nextTv) {
+      meta.appendChild(proseInto(
+        text("span", "badge tv" + (next.broadcast.pending ? " pending" : ""), ""),
+        "📺 " + nextTv));
+    }
     c.appendChild(meta);
     c.appendChild(calButton([next], "הוספה ליומן", "hapoel-next-game.ics"));
     c.appendChild(calNote());
@@ -2327,6 +2333,18 @@ function renderGames() {
 // them that way, but a fan reading "בית" packs for Malha, and the game is
 // 1,500 km away. Wherever a home game is not at our own arena, say the city.
 
+// השידור, כפי שהמועדון פרסם אותו. שלושה מצבים ולא שניים, וההבדל בין
+// השני לשלישי חשוב לאוהד: ״טרם נקבע״ הוא אמירה של המועדון, ואילו שדה
+// חסר אומר רק שאיננו יודעים. אין שום מקור אחר שמפרסם את זה, אז אסור
+// להציג ״לא משודר״ על משחק שפשוט לא כתבו עליו.
+function broadcastLabel(g) {
+  const b = g && g.broadcast;
+  if (!b) return "";
+  if (b.channel) return "משודר ב" + (/^[A-Za-z0-9]/.test(b.channel) ? "־" : "") + b.channel;
+  if (b.pending) return "שידור טרם נקבע";
+  return "";
+}
+
 function venueInfo(name) {
   const v = (state.venues && state.venues.venues) || {};
   return v[name] || null;
@@ -2338,10 +2356,22 @@ function venueLabel(name) {
   return v ? v.he : name;
 }
 
+// ״פיס ארנה״, ״פיס ארנה, ירושלים״ ו־״Pais Arena Jerusalem״ הם אותו
+// מקום, וכל מקור כותב אותו אחרת. הסיומת אחרי הפסיק היא העיר, והיא יורדת
+// לפני ההשוואה.
+//
+// **למה זה נוסף:** ברגע שהמקום של משחק הגביע ב־18.9.2026 הושלם מאתר
+// המועדון כ־״פיס ארנה, ירושלים״, הוא הפסיק להתאים לרשימה, והמשחק הביתי
+// שלנו בירושלים הוצג לאוהד כ״בית מחוץ לישראל״.
+function venueKey(name) {
+  return String(name || "").split(",")[0].trim().toLowerCase();
+}
+
 function isOurArena(name) {
   if (!name) return true;              // nothing said, assume the usual place
   const home = (state.venues && state.venues.homeArena) || [];
-  return home.some(h => h.toLowerCase() === String(name).toLowerCase());
+  const key = venueKey(name);
+  return home.some(h => venueKey(h) === key);
 }
 
 // "בית", or "בית בבלגרד" when home is somewhere else entirely
@@ -2375,6 +2405,13 @@ function gameRow(g) {
     homeAwayLabel(g, false)));
   if (g.venue) sub.appendChild(document.createTextNode(" · " + venueLabel(g.venue)));
   info.appendChild(sub);
+  const tv = broadcastLabel(g);
+  if (tv) {
+    const chip = el("div", "tv-chip" + (g.broadcast.pending ? " pending" : ""));
+    chip.appendChild(text("span", "tv-icon", "📺"));
+    chip.appendChild(proseInto(text("span", "", ""), tv));
+    info.appendChild(chip);
+  }
   // מה שהמועדון עצמו פרסם על המשחק, למשל ״עם קהל״ או יריבה שטרם נקבעה.
   // אוהד שמתכנן להגיע צריך לדעת את זה לפני שהוא יוצא מהבית.
   if (g.note) info.appendChild(proseInto(text("div", "game-note", ""), g.note));
