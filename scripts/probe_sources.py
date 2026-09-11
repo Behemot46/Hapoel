@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**השאלה:** משחק ההכנה מול בורג בווילנה, 12.9, לא פורסם לו שידור בשום
-מקור שנבדק אתמול. האם הוא בכל זאת זמין לצפייה חוקית, למשל בערוץ היוטיוב
-של המועדון, אצל מארגן הטורניר, או אצל היריבה.
+**מה שכבר נשלל למשחק ההכנה מול בורג בווילנה, 12.9:**
 
-**מה שכבר נבדק ונשלל אתמול:** אתר המועדון בלוח המשחקים (אין שדה),
-אתר הליגה (אין עמודה), לוח השידורים של ספורט 5 ושל ONE (404), והפיד
-העיתונאי (46 תוצאות, אף אחת לא מזכירה שידור).
+  * אתר המועדון, לוח המשחקים: אין שדה שידור למשחק הזה.
+  * אתר המועדון, עמוד הבית והחדשות: המילים ״שידור״, ״צפייה ישירה״,
+    ״לייב״ ו״יוטיוב״ לא מופיעות בהם בכלל.
+  * ערוץ היוטיוב של המועדון (UCM2ng9CAAebh7NIK_CmcsxA): שנים־עשר
+    הסרטונים האחרונים, עד 13.7.2026, הם תקצירים וקטעי מועדון. **אין בהם
+    אף שידור חי ואף משחק מלא**, והקרוב ביותר הוא ״סיכום משחק ההכנה נגד
+    העמק״ שעלה יומיים אחרי המשחק.
+  * אתר הליגה, לוח השידורים של ספורט 5 ושל ONE, והפיד העיתונאי.
 
-**מה שנבדק כאן:** ערוץ היוטיוב של המועדון דרך פיד ה־RSS שלו, שהוא ציבורי
-ולא דורש מפתח; עמודי המועדון מחדש, אולי הודיעו מאז; ומה הפיד אומר על
-הטורניר ועל היריבה.
+**מה שנשאר, וזו השאלה כאן:** הצד הליטאי. הטורניר מתקיים בווילנה, והמארגן
+או האולם או היריבה עשויים לשדר בעצמם. היריבה זוהתה מהפיד: ״בורג זכתה
+ביורוקאפ״, כלומר JL Bourg הצרפתית.
 """
 
 import re
@@ -22,105 +25,91 @@ import requests
 from bs4 import BeautifulSoup
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-      "Accept-Language": "he-IL,he;q=0.9"}
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
+                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+EN = "https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
 YT_RSS = "https://www.youtube.com/feeds/videos.xml?channel_id={cid}"
 
-WORDS = ["שידור", "משודר", "צפייה ישירה", "לצפייה", "לייב", "בשידור חי",
-         "ערוץ", "5STARS", "ספורט 5", "יוטיוב", "סטרים", "live", "stream"]
+WORDS = ["live", "stream", "broadcast", "watch", "tv", "youtube",
+         "tiesiogiai", "transliacija", "direct", "diffusion"]
 
 
 def get(url, note=""):
     try:
         r = requests.get(url, headers=UA, timeout=30)
     except Exception as e:
-        print(f"  {url[:70]} · נכשל: {e}")
+        print(f"  {url[:72]} · נכשל: {type(e).__name__}")
         return None
-    print(f"  {url[:70]} · {r.status_code} · {len(r.content)} bytes {note}")
+    print(f"  {url[:72]} · {r.status_code} · {len(r.content)} bytes {note}")
     if not r.ok:
         return None
-    r.encoding = "utf-8"
+    r.encoding = r.apparent_encoding or "utf-8"
     return r.text
+
+
+def hits(text, label):
+    soup = BeautifulSoup(text, "html.parser")
+    for x in soup(["script", "style", "noscript"]):
+        x.decompose()
+    flat = re.sub(r"\s+", " ", soup.get_text(" "))
+    low = flat.lower()
+    found = {w: low.count(w) for w in WORDS if low.count(w)}
+    print(f"     [{label}] {found or 'אין סימני שידור'}")
+    for w in ("hapoel", "jeruzal", "jerusalem", "bourg"):
+        i = low.find(w)
+        if i >= 0:
+            print(f"       ״{w}״ ...{flat[max(0, i - 90):i + 120]}...")
+            break
 
 
 def main():
     print("=" * 76)
-    print("1. מה מקושר מאתר המועדון, וממנו מזהה ערוץ היוטיוב")
-    html = get("https://hapoel.co.il/")
-    cids, links = set(), set()
-    if html:
-        soup = BeautifulSoup(html, "html.parser")
-        for a in soup.find_all("a", href=True):
-            h = a["href"]
-            if any(s in h for s in ("youtube.com", "youtu.be", "facebook.com",
-                                    "instagram.com", "twitter.com", "x.com")):
-                links.add(h.split("?")[0])
-        for m in re.finditer(r'(?:channel/|"channelId":")(UC[\w-]{20,24})', html):
-            cids.add(m.group(1))
-        for l in sorted(links):
-            print(f"     {l}")
-        print(f"     מזהי ערוץ שנמצאו: {sorted(cids) or 'אין'}")
-
-        # אם יש קישור ליוטיוב בלי מזהה, הולכים לעמוד הערוץ ומוציאים משם
-        for l in sorted(links):
-            if "youtube" in l and not cids:
-                page = get(l, "(עמוד הערוץ)")
-                if page:
-                    for m in re.finditer(r'"(?:channelId|externalId)":"(UC[\w-]{20,24})"', page):
-                        cids.add(m.group(1))
-                    print(f"     מזהים מעמוד הערוץ: {sorted(cids) or 'אין'}")
-                break
-
-    print("\n" + "=" * 76)
-    print("2. הסרטונים האחרונים בערוץ. מועדון שמשדר משחק מעלה אותו לכאן.")
-    for cid in sorted(cids):
-        xml = get(YT_RSS.format(cid=cid))
-        if not xml:
-            continue
-        try:
-            root = ET.fromstring(xml.encode("utf-8"))
-        except Exception as e:
-            print(f"     לא נפרסר: {e}")
-            continue
-        ns = {"a": "http://www.w3.org/2005/Atom"}
-        title = root.findtext("a:title", namespaces=ns)
-        print(f"     ערוץ: {title}")
-        for e in root.findall("a:entry", ns)[:12]:
-            t = e.findtext("a:title", namespaces=ns) or ""
-            when = (e.findtext("a:published", namespaces=ns) or "")[:10]
-            mark = "🔴" if any(w.lower() in t.lower() for w in WORDS) else "  "
-            print(f"       {mark} {when} · {t[:88]}")
-
-    print("\n" + "=" * 76)
-    print("3. עמודי המועדון מחדש, אולי הודיעו היום")
-    for url in ["https://hapoel.co.il/", "https://hapoel.co.il/news"]:
+    print("1. אתרים ליטאיים וצרפתיים שעשויים לשדר בעצמם")
+    for url in ["https://www.rytas.lt/", "https://rytas.lt/en/",
+                "https://www.jlbourgbasket.com/", "https://lkl.lt/en",
+                "https://www.activevilnius.lt/"]:
         t = get(url)
+        if t:
+            hits(t, url.split("/")[2])
+
+    print("\n" + "=" * 76)
+    print("2. ערוצי יוטיוב של הליגה הליטאית ושל ריטאס, אם מקושרים")
+    for url in ["https://www.rytas.lt/", "https://lkl.lt/en"]:
+        t = get(url, "(לחיפוש מזהה ערוץ)")
         if not t:
             continue
-        soup = BeautifulSoup(t, "html.parser")
-        for x in soup(["script", "style"]):
-            x.decompose()
-        flat = re.sub(r"\s+", " ", soup.get_text(" "))
-        for w in ("שידור", "צפייה ישירה", "לייב", "בשידור חי", "יוטיוב"):
-            i = flat.find(w)
-            if i >= 0:
-                print(f"     ״{w}״ ...{flat[max(0, i - 110):i + 130]}...")
+        cids = set(re.findall(r'(?:channel/|"channelId":")(UC[\w-]{20,24})', t))
+        print(f"     מזהים: {sorted(cids) or 'אין'}")
+        for cid in sorted(cids):
+            xml = get(YT_RSS.format(cid=cid))
+            if not xml:
+                continue
+            try:
+                root = ET.fromstring(xml.encode("utf-8"))
+            except Exception:
+                continue
+            ns = {"a": "http://www.w3.org/2005/Atom"}
+            print(f"     ערוץ: {root.findtext('a:title', namespaces=ns)}")
+            for e in root.findall("a:entry", ns)[:8]:
+                t2 = e.findtext("a:title", namespaces=ns) or ""
+                when = (e.findtext("a:published", namespaces=ns) or "")[:10]
+                print(f"       {when} · {t2[:82]}")
 
     print("\n" + "=" * 76)
-    print("4. מה הפיד אומר על שידור הטורניר")
-    for q in ['"הפועל ירושלים" שידור וילנה', '"הפועל ירושלים" צפייה ישירה',
-              '"הפועל ירושלים" בורג הכנה שידור']:
+    print("3. מה העיתונות הבינלאומית אומרת על הטורניר")
+    for q in ['"Hapoel Jerusalem" Vilnius tournament',
+              '"Hapoel Jerusalem" "JL Bourg"',
+              'Vilnius preseason basketball tournament 2026 stream']:
         try:
-            r = requests.get(FEED.format(q=urllib.parse.quote(q)), headers=UA, timeout=30)
+            r = requests.get(EN.format(q=urllib.parse.quote(q)), headers=UA, timeout=30)
             root = ET.fromstring(r.content)
-            items = [(i.findtext("title") or "").strip() for i in root.iter("item")]
+            items = [((i.findtext("title") or "").strip(),
+                      (i.findtext("pubDate") or "")[:16]) for i in root.iter("item")]
             print(f"\n   {q} · {len(items)} תוצאות")
-            for t in items[:8]:
-                mark = "📺" if any(w in t for w in WORDS) else "  "
-                print(f"     {mark} {t[:100]}")
+            for t2, when in items[:8]:
+                mark = "📺" if any(w in t2.lower() for w in WORDS) else "  "
+                print(f"     {mark} {when} · {t2[:92]}")
         except Exception as e:
-            print(f"\n   {q} · נכשל: {e}")
+            print(f"\n   {q} · נכשל: {type(e).__name__}")
 
 
 if __name__ == "__main__":
