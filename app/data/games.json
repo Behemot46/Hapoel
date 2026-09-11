@@ -66,10 +66,13 @@
       "competition": "גביע ווינר סל",
       "home": "הפועל ירושלים",
       "away": "הפועל ב\"ש",
-      "venue": null,
+      "venue": "פיס ארנה, ירושלים",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "broadcast": {
+        "channel": "5STARS"
+      }
     },
     {
       "id": "20260929-euro-RostockSeawo",
@@ -105,13 +108,16 @@
       "competition": "ליגת Winner סל, מחזור 1",
       "home": "הפועל חולון",
       "away": "הפועל ירושלים",
-      "venue": null,
+      "venue": "היכל טוטו, חולון",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
       "note": "המועד לא סופי, והשעה טרם נקבעה",
       "timeTbd": true,
-      "provisional": true
+      "provisional": true,
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261014-euro-RecoletasSal",
@@ -133,13 +139,16 @@
       "competition": "ליגת Winner סל, מחזור 2",
       "home": "הפועל ירושלים",
       "away": "הפועל ב\"ש",
-      "venue": null,
+      "venue": "פיס ארנה, ירושלים",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
       "note": "המועד לא סופי, והשעה טרם נקבעה",
       "timeTbd": true,
-      "provisional": true
+      "provisional": true,
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261021-euro-RigaZelli",

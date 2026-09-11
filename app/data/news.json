@@ -1,17 +1,18 @@
 {
-  "updated": "2026-09-11T09:30:07Z",
+  "updated": "2026-09-11T17:55:46Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
     "ynet",
     "וואלה ספורט",
-    "ONE",
     "ערוץ 7",
     "הארץ",
+    "ONE",
     "ספורט 5",
     "ספורט 1",
     "אייס",
-    "סרוגים"
+    "סרוגים",
+    "103FM"
   ],
   "items": [
     {
@@ -34,13 +35,6 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-09-09T07:02:00Z"
-    },
-    {
-      "title": "הפועל ירושלים הודיעה: יובל זוסמן אובחן עם נקע",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE80UTZOVUJtQzAwcEtNMWp2WHV1b1Juczg1T0NoNTJEQ1dLOWtoMXhmM1VkV3ZhOUdpWEFYYVp1SE52clhXblB3RFpHTXppNFNQT2Rr?oc=5",
-      "source": "ONE",
-      "sourceUrl": "https://www.one.co.il",
-      "published": "2026-09-09T06:56:03Z"
     },
     {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
@@ -222,6 +216,13 @@
       "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
       "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
+      "published": "2026-08-26T07:00:00Z"
+    },
+    {
+      "title": "ספורט - הפועל ירושלים תקפוץ מדרגה?",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CYUh0eDgtZDltQ3lMYm9ZNmtTcGVjdGU2WkxkSGVBZ081YXRnd1BBRmNLbVNuVVdsNWc2Ql9qZUVHUGZMMXhDVklZYWczWlVtYzF1THVSekg3cWNWSUp1dHgtRGR6RXd1NTV1TE81d1ZaQjFnLTBnWUsxeXd6d1k?oc=5",
+      "source": "103FM",
+      "sourceUrl": "https://103fm.maariv.co.il",
       "published": "2026-08-26T07:00:00Z"
     }
   ]
