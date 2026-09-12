@@ -1,115 +1,80 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**מה שכבר נשלל למשחק ההכנה מול בורג בווילנה, 12.9:**
+**התסמין:** מדור החדשות קפא על 9.9. הקובץ נכתב מחדש בכל איסוף, הפריטים
+מסתדרים מהחדש לישן, ובכל זאת הפריט החדש ביותר הוא מלפני שלושה ימים.
+בינתיים הקבוצה ניצחה את בורג ב־12.9, ושתי כותרות על זה קיימות בגוגל
+**ועוברות את הסינון שלנו**, כפי שנמדד בפרוב הקודם.
 
-  * אתר המועדון, לוח המשחקים: אין שדה שידור למשחק הזה.
-  * אתר המועדון, עמוד הבית והחדשות: המילים ״שידור״, ״צפייה ישירה״,
-    ״לייב״ ו״יוטיוב״ לא מופיעות בהם בכלל.
-  * ערוץ היוטיוב של המועדון (UCM2ng9CAAebh7NIK_CmcsxA): שנים־עשר
-    הסרטונים האחרונים, עד 13.7.2026, הם תקצירים וקטעי מועדון. **אין בהם
-    אף שידור חי ואף משחק מלא**, והקרוב ביותר הוא ״סיכום משחק ההכנה נגד
-    העמק״ שעלה יומיים אחרי המשחק.
-  * אתר הליגה, לוח השידורים של ספורט 5 ושל ONE, והפיד העיתונאי.
+**ההבדל היחיד בין הפרוב שמצא אותן לאיסוף שלא:** קידוד השאילתה. האיסוף
+משתמש ב־quote_plus, כלומר רווח הופך ל־+, והפרוב השתמש ב־quote, כלומר
+%20. בתוך מרכאות זה יכול להיות ההבדל בין ביטוי לחיפוש מילולי.
 
-**מה שנשאר, וזו השאלה כאן:** הצד הליטאי. הטורניר מתקיים בווילנה, והמארגן
-או האולם או היריבה עשויים לשדר בעצמם. היריבה זוהתה מהפיד: ״בורג זכתה
-ביורוקאפ״, כלומר JL Bourg הצרפתית.
+הכלי שולח את אותה שאילתה בשני הקידודים ומשווה מה חוזר.
 """
 
-import re
+import datetime
+import pathlib
+import sys
 import urllib.parse
 import xml.etree.ElementTree as ET
 
 import requests
-from bs4 import BeautifulSoup
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import news_feed
+
+FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
-EN = "https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
-YT_RSS = "https://www.youtube.com/feeds/videos.xml?channel_id={cid}"
-
-WORDS = ["live", "stream", "broadcast", "watch", "tv", "youtube",
-         "tiesiogiai", "transliacija", "direct", "diffusion"]
+                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+      "Accept-Language": "he-IL,he;q=0.9"}
 
 
-def get(url, note=""):
-    try:
-        r = requests.get(url, headers=UA, timeout=30)
-    except Exception as e:
-        print(f"  {url[:72]} · נכשל: {type(e).__name__}")
-        return None
-    print(f"  {url[:72]} · {r.status_code} · {len(r.content)} bytes {note}")
-    if not r.ok:
-        return None
-    r.encoding = r.apparent_encoding or "utf-8"
-    return r.text
-
-
-def hits(text, label):
-    soup = BeautifulSoup(text, "html.parser")
-    for x in soup(["script", "style", "noscript"]):
-        x.decompose()
-    flat = re.sub(r"\s+", " ", soup.get_text(" "))
-    low = flat.lower()
-    found = {w: low.count(w) for w in WORDS if low.count(w)}
-    print(f"     [{label}] {found or 'אין סימני שידור'}")
-    for w in ("hapoel", "jeruzal", "jerusalem", "bourg"):
-        i = low.find(w)
-        if i >= 0:
-            print(f"       ״{w}״ ...{flat[max(0, i - 90):i + 120]}...")
-            break
+def fetch(q, enc):
+    url = FEED.format(q=enc(q))
+    r = requests.get(url, headers=UA, timeout=30)
+    r.raise_for_status()
+    r.encoding = "utf-8"
+    items = ET.fromstring(r.text.encode("utf-8")).findall(".//item")
+    out = []
+    for it in items:
+        src_el = it.find("source")
+        src = news_feed._clean(src_el.text if src_el is not None else "")
+        title = news_feed._strip_source(
+            news_feed._clean(it.findtext("title")), src)
+        when = news_feed._published(it)
+        out.append((title, src, when))
+    return url, out
 
 
 def main():
-    print("=" * 76)
-    print("1. אתרים ליטאיים וצרפתיים שעשויים לשדר בעצמם")
-    for url in ["https://www.rytas.lt/", "https://rytas.lt/en/",
-                "https://www.jlbourgbasket.com/", "https://lkl.lt/en",
-                "https://www.activevilnius.lt/"]:
-        t = get(url)
-        if t:
-            hits(t, url.split("/")[2])
+    cfg = news_feed._config()
+    print(f"maxItems={cfg['maxItems']} · maxAgeDays={cfg['maxAgeDays']}")
+    now = datetime.datetime.now(datetime.timezone.utc)
 
-    print("\n" + "=" * 76)
-    print("2. ערוצי יוטיוב של הליגה הליטאית ושל ריטאס, אם מקושרים")
-    for url in ["https://www.rytas.lt/", "https://lkl.lt/en"]:
-        t = get(url, "(לחיפוש מזהה ערוץ)")
-        if not t:
-            continue
-        cids = set(re.findall(r'(?:channel/|"channelId":")(UC[\w-]{20,24})', t))
-        print(f"     מזהים: {sorted(cids) or 'אין'}")
-        for cid in sorted(cids):
-            xml = get(YT_RSS.format(cid=cid))
-            if not xml:
-                continue
+    for q in cfg["queries"]:
+        print("\n" + "=" * 74)
+        print(f"שאילתה: {q}")
+        for name, enc in (("quote_plus, כמו באיסוף", urllib.parse.quote_plus),
+                          ("quote, כמו בפרוב", urllib.parse.quote)):
             try:
-                root = ET.fromstring(xml.encode("utf-8"))
-            except Exception:
+                url, items = fetch(q, enc)
+            except Exception as e:
+                print(f"  {name}: נכשל {e}")
                 continue
-            ns = {"a": "http://www.w3.org/2005/Atom"}
-            print(f"     ערוץ: {root.findtext('a:title', namespaces=ns)}")
-            for e in root.findall("a:entry", ns)[:8]:
-                t2 = e.findtext("a:title", namespaces=ns) or ""
-                when = (e.findtext("a:published", namespaces=ns) or "")[:10]
-                print(f"       {when} · {t2[:82]}")
-
-    print("\n" + "=" * 76)
-    print("3. מה העיתונות הבינלאומית אומרת על הטורניר")
-    for q in ['"Hapoel Jerusalem" Vilnius tournament',
-              '"Hapoel Jerusalem" "JL Bourg"',
-              'Vilnius preseason basketball tournament 2026 stream']:
-        try:
-            r = requests.get(EN.format(q=urllib.parse.quote(q)), headers=UA, timeout=30)
-            root = ET.fromstring(r.content)
-            items = [((i.findtext("title") or "").strip(),
-                      (i.findtext("pubDate") or "")[:16]) for i in root.iter("item")]
-            print(f"\n   {q} · {len(items)} תוצאות")
-            for t2, when in items[:8]:
-                mark = "📺" if any(w in t2.lower() for w in WORDS) else "  "
-                print(f"     {mark} {when} · {t2[:92]}")
-        except Exception as e:
-            print(f"\n   {q} · נכשל: {type(e).__name__}")
+            ok = [(t, s, d) for t, s, d in items if d and news_feed.about_us(t)]
+            ok.sort(key=lambda x: x[2], reverse=True)
+            print(f"  {name}")
+            print(f"     {url[:96]}")
+            if not ok:
+                print(f"     {len(items)} פריטים · אף אחד לא עובר את הסינון")
+                continue
+            newest = ok[0][2]
+            age = (now - newest).total_seconds() / 3600
+            print(f"     {len(items)} פריטים · {len(ok)} עוברים · "
+                  f"החדש ביותר {newest:%d.%m %H:%M}, לפני {age:.1f} שעות")
+            for t, s, d in ok[:4]:
+                print(f"       {d:%d.%m %H:%M} · {s[:13]:<13} · {t[:66]}")
 
 
 if __name__ == "__main__":

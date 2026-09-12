@@ -75,6 +75,19 @@ FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
 # spellings the press actually uses for the club
 US = ("הפועל ירושלים", "הפועל י-ם", "הפועל י־ם", 'הפועל י"ם', "הפועל י״ם",
       "הפועל בנק יהב", "הפועל מידטאון", "אדומי הבירה")
+
+# **ספורט 5 מקצרת לפעמים ל״י-ם״ בלי ״הפועל״.** נמדד ב־12.9.2026: ״לופטון
+# כיכב, י-ם פתחה עם 77:110 על אשדוד״ ו״על אלופת היורוקאפ: 80:87 לי-ם נגד
+# בורג״, שתיהן עלינו, שתיהן נפלו כי אין בהן ״הפועל״.
+#
+# ״י-ם״ לבדו הוא קיצור של ירושלים ולא של המועדון, ולכן הוא לא מספיק: הוא
+# מתקבל רק כשיש בכותרת **גם סימן כדורסל**. חסימת בית״ר ושאר NOT_US
+# ממשיכה לחול אחרי זה, אז ״בית״ר י-ם״ עדיין נופל.
+#
+# **ורק צורות המקף, לא צורות הגרשיים.** ‏_norm מוריד גרשיים, ולכן ‏י״ם
+# הופך ל־״ים״, שיושב בתוך ״ירושל**ים**״ ובתוך חצי מהמילים בעברית. הוספת
+# הצורה הזאת כאן הייתה מכניסה כמעט כל כותרת.
+SHORT_US = ("י-ם", "י־ם")
 # כותרת שנקראת ככדורגל, או ככדורסל של מישהו אחר. הרשימה הזאת התארכה
 # כשהשאילתות התרחבו: כל עוד כל שאילתה דרשה את המילה ״כדורסל״, גוגל סיננה
 # בשבילנו וכמעט שום כדורגל לא הגיע. בלי הדרישה הזאת מגיעות גם כותרות על
@@ -288,7 +301,10 @@ def about_us(title):
     """True when the headline itself is about our basketball club."""
     flat = _norm(title)
     if not any(_norm(w) in flat for w in US):
-        return False
+        # הקיצור של ספורט 5, ורק לצד סימן כדורסל. ראו SHORT_US.
+        if not (any(_norm(w) in flat for w in SHORT_US)
+                and any(_norm(w) in flat for w in BASKET)):
+            return False
     if any(_norm(w) in flat for w in NOT_US) or any(_norm(w) in flat for w in soccer_clubs()):
         return False
     if any(_norm(w) in flat for w in blocked_phrases()):
