@@ -245,7 +245,16 @@ jobs:
             python - <<'PY'
           import datetime, json, pathlib
           BEFORE = datetime.timedelta(hours=3)
-          AFTER = datetime.timedelta(hours=6)
+          # **תשע ולא שש, ונמדד ב־12.9.2026.** המשחק קפץ ב־13:30 UTC
+          # ונגמר בערך ב־15:30. וואלה פרסמה את התוצאה ב־15:57, אבל גוגל
+          # אינדקסה אותה רק אחרי 17:05, ובאיסוף של 17:05 היא עוד לא
+          # הייתה שם. החלון של שש שעות נסגר ב־19:30, והאיסוף הבא בתוך
+          # הקצב הצפוף היה אמור להיות ב־20:05, כלומר מחוצה לו, ולכן
+          # התוצאה הייתה מגיעה לאוהד רק ב־04:05 למחרת.
+          #
+          # החלון צריך לכסות את המשחק, ועוד את זמן האינדוקס של גוגל, ועוד
+          # מרווח איסוף אחד: 2.5 + 1 + 3 מגיעים ל־6.5, ותשע נותנות מרווח.
+          AFTER = datetime.timedelta(hours=9)
           now = datetime.datetime.now(datetime.timezone.utc)
           games = json.loads(pathlib.Path("app/data/games.json").read_text(
               encoding="utf-8")).get("games") or []
