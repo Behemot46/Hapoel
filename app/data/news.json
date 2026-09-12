@@ -1,12 +1,12 @@
 {
-  "updated": "2026-09-12T11:01:29Z",
+  "updated": "2026-09-12T14:03:06Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
     "ynet",
+    "וואלה ספורט",
     "ערוץ 7",
     "הארץ",
-    "וואלה ספורט",
     "ספורט 5",
     "ספורט 1",
     "אייס",
@@ -29,6 +29,13 @@
       "published": "2026-09-09T07:03:42Z"
     },
     {
+      "title": "הפועל ירושלים עדכנה: מתי יובל זוסמן יחזור לפעילות?",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1BVWYyd195NWlNbURkTjJsalByaFdkcWtzWkRuTUN0eng2TkNORDRFOFZoN2N3S0V4WHRYWVVMYTM1ZFRIT2t3QnNVM2lnMWVv?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-09T07:02:00Z"
+    },
+    {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5NTG5aZHl0TGpia2Vya2xVTFFuZjJVUmhmRXl1aFdMOTNIcUlyMTFUc25raDZzazBuYXBJLVNMTEozWlZfNG43NA?oc=5",
       "source": "ערוץ 7",
@@ -41,6 +48,13 @@
       "source": "הארץ",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-09-08T18:13:00Z"
+    },
+    {
+      "title": "קני לופטון הרשים, הפועל ירושלים הביסה את מכבי אשדוד",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE03SS1yWEhZZmtuMjRzNjlpazdueGdIcEZockE1RzNONEhOel9QTTRCcjQzTkFQVXZPSUtpOEVFUkdfSjI1Q0h1TFg3azJCR3FIM1BmVmloZmxsX3VCdExEbnBn0gFqQVVfeXFMTUI5b1EwS0FldWNmZHNPNGNMWGdxUGFBYUJhWTBCQ0hDU2dfaENVX3A3enJSSXdUdjUwdGtIMG9YbGZNNEZwV01pN1FETFVMdGJQdUJkQXZMZ1JrNjVHSXFGVVFuV3hlaVRCdw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-09-08T18:08:31Z"
     },
     {
       "title": "הצהרת פתיחה: הפועל ירושלים פירקה 77:110 את מכבי אשדוד",
@@ -156,7 +170,7 @@
     },
     {
       "title": "רצה לעשות היסטוריה: הסיפור המוזר של המועמד להפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tb29EU0VhSldRMDJXdWozSm9BNmh2cXB6eG9jbW5pcFBPelVjZlBXZGhDckx6M01iajYyajlGN25JMjdLel90bHdGbDRfLWxhVW0zektfeWdrb0ZpR1N2V3FOeU5qa3dweGczd3lPTU1sV2NCSTV4a3VfNA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tb29EU0VhSldRMDJXdWozSm9BNmh2cXB6eG9jbW5pcFBPelVjZlBXZGhDckx6M01iajYyajlGN25JMjdLel90bHdGbDRfLWxhVW0zektfeWdrb0ZpR1N2V3FOeU5qa3dweGczd3lPTU1sV2NCSTV4a3VfNNIBgwFBVV95cUxPX1BNeDlmWWNwUXFDLXY0d0FDTWUyUS1uTFZNZTQ3UnJEci1ISzJNekJ5bWNLXzl6bTFyMWdHSGloM2lvMmRlV19TMnRjQXBsWnJhTmxrUzBQaEY4MERMODVxenVxeFMyQlA5eWdidkl6OEFTenZ6MzJGaEdCSmpIQVFNbw?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-08-30T07:00:00Z"
@@ -209,20 +223,6 @@
       "source": "103FM",
       "sourceUrl": "https://103fm.maariv.co.il",
       "published": "2026-08-26T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים בדרך להיכנס ליורוליג; אדלסון: \"הצעה כלכלית חזקה\"",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE55N011Z1JYdXZvLUtwSF9FSFZ2RlFBSC1KZEVWT2llLWhqNVdxYlpwOTl2MUpuUHdjTDZzZW10WDZKcTlBQU5NdE5YdmZPTkkydjF0MXNXS2dKOVNnUHdxZ3RhYw?oc=5",
-      "source": "אייס",
-      "sourceUrl": "https://www.ice.co.il",
-      "published": "2026-08-26T07:00:00Z"
-    },
-    {
-      "title": "יותר מג'ארד הארפר: זה השחקן הכי חשוב של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NnhMcXZCMkNrajBqVURsZnl5cUN2bUxLSlJWSzV4d0k2YWN6Ym9qWG8zVmVmUlNDbjE4Q3V3WDQtZU52M0gyZWhtaFpYbWIydVZJbFRNYzBzZTUzSUxyem1XQjZxYXk0eC1nSmlaSXcydW5mek9KTVB0ONIBgwFBVV95cUxNQThyYnZDSWNfejhkVkRUOXFfLUkydi13b2h6RUdTOGhIMThhMkZQM0hiY0xPOVU1cXB0TDdNRjczQ2pfVmpTSW5Sem0wMnBnOXU3cGw0dTBsbVJsNk8xck9Sei1DYU1XMloydFIyRnZ1aWxLQWxITGJtV2VmNGpmbHZ5bw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-25T07:00:00Z"
     }
   ]
 }
