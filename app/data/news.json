@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-12T08:00:24Z",
+  "updated": "2026-09-12T11:01:29Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ישראל היום",
     "ynet",
     "ערוץ 7",
     "הארץ",
-    "ישראל היום",
     "וואלה ספורט",
     "ספורט 5",
     "ספורט 1",
@@ -14,6 +14,13 @@
     "103FM"
   ],
   "items": [
+    {
+      "title": "דומיננטי כמו הארפר: הפועל ירושלים הביאה שחקן שלא היה פה",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9hb2lPRlJsdnp4anNaTW9aVTFsS1o0N2lYR1pDY2ZBT0JDcVZFRXI0SUVzMHFKbXFwZ20wamZuSE4ydEV4MVlwaTJWWHJSUnhXREhoQWdZdHI0X1Bzc20yeWpHTVkweWRNTkRlWmczZWN2QkJIQ2fSAX5BVV95cUxQTTdjQ1QwNHdiNXlTaDRtUFhLb1UtWmU5d0tqZmtGV25KeE5XWHlMZDFMaEd0M1ZKS2RRSGE4Q0tBMFhnS25oekl4dXo5VjJselhEbHRsZkYxY3FHZVFyUDRWVkNCdnVSbkFNcjlkeldpMm9NSTZRRVc3TU9ZYmc?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-09-09T16:10:40Z"
+    },
     {
       "title": "הפועל ירושלים הודיעה: יובל זוסמן סובל מנקע",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBGSktrOXlMdnhkel9oQnlTd1ljYmRSc1JwVklmNnQ0OFE1YlFrR0x5Vm8yMVBTeHRzajVBZXQ2QXhDNzdma0RjaTlsTU42MU1OOEJpTnMzSHJWdDF3M3ZLRmxIM0RSd3MzTDAyYXNORFpILWc?oc=5",
@@ -34,13 +41,6 @@
       "source": "הארץ",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-09-08T18:13:00Z"
-    },
-    {
-      "title": "קני לופטון הרשים, הפועל ירושלים הביסה את מכבי אשדוד",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE03SS1yWEhZZmtuMjRzNjlpazdueGdIcEZockE1RzNONEhOel9QTTRCcjQzTkFQVXZPSUtpOEVFUkdfSjI1Q0h1TFg3azJCR3FIM1BmVmloZmxsX3VCdExEbnBn0gFqQVVfeXFMTUI5b1EwS0FldWNmZHNPNGNMWGdxUGFBYUJhWTBCQ0hDU2dfaENVX3A3enJSSXdUdjUwdGtIMG9YbGZNNEZwV01pN1FETFVMdGJQdUJkQXZMZ1JrNjVHSXFGVVFuV3hlaVRCdw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-08T18:08:31Z"
     },
     {
       "title": "הצהרת פתיחה: הפועל ירושלים פירקה 77:110 את מכבי אשדוד",
