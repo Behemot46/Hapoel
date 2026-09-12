@@ -43,10 +43,10 @@
       "home": "הפועל ירושלים",
       "away": "בורג",
       "venue": "וילנה",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "source": "club"
+      "status": "finished",
+      "homeScore": 87,
+      "awayScore": 80,
+      "note": "התוצאה לפי וואלה ספורט ו־isport. אין לנו טופס משחק."
     },
     {
       "id": "20260913-הכנה-טורניר",
