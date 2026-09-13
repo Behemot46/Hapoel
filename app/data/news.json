@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-13T19:42:17Z",
+  "updated": "2026-09-13T22:43:30Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
@@ -9,7 +9,7 @@
     "ישראל ספורט",
     "ynet",
     "ערוץ 7",
-    "haaretz.co.il",
+    "הארץ",
     "אייס"
   ],
   "items": [
@@ -18,7 +18,7 @@
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE90aGxJQmxSY3N0MHBJWjVfa1EzR2FoOHJXS045M3BBU19hMFhkQzZqSVZhZGxxY3ZpbnpSLXBSd2oyMWI0dXNOb05oZUdpUkFSMEw5S2cxUDg5MlRodGxpNERDUjJSMlJ4YVVoeF9vQlBRc3c?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-13T18:35:38Z"
+      "published": "2026-09-13T18:33:00Z"
     },
     {
       "title": "\"לא נשאיר את הסגל ככה\": הפועל ירושלים מחפשת מחליף להארפר",
@@ -93,7 +93,7 @@
     {
       "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcFFEZTNLLXV5aFVlRWxhbmU0MmRPLW9HRnQ1MFg2Q01RSE5LSEIxTmlGdnJXOU0wdGRNYzdDRk0wcWVvT3FjbDV3QlZRUHZWMDhZQjZjd05BdmxZd05vS01heHpmbTQ0MTN2S080YVI2dmU2SWlGYWI4MEJiRExaMWhxQURxYzNHNUlua2N4dVlEc2dRUm9vWnNrUG9ra1hKejVr?oc=5",
-      "source": "haaretz.co.il",
+      "source": "הארץ",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-09-08T18:13:00Z"
     },
