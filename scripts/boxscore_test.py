@@ -30,6 +30,19 @@ PRINTED = {
                         "stl": 8, "blk": 0, "pf": 21, "pts": 76, "pir": 66,
                         "min": 200, "bench": 20},
     },
+    # FIBA Box Score, הטופס הרשמי של המשחק בווילנה. שים לב שהטבלה שם
+    # רושמת את JL Bourg ראשונה, כי היא המארחת הרשומה, ולכן הרבעים בקובץ
+    # שלנו הפוכים לעומת מה שמודפס: אנחנו תמיד ראשונים אצלנו.
+    "20260912-club-בורג": {
+        "הפועל ירושלים": {"fg": [28, 63], "p2": [24, 47], "p3": [4, 16], "ft": [27, 40],
+                          "oreb": 16, "dreb": 28, "reb": 44, "ast": 19, "to": 11,
+                          "stl": 5, "blk": 2, "pf": 27, "pts": 87, "pir": 98,
+                          "min": 200, "bench": 36},
+        "JL Bourg-en-Bresse": {"fg": [24, 61], "p2": [21, 34], "p3": [3, 27], "ft": [29, 35],
+                               "oreb": 8, "dreb": 26, "reb": 34, "ast": 11, "to": 10,
+                               "stl": 7, "blk": 2, "pf": 29, "pts": 80, "pir": 81,
+                               "min": 200, "bench": 37},
+    },
     "20260904-club-הפועלהעמק": {
         "הפועל ירושלים": {"fg": [28, 67], "p2": [20, 43], "p3": [8, 24], "ft": [22, 31],
                           "oreb": 12, "dreb": 40, "reb": 52, "ast": 19, "to": 14,
@@ -123,6 +136,19 @@ def main():
             continue
         check(gid, game, PRINTED[gid], fail)
         seen += 1
+
+    # **כל slug בטופס חייב להצביע על שחקן שקיים בסגל.** שם השחקן בטופס הוא
+    # קישור לעמוד שלו, ו־slug שאין לו שחקן הוא קישור מת שאף אחד לא רואה
+    # עד שלוחצים עליו. נמצא ב־13.9.2026: הטופס של 4.9 הצביע על
+    # ״kenny-lofton״ בזמן שבסגל הוא ״kenny-lofton-jr״.
+    roster = {pl.get("slug") for pl in json.loads(
+        (DATA / "roster.json").read_text(encoding="utf-8"))["players"]}
+    for gid, game in (data.get("games") or {}).items():
+        for team in game["teams"]:
+            for pl in team["players"]:
+                if pl.get("slug") and pl["slug"] not in roster:
+                    fail.append(f"{gid}: {pl['name']} מקושר ל־{pl['slug']!r}, "
+                                "ואין שחקן כזה ב־roster.json")
 
     games = json.loads((DATA / "games.json").read_text(encoding="utf-8"))["games"]
     for gid, game in (data.get("games") or {}).items():

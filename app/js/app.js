@@ -2622,8 +2622,11 @@ function renderGame(id) {
   const line = el("div", "result-line");
   const right = el("div");
   right.appendChild(oppEl("teams", opponent(g)));
+  // homeAwayLabel ולא ״בית״ או ״חוץ״ ישירות: משחק ההכנה מול בורג ב־12.9
+  // מסומן אצלנו כמשחק בית, כי אתר המועדון רשם אותנו ראשונים, אבל הוא
+  // שוחק בווילנה. ״בית · וילנה״ הוא שורה שסותרת את עצמה.
   right.appendChild(prose("div", "sub", g.competition + " · " +
-    fmtFull.format(new Date(g.date)) + " · " + (isHome(g) ? "בית" : "חוץ") +
+    fmtFull.format(new Date(g.date)) + " · " + homeAwayLabel(g, false) +
     (g.venue ? " · " + g.venue : "")));
   line.appendChild(right);
   const left = el("div");
