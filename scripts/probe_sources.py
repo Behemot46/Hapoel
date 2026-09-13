@@ -1,80 +1,124 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**התסמין:** מדור החדשות קפא על 9.9. הקובץ נכתב מחדש בכל איסוף, הפריטים
-מסתדרים מהחדש לישן, ובכל זאת הפריט החדש ביותר הוא מלפני שלושה ימים.
-בינתיים הקבוצה ניצחה את בורג ב־12.9, ושתי כותרות על זה קיימות בגוגל
-**ועוברות את הסינון שלנו**, כפי שנמדד בפרוב הקודם.
+**השאלה:** המשחק השני בטורניר בווילנה, הערב ב־19:30 מול ריטאס וילנה.
+איפה הוא משודר.
 
-**ההבדל היחיד בין הפרוב שמצא אותן לאיסוף שלא:** קידוד השאילתה. האיסוף
-משתמש ב־quote_plus, כלומר רווח הופך ל־+, והפרוב השתמש ב־quote, כלומר
-%20. בתוך מרכאות זה יכול להיות ההבדל בין ביטוי לחיפוש מילולי.
+**מה שכבר נשלל אתמול למשחק הראשון:** אתר הליגה (אין עמודת שידור),
+לוחות השידורים של ספורט 5 ושל ONE (404), וערוץ היוטיוב של המועדון
+(שנים־עשר הסרטונים האחרונים הם תקצירים, אף שידור חי).
 
-הכלי שולח את אותה שאילתה בשני הקידודים ומשווה מה חוזר.
+**מה שהשתנה מאז:** היריבה ידועה עכשיו, וריטאס היא המארחת. מועדון מארח
+הוא זה שמשדר, ולכן הצד הליטאי הוא המקום לחפש בו. אתמול rytas.lt ענה 200
+בלי סימני שידור ובלי קישור ליוטיוב, אבל זה היה לפני שהמשחק התקרב.
 """
 
-import datetime
-import pathlib
-import sys
+import re
 import urllib.parse
 import xml.etree.ElementTree as ET
 
 import requests
+from bs4 import BeautifulSoup
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import news_feed
-
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-      "Accept-Language": "he-IL,he;q=0.9"}
+                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+YT_RSS = "https://www.youtube.com/feeds/videos.xml?channel_id={cid}"
+HE = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
+EN = "https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
+
+WORDS = ["שידור", "משודר", "צפייה ישירה", "לצפייה", "לייב", "ערוץ", "5STARS",
+         "ספורט 5", "live", "stream", "tiesiogiai", "transliacija", "tv",
+         "youtube", "žiūrėti"]
 
 
-def fetch(q, enc):
-    url = FEED.format(q=enc(q))
-    r = requests.get(url, headers=UA, timeout=30)
-    r.raise_for_status()
-    r.encoding = "utf-8"
-    items = ET.fromstring(r.text.encode("utf-8")).findall(".//item")
-    out = []
-    for it in items:
-        src_el = it.find("source")
-        src = news_feed._clean(src_el.text if src_el is not None else "")
-        title = news_feed._strip_source(
-            news_feed._clean(it.findtext("title")), src)
-        when = news_feed._published(it)
-        out.append((title, src, when))
-    return url, out
+def get(url, note=""):
+    try:
+        r = requests.get(url, headers=UA, timeout=30)
+    except Exception as e:
+        print(f"  {url[:66]} · נכשל: {type(e).__name__}")
+        return None
+    print(f"  {url[:66]} · {r.status_code} · {len(r.content)} bytes {note}")
+    if not r.ok:
+        return None
+    r.encoding = r.apparent_encoding or "utf-8"
+    return r.text
+
+
+def look(text, label, needles=("hapoel", "jeruzal", "izrael", "הפועל")):
+    soup = BeautifulSoup(text, "html.parser")
+    for x in soup(["script", "style", "noscript"]):
+        x.decompose()
+    flat = re.sub(r"\s+", " ", soup.get_text(" "))
+    low = flat.lower()
+    found = {w: low.count(w.lower()) for w in WORDS if low.count(w.lower())}
+    print(f"     [{label}] {found or 'אין סימני שידור'}")
+    for n in needles:
+        i = low.find(n.lower())
+        if i >= 0:
+            print(f"       ״{n}״ ...{flat[max(0, i - 100):i + 150]}...")
+            break
 
 
 def main():
-    cfg = news_feed._config()
-    print(f"maxItems={cfg['maxItems']} · maxAgeDays={cfg['maxAgeDays']}")
-    now = datetime.datetime.now(datetime.timezone.utc)
+    print("=" * 74)
+    print("1. אתר המועדון: אולי הכרטיס של היום קיבל שידור מאז שהיריבה נקבעה")
+    t = get("https://hapoel.co.il/games")
+    if t:
+        soup = BeautifulSoup(t, "html.parser")
+        for g in soup.select(".game")[:4]:
+            when = re.sub(r"\s+", " ", (g.select_one(".date-time") or soup).get_text(" ")).strip()
+            teams = [i.get("alt", "") for i in g.select(".teams-container img") if i.get("alt")]
+            cells = [re.sub(r"\s+", " ", c.get_text(" ")).strip()
+                     for c in g.select(".game-type .container .text")]
+            print(f"     {when[:30]:<30} {' vs '.join(teams)[:34]:<34} {cells}")
 
-    for q in cfg["queries"]:
-        print("\n" + "=" * 74)
-        print(f"שאילתה: {q}")
-        for name, enc in (("quote_plus, כמו באיסוף", urllib.parse.quote_plus),
-                          ("quote, כמו בפרוב", urllib.parse.quote)):
+    print("\n" + "=" * 74)
+    print("2. ריטאס, המארחת. אתר, וערוץ היוטיוב אם מקושר")
+    for url in ["https://rytas.lt/", "https://rytas.lt/en/", "https://www.rytas.lt/"]:
+        t = get(url)
+        if not t:
+            continue
+        look(t, url.split("/")[2])
+        cids = set(re.findall(r'(?:channel/|"channelId":")(UC[\w-]{20,24})', t))
+        links = {a["href"].split("?")[0] for a in BeautifulSoup(t, "html.parser")
+                 .find_all("a", href=True)
+                 if any(s in a["href"] for s in ("youtube.com", "youtu.be", "facebook.com"))}
+        print(f"     קישורים חברתיים: {sorted(links)[:5] or 'אין'}")
+        print(f"     מזהי ערוץ: {sorted(cids) or 'אין'}")
+        for cid in sorted(cids):
+            xml = get(YT_RSS.format(cid=cid))
+            if not xml:
+                continue
             try:
-                url, items = fetch(q, enc)
-            except Exception as e:
-                print(f"  {name}: נכשל {e}")
+                root = ET.fromstring(xml.encode("utf-8"))
+            except Exception:
                 continue
-            ok = [(t, s, d) for t, s, d in items if d and news_feed.about_us(t)]
-            ok.sort(key=lambda x: x[2], reverse=True)
-            print(f"  {name}")
-            print(f"     {url[:96]}")
-            if not ok:
-                print(f"     {len(items)} פריטים · אף אחד לא עובר את הסינון")
-                continue
-            newest = ok[0][2]
-            age = (now - newest).total_seconds() / 3600
-            print(f"     {len(items)} פריטים · {len(ok)} עוברים · "
-                  f"החדש ביותר {newest:%d.%m %H:%M}, לפני {age:.1f} שעות")
-            for t, s, d in ok[:4]:
-                print(f"       {d:%d.%m %H:%M} · {s[:13]:<13} · {t[:66]}")
+            ns = {"a": "http://www.w3.org/2005/Atom"}
+            print(f"     ערוץ: {root.findtext('a:title', namespaces=ns)}")
+            for e in root.findall("a:entry", ns)[:8]:
+                ti = e.findtext("a:title", namespaces=ns) or ""
+                wh = (e.findtext("a:published", namespaces=ns) or "")[:10]
+                mark = "🔴" if any(w.lower() in ti.lower() for w in WORDS) else "  "
+                print(f"       {mark} {wh} · {ti[:80]}")
+        break
+
+    print("\n" + "=" * 74)
+    print("3. מה העיתונות אומרת")
+    for feed, q in ((HE, '"הפועל ירושלים" ריטאס'),
+                    (HE, '"הפועל ירושלים" שידור טורניר'),
+                    (EN, '"Hapoel Jerusalem" Rytas'),
+                    (EN, 'Rytas Vilnius tournament live stream September 2026')):
+        try:
+            r = requests.get(feed.format(q=urllib.parse.quote(q)), headers=UA, timeout=30)
+            root = ET.fromstring(r.content)
+            items = [((i.findtext("title") or "").strip(),
+                      (i.findtext("pubDate") or "")[:16]) for i in root.iter("item")]
+            print(f"\n   {q} · {len(items)} תוצאות")
+            for ti, wh in items[:7]:
+                mark = "📺" if any(w.lower() in ti.lower() for w in WORDS) else "  "
+                print(f"     {mark} {wh} · {ti[:88]}")
+        except Exception as e:
+            print(f"\n   {q} · נכשל: {type(e).__name__}")
 
 
 if __name__ == "__main__":
