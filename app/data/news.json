@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-12T18:14:13Z",
+  "updated": "2026-09-13T03:18:27Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
-    "ישראל ספורט",
     "וואלה ספורט",
     "ספורט 5",
+    "ישראל ספורט",
     "ynet",
     "ערוץ 7",
     "הארץ",
@@ -21,13 +21,6 @@
       "published": "2026-09-12T16:56:09Z"
     },
     {
-      "title": "הכנה: הפועל ירושלים גברה 80:87 על אלופת היורוקאפ בורג",
-      "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxNazNXb2QwbzdicW44TUZvOXNSYXQxTlJOMFJEUGt1czhaQWE0d0VZR3VranZaUUhIOF9QeEUxOGE2OEJKUFpmVkhUWkt3eEdkY1hwaExONGExMEVndFBCOE11NVpLYmZLODZEa1VDZkt0Y3BmS2RnbUJIbVFGRDh4SDRJdjEwdlFBZmJsbzlxSTRGZS1VU0xNeU5ESUtNdE1uQ3c5WVBmRm5iYnNVcEsyZ193eFlGN3RnbkpobzJ0cHl3b3FpT1FidTdTMFo3dkFYM3VHdzZ2eXd2UGpvUHVoQzROb2pxalRmM09rX291UDdOUDZ3cmx4X3BMWU0zclVqSTNLdGpCWjU5TG5LQ3Vvb3liTnZrMlg5Q0hiVzNmWG1rZV90UVRURkpRTnRBYk12U0x5bFFhanNaSHFTQVZZaQ?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-09-12T16:49:42Z"
-    },
-    {
       "title": "הפועל ירושלים גברה על בורק הצרפתית 80:87 בהכנה בליטא",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE13aDl3ZGhOZzVITWQ0aGgxcm8tOGVaLWVMdzJIaUtTOWZBZDhlU0o3bUFqNkd1Q0dBbW14dHVpSnphVm54UXZUU0ZWT0o1eWQ0?oc=5",
       "source": "וואלה ספורט",
@@ -40,6 +33,13 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-12T15:54:41Z"
+    },
+    {
+      "title": "הכנה: הפועל ירושלים גברה 80:87 על אלופת היורוקאפ בורג",
+      "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxNazNXb2QwbzdicW44TUZvOXNSYXQxTlJOMFJEUGt1czhaQWE0d0VZR3VranZaUUhIOF9QeEUxOGE2OEJKUFpmVkhUWkt3eEdkY1hwaExONGExMEVndFBCOE11NVpLYmZLODZEa1VDZkt0Y3BmS2RnbUJIbVFGRDh4SDRJdjEwdlFBZmJsbzlxSTRGZS1VU0xNeU5ESUtNdE1uQ3c5WVBmRm5iYnNVcEsyZ193eFlGN3RnbkpobzJ0cHl3b3FpT1FidTdTMFo3dkFYM3VHdzZ2eXd2UGpvUHVoQzROb2pxalRmM09rX291UDdOUDZ3cmx4X3BMWU0zclVqSTNLdGpCWjU5TG5LQ3Vvb3liTnZrMlg5Q0hiVzNmWG1rZV90UVRURkpRTnRBYk12U0x5bFFhanNaSHFTQVZZaQ?oc=5",
+      "source": "ישראל ספורט",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-09-12T11:50:00Z"
     },
     {
       "title": "דומיננטי כמו הארפר: הפועל ירושלים הביאה שחקן שלא היה פה",
