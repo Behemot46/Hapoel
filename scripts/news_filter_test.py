@@ -86,8 +86,17 @@ BASKET = (
 )
 
 
+# מקורות שנחסמים לפי מארח ולא לפי כותרת, ולכן about_us לא רואה אותם
+# בכלל. הבדיקה כאן היא שההגדרה ב־news-sources.json עדיין במקומה.
+BLOCKED_HOSTS = ("365scores.com",)
+
+
 def main():
     bad = []
+    cfg_block = {b.lower() for b in news_feed._config()["block"]}
+    for host in BLOCKED_HOSTS:
+        if host not in cfg_block:
+            bad.append(("מארח שהיה חסום כבר לא חסום", host))
     for t in SOCCER:
         if news_feed.about_us(t):
             bad.append(("עברה ולא הייתה צריכה", t))

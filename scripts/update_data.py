@@ -361,6 +361,13 @@ def apply_manual_results(games, manual):
         live["homeScore"] = m["homeScore"]
         live["awayScore"] = m["awayScore"]
         live["status"] = m.get("status") or "finished"
+        # **ומה שהמקור לא ידע לומר, כשהוא לא ידע.** אתר המועדון פרסם את
+        # המשחק מול ריטאס ב־13.9.2026 בלי מקום בכלל, וסימן אותנו כמארחים
+        # במשחק שנערך באולם הביתי של היריבה. מקום והערה נכנסים רק כשהשדה
+        # ריק, ולעולם לא דורסים מקור רשמי.
+        for field in ("venue", "note"):
+            if m.get(field) and not live.get(field):
+                live[field] = m[field]
         patched += 1
         log(f"    = תוצאה ידנית נשמרה: {live['date'][:10]} "
             f"{live['home']} {live['homeScore']}-{live['awayScore']} {live['away']}")
