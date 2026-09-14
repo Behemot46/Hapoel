@@ -54,11 +54,11 @@
       "competition": "משחק הכנה",
       "home": "הפועל ירושלים",
       "away": "ריטאס וילנה",
-      "venue": null,
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "source": "club"
+      "venue": "וילנה",
+      "status": "finished",
+      "homeScore": 95,
+      "awayScore": 104,
+      "note": "שוחק באולם הביתי של ריטאס. התוצאה לפי ספורט 5, ישראל ספורט ו־365Scores."
     },
     {
       "id": "20260918-הפועלבש",
@@ -104,7 +104,7 @@
     },
     {
       "id": "20261011-הפועלחולון",
-      "date": "2026-10-11T12:00:00+03:00",
+      "date": "2026-10-11T20:55:00+03:00",
       "competition": "ליגת Winner סל, מחזור 1",
       "home": "הפועל חולון",
       "away": "הפועל ירושלים",
@@ -112,9 +112,6 @@
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true,
       "broadcast": {
         "pending": true
       }
@@ -134,8 +131,8 @@
       "awayPartials": null
     },
     {
-      "id": "20261018-הפועלבש",
-      "date": "2026-10-18T12:00:00+03:00",
+      "id": "20261017-הפועלבש",
+      "date": "2026-10-17T20:15:00+03:00",
       "competition": "ליגת Winner סל, מחזור 2",
       "home": "הפועל ירושלים",
       "away": "הפועל ב\"ש",
@@ -143,9 +140,6 @@
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true,
       "broadcast": {
         "pending": true
       }
@@ -166,17 +160,17 @@
     },
     {
       "id": "20261025-הפועלתא",
-      "date": "2026-10-25T12:00:00+02:00",
+      "date": "2026-10-25T20:55:00+02:00",
       "competition": "ליגת Winner סל, מחזור 3",
       "home": "הפועל ת\"א",
       "away": "הפועל ירושלים",
-      "venue": null,
+      "venue": "היכל קבוצת שלמה, ת\"א",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261028-euro-LeMansSarthe",
