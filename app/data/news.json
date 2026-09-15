@@ -1,17 +1,18 @@
 {
-  "updated": "2026-09-14T19:09:01Z",
+  "updated": "2026-09-15T08:48:34Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ספורט 1",
     "ספורט 5",
-    "וואלה ספורט",
+    "ספורט 1",
     "ישראל ספורט",
     "ישראל היום",
+    "וואלה ספורט",
     "ערוץ 7",
     "הארץ",
     "ynet",
     "אייס",
-    "סרוגים"
+    "סרוגים",
+    "103FM"
   ],
   "items": [
     {
@@ -23,17 +24,17 @@
     },
     {
       "title": "הלקח של הפועל ירושלים: \"צריכים לדעת לשחק באווירה כזאת\"",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE54ckYzbTFwVmNjY0dQMHFjbGgwR3Y5UzcxSGViLWNNMEJ4ZWM5bXpHdWYyTmUwY2xwc3BPSHNTWWVFNWsyU3hURWZlcm54cWVo?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-14T06:28:00Z"
+      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOSHBPcVBSYVZDSUdJVVpPaGxGS05lQW9NSDhIVUlidFd3anl3Y2RrNXdaY1E0R2NoTkRmWWxhSGdZSTVYMEFBZklrYUtMblNKWndpdW44UGE5bTJIOWNxZGpydmlLTkNDQXA0djd0NE5KUXVRV2FwUFFNVDNrRXgxVk5yUjZHSElXdFlTVmJqb2NWYVl3V0xvblFSN1BKWHJ6cGdPS1NJMnRXTUhUZElXOUlMemdhYjRTTVZRQk5Gc0VYbExmaWxnd25UazBFYjZFZkFlZDE0elZqMi1Ndy01am9ROUpCdWg5NWJJcUk4Nk9jVkVsQkFlZmpxSlExeV9JV055Qg?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-14T06:43:23Z"
     },
     {
       "title": "הפועל י-ם הפסידה 104:95 לריטאס וילנה",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE90aGxJQmxSY3N0MHBJWjVfa1EzR2FoOHJXS045M3BBU19hMFhkQzZqSVZhZGxxY3ZpbnpSLXBSd2oyMWI0dXNOb05oZUdpUkFSMEw5S2cxUDg5MlRodGxpNERDUjJSMlJ4YVVoeF9vQlBRc3c?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-13T18:35:38Z"
+      "published": "2026-09-13T18:33:00Z"
     },
     {
       "title": "הפסד ראשון בהכנה: הפועל ירושלים נכנעה 104:95 לריטאס וילנה",
@@ -62,13 +63,6 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-09-12T15:57:00Z"
-    },
-    {
-      "title": "על אלופת היורוקאפ: 80:87 לי-ם נגד בורג",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5aQmJuc2F5MzF5dWI4dmZzM1poMDl3cC1SUl94UmpZb2toS0JmU2RSalVsZGx2R1l2aHBwb3VyMWw5X0JUaEhJM1hPaVJYbEhMZVBWaWNNekxLWEUwWWRzLWNaRkxNZU5PMkZsNzFCZGdVZw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-12T15:54:41Z"
     },
     {
       "title": "הכנה: הפועל ירושלים גברה 80:87 על אלופת היורוקאפ בורג",
@@ -103,7 +97,7 @@
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9fQUd6TjY3Y0xObXdyQ3c5M25Ibk5mUHE1WnlGa0VyU1E1Nm16YmszMmhNd2NOcWl2Si12SXJ2dk9CYUU4bXlsYkFDb0hja3pXZ0lLUlRSMkVnQXRGa2NQblVjVTNzX3dYRy1CLVlCcXo4RGM?oc=5",
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-09-05T21:27:00Z"
+      "published": "2026-09-06T07:00:00Z"
     },
     {
       "title": "הפועל י-ם: \"עברנו שלב בתהליך לרישיון\"",
@@ -111,13 +105,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-05T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים במו\"מ מתקדם עם הגארד היהודי אמארי ביילי",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Oel9lWUl5TUpxVzd2NUtpME1SOE5PNFBjNG9vb2JPei04S2ZCU2pQLVNKNWh1bGt3UG0wZG9uS3NSX1RxZnlfR0xKczBNNUhuODc3RDVudWFDNF9yZXFfZXhEVHdlWmhaTkJ1d0tkQjJNUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-04T07:00:00Z"
     },
     {
       "title": "צפו: הפועל ירושלים ניצחה 80:87 את מכבי תל אביב בבלגרד",
@@ -176,13 +163,6 @@
       "published": "2026-08-30T07:00:00Z"
     },
     {
-      "title": "רצה לעשות היסטוריה: הסיפור המוזר של המועמד להפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tb29EU0VhSldRMDJXdWozSm9BNmh2cXB6eG9jbW5pcFBPelVjZlBXZGhDckx6M01iajYyajlGN25JMjdLel90bHdGbDRfLWxhVW0zektfeWdrb0ZpR1N2V3FOeU5qa3dweGczd3lPTU1sV2NCSTV4a3VfNNIBgwFBVV95cUxPX1BNeDlmWWNwUXFDLXY0d0FDTWUyUS1uTFZNZTQ3UnJEci1ISzJNekJ5bWNLXzl6bTFyMWdHSGloM2lvMmRlV19TMnRjQXBsWnJhTmxrUzBQaEY4MERMODVxenVxeFMyQlA5eWdidkl6OEFTenZ6MzJGaEdCSmpIQVFNbw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-30T07:00:00Z"
-    },
-    {
       "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ295bjdtSjFvekl2d2ZCSG01WTlKRTdiOHk3c1N3ajF0NjREWFg4dXhFSm1QclowWThVZTBpNXlHeWpGUlJFM0pRb2x0eUxIVkM1WHlrMloyZXktcVptRTMzZ1YyZTEyQnNqeVVtUlBlMS1WMk9lb25qZnBrU0I0eF9CS0NBc1JNakExXzRVc3FRUQ?oc=5",
       "source": "ספורט 1",
@@ -216,6 +196,34 @@
       "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T07:00:00Z"
+    },
+    {
+      "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
+      "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
+      "source": "סרוגים",
+      "sourceUrl": "https://www.srugim.co.il",
+      "published": "2026-08-26T07:00:00Z"
+    },
+    {
+      "title": "ספורט - הפועל ירושלים תקפוץ מדרגה?",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CYUh0eDgtZDltQ3lMYm9ZNmtTcGVjdGU2WkxkSGVBZ081YXRnd1BBRmNLbVNuVVdsNWc2Ql9qZUVHUGZMMXhDVklZYWczWlVtYzF1THVSekg3cWNWSUp1dHgtRGR6RXd1NTV1TE81d1ZaQjFnLTBnWUsxeXd6d1k?oc=5",
+      "source": "103FM",
+      "sourceUrl": "https://103fm.maariv.co.il",
+      "published": "2026-08-26T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים בדרך להיכנס ליורוליג; אדלסון: \"הצעה כלכלית חזקה\"",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE55N011Z1JYdXZvLUtwSF9FSFZ2RlFBSC1KZEVWT2llLWhqNVdxYlpwOTl2MUpuUHdjTDZzZW10WDZKcTlBQU5NdE5YdmZPTkkydjF0MXNXS2dKOVNnUHdxZ3RhYw?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-26T07:00:00Z"
+    },
+    {
+      "title": "בהפועל ירושלים עדכנו: הצעה תוגש ליורוליג",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BOVhKd1J6UUpkYUJjZFV6QkxiN3RtTWhQWUpyejZfUEdiWFgzSTBsb0IwRFh5ZmYzY3BuMEtORVRQU0xUVThzcW1SdFVLZzdFT3NTZzdfNVFiSDQwQXhzT1FfaVJ4dDhwbVh2dXEycU45Zw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-26T07:00:00Z"
     }
   ]
 }
