@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-16T08:42:41Z",
+  "updated": "2026-09-16T19:45:11Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,14 +14,14 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-09-10T09:13:46Z"
+      "latest": "2026-09-16T10:20:26Z"
     },
     {
       "id": "1675729649",
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-09-09T10:05:00Z"
+      "latest": "2026-09-16T16:45:00Z"
     },
     {
       "id": "1698308776",
@@ -39,6 +39,24 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "אני צריך לבחור את המלחמות שלי, עם סשה אוברדוביץ' (נפרדים מג'ובה) | שוט, פרק 195",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-09-16T16:45:00Z",
+      "duration": 3523
+    },
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "הדרבי התל אביבי הראשון לעונה",
+      "url": "https://omny.fm/shows/speaknrolisrael/11bae14a-bed0-45af-a9db-b4c700a9341b",
+      "published": "2026-09-16T10:20:26Z",
+      "duration": 3449
+    },
     {
       "showId": "1573775015",
       "show": "כיפה אדומה",
@@ -157,15 +175,6 @@
       "duration": 5669
     },
     {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "מסלול לא שגרתי | שוט, פרק 191",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-08-26T06:48:00Z",
-      "duration": 4111
-    },
-    {
       "showId": "1648115499",
       "show": "אנחנו במפה",
       "about": "league",
@@ -182,15 +191,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3nlers",
       "published": "2026-08-20T12:25:24Z",
       "duration": 3274
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "זה מה שנשאר",
-      "url": "https://omny.fm/shows/speaknrolisrael/7c57cb81-ed25-47de-b258-b4aa0112d062",
-      "published": "2026-08-18T16:47:12Z",
-      "duration": 3906
     },
     {
       "showId": "1573775015",
