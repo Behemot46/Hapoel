@@ -1,124 +1,101 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**השאלה:** המשחק השני בטורניר בווילנה, הערב ב־19:30 מול ריטאס וילנה.
-איפה הוא משודר.
+**החשד:** שתי כותרות מ־16.9 בבוקר נכנסו למדור:
 
-**מה שכבר נשלל אתמול למשחק הראשון:** אתר הליגה (אין עמודת שידור),
-לוחות השידורים של ספורט 5 ושל ONE (404), וערוץ היוטיוב של המועדון
-(שנים־עשר הסרטונים האחרונים הם תקצירים, אף שידור חי).
+    ״שוב חוזר הניגון: תסכול עמוק בהפועל ירושלים״
+    ״הפועל ירושלים שוב חזרה, ושוב מתוסכלת: היה משחק שלנו״
 
-**מה שהשתנה מאז:** היריבה ידועה עכשיו, וריטאס היא המארחת. מועדון מארח
-הוא זה שמשדר, ולכן הצד הליטאי הוא המקום לחפש בו. אתמול rytas.lt ענה 200
-בלי סימני שידור ובלי קישור ליוטיוב, אבל זה היה לפני שהמשחק התקרב.
+שתיהן מדברות על משחק שזה עתה נגמר. **לקבוצת הכדורסל שלנו לא היה משחק
+ב־15.9:** האחרון היה מול ריטאס ב־13.9 והבא הוא הגביע ב־18.9. כלומר או
+שהן על מועדון הכדורגל שחולק איתנו את השם, או שאני מפספס משהו.
+
+זה לא מספיק כדי להכריע, ולכן הכלי שואל את הפיד מה עוד פורסם באותו יום
+ומחפש את ההקשר: יריבה, ליגה, מחזור, או שם של שחקן מהסגל שלנו.
 """
 
-import re
+import datetime
+import json
+import pathlib
+import sys
 import urllib.parse
 import xml.etree.ElementTree as ET
 
 import requests
-from bs4 import BeautifulSoup
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import news_feed
+
+FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
-YT_RSS = "https://www.youtube.com/feeds/videos.xml?channel_id={cid}"
-HE = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
-EN = "https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
+                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+      "Accept-Language": "he-IL,he;q=0.9"}
 
-WORDS = ["שידור", "משודר", "צפייה ישירה", "לצפייה", "לייב", "ערוץ", "5STARS",
-         "ספורט 5", "live", "stream", "tiesiogiai", "transliacija", "tv",
-         "youtube", "žiūrėti"]
-
-
-def get(url, note=""):
-    try:
-        r = requests.get(url, headers=UA, timeout=30)
-    except Exception as e:
-        print(f"  {url[:66]} · נכשל: {type(e).__name__}")
-        return None
-    print(f"  {url[:66]} · {r.status_code} · {len(r.content)} bytes {note}")
-    if not r.ok:
-        return None
-    r.encoding = r.apparent_encoding or "utf-8"
-    return r.text
+FOOT = ["כדורגל", "ליגת העל", "ליגה לאומית", "שער", "שערים", "הבקיע", "כבש",
+        "בעיטה", "פנדל", "שוער", "הרכב", "מחצית", "דקה ה", "טבריה", "בית\"ר",
+        "מכבי חיפה", "הפועל באר שבע", "עירוני", "סכנין", "אשדוד ", "נתניה"]
+BALL = ["כדורסל", "יורוקאפ", "יורוליג", "ווינר", "סל", "ריבאונד", "שלשה",
+        "רבע", "נקודות", "פיס ארנה", "ריטאס", "הכנה"]
 
 
-def look(text, label, needles=("hapoel", "jeruzal", "izrael", "הפועל")):
-    soup = BeautifulSoup(text, "html.parser")
-    for x in soup(["script", "style", "noscript"]):
-        x.decompose()
-    flat = re.sub(r"\s+", " ", soup.get_text(" "))
-    low = flat.lower()
-    found = {w: low.count(w.lower()) for w in WORDS if low.count(w.lower())}
-    print(f"     [{label}] {found or 'אין סימני שידור'}")
-    for n in needles:
-        i = low.find(n.lower())
-        if i >= 0:
-            print(f"       ״{n}״ ...{flat[max(0, i - 100):i + 150]}...")
-            break
+def roster_names():
+    r = json.loads((news_feed.DATA / "roster.json").read_text(encoding="utf-8"))
+    out = set()
+    for p in r["players"]:
+        he = (p.get("nameHe") or "").split()
+        out.update(w for w in he if len(w) > 3)
+    return out
+
+
+def ask(q):
+    r = requests.get(FEED.format(q=urllib.parse.quote(q)), headers=UA, timeout=30)
+    r.raise_for_status()
+    root = ET.fromstring(r.content)
+    out = []
+    for it in root.iter("item"):
+        src_el = it.find("{*}source")
+        src = (src_el.text if src_el is not None else "") or ""
+        title = news_feed._strip_source(
+            news_feed._clean(it.findtext("title")), src)
+        out.append((title, src, news_feed._published(it)))
+    return out
 
 
 def main():
-    print("=" * 74)
-    print("1. אתר המועדון: אולי הכרטיס של היום קיבל שידור מאז שהיריבה נקבעה")
-    t = get("https://hapoel.co.il/games")
-    if t:
-        soup = BeautifulSoup(t, "html.parser")
-        for g in soup.select(".game")[:4]:
-            when = re.sub(r"\s+", " ", (g.select_one(".date-time") or soup).get_text(" ")).strip()
-            teams = [i.get("alt", "") for i in g.select(".teams-container img") if i.get("alt")]
-            cells = [re.sub(r"\s+", " ", c.get_text(" ")).strip()
-                     for c in g.select(".game-type .container .text")]
-            print(f"     {when[:30]:<30} {' vs '.join(teams)[:34]:<34} {cells}")
+    names = roster_names()
+    print(f"שמות מהסגל לזיהוי: {sorted(names)[:8]} ...\n")
+    cutoff = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=2)
 
-    print("\n" + "=" * 74)
-    print("2. ריטאס, המארחת. אתר, וערוץ היוטיוב אם מקושר")
-    for url in ["https://rytas.lt/", "https://rytas.lt/en/", "https://www.rytas.lt/"]:
-        t = get(url)
-        if not t:
-            continue
-        look(t, url.split("/")[2])
-        cids = set(re.findall(r'(?:channel/|"channelId":")(UC[\w-]{20,24})', t))
-        links = {a["href"].split("?")[0] for a in BeautifulSoup(t, "html.parser")
-                 .find_all("a", href=True)
-                 if any(s in a["href"] for s in ("youtube.com", "youtu.be", "facebook.com"))}
-        print(f"     קישורים חברתיים: {sorted(links)[:5] or 'אין'}")
-        print(f"     מזהי ערוץ: {sorted(cids) or 'אין'}")
-        for cid in sorted(cids):
-            xml = get(YT_RSS.format(cid=cid))
-            if not xml:
-                continue
-            try:
-                root = ET.fromstring(xml.encode("utf-8"))
-            except Exception:
-                continue
-            ns = {"a": "http://www.w3.org/2005/Atom"}
-            print(f"     ערוץ: {root.findtext('a:title', namespaces=ns)}")
-            for e in root.findall("a:entry", ns)[:8]:
-                ti = e.findtext("a:title", namespaces=ns) or ""
-                wh = (e.findtext("a:published", namespaces=ns) or "")[:10]
-                mark = "🔴" if any(w.lower() in ti.lower() for w in WORDS) else "  "
-                print(f"       {mark} {wh} · {ti[:80]}")
-        break
-
-    print("\n" + "=" * 74)
-    print("3. מה העיתונות אומרת")
-    for feed, q in ((HE, '"הפועל ירושלים" ריטאס'),
-                    (HE, '"הפועל ירושלים" שידור טורניר'),
-                    (EN, '"Hapoel Jerusalem" Rytas'),
-                    (EN, 'Rytas Vilnius tournament live stream September 2026')):
+    seen = {}
+    for q in ['"הפועל ירושלים"', '"הפועל ירושלים" תסכול',
+              '"הפועל ירושלים" 15 בספטמבר', '"הפועל ירושלים" כדורגל']:
         try:
-            r = requests.get(feed.format(q=urllib.parse.quote(q)), headers=UA, timeout=30)
-            root = ET.fromstring(r.content)
-            items = [((i.findtext("title") or "").strip(),
-                      (i.findtext("pubDate") or "")[:16]) for i in root.iter("item")]
-            print(f"\n   {q} · {len(items)} תוצאות")
-            for ti, wh in items[:7]:
-                mark = "📺" if any(w.lower() in ti.lower() for w in WORDS) else "  "
-                print(f"     {mark} {wh} · {ti[:88]}")
+            items = ask(q)
         except Exception as e:
-            print(f"\n   {q} · נכשל: {type(e).__name__}")
+            print(f"{q}: נכשל {e}")
+            continue
+        fresh = [(t, s, d) for t, s, d in items if d and d >= cutoff]
+        print(f"{'=' * 76}\n{q} · {len(items)} תוצאות, {len(fresh)} מיומיים אחרונים")
+        for t, s, d in fresh:
+            if t in seen:
+                continue
+            seen[t] = True
+            f = [w for w in FOOT if w in t]
+            b = [w for w in BALL if w in t]
+            nm = [w for w in names if w in t]
+            mark = "⚽" if f and not b else ("🏀" if (b or nm) and not f else "  ")
+            print(f"   {mark} {d:%d.%m %H:%M} · {s[:13]:<13} · {t[:80]}")
+            if f or b or nm:
+                print(f"        כדורגל={f} כדורסל={b} סגל={nm}")
+
+    print(f"\n{'=' * 76}\nלמי היה משחק ב־15.9 לפי הלוח שלנו:")
+    games = json.loads((news_feed.DATA / "games.json").read_text(encoding="utf-8"))["games"]
+    for g in games:
+        if "2026-09-1" in g["date"][:9] + g["date"][9]:
+            pass
+    near = [g for g in games if "2026-09-12" <= g["date"][:10] <= "2026-09-19"]
+    for g in near:
+        print(f"   {g['date'][:10]}  {g['home']} vs {g['away']}  [{g['status']}]")
 
 
 if __name__ == "__main__":
