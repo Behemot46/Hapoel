@@ -1,19 +1,32 @@
 {
-  "updated": "2026-09-17T08:46:17Z",
+  "updated": "2026-09-17T19:51:12Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "וואלה ספורט",
+    "ספורט 1",
     "ספורט 5",
     "אייס",
-    "ספורט 1",
     "ישראל ספורט",
     "ישראל היום",
     "הארץ",
     "ערוץ 7",
-    "ynet",
-    "103FM"
+    "ynet"
   ],
   "items": [
+    {
+      "title": "הפועל ירושלים לראשונה העונה בארנה, באר שבע שוב תפתיע?",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1QcGxpZ0ZSUVVyWTB3Nl9SbWJOd0RxUWoxSDlKSU9KV0VsVHcxRXJTcEJlZGpYY2RLTENTOTZjSDc1R1JZcEFfYXpBR2ZTOGlj?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-17T12:20:00Z"
+    },
+    {
+      "title": "חוזה בוגרים ראשון: חמודי דיאב חתם לשלוש עונות בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9yVm5mRnRNeGo2VkpnejRQNHNjOE0wMU11V1JhMnA4c1IyMEhYZFV4QThPWGFaZzZNMzR4cFBZQzJacFN4LTh3bUpTd0h5Rjh1bG1NZGtIZXJPTldLeHR0S1Q5WFl5bGVBUU03ZTd3WGk1eUFLQ2xsd3dn?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-17T02:30:00Z"
+    },
     {
       "title": "הפועל ירושלים מרוצה מהסגל: שיא זרים ושכר חסר תקדים",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE54T2RiRl9XaU93dGZBYndsWW1KVWNTYXRVU2JYbkdwLTZ0UEoxdWVzekZRMVFRLXV3cGVtTlpfa1JtOGdPbWJfUUthU1BmY3hU?oc=5",
@@ -113,6 +126,13 @@
       "published": "2026-09-05T07:00:00Z"
     },
     {
+      "title": "הפועל ירושלים הודיעה: עברנו שלב בדרך לרישיון קבוע ליורוליג",
+      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxPV09hbWRwS01tT2J3N3dQeGlhX2JSTGdYdDQyQ0FhOWp0RFJkTW1wRXZONlNHRjBIempZTl9KUDRjb2dRU1VpVU1SNGlmaG5ObDJFd3ZGZlpUMHBpb1JwT2VLRXY2TWk2ZTVOalV2cTAxWXpjMnI0dHYyRFpKSGN6QlJjMlNjRWp3T2VFY1Bvc05NSGVTZnNmTlJOWkVaUmstUmpnd3JXeGo2dXFnRVpiUFJVOF9uZEYyQnU4U2VGQ1FMZ0VwRXFQN3g3UmdjV2hNc05YcXBjUWFtVnBiZVJBN0xCYTU4cXRJU05Kc0tCTkk3NndIbV9BcWV4S0Fpb2RBa1hNRW5sOUxYa01Lb3VZdmN5YWRaS2VGVWE0RzU2ZVBYOXJpaFk4QWl0ZkY1Y056UTBtQjdWcmdnN0FHVEhXSlZ3?oc=5",
+      "source": "ישראל ספורט",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-09-05T07:00:00Z"
+    },
+    {
       "title": "הפועל ירושלים במו\"מ מתקדם עם הגארד היהודי אמארי ביילי",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Oel9lWUl5TUpxVzd2NUtpME1SOE5PNFBjNG9vb2JPei04S2ZCU2pQLVNKNWh1bGt3UG0wZG9uS3NSX1RxZnlfR0xKczBNNUhuODc3RDVudWFDNF9yZXFfZXhEVHdlWmhaTkJ1d0tkQjJNUQ?oc=5",
       "source": "ספורט 5",
@@ -148,15 +168,15 @@
       "published": "2026-08-30T07:00:00Z"
     },
     {
-      "title": "במיליונים: תביעת הפועל ירושלים נגד הפועל ת\"א",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Xc3g5MTJQWHk1bzRlWmw0RW1Vc2pCS19CdzV4Sm9qeVhIa0pZOFNLYjdpVE9vak9UTU4ycEQxV1diMHRZUG1mZzdsZkFVdTZSc2lNcmlrWU14TUtBLXBmNW14cXEwZHJZOEZwMnFXcjZBUQ?oc=5",
+      "title": "\"עד מתי נכיל את זה?\": זעם בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE56MXNNVlBsb0RTdVNYS2lweWpDekEtR3U0bDRIekpxRHM4ekZZTXNpN2ZjQU5vSlVYOTFNd0h6UDFSX2VQMjJWUmo0Yy1vdzQzYkJfcFVqaGNNaFZtcU56dDlfR0hhRkNLZkNxWHRuRDc?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-30T07:00:00Z"
     },
     {
-      "title": "\"עד מתי נכיל את זה?\": זעם בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE56MXNNVlBsb0RTdVNYS2lweWpDekEtR3U0bDRIekpxRHM4ekZZTXNpN2ZjQU5vSlVYOTFNd0h6UDFSX2VQMjJWUmo0Yy1vdzQzYkJfcFVqaGNNaFZtcU56dDlfR0hhRkNLZkNxWHRuRDc?oc=5",
+      "title": "במיליונים: תביעת הפועל ירושלים נגד הפועל ת\"א",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Xc3g5MTJQWHk1bzRlWmw0RW1Vc2pCS19CdzV4Sm9qeVhIa0pZOFNLYjdpVE9vak9UTU4ycEQxV1diMHRZUG1mZzdsZkFVdTZSc2lNcmlrWU14TUtBLXBmNW14cXEwZHJZOEZwMnFXcjZBUQ?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-30T07:00:00Z"
@@ -202,27 +222,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-29T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים נמצאת בדרך להחלטה קריטית לעונה הקרובה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1RZ3dmaV9PVDJsZHEwU1UzU2xLaE13d0VnZmh3cjd4bXhudVFRSVY5V0dQT0R3SzlFYU9nM3p0VTRVRWJNQWlCckVxV3c2MHkt?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-29T05:45:00Z"
-    },
-    {
-      "title": "השחקן שהפועל ירושלים רוצה בעקבות פציעת ג'ארד הארפר | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRY0RwV0pkT3RCLVJSUVd5aFBvTnotcDVWSEtoQlVCRzFzNUh1QjZZd05iVGxuek8zaTZSMFdIME5pSGZkbHlZbUdKWnZFM2U4eW5xemdWanBUbUlKaG9idHVKS2FDa1dCUkliRWc2R2RsLXdpMUY5Vl9wc9IBgwFBVV95cUxPdTRncmJfQVpENVRGcUFkQnZ1WWl3S2c0WENLVXltS05EOTJpYmw1X040cGtmcVVGb0tyb2dUbXJORFBwQk5fSWxocTE2Wk9QMUlOUE1fd2F3b09GRG9DWjQtRElaUUtybHd3QlA3bU50eE9jSFZVOWc4OHJvalpPbEVXSQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-28T07:00:00Z"
-    },
-    {
-      "title": "ספורט - הפועל ירושלים תקפוץ מדרגה?",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CYUh0eDgtZDltQ3lMYm9ZNmtTcGVjdGU2WkxkSGVBZ081YXRnd1BBRmNLbVNuVVdsNWc2Ql9qZUVHUGZMMXhDVklZYWczWlVtYzF1THVSekg3cWNWSUp1dHgtRGR6RXd1NTV1TE81d1ZaQjFnLTBnWUsxeXd6d1k?oc=5",
-      "source": "103FM",
-      "sourceUrl": "https://103fm.maariv.co.il",
-      "published": "2026-08-26T07:00:00Z"
     }
   ]
 }
