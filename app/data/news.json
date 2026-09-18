@@ -1,26 +1,26 @@
 {
-  "updated": "2026-09-18T17:26:06Z",
+  "updated": "2026-09-18T20:27:32Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "וואלה ספורט",
+    "ישראל ספורט",
     "הארץ",
     "ישראל היום",
+    "וואלה ספורט",
     "ynet",
     "ONE",
     "ספורט 5",
     "ספורט 1",
     "כל העיר",
     "אייס",
-    "ישראל ספורט",
-    "ערוץ 7"
+    "inn.co.il"
   ],
   "items": [
     {
-      "title": "למרות משחק חריג מחוץ לקשת: הפועל ירושלים ברבע גמר גביע ווינר",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE4zTFIwZExlZkpEZHRqVWQ3U1RHRVRwbWprM08xTjAzMFZ5Ny1EUG5wTkNYNHQzU2g4a1Z3UzhZMHpoU1hwVy1qQnNDX2ZoUjhL?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-18T16:55:41Z"
+      "title": "למרות משחק רע מחוץ לקשת: הפועל י-ם ברבע גמר גביע ווינר",
+      "url": "https://news.google.com/rss/articles/CBMivgJBVV95cUxQbWJ3WldkVG50NnRYbnBsSVFzeF9lOHVMRVgtRTh6S09tamlrdGZGdEhBNl9iNGIwVGY3YlBGejJtWjBvRFdpZ3h6cjNvam44OGlIaHg2VFd3WnZyMW11V3pITUt2eGxVWXZ1NE9MMUZ3REdqaWY4VHozdE1vVkluN1JNamYzWnZVT0prYjUwbWp4aGdHYWRsaTV3d2pXTnpJSVJiMUxWcTF1TnFUaV9xbERLekloVkswUVBZR2tyeUJjZkhIRHdCNUwxTWtRLXdlWWhRaV8yZWZfeUt1NC1WeHdxdmRPZTl2YTVoRi1WUTd0VG1vVENUNkFzU1liZElwTFRaQXlIZDNTTndPVzdNMGNkT1g1dHdXX2dXRk1HcGxkOVFQakZPRmpfajlNTTE0WDg5V0hZLVoySktCZ3c?oc=5",
+      "source": "ישראל ספורט",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-09-18T18:46:38Z"
     },
     {
       "title": "הפועל ירושלים ניצחה את באר שבע/דימונה 69:83 ועלתה לרבע גמר גביע ווינר",
@@ -35,6 +35,13 @@
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-09-18T13:29:14Z"
+    },
+    {
+      "title": "למרות משחק חריג מחוץ לקשת: הפועל ירושלים ברבע גמר גביע ווינר",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE4zTFIwZExlZkpEZHRqVWQ3U1RHRVRwbWprM08xTjAzMFZ5Ny1EUG5wTkNYNHQzU2g4a1Z3UzhZMHpoU1hwVy1qQnNDX2ZoUjhL?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-18T13:28:00Z"
     },
     {
       "title": "ניצחון בצבע: הפועל י-ם גברה 69:83 על הפועל ב\"ש",
@@ -144,7 +151,7 @@
     {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5NTG5aZHl0TGpia2Vya2xVTFFuZjJVUmhmRXl1aFdMOTNIcUlyMTFUc25raDZzazBuYXBJLVNMTEozWlZfNG43NA?oc=5",
-      "source": "ערוץ 7",
+      "source": "inn.co.il",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-09-08T07:00:00Z"
     },
@@ -209,13 +216,6 @@
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPUzlWa1ltN0w4bUFfRzVURDhzenlKUXgtd3RaOUgxU3NvbGlVZVB0NGJwRkpyX21UbjZGMzFJNFJnYks5bGZtUlBuWEk3a0JqTmtiazBJb0dBenVsT2hBZDV6aWFBZTNsLWp0MUtYUDFCQ09zQVBnc1FyTDcwUTFHaE5PUndtUnYwWmgxSlI1dU9CUQ?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-30T07:00:00Z"
-    },
-    {
-      "title": "במיליונים: תביעת הפועל ירושלים נגד הפועל ת\"א",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Xc3g5MTJQWHk1bzRlWmw0RW1Vc2pCS19CdzV4Sm9qeVhIa0pZOFNLYjdpVE9vak9UTU4ycEQxV1diMHRZUG1mZzdsZkFVdTZSc2lNcmlrWU14TUtBLXBmNW14cXEwZHJZOEZwMnFXcjZBUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-30T07:00:00Z"
     }
   ]
