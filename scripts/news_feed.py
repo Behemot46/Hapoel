@@ -297,6 +297,115 @@ def _soccer_score(title):
     return any(int(a) <= 20 and int(b) <= 20 for a, b in SCORE.findall(title))
 
 
+# ============================================================================
+# ההצלבה מול לוח המשחקים שלנו
+#
+# **למה זה קיים.** מועדון הכדורגל חולק איתנו את השם, ועונת הליגה שלו
+# התחילה ב־15.9.2026. מאז מגיע סיקור משחק שלו כל שבוע, ולכותרת כזאת אין
+# שום סימן לענף: לא ליגה, לא שער, לא תפקיד ולא שם של יריבה. שלוש כאלה
+# נכנסו למדור בשלושה ימים, וכל אחת דרשה בדיקה ידנית כדי להכריע.
+#
+# **מה שהכריע בכל שלוש הפעמים לא היה בכותרת אלא מחוצה לה:** לקבוצת
+# הכדורסל שלנו לא היה משחק באותו יום. זה נתון שיש לנו בבית, ב־games.json,
+# והכלל כאן הופך אותו לבדיקה.
+#
+# **הכלל צר בכוונה, ושלושת התנאים חייבים להתקיים יחד:**
+#
+#   1. בכותרת יש סימן שמשחק בדיוק נגמר: פועל של תוצאה, המילה ״משחק״,
+#      ״מחזור״, או תבנית של תוצאה.
+#   2. אין בכותרת שום סימן כדורסל. כותרת שכתוב בה ״גביע ווינר״ היא שלנו
+#      גם אם לא שיחקנו אתמול, כי היא בוודאי לא על הכדורגל.
+#   3. לא שיחקנו בחלון סביב מועד הפרסום.
+#
+# **והחלון רחב בכוונה:** יומיים אחורה ויממה קדימה. חלון רחב גורם לכלל
+# לירות **פחות**, וזה הכיוון הבטוח: כותרת כדורגל שנשארה היא מטרד, וכותרת
+# כדורסל שנחסמה נעלמת בלי להשאיר סימן.
+#
+# **וכשאין לוח, הכלל לא חל.** קובץ חסר או שבור מחזיר רשימה ריקה, ואז
+# ״לא שיחקנו״ לא ניתן לקביעה, והכותרת נשארת.
+
+# פועל של תוצאה, או המילה משחק. ״עלתה ל״ נכנס כי הוא מסמן העפלה אחרי
+# משחק, ו״הודחה״ מהצד השני.
+# **ומה שבכוונה אינו כאן: ״ניצחון״ ו״הפסד״ כשמות עצם.** הם מופיעים גם
+# בתצוגה מקדימה (״מחפשת ניצחון ראשון״), ותצוגה מקדימה מתפרסמת לפעמים
+# שלושה ימים לפני המשחק, כלומר מחוץ לחלון. הם היו קונים כיסוי במחיר
+# חסימה של כותרות כדורסל אמיתיות. אותו שיקול פסל מילות רגש כמו ״תסכול״,
+# שמופיעות גם בידיעה על פציעה ביום שלא שיחקנו בו.
+MATCH_WORDS = (
+    "ניצח", "הפסיד", "גבר", "נכנע", "הביס", "פירק", "הודח", "העפיל",
+    "תיקו", "משחק", "מחזור", "דרבי", "רבע גמר", "חצי גמר", "עלתה ל",
+    "איבדה נקודות", "השיגה נקודה",
+)
+# תוצאה כתובה, בכל אחת משתי הצורות שהעיתונות משתמשת בהן
+MATCH_SCORE = re.compile(r"\b\d{1,3}\s*[:\-]\s*\d{1,3}\b")
+
+
+def our_game_times():
+    """מועדי המשחקים שלנו, מהלוח שכבר נאסף. רשימה ריקה כשאין לוח."""
+    try:
+        raw = json.loads(
+            (DATA / "games.json").read_text(encoding="utf-8")).get("games") or []
+    except Exception:
+        return []
+    out = []
+    for g in raw:
+        try:
+            d = datetime.datetime.fromisoformat(g["date"])
+        except Exception:
+            continue
+        if d.tzinfo is None:
+            d = d.replace(tzinfo=datetime.timezone.utc)
+        out.append(d.astimezone(datetime.timezone.utc))
+    return out
+
+
+PLAYED_BEFORE = datetime.timedelta(hours=48)
+PLAYED_AFTER = datetime.timedelta(hours=24)
+
+
+def played_around(when, games):
+    """האם שיחקנו בחלון סביב הרגע הזה."""
+    if not when or not games:
+        return True          # בלי נתון, מניחים שכן, והכלל לא חל
+    return any(when - PLAYED_BEFORE <= g <= when + PLAYED_AFTER for g in games)
+
+
+# SCORE מוגבל לשתי ספרות, כי הוא מחפש תוצאות כדורגל. כאן צריך שלוש:
+# ״הפסידה 104:95״ לא נתפסה בלעדיה, וזו בדיוק הכותרת שהכי חשוב להגן עליה.
+ANY_SCORE = re.compile(r"(?<!\d)(\d{1,3})\s*[-:]\s*(\d{1,3})(?!\d)")
+
+
+def _basketball_score(title):
+    """תוצאה כמו 69:83 היא משחק כדורסל, וזה כל מה שצריך לדעת.
+
+    **זה נוסף אחרי מדידה, לא מראש.** בלעדיו שלוש כותרות כדורסל אמיתיות
+    היו תלויות רק בלוח המשחקים: ״הפועל י־ם הפסידה 104:95 לריטאס וילנה״
+    לא מכילה שום מילה מזהה, ואם המשחק חסר מהלוח או שהסיקור הגיע יומיים
+    אחריו, היא הייתה נחסמת בשקט. זה ההפך המדויק של _soccer_score, שקובע
+    שתוצאה של עד 20 היא כדורגל.
+    """
+    return any(int(a) >= 40 and int(b) >= 40 for a, b in ANY_SCORE.findall(title))
+
+
+def other_sport_match_report(title, when, games):
+    """כותרת על משחק שהיה, ביום שבו אנחנו לא שיחקנו.
+
+    מחזירה את הסיבה כמחרוזת, או None כשהכלל לא חל. הסיבה נרשמת בלוג, כי
+    כותרת שנעלמת בלי סימן היא בדיוק מה שאי אפשר לתקן אחר כך.
+    """
+    flat = _norm(title)
+    if any(_norm(w) in flat for w in BASKET) or _basketball_score(title):
+        return None
+    hit = [w for w in MATCH_WORDS if w in title]
+    if not hit and not MATCH_SCORE.search(title):
+        return None
+    if played_around(when, games):
+        return None
+    if not hit:
+        hit = ["תוצאה כתובה"]
+    return f"סימני משחק {hit} ולנו לא היה משחק בסביבות {when:%d.%m}"
+
+
 def about_us(title):
     """True when the headline itself is about our basketball club."""
     flat = _norm(title)
@@ -351,7 +460,11 @@ def collect():
               - datetime.timedelta(days=int(cfg["maxAgeDays"])))
 
     seen, items = set(), []
-    stats = {"raw": 0, "off_topic": 0, "old": 0, "blocked": 0, "dupe": 0}
+    stats = {"raw": 0, "off_topic": 0, "old": 0, "blocked": 0, "dupe": 0,
+             "other_sport": 0}
+    fixtures = our_game_times()
+    log(f"לוח המשחקים להצלבה: {len(fixtures)} משחקים"
+        if fixtures else "אין לוח משחקים, ההצלבה מול המשחקים לא תחול")
     # שאילתה אחת שנופלת היא לא סיבה לזרוק את השלוש האחרות. ב־27.8.2026
     # גוגל החזירה 503 על הראשונה, וכל האיסוף מת איתה: המדור נשאר עם
     # הקובץ הישן בזמן ששלוש שאילתות תקינות חיכו בתור.
@@ -379,6 +492,14 @@ def collect():
                 continue
             if when < cutoff:
                 stats["old"] += 1
+                continue
+            # ההצלבה מול הלוח שלנו. נרשמת בלוג תמיד, כי כותרת שנעלמת
+            # בלי סימן היא בדיוק מה שאי אפשר לתקן אחר כך.
+            why = other_sport_match_report(title, when, fixtures)
+            if why:
+                stats["other_sport"] += 1
+                log(f"  לא שיחקנו, ולכן זה לא אנחנו: {title[:64]}")
+                log(f"    {why}")
                 continue
             host = _host(src_url)
             if host in block or src_raw.lower() in block:
@@ -410,7 +531,8 @@ def collect():
     items = items[: int(cfg["maxItems"])]
     log(f"{stats['raw']} items seen · kept {len(items)} · "
         f"dropped: {stats['off_topic']} not about us, {stats['old']} too old, "
-        f"{stats['dupe']} duplicates, {stats['blocked']} blocked")
+        f"{stats['dupe']} duplicates, {stats['blocked']} blocked, "
+        f"{stats['other_sport']} match reports on days we did not play")
     for i in items[:6]:
         log(f"  {i['published'][:10]}  {i['source']:<14} {i['title'][:66]}")
     return items
