@@ -66,12 +66,23 @@
       "competition": "גביע ווינר סל",
       "home": "הפועל ירושלים",
       "away": "הפועל ב\"ש",
-      "venue": "פיס ארנה, ירושלים",
+      "venue": null,
+      "status": "finished",
+      "homeScore": 83,
+      "awayScore": 69
+    },
+    {
+      "id": "20260925-בניהרצליה",
+      "date": "2026-09-25T14:00:00+03:00",
+      "competition": "גביע ווינר סל",
+      "home": "הפועל ירושלים",
+      "away": "בני הרצליה",
+      "venue": "אנרבוקס, חדרה",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
       "broadcast": {
-        "channel": "5STARS"
+        "pending": true
       }
     },
     {
