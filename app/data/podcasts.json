@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-18T08:21:59Z",
+  "updated": "2026-09-18T11:23:25Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-09-09T13:16:35Z"
+      "latest": "2026-09-18T09:34:44Z"
     },
     {
       "id": "1648115499",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "לא כוחות | מכבי מפרקת את הפועל בדרבי, מדר גונב את ההצגה ואיטודיס סופג אש",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3p1gg6",
+      "published": "2026-09-18T09:34:44Z",
+      "duration": 3909
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -182,15 +191,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3094565",
       "published": "2026-08-25T04:45:54Z",
       "duration": 5544
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "כוח, כבוד וכסף | תמיר בלאט במלכוד, הנבחרת במשבר ומאיר טפירו באולפן",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3nlers",
-      "published": "2026-08-20T12:25:24Z",
-      "duration": 3274
     },
     {
       "showId": "1573775015",

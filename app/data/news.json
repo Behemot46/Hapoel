@@ -1,18 +1,33 @@
 {
-  "updated": "2026-09-18T08:21:58Z",
+  "updated": "2026-09-18T11:23:24Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ספורט 5",
+    "ספורט 1",
     "כל העיר",
     "וואלה ספורט",
-    "ספורט 1",
-    "ספורט 5",
     "אייס",
     "ישראל ספורט",
+    "הארץ",
     "ערוץ 7",
     "ישראל היום",
     "ynet"
   ],
   "items": [
+    {
+      "title": "\"המפגש עם הפועל ירושלים? לא רלוונטי\"",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE4xT2xNbEZiRTJ5aE1jXzc3dkp1QWI4cklxbHJ1NDRNaVZDVTA0S2RuNnowVE8xZ3FBM0pkY3dwXzFiSzZLRWtMMUpfcUtNaU8wUFg1NjZyV1VYWVFldm1rVXMyZEhTQTIzZDhBUXBvU3A?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-18T09:54:17Z"
+    },
+    {
+      "title": "הפועל ירושלים תתארח אצל זיו אריה, הרכש החדש מיועד לפתוח בחוד",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0zODNWWVVKcUloUVBiQXNEYlMyODdzSVNwMEhBQW9YcnZmenZTM2pyUU9jbmREVHVPNFZFWGJlRDhONGZ1WXFKQ2E5cG5pWUo2ME1GRWFITDl3V05ILTVXMEY2WUdUWVV2VFJzdkMtYm9MQnpUcjMwc3ln?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-18T07:34:00Z"
+    },
     {
       "title": "השם החדש שתראו על מדי הפועל ירושלים בעונה הקרובה",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5xX0E3Vk9QbEJUUURHZTE3SHRkYzRSTS1PM0J5X0RQSkxWeHA0Ulktbzl1TWRJMjF1cWk5YkZLajNrRW4xd09seXJ1aUJIUm1H?oc=5",
@@ -89,6 +104,13 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-09-13T05:45:41Z"
+    },
+    {
+      "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcFFEZTNLLXV5aFVlRWxhbmU0MmRPLW9HRnQ1MFg2Q01RSE5LSEIxTmlGdnJXOU0wdGRNYzdDRk0wcWVvT3FjbDV3QlZRUHZWMDhZQjZjd05BdmxZd05vS01heHpmbTQ0MTN2S080YVI2dmU2SWlGYWI4MEJiRExaMWhxQURxYzNHNUlua2N4dVlEc2dRUm9vWnNrUG9ra1hKejVr?oc=5",
+      "source": "הארץ",
+      "sourceUrl": "https://www.haaretz.co.il",
+      "published": "2026-09-08T07:00:00Z"
     },
     {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
@@ -201,27 +223,6 @@
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-29T07:00:00Z"
-    },
-    {
-      "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-29T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים נמצאת בדרך להחלטה קריטית לעונה הקרובה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1RZ3dmaV9PVDJsZHEwU1UzU2xLaE13d0VnZmh3cjd4bXhudVFRSVY5V0dQT0R3SzlFYU9nM3p0VTRVRWJNQWlCckVxV3c2MHkt?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-29T05:45:00Z"
-    },
-    {
-      "title": "השחקן שהפועל ירושלים רוצה בעקבות פציעת ג'ארד הארפר | פרסום ראשון",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRY0RwV0pkT3RCLVJSUVd5aFBvTnotcDVWSEtoQlVCRzFzNUh1QjZZd05iVGxuek8zaTZSMFdIME5pSGZkbHlZbUdKWnZFM2U4eW5xemdWanBUbUlKaG9idHVKS2FDa1dCUkliRWc2R2RsLXdpMUY5Vl9wc9IBgwFBVV95cUxPdTRncmJfQVpENVRGcUFkQnZ1WWl3S2c0WENLVXltS05EOTJpYmw1X040cGtmcVVGb0tyb2dUbXJORFBwQk5fSWxocTE2Wk9QMUlOUE1fd2F3b09GRG9DWjQtRElaUUtybHd3QlA3bU50eE9jSFZVOWc4OHJvalpPbEVXSQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-08-28T07:00:00Z"
     }
   ]
 }
