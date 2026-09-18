@@ -1,18 +1,25 @@
 {
-  "updated": "2026-09-17T19:51:12Z",
+  "updated": "2026-09-18T08:21:58Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "כל העיר",
     "וואלה ספורט",
     "ספורט 1",
     "ספורט 5",
     "אייס",
     "ישראל ספורט",
-    "ישראל היום",
-    "הארץ",
     "ערוץ 7",
+    "ישראל היום",
     "ynet"
   ],
   "items": [
+    {
+      "title": "השם החדש שתראו על מדי הפועל ירושלים בעונה הקרובה",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5xX0E3Vk9QbEJUUURHZTE3SHRkYzRSTS1PM0J5X0RQSkxWeHA0Ulktbzl1TWRJMjF1cWk5YkZLajNrRW4xd09seXJ1aUJIUm1H?oc=5",
+      "source": "כל העיר",
+      "sourceUrl": "https://www.kolhair.co.il",
+      "published": "2026-09-17T16:38:52Z"
+    },
     {
       "title": "הפועל ירושלים לראשונה העונה בארנה, באר שבע שוב תפתיע?",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1QcGxpZ0ZSUVVyWTB3Nl9SbWJOd0RxUWoxSDlKSU9KV0VsVHcxRXJTcEJlZGpYY2RLTENTOTZjSDc1R1JZcEFfYXpBR2ZTOGlj?oc=5",
@@ -84,20 +91,6 @@
       "published": "2026-09-13T05:45:41Z"
     },
     {
-      "title": "על חשבון אקס הפועל ירושלים: הקבוצה הבאה של ניקולה מירוטיץ'",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBtWTBoR2VwSldlVFpRaUJDUTMwaTdON3QyeTc5d0VZeklteG9GRWQxWThkQjVreVk5UEUyNDBQTVdEdzlFS1pxNEh0bFFrbWl6dEhQdDQ3V0F2RkN1bnZUVF9nZ1RDVm01ZEs3YVd3djFGdlUxeFFfMtIBgAFBVV95cUxOeXgxNHlxaWR6QlYwdUNBb0lQSG0yeGl4N1hpOHltUHlWY1kzQ1o1amN0TXd0VDkxaDM3U3BLNFBSXy1mNktuZ2NLWk5pWFVzRUkxckV0WUpqLWVQaE5aX2pfQmh4ZUJMLU1lbFp4Tlgxa2NuTXd6QUxKOGoxam1MXw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-12T16:58:58Z"
-    },
-    {
-      "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcFFEZTNLLXV5aFVlRWxhbmU0MmRPLW9HRnQ1MFg2Q01RSE5LSEIxTmlGdnJXOU0wdGRNYzdDRk0wcWVvT3FjbDV3QlZRUHZWMDhZQjZjd05BdmxZd05vS01heHpmbTQ0MTN2S080YVI2dmU2SWlGYWI4MEJiRExaMWhxQURxYzNHNUlua2N4dVlEc2dRUm9vWnNrUG9ra1hKejVr?oc=5",
-      "source": "הארץ",
-      "sourceUrl": "https://www.haaretz.co.il",
-      "published": "2026-09-08T07:00:00Z"
-    },
-    {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5NTG5aZHl0TGpia2Vya2xVTFFuZjJVUmhmRXl1aFdMOTNIcUlyMTFUc25raDZzazBuYXBJLVNMTEozWlZfNG43NA?oc=5",
       "source": "ערוץ 7",
@@ -123,13 +116,6 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1QQ2lCTEJsNmxkZmdPUlNHWm9BWDZ1ZklLQkM5MHgwZ21pR2loejNvZ1ZNWl9Kdkl2SWROZzVZamw0dlo4RXJyZHZhVjJOeTgxZWlZbUp0LU9KVkgxNHYxSGZGQkM2VXpPSkgxSFpmNnVOZw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-05T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים הודיעה: עברנו שלב בדרך לרישיון קבוע ליורוליג",
-      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxPV09hbWRwS01tT2J3N3dQeGlhX2JSTGdYdDQyQ0FhOWp0RFJkTW1wRXZONlNHRjBIempZTl9KUDRjb2dRU1VpVU1SNGlmaG5ObDJFd3ZGZlpUMHBpb1JwT2VLRXY2TWk2ZTVOalV2cTAxWXpjMnI0dHYyRFpKSGN6QlJjMlNjRWp3T2VFY1Bvc05NSGVTZnNmTlJOWkVaUmstUmpnd3JXeGo2dXFnRVpiUFJVOF9uZEYyQnU4U2VGQ1FMZ0VwRXFQN3g3UmdjV2hNc05YcXBjUWFtVnBiZVJBN0xCYTU4cXRJU05Kc0tCTkk3NndIbV9BcWV4S0Fpb2RBa1hNRW5sOUxYa01Lb3VZdmN5YWRaS2VGVWE0RzU2ZVBYOXJpaFk4QWl0ZkY1Y056UTBtQjdWcmdnN0FHVEhXSlZ3?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
       "published": "2026-09-05T07:00:00Z"
     },
     {
@@ -182,17 +168,17 @@
       "published": "2026-08-30T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים תובעת את הפועל תל אביב: זה הסכום שהיא דורשת",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPUzlWa1ltN0w4bUFfRzVURDhzenlKUXgtd3RaOUgxU3NvbGlVZVB0NGJwRkpyX21UbjZGMzFJNFJnYks5bGZtUlBuWEk3a0JqTmtiazBJb0dBenVsT2hBZDV6aWFBZTNsLWp0MUtYUDFCQ09zQVBnc1FyTDcwUTFHaE5PUndtUnYwWmgxSlI1dU9CUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-08-30T07:00:00Z"
-    },
-    {
       "title": "סערה בעולם בכדורסל: הפועל ירושלים תובעת מיליונים מהפועל תל אביב",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RX1NtUGZlMWU1Ulk3ZFBuRFl6OVRydTUwOElhZENyalBhZzF3MU1INjdCQlYzWHBEb19LQWE1eW0wNDdfc1BPVmRMMFVmM2xwMTlEcnVUM0RZdEtLdlYteTc2cw?oc=5",
       "source": "אייס",
       "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-30T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים תובעת את הפועל תל אביב: זה הסכום שהיא דורשת",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPUzlWa1ltN0w4bUFfRzVURDhzenlKUXgtd3RaOUgxU3NvbGlVZVB0NGJwRkpyX21UbjZGMzFJNFJnYks5bGZtUlBuWEk3a0JqTmtiazBJb0dBenVsT2hBZDV6aWFBZTNsLWp0MUtYUDFCQ09zQVBnc1FyTDcwUTFHaE5PUndtUnYwWmgxSlI1dU9CUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-08-30T07:00:00Z"
     },
     {
@@ -222,6 +208,20 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-29T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים נמצאת בדרך להחלטה קריטית לעונה הקרובה",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1RZ3dmaV9PVDJsZHEwU1UzU2xLaE13d0VnZmh3cjd4bXhudVFRSVY5V0dQT0R3SzlFYU9nM3p0VTRVRWJNQWlCckVxV3c2MHkt?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-29T05:45:00Z"
+    },
+    {
+      "title": "השחקן שהפועל ירושלים רוצה בעקבות פציעת ג'ארד הארפר | פרסום ראשון",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRY0RwV0pkT3RCLVJSUVd5aFBvTnotcDVWSEtoQlVCRzFzNUh1QjZZd05iVGxuek8zaTZSMFdIME5pSGZkbHlZbUdKWnZFM2U4eW5xemdWanBUbUlKaG9idHVKS2FDa1dCUkliRWc2R2RsLXdpMUY5Vl9wc9IBgwFBVV95cUxPdTRncmJfQVpENVRGcUFkQnZ1WWl3S2c0WENLVXltS05EOTJpYmw1X040cGtmcVVGb0tyb2dUbXJORFBwQk5fSWxocTE2Wk9QMUlOUE1fd2F3b09GRG9DWjQtRElaUUtybHd3QlA3bU50eE9jSFZVOWc4OHJvalpPbEVXSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-28T07:00:00Z"
     }
   ]
 }
