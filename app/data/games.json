@@ -80,10 +80,7 @@
       "venue": "אנרבוקס, חדרה",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null,
-      "broadcast": {
-        "pending": true
-      }
+      "awayScore": null
     },
     {
       "id": "20260929-euro-RostockSeawo",

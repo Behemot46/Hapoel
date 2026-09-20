@@ -1,19 +1,26 @@
 {
-  "updated": "2026-09-20T08:42:36Z",
+  "updated": "2026-09-20T19:44:25Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ספורט 1",
-    "ספורט 5",
+    "וואלה ספורט",
     "ישראל היום",
     "הארץ",
     "ישראל ספורט",
-    "וואלה ספורט",
     "ynet",
-    "ONE",
+    "ספורט 5",
     "ערוץ 7",
-    "אייס"
+    "אייס",
+    "ספורט 1",
+    "סרוגים"
   ],
   "items": [
+    {
+      "title": "מנצחים במספרים: המהפך ההתקפי של הפועל ירושלים כבר מורגש",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1jMFNiblN1T2RGOVpKWlhtWEVQbUhCNUlCRnp4ZklobDFrR0JIaXpfbmg2azEyemZUaVNjMnQ2cVoxMVhUNUJFOFlMTXhIYlpi?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-20T07:13:00Z"
+    },
     {
       "title": "\"הפועל ירושלים עלולה לפספס שריון ביורוליג בגלל עופר ינאי\"",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9WRkNVSGxsQVk4SGhBS3lvRWlLeWc4S3N0MXF2MFBfNkNEZldhLXBZRWJOYXlOb0dqdV9LSE91X1VQRGFDNFVYZG9WR0JQSmxqN0MtNldPQW54RUVscFVWS2g3ZGIydDZLdElVZUZ1MUdFbDBJTUVEbUlLQdIBgwFBVV95cUxQa3hkbmt5WF9xZkFFTHFrUGpwTEFKZ3RVSEZrZ3lhbmR2UEhMcVZqZFEweUFTNXBYY29CWVJaYV9xTEZZUFVaN3phQV8tMlpzU3BGM1hZbEQ2NjJKYllGaXhWVkg3bkVvNl9kNnNDeGxWeld2bWdvOHJBQS1zdkVscVhBbw?oc=5",
@@ -174,6 +181,48 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-08-30T07:00:00Z"
+    },
+    {
+      "title": "דימה סקפינצב: \"כן, יש תחושת פספוס. הפועל ירושלים לא רצתה שאשאר\"",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1oQS1FTUpiTVJRRzZUODZKSVBwdkI3X0JOVUJKRmpfNlQtZHVhV0t5MzlxN012ckJoRFo5WnU2Y2N1SDg3VHlmUGI0cWdUc3RjTkdONG1TZk05Q3hTaGJoUFJESUljajdjTHpxalR1QlR6Zw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-29T07:00:00Z"
+    },
+    {
+      "title": "בעקבות פציעת ג'ארד הארפר: הפועל ירושלים עומדת בפני החלטה קריטית",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQ295bjdtSjFvekl2d2ZCSG01WTlKRTdiOHk3c1N3ajF0NjREWFg4dXhFSm1QclowWThVZTBpNXlHeWpGUlJFM0pRb2x0eUxIVkM1WHlrMloyZXktcVptRTMzZ1YyZTEyQnNqeVVtUlBlMS1WMk9lb25qZnBrU0I0eF9CS0NBc1JNakExXzRVc3FRUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-08-29T07:00:00Z"
+    },
+    {
+      "title": "הפועל י-ם גיששה בנוגע לצירוף בלאט ונדחתה",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1STnVxOHF4MjVsOUx2bUcwWlZOWjA2YlJ3b2dsSGRCR1lwT2hjU2p0TmI4VnBjbmk2RFFhbGN4dnRXUjJKQW15Z3o5eFQybzlUY1FHWkEtalEwUUdrNWVUQnRhNE9Pcm45dVBydHhOQjdZdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-29T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים נמצאת בדרך להחלטה קריטית לעונה הקרובה",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1RZ3dmaV9PVDJsZHEwU1UzU2xLaE13d0VnZmh3cjd4bXhudVFRSVY5V0dQT0R3SzlFYU9nM3p0VTRVRWJNQWlCckVxV3c2MHkt?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-08-29T07:00:00Z"
+    },
+    {
+      "title": "השחקן שהפועל ירושלים רוצה בעקבות פציעת ג'ארד הארפר | פרסום ראשון",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRY0RwV0pkT3RCLVJSUVd5aFBvTnotcDVWSEtoQlVCRzFzNUh1QjZZd05iVGxuek8zaTZSMFdIME5pSGZkbHlZbUdKWnZFM2U4eW5xemdWanBUbUlKaG9idHVKS2FDa1dCUkliRWc2R2RsLXdpMUY5Vl9wc9IBgwFBVV95cUxPdTRncmJfQVpENVRGcUFkQnZ1WWl3S2c0WENLVXltS05EOTJpYmw1X040cGtmcVVGb0tyb2dUbXJORFBwQk5fSWxocTE2Wk9QMUlOUE1fd2F3b09GRG9DWjQtRElaUUtybHd3QlA3bU50eE9jSFZVOWc4OHJvalpPbEVXSQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-28T07:00:00Z"
+    },
+    {
+      "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
+      "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
+      "source": "סרוגים",
+      "sourceUrl": "https://www.srugim.co.il",
+      "published": "2026-08-28T07:00:00Z"
     }
   ]
 }
