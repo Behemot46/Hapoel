@@ -1,102 +1,118 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**החשד:** שתי כותרות מ־16.9 בבוקר נכנסו למדור:
+**השאלה, אחרי בדיקת התחזוקה של 20.9:** שבע מתוך שלושים הכותרות במדור
+היו כדורגל, כולן מהסיקור של מכבי פתח תקווה מול מועדון הכדורגל שחולק
+איתנו את השם. חסמתי את כולן ביד, וזו הפעם השלישית שאני עושה את זה.
 
-    ״שוב חוזר הניגון: תסכול עמוק בהפועל ירושלים״
-    ״הפועל ירושלים שוב חזרה, ושוב מתוסכלת: היה משחק שלנו״
+**מה שגיליתי בדרך, וזה מה שהכלי בא למדוד:** המפרסמים עצמם יודעים בדיוק
+מה הענף, והם כותבים את זה בכתובת. בספורט 1 הכתבות האלה יושבות תחת
+israeli-soccer/ligat-haal, ובספורט 5 הן ב־FolderID=64 בעוד שכתבות
+הכדורסל שלנו ב־FolderID=274. זה נתון ודאי, לא ניחוש מהכותרת.
 
-שתיהן מדברות על משחק שזה עתה נגמר. **לקבוצת הכדורסל שלנו לא היה משחק
-ב־15.9:** האחרון היה מול ריטאס ב־13.9 והבא הוא הגביע ב־18.9. כלומר או
-שהן על מועדון הכדורגל שחולק איתנו את השם, או שאני מפספס משהו.
+אנחנו לא רואים את הכתובת הזאת, כי גוגל מחזירה בדל אטום. לכן שלוש שאלות:
 
-זה לא מספיק כדי להכריע, ולכן הכלי שואל את הפיד מה עוד פורסם באותו יום
-ומחפש את ההקשר: יריבה, ליגה, מחזור, או שם של שחקן מהסגל שלנו.
+  1. האם בפריט של גוגל יש **איפשהו** את הכתובת האמיתית, בשדה שאנחנו לא
+     קוראים היום? מודפס כאן ה־XML הגולמי של פריט אחד, כולו.
+  2. האם לספורט 5 ולספורט 1 יש פיד משלהם לפי מדור? אם כן, אפשר למשוך
+     את פיד הכדורגל ולחסום כל כותרת שמופיעה בו. זו ראיה חיובית לכדורגל,
+     ולכן הכיוון הבטוח: היא לעולם לא תחסום כותרת כדורסל.
+  3. ואם יש פיד, האם הכותרת בו זהה לכותרת שגוגל מראה לנו? אם גוגל
+     משכתבת, ההצלבה לא תעבוד, וצריך לדעת את זה לפני ולא אחרי.
 """
 
-import datetime
-import json
-import pathlib
+import re
 import sys
-import urllib.parse
 import xml.etree.ElementTree as ET
 
 import requests
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import news_feed
-
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-      "Accept-Language": "he-IL,he;q=0.9"}
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/124.0 Safari/537.36"}
 
-FOOT = ["כדורגל", "ליגת העל", "ליגה לאומית", "שער", "שערים", "הבקיע", "כבש",
-        "בעיטה", "פנדל", "שוער", "הרכב", "מחצית", "דקה ה", "טבריה", "בית\"ר",
-        "מכבי חיפה", "הפועל באר שבע", "עירוני", "סכנין", "אשדוד ", "נתניה"]
-BALL = ["כדורסל", "יורוקאפ", "יורוליג", "ווינר", "סל", "ריבאונד", "שלשה",
-        "רבע", "נקודות", "פיס ארנה", "ריטאס", "הכנה"]
+GOOGLE = ("https://news.google.com/rss/search?"
+          "q=%D7%94%D7%A4%D7%95%D7%A2%D7%9C+%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D"
+          "&hl=iw&gl=IL&ceid=IL:iw")
 
-
-def roster_names():
-    r = json.loads((news_feed.DATA / "roster.json").read_text(encoding="utf-8"))
-    out = set()
-    for p in r["players"]:
-        he = (p.get("nameHe") or "").split()
-        out.update(w for w in he if len(w) > 3)
-    return out
-
-
-def ask(q):
-    r = requests.get(FEED.format(q=urllib.parse.quote(q)), headers=UA, timeout=30)
-    r.raise_for_status()
-    root = ET.fromstring(r.content)
-    out = []
-    for it in root.iter("item"):
-        src_el = it.find("{*}source")
-        src = (src_el.text if src_el is not None else "") or ""
-        title = news_feed._strip_source(
-            news_feed._clean(it.findtext("title")), src)
-        out.append((title, src, news_feed._published(it)))
-    return out
+# כתובות מועמדות. אין לי דרך לדעת מראש מה קיים, אז שואלים את כולן
+# ומדפיסים את התשובה כמו שהיא.
+CANDIDATES = [
+    ("ספורט 5, מדור 64 (כדורגל?)", "https://www.sport5.co.il/rss.aspx?FolderID=64"),
+    ("ספורט 5, מדור 274 (כדורסל?)", "https://www.sport5.co.il/rss.aspx?FolderID=274"),
+    ("ספורט 5, rss כללי", "https://www.sport5.co.il/rss.aspx"),
+    ("ספורט 5, RSS.aspx?FolderID=64", "https://www.sport5.co.il/RSS.aspx?FolderID=64"),
+    ("ספורט 1, כדורגל ישראלי", "https://sport1.maariv.co.il/israeli-soccer/rss"),
+    ("ספורט 1, rss.xml", "https://sport1.maariv.co.il/rss.xml"),
+    ("ספורט 1, feed", "https://sport1.maariv.co.il/feed"),
+    ("מעריב, rss כללי", "https://www.maariv.co.il/Rss/RssFeedsSport"),
+    ("ONE, rss", "https://www.one.co.il/cat/rss/rss.aspx"),
+    ("וואלה ספורט, rss", "https://rss.walla.co.il/feed/21"),
+]
 
 
-def main():
-    names = roster_names()
-    print(f"שמות מהסגל לזיהוי: {sorted(names)[:8]} ...\n")
-    cutoff = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=2)
+def head_of(text, n=400):
+    return re.sub(r"\s+", " ", text)[:n]
 
-    seen = {}
-    for q in ['"הפועל ירושלים"', '"הפועל ירושלים" תסכול',
-              '"הפועל ירושלים" 15 בספטמבר', '"הפועל ירושלים" כדורגל']:
+
+def probe_google():
+    print("=" * 70)
+    print("1. פריט גולמי אחד מגוגל, כל השדות")
+    print("=" * 70)
+    try:
+        r = requests.get(GOOGLE, headers=UA, timeout=30)
+        r.raise_for_status()
+        r.encoding = "utf-8"
+    except Exception as e:
+        print("נפל:", e)
+        return
+    root = ET.fromstring(r.text)
+    items = root.findall(".//item")
+    print(f"{len(items)} פריטים. הראשון, כמו שהוא:\n")
+    if items:
+        raw = ET.tostring(items[0], encoding="unicode")
+        print(raw[:2500])
+    print("\nוכל הכותרות, כדי לראות אם כדורגל בפנים עכשיו:")
+    for it in items[:25]:
+        print("  ", (it.findtext("title") or "")[:100])
+
+
+def probe_feeds():
+    print("\n" + "=" * 70)
+    print("2. האם למפרסמים יש פיד לפי מדור")
+    print("=" * 70)
+    for name, url in CANDIDATES:
         try:
-            items = ask(q)
+            r = requests.get(url, headers=UA, timeout=25)
         except Exception as e:
-            print(f"{q}: נכשל {e}")
+            print(f"\n{name}\n  {url}\n  נפל: {type(e).__name__}: {e}")
             continue
-        fresh = [(t, s, d) for t, s, d in items if d and d >= cutoff]
-        print(f"{'=' * 76}\n{q} · {len(items)} תוצאות, {len(fresh)} מיומיים אחרונים")
-        for t, s, d in fresh:
-            if t in seen:
-                continue
-            seen[t] = True
-            f = [w for w in FOOT if w in t]
-            b = [w for w in BALL if w in t]
-            nm = [w for w in names if w in t]
-            mark = "⚽" if f and not b else ("🏀" if (b or nm) and not f else "  ")
-            print(f"   {mark} {d:%d.%m %H:%M} · {s[:13]:<13} · {t[:80]}")
-            if f or b or nm:
-                print(f"        כדורגל={f} כדורסל={b} סגל={nm}")
-
-    print(f"\n{'=' * 76}\nלמי היה משחק ב־15.9 לפי הלוח שלנו:")
-    games = json.loads((news_feed.DATA / "games.json").read_text(encoding="utf-8"))["games"]
-    for g in games:
-        if "2026-09-1" in g["date"][:9] + g["date"][9]:
-            pass
-    near = [g for g in games if "2026-09-12" <= g["date"][:10] <= "2026-09-19"]
-    for g in near:
-        print(f"   {g['date'][:10]}  {g['home']} vs {g['away']}  [{g['status']}]")
+        ctype = r.headers.get("content-type", "")
+        print(f"\n{name}\n  {url}\n  {r.status_code} · {ctype} · {len(r.content)} bytes")
+        if r.status_code != 200:
+            continue
+        r.encoding = r.encoding or "utf-8"
+        body = r.text
+        if "xml" not in ctype and not body.lstrip().startswith("<?xml"):
+            print("  לא XML:", head_of(body, 160))
+            continue
+        try:
+            root = ET.fromstring(body)
+        except Exception as e:
+            print("  XML שבור:", e)
+            continue
+        items = root.findall(".//item")
+        print(f"  {len(items)} פריטים")
+        for it in items[:8]:
+            title = (it.findtext("title") or "")[:78]
+            link = (it.findtext("link") or "")[:95]
+            print(f"    {title}")
+            print(f"      {link}")
 
 
 if __name__ == "__main__":
-    main()
+    which = sys.argv[1] if len(sys.argv) > 1 else "all"
+    if which in ("all", "google"):
+        probe_google()
+    if which in ("all", "feeds"):
+        probe_feeds()
