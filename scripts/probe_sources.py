@@ -1,101 +1,141 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**החשד:** שתי כותרות מ־16.9 בבוקר נכנסו למדור:
+**מה שהבדיקה הקודמת סגרה, ואין טעם לנסות שוב:**
 
-    ״שוב חוזר הניגון: תסכול עמוק בהפועל ירושלים״
-    ״הפועל ירושלים שוב חזרה, ושוב מתוסכלת: היה משחק שלנו״
+  * בפריט של גוגל אין שום כתובת אמיתית. לא ב־link, לא ב־guid, ולא
+    ב־source, שמחזיק רק את שורש האתר. גם ה־description מפנה לבדלים.
+  * לספורט 5, לספורט 1, ל־ONE ולוואלה אין פיד לפי מדור בשום כתובת
+    שניסיתי. מה שקיים במעריב הוא פיד ספורט כללי עם כתבות ישנות, ולא
+    אותו אתר.
 
-שתיהן מדברות על משחק שזה עתה נגמר. **לקבוצת הכדורסל שלנו לא היה משחק
-ב־15.9:** האחרון היה מול ריטאס ב־13.9 והבא הוא הגביע ב־18.9. כלומר או
-שהן על מועדון הכדורגל שחולק איתנו את השם, או שאני מפספס משהו.
+**ומה שהיא כן גילתה, וזה מה שנמדד כאן:** ה־description של כל פריט הוא
+רשימה של הכותרות ש**גוגל עצמה** קיבצה כאותו סיפור. בפריט הראשון ישבו
+יחד ״נדים וראסנה כבש שלושער, הפועל ירושלים ניצחה את מכבי פ״ת״, ״זו
+הפילוסופיה, להתבסס על שחקני הבית״ ו״המספרים מוכיחים: הפועל ירושלים זו
+כבר לא אותה קבוצה״. הראשונה מוכרעת מיד, והשלישית היא אחת משבע הכותרות
+שחסמתי ביד ב־20.9.
 
-זה לא מספיק כדי להכריע, ולכן הכלי שואל את הפיד מה עוד פורסם באותו יום
-ומחפש את ההקשר: יריבה, ליגה, מחזור, או שם של שחקן מהסגל שלנו.
+**ההשערה:** אם באשכול יש כותרת אחת שמוכרעת ככדורגל, כל האשכול כדורגל.
+
+**והמדידה, שני צדדים, ושניהם חייבים להיות טובים:**
+
+  1. כמה משבע הכותרות שחסמתי ביד היו נתפסות ככה.
+  2. וכמה כותרות כדורסל אמיתיות היו נופלות. זה התנאי הקשיח.
 """
 
-import datetime
-import json
-import pathlib
+import html
+import re
 import sys
-import urllib.parse
 import xml.etree.ElementTree as ET
 
 import requests
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+sys.path.insert(0, __file__.rsplit("/", 1)[0])
 import news_feed
 
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-      "Accept-Language": "he-IL,he;q=0.9"}
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/124.0 Safari/537.36"}
 
-FOOT = ["כדורגל", "ליגת העל", "ליגה לאומית", "שער", "שערים", "הבקיע", "כבש",
-        "בעיטה", "פנדל", "שוער", "הרכב", "מחצית", "דקה ה", "טבריה", "בית\"ר",
-        "מכבי חיפה", "הפועל באר שבע", "עירוני", "סכנין", "אשדוד ", "נתניה"]
-BALL = ["כדורסל", "יורוקאפ", "יורוליג", "ווינר", "סל", "ריבאונד", "שלשה",
-        "רבע", "נקודות", "פיס ארנה", "ריטאס", "הכנה"]
+QUERIES = ["הפועל ירושלים", "הפועל ירושלים כדורסל", "הפועל י-ם"]
+FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
+
+# שבע הכותרות שחסמתי ביד ב־20.9, בדיוק כפי שהופיעו
+HAND = [
+    "המספרים מוכיחים: הפועל ירושלים זו כבר לא אותה קבוצה",
+    "מטורף: הכושר האדיר של בן ה-20 מהפועל י-ם",
+    "שני שחקני הגנה של הפועל ירושלים הצטרפו לרשימת הפצועים המתארכת",
+    "משגע הגנות", "זיו אריה: הפועל ירושלים? מה שהיה לא רלוונטי",
+    "המפגש עם הפועל ירושלים? לא רלוונטי",
+    "הפועל ירושלים תתארח אצל זיו אריה",
+]
+
+LINK_TEXT = re.compile(r'<a href="[^"]*"[^>]*>(.*?)</a>', re.S)
 
 
-def roster_names():
-    r = json.loads((news_feed.DATA / "roster.json").read_text(encoding="utf-8"))
-    out = set()
-    for p in r["players"]:
-        he = (p.get("nameHe") or "").split()
-        out.update(w for w in he if len(w) > 3)
-    return out
-
-
-def ask(q):
-    r = requests.get(FEED.format(q=urllib.parse.quote(q)), headers=UA, timeout=30)
-    r.raise_for_status()
-    root = ET.fromstring(r.content)
+def siblings(desc):
+    """הכותרות שגוגל קיבצה יחד עם הפריט, מתוך ה־description."""
+    if not desc:
+        return []
+    inner = html.unescape(desc)
     out = []
-    for it in root.iter("item"):
-        src_el = it.find("{*}source")
-        src = (src_el.text if src_el is not None else "") or ""
-        title = news_feed._strip_source(
-            news_feed._clean(it.findtext("title")), src)
-        out.append((title, src, news_feed._published(it)))
+    for m in LINK_TEXT.findall(inner):
+        t = html.unescape(re.sub(r"<[^>]+>", "", m)).strip()
+        if t:
+            out.append(t)
     return out
+
+
+def decided_soccer(title):
+    """כותרת שמוכרעת ככדורגל בכללים שכבר יש לנו, בלי החסימות הידניות.
+
+    זה בכוונה לא כל about_us: חסימה ידנית היא לא ראיה, היא זיכרון שלי,
+    ואם אשתמש בה כאן המדידה תמדוד את עצמה.
+    """
+    saved = news_feed._phrases_cache
+    news_feed._phrases_cache = ()
+    try:
+        return not news_feed.about_us(title)
+    finally:
+        news_feed._phrases_cache = saved
 
 
 def main():
-    names = roster_names()
-    print(f"שמות מהסגל לזיהוי: {sorted(names)[:8]} ...\n")
-    cutoff = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=2)
-
     seen = {}
-    for q in ['"הפועל ירושלים"', '"הפועל ירושלים" תסכול',
-              '"הפועל ירושלים" 15 בספטמבר', '"הפועל ירושלים" כדורגל']:
+    for q in QUERIES:
+        url = FEED.format(q=requests.utils.quote(q))
         try:
-            items = ask(q)
+            r = requests.get(url, headers=UA, timeout=30)
+            r.raise_for_status()
+            r.encoding = "utf-8"
+            root = ET.fromstring(r.text)
         except Exception as e:
-            print(f"{q}: נכשל {e}")
+            print(f"השאילתה {q} נפלה: {e}")
             continue
-        fresh = [(t, s, d) for t, s, d in items if d and d >= cutoff]
-        print(f"{'=' * 76}\n{q} · {len(items)} תוצאות, {len(fresh)} מיומיים אחרונים")
-        for t, s, d in fresh:
-            if t in seen:
-                continue
-            seen[t] = True
-            f = [w for w in FOOT if w in t]
-            b = [w for w in BALL if w in t]
-            nm = [w for w in names if w in t]
-            mark = "⚽" if f and not b else ("🏀" if (b or nm) and not f else "  ")
-            print(f"   {mark} {d:%d.%m %H:%M} · {s[:13]:<13} · {t[:80]}")
-            if f or b or nm:
-                print(f"        כדורגל={f} כדורסל={b} סגל={nm}")
+        for it in root.findall(".//item"):
+            title = news_feed._strip_source(
+                it.findtext("title") or "", (it.find("source").text
+                                             if it.find("source") is not None else ""))
+            if title and title not in seen:
+                seen[title] = siblings(it.findtext("description") or "")
+    print(f"{len(seen)} כותרות ייחודיות משלוש שאילתות.\n")
 
-    print(f"\n{'=' * 76}\nלמי היה משחק ב־15.9 לפי הלוח שלנו:")
-    games = json.loads((news_feed.DATA / "games.json").read_text(encoding="utf-8"))["games"]
-    for g in games:
-        if "2026-09-1" in g["date"][:9] + g["date"][9]:
-            pass
-    near = [g for g in games if "2026-09-12" <= g["date"][:10] <= "2026-09-19"]
-    for g in near:
-        print(f"   {g['date'][:10]}  {g['home']} vs {g['away']}  [{g['status']}]")
+    print("=" * 70)
+    print("אשכולות שבהם יש הכרעה ככדורגל")
+    print("=" * 70)
+    caught = {}
+    for title, sibs in seen.items():
+        group = [title] + [s for s in sibs if s != title]
+        proof = [s for s in group if decided_soccer(s)]
+        if not proof:
+            continue
+        for s in group:
+            if not decided_soccer(s):
+                caught[s] = proof[0]
+        print(f"\nהוכחה: {proof[0][:72]}")
+        for s in group:
+            mark = "מוכרע " if decided_soccer(s) else "נגרר  "
+            print(f"  {mark} {s[:72]}")
+
+    print("\n" + "=" * 70)
+    print("מה זה היה תופס משבע הכותרות שחסמתי ביד")
+    print("=" * 70)
+    hit = 0
+    for h in HAND:
+        got = [k for k in caught if h in k or k in h]
+        hit += bool(got)
+        print(f"  {'נתפס ' if got else 'פוספס'} {h[:66]}")
+    print(f"\n  {hit} מתוך {len(HAND)}")
+
+    print("\n" + "=" * 70)
+    print("**התנאי הקשיח:** כותרות שנגררו, ואני צריך לעבור עליהן בעיניים")
+    print("=" * 70)
+    for s, proof in caught.items():
+        print(f"  {s[:74]}")
+        print(f"      בגלל: {proof[:66]}")
+    if not caught:
+        print("  אף אחת")
 
 
 if __name__ == "__main__":
