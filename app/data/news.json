@@ -1,10 +1,10 @@
 {
-  "updated": "2026-09-19T19:11:35Z",
+  "updated": "2026-09-20T08:42:36Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "ספורט 1",
     "ספורט 5",
     "ישראל היום",
-    "ספורט 1",
     "הארץ",
     "ישראל ספורט",
     "וואלה ספורט",
@@ -15,11 +15,18 @@
   ],
   "items": [
     {
+      "title": "המספרים מוכיחים: הפועל ירושלים זו כבר לא אותה קבוצה",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9uMHlSNlczZmNpT0JrTEMzeFFzcTc3TmVfenBURVF6TjVWVjdrX0xCSDlyM0R0MnJiell1UmtNeVVBckRyZ2htQ1ZRd3prYVhFX0FwNUlqQzNMNnRSbTlGT2hOdkNxMjZIZk90a0JlOGVCR0J4cGpjZUhR?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-20T07:27:58Z"
+    },
+    {
       "title": "מטורף: הכושר האדיר של בן ה-20 מהפועל י-ם",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBSbU5qUXpRLVlHU2h5TDFPWVVpaFNUeXZjTE5haDhQSDBrRU95TERsMU1HU2s5N3BHR3Vyc2hPaUtFYlZDLUMzX3VsQnV5SHJtdWdfUXE1MHZGM3FMb2FIUTlPbTBsb1UtYzY5QS03OG0?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-19T16:59:24Z"
+      "published": "2026-09-19T16:46:00Z"
     },
     {
       "title": "\"הפועל ירושלים עלולה לפספס שריון ביורוליג בגלל עופר ינאי\"",
@@ -40,7 +47,7 @@
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5ZNXVuVVdmYjJTSzZuODJJd3ZmallMbko5QTB0NHBsOTJDLTAtMGlfWUdQb2pIRGpDeHE5ZDBvbWtQNkxPUFFxSkFwYllQUkplWnFvU1AtZ0RyUlBaSWZQb1JzRmFCMExxZ3N5My1hRjI?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-19T03:29:41Z"
+      "published": "2026-09-19T08:33:27Z"
     },
     {
       "title": "הפועל ירושלים ניצחה את באר שבע/דימונה 69:83 ועלתה לרבע גמר גביע ווינר",
@@ -62,13 +69,6 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-09-18T13:28:00Z"
-    },
-    {
-      "title": "זיו אריה לא מתרגש: \"מה שעברתי בהפועל ירושלים לא רלוונטי\"",
-      "url": "https://news.google.com/rss/articles/CBMiuwJBVV95cUxPcjVXYTJ0dVJVc2g0NFZjVWxQcVBkdTdDRkhRb3hqdUkxOUpaT1UtVkRudTVpRl9WSTZ5M0VlZGYxdTZMMDVZOXE1NFI3SUc0RXJuaWd5cUpPM3duU2xEemhTeGVMcXZrV2VGbUVGWm9aWFRjbzYwZGlBejdac2NscTB4d2k1aHF1VjlxN1ZRR2R2UG96SW5WT1NFYjk5aHNaQlV3bEUySkNWUFN3TkF3dlppQmJabWNZdlZhb0hhVEc1YnkxdU1ldVRieng2TXpVR1Y2Qk8ybHVVb0pHamljeGZqNkZIc2xxbmZJZ1BBWUhpdUpPNWRlcldxc29lY3NsdXE0N3RSZzRRb3VsVWlIVEVGMkRSMkdJMzZuRG5OUHdHZzBWOUhJUF9YSjRlLXRPS0NLeldyOXRvUUE?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-09-18T13:15:00Z"
     },
     {
       "title": "ניצחון בצבע: הפועל י-ם גברה 69:83 על הפועל ב\"ש",
@@ -113,13 +113,6 @@
       "published": "2026-09-14T10:08:48Z"
     },
     {
-      "title": "הלקח של הפועל ירושלים: \"צריכים לדעת לשחק באווירה כזאת\"",
-      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOSHBPcVBSYVZDSUdJVVpPaGxGS05lQW9NSDhIVUlidFd3anl3Y2RrNXdaY1E0R2NoTkRmWWxhSGdZSTVYMEFBZklrYUtMblNKWndpdW44UGE5bTJIOWNxZGpydmlLTkNDQXA0djd0NE5KUXVRV2FwUFFNVDNrRXgxVk5yUjZHSElXdFlTVmJqb2NWYVl3V0xvblFSN1BKWHJ6cGdPS1NJMnRXTUhUZElXOUlMemdhYjRTTVZRQk5Gc0VYbExmaWxnd25UazBFYjZFZkFlZDE0elZqMi1Ndy01am9ROUpCdWg5NWJJcUk4Nk9jVkVsQkFlZmpxSlExeV9JV055Qg?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-14T06:43:23Z"
-    },
-    {
       "title": "הפועל י-ם הפסידה 104:95 לריטאס וילנה",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE90aGxJQmxSY3N0MHBJWjVfa1EzR2FoOHJXS045M3BBU19hMFhkQzZqSVZhZGxxY3ZpbnpSLXBSd2oyMWI0dXNOb05oZUdpUkFSMEw5S2cxUDg5MlRodGxpNERDUjJSMlJ4YVVoeF9vQlBRc3c?oc=5",
       "source": "ספורט 5",
@@ -127,11 +120,11 @@
       "published": "2026-09-13T18:33:00Z"
     },
     {
-      "title": "הפסד ראשון בהכנה: הפועל ירושלים נכנעה 104:95 לריטאס וילנה",
-      "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxOUDFyY2xNM1pBd2JZMUpoYW5aT3c5UWN0TmRES01hZHRIS3MzaDdrRUc5anFjcGREVXMwSDNjT1F4d2pMSWVGN3ljQVFBemIyRVdGYVVNNTVkWklETS1YNkFlRjFKMEEzUlJwWUV2N1hpS29maksxbjU4bGZyZUEyRnd3MldkMUFnWVZBNTZadVR1X0Y1V3RuQ0hRSF9WQmF5RTZnZFlzTWJCcmc3UWxydTRpU1hTUUJTR19tU3czTWQ3Nkd1NGg3LWxkcmhKVTdfVEc0NDNBbmpNc0gwdUhHakV6TGFTUE1Mb3Vtc0tvUXJiODFuS1ZsSXNlc0VFZlQwd1VCUHlPSDFRbkprOGhJRHIxRHd0WktTUzJJeHRqUFljUFlXaWh5eGNzQ3JsaXlzX21CQXZQVE1EdmNKVDRjMQ?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-09-13T14:20:00Z"
+      "title": "הפועל ירושלים חגגה עם 77:110 על מכבי אשדוד",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9BdEs2VlJPOEo3ZTNCU2h4ZHRxaW81ZzFsVF9IMy13NERqNzJMVUJHLVd4el83Vnk5dkFDUHpJRTVIUmE2WTlCbXVDLWFla0IxUW1jb25mMC1OQQ?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-09-08T07:00:00Z"
     },
     {
       "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
@@ -176,24 +169,17 @@
       "published": "2026-09-04T07:00:00Z"
     },
     {
-      "title": "צפו: הפועל ירושלים ניצחה 80:87 את מכבי תל אביב בבלגרד",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9NUWZGdHpXQ2cyVWFTMU5EOTQwdGtnOVozS05nelFUeHdUcy04bG9JUnZBRW9ObWxIUUpZTHBObWFOZUE2YnBEelB0RHNCRmdU?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-01T20:58:47Z"
+      "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92NU5NMnVrNEJyVmtkY0tuYjNQbXB3RktJOWI4VFJwSE1QSTFhSlYtYThnUm9BX0JjVmYwLVM1NmpnaUZxeUEzZzF2QkROY1FFYnFjdnhFU3NkRUlrQVlyd3NuaVFZSmMwRWFoRVR1ajRkdw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-08-31T07:00:00Z"
     },
     {
       "title": "הפועל ירושלים הביסה 76:102 את חולון בהכנה, אוברדוביץ’ מרוצה",
       "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNYWF2RExNeWRnWUNGR3gtcG1malhzZWI4dTdGQVA2WlVwSDNPa2lUTWJtOGl4Uk8xcEtLczlpdFlieGFuZjE4ZDB5dVhGNkNaSGNVQ0pEX1cyMjc0MG5MR2xkdlFEZGowRi1YMjk2dGxhbFJtdUk1VEQyc3R4ajhaU0lSUUpoaU1ORUk3cFpMZ0xFSkh5V0cxeEhFTmRLaDF3S25Zemp6STh2LTNRUnpHRlllQ0ZEZURySjEtU1o5aFhGSy1WV1hGX3l1cW5uS0JqaHZmS3czUkRNbzNlbXMwVDlkOGRsU3p2VFFZdWs1YWkyNVhKdm15OGswWnZWYTNPczF2cE1wdXlQUFZ3Y3FiVEY0MkNsZV9mLXVCVEpTYWpwNlJ6VEE2VkZJbFlac3JTRll0cUwwUjJFRmoyNkJVMVFB?oc=5",
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
-      "published": "2026-08-31T07:00:00Z"
-    },
-    {
-      "title": "שייק מילטון כיכב, הפועל י-ם הביסה את חולון בהכנה",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92NU5NMnVrNEJyVmtkY0tuYjNQbXB3RktJOWI4VFJwSE1QSTFhSlYtYThnUm9BX0JjVmYwLVM1NmpnaUZxeUEzZzF2QkROY1FFYnFjdnhFU3NkRUlrQVlyd3NuaVFZSmMwRWFoRVR1ajRkdw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-08-31T07:00:00Z"
     },
     {
@@ -222,6 +208,20 @@
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RX1NtUGZlMWU1Ulk3ZFBuRFl6OVRydTUwOElhZENyalBhZzF3MU1INjdCQlYzWHBEb19LQWE1eW0wNDdfc1BPVmRMMFVmM2xwMTlEcnVUM0RZdEtLdlYteTc2cw?oc=5",
       "source": "אייס",
       "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-08-30T07:00:00Z"
+    },
+    {
+      "title": "רצה לעשות היסטוריה: הסיפור המוזר של המועמד להפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tb29EU0VhSldRMDJXdWozSm9BNmh2cXB6eG9jbW5pcFBPelVjZlBXZGhDckx6M01iajYyajlGN25JMjdLel90bHdGbDRfLWxhVW0zektfeWdrb0ZpR1N2V3FOeU5qa3dweGczd3lPTU1sV2NCSTV4a3VfNNIBgwFBVV95cUxPX1BNeDlmWWNwUXFDLXY0d0FDTWUyUS1uTFZNZTQ3UnJEci1ISzJNekJ5bWNLXzl6bTFyMWdHSGloM2lvMmRlV19TMnRjQXBsWnJhTmxrUzBQaEY4MERMODVxenVxeFMyQlA5eWdidkl6OEFTenZ6MzJGaEdCSmpIQVFNbw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-30T07:00:00Z"
+    },
+    {
+      "title": "לפחות 2.3 מיליון שקל: תביעת הפועל ירושלים נגד הפועל ת\"א",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9HeVpYSzJHRFN6RGE2S1pxbWVKVTdEOEowR1Q1M2tEMnlYYnFUN1loU2dqbWZNTHNIYm92T0FDU1RBRlBuaWNTbHRtYUN1cjVo?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-08-30T07:00:00Z"
     }
   ]
