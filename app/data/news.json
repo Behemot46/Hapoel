@@ -1,19 +1,34 @@
 {
-  "updated": "2026-09-22T08:40:14Z",
+  "updated": "2026-09-22T19:45:24Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "וואלה ספורט",
-    "ספורט 1",
+    "ספורט 5",
+    "ynet",
     "ישראל היום",
     "הארץ",
     "ישראל ספורט",
-    "ynet",
-    "אייס",
-    "ספורט 5",
+    "ספורט 1",
     "ערוץ 7",
-    "סרוגים"
+    "אייס",
+    "וואלה ספורט",
+    "סרוגים",
+    "103FM"
   ],
   "items": [
+    {
+      "title": "צפו בשידור: ערב השקת העונה של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9vREZKYlkwb2Q3cHBuTkNqT3g1djFnU1Fpd1V1ZUxOMjlyWmlpNWI0czlPc2JFdGZNOUZpU1VQamxLQzFfWEYtVFlwTi01bmFSa29WSVNMQ0J5T0NtVERlbEFUUmRRVldrVUJMcld3TTZ1Zw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-22T17:45:27Z"
+    },
+    {
+      "title": "הפועל ירושלים במגעים מתקדמים לצירוף לורנזו בראון",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBoZnZ2NGM2OEJ1N0FlTXFZSUVpdWlwMzRUWUUxYnAtb3R5cHVDZVNrOFo4VUszOEV5dnZyUFh1V0ZTWlkzcVU4cnZvLXdkY3luLUpKZDlpaWhTaTNQdThUYlhFbGx3NzRzM1B1cEg4UjktMGs?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-09-22T09:04:28Z"
+    },
     {
       "title": "\"הפועל ירושלים עלולה לפספס שריון ביורוליג בגלל עופר ינאי\"",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9WRkNVSGxsQVk4SGhBS3lvRWlLeWc4S3N0MXF2MFBfNkNEZldhLXBZRWJOYXlOb0dqdV9LSE91X1VQRGFDNFVYZG9WR0JQSmxqN0MtNldPQW54RUVscFVWS2g3ZGIydDZLdElVZUZ1MUdFbDBJTUVEbUlLQdIBgwFBVV95cUxQa3hkbmt5WF9xZkFFTHFrUGpwTEFKZ3RVSEZrZ3lhbmR2UEhMcVZqZFEweUFTNXBYY29CWVJaYV9xTEZZUFVaN3phQV8tMlpzU3BGM1hZbEQ2NjJKYllGaXhWVkg3bkVvNl9kNnNDeGxWeld2bWdvOHJBQS1zdkVscVhBbw?oc=5",
@@ -43,18 +58,18 @@
       "published": "2026-09-18T12:43:04Z"
     },
     {
-      "title": "הפועל ירושלים לראשונה העונה בארנה, באר שבע שוב תפתיע?",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1QcGxpZ0ZSUVVyWTB3Nl9SbWJOd0RxUWoxSDlKSU9KV0VsVHcxRXJTcEJlZGpYY2RLTENTOTZjSDc1R1JZcEFfYXpBR2ZTOGlj?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-17T12:20:00Z"
+      "title": "מספר שיא של זרים והסכם אימוץ חדש: הפועל ירושלים מרוצה מסגירת החלון",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA5MVRzTUdGOEJuUXotUk90ZFl6WngyMWRUdTNZaHFTdzlqZ29qcVhMcUgyYVBVM3Brbk9abldNVlVJX3VyZndjWmdIUHVDRzk5SWFrV3lpTk5STW45VFcxVEtHTUxFQU5wVFFWUXFKMmxlWWxSVGtSc25B?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-16T13:26:01Z"
     },
     {
       "title": "\"הפועל י-ם יכולה לחתוך אותי באמצע העונה\"",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1DUUo4NUdvUWdwUXlhek1temROakNHTkNYdWh1NlBoaHI0YlduZE9wM3hkQW4tb2I1RmdyZ012QWowZlh3Z2lRZWpDT09SRXBEWDloamNyTEtFYVRRUnQyR1NzWTlkbHVtSGtnOWUwZ2s0Zw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-14T10:08:48Z"
+      "published": "2026-09-14T07:00:00Z"
     },
     {
       "title": "הפועל י-ם הפסידה 104:95 לריטאס וילנה",
@@ -195,6 +210,20 @@
       "source": "סרוגים",
       "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T07:00:00Z"
+    },
+    {
+      "title": "בדרך ליורוליג? הפועל ירושלים נערכת לצעד משמעותי",
+      "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMFQ5NmFiQ3UxTGVtVV9ncEdkY0RibmJDc05ETTJXeVJBNi1UbUFzTDBjM0F0V1lWVTFNeVFSZ2VDREpVX0NUNTRFVUZSSVFJYWZ2X3RMeHZpaW40Umw5MjhkUlRNMjljTmxfZzE2aWJ6NXNqcjRTTW05aml4NnlhaFZxM0gzdXRCaUtqVlFYUXZ1eTdFY1ptb3BPNDU5TU9EVkRidW5jQWhGRzBWZUhCXzFjdGNyYXdENHA1VlZDTi0yNDNYdVZ6V09WU1VPRDdoZlhqZEI0TnBrUTZzNWp1cEdhUng1RU1BWmVKVU1fbFdicndoaGZTcGZQVS10b3Y3U1ZOS2h0V2FsV3N4eVVNZHdBWW0tak9LUldMcmpEZGdKMUVzUnVzeEZvV2FaOHhQbUVCNVZ4cFJzWkFFUXBHVk9QbkhTLS11WHotVWw4T1NpdzFDeTZhaXZn?oc=5",
+      "source": "סרוגים",
+      "sourceUrl": "https://www.srugim.co.il",
+      "published": "2026-08-26T07:00:00Z"
+    },
+    {
+      "title": "ספורט - הפועל ירושלים תקפוץ מדרגה?",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5CYUh0eDgtZDltQ3lMYm9ZNmtTcGVjdGU2WkxkSGVBZ081YXRnd1BBRmNLbVNuVVdsNWc2Ql9qZUVHUGZMMXhDVklZYWczWlVtYzF1THVSekg3cWNWSUp1dHgtRGR6RXd1NTV1TE81d1ZaQjFnLTBnWUsxeXd6d1k?oc=5",
+      "source": "103FM",
+      "sourceUrl": "https://103fm.maariv.co.il",
+      "published": "2026-08-26T07:00:00Z"
     }
   ]
 }
