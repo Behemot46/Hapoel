@@ -1,18 +1,33 @@
 {
-  "updated": "2026-09-21T20:16:38Z",
+  "updated": "2026-09-22T08:40:14Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "וואלה ספורט",
+    "ספורט 1",
     "ישראל היום",
     "הארץ",
     "ישראל ספורט",
     "ynet",
-    "ספורט 1",
+    "אייס",
     "ספורט 5",
     "ערוץ 7",
-    "אייס"
+    "סרוגים"
   ],
   "items": [
+    {
+      "title": "נדים וראסנה ממשיך את פס הייצור של הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE00MUtKWWkycEtvTDJMTEJpbGMxU3lfUGxrWDhrelhzZmwzTl9uNEx2RFMtbG9pQTQzMzhTRjl1aE5PbXE2T05vTEcxZTU5OVp6?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-22T06:31:49Z"
+    },
+    {
+      "title": "מהמקום שאיש לא ציפה לו: הילד שמסעיר את הפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1aSDNzaGdlR2NiRUNFdlRGdU1tMFNHWW5VMVBLWjRMWC1lN3NiLWl1ZEhxZHpyaEhkRW1lSk0zVGtBSTVrNVRhXzIxMXkwenVLQjFfU2RaVDBObVByaURuYUthak1Nc2dZSUt2VG80WVEtUHlSaldCSVhn?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-22T06:10:00Z"
+    },
     {
       "title": "מנצחים במספרים: המהפך ההתקפי של הפועל ירושלים כבר מורגש",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1jMFNiblN1T2RGOVpKWlhtWEVQbUhCNUlCRnp4ZklobDFrR0JIaXpfbmg2azEyemZUaVNjMnQ2cVoxMVhUNUJFOFlMTXhIYlpi?oc=5",
@@ -42,13 +57,6 @@
       "published": "2026-09-18T13:35:00Z"
     },
     {
-      "title": "למרות משחק חריג מחוץ לקשת: הפועל ירושלים ברבע גמר גביע ווינר",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE4zTFIwZExlZkpEZHRqVWQ3U1RHRVRwbWprM08xTjAzMFZ5Ny1EUG5wTkNYNHQzU2g4a1Z3UzhZMHpoU1hwVy1qQnNDX2ZoUjhL?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-18T13:28:00Z"
-    },
-    {
       "title": "ניצחון בצבע: הפועל י-ם גברה 69:83 על הפועל ב\"ש",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4zZFBub3ByWUtxbV9sbXg2M2owM2IyUkZJMnJmZWZGWVo0UkhaVGhjSTdOTlp2WnVQbUhFTW9HNWdqa0p1U05ZSVNZNURxS0lYdlU4a1hFNDhXQQ?oc=5",
       "source": "ynet",
@@ -63,11 +71,11 @@
       "published": "2026-09-17T12:20:00Z"
     },
     {
-      "title": "מספר שיא של זרים והסכם אימוץ חדש: הפועל ירושלים מרוצה מסגירת החלון",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA5MVRzTUdGOEJuUXotUk90ZFl6WngyMWRUdTNZaHFTdzlqZ29qcVhMcUgyYVBVM3Brbk9abldNVlVJX3VyZndjWmdIUHVDRzk5SWFrV3lpTk5STW45VFcxVEtHTUxFQU5wVFFWUXFKMmxlWWxSVGtSc25B?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-16T13:26:01Z"
+      "title": "הפועל ירושלים במהלך כלכלי חדש: זה המותג שיעלה על המדים",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9sQ2dKanVvZWFHZk1KQ09OVUdINFlYcmFKZ1hreHpFZUl3MVVnZkE0eXBUWE1vTkdoTUt3Rmp1Z0ZHbmZUMVpWNldiSklaOEswSnFfN0xPcnFLWTFDZ0tpRVpvNA?oc=5",
+      "source": "אייס",
+      "sourceUrl": "https://www.ice.co.il",
+      "published": "2026-09-15T12:25:31Z"
     },
     {
       "title": "\"הפועל י-ם יכולה לחתוך אותי באמצע העונה\"",
@@ -75,13 +83,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-14T10:08:48Z"
-    },
-    {
-      "title": "הלקח של הפועל ירושלים: \"צריכים לדעת לשחק באווירה כזאת\"",
-      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOSHBPcVBSYVZDSUdJVVpPaGxGS05lQW9NSDhIVUlidFd3anl3Y2RrNXdaY1E0R2NoTkRmWWxhSGdZSTVYMEFBZklrYUtMblNKWndpdW44UGE5bTJIOWNxZGpydmlLTkNDQXA0djd0NE5KUXVRV2FwUFFNVDNrRXgxVk5yUjZHSElXdFlTVmJqb2NWYVl3V0xvblFSN1BKWHJ6cGdPS1NJMnRXTUhUZElXOUlMemdhYjRTTVZRQk5Gc0VYbExmaWxnd25UazBFYjZFZkFlZDE0elZqMi1Ndy01am9ROUpCdWg5NWJJcUk4Nk9jVkVsQkFlZmpxSlExeV9JV055Qg?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-14T06:43:23Z"
     },
     {
       "title": "הפועל י-ם הפסידה 104:95 לריטאס וילנה",
@@ -109,13 +110,6 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9VaTY4VkhzU00waUVwaHFhclRrZklFSWFwZUVUWjV5eVViVl9WVjVscVVXVnk0bV9SVzZOd09pYzlmMklPMENDV3VYQVpxS2RXMF84dk9fQnlnT0JYSmFad1V3Yi1OTUVpMk53VnVsdTZoU2FiMGFpUU1JY9IBgwFBVV95cUxQZm9NQUtaV2ZqTHFXNDk2OTk4dU9Cc1lVcFp4OEdxdzVFX05FR01GYVNuYkhsczZ4bnkzZUNVcExjRl9qV1pHckxKdUxHNkxvaWR1SWlvOW4yd2pyVERDX0FpemhhbnZYaFY4RjN5MmYxLWZHdlRnRDFONUljLU9XRHZUTQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-06T07:00:00Z"
-    },
-    {
-      "title": "בלגן בהפועל ירושלים: אחרי שסירב לשחק נגד הפועל ת\"א - קרינגטון חזר בו",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9fQUd6TjY3Y0xObXdyQ3c5M25Ibk5mUHE1WnlGa0VyU1E1Nm16YmszMmhNd2NOcWl2Si12SXJ2dk9CYUU4bXlsYkFDb0hja3pXZ0lLUlRSMkVnQXRGa2NQblVjVTNzX3dYRy1CLVlCcXo4RGM?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-09-06T07:00:00Z"
     },
     {
@@ -221,6 +215,13 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRY0RwV0pkT3RCLVJSUVd5aFBvTnotcDVWSEtoQlVCRzFzNUh1QjZZd05iVGxuek8zaTZSMFdIME5pSGZkbHlZbUdKWnZFM2U4eW5xemdWanBUbUlKaG9idHVKS2FDa1dCUkliRWc2R2RsLXdpMUY5Vl9wc9IBgwFBVV95cUxPdTRncmJfQVpENVRGcUFkQnZ1WWl3S2c0WENLVXltS05EOTJpYmw1X040cGtmcVVGb0tyb2dUbXJORFBwQk5fSWxocTE2Wk9QMUlOUE1fd2F3b09GRG9DWjQtRElaUUtybHd3QlA3bU50eE9jSFZVOWc4OHJvalpPbEVXSQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-28T07:00:00Z"
+    },
+    {
+      "title": "מכה קשה: שחקן הפועל ירושלים נפצע ויעדר לתקופה ארוכה",
+      "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONkM2UUNFMTFqUWpXLUhabkJvaTFmTENZVC1leURyLUFXUE1MdVU1aFJBTlM0eEF4Umstb3d4Z3BObXA0RnZlMUdhMERWWENYd0pMeEJrb3E1MmxzbGNLZWJXNEpIOVpfMnhRMHc3QTMyN1NBOHlEUFNOWUlCTE9SbFBOY3laX0tNZk5leWRyVm1wYWhoWlFwZEZzeWV4UDZiQndJSXZ0azlJMDB6NVNDM09JQnJDSDVxckFIWVRkbXJCcEJsWG05eVB3cUdzRnlTbER1ZW04TUVCSEpyN05ETlB2QktoMFVSblRiQWdNOUJFNThnZUtQanh5NXdyd3R5cmxqb0JGMDh6Q1JzVXlKdjRkeVpHWjlRNW1uN2JwQnZrUW40cHNEMkN6bEVQQWJleGcxT0M0dUVLMm0xclNhVDlvU0ZNQnFNU0lV?oc=5",
+      "source": "סרוגים",
+      "sourceUrl": "https://www.srugim.co.il",
       "published": "2026-08-28T07:00:00Z"
     }
   ]

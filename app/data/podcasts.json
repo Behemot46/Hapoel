@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-21T20:16:40Z",
+  "updated": "2026-09-22T08:40:16Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-09-17T13:20:00Z"
+      "latest": "2026-09-22T07:40:00Z"
     },
     {
       "id": "1698308776",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "אני אוהב שמבקרים אותי, עם וסיליה מיציץ'| שוט, פרק 197",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-09-22T07:40:00Z",
+      "duration": 2727
+    },
     {
       "showId": "1698308776",
       "show": "דאבל דריבל",
@@ -128,15 +137,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/98-e3og5rj",
       "published": "2026-09-08T03:00:00Z",
       "duration": 3652
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "סערת החוזה והמלחמה על המגרש, עם רומן סורקין וויל ריימן | שוט, פרק 193",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-09-07T05:00:00Z",
-      "duration": 3576
     },
     {
       "showId": "1648115499",
