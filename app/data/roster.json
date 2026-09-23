@@ -61,15 +61,18 @@
       "photo": "img/players/jaleen-smith.jpg"
     },
     {
-      "name": "שחר לוברבוים",
-      "nameHe": "שחר לוברבוים",
+      "name": "Shachar Loberboum",
       "number": 7,
-      "birthDate": "2008-07-22",
+      "position": "גארד",
       "born": 2008,
+      "country": "ישראל",
+      "code": "015211",
+      "nameHe": "שחר לוברבוים",
+      "birthDate": "2008-07-22",
       "height": 192,
       "clubId": "26156",
-      "source": "club",
-      "slug": "p-26156"
+      "source": "club+eurocup",
+      "slug": "shachar-loberboum"
     },
     {
       "name": "Yotam Hanochi",
