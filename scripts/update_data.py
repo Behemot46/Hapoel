@@ -1147,17 +1147,59 @@ def slugify(name, club_id=""):
     return f"p-{club_id}" if club_id else "player"
 
 
+SLUG_COMMENT = (
+    "מזהה המועדון של השחקן אל ה־slug שלו, וזה מה ששומר על הכתובת שלו "
+    "ועל שם קובץ התמונה שלו קבועים. ה־slug נגזר מהשם, ואתר המועדון "
+    "מחליף שמות בין עברית ולטינית, אז בלי הקובץ הזה הכתובת של שחקן "
+    "מתחלפת מתחתיו וקישורים אליו מתים בשקט. הקובץ נכתב על ידי האיסוף, "
+    "וברגע שנקבע slug לשחקן הוא לא משתנה."
+)
+
+
+SLUG_MAP = "player-slugs.json"
+
+
 def assign_slugs(players):
-    """Slugs after this are unique, whatever the feed sends. Two players can
-    share a name, and a name can carry no Latin letters at all."""
+    """Slugs after this are unique, whatever the feed sends, **וקבועים**.
+
+    שני שחקנים יכולים לחלוק שם, ושם יכול להגיע בלי אף אות לטינית, ולכן
+    היחידות נשמרת דרך מזהה המועדון.
+
+    **והקביעות נוספה אחרי שנשברה.** ב־23.9.2026 אתר המועדון החליף את
+    שחר לוברבוים משם עברי לשם לטיני, וה־slug שלו התהפך מ־p-26156
+    ל־shachar-loberboum. הכתובת שלו באפליקציה היא ה־slug, וקובץ התמונה
+    שלו נקרא על שם ה־slug, אז מה שקרה בפועל: **הקישור אליו מהבוקס של
+    31.8 מת בשקט**, והתמונה שלו הייתה מתייתמת אם הייתה לו אחת. אף אחד
+    מהשניים לא משמיע רעש, ורק המבחן תפס את זה.
+
+    מזהה המועדון לא משתנה כשהשם מתחלף, ולכן מיפוי מזהה אל slug נשמר
+    בקובץ, וברגע שנקבע slug לשחקן הוא נשאר שלו. שם חדש יפה יותר לא שווה
+    קישור שבור, ובוודאי לא קישור שנשבר בלי סימן.
+    """
+    known = load_json(SLUG_MAP) or {}
+    saved = {k: v for k, v in known.items() if not k.startswith("_")}
     taken = {}
+    fresh = False
     for p in players:
-        s = slugify(p.get("name"), p.get("clubId"))
-        if s in taken:
-            s = f"{s}-{p.get('clubId') or len(taken)}"
-            log(f"  slug clash on {p.get('name')}, using {s}")
+        cid = str(p.get("clubId") or "")
+        s = saved.get(cid)
+        if s:
+            if s != slugify(p.get("name"), cid):
+                log(f"  {p.get('name')} שומר על ה־slug הקבוע שלו, {s}")
+        else:
+            s = slugify(p.get("name"), cid)
+            if s in taken:
+                s = f"{s}-{cid or len(taken)}"
+                log(f"  slug clash on {p.get('name')}, using {s}")
+            if cid:
+                saved[cid] = s
+                fresh = True
         taken[s] = p.get("name")
         p["slug"] = s
+    if fresh:
+        out = {"_comment": known.get("_comment") or SLUG_COMMENT}
+        out.update(dict(sorted(saved.items())))
+        save_json(SLUG_MAP, out)
     return players
 
 def fetch_photos(players):
