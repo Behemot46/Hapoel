@@ -1,0 +1,17 @@
+{
+  "_comment": "מזהה המועדון של השחקן אל ה־slug שלו, וזה מה ששומר על הכתובת שלו ועל שם קובץ התמונה שלו קבועים. ה־slug נגזר מהשם, ואתר המועדון מחליף שמות בין עברית ולטינית, אז בלי הקובץ הזה הכתובת של שחקן מתחלפת מתחתיו וקישורים אליו מתים בשקט. הקובץ נכתב על ידי האיסוף, וברגע שנקבע slug לשחקן הוא לא משתנה.",
+  "26038": "jared-harper",
+  "26039": "gabriel-chachashvili",
+  "26040": "roi-huber",
+  "26041": "nimrod-levi",
+  "26042": "yotam-hanochi",
+  "26043": "yovel-zoosman",
+  "26044": "ethan-burg",
+  "26045": "jaleen-smith",
+  "26046": "devontae-cacok",
+  "26047": "david-roddy",
+  "26048": "kenny-lofton-jr",
+  "26049": "shake-milton",
+  "26132": "dusan-miletic",
+  "26156": "shachar-loberboum"
+}
