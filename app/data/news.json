@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-23T19:47:30Z",
+  "updated": "2026-09-24T08:35:12Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ספורט 5",
     "ישראל היום",
     "ynet",
-    "haaretz.co.il",
+    "הארץ",
     "ישראל ספורט",
     "וואלה ספורט",
     "ספורט 1",
@@ -71,7 +71,7 @@
     {
       "title": "הפועל ירושלים ניצחה את באר שבע/דימונה 69:83 ועלתה לרבע גמר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNM1J0QTFoNEFnMDdENl83OFYzZWc4TlRCVHY2cGQ0bzZ5SElIbWdFdXFyRUZVU0ZkcXZYbFdYZlhNemZOUHBhVncxcExCeGxlRXZ2XzdxVGxUVzlVOVdvckhDN3RQZ2tKVnFNdEc1eG5oMzl3Y1NFN3VMby1NWVRiRy1LNGxXMGlkdjlLMzRiWFh3a1cybXJzdWdfamhCVW9SRmow?oc=5",
-      "source": "haaretz.co.il",
+      "source": "הארץ",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-09-18T13:55:00Z"
     },
@@ -97,11 +97,25 @@
       "published": "2026-09-18T12:43:04Z"
     },
     {
+      "title": "מספר שיא של זרים והסכם אימוץ חדש: הפועל ירושלים מרוצה מסגירת החלון",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA5MVRzTUdGOEJuUXotUk90ZFl6WngyMWRUdTNZaHFTdzlqZ29qcVhMcUgyYVBVM3Brbk9abldNVlVJX3VyZndjWmdIUHVDRzk5SWFrV3lpTk5STW45VFcxVEtHTUxFQU5wVFFWUXFKMmxlWWxSVGtSc25B?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-16T13:26:01Z"
+    },
+    {
       "title": "\"הפועל י-ם יכולה לחתוך אותי באמצע העונה\"",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1DUUo4NUdvUWdwUXlhek1temROakNHTkNYdWh1NlBoaHI0YlduZE9wM3hkQW4tb2I1RmdyZ012QWowZlh3Z2lRZWpDT09SRXBEWDloamNyTEtFYVRRUnQyR1NzWTlkbHVtSGtnOWUwZ2s0Zw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-14T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים לא תחכה עד שג'ארד הארפר ישוב: \"יהיה מחליף\"",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE91SmxhbEdYck9qeHgtTXdBZE04MVVYQnlLOFR4MlNMZkl6YWN4a19jNTVDN0I1THBGVTdza2ZfTnRQNV9WQXhfdWN6akJUTktu?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-13T07:00:00Z"
     },
     {
       "title": "\"לא נשאיר את הסגל ככה\": הפועל ירושלים מחפשת מחליף להארפר",
@@ -111,10 +125,10 @@
       "published": "2026-09-13T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים לא תחכה עד שג'ארד הארפר ישוב: \"יהיה מחליף\"",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE91SmxhbEdYck9qeHgtTXdBZE04MVVYQnlLOFR4MlNMZkl6YWN4a19jNTVDN0I1THBGVTdza2ZfTnRQNV9WQXhfdWN6akJUTktu?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
+      "title": "הפועל י-ם הפסידה 104:95 לריטאס וילנה",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE90aGxJQmxSY3N0MHBJWjVfa1EzR2FoOHJXS045M3BBU19hMFhkQzZqSVZhZGxxY3ZpbnpSLXBSd2oyMWI0dXNOb05oZUdpUkFSMEw5S2cxUDg5MlRodGxpNERDUjJSMlJ4YVVoeF9vQlBRc3c?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-13T07:00:00Z"
     },
     {
@@ -162,7 +176,7 @@
     {
       "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcFFEZTNLLXV5aFVlRWxhbmU0MmRPLW9HRnQ1MFg2Q01RSE5LSEIxTmlGdnJXOU0wdGRNYzdDRk0wcWVvT3FjbDV3QlZRUHZWMDhZQjZjd05BdmxZd05vS01heHpmbTQ0MTN2S080YVI2dmU2SWlGYWI4MEJiRExaMWhxQURxYzNHNUlua2N4dVlEc2dRUm9vWnNrUG9ra1hKejVr?oc=5",
-      "source": "haaretz.co.il",
+      "source": "הארץ",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-09-08T07:00:00Z"
     },
@@ -206,20 +220,6 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92NU5NMnVrNEJyVmtkY0tuYjNQbXB3RktJOWI4VFJwSE1QSTFhSlYtYThnUm9BX0JjVmYwLVM1NmpnaUZxeUEzZzF2QkROY1FFYnFjdnhFU3NkRUlrQVlyd3NuaVFZSmMwRWFoRVR1ajRkdw?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-08-31T07:00:00Z"
-    },
-    {
-      "title": "במעמד צד אחד: הפועל ירושלים הביסה את הפועל חולון בהכנה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9sdHBVbnhsaW9fUzE4Z1lRRnREWFRXSm9tdlpYYWFDQzVPbjI1ZzRreno0WnVuSnlVTTUxZWlxdllGLW15dExhTGVUc2sxSjZJ?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-08-31T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים הביסה 76:102 את חולון בהכנה, אוברדוביץ’ מרוצה",
-      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNYWF2RExNeWRnWUNGR3gtcG1malhzZWI4dTdGQVA2WlVwSDNPa2lUTWJtOGl4Uk8xcEtLczlpdFlieGFuZjE4ZDB5dVhGNkNaSGNVQ0pEX1cyMjc0MG5MR2xkdlFEZGowRi1YMjk2dGxhbFJtdUk1VEQyc3R4ajhaU0lSUUpoaU1ORUk3cFpMZ0xFSkh5V0cxeEhFTmRLaDF3S25Zemp6STh2LTNRUnpHRlllQ0ZEZURySjEtU1o5aFhGSy1WV1hGX3l1cW5uS0JqaHZmS3czUkRNbzNlbXMwVDlkOGRsU3p2VFFZdWs1YWkyNVhKdm15OGswWnZWYTNPczF2cE1wdXlQUFZ3Y3FiVEY0MkNsZV9mLXVCVEpTYWpwNlJ6VEE2VkZJbFlac3JTRll0cUwwUjJFRmoyNkJVMVFB?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
       "published": "2026-08-31T07:00:00Z"
     }
   ]
