@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T08:56:44Z",
+  "updated": "2026-09-25T11:58:09Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ישראל היום",
@@ -7,9 +7,9 @@
     "ynet",
     "הארץ",
     "ישראל ספורט",
-    "וואלה ספורט",
     "ספורט 1",
-    "inn.co.il"
+    "וואלה ספורט",
+    "ערוץ 7"
   ],
   "items": [
     {
@@ -18,13 +18,6 @@
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-09-23T10:07:58Z"
-    },
-    {
-      "title": "אשתו של בראון אישרה: יחתום בהפועל י-ם",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE11YUFNOXMwT1BodGlycWYwOWthNkFSVGc5MTFFTVVhemZyNjd3VWJrOTRtamNESXZmTFlRTDJ6UTRFVHFkeS0wUEVxaGhsMndDSmF1TVVuV2Q1aXNFdHBHVG9xLUJoVVppQ3d2UWdmRGFyQQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-23T07:20:53Z"
     },
     {
       "title": "\"בעבר הפועל ירושלים עבדה יותר טוב עם מכבי והפועל תל אביב\"",
@@ -90,6 +83,13 @@
       "published": "2026-09-14T07:00:00Z"
     },
     {
+      "title": "\"לא נשאיר את הסגל ככה\": הפועל ירושלים מחפשת מחליף להארפר",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNUXlHVzI4Sml3MXNyVi1hLXBJY19PSHZRTW1UbDJ1alZ2TzF2VE1UaU0zMUtqNXAtOVNxUUZtcnZiMDBXbHlqS3BWdmNyZUF0X1VsWGtuNzhWZ3k0WUVSc2RTYXVCMkVCVWZWN29VdHdOcElKWjNRRWlGMnduX1NDX2xlSktBQmdrMjFkdnhtU2VYUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-13T07:00:00Z"
+    },
+    {
       "title": "הפועל ירושלים לא תחכה עד שג'ארד הארפר ישוב: \"יהיה מחליף\"",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE91SmxhbEdYck9qeHgtTXdBZE04MVVYQnlLOFR4MlNMZkl6YWN4a19jNTVDN0I1THBGVTdza2ZfTnRQNV9WQXhfdWN6akJUTktu?oc=5",
       "source": "וואלה ספורט",
@@ -97,10 +97,10 @@
       "published": "2026-09-13T07:00:00Z"
     },
     {
-      "title": "\"לא נשאיר את הסגל ככה\": הפועל ירושלים מחפשת מחליף להארפר",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNUXlHVzI4Sml3MXNyVi1hLXBJY19PSHZRTW1UbDJ1alZ2TzF2VE1UaU0zMUtqNXAtOVNxUUZtcnZiMDBXbHlqS3BWdmNyZUF0X1VsWGtuNzhWZ3k0WUVSc2RTYXVCMkVCVWZWN29VdHdOcElKWjNRRWlGMnduX1NDX2xlSktBQmdrMjFkdnhtU2VYUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
+      "title": "הפועל י-ם הפסידה 104:95 לריטאס וילנה",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE90aGxJQmxSY3N0MHBJWjVfa1EzR2FoOHJXS045M3BBU19hMFhkQzZqSVZhZGxxY3ZpbnpSLXBSd2oyMWI0dXNOb05oZUdpUkFSMEw5S2cxUDg5MlRodGxpNERDUjJSMlJ4YVVoeF9vQlBRc3c?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-13T07:00:00Z"
     },
     {
@@ -162,7 +162,7 @@
     {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5NTG5aZHl0TGpia2Vya2xVTFFuZjJVUmhmRXl1aFdMOTNIcUlyMTFUc25raDZzazBuYXBJLVNMTEozWlZfNG43NA?oc=5",
-      "source": "inn.co.il",
+      "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-09-08T07:00:00Z"
     },
@@ -216,11 +216,11 @@
       "published": "2026-08-31T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים דורשת מהפועל ת\"א: 2.3 מיליון שקל על קאדין קרינגטון",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1Rd21rTkNVOEdpeTNBZVF5UDZ2NGhJNTB0VG1rRzR1WW1jNldxODZTNUNkS1VyRVJUMzdRT0JZRXlkbXE3cGJ4VjVhZ0JzWUZEdnBnQnRCbVVQdHZjdnZDUU1IRldVNVNYWnViSG14WEYzdWc?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-08-30T07:00:00Z"
+      "title": "רצה לעשות היסטוריה: הסיפור המוזר של המועמד להפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9tb29EU0VhSldRMDJXdWozSm9BNmh2cXB6eG9jbW5pcFBPelVjZlBXZGhDckx6M01iajYyajlGN25JMjdLel90bHdGbDRfLWxhVW0zektfeWdrb0ZpR1N2V3FOeU5qa3dweGczd3lPTU1sV2NCSTV4a3VfNNIBgwFBVV95cUxPX1BNeDlmWWNwUXFDLXY0d0FDTWUyUS1uTFZNZTQ3UnJEci1ISzJNekJ5bWNLXzl6bTFyMWdHSGloM2lvMmRlV19TMnRjQXBsWnJhTmxrUzBQaEY4MERMODVxenVxeFMyQlA5eWdidkl6OEFTenZ6MzJGaEdCSmpIQVFNbw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-08-31T07:00:00Z"
     }
   ]
 }
