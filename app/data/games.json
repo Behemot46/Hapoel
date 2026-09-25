@@ -77,10 +77,10 @@
       "competition": "גביע ווינר סל",
       "home": "הפועל ירושלים",
       "away": "בני הרצליה",
-      "venue": "אנרבוקס, חדרה",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
+      "venue": null,
+      "status": "finished",
+      "homeScore": 88,
+      "awayScore": 68
     },
     {
       "id": "20260929-euro-RostockSeawo",
