@@ -1151,12 +1151,18 @@ SLUG_COMMENT = (
     "מזהה המועדון של השחקן אל ה־slug שלו, וזה מה ששומר על הכתובת שלו "
     "ועל שם קובץ התמונה שלו קבועים. ה־slug נגזר מהשם, ואתר המועדון "
     "מחליף שמות בין עברית ולטינית, אז בלי הקובץ הזה הכתובת של שחקן "
-    "מתחלפת מתחתיו וקישורים אליו מתים בשקט. הקובץ נכתב על ידי האיסוף, "
-    "וברגע שנקבע slug לשחקן הוא לא משתנה."
+    "מתחלפת מתחתיו וקישורים אליו מתים בשקט. הקובץ נכתב על ידי האיסוף. "
+    "slug שנגזר משם נשאר לנצח. slug זמני מהצורה p-<מזהה> מותר לשדרג פעם "
+    "אחת כשהשם הלטיני מגיע, ואז כל אזכור שלו בטפסים ובתמונות עובר איתו."
 )
 
 
 SLUG_MAP = "player-slugs.json"
+
+
+def is_placeholder_slug(slug, club_id=""):
+    """slug שלא נגזר משם אלא מהמזהה, כלומר כתובת זמנית ולא שם."""
+    return bool(slug) and slug == (f"p-{club_id}" if club_id else "player")
 
 
 def assign_slugs(players):
@@ -1173,21 +1179,40 @@ def assign_slugs(players):
     מהשניים לא משמיע רעש, ורק המבחן תפס את זה.
 
     מזהה המועדון לא משתנה כשהשם מתחלף, ולכן מיפוי מזהה אל slug נשמר
-    בקובץ, וברגע שנקבע slug לשחקן הוא נשאר שלו. שם חדש יפה יותר לא שווה
+    בקובץ, ו־slug שנגזר משם נשאר של השחקן לנצח. שם חדש יפה יותר לא שווה
     קישור שבור, ובוודאי לא קישור שנשבר בלי סימן.
+
+    **אבל slug זמני הוא לא כתובת, והוא כן משתדרג.** ב־25.9 נחתם לורנזו
+    בראון, ואתר המועדון פרסם אותו בעברית בלבד, אז הוא קיבל p-27222. אם
+    הקפאה הייתה חלה גם על זה, הכתובת שלו באפליקציה הייתה נשארת p-27222
+    לנצח, וזה מחיר מטופש. לכן slug מהצורה p-<מזהה> מותר לשדרג פעם אחת
+    כשהשם הלטיני מגיע, **ובאותה נשימה כל אזכור שלו עובר איתו**: השורות
+    שלו בטפסים וקובץ התמונה שלו. זה בדיוק המעבר שנשבר אצל לוברבוים, ולכן
+    הוא לא נעשה כאן בשקט אלא עם העברה מסודרת ועם שורה בלוג.
     """
     known = load_json(SLUG_MAP) or {}
     saved = {k: v for k, v in known.items() if not k.startswith("_")}
     taken = {}
-    fresh = False
+    fresh, upgrades = False, []
     for p in players:
         cid = str(p.get("clubId") or "")
         s = saved.get(cid)
-        if s:
-            if s != slugify(p.get("name"), cid):
+        want = slugify(p.get("name"), cid)
+        # ואין כאן תנאי שגם want אינו זמני, כי הוא לא יכול לפעול: אם שניהם
+        # זמניים לאותו מזהה הם אותו דבר בדיוק, וה־s != want כבר פסל את זה.
+        # ניסיתי להוסיף אותו, והמוטציה שמחקה אותו עברה את המבחן, וזה מה
+        # שאומר ששמירה עליו הייתה מתחזה לכיסוי. המסלול ההפוך, שם לטיני
+        # שחוזר לעברית, נשמר בסעיף הקודם של slug_test.
+        if s and s != want and is_placeholder_slug(s, cid):
+            log(f"  {p.get('name')} מקבל כתובת אמיתית, {s} הופך ל־{want}")
+            upgrades.append((s, want))
+            saved[cid] = s = want
+            fresh = True
+        elif s:
+            if s != want:
                 log(f"  {p.get('name')} שומר על ה־slug הקבוע שלו, {s}")
         else:
-            s = slugify(p.get("name"), cid)
+            s = want
             if s in taken:
                 s = f"{s}-{cid or len(taken)}"
                 log(f"  slug clash on {p.get('name')}, using {s}")
@@ -1200,7 +1225,32 @@ def assign_slugs(players):
         out = {"_comment": known.get("_comment") or SLUG_COMMENT}
         out.update(dict(sorted(saved.items())))
         save_json(SLUG_MAP, out)
+    if upgrades:
+        migrate_slug_references(upgrades)
     return players
+
+
+def migrate_slug_references(upgrades):
+    """כל מה שמצביע על ה־slug הזמני עובר לכתובת החדשה.
+
+    שני מקומות מצביעים על slug של שחקן: השורות שלו בטפסים, שהשם בהן הוא
+    קישור לעמוד שלו, וקובץ התמונה שלו שנקרא על שם ה־slug. בלי ההעברה
+    הזאת שדרוג של slug זמני היה חוזר על התקלה שהוא בא לפתור.
+    """
+    box_path = DATA / "boxscores.json"
+    if box_path.exists():
+        raw = box_path.read_text(encoding="utf-8")
+        moved = raw
+        for old, new in upgrades:
+            moved = moved.replace(f'"slug": "{old}"', f'"slug": "{new}"')
+        if moved != raw:
+            box_path.write_text(moved, encoding="utf-8")
+            log("  הטפסים עודכנו לכתובות החדשות")
+    for old, new in upgrades:
+        src = PHOTO_DIR / f"{old}.jpg"
+        if src.exists():
+            src.replace(PHOTO_DIR / f"{new}.jpg")
+            log(f"  התמונה {old}.jpg עברה ל־{new}.jpg")
 
 def fetch_photos(players):
     """Download headshots into the repo so the app stays self-contained:
