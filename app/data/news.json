@@ -1,15 +1,16 @@
 {
-  "updated": "2026-09-25T18:00:34Z",
+  "updated": "2026-09-26T08:43:09Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
     "ynet",
-    "הארץ",
     "ספורט 5",
+    "ישראל ספורט",
+    "Sport5",
+    "הארץ",
+    "וואלה ספורט",
     "ספורט 1",
     "ישראל היום",
-    "וואלה ספורט",
-    "ישראל ספורט",
-    "inn.co.il"
+    "ערוץ 7"
   ],
   "items": [
     {
@@ -20,6 +21,27 @@
       "published": "2026-09-25T14:46:40Z"
     },
     {
+      "title": "לורנזו בראון חתם בהפועל ירושלים, זה השכר והמתווה המיוחד",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5UcU5heW1LRkVZWDJHRFhiZ2k2RHJ3cS1YVmY0NUpIT2dFWC11Nm5KZ3hQQUl4VXQ3UEFXZE90allhM2gzQVBvUnlUOHBLUWFKV2p3dGRvSWlfTTcyT2lMcnR4YjREWTZiUWU1OFdQRDZqUQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-25T14:46:09Z"
+    },
+    {
+      "title": "חוזר לכדורסל הישראלי: לורנזו בראון חתם רשמית בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxPMDZJOXpkZnhZR0xfUXZDalFSb0Z4YUl1dHJMd2QxaU5ldXJLdmlUZjdoSlEyQ0VlMWZteUhTeFBRZEU2M3hTYnU1UDNnRlhrclVqZldhZzN5d0JEVTM1SVlaakt0dVdmaGVLQUJfcmFUaWVWcUtjTy1RVXMyOE9Ka3RqSWUxX3NwN19JUWcyaHZ2Z3V4dFRCcW5hcFk5VjNmellKQUpmVnZLa1JpbmF2dHhSV2lIMFJjbEUxeWJMd01wZTQzaDZsMVVhczc0Q242OE1UZ1BRXzUxRkJzdk0tTmhGdWlsRzhuSENmaXBKNWtVXy1BOElJekZ6RWV0MV9SRkVLaUoxWXFHMGdVSHRCT2xYSXJFVEhkTEoyVXM3bzZLUUw3RXRaeVFmaEtZQm9nYU9OemY1cUYtZ1Ayd3p2ag?oc=5",
+      "source": "ישראל ספורט",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-09-25T14:46:00Z"
+    },
+    {
+      "title": "קני לופטון כיכב, הפועל י-ם העפילה לחצי הגמר",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOR05ORkkyZDNJTnl6cVg5dGFUVkU3dTM1V0kyV3hKSEFBaGpTNlVDZ0pQTGVYVl9JeXNBeVdaU21Qd1JNYUV4dEViRnc3bnVqdWVvZ1lnRG9aRktYaDNzbnB3VE9YS1NtNWtoX2pxZWppQmMteElnTDg4VXBvZlJmX1d5ZkxMZklE?oc=5",
+      "source": "Sport5",
+      "sourceUrl": "https://m.sport5.co.il",
+      "published": "2026-09-25T13:40:20Z"
+    },
+    {
       "title": "הפועל ירושלים הביסה את בני הרצליה 68:88 ועלתה לחצי גמר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOeldWbnlCWVZia2kxZ1p2cm15YmFWNjdOTmJFNENNeEd4YTFCM25ERXFOalA3VW0wQ1B2Wm1ISncyNWUzdTB6UFN3SU5KRmNqdEpraElydzVSS1VhZGV1VVJqNElzQ05VRUtGUm1Ncko3eTA3Y2xCVVRSdWI4TWM1Q1FISmNFSHJ6Q3JMc1ZHLTZtMm5WX2tYd3V1eTdmVHd3enZz?oc=5",
       "source": "הארץ",
@@ -27,11 +49,11 @@
       "published": "2026-09-25T12:58:00Z"
     },
     {
-      "title": "קני לופטון כיכב, הפועל י-ם העפילה לחצי הגמר",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1DWHBtcXIwUXdZazRwejVISWxWcU1qVVl3ZmMzY09HTllsZDZhVE1jbFBSM0o3Z0hrTEVUV3RrTUdQMlp4UU1fNWVnWUIweFhyTklsV2Jrd3ZRRWpzU2VidmEtc1lyb25BT0hOYUZGNkNQc1hq?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-25T12:53:00Z"
+      "title": "לופטון כיכב, הפועל ירושלים הביסה בדרך לחצי גמר גביע ווינר",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1VaHo3Ym5pOXZvWFI5eEdnOXRqM1F6OFd6WUhIM1JvM19Wcl9YdXdSNF9XMnRCRkgtQ243OXE1MFBTbURVRmNJSEo3LXFOeXYz?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-25T12:47:00Z"
     },
     {
       "title": "דקה אחר דקה: עדכונים חיים: הפועל ירושלים - בני הרצליה",
@@ -74,13 +96,6 @@
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
       "published": "2026-09-22T18:57:22Z"
-    },
-    {
-      "title": "צפו בשידור: ערב השקת העונה של הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9vREZKYlkwb2Q3cHBuTkNqT3g1djFnU1Fpd1V1ZUxOMjlyWmlpNWI0czlPc2JFdGZNOUZpU1VQamxLQzFfWEYtVFlwTi01bmFSa29WSVNMQ0J5T0NtVERlbEFUUmRRVldrVUJMcld3TTZ1Zw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-22T17:45:27Z"
     },
     {
       "title": "הפועל ירושלים במגעים מתקדמים לצירוף לורנזו בראון",
@@ -146,20 +161,6 @@
       "published": "2026-09-12T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים גברה על בורק הצרפתית 80:87 בהכנה בליטא",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE13aDl3ZGhOZzVITWQ0aGgxcm8tOGVaLWVMdzJIaUtTOWZBZDhlU0o3bUFqNkd1Q0dBbW14dHVpSnphVm54UXZUU0ZWT0o1eWQ0?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-12T07:00:00Z"
-    },
-    {
-      "title": "על אלופת היורוקאפ: 80:87 לי-ם נגד בורג",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5aQmJuc2F5MzF5dWI4dmZzM1poMDl3cC1SUl94UmpZb2toS0JmU2RSalVsZGx2R1l2aHBwb3VyMWw5X0JUaEhJM1hPaVJYbEhMZVBWaWNNekxLWEUwWWRzLWNaRkxNZU5PMkZsNzFCZGdVZw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-12T07:00:00Z"
-    },
-    {
       "title": "הכנה: הפועל ירושלים גברה 80:87 על אלופת היורוקאפ בורג",
       "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxNazNXb2QwbzdicW44TUZvOXNSYXQxTlJOMFJEUGt1czhaQWE0d0VZR3VranZaUUhIOF9QeEUxOGE2OEJKUFpmVkhUWkt3eEdkY1hwaExONGExMEVndFBCOE11NVpLYmZLODZEa1VDZkt0Y3BmS2RnbUJIbVFGRDh4SDRJdjEwdlFBZmJsbzlxSTRGZS1VU0xNeU5ESUtNdE1uQ3c5WVBmRm5iYnNVcEsyZ193eFlGN3RnbkpobzJ0cHl3b3FpT1FidTdTMFo3dkFYM3VHdzZ2eXd2UGpvUHVoQzROb2pxalRmM09rX291UDdOUDZ3cmx4X3BMWU0zclVqSTNLdGpCWjU5TG5LQ3Vvb3liTnZrMlg5Q0hiVzNmWG1rZV90UVRURkpRTnRBYk12U0x5bFFhanNaSHFTQVZZaQ?oc=5",
       "source": "ישראל ספורט",
@@ -174,10 +175,10 @@
       "published": "2026-09-09T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים עדכנה: מתי יובל זוסמן יחזור לפעילות?",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNMldMM05LRFk0MVQ3OGtfWWdjdzhTN2FlNWl1WUNhdGg4eGxXWUpfbnBHY2gtV3FBcDZNc0JrbEl4dzc3N1pPVHI2MDNYTmlVOEpJMGw5a2J3eE5SRFZrYUQ1U0JUb0dQdGV5SU5EemJSa241aTE3cDBMaml5MlZMUkNpTkJTQzUwYlBseUlPM2FvQQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
+      "title": "הפועל ירושלים הודיעה: יובל זוסמן סובל מנקע",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBGSktrOXlMdnhkel9oQnlTd1ljYmRSc1JwVklmNnQ0OFE1YlFrR0x5Vm8yMVBTeHRzajVBZXQ2QXhDNzdma0RjaTlsTU42MU1OOEJpTnMzSHJWdDF3M3ZLRmxIM0RSd3MzTDAyYXNORFpILWc?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-09-09T07:00:00Z"
     },
     {
@@ -197,7 +198,7 @@
     {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5NTG5aZHl0TGpia2Vya2xVTFFuZjJVUmhmRXl1aFdMOTNIcUlyMTFUc25raDZzazBuYXBJLVNMTEozWlZfNG43NA?oc=5",
-      "source": "inn.co.il",
+      "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-09-08T07:00:00Z"
     },

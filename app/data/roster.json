@@ -14,7 +14,8 @@
       "birthDate": "1996-10-08",
       "clubId": "26046",
       "source": "club+eurocup",
-      "slug": "devontae-cacok"
+      "slug": "devontae-cacok",
+      "photo": "img/players/devontae-cacok.jpg"
     },
     {
       "name": "Jared Harper",
@@ -43,7 +44,8 @@
       "height": 198,
       "clubId": "26048",
       "source": "club+eurocup",
-      "slug": "kenny-lofton-jr"
+      "slug": "kenny-lofton-jr",
+      "photo": "img/players/kenny-lofton-jr.jpg"
     },
     {
       "name": "Jaleen Smith",
@@ -61,6 +63,17 @@
       "photo": "img/players/jaleen-smith.jpg"
     },
     {
+      "name": "לורנזו בראון",
+      "nameHe": "לורנזו בראון",
+      "number": 4,
+      "birthDate": "1990-08-26",
+      "born": 1990,
+      "height": 196,
+      "clubId": "27222",
+      "source": "club",
+      "slug": "p-27222"
+    },
+    {
       "name": "Shachar Loberboum",
       "number": 7,
       "position": "גארד",
@@ -72,7 +85,8 @@
       "height": 192,
       "clubId": "26156",
       "source": "club+eurocup",
-      "slug": "shachar-loberboum"
+      "slug": "shachar-loberboum",
+      "photo": "img/players/shachar-loberboum.jpg"
     },
     {
       "name": "Yotam Hanochi",
@@ -86,7 +100,8 @@
       "clubId": "26042",
       "source": "club+eurocup",
       "height": 204,
-      "slug": "yotam-hanochi"
+      "slug": "yotam-hanochi",
+      "photo": "img/players/yotam-hanochi.jpg"
     },
     {
       "name": "Shake Milton",
@@ -192,7 +207,8 @@
       "height": 191,
       "clubId": "26044",
       "source": "club+eurocup",
-      "slug": "ethan-burg"
+      "slug": "ethan-burg",
+      "photo": "img/players/ethan-burg.jpg"
     },
     {
       "name": "Yovel Zoosman",
