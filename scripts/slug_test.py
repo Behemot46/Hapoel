@@ -46,6 +46,13 @@ def main():
     before = [dict(p) for p in players]
     switched = []
     for p in before:
+        # **שחקן על slug זמני לא נבדק כאן, כי הוא דווקא אמור לזוז.** לורנזו
+        # בראון פורסם בעברית בלבד ולכן יש לו p-27222, ושם לטיני חדש שלו
+        # הוא בדיוק המקרה שבו הכתובת שלו משתדרגת. הבדיקה הזאת היא על
+        # כתובות אמיתיות, ובראון נבדק בסעיף שאחריה.
+        if ud.is_placeholder_slug(p["slug"], str(p.get("clubId") or "")):
+            print(f"  מדולג {p['slug']:<24} כתובת זמנית, נבדקת בהמשך")
+            continue
         he = p.get("nameHe") or "שחקן"
         p["name"] = he if p.get("name") != he else "Latin Name"
         switched.append((p["clubId"], p["slug"], p["name"]))
@@ -59,11 +66,51 @@ def main():
         ud.assign_slugs(before)
     finally:
         ud.save_json = saving
-    for (cid, was, newname), now in zip(switched, before):
+    # מזווגים לפי מזהה ולא לפי מקום ברשימה, כי הדילוג למעלה כבר הוציא
+    # שחקן אחד מהאמצע וזיווג לפי סדר הוא בדיוק סוג הדיוק שנשבר בשקט.
+    by_id = {str(p.get("clubId")): p for p in before}
+    for cid, was, newname in switched:
+        now = by_id[str(cid)]
         state = "נשאר " if now["slug"] == was else "זז!  "
         if now["slug"] != was:
             fail.append(f"{newname}: ה־slug זז מ־{was} ל־{now['slug']}")
         print(f"  {state} {was:<24} כששמו הפך ל־{newname[:26]}")
+
+    # **ו־slug זמני כן משתדרג, פעם אחת, עם כל מה שמצביע עליו.**
+    # ב־25.9 נחתם לורנזו בראון ואתר המועדון פרסם אותו בעברית בלבד, אז הוא
+    # קיבל p-27222. הקפאה של זה הייתה משאירה לו את הכתובת הזאת לנצח, וזה
+    # מחיר מטופש. אבל זה בדיוק המעבר שנשבר אצל לוברבוים, ולכן הוא נבדק
+    # כאן משני הצדדים: שהשדרוג קורה, ושהשורה בטופס עוברת איתו.
+    print("\nslug זמני משתדרג כשהשם הלטיני מגיע:")
+    fake = [{"clubId": "999001", "name": "שם בעברית", "nameHe": "שם בעברית"}]
+    saving, mig = ud.save_json, ud.migrate_slug_references
+    ud.save_json = lambda *a, **k: None
+    seen = []
+    ud.migrate_slug_references = lambda ups: seen.extend(ups)
+    try:
+        ud.assign_slugs(fake)
+        first = fake[0]["slug"]
+        fake[0]["name"] = "Latin Name"
+        # הזיכרון נקרא מהקובץ, אז הסימולציה מזריקה אותו דרך load_json
+        loading = ud.load_json
+        ud.load_json = (lambda name: {"999001": first}
+                        if name == ud.SLUG_MAP else loading(name))
+        try:
+            ud.assign_slugs(fake)
+        finally:
+            ud.load_json = loading
+    finally:
+        ud.save_json, ud.migrate_slug_references = saving, mig
+    second = fake[0]["slug"]
+    print(f"  {first} -> {second}")
+    if first != "p-999001":
+        fail.append(f"שם עברי לא נתן slug זמני אלא {first}")
+    if second != "latin-name":
+        fail.append(f"ה־slug הזמני לא השתדרג, נשאר {second}")
+    if seen != [("p-999001", "latin-name")]:
+        fail.append(f"ההעברה לא דווחה כמו שצריך: {seen}")
+    else:
+        print("  וההעברה של האזכורים דווחה")
 
     # **ומי שבודק שהקישורים מהטפסים חיים הוא boxscore_test, לא הקובץ הזה.**
     # כתבתי כאן בדיקה כזאת וגיליתי שהיא ריקה: teams הוא רשימה ולא מילון,
