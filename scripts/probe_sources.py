@@ -90,76 +90,44 @@ def probe_league():
 
 
 EURO = "https://api-live.euroleague.net"
+STATS = EURO + "/v2/competitions/U/seasons/{s}/games/{c}/stats"
 
 
 def probe_eurocup():
-    print("\n" + HEAD, "\n2. היורוקאפ: איך מזוהה משחק, ומה מחזיר טופס\n", HEAD)
+    """**כבר ידוע מהריצה הקודמת:** ‏/games/{code}/stats מחזיר 200 עם local
+    ו־road, ובכל צד coach ורשימת players. boxscore, players ו־report
+    מחזירים 404 או 405, ו־v1 מחזיר XML. מה שחסר הוא שמות שדות המספרים,
+    וזה כל מה שמודפס כאן."""
+    print("\n" + HEAD, "\n2. היורוקאפ: שמות השדות בטופס\n", HEAD)
+    url = STATS.format(s="U2025", c=185)
+    print(url)
     try:
-        data = requests.get(f"{EURO}/v2/competitions/U/seasons/U2026/games",
-                            headers=ud.UA, timeout=30).json()
+        body = requests.get(url, headers=ud.UA, timeout=30).json()
     except Exception as e:
-        print("הפיד של העונה נפל:", e)
-        data = {}
-    raw = data.get("data") if isinstance(data, dict) else data
-    if isinstance(raw, list) and raw:
-        print("פריט משחק אחד, כל השדות:")
-        print(jshow(raw[0], 1800))
-
-    # משחק שנגמר: העונה הקודמת, כי העונה שלנו נפתחת ב־29.9
-    print("\nמשחק שנגמר מהעונה הקודמת, כדי שיהיה טופס אמיתי:")
-    code = None
-    try:
-        prev = requests.get(f"{EURO}/v2/competitions/U/seasons/U2025/games",
-                            headers=ud.UA, timeout=30).json()
-        prow = prev.get("data") if isinstance(prev, dict) else prev
-        ours = [g for g in (prow or [])
-                if "JER" in (((g.get("local") or {}).get("club") or {}).get("code"),
-                             ((g.get("road") or {}).get("club") or {}).get("code"))
-                and g.get("played")]
-        print(f"  {len(ours)} משחקים שלנו שנגמרו בעונה הקודמת")
-        if ours:
-            g = ours[0]
-            code = g.get("gameCode") or g.get("code") or g.get("gameNumber") or g.get("id")
-            print("  נבחר:", g.get("utcDate"), "| מזהים בפריט:",
-                  {k: g[k] for k in g if re.search(r"code|id|number", k, re.I)})
-    except Exception as e:
-        print("  נפל:", e)
-
-    if code is None:
-        print("  אין קוד, אי אפשר להמשיך")
+        print("נפל:", e)
         return
-    tries = [
-        f"{EURO}/v2/competitions/U/seasons/U2025/games/{code}",
-        f"{EURO}/v2/competitions/U/seasons/U2025/games/{code}/stats",
-        f"{EURO}/v2/competitions/U/seasons/U2025/games/{code}/boxscore",
-        f"{EURO}/v2/competitions/U/seasons/U2025/games/{code}/players",
-        f"{EURO}/v2/competitions/U/seasons/U2025/games/{code}/report",
-        f"{EURO}/v1/games?seasonCode=U2025&gameCode={code}",
-        f"{EURO}/v1/boxscore?seasonCode=U2025&gamecode={code}",
-        f"{EURO}/v1/playerstats?seasonCode=U2025&gamecode={code}",
-    ]
-    for url in tries:
-        print(f"\n--- {url}")
-        try:
-            r = requests.get(url, headers=ud.UA, timeout=30)
-        except Exception as e:
-            print("  נפל:", type(e).__name__, e)
-            continue
-        ct = r.headers.get("content-type", "")
-        print(f"  {r.status_code} · {ct} · {len(r.content)} bytes")
-        if r.status_code != 200:
-            continue
-        if "json" in ct:
-            try:
-                body = r.json()
-            except Exception as e:
-                print("  JSON שבור:", e)
-                continue
-            if isinstance(body, dict):
-                print("  מפתחות:", list(body.keys())[:20])
-            print(" ", jshow(body, 1500))
-        else:
-            print("  לא JSON:", re.sub(r"\s+", " ", r.text)[:220])
+    side = body.get("local") or {}
+    print("מפתחות בצד:", list(side.keys()))
+    players = side.get("players") or []
+    print(f"{len(players)} שורות שחקנים")
+    if players:
+        row = players[0]
+        print("\nמפתחות בשורת שחקן:", list(row.keys()))
+        # כל מה שאינו האובייקט הגדול של השחקן, כלומר המספרים עצמם
+        flat = {k: v for k, v in row.items() if not isinstance(v, (dict, list))}
+        print("\nהמספרים בשורה, כמו שהם:")
+        print(jshow(flat, 2000))
+        nested = [k for k, v in row.items() if isinstance(v, (dict, list)) and k != "player"]
+        for k in nested:
+            print(f"\n{k}:", jshow(row[k], 700))
+        pl = (row.get("player") or {})
+        per = (pl.get("person") or {})
+        print("\nזיהוי השחקן:", {x: per.get(x) for x in
+              ("code", "name", "passportName", "passportSurname", "jerseyName")},
+              "| מספר חולצה:", pl.get("dorsal"))
+    for k, v in side.items():
+        if k not in ("players", "coach"):
+            print(f"\nסכומי הקבוצה ({k}):", jshow(v, 900))
 
 
 if __name__ == "__main__":
