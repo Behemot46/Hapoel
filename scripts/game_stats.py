@@ -299,6 +299,123 @@ def build_game(soup, roster):
     return {"quarters": q, "teams": teams, "teamStats": stats}
 
 
+# ============================================================================
+# היורוקאפ
+#
+# **לאתר הליגה אין את המשחקים האירופיים**, ולכן הצד הזה בא מהפיד הרשמי של
+# היורוליג, אותו פיד שכבר מספק לנו את לוח המשחקים והטבלה. נמדד ב־27.9.2026
+# על משחק שנגמר מהעונה הקודמת: ‏/games/{code}/stats מחזיר בכל צד coach,
+# players עם stats, team לריבאונדים שנרשמו לקבוצה, ו־total לסכומים.
+# boxscore, players ו־report מחזירים 404 או 405, ו־v1 מחזיר XML.
+#
+# **והשמות אינם שם.** התשובה של stats לא מכילה את שמות הקבוצות בכלל, ולכן
+# הן נלקחות מפריט המשחק עצמו, משם באים גם הרבעים.
+EURO_STATS = ("https://api-live.euroleague.net/v2/competitions/U/seasons/"
+              "{season}/games/{code}/stats")
+
+# שם השדה אצלם, ושם השדה אצלנו. מה שאין כאן פשוט לא נאסף.
+EURO_MAP = {"pts": "points", "ast": "assistances", "stl": "steals",
+            "to": "turnovers", "blk": "blocksFavour", "pf": "foulsCommited",
+            "reb": "totalRebounds", "dreb": "defensiveRebounds",
+            "oreb": "offensiveRebounds", "pir": "valuation",
+            "plusMinus": "plusMinus"}
+EURO_PAIRS = {"p2": ("fieldGoalsMade2", "fieldGoalsAttempted2"),
+              "p3": ("fieldGoalsMade3", "fieldGoalsAttempted3"),
+              "ft": ("freeThrowsMade", "freeThrowsAttempted"),
+              "fg": ("fieldGoalsMadeTotal", "fieldGoalsAttemptedTotal")}
+
+
+def _mmss(seconds):
+    s = int(seconds or 0)
+    return f"{s // 60}:{s % 60:02d}"
+
+
+def euro_row(stats, name="", no=None):
+    row = {"name": name, "min": _mmss(stats.get("timePlayed")),
+           "no": int(no) if no is not None else int(stats.get("dorsal") or 0),
+           "starter": bool(stats.get("startFive"))}
+    for ours, theirs in EURO_MAP.items():
+        row[ours] = int(stats.get(theirs) or 0)
+    for ours, (made, att) in EURO_PAIRS.items():
+        row[ours] = [int(stats.get(made) or 0), int(stats.get(att) or 0)]
+    return row
+
+
+def euro_person_name(person):
+    """״HARPER, JARED״ אל ״J.Harper״, כמו בטפסים הידניים."""
+    sur = (person.get("passportSurname") or "").strip()
+    first = (person.get("passportName") or "").strip()
+    if not sur:
+        raw = (person.get("name") or "").split(",")
+        sur = raw[0].strip()
+        first = raw[1].strip() if len(raw) > 1 else ""
+    sur = sur.title()
+    return f"{first[:1].upper()}.{sur}" if first else sur
+
+
+def euro_team(side, club_name, roster_by_code):
+    players = []
+    for entry in side.get("players") or []:
+        stats = entry.get("stats") or {}
+        person = ((entry.get("player") or {}).get("person") or {})
+        row = euro_row(stats, euro_person_name(person),
+                       (entry.get("player") or {}).get("dorsal"))
+        code = str(person.get("code") or "").strip()
+        mate = roster_by_code.get(code)
+        if mate:
+            row["slug"] = mate["slug"]
+            row["he"] = mate.get("nameHe") or mate.get("name")
+        # שורה של מי שלא שיחק בכלל היא קיר של אפסים, ואין בה מידע
+        if row["min"] != "0:00" or row["pts"] or row["reb"]:
+            players.append(row)
+    return {"name": club_name,
+            "coach": ((side.get("coach") or {}).get("name") or "").title(),
+            "players": players,
+            "teamRow": euro_row(side.get("team") or {}, TEAM_ROW),
+            "totals": euro_row(side.get("total") or {}, "סה\"כ")}
+
+
+def eurocup_boxscore(meta, roster):
+    """הטופס של משחק יורוקאפ אחד, מפריט המשחק ומ־stats שלו."""
+    season = ((meta.get("season") or {}).get("code") or "")
+    code = meta.get("gameCode") or meta.get("code")
+    url = EURO_STATS.format(season=season, code=code)
+    log("GET", url)
+    body = requests.get(url, headers=UA, timeout=30).json()
+    by_code = {str(p.get("code") or ""): p for p in roster if p.get("code")}
+
+    sides = []
+    for key in ("local", "road"):
+        club = ((meta.get(key) or {}).get("club") or {})
+        name = club.get("name") or club.get("editorialName") or club.get("code") or ""
+        sides.append((key, name, body.get(key) or {}))
+    teams = [euro_team(side, name, by_code) for _, name, side in sides]
+    for t in teams:
+        bad = verify(t)
+        if bad:
+            raise ValueError(f"הטופס של {t['name']} לא מסתדר עם עצמו: "
+                             + "; ".join(bad))
+
+    # **מי אנחנו נקבע לפי קוד המועדון ולא לפי השם**, כי הפיד כותב
+    # ״Hapoel Midtown Jerusalem״ באנגלית ו־is_us מחפש עברית.
+    ours = [i for i, (key, _, _) in enumerate(sides)
+            if ((meta.get(key) or {}).get("club") or {}).get("code") == "JER"]
+    if len(ours) != 1:
+        raise ValueError("לא זיהיתי את הקבוצה שלנו בפריט המשחק")
+    mine = ours[0]
+    for i, t in enumerate(teams):
+        t["us"] = (i == mine)
+        t["score"] = t["totals"]["pts"]
+
+    def parts(key):
+        p = (meta.get(key) or {}).get("partials") or {}
+        return [int(p.get(f"partials{i}") or 0) for i in range(1, 5)]
+    a, b = parts(sides[mine][0]), parts(sides[1 - mine][0])
+    quarters = [[x, y] for x, y in zip(a, b) if x or y]
+    return {"quarters": quarters, "teams": teams, "teamStats": [],
+            "euroCode": code, "euroSeason": season}
+
+
 DATE_IN_ROW = re.compile(r"(\d{2})/(\d{2})/(\d{4})")
 
 
@@ -322,6 +439,23 @@ def game_ids(soup):
         if not d:
             continue
         out[f"{d.group(3)}-{d.group(2)}-{d.group(1)}"] = gid.group(1)
+    return out
+
+
+EURO_GAMES = ("https://api-live.euroleague.net/v2/competitions/U/seasons/"
+              "U2026/games")
+
+
+def euro_games():
+    """המשחקים שלנו שנגמרו, מפיד העונה הנוכחית."""
+    body = requests.get(EURO_GAMES, headers=UA, timeout=30).json()
+    rows = body.get("data") if isinstance(body, dict) else body
+    out = []
+    for g in rows or []:
+        codes = (((g.get("local") or {}).get("club") or {}).get("code"),
+                 ((g.get("road") or {}).get("club") or {}).get("code"))
+        if "JER" in codes and g.get("played") and g.get("utcDate"):
+            out.append(g)
     return out
 
 
@@ -358,22 +492,46 @@ def update_game_stats():
     ids = game_ids(BeautifulSoup(ud.fetch(link), "html.parser"))
     log(f"{len(ids)} משחקים מקושרים בעמוד הקבוצה")
 
+    # ומשחקי היורוקאפ, שאתר הליגה לא מכיר בכלל
+    euro = {}
+    try:
+        for item in euro_games():
+            euro[item["utcDate"][:10]] = item
+    except Exception as e:
+        log("פיד היורוקאפ לא נענה:", e)
+    log(f"{len(euro)} משחקי יורוקאפ שנגמרו בפיד")
+
     todo = []
     for g in games:
         day = g["date"][:10]
-        if g.get("homeScore") is None or day not in ids:
+        if g.get("homeScore") is None:
             continue
         if g["id"] in done or g["id"] in manual:
             continue
-        todo.append((g, ids[day]))
+        if day in ids:
+            todo.append((g, "league", ids[day]))
+        elif day in euro:
+            todo.append((g, "euro", euro[day]))
     if not todo:
         log("אין טופס חדש לאסוף")
         return f"{len(done)} טפסים, אין חדש"
 
     added, failed = 0, 0
-    for g, gid in todo:
+    for g, kind, ref in todo:
         try:
-            built = build_game(fetch_page(gid), roster)
+            if kind == "league":
+                built = build_game(fetch_page(ref), roster)
+                src = {"name": "אתר מנהלת ליגת העל בכדורסל",
+                       "note": f"טופס המשחק הרשמי, מזהה {ref}"}
+                links = [{"name": "מנהלת ליגת העל",
+                          "title": "טופס המשחק המלא באתר הליגה",
+                          "url": GAME_URL.format(ref)}]
+            else:
+                built = eurocup_boxscore(ref, roster)
+                src = {"name": "הפיד הרשמי של היורוקאפ",
+                       "note": f"טופס המשחק, מזהה {built['euroCode']} "
+                               f"בעונת {built['euroSeason']}"}
+                links = []
         except Exception as e:
             failed += 1
             log(f"  {g['id']}: {e}")
@@ -382,12 +540,9 @@ def update_game_stats():
             "date": g["date"],
             "competition": g.get("competition") or "",
             "venue": g.get("venue") or "",
-            "source": {"name": "אתר מנהלת ליגת העל בכדורסל",
-                       "note": f"טופס המשחק הרשמי, מזהה {gid}"},
+            "source": src,
             # הצורה היא זו שהאפליקציה קוראת: name הוא המפרסם ו־title הכיתוב
-            "links": [{"name": "מנהלת ליגת העל",
-                       "title": "טופס המשחק המלא באתר הליגה",
-                       "url": GAME_URL.format(gid)}],
+            "links": links,
             # **הסימון הזה הוא מה שמונע שקר על המסך.** כרטיס המקורות
             # באפליקציה כתב ״המספרים כאן הועתקו ביד״, וזה נכון רק לטפסים
             # של הקובץ הידני.

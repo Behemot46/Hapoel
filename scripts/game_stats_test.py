@@ -89,6 +89,49 @@ EXTRA = [
 ]
 
 
+# **והצד האירופי, שהוא JSON ולא HTML.** זו שורת הסטטיסטיקה האמיתית של
+# ג׳ארד הארפר מרבע גמר היורוקאפ ב־18.3.2026, כפי שבדיקת המקורות הדפיסה
+# אותה מהפיד. היא כאן כדי לבדוק את המיפוי שדה־שדה, ולא כדי לבנות משחק:
+# משחק שלם דורש את כל השורות, ואת אלה לא ראיתי.
+HARPER = {
+    "timePlayed": 1714.0, "valuation": 17.0, "points": 29.0,
+    "fieldGoalsMade2": 7.0, "fieldGoalsAttempted2": 12.0,
+    "fieldGoalsMade3": 1.0, "fieldGoalsAttempted3": 6.0,
+    "freeThrowsMade": 12.0, "freeThrowsAttempted": 13.0,
+    "fieldGoalsMadeTotal": 8.0, "fieldGoalsAttemptedTotal": 18.0,
+    "accuracyMade": 29.0, "accuracyAttempted": 55.0,
+    "totalRebounds": 0.0, "defensiveRebounds": 0.0, "offensiveRebounds": 0.0,
+    "assistances": 4.0, "steals": 1.0, "turnovers": 9.0,
+    "blocksFavour": 0.0, "blocksAgainst": 0.0,
+    "foulsCommited": 5.0, "foulsReceived": 8.0, "plusMinus": 8.0,
+    "dorsal": 1, "startFive": True, "startFive2": False,
+}
+HARPER_PERSON = {"code": "011970", "name": "HARPER, JARED",
+                 "passportName": "JARED LAMAR", "passportSurname": "HARPER",
+                 "jerseyName": "HARPER"}
+
+
+def check_eurocup(fail):
+    print("\nהמיפוי מהפיד של היורוקאפ, על שורה אמיתית:")
+    row = gs.euro_row(HARPER, gs.euro_person_name(HARPER_PERSON),
+                      HARPER["dorsal"])
+    want = {"name": "J.Harper", "no": 1, "min": "28:34", "starter": True,
+            "pts": 29, "p2": [7, 12], "p3": [1, 6], "ft": [12, 13],
+            "fg": [8, 18], "reb": 0, "dreb": 0, "oreb": 0, "ast": 4,
+            "stl": 1, "to": 9, "blk": 0, "pf": 5, "pir": 17, "plusMinus": 8}
+    for key, value in want.items():
+        got = row.get(key)
+        mark = "תקין" if got == value else "נשבר"
+        print(f"  {mark}  {key}: {got}")
+        if got != value:
+            fail.append(f"המיפוי של {key} החזיר {got} ולא {value}")
+    # ומה שהופך את השורה לבדיקה ולא להעתקה: הנקודות חייבות לצאת מהקליעות
+    made = row["p2"][0] * 2 + row["p3"][0] * 3 + row["ft"][0]
+    print(f"  נקודות מהקליעות: {made}, בשורה {row['pts']}")
+    if made != row["pts"]:
+        fail.append("הנקודות בשורה האירופית לא יוצאות מהקליעות")
+
+
 def main():
     fail = []
 
@@ -173,6 +216,8 @@ def main():
         print(f"  {what}: {'נתפס' if bad else 'לא נתפס!'} · {bad[0] if bad else ''}")
         if not bad:
             fail.append(f"שינוי ב{what} של שחקן לא נתפס באימות")
+
+    check_eurocup(fail)
 
     print("\nכותרת שהשתנתה מפילה את הפרסר:")
     moved = [list(r) for r in US]
