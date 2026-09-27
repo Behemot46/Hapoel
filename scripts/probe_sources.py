@@ -42,9 +42,11 @@ GAME_ID = "26838"
 def soup_of(url):
     r = requests.get(url, headers=ud.UA, timeout=30)
     r.raise_for_status()
-    # **הדף מוגש windows-1255 ולא UTF-8.** requests מנחשת latin-1 ומחזירה
-    # ג׳יבריש, ולכן הקידוד נקבע כאן במפורש.
-    r.encoding = "windows-1255"
+    # **הדף הוא UTF-8 אבל לא מצהיר על זה**, ו־requests מנחשת latin-1.
+    # נמדד פעמיים: בלי לקבוע קידוד יצא ג׳יבריש של UTF-8 כ־latin-1,
+    # וכשקבעתי windows-1255 יצא ג׳יבריש אחר, של UTF-8 כעברית. שני סוגי
+    # הג׳יבריש יחד הם מה שמוכיח שהדף עצמו UTF-8.
+    r.encoding = "utf-8"
     return BeautifulSoup(r.text, "html.parser")
 
 
@@ -76,20 +78,14 @@ def probe_game_page():
     print(url)
     soup = soup_of(url)
     print("title:", soup.title.get_text(strip=True) if soup.title else "")
-    for i, table in enumerate(soup.find_all("table")):
-        rows = table.find_all("tr")
-        head = cells(rows[0]) if rows else []
-        # הטבלאות המעניינות: הטפסים, הרבעים והנתונים הנוספים. השאר הן
-        # קישוטי אתר, מובילי ליגה והיסטוריית מפגשים.
-        flat = " ".join(head)
-        interesting = (len(rows) >= 3 and (
-            "שם שחקן" in flat or "רבע" in flat or "נתונים נוספים" in flat
-            or any("שם שחקן" in " ".join(cells(r)) for r in rows[:3])))
-        if not interesting:
-            print(f"\n[מדולגת] טבלה {i}: {len(rows)} שורות · {head[:6]}")
-            continue
+    tables = soup.find_all("table")
+    print(f"{len(tables)} טבלאות")
+    # מודפסות לפי אינדקס ולא לפי זיהוי טקסט: הריצה הקודמת סיננה הכול,
+    # כי ההשוואה לעברית נעשתה על טקסט מקולקל. הטווח 9 עד 15 הוא הרבעים,
+    # שני הטפסים, הנתונים הנוספים ושתי הטבלאות שאחריהם.
+    for i in range(9, min(16, len(tables))):
+        rows = tables[i].find_all("tr")
         print(f"\n### טבלה {i}: {len(rows)} שורות")
-        print("    כותרת הטבלה:", head)
         for r in rows:
             print("    ", cells(r))
 
