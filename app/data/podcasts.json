@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-27T09:23:28Z",
+  "updated": "2026-09-27T20:31:37Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,14 +21,14 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-09-22T07:40:00Z"
+      "latest": "2026-09-27T11:22:00Z"
     },
     {
       "id": "1698308776",
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-09-18T09:34:44Z"
+      "latest": "2026-09-27T13:42:52Z"
     },
     {
       "id": "1648115499",
@@ -39,6 +39,24 @@
     }
   ],
   "items": [
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "סטירת פתיחה | היורוליג יוצא לדרך, מכבי ת\"א מופתעת, הפועל ת״א מועדת וירושלים מתכוננת ליורוקאפ",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3pf02c",
+      "published": "2026-09-27T13:42:52Z",
+      "duration": 4910
+    },
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "תחל עונה וברכותיה | שוט, פרק 198",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-09-27T11:22:00Z",
+      "duration": 4170
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -139,15 +157,6 @@
       "duration": 3978
     },
     {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "אריק VS עופר, הגיע הזמן לשבור שתיקה! | ספיישל שוט , פרק 194",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-09-09T10:05:00Z",
-      "duration": 4293
-    },
-    {
       "showId": "1573775015",
       "show": "כיפה אדומה",
       "about": "team",
@@ -182,15 +191,6 @@
       "url": "https://omny.fm/shows/speaknrolisrael/9ae471ed-02ab-466c-81f0-b4b6014886bf",
       "published": "2026-08-30T20:02:12Z",
       "duration": 3701
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "על המפה | מיקי ברקוביץ' והיכל התהילה, נועם יעקב משנה כיוון, התל אביביות פותחות עונה והישראלי שאימן את קווין דוראנט באולפן",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3nvh6v",
-      "published": "2026-08-27T14:27:07Z",
-      "duration": 5385
     },
     {
       "showId": "1648115499",
