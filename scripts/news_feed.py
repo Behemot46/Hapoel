@@ -578,9 +578,45 @@ def collect():
     return items
 
 
-def update_news():
+# **קצב המדור: פעם ביומיים.** גבי ביקש את זה ב־27.9.2026, ויש לזה גם
+# היגיון מעבר להעדפה: מדור החדשות הוא המקום היחיד שבו מגיע אלינו תוכן
+# שאף כלל לא מסווג בוודאות, וכל אצווה חדשה היא הזדמנות לכותרת כדורגל
+# להגיע למסך האוהד. בדיקת התחזוקה רצה גם היא פעם ביומיים, ולכן הקצב הזה
+# אומר שכל אצווה נקראת בעיניים זמן קצר אחרי שהיא נוחתת, במקום לשבת
+# יומיים בלי שאף אחד ראה אותה.
+#
+# הזמן נמדד מול ה־updated שבקובץ עצמו ולא מתחילת המשמרת, בדיוק מאותה
+# סיבה שהאיסוף נמדד מול meta.json: משמרת חדשה מתחילה כמה פעמים ביום.
+NEWS_EVERY = datetime.timedelta(hours=48)
+
+
+def news_age():
+    """כמה זמן עבר מאז שהמדור נכתב, או None כשאין קובץ או שאין בו חתימה."""
+    try:
+        raw = json.loads((DATA / "news.json").read_text(encoding="utf-8"))["updated"]
+        when = datetime.datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except Exception:
+        return None
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=datetime.timezone.utc)
+    return datetime.datetime.now(datetime.timezone.utc) - when
+
+
+def update_news(force=False):
     """Write app/data/news.json. Raises if nothing usable came back, so the
-    caller records a failure and the previous file survives untouched."""
+    caller records a failure and the previous file survives untouched.
+
+    **בלי force הפעולה מדלגת על מדור שנכתב לפני פחות מ־NEWS_EVERY.** זה
+    הגייט של האיסוף המתוזמן, ולכן הוא לא חל על הרצה ידנית: ‏
+    ``python scripts/news_feed.py`` אוסף תמיד, וזה הרענון בזמן תחזוקה.
+    """
+    age = news_age()
+    if not force and age is not None and age < NEWS_EVERY:
+        left = NEWS_EVERY - age
+        log(f"המדור נכתב לפני {age.total_seconds() / 3600:.1f} שעות, "
+            f"והקצב הוא פעם ביומיים. הבא בעוד {left.total_seconds() / 3600:.1f} שעות.")
+        return (f"הקצב הוא פעם ביומיים, והמדור נכתב לפני "
+                f"{age.total_seconds() / 3600:.0f} שעות")
     items = collect()
     if not items:
         raise RuntimeError("no headlines matched, leaving the previous feed in place")
@@ -603,4 +639,5 @@ def update_news():
 
 
 if __name__ == "__main__":
-    update_news()
+    # הרצה ידנית היא בקשה מפורשת, ולכן היא עוקפת את הגייט של הקצב
+    update_news(force=True)

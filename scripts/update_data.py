@@ -1703,8 +1703,12 @@ def main(argv=None):
     log("אוסף:", ", ".join(n for n, _ in running))
     for name, fn in running:
         try:
-            fn()
-            status[name] = {"ok": True, "detail": "עודכן בהצלחה"}
+            # מקור שמחזיר מחרוזת מספר בעצמו מה הוא עשה, וזה נכתב כמו שהוא
+            # ל־meta.json. החדשות עושות בזה שימוש כדי לומר שהן דילגו לפי
+            # הקצב, כי ״עודכן בהצלחה״ על דילוג הוא פשוט לא נכון.
+            said = fn()
+            status[name] = {"ok": True,
+                            "detail": said if isinstance(said, str) else "עודכן בהצלחה"}
             ok_any = True
         except Exception as e:
             log(f"ERROR updating {name}: {e}")
