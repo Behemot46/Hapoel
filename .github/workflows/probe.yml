@@ -80,6 +80,23 @@ jobs:
               # בדיוק במקום שהחיתוך הזה הסתיר.
               for i in n['items']:
                   print(' ', i['published'][:10], '|', i['source'], '|', i['title'][:110])
+          print('===== game-stats.json =====')
+          sp = pathlib.Path('app/data/game-stats.json')
+          if not sp.exists():
+              print('MISSING')
+          else:
+              s = json.loads(sp.read_text())
+              print(len(s['games']), 'טפסים:', ', '.join(s['games']))
+              for gid, box in s['games'].items():
+                  line = ' · '.join(f"{t['name']} {t['score']}" for t in box['teams'])
+                  print(f"  {gid}: {line} | רבעים {box['quarters']}")
+                  for team in box['teams']:
+                      if team.get('us'):
+                          for pl in team['players']:
+                              print(f"      {pl['no']:>3} {pl.get('he') or pl['name']:<20}"
+                                    f" {pl['min']:>4} דק  {pl['pts']:>3} נק  "
+                                    f"{pl['reb']:>2} ריב  {pl['ast']:>2} אס  "
+                                    f"מדד {pl['pir']:>3}  slug={pl.get('slug') or '-'}")
           print('===== live.json =====')
           lp = pathlib.Path('app/data/live.json')
           print(lp.read_text() if lp.exists() else 'MISSING')

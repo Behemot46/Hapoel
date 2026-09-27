@@ -119,7 +119,7 @@ async function loadJSON(path) {
 
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts, press, playerStatus, boxscores] = await Promise.all([
+    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts, press, playerStatus, boxscores, gameStats] = await Promise.all([
       loadJSON("data/games.json"),
       loadJSON("data/standings.json"),
       loadJSON("data/meta.json"),
@@ -141,6 +141,7 @@ async function boot() {
       loadJSON("data/press.json").catch(() => (null)),
       loadJSON("data/player-status.json").catch(() => (null)),
       loadJSON("data/boxscores.json").catch(() => (null)),
+      loadJSON("data/game-stats.json").catch(() => (null)),
     ]);
     state.games = games;
     state.standings = standings;
@@ -163,6 +164,7 @@ async function boot() {
     state.press = press;
     state.playerStatus = playerStatus;
     state.boxscores = boxscores;
+    state.gameStats = gameStats;
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -2480,13 +2482,24 @@ function attendButton(g) {
 
 /* ---------- טופס משחק ---------- */
 
-// טופס המשחק הרשמי הוא הדבר הכי קרוב לאמת שיש על משחק שנגמר, והוא
-// מגיע כדף נייר. הנתונים כאן הועתקו ממנו ביד ואומתו מול הסכומים
-// המודפסים בו (scripts/boxscore_test.py), ולכן הם נשמרים בקובץ ידני
-// ולא נאספים: אין מקור אוטומטי שמפרסם אותם.
+// טופס המשחק הרשמי הוא הדבר הכי קרוב לאמת שיש על משחק שנגמר, והוא מגיע
+// משני מקומות.
+//
+// **boxscores.json נערך ביד**, מטופס הנייר של משחקי ההכנה, שאף אתר לא
+// מפרסם. כל מספר בו אומת מול הסכומים המודפסים בטופס עצמו
+// (scripts/boxscore_test.py).
+//
+// **game-stats.json נאסף מאתר הליגה** לכל משחק רשמי, והוא מאמת את עצמו
+// מול שורת הסה״כ המודפסת לפני שהוא נכתב (scripts/game_stats.py).
+//
+// הידני מנצח כששניהם קיימים לאותו משחק, כי שם הבדיקה הייתה על נייר ולא
+// על טבלה של 23 עמודות שהאתר יכול לשנות.
 function boxFor(g) {
-  const all = state.boxscores && state.boxscores.games;
-  return (g && all && all[g.id]) || null;
+  if (!g) return null;
+  const hand = state.boxscores && state.boxscores.games;
+  if (hand && hand[g.id]) return hand[g.id];
+  const auto = state.gameStats && state.gameStats.games;
+  return (auto && auto[g.id]) || null;
 }
 
 function gameById(id) {
@@ -2717,9 +2730,15 @@ function renderGame(id) {
   // מאיפה זה, ומה כתבו
   const src = el("div", "card");
   src.appendChild(text("div", "eyebrow", "מקורות"));
-  src.appendChild(prose("p", "report", "המספרים כאן הועתקו ביד מ" +
-    (box.source && box.source.name ? box.source.name : "טופס המשחק הרשמי") +
-    ", וכל עמודה אומתה מול הסכומים המודפסים בטופס עצמו."));
+  // **שני מסלולים, ושני משפטים שונים.** טופס שנאסף לא הועתק ביד, וכתיבה
+  // שהוא כן הועתק היא פשוט שקר על המסך. שניהם אומתו מול הסכומים
+  // המודפסים בטופס, וזה מה שמשותף להם.
+  const where = (box.source && box.source.name) || "טופס המשחק הרשמי";
+  src.appendChild(prose("p", "report", box.collected
+    ? "המספרים כאן נאספו אוטומטית מ" + where +
+      ", וכל עמודה הוצלבה מול שורת הסה״כ המודפסת בטופס לפני שנשמרה."
+    : "המספרים כאן הועתקו ביד מ" + where +
+      ", וכל עמודה אומתה מול הסכומים המודפסים בטופס עצמו."));
   (box.links || []).forEach(l => {
     const a = el("a", "src-link");
     a.href = l.url;

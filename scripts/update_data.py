@@ -29,6 +29,7 @@ from bs4 import BeautifulSoup
 
 import club_games
 import club_roster
+import game_stats
 import news_feed
 import photo_crop
 import podcast_feed
@@ -1664,6 +1665,7 @@ def update_season_stats():
 SOURCES = [("standings", update_standings), ("games", update_games),
            ("eurocup", update_eurocup_standings),
            ("seasonStats", update_season_stats),
+           ("gameStats", game_stats.update_game_stats),
            ("news", news_feed.update_news),
            ("podcasts", podcast_feed.update_podcasts),
            ("roster", update_roster)]
@@ -1703,8 +1705,12 @@ def main(argv=None):
     log("אוסף:", ", ".join(n for n, _ in running))
     for name, fn in running:
         try:
-            fn()
-            status[name] = {"ok": True, "detail": "עודכן בהצלחה"}
+            # מקור שמחזיר מחרוזת מספר בעצמו מה הוא עשה, וזה נכתב כמו שהוא
+            # ל־meta.json. החדשות עושות בזה שימוש כדי לומר שהן דילגו לפי
+            # הקצב, כי ״עודכן בהצלחה״ על דילוג הוא פשוט לא נכון.
+            said = fn()
+            status[name] = {"ok": True,
+                            "detail": said if isinstance(said, str) else "עודכן בהצלחה"}
             ok_any = True
         except Exception as e:
             log(f"ERROR updating {name}: {e}")

@@ -1,142 +1,98 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**מה שהבדיקה הקודמת סגרה, ואין טעם לנסות שוב:**
+**מה שכבר ידוע, 27.9.2026, ואין טעם לבדוק שוב:**
 
-  * בפריט של גוגל אין שום כתובת אמיתית. לא ב־link, לא ב־guid, ולא
-    ב־source, שמחזיק רק את שורש האתר. גם ה־description מפנה לבדלים.
-  * לספורט 5, לספורט 1, ל־ONE ולוואלה אין פיד לפי מדור בשום כתובת
-    שניסיתי. מה שקיים במעריב הוא פיד ספורט כללי עם כתבות ישנות, ולא
-    אותו אתר.
+  * **היורוקאפ פתור.** ‏``/v2/competitions/U/seasons/{s}/games/{c}/stats``
+    מחזיר טופס מלא: בכל צד coach, players עם stats לכל שחקן, team
+    לריבאונדים של הקבוצה ו־total לסכומים. שמות השדות: timePlayed
+    בשניות, valuation, points, fieldGoalsMade2/3, freeThrowsMade,
+    fieldGoalsMadeTotal, totalRebounds, defensiveRebounds,
+    offensiveRebounds, assistances, steals, turnovers, blocksFavour,
+    foulsCommited, plusMinus, dorsal, startFive. boxscore, players
+    ו־report מחזירים 404 או 405, ו־v1 מחזיר XML.
+  * **עמוד הקבוצה בליגה מקשר לכל משחק שנגמר** בכתובת
+    ``game-zone.asp?GameId=NNNNN``, וטקסט הקישור הוא התוצאה. שלושת
+    המשחקים הרשמיים שלנו העונה הם 26634, 26644 ו־26838.
+  * ובעמוד המשחק יש טופס לשתי הקבוצות, תוצאות רבעים ונתונים נוספים.
 
-**ומה שהיא כן גילתה, וזה מה שנמדד כאן:** ה־description של כל פריט הוא
-רשימה של הכותרות ש**גוגל עצמה** קיבצה כאותו סיפור. בפריט הראשון ישבו
-יחד ״נדים וראסנה כבש שלושער, הפועל ירושלים ניצחה את מכבי פ״ת״, ״זו
-הפילוסופיה, להתבסס על שחקני הבית״ ו״המספרים מוכיחים: הפועל ירושלים זו
-כבר לא אותה קבוצה״. הראשונה מוכרעת מיד, והשלישית היא אחת משבע הכותרות
-שחסמתי ביד ב־20.9.
+**מה שנשאר, וזה כל מה שהכלי הזה עושה:** הדף של הליגה מוגש בקידוד עברי
+ולא ב־UTF-8, והריצה הקודמת הדפיסה ג׳יבריש. כאן הוא מפוענח, ומודפס
+במלואו, כדי שאפשר יהיה לכתוב פרסר מול טקסט אמיתי ולא מול ניחוש.
 
-**ההשערה:** אם באשכול יש כותרת אחת שמוכרעת ככדורגל, כל האשכול כדורגל.
-
-**והמדידה, שני צדדים, ושניהם חייבים להיות טובים:**
-
-  1. כמה משבע הכותרות שחסמתי ביד היו נתפסות ככה.
-  2. וכמה כותרות כדורסל אמיתיות היו נופלות. זה התנאי הקשיח.
+ובנוסף: איך מזהים באיזה משחק מדובר, כלומר מה יש בשורה בעמוד הקבוצה
+שמקשרת לעמוד המשחק.
 """
 
-import html
 import re
 import sys
-import xml.etree.ElementTree as ET
+import pathlib
 
 import requests
+from bs4 import BeautifulSoup
 
-sys.path.insert(0, __file__.rsplit("/", 1)[0])
-import news_feed
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import update_data as ud
 
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/124.0 Safari/537.36"}
-
-QUERIES = ["הפועל ירושלים", "הפועל ירושלים כדורסל", "הפועל י-ם"]
-FEED = "https://news.google.com/rss/search?q={q}&hl=iw&gl=IL&ceid=IL:iw"
-
-# שבע הכותרות שחסמתי ביד ב־20.9, בדיוק כפי שהופיעו
-HAND = [
-    "המספרים מוכיחים: הפועל ירושלים זו כבר לא אותה קבוצה",
-    "מטורף: הכושר האדיר של בן ה-20 מהפועל י-ם",
-    "שני שחקני הגנה של הפועל ירושלים הצטרפו לרשימת הפצועים המתארכת",
-    "משגע הגנות", "זיו אריה: הפועל ירושלים? מה שהיה לא רלוונטי",
-    "המפגש עם הפועל ירושלים? לא רלוונטי",
-    "הפועל ירושלים תתארח אצל זיו אריה",
-]
-
-LINK_TEXT = re.compile(r'<a href="[^"]*"[^>]*>(.*?)</a>', re.S)
+HEAD = "=" * 70
+# המשחק של 25.9 מול בני הרצליה, 88-68, הרשמי האחרון שנגמר
+GAME_ID = "26838"
 
 
-def siblings(desc):
-    """הכותרות שגוגל קיבצה יחד עם הפריט, מתוך ה־description."""
-    if not desc:
-        return []
-    inner = html.unescape(desc)
-    out = []
-    for m in LINK_TEXT.findall(inner):
-        t = html.unescape(re.sub(r"<[^>]+>", "", m)).strip()
-        if t:
-            out.append(t)
-    return out
+def soup_of(url):
+    r = requests.get(url, headers=ud.UA, timeout=30)
+    r.raise_for_status()
+    # **הדף הוא UTF-8 אבל לא מצהיר על זה**, ו־requests מנחשת latin-1.
+    # נמדד פעמיים: בלי לקבוע קידוד יצא ג׳יבריש של UTF-8 כ־latin-1,
+    # וכשקבעתי windows-1255 יצא ג׳יבריש אחר, של UTF-8 כעברית. שני סוגי
+    # הג׳יבריש יחד הם מה שמוכיח שהדף עצמו UTF-8.
+    r.encoding = "utf-8"
+    return BeautifulSoup(r.text, "html.parser")
 
 
-def decided_soccer(title):
-    """כותרת שמוכרעת ככדורגל בכללים שכבר יש לנו, בלי החסימות הידניות.
-
-    זה בכוונה לא כל about_us: חסימה ידנית היא לא ראיה, היא זיכרון שלי,
-    ואם אשתמש בה כאן המדידה תמדוד את עצמה.
-    """
-    saved = news_feed._phrases_cache
-    news_feed._phrases_cache = ()
-    try:
-        return not news_feed.about_us(title)
-    finally:
-        news_feed._phrases_cache = saved
+def cells(row):
+    return [c.get_text(" ", strip=True) for c in row.find_all(["th", "td"])]
 
 
-def main():
-    seen = {}
-    for q in QUERIES:
-        url = FEED.format(q=requests.utils.quote(q))
-        try:
-            r = requests.get(url, headers=UA, timeout=30)
-            r.raise_for_status()
-            r.encoding = "utf-8"
-            root = ET.fromstring(r.text)
-        except Exception as e:
-            print(f"השאילתה {q} נפלה: {e}")
+def probe_team_page():
+    print(HEAD, "\n1. עמוד הקבוצה: איזו שורה מקשרת לאיזה משחק\n", HEAD)
+    link = ud.find_team_link()
+    print("עמוד הקבוצה:", link)
+    soup = soup_of(link)
+    for table in soup.find_all("table"):
+        rows = table.find_all("tr")
+        if not any(r.find("a", href=re.compile("game-zone")) for r in rows):
             continue
-        for it in root.findall(".//item"):
-            title = news_feed._strip_source(
-                it.findtext("title") or "", (it.find("source").text
-                                             if it.find("source") is not None else ""))
-            if title and title not in seen:
-                seen[title] = siblings(it.findtext("description") or "")
-    print(f"{len(seen)} כותרות ייחודיות משלוש שאילתות.\n")
+        print(f"\nטבלה עם {len(rows)} שורות. כותרת: {cells(rows[0])}")
+        for r in rows:
+            a = r.find("a", href=re.compile("game-zone"))
+            if not a:
+                continue
+            gid = re.search(r"GameId=(\d+)", a["href"])
+            print(f"  GameId={gid.group(1) if gid else '?'} · {cells(r)}")
 
-    print("=" * 70)
-    print("אשכולות שבהם יש הכרעה ככדורגל")
-    print("=" * 70)
-    caught = {}
-    for title, sibs in seen.items():
-        group = [title] + [s for s in sibs if s != title]
-        proof = [s for s in group if decided_soccer(s)]
-        if not proof:
-            continue
-        for s in group:
-            if not decided_soccer(s):
-                caught[s] = proof[0]
-        print(f"\nהוכחה: {proof[0][:72]}")
-        for s in group:
-            mark = "מוכרע " if decided_soccer(s) else "נגרר  "
-            print(f"  {mark} {s[:72]}")
 
-    print("\n" + "=" * 70)
-    print("מה זה היה תופס משבע הכותרות שחסמתי ביד")
-    print("=" * 70)
-    hit = 0
-    for h in HAND:
-        got = [k for k in caught if h in k or k in h]
-        hit += bool(got)
-        print(f"  {'נתפס ' if got else 'פוספס'} {h[:66]}")
-    print(f"\n  {hit} מתוך {len(HAND)}")
-
-    print("\n" + "=" * 70)
-    print("**התנאי הקשיח:** כותרות שנגררו, ואני צריך לעבור עליהן בעיניים")
-    print("=" * 70)
-    for s, proof in caught.items():
-        print(f"  {s[:74]}")
-        print(f"      בגלל: {proof[:66]}")
-    if not caught:
-        print("  אף אחת")
+def probe_game_page():
+    print("\n" + HEAD, f"\n2. עמוד המשחק {GAME_ID}, מפוענח ובמלואו\n", HEAD)
+    url = f"https://basket.co.il/game-zone.asp?GameId={GAME_ID}"
+    print(url)
+    soup = soup_of(url)
+    print("title:", soup.title.get_text(strip=True) if soup.title else "")
+    tables = soup.find_all("table")
+    print(f"{len(tables)} טבלאות")
+    # מודפסות לפי אינדקס ולא לפי זיהוי טקסט: הריצה הקודמת סיננה הכול,
+    # כי ההשוואה לעברית נעשתה על טקסט מקולקל. הטווח 9 עד 15 הוא הרבעים,
+    # שני הטפסים, הנתונים הנוספים ושתי הטבלאות שאחריהם.
+    for i in range(9, min(16, len(tables))):
+        rows = tables[i].find_all("tr")
+        print(f"\n### טבלה {i}: {len(rows)} שורות")
+        for r in rows:
+            print("    ", cells(r))
 
 
 if __name__ == "__main__":
-    main()
+    which = sys.argv[1] if len(sys.argv) > 1 else "all"
+    if which in ("all", "team"):
+        probe_team_page()
+    if which in ("all", "game"):
+        probe_game_page()
