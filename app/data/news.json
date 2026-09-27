@@ -1,17 +1,25 @@
 {
-  "updated": "2026-09-26T19:44:07Z",
+  "updated": "2026-09-27T09:23:26Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
+    "vod.sport5.co.il",
     "ישראל היום",
     "ספורט 5",
     "ynet",
     "ישראל ספורט",
-    "הארץ",
+    "haaretz.co.il",
     "וואלה ספורט",
     "ספורט 1",
-    "inn.co.il"
+    "ערוץ 7"
   ],
   "items": [
+    {
+      "title": "משחק מצוין ללופטון, הפועל ירושלים מחצה את בני הרצליה",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBfN0NlNjFlTFotbUU3RTdyZklCVjVkTDQ1dlRJTlJyMS04dFJSSkR6LUNSVl95cmI1bTZlZmN5djNhREpqSVIzRWU4QUVVN0c5LUlpSw?oc=5",
+      "source": "vod.sport5.co.il",
+      "sourceUrl": "https://vod.sport5.co.il",
+      "published": "2026-09-26T20:34:00Z"
+    },
     {
       "title": "הפועל ירושלים בונה עליו: היהודי חובש הכיפה שישחק בישראל",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBwTGw1cDc4Z1NSZm0tWVhaNUtCV1ZpdmZxZXNCcWNEUnNMaXFVUXBza0phTFRTNXo0RHhBU1IwSVNhSGI3UDBpeGFUODVtRmRUOFBWWGZrc1VOSlpVMUNUbFp1X1BwLVNDSEVSVVVQV2tsd0UzMlhhaTZCVdIBgwFBVV95cUxQQktWbHl1eVZpZVFaU2d5RE9WZ1p6amswUmd6SlpkNzJJNnBiRzJmeVZocmJTNXY0Z0JycTMxWHRIbHl3RG1IZ2RDbXFuSUotaUNET1BWNUIwVHBId3U0b05NUEE0eXl1TmxNU2hINEpsS29JdmlGMmx3bUE1MGpYVnp5Zw?oc=5",
@@ -57,7 +65,7 @@
     {
       "title": "הפועל ירושלים הביסה את בני הרצליה 68:88 ועלתה לחצי גמר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOeldWbnlCWVZia2kxZ1p2cm15YmFWNjdOTmJFNENNeEd4YTFCM25ERXFOalA3VW0wQ1B2Wm1ISncyNWUzdTB6UFN3SU5KRmNqdEpraElydzVSS1VhZGV1VVJqNElzQ05VRUtGUm1Ncko3eTA3Y2xCVVRSdWI4TWM1Q1FISmNFSHJ6Q3JMc1ZHLTZtMm5WX2tYd3V1eTdmVHd3enZz?oc=5",
-      "source": "הארץ",
+      "source": "haaretz.co.il",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-09-25T12:58:00Z"
     },
@@ -127,7 +135,7 @@
     {
       "title": "הפועל ירושלים ניצחה את באר שבע/דימונה 69:83 ועלתה לרבע גמר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNM1J0QTFoNEFnMDdENl83OFYzZWc4TlRCVHY2cGQ0bzZ5SElIbWdFdXFyRUZVU0ZkcXZYbFdYZlhNemZOUHBhVncxcExCeGxlRXZ2XzdxVGxUVzlVOVdvckhDN3RQZ2tKVnFNdEc1eG5oMzl3Y1NFN3VMby1NWVRiRy1LNGxXMGlkdjlLMzRiWFh3a1cybXJzdWdfamhCVW9SRmow?oc=5",
-      "source": "הארץ",
+      "source": "haaretz.co.il",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-09-18T07:00:00Z"
     },
@@ -167,13 +175,6 @@
       "published": "2026-09-12T07:00:00Z"
     },
     {
-      "title": "הכנה: הפועל ירושלים גברה 80:87 על אלופת היורוקאפ בורג",
-      "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxNazNXb2QwbzdicW44TUZvOXNSYXQxTlJOMFJEUGt1czhaQWE0d0VZR3VranZaUUhIOF9QeEUxOGE2OEJKUFpmVkhUWkt3eEdkY1hwaExONGExMEVndFBCOE11NVpLYmZLODZEa1VDZkt0Y3BmS2RnbUJIbVFGRDh4SDRJdjEwdlFBZmJsbzlxSTRGZS1VU0xNeU5ESUtNdE1uQ3c5WVBmRm5iYnNVcEsyZ193eFlGN3RnbkpobzJ0cHl3b3FpT1FidTdTMFo3dkFYM3VHdzZ2eXd2UGpvUHVoQzROb2pxalRmM09rX291UDdOUDZ3cmx4X3BMWU0zclVqSTNLdGpCWjU5TG5LQ3Vvb3liTnZrMlg5Q0hiVzNmWG1rZV90UVRURkpRTnRBYk12U0x5bFFhanNaSHFTQVZZaQ?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-09-12T07:00:00Z"
-    },
-    {
       "title": "דומיננטי כמו הארפר: הפועל ירושלים הביאה שחקן שלא היה פה",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9hb2lPRlJsdnp4anNaTW9aVTFsS1o0N2lYR1pDY2ZBT0JDcVZFRXI0SUVzMHFKbXFwZ20wamZuSE4ydEV4MVlwaTJWWHJSUnhXREhoQWdZdHI0X1Bzc20yeWpHTVkweWRNTkRlWmczZWN2QkJIQ2fSAX5BVV95cUxQTTdjQ1QwNHdiNXlTaDRtUFhLb1UtWmU5d0tqZmtGV25KeE5XWHlMZDFMaEd0M1ZKS2RRSGE4Q0tBMFhnS25oekl4dXo5VjJselhEbHRsZkYxY3FHZVFyUDRWVkNCdnVSbkFNcjlkeldpMm9NSTZRRVc3TU9ZYmc?oc=5",
       "source": "ישראל היום",
@@ -197,14 +198,14 @@
     {
       "title": "הפועל ירושלים פתחה את העונה עם ניצחון 77:110 על מכבי אשדוד בגביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNcFFEZTNLLXV5aFVlRWxhbmU0MmRPLW9HRnQ1MFg2Q01RSE5LSEIxTmlGdnJXOU0wdGRNYzdDRk0wcWVvT3FjbDV3QlZRUHZWMDhZQjZjd05BdmxZd05vS01heHpmbTQ0MTN2S080YVI2dmU2SWlGYWI4MEJiRExaMWhxQURxYzNHNUlua2N4dVlEc2dRUm9vWnNrUG9ra1hKejVr?oc=5",
-      "source": "הארץ",
+      "source": "haaretz.co.il",
       "sourceUrl": "https://www.haaretz.co.il",
       "published": "2026-09-08T07:00:00Z"
     },
     {
       "title": "הפועל י-ם הביסה בפתיחת טורניר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5NTG5aZHl0TGpia2Vya2xVTFFuZjJVUmhmRXl1aFdMOTNIcUlyMTFUc25raDZzazBuYXBJLVNMTEozWlZfNG43NA?oc=5",
-      "source": "inn.co.il",
+      "source": "ערוץ 7",
       "sourceUrl": "https://www.inn.co.il",
       "published": "2026-09-08T07:00:00Z"
     },
