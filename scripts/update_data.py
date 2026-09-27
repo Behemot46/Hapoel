@@ -29,6 +29,7 @@ from bs4 import BeautifulSoup
 
 import club_games
 import club_roster
+import game_stats
 import news_feed
 import photo_crop
 import podcast_feed
@@ -1664,6 +1665,7 @@ def update_season_stats():
 SOURCES = [("standings", update_standings), ("games", update_games),
            ("eurocup", update_eurocup_standings),
            ("seasonStats", update_season_stats),
+           ("gameStats", game_stats.update_game_stats),
            ("news", news_feed.update_news),
            ("podcasts", podcast_feed.update_podcasts),
            ("roster", update_roster)]
