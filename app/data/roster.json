@@ -63,15 +63,18 @@
       "photo": "img/players/jaleen-smith.jpg"
     },
     {
-      "name": "לורנזו בראון",
-      "nameHe": "לורנזו בראון",
+      "name": "Lorenzo Brown",
       "number": 4,
-      "birthDate": "1990-08-26",
-      "born": 1990,
+      "position": "גארד",
       "height": 196,
+      "born": 1990,
+      "country": "ארה״ב",
+      "code": "009622",
+      "nameHe": "לורנזו בראון",
+      "birthDate": "1990-08-26",
       "clubId": "27222",
-      "source": "club",
-      "slug": "p-27222"
+      "source": "club+eurocup",
+      "slug": "lorenzo-brown"
     },
     {
       "name": "Shachar Loberboum",

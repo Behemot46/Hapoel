@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-27T20:31:37Z",
+  "updated": "2026-09-28T09:58:35Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -35,10 +35,19 @@
       "title": "אנחנו במפה",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%90%D7%A0%D7%97%D7%A0%D7%95-%D7%91%D7%9E%D7%A4%D7%94-%D7%94%D7%9B%D7%9C-%D7%A2%D7%9C-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%95%D7%AA-%D7%91%D7%90%D7%99%D7%A8%D7%95%D7%A4%D7%94/id1648115499?uo=4",
-      "latest": "2026-09-24T06:12:24Z"
+      "latest": "2026-09-28T02:59:23Z"
     }
   ],
   "items": [
+    {
+      "showId": "1648115499",
+      "show": "אנחנו במפה",
+      "about": "league",
+      "title": "אירופה בתעופה",
+      "url": "https://rss.com/podcasts/we-are-on-the-map/3186899",
+      "published": "2026-09-28T02:59:23Z",
+      "duration": 7550
+    },
     {
       "showId": "1698308776",
       "show": "דאבל דריבל",
@@ -191,15 +200,6 @@
       "url": "https://omny.fm/shows/speaknrolisrael/9ae471ed-02ab-466c-81f0-b4b6014886bf",
       "published": "2026-08-30T20:02:12Z",
       "duration": 3701
-    },
-    {
-      "showId": "1648115499",
-      "show": "אנחנו במפה",
-      "about": "league",
-      "title": "אתם קבעתם",
-      "url": "https://rss.com/podcasts/we-are-on-the-map/3094565",
-      "published": "2026-08-25T04:45:54Z",
-      "duration": 5544
     },
     {
       "showId": "1573775015",
