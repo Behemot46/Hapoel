@@ -117,54 +117,66 @@ async function loadJSON(path) {
   return res.json();
 }
 
+// **מה נטען לפני הציור הראשון, ומה אחריו.**
+//
+// נמדד ב־28.9.2026: כל 23 קבצי הנתונים נטענו במקביל, ורק כשכולם ירדו
+// צויר משהו על המסך. על 3G איטי זה ארבע שניות של מסך ריק, והשלושה
+// האחרונים לרדת היו טופסי המשחק והממוצעים, 158KB שאף אחד לא צריך כדי
+// לראות מתי המשחק הבא.
+//
+// לכן שני גלים. הגל הראשון הוא מה שהמסך הראשון באמת צריך, 73KB, והשני
+// הוא הכבד והייעודי לעמוד, שנטען אחרי הציור ומביא render נוסף.
+//
+// **ולמה זה בטוח:** כל קובץ בגל השני כבר נטען היום עם catch שמחזיר null
+// או אובייקט ריק, כלומר האפליקציה כבר חייבת לדעת לחיות בלעדיו כשהרשת
+// נופלת. מצב ההתחלה כאן הוא בדיוק אותו ערך, ולכן הוא לא מצב חדש.
+const FIRST = [
+  ["games", "games.json", null],
+  ["standings", "standings.json", null],
+  ["meta", "meta.json", null],
+  ["club", "club.json", null],
+  ["roster", "roster.json", { players: [] }],
+  ["playerNames", "player-names.json", {}],
+  ["teamNames", "team-names.json", {}],
+  ["venues", "venue-names.json", null],
+  ["news", "news.json", null],
+  ["playerStatus", "player-status.json", null],
+  ["eurocup", "eurocup.json", null],
+  ["feedback", "feedback.json", null],
+  ["press", "press.json", null],
+  ["seasonStats", "season-stats.json", null],
+];
+const LATER = [
+  ["boxscores", "boxscores.json", null],
+  ["gameStats", "game-stats.json", null],
+  ["playerSeason", "player-season.json", null],
+  ["hof", "hall-of-fame.json", null],
+  ["history", "history.json", null],
+  ["profiles", "player-profiles.json", {}],
+  ["details", "player-details.json", {}],
+  ["lastSeason", "lastseason.json", null],
+  ["podcasts", "podcasts.json", null],
+];
+
+function grab([key, file, fallback]) {
+  return loadJSON("data/" + file).catch(() => fallback).then(v => [key, v]);
+}
+
 async function boot() {
   try {
-    const [games, standings, meta, club, roster, names, profiles, details, teamNames, history, eurocup, hof, lastSeason, seasonStats, feedback, venues, news, podcasts, press, playerStatus, boxscores, gameStats] = await Promise.all([
-      loadJSON("data/games.json"),
-      loadJSON("data/standings.json"),
-      loadJSON("data/meta.json"),
-      loadJSON("data/club.json"),
-      loadJSON("data/roster.json").catch(() => ({ players: [] })),
-      loadJSON("data/player-names.json").catch(() => ({})),
-      loadJSON("data/player-profiles.json").catch(() => ({})),
-      loadJSON("data/player-details.json").catch(() => ({})),
-      loadJSON("data/team-names.json").catch(() => ({})),
-      loadJSON("data/history.json").catch(() => (null)),
-      loadJSON("data/eurocup.json").catch(() => (null)),
-      loadJSON("data/hall-of-fame.json").catch(() => (null)),
-      loadJSON("data/lastseason.json").catch(() => (null)),
-      loadJSON("data/season-stats.json").catch(() => (null)),
-      loadJSON("data/feedback.json").catch(() => (null)),
-      loadJSON("data/venue-names.json").catch(() => (null)),
-      loadJSON("data/news.json").catch(() => (null)),
-      loadJSON("data/podcasts.json").catch(() => (null)),
-      loadJSON("data/press.json").catch(() => (null)),
-      loadJSON("data/player-status.json").catch(() => (null)),
-      loadJSON("data/boxscores.json").catch(() => (null)),
-      loadJSON("data/game-stats.json").catch(() => (null)),
-    ]);
-    state.games = games;
-    state.standings = standings;
-    state.meta = meta;
-    state.club = club;
-    state.roster = roster;
-    state.playerNames = names || {};
-    state.profiles = profiles || {};
-    state.details = details || {};
-    state.teamNames = teamNames || {};
-    state.history = history;
-    state.eurocup = eurocup;
-    state.hof = hof;
-    state.lastSeason = lastSeason;
-    state.seasonStats = seasonStats;
-    state.feedback = feedback;
-    state.venues = venues;
-    state.news = news;
-    state.podcasts = podcasts;
-    state.press = press;
-    state.playerStatus = playerStatus;
-    state.boxscores = boxscores;
-    state.gameStats = gameStats;
+    LATER.forEach(([key, , fallback]) => { state[key] = fallback; });
+    const first = await Promise.all(FIRST.map(grab));
+    first.forEach(([key, value]) => { state[key] = value; });
+    const meta = state.meta;
+    if (!state.games || !meta) throw new Error("core data missing");
+
+    // הכבדים ממשיכים לרדת ברקע, ומצייר מחדש כשהם כאן
+    Promise.all(LATER.map(grab)).then(rest => {
+      rest.forEach(([key, value]) => { state[key] = value; });
+      state.ready = true;
+      render();
+    });
+
     if (meta.sample) document.getElementById("sampleBanner").hidden = false;
     // the single-file build is a frozen copy, so say so plainly
     if (window.__HAPOEL_SNAPSHOT__) {
@@ -2518,6 +2530,17 @@ function shot(pair) {
   return pair[0] + "/" + pair[1];
 }
 
+// ״19:55״, ״24״ או ריק, אל שניות. שלושת המקורות כותבים דקות אחרת, וכל
+// חישוב שמניח צורה אחת נשבר בשקט על האחרות.
+function seconds(str) {
+  const parts = String(str == null ? "" : str).trim().split(":");
+  const m = Number(parts[0]);
+  if (!Number.isFinite(m)) return 0;
+  if (parts.length < 2) return m * 60;
+  const s = Number(parts[1]);
+  return m * 60 + (Number.isFinite(s) ? s : 0);
+}
+
 function statButton(g, cls) {
   const b = el("button", "cal-btn" + (cls ? " " + cls : ""));
   b.type = "button";
@@ -2587,11 +2610,14 @@ function boxTable(team) {
   const tot = team.totals;
   const foot = el("tr", "bs-totals");
   foot.appendChild(text("td", "bs-name", "סה״כ"));
-  const mins = team.players.reduce((a, x) => {
-    const [m, sec] = x.min.split(":").map(Number);
-    return a + m * 60 + sec;
-  }, 0);
-  [Math.round(mins / 60), tot.pts, shot(tot.fg), shot(tot.p2), shot(tot.p3), shot(tot.ft),
+  // **דקות מגיעות בשתי צורות, וזה הפיל את השורה.** בטופס הידני כתוב
+  // ״19:55״, אתר הליגה כותב ״24״ ביחידות שלמות, והפיד האירופי שניות.
+  // הפיצול על נקודתיים החזיר undefined על ״24״, וכל השורה הציגה NaN
+  // בטופס של 25.9. וכשהמקור נותן סכום דקות משלו, הוא מנצח על חיבור שלנו.
+  const mins = tot.min != null && String(tot.min) !== ""
+    ? String(tot.min)
+    : String(Math.round(team.players.reduce((a, x) => a + seconds(x.min), 0) / 60));
+  [mins, tot.pts, shot(tot.fg), shot(tot.p2), shot(tot.p3), shot(tot.ft),
    tot.reb, tot.oreb, tot.dreb, tot.ast, tot.to, tot.stl, tot.blk, tot.pf, "", tot.pir]
     .forEach(v => {
       const td = el("td");
@@ -3270,15 +3296,22 @@ function renderPlayer(slug) {
     view.appendChild(lc);
   }
 
-  // season averages arrive once games are played
+  // **העונה הנוכחית, מהטפסים שלנו.** עד 28.9.2026 כתוב היה כאן ״העונה
+  // טרם החלה״ גם אחרי שלושה משחקי גביע, כי המקור היחיד היה ממוצעי
+  // היורוקאפ, והעונה האירופית נפתחת מאוחר יותר. האוהד לא חושב בחתך של
+  // תחרות: הוא ראה את לופטון קולע 17 נקודות ורוצה לראות את זה כאן.
+  const season = seasonFor(p.slug);
   view.appendChild(text("div", "section-title", "העונה הנוכחית"));
   const sc = el("div", "card");
-  const st = p.stats;
-  if (st && Object.keys(st).length) {
+  if (season) {
+    const a = season.avg;
+    sc.appendChild(prose("div", "season-cap",
+      season.games + (season.games === 1 ? " משחק רשמי" : " משחקים רשמיים") +
+      " · ממוצע למשחק"));
     const grid = el("div", "facts");
-    [["נקודות", st.pts], ["ריבאונדים", st.reb], ["אסיסטים", st.ast],
-     ["דקות", st.min], ["מדד", st.pir], ["משחקים", st.games]]
-      .filter(([, v]) => v !== undefined && v !== null)
+    [["נקודות", avg1(a.pts)], ["ריבאונדים", avg1(a.reb)],
+     ["אסיסטים", avg1(a.ast)], ["דקות", a.min], ["מדד", avg1(a.pir)],
+     ["חטיפות", avg1(a.stl)]]
       .forEach(([l, v]) => {
         const cell = el("div", "fact");
         cell.appendChild(text("div", "fv", String(v)));
@@ -3286,10 +3319,20 @@ function renderPlayer(slug) {
         grid.appendChild(cell);
       });
     sc.appendChild(grid);
+    // אחוזים רק על מי שבאמת זרק. ״0%״ על שחקן שלא ניסה שלוש הוא שקר קטן
+    const pct = [["שדה", a.fgPct, a.fg], ["שתיים", a.p2Pct, a.p2],
+                 ["שלוש", a.p3Pct, a.p3], ["עונשין", a.ftPct, a.ft]]
+      .filter(([, v]) => v !== null && v !== undefined);
+    pct.forEach(([label, value, pair]) =>
+      sc.appendChild(statBar(label + " (" + pair[0] + " מתוך " + pair[1] + ")",
+                             value, 100, "%")));
+    view.appendChild(sc);
+    view.appendChild(gameLog(season.log));
   } else {
-    sc.appendChild(text("div", "empty", "העונה טרם החלה. הנתונים יופיעו כאן אחרי המשחק הראשון"));
+    sc.appendChild(text("div", "empty",
+      "עוד לא שיחק העונה במשחק רשמי. הנתונים ייכנסו לכאן מעצמם."));
+    view.appendChild(sc);
   }
-  view.appendChild(sc);
 
   footer();
 }
@@ -3442,6 +3485,49 @@ function renderStats() {
   footer();
 }
 
+// הרשומה של שחקן בעונה הנוכחית, מהטפסים שאספנו
+function seasonFor(slug) {
+  const all = (state.playerSeason && state.playerSeason.players) || [];
+  return all.find(x => x.slug === slug) || null;
+}
+
+// **יומן המשחקים.** ממוצע אומר מה הוא בדרך כלל, והיומן אומר מה קרה.
+// שתי השאלות שונות, ואוהד ששאל ״כמה הוא קלע מול הרצליה״ לא מקבל תשובה
+// ממוצע.
+function gameLog(log) {
+  const wrap = el("div", "card");
+  wrap.appendChild(text("div", "eyebrow", "משחק אחר משחק"));
+  const t = el("table", "log-table");
+  const head = el("tr");
+  ["משחק", "דק׳", "נק׳", "ריב׳", "אס׳", "מדד"].forEach((h, i) =>
+    head.appendChild(text("th", i === 0 ? "log-when" : "", h)));
+  t.appendChild(el("thead")).appendChild(head);
+  const body = el("tbody");
+  (log || []).forEach(e => {
+    const tr = el("tr");
+    const td = el("td", "log-when");
+    const a = el("a", "");
+    a.href = "#/game/" + encodeURIComponent(e.gameId);
+    // השם מהלוח שלנו ולא מהטופס: בטופס כתוב ״מכבי רוטשטיין אשדוד״ עם
+    // שם הספונסר, ובלוח יש את השם שהאוהד קורא לו
+    const fixture = gameById(e.gameId);
+    const who = fixture ? teamName(opponent(fixture)) : (e.opponent || "");
+    a.appendChild(text("span", "log-opp", who));
+    td.appendChild(a);
+    const res = text("span", "log-score " + (e.win ? "win" : "loss"),
+                     e.us + "-" + e.them);
+    td.appendChild(res);
+    td.appendChild(text("span", "log-date", fmtUpdatedDate.format(new Date(e.date))));
+    tr.appendChild(td);
+    [e.min, e.pts, e.reb, e.ast, e.pir].forEach(v =>
+      tr.appendChild(el("td")).appendChild(num(String(v == null ? "-" : v))));
+    body.appendChild(tr);
+  });
+  t.appendChild(body);
+  wrap.appendChild(t);
+  return wrap;
+}
+
 function statRow(p, cols) {
   const tr = el("tr");
   const td = el("td", "team");
@@ -3452,42 +3538,120 @@ function statRow(p, cols) {
 }
 
 function renderThisSeason() {
-  const s = state.seasonStats;
-  if (!s || !s.started || !(s.players || []).length) {
+  // **המקור כאן הוא הטפסים שלנו, ולא הפיד של היורוקאפ.** עד 28.9.2026
+  // העמוד הזה אמר ״העונה עוד לא התחילה״ גם אחרי שלושה משחקי גביע, כי
+  // ממוצעי היורוקאפ הם הדבר היחיד שהוא הכיר, והעונה האירופית נפתחת
+  // מאוחר יותר. האוהד לא חושב בחתך של תחרות.
+  const s = state.playerSeason;
+  if (!s || !(s.players || []).length) {
     const c = el("div", "card notice");
     c.appendChild(text("div", "notice-title", "העונה עוד לא התחילה"));
     c.appendChild(text("div", "notice-body",
-      "ברגע שיישחק המשחק הראשון, הסטטיסטיקות ייכנסו לכאן מעצמן, ממוצעים " +
-      "לשחקן ישירות מהפיד הרשמי של היורוקאפ, בלי הקלדה ידנית."));
+      "ברגע שיישחק המשחק הרשמי הראשון, הממוצעים ייכנסו לכאן מעצמם, " +
+      "מטופס המשחק ובלי הקלדה ידנית."));
     view.appendChild(c);
     advancedCard();
     return;
   }
 
-  view.appendChild(text("div", "section-title",
-    "ממוצעים למשחק · " + s.competition + " " + s.season));
+  view.appendChild(text("div", "section-title", "ממוצעים למשחק"));
+  // **הסדר נקבע לפי מה נחתך.** הטבלה רחבה מהמסך ונגררת, ולכן העמודה
+  // האחרונה היא הראשונה שלא רואים. נקודות, ריבאונדים ואסיסטים יושבים
+  // קרוב לשם, ומספר המשחקים, שהוא הקשר ולא נתון, יורד לסוף.
   const cols = [
-    { key: "games", label: "מש׳" }, { key: "pts", label: "נק׳" },
-    { key: "reb", label: "ריב׳" }, { key: "ast", label: "אס׳" },
-    { key: "val", label: "מדד" },
+    { key: "pts", label: "נק׳", from: r => avg1(r.avg.pts) },
+    { key: "reb", label: "ריב׳", from: r => avg1(r.avg.reb) },
+    { key: "ast", label: "אס׳", from: r => avg1(r.avg.ast) },
+    { key: "min", label: "דק׳", from: r => r.avg.min },
+    { key: "pir", label: "מדד", from: r => avg1(r.avg.pir) },
+    { key: "games", label: "מש׳", from: r => r.games },
   ];
+  view.appendChild(seasonTable(s.players, cols));
+  view.appendChild(prose("div", "table-note",
+    s.games + (s.games === 1 ? " משחק רשמי העונה" : " משחקים רשמיים העונה") +
+    ". משחקי הכנה לא נספרים. לחיצה על שחקן פותחת את העמוד שלו, ושם יש " +
+    "גם משחק אחר משחק."));
+
+  // **הקליעה בנפרד, כי היא שאלה אחרת.** כמה הוא קולע זו שאלה של נפח,
+  // וכמה הוא קולע ביעילות זו שאלה של איכות, ושתיהן באותה טבלה מבלבלות.
+  view.appendChild(text("div", "section-title", "קליעה"));
+  view.appendChild(seasonTable(
+    s.players.filter(r => r.avg.ts !== null && r.totals.fg[1] >= 5), [
+      { key: "fgPct", label: "שדה", from: r => pct(r.avg.fgPct) },
+      { key: "p3Pct", label: "שלוש", from: r => pct(r.avg.p3Pct) },
+      { key: "ftPct", label: "עונשין", from: r => pct(r.avg.ftPct) },
+      { key: "efg", label: "eFG", from: r => pct(r.avg.efg) },
+      { key: "ts", label: "TS", from: r => pct(r.avg.ts) },
+    ]));
+  view.appendChild(prose("div", "table-note",
+    "רק מי שלקח חמש זריקות שדה ומעלה. eFG נותן לשלשה את המשקל שלה, " +
+    "ו־TS מכניס גם את קו העונשין: כמה נקודות יוצאות מכל זריקה שנלקחה."));
+
+  // ממוצעי היורוקאפ נשארים כשכבה משלהם, כי הם חתך של תחרות אחת
+  const e = state.seasonStats;
+  if (e && e.started && (e.players || []).length) {
+    view.appendChild(text("div", "section-title",
+      "ובנפרד, " + e.competition + " " + e.season));
+    const euroCols = [
+      { key: "games", label: "מש׳" }, { key: "pts", label: "נק׳" },
+      { key: "reb", label: "ריב׳" }, { key: "ast", label: "אס׳" },
+      { key: "val", label: "מדד" },
+    ];
+    const card = el("div", "card table-card");
+    const tb = el("table", "standings stats-table");
+    const head = el("tr");
+    head.appendChild(text("th", "team", "שחקן"));
+    euroCols.forEach(c => head.appendChild(text("th", "", c.label)));
+    tb.appendChild(head);
+    e.players.forEach(p => tb.appendChild(statRow(p, euroCols)));
+    card.appendChild(tb);
+    view.appendChild(card);
+    if (e.note) view.appendChild(prose("div", "table-note", e.note));
+  }
+  advancedCard();
+}
+
+// ממוצע נכתב תמיד עם מקום עשרוני אחד. ״1״ ליד ״18.3״ באותה עמודה נקרא
+// כמו סוג אחר של נתון, ולא כמו אותו נתון במספר עגול.
+function avg1(v) {
+  return v === null || v === undefined ? "-" : Number(v).toFixed(1);
+}
+
+function pct(v) {
+  return v === null || v === undefined ? "-" : v + "%";
+}
+
+// טבלה של שחקנים שבה השם הוא קישור לעמוד שלו
+function seasonTable(rows, cols) {
   const card = el("div", "card table-card");
   const t = el("table", "standings stats-table");
   const head = el("tr");
-  const th0 = el("th", "team");
-  th0.textContent = "שחקן";
-  head.appendChild(th0);
-  cols.forEach(c => {
-    const th = el("th", "");
-    th.textContent = c.label;
-    head.appendChild(th);
-  });
+  head.appendChild(text("th", "team", "שחקן"));
+  cols.forEach(c => head.appendChild(text("th", "", c.label)));
   t.appendChild(head);
-  s.players.forEach(p => t.appendChild(statRow(p, cols)));
+  rows.forEach(r => {
+    const tr = el("tr");
+    const td = el("td", "team");
+    const a = el("a", "");
+    a.href = "#/player/" + encodeURIComponent(r.slug);
+    a.textContent = r.name;
+    td.appendChild(a);
+    tr.appendChild(td);
+    cols.forEach(c => {
+      const cell = el("td", "num");
+      cell.appendChild(num(String(c.from(r))));
+      tr.appendChild(cell);
+    });
+    t.appendChild(tr);
+  });
   card.appendChild(t);
-  view.appendChild(card);
-  if (s.note) view.appendChild(prose("div", "table-note", s.note));
-  advancedCard();
+  // רמז הגרירה נכתב רק כשבאמת יש מה לגרור, אחרת הוא רעש
+  const wrap = el("div", "");
+  wrap.appendChild(card);
+  if (cols.length > 4) {
+    wrap.appendChild(text("div", "drag-hint", "אפשר לגרור את הטבלה הצידה"));
+  }
+  return wrap;
 }
 
 // Deliberately a promise, not a fake chart: everything here needs play-by-play
@@ -3495,10 +3659,12 @@ function renderThisSeason() {
 function advancedCard() {
   view.appendChild(text("div", "section-title", "סטטיסטיקה מתקדמת"));
   const c = el("div", "card notice");
-  c.appendChild(text("div", "notice-title", "בדרך"));
-  c.appendChild(text("div", "notice-body",
-    "יעילות התקפה והגנה ל־100 מחזורים, אחוז שימוש, True Shooting והפרש " +
-    "כשעל הפרקט. המדדים האלה דורשים נתוני מחזורים שעדיין לא אספנו, " +
+  c.appendChild(text("div", "notice-title", "מה יש, ומה עוד לא"));
+  c.appendChild(prose("div", "notice-body",
+    "eFG ו־TS כבר כאן למעלה, והם מחושבים מטופס המשחק בלי שום הנחה, " +
+    "חוץ מהמקדם 0.44 שמעריך כמה ניסיונות קליעה שווה זריקת עונשין. " +
+    "מה שעוד אין: יעילות התקפה והגנה ל־100 מחזורים, אחוז שימוש והפרש " +
+    "כשעל הפרקט. אלה דורשים ספירת מחזורים ודקות משותפות שאין בטופס, " +
     "וטבלה שנראית מרשים אבל מבוססת על ניחוש שווה פחות מכלום."));
   view.appendChild(c);
 }
