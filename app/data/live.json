@@ -1,5 +1,24 @@
 {
-  "state": "starting",
+  "state": "final",
+  "home": 94,
+  "away": 73,
+  "ourScore": 94,
+  "theirScore": 73,
+  "quarter": 4,
+  "partials": {
+    "us": [
+      25,
+      24,
+      24,
+      21
+    ],
+    "them": [
+      18,
+      19,
+      17,
+      19
+    ]
+  },
   "game": {
     "gameId": "20260929-euro-RostockSeawo",
     "competition": "יורוקאפ",
@@ -8,5 +27,5 @@
     "date": "2026-09-29T17:00:00Z",
     "venue": "Hala Sportova Ranko Zeravica"
   },
-  "updated": "2026-09-29T18:56:33+00:00"
+  "updated": "2026-09-29T19:01:37+00:00"
 }
