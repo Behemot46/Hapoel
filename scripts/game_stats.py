@@ -368,11 +368,18 @@ def euro_team(side, club_name, roster_by_code):
         # שורה של מי שלא שיחק בכלל היא קיר של אפסים, ואין בה מידע
         if row["min"] != "0:00" or row["pts"] or row["reb"]:
             players.append(row)
+    totals = euro_row(side.get("total") or {}, "סה\"כ")
+    # **ושורת הסה״כ לא מקבלת דקות מהפיד, כי שם זה לא אותו דבר.**
+    # ב־total.timePlayed יושב אורך המשחק, 2400 שניות, ולא סכום הדקות של
+    # השחקנים שהוא 200. בטופס של הליגה השורה המודפסת אומרת 200, ולכן
+    # השארה של הערך האירופי הייתה מציגה ״40:00״ מתחת לעמודה שמסתכמת
+    # ל־200. השדה נשאר ריק והאפליקציה מסכמת את השורות בעצמה.
+    totals["min"] = ""
     return {"name": club_name,
             "coach": ((side.get("coach") or {}).get("name") or "").title(),
             "players": players,
             "teamRow": euro_row(side.get("team") or {}, TEAM_ROW),
-            "totals": euro_row(side.get("total") or {}, "סה\"כ")}
+            "totals": totals}
 
 
 def eurocup_boxscore(meta, roster):

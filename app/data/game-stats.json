@@ -3248,7 +3248,7 @@
           },
           "totals": {
             "name": "סה\"כ",
-            "min": "40:00",
+            "min": "",
             "no": 0,
             "starter": false,
             "pts": 94,
@@ -3718,7 +3718,7 @@
           },
           "totals": {
             "name": "סה\"כ",
-            "min": "40:00",
+            "min": "",
             "no": 0,
             "starter": false,
             "pts": 73,
