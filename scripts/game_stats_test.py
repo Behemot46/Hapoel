@@ -131,6 +131,18 @@ def check_eurocup(fail):
     if made != row["pts"]:
         fail.append("הנקודות בשורה האירופית לא יוצאות מהקליעות")
 
+    # **ושורת הסה״כ לא לוקחת דקות מהפיד.** שם timePlayed הוא אורך המשחק,
+    # 2400 שניות, ולא סכום הדקות של השחקנים שהוא 200. נמצא במשחק החי
+    # הראשון, 29.9 מול רוסטוק: מתחת לעמודה שמסתכמת ל־200 הופיע ״40:00״.
+    side = {"players": [{"player": {"person": HARPER_PERSON, "dorsal": 1},
+                         "stats": HARPER}],
+            "coach": {"name": "OBRADOVIC, SASA"},
+            "team": {}, "total": dict(HARPER, timePlayed=2400.0)}
+    built = gs.euro_team(side, "Hapoel Midtown Jerusalem", {})
+    print(f"\nדקות בשורת הסה\"כ האירופית: {built['totals']['min']!r}")
+    if built["totals"]["min"] != "":
+        fail.append("שורת הסה\"כ האירופית לקחה דקות מהפיד, וזה אורך המשחק")
+
 
 def main():
     fail = []
