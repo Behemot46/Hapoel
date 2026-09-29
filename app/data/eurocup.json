@@ -9,16 +9,26 @@
       "rows": [
         {
           "pos": 1,
-          "team": "Aris Thessaloniki",
-          "code": "ARI",
-          "played": 0,
-          "wins": 0,
+          "team": "Hapoel Midtown Jerusalem",
+          "code": "JER",
+          "played": 1,
+          "wins": 1,
           "losses": 0,
-          "for": 0,
-          "against": 0
+          "for": 94,
+          "against": 73
         },
         {
           "pos": 2,
+          "team": "Aris Thessaloniki",
+          "code": "ARI",
+          "played": 1,
+          "wins": 1,
+          "losses": 0,
+          "for": 87,
+          "against": 74
+        },
+        {
+          "pos": 3,
           "team": "Baglietto Derthona Tortona",
           "code": "TRT",
           "played": 0,
@@ -28,7 +38,7 @@
           "against": 0
         },
         {
-          "pos": 3,
+          "pos": 4,
           "team": "Cedevita Olimpija Ljubljana",
           "code": "LJU",
           "played": 0,
@@ -38,27 +48,7 @@
           "against": 0
         },
         {
-          "pos": 4,
-          "team": "Hapoel Midtown Jerusalem",
-          "code": "JER",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
           "pos": 5,
-          "team": "Le Mans Sarthe Basket",
-          "code": "LEM",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
-          "pos": 6,
           "team": "Recoletas Salud San Pablo Burgos",
           "code": "BGS",
           "played": 0,
@@ -68,7 +58,7 @@
           "against": 0
         },
         {
-          "pos": 7,
+          "pos": 6,
           "team": "Riga Zelli",
           "code": "RIG",
           "played": 0,
@@ -78,14 +68,24 @@
           "against": 0
         },
         {
+          "pos": 7,
+          "team": "Le Mans Sarthe Basket",
+          "code": "LEM",
+          "played": 1,
+          "wins": 0,
+          "losses": 1,
+          "for": 74,
+          "against": 87
+        },
+        {
           "pos": 8,
           "team": "Rostock Seawolves",
           "code": "RTK",
-          "played": 0,
+          "played": 1,
           "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
+          "losses": 1,
+          "for": 73,
+          "against": 94
         }
       ]
     },
@@ -179,13 +179,13 @@
       "rows": [
         {
           "pos": 1,
-          "team": "Buducnost VOLI Podgorica",
-          "code": "BUD",
-          "played": 0,
-          "wins": 0,
+          "team": "Dolomiti Energia Trento",
+          "code": "TRN",
+          "played": 1,
+          "wins": 1,
           "losses": 0,
-          "for": 0,
-          "against": 0
+          "for": 76,
+          "against": 73
         },
         {
           "pos": 2,
@@ -199,8 +199,8 @@
         },
         {
           "pos": 3,
-          "team": "Dolomiti Energia Trento",
-          "code": "TRN",
+          "team": "Tofas Bursa",
+          "code": "BUR",
           "played": 0,
           "wins": 0,
           "losses": 0,
@@ -209,8 +209,8 @@
         },
         {
           "pos": 4,
-          "team": "Napoli Basketball",
-          "code": "NAP",
+          "team": "Buducnost VOLI Podgorica",
+          "code": "BUD",
           "played": 0,
           "wins": 0,
           "losses": 0,
@@ -219,8 +219,8 @@
         },
         {
           "pos": 5,
-          "team": "Neptunas Klaipeda",
-          "code": "KLA",
+          "team": "Napoli Basketball",
+          "code": "NAP",
           "played": 0,
           "wins": 0,
           "losses": 0,
@@ -249,13 +249,13 @@
         },
         {
           "pos": 8,
-          "team": "Tofas Bursa",
-          "code": "BUR",
-          "played": 0,
+          "team": "Neptunas Klaipeda",
+          "code": "KLA",
+          "played": 1,
           "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
+          "losses": 1,
+          "for": 73,
+          "against": 76
         }
       ]
     },

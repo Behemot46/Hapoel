@@ -90,11 +90,21 @@
       "home": "הפועל ירושלים",
       "away": "Rostock Seawolves",
       "venue": "Hala Sportova Ranko Zeravica",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "homePartials": null,
-      "awayPartials": null
+      "status": "finished",
+      "homeScore": 94,
+      "awayScore": 73,
+      "homePartials": [
+        25,
+        24,
+        24,
+        21
+      ],
+      "awayPartials": [
+        18,
+        19,
+        17,
+        19
+      ]
     },
     {
       "id": "20261004-מכביתא",
