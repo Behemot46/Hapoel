@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-29T09:58:57+00:00",
+  "lastUpdated": "2026-09-29T14:09:23+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -20,7 +20,7 @@
     },
     "news": {
       "ok": true,
-      "detail": "עודכן בהצלחה"
+      "detail": "הקצב הוא פעם ביומיים, והמדור נכתב לפני 4 שעות"
     },
     "podcasts": {
       "ok": true,
