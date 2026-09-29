@@ -1,4 +1,12 @@
 {
-  "state": "idle",
-  "updated": "2026-09-25T14:33:03+00:00"
+  "state": "starting",
+  "game": {
+    "gameId": "20260929-euro-RostockSeawo",
+    "competition": "יורוקאפ",
+    "home": "הפועל ירושלים",
+    "away": "Rostock Seawolves",
+    "date": "2026-09-29T17:00:00Z",
+    "venue": "Hala Sportova Ranko Zeravica"
+  },
+  "updated": "2026-09-29T16:55:34+00:00"
 }
