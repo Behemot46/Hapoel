@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30T09:50:35Z",
+  "updated": "2026-09-30T20:51:53Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -7,7 +7,7 @@
       "title": "כיפה אדומה",
       "about": "team",
       "url": "https://podcasts.apple.com/us/podcast/%D7%9B%D7%99%D7%A4%D7%94-%D7%90%D7%93%D7%95%D7%9E%D7%94/id1573775015?uo=4",
-      "latest": "2026-09-16T02:59:00Z"
+      "latest": "2026-09-30T02:56:17Z"
     },
     {
       "id": "1623083958",
@@ -39,6 +39,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1573775015",
+      "show": "כיפה אדומה",
+      "about": "team",
+      "title": "פרק 101: ברגל ימין",
+      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/101-e3pje22",
+      "published": "2026-09-30T02:56:17Z",
+      "duration": 2287
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -209,15 +218,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/97-e3nesbi",
       "published": "2026-08-16T03:00:00Z",
       "duration": 5036
-    },
-    {
-      "showId": "1573775015",
-      "show": "כיפה אדומה",
-      "about": "team",
-      "title": "פרק 96: קיץ",
-      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/96-e3mbiv0",
-      "published": "2026-07-21T12:45:00Z",
-      "duration": 3379
     }
   ]
 }

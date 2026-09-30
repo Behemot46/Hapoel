@@ -29,13 +29,13 @@
         },
         {
           "pos": 3,
-          "team": "Baglietto Derthona Tortona",
-          "code": "TRT",
-          "played": 0,
-          "wins": 0,
+          "team": "Riga Zelli",
+          "code": "RIG",
+          "played": 1,
+          "wins": 1,
           "losses": 0,
-          "for": 0,
-          "against": 0
+          "for": 86,
+          "against": 84
         },
         {
           "pos": 4,
@@ -59,13 +59,13 @@
         },
         {
           "pos": 6,
-          "team": "Riga Zelli",
-          "code": "RIG",
-          "played": 0,
+          "team": "Baglietto Derthona Tortona",
+          "code": "TRT",
+          "played": 1,
           "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
+          "losses": 1,
+          "for": 84,
+          "against": 86
         },
         {
           "pos": 7,
@@ -104,18 +104,18 @@
         },
         {
           "pos": 2,
-          "team": "La Laguna Tenerife",
-          "code": "TNF",
-          "played": 0,
-          "wins": 0,
+          "team": "Siauliai Basketball",
+          "code": "SIA",
+          "played": 1,
+          "wins": 1,
           "losses": 0,
-          "for": 0,
-          "against": 0
+          "for": 74,
+          "against": 71
         },
         {
           "pos": 3,
-          "team": "London Lions",
-          "code": "LLI",
+          "team": "La Laguna Tenerife",
+          "code": "TNF",
           "played": 0,
           "wins": 0,
           "losses": 0,
@@ -134,16 +134,6 @@
         },
         {
           "pos": 5,
-          "team": "Siauliai Basketball",
-          "code": "SIA",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
-          "pos": 6,
           "team": "Turk Telekom Ankara",
           "code": "TTK",
           "played": 0,
@@ -153,7 +143,7 @@
           "against": 0
         },
         {
-          "pos": 7,
+          "pos": 6,
           "team": "U-BT Cluj-Napoca",
           "code": "CLU",
           "played": 0,
@@ -161,6 +151,16 @@
           "losses": 0,
           "for": 0,
           "against": 0
+        },
+        {
+          "pos": 7,
+          "team": "London Lions",
+          "code": "LLI",
+          "played": 1,
+          "wins": 0,
+          "losses": 1,
+          "for": 71,
+          "against": 74
         },
         {
           "pos": 8,
@@ -179,6 +179,16 @@
       "rows": [
         {
           "pos": 1,
+          "team": "Buducnost VOLI Podgorica",
+          "code": "BUD",
+          "played": 1,
+          "wins": 1,
+          "losses": 0,
+          "for": 99,
+          "against": 75
+        },
+        {
+          "pos": 2,
           "team": "Tofas Bursa",
           "code": "BUR",
           "played": 1,
@@ -188,7 +198,17 @@
           "against": 69
         },
         {
-          "pos": 2,
+          "pos": 3,
+          "team": "Napoli Basketball",
+          "code": "NAP",
+          "played": 1,
+          "wins": 1,
+          "losses": 0,
+          "for": 84,
+          "against": 76
+        },
+        {
+          "pos": 4,
           "team": "Dolomiti Energia Trento",
           "code": "TRN",
           "played": 1,
@@ -198,47 +218,7 @@
           "against": 73
         },
         {
-          "pos": 3,
-          "team": "Buducnost VOLI Podgorica",
-          "code": "BUD",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
-          "pos": 4,
-          "team": "Cosea JL Bourg-en-Bresse",
-          "code": "BOU",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
           "pos": 5,
-          "team": "Napoli Basketball",
-          "code": "NAP",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
-          "pos": 6,
-          "team": "Slask Wroclaw",
-          "code": "WRO",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
-          "pos": 7,
           "team": "Neptunas Klaipeda",
           "code": "KLA",
           "played": 1,
@@ -248,7 +228,17 @@
           "against": 76
         },
         {
-          "pos": 8,
+          "pos": 6,
+          "team": "Cosea JL Bourg-en-Bresse",
+          "code": "BOU",
+          "played": 1,
+          "wins": 0,
+          "losses": 1,
+          "for": 76,
+          "against": 84
+        },
+        {
+          "pos": 7,
           "team": "NINERS Chemnitz",
           "code": "NIN",
           "played": 1,
@@ -256,6 +246,16 @@
           "losses": 1,
           "for": 69,
           "against": 82
+        },
+        {
+          "pos": 8,
+          "team": "Slask Wroclaw",
+          "code": "WRO",
+          "played": 1,
+          "wins": 0,
+          "losses": 1,
+          "for": 75,
+          "against": 99
         }
       ]
     },
@@ -264,83 +264,83 @@
       "rows": [
         {
           "pos": 1,
-          "team": "Bahcesehir College Istanbul",
-          "code": "BAH",
-          "played": 0,
-          "wins": 0,
+          "team": "PAOK Thessaloniki",
+          "code": "PAO",
+          "played": 1,
+          "wins": 1,
           "losses": 0,
-          "for": 0,
-          "against": 0
+          "for": 93,
+          "against": 78
         },
         {
           "pos": 2,
-          "team": "Balkan Botevgrad",
-          "code": "BLK",
-          "played": 0,
-          "wins": 0,
+          "team": "ratiopharm ulm",
+          "code": "ULM",
+          "played": 1,
+          "wins": 1,
           "losses": 0,
-          "for": 0,
-          "against": 0
+          "for": 98,
+          "against": 84
         },
         {
           "pos": 3,
-          "team": "BOSNA BH Telecom Sarajevo",
-          "code": "BOS",
-          "played": 0,
-          "wins": 0,
+          "team": "Bahcesehir College Istanbul",
+          "code": "BAH",
+          "played": 1,
+          "wins": 1,
           "losses": 0,
-          "for": 0,
-          "against": 0
+          "for": 91,
+          "against": 78
         },
         {
           "pos": 4,
-          "team": "Kids&Us Manresa",
-          "code": "MAN",
-          "played": 0,
-          "wins": 0,
+          "team": "Lietkabelis Panevezys",
+          "code": "LKB",
+          "played": 1,
+          "wins": 1,
           "losses": 0,
-          "for": 0,
-          "against": 0
+          "for": 75,
+          "against": 72
         },
         {
           "pos": 5,
-          "team": "Lietkabelis Panevezys",
-          "code": "LKB",
-          "played": 0,
+          "team": "BOSNA BH Telecom Sarajevo",
+          "code": "BOS",
+          "played": 1,
           "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
+          "losses": 1,
+          "for": 72,
+          "against": 75
         },
         {
           "pos": 6,
-          "team": "PAOK Thessaloniki",
-          "code": "PAO",
-          "played": 0,
+          "team": "Roma Basketball",
+          "code": "BCR",
+          "played": 1,
           "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
+          "losses": 1,
+          "for": 78,
+          "against": 91
         },
         {
           "pos": 7,
-          "team": "ratiopharm ulm",
-          "code": "ULM",
-          "played": 0,
+          "team": "Balkan Botevgrad",
+          "code": "BLK",
+          "played": 1,
           "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
+          "losses": 1,
+          "for": 84,
+          "against": 98
         },
         {
           "pos": 8,
-          "team": "Roma Basketball",
-          "code": "BCR",
-          "played": 0,
+          "team": "Kids&Us Manresa",
+          "code": "MAN",
+          "played": 1,
           "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
+          "losses": 1,
+          "for": 78,
+          "against": 93
         }
       ]
     }
