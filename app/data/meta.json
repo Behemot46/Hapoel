@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-29T20:16:31+00:00",
+  "lastUpdated": "2026-09-30T09:50:51+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -20,7 +20,7 @@
     },
     "news": {
       "ok": true,
-      "detail": "הקצב הוא פעם ביומיים, והמדור נכתב לפני 10 שעות"
+      "detail": "הקצב הוא פעם ביומיים, והמדור נכתב לפני 24 שעות"
     },
     "podcasts": {
       "ok": true,
@@ -32,7 +32,7 @@
     },
     "gameStats": {
       "ok": true,
-      "detail": "1 טפסים חדשים, 4 בסך הכול"
+      "detail": "4 טפסים, אין חדש"
     },
     "playerSeason": {
       "ok": true,

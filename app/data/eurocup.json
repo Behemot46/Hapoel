@@ -94,6 +94,16 @@
       "rows": [
         {
           "pos": 1,
+          "team": "Umana Reyer Venice",
+          "code": "VNC",
+          "played": 1,
+          "wins": 1,
+          "losses": 0,
+          "for": 104,
+          "against": 72
+        },
+        {
+          "pos": 2,
           "team": "La Laguna Tenerife",
           "code": "TNF",
           "played": 0,
@@ -103,7 +113,7 @@
           "against": 0
         },
         {
-          "pos": 2,
+          "pos": 3,
           "team": "London Lions",
           "code": "LLI",
           "played": 0,
@@ -113,7 +123,7 @@
           "against": 0
         },
         {
-          "pos": 3,
+          "pos": 4,
           "team": "Maxima Roma",
           "code": "MRO",
           "played": 0,
@@ -123,19 +133,9 @@
           "against": 0
         },
         {
-          "pos": 4,
+          "pos": 5,
           "team": "Siauliai Basketball",
           "code": "SIA",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
-          "pos": 5,
-          "team": "Skyliners Frankfurt",
-          "code": "FRA",
           "played": 0,
           "wins": 0,
           "losses": 0,
@@ -164,13 +164,13 @@
         },
         {
           "pos": 8,
-          "team": "Umana Reyer Venice",
-          "code": "VNC",
-          "played": 0,
+          "team": "Skyliners Frankfurt",
+          "code": "FRA",
+          "played": 1,
           "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
+          "losses": 1,
+          "for": 72,
+          "against": 104
         }
       ]
     },
@@ -179,6 +179,16 @@
       "rows": [
         {
           "pos": 1,
+          "team": "Tofas Bursa",
+          "code": "BUR",
+          "played": 1,
+          "wins": 1,
+          "losses": 0,
+          "for": 82,
+          "against": 69
+        },
+        {
+          "pos": 2,
           "team": "Dolomiti Energia Trento",
           "code": "TRN",
           "played": 1,
@@ -188,19 +198,9 @@
           "against": 73
         },
         {
-          "pos": 2,
-          "team": "Cosea JL Bourg-en-Bresse",
-          "code": "BOU",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
           "pos": 3,
-          "team": "Tofas Bursa",
-          "code": "BUR",
+          "team": "Buducnost VOLI Podgorica",
+          "code": "BUD",
           "played": 0,
           "wins": 0,
           "losses": 0,
@@ -209,8 +209,8 @@
         },
         {
           "pos": 4,
-          "team": "Buducnost VOLI Podgorica",
-          "code": "BUD",
+          "team": "Cosea JL Bourg-en-Bresse",
+          "code": "BOU",
           "played": 0,
           "wins": 0,
           "losses": 0,
@@ -229,16 +229,6 @@
         },
         {
           "pos": 6,
-          "team": "NINERS Chemnitz",
-          "code": "NIN",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "for": 0,
-          "against": 0
-        },
-        {
-          "pos": 7,
           "team": "Slask Wroclaw",
           "code": "WRO",
           "played": 0,
@@ -248,7 +238,7 @@
           "against": 0
         },
         {
-          "pos": 8,
+          "pos": 7,
           "team": "Neptunas Klaipeda",
           "code": "KLA",
           "played": 1,
@@ -256,6 +246,16 @@
           "losses": 1,
           "for": 73,
           "against": 76
+        },
+        {
+          "pos": 8,
+          "team": "NINERS Chemnitz",
+          "code": "NIN",
+          "played": 1,
+          "wins": 0,
+          "losses": 1,
+          "for": 69,
+          "against": 82
         }
       ]
     },
