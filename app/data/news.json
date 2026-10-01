@@ -1,17 +1,97 @@
 {
-  "updated": "2026-09-29T09:58:45Z",
+  "updated": "2026-10-01T10:17:57Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "ישראל היום",
-    "ynet",
-    "וואלה ספורט",
     "כל העיר",
+    "ספורט 1",
+    "ynet",
+    "ONE",
+    "ישראל היום",
+    "C14",
+    "וואלה ספורט",
     "ספורט 5",
-    "isport.co.il",
-    "הארץ",
-    "ספורט 1"
+    "Sport5",
+    "ישראל ספורט",
+    "הארץ"
   ],
   "items": [
+    {
+      "title": "\"לא נותרו עיניים יבשות\": המפגש המרגש של הפועל ירושלים עם אביו של ענר שפירא ז\"ל",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1jVzhoLWxBY3lKZS1qWGxzY3UwNmhJZDllLXZBQncyajYyZTMwZ2tjQ0ozbUUzRjBxOW5wdWxfc0MyOWxfX004QkVjaXlTTHNo?oc=5",
+      "source": "כל העיר",
+      "sourceUrl": "https://www.kolhair.co.il",
+      "published": "2026-10-01T09:48:17Z"
+    },
+    {
+      "title": "כוכב הפועל ירושלים חשף: זו הסיבה שחתמתי במועדון",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE0tdUY5LUFOTTVsR2RKcFRhWi1SMFczOElCT2ZXeDVmcXRzR2d2bkZmcnZqeFNuUFRtM3A3MEgtM0QzTEkxR2FrbEU1dEJLMTVaWGp6ek8xXy15anBaQ3ZZZTlQQTRpWVBmWDdLYk50RVY?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-30T11:01:39Z"
+    },
+    {
+      "title": "הצהרת הכוונות של הפועל ירושלים באירופה? \"התחלה נהדרת עבורנו\"",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBkVDgxVDJmVzJBTm1IUi04eXRsR0dnVm12a0l0Qk1jQ0U4UFE5Ml9Ha1RUdXFFdzB1MUVZNzR0LXNRSlJmdGhDR0hfWnlaZDZpVVFXa2tUS0xsTXNKY2dHX2JtWlpUdG95cml3cGJVTnVNYms?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-09-30T05:09:07Z"
+    },
+    {
+      "title": "מסר ליורוקאפ: הפועל י-ם פתחה עם ניצחון גדול",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBjY0NPU1lIeFNTSnlFUEVsb3dTaW1Ta1NFUEhod1BGOFc3Vm43eEIteFpqY3pGY3pDb2taN3A1NllGZzFJajF6Mmhxa0Z6V3NWN0tr?oc=5",
+      "source": "ONE",
+      "sourceUrl": "https://www.one.co.il",
+      "published": "2026-09-30T03:57:55Z"
+    },
+    {
+      "title": "\"ביורוליג אמרו שהפועל ירושלים לא נכנסה רק בגלל המצב בישראל\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBHOXVzX2x2V3p5WFhXWTJRZEtQakpEWkZUQzNPQUpzeWxicnJ6eTVUOVhQYjF4TnVSMVRKOUV2WXFROExxeHBnZEF5MmJKWGtudUxyYjN1dHI3ME85RW5HWGthUWRRVXFzZHlUQXcwWDJXRk5xaWlFdC1BUdIBgwFBVV95cUxPN3p6a3h0N0RLRC1pOGVDbHFscmZzNFY1eVppdDF6VXRucHE0QmxXSWZHVUlNWVJVZVB1bFdydXVLb1psTzBnUnhTSUhRUzN6d0xSOEd6dTdMc00wTkVGUUR0TEVyRE5GUTM2VXI5NU5iMmJnS0lPYUMwelJjY2I1cUxXNA?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-09-29T20:22:00Z"
+    },
+    {
+      "title": "צפו: הפועל ירושלים פתחה את היורוקאפ עם 73:94 גדול מול רוסטוק, דאבל דאבל ללופטון",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE50R3JDclN1RHo0am5TNXBpT0h5YTBfRDJqNW9WVTFoSnp0cWU2UVYtSFhYRm5rX2NNc3EwLXZsMEdMUGh2b05KSF9oTm1hS2Q1UGF4T25FejRHX09UQmlGX0lmWmNTcVBhWUR3?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-09-29T19:13:03Z"
+    },
+    {
+      "title": "הפועל ירושלים פתחה את היורוקאפ עם 73:94 ענק על רוסטוק",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1RX2RhZk5mZkIzY3pXUTM2a2llaGRwdUxGekVJcWFnSlBFSHFpOG84ZkJiNnBZOWVMUnZmT202c0RDXzFyZ2V1N21UZXdCQQ?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-09-29T19:02:05Z"
+    },
+    {
+      "title": "המסע ליורוליג נפתח: הפועל ירושלים הביסה בפתיחת היורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBBS1pwTGpDZmkzRzJnNVF1WXg4bHM0WjlIMUF2dzQyQXB3c2dSQ1FhRmEtSlA1MEQ5TWJMWVBhMmN4eGpsYTg0RHhPYk5uTlBsUTVvd3VSTkZ4VTIxYWdtQnhrVlZmVzZPaU1PWGZEbDdva29LU0lXdFEzUdIBgwFBVV95cUxNck12SmROVHhscGZUdEJYV0liME5YM2pCMDdVeS1xendRWDMwbGNZM2NFQkg2eDUxR1hPMUpPS0pMaW43VmVEdGVBbV92Tl9sTHFQVHhVTWZCTlh3ZG5TcXhodGhtT0poTVZFTFB6ZTZrbkNoVDhPTHhuUExCTi1Dakxpaw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-09-29T18:53:37Z"
+    },
+    {
+      "title": "המסע התחיל ברגל ימין: הפועל ירושלים דרסה 73:94 את רוסטוק | צפו",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFB3TjBHT0Z6V0ZmaXl6LU9TN0JjN0Rwanh0bzIzUmNIc0ljUXJjaVM5MGtsMVh5dk9uWlJvUnZSQmtIcDBpUng3UFZTQWRQWHF5?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-09-29T18:53:00Z"
+    },
+    {
+      "title": "ברגל ימין: הפועל ירושלים הביסה 73:94 את רוסטוק",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1LR05UbGpFY2p4UW5UUWEtaVRtU3hrSktvbUM5OHpCNW13NHlsazczbU5CbFd5MDlpbG84UlROYmpFQnBBdkNNSGNNeXF1b09VNVBuNm1LT0dqZw?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-09-29T16:58:58Z"
+    },
+    {
+      "title": "איפה הפועל ירושלים? דירוג העוצמה של היורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9mVUROSmxlM05kLVZvR1FhYVpCMmN2dWl4SnBDYWRNT3NRUThkRUt2dWh0aUlWdktSdmgxVUdDc09HSVV5MlR4MTNXWEZ4VGY5Y3FPY0JuUmlMSXVnVmtvd3BaUm5KdWQwalQxcVBGcnkzZlU?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-09-29T10:52:58Z"
+    },
     {
       "title": "\"מכבי תל אביב פנתה אליי הקיץ, העדפתי את הפועל ירושלים\"",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBWckJGMmhsTkd3bXk1WWJxYmRrZXM1TnRHcHliVENscDhyVE1id2FKT1JxWmtNTVN2OEVRTnBBam1SOEx6VlB3RnVRMl9LTXFsVTdjSzZnT2NjbkthRjhzemQtcEU0eXZWRk9Tc3lnS09uamRPNGdMYjAzONIBgwFBVV95cUxPOXFORF95elVpX0hkeDNuRUZKUWtqLTNyLWhWbXlFNTVxWGFDQkxoYi1sckoyRlRLbGR2OGh5QWNWWjZQMGZmVGwtZjR6eDVYOFo1R3M4cUZJUWE4dFRuVXRTVUh5QmVtb3hjYjVPbTI2aVkxTzh3YnRBZHNROGd3NXgxMA?oc=5",
@@ -25,27 +105,6 @@
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-09-29T09:00:02Z"
-    },
-    {
-      "title": "בהפועל ירושלים מוכנים לאתגר הגרמני, לורנזו בראון ישותף?",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBwRm5zNHdOb05LakJJRzRUaXI2cm5xZ3ZuMDVET0NMYWp2eDZReVhjSzg4akkyajVHTjRvdEhjTzg2QVktMzdES2dVNk5FMndx?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-29T05:14:00Z"
-    },
-    {
-      "title": "הפועל ירושלים עשתה צעד גדול ליורוליג - אבל יש מכשול רציני",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBTTnhMUk13bXhHQWdzc0VKVVpJWmtSbW8xd2Uya29uajN3Rk50R0o2ZWVkNmx3Nm1aVDQtblhnWnZMOUxoeHItaGtOY2ExTm5sMjMyOUZGVDFqeTA2b2t6REpldVFWNk5LMXBoQkVFNmtFMUt5QWZsTNIBgAFBVV95cUxOLWlwZy13LXBLWGd5M3Brc2RpOG5sdzc3cUVtU19yNFpNQWJYc2xkb1RDcDZud1JqR3h2U2R5NnRSY3dsUFkxckx2aUYweTRPZnNSMFBqYklpRGRiY3YteEhEM1BPcUFwZkhvZUtpT3lLN0pqZ0xfcmJrVUxRbWp6Mw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-28T15:24:00Z"
-    },
-    {
-      "title": "אל תמהרו להיות נחרצים: מה באמת אפשר ללמוד מהפועל ירושלים בגביע ווינר?",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1QVlo5VURoSGdYRkVjbU9tek5MbnFvbmVHbXZNU29GaEIzcFJ5a0IySlcwQnhXUFpVS29wVWVlanVCaXNPSTRid21WYmJzV0ND?oc=5",
-      "source": "כל העיר",
-      "sourceUrl": "https://www.kolhair.co.il",
-      "published": "2026-09-28T11:36:52Z"
     },
     {
       "title": "כמו מכבי תל אביב: הפועל ירושלים בדרך לצעד משמעותי",
@@ -62,11 +121,11 @@
       "published": "2026-09-27T16:05:27Z"
     },
     {
-      "title": "שכר ענק - על תנאי: פרטי החוזה של לורנזו בראון בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5SYnU1MXI0WWNFQXJ6SU96QTZDNVNGQWxhbFVta0ZJYkNJUnFoWEUwcDQteVlnYkh3ZnBmN2F2ZkRkemxQd2dqWEdpam10aE9sU1duZmoxNFMwc3ZFZy1HUWVrUldtVHBaVERZV3JFeVFUaHdZQXBtUjJuUdIBgwFBVV95cUxNdzlNdmt3U2t0R211UVhjNy0wOUFoSG95VGtQRU4zSmxUdE1ENVVGamlpTk5ld3NWVG43MTJ5NlhwcW54Wkg1SEhHU2hMWHVZSHp3U0poTF9XNEZmVEQwaVdvcUI1WXlVYzFWcTlVUkRpbmNnTVlNSzNKbUpoLUxUSDV1OA?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-27T09:28:16Z"
+      "title": "משחק מצוין ללופטון, הפועל ירושלים מחצה את בני הרצליה",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBfN0NlNjFlTFotbUU3RTdyZklCVjVkTDQ1dlRJTlJyMS04dFJSSkR6LUNSVl95cmI1bTZlZmN5djNhREpqSVIzRWU4QUVVN0c5LUlpSw?oc=5",
+      "source": "Sport5",
+      "sourceUrl": "https://vod.sport5.co.il",
+      "published": "2026-09-26T20:34:00Z"
     },
     {
       "title": "הפועל ירושלים בונה עליו: היהודי חובש הכיפה שישחק בישראל",
@@ -90,23 +149,9 @@
       "published": "2026-09-25T14:46:40Z"
     },
     {
-      "title": "לורנזו בראון חתם בהפועל ירושלים, זה השכר והמתווה המיוחד",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5UcU5heW1LRkVZWDJHRFhiZ2k2RHJ3cS1YVmY0NUpIT2dFWC11Nm5KZ3hQQUl4VXQ3UEFXZE90allhM2gzQVBvUnlUOHBLUWFKV2p3dGRvSWlfTTcyT2lMcnR4YjREWTZiUWU1OFdQRDZqUQ?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-25T14:46:09Z"
-    },
-    {
-      "title": "חוזר לכדורסל הישראלי: לורנזו בראון חתם רשמית בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxPMDZJOXpkZnhZR0xfUXZDalFSb0Z4YUl1dHJMd2QxaU5ldXJLdmlUZjdoSlEyQ0VlMWZteUhTeFBRZEU2M3hTYnU1UDNnRlhrclVqZldhZzN5d0JEVTM1SVlaakt0dVdmaGVLQUJfcmFUaWVWcUtjTy1RVXMyOE9Ka3RqSWUxX3NwN19JUWcyaHZ2Z3V4dFRCcW5hcFk5VjNmellKQUpmVnZLa1JpbmF2dHhSV2lIMFJjbEUxeWJMd01wZTQzaDZsMVVhczc0Q242OE1UZ1BRXzUxRkJzdk0tTmhGdWlsRzhuSENmaXBKNWtVXy1BOElJekZ6RWV0MV9SRkVLaUoxWXFHMGdVSHRCT2xYSXJFVEhkTEoyVXM3bzZLUUw3RXRaeVFmaEtZQm9nYU9OemY1cUYtZ1Ayd3p2ag?oc=5",
-      "source": "isport.co.il",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-09-25T14:46:00Z"
-    },
-    {
       "title": "הפועל ירושלים הביסה את הרצליה בדרך לחצי גמר גביע ווינר",
       "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxOYlBxU2ZQZW1JVEpEUDkyT1E1dGtIZE9mV2xOYTh6RVExTXFRdm5KT083M0lRTmJmRjRtWDczQkp6S093YnlQMUo5TUNOVkxXYXB5eVc1X2NjbVVTTTJOWUZ6X2xXS0xkSkVYbzRtUF9YaE1nYzJGalpRZ0xWeUtYREE1RlBNR0NBSkp5QzJaQkx4UF9NNG1HU3kzZHV0bkNjMkVtWjRjM2VNVTZScjZOWUFVNklNZlJod2VadVVtWVlieXQ4Y09GcmRiOWpxSTZiSUpkYm15U1lyZTZ6X3BKVXFiWWE2cFI3elN6WHFfT0d6aEdEaDJzZGpVU3hZZXNrRzNBZlQzR0pfUWp2VHpxY3J1cW9iQXRLLVFDMHVsa3Bobi1qcE10eUVwU0NTaURjbHIxci1vUjVKS19LUDVwNTlR?oc=5",
-      "source": "isport.co.il",
+      "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-09-25T13:01:00Z"
     },
@@ -125,13 +170,6 @@
       "published": "2026-09-25T12:53:00Z"
     },
     {
-      "title": "לופטון כיכב, הפועל ירושלים הביסה בדרך לחצי גמר גביע ווינר",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1VaHo3Ym5pOXZvWFI5eEdnOXRqM1F6OFd6WUhIM1JvM19Wcl9YdXdSNF9XMnRCRkgtQ243OXE1MFBTbURVRmNJSEo3LXFOeXYz?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-09-25T12:47:00Z"
-    },
-    {
       "title": "הפועל ירושלים גברה 68:88 על הרצליה ועלתה לחצי",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBSWnBxbWpsazZYZlREMGc4R3pueDMtXzdzbnQ0QVJyVjJRN2o1bmZMNVVYWW5CV21RX0cyOTNqQk9MME56aHFUZGxzeHJabG5kTFVjcUVyYU1udw?oc=5",
       "source": "ynet",
@@ -139,18 +177,25 @@
       "published": "2026-09-25T10:58:34Z"
     },
     {
+      "title": "\"לא יכול להסביר במילים את מה שעברתי, מתרגש לחזור להפועל ירושלים\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9veWZLbHE5N3ZpQkNaTG5vYUVHMElmTkkzQXNBRVVNTVViYm5aY1FISzFGc2R0SHBnTVlVWC1URkNXWFY5VFkyNWRNY1pHc0dsbWhRWGhyT0tOZE1HRWJ3SFoyRFNqQW1PVnp5SXBCb2wwSko3STFxUDlnWdIBgwFBVV95cUxOYnR5QVp0NXpQYUZhTHhUU0MyVHVrTjVNZlBBaUlYVVQ5a0s5cHlhVE82YWdtWkw5VjJHZ2RLWk5mdFJHQ2Q4ekFndGxWRlZ1dWJwZDVWUnZyYmxtTkJ3Wkg1ZUwySWl6Mld6b1JRUUR5WXdtYjN3QldZR2t1Zld4THJBaw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-09-22T07:00:00Z"
+    },
+    {
       "title": "\"בעבר הפועל ירושלים עבדה יותר טוב עם מכבי והפועל תל אביב\"",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE91dmV3QzF3MG5ERjdjbDdlUXlBQjBEdVkzOHZnSFdIc3FJY3NMRzRuVFFsYmJmNV9XMlh1Qjc4RkktYTRlb1ZlUnN5aUhUdEJNVWdFRjBHOEk0aWp1UWs1dE1SNlJxLU9rZDE3QzJJekIzeU1heURPdDZYONIBgwFBVV95cUxPdDUwZTN2RG9SSFFrUTJRWE9ITjQ2cWpuQjJvclFuLWlWRlJYalBWUDJaUWw5Nnk5aElvaEdrMlo1UjBJZGwyc1NvSUx1dnlGbzNVZ2lGMGNTYlpEZ2FLaGdHenNpemEwR082VW9OYzJkaTZQQ0NCVHpXTEU1Y1UwVUtrWQ?oc=5",
       "source": "ישראל היום",
       "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-22T18:57:22Z"
+      "published": "2026-09-22T07:00:00Z"
     },
     {
-      "title": "הפועל ירושלים במגעים מתקדמים לצירוף לורנזו בראון",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBoZnZ2NGM2OEJ1N0FlTXFZSUVpdWlwMzRUWUUxYnAtb3R5cHVDZVNrOFo4VUszOEV5dnZyUFh1V0ZTWlkzcVU4cnZvLXdkY3luLUpKZDlpaWhTaTNQdThUYlhFbGx3NzRzM1B1cEg4UjktMGs?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-09-22T09:04:28Z"
+      "title": "\"הפועל ירושלים עלולה לפספס שריון ביורוליג בגלל עופר ינאי\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9WRkNVSGxsQVk4SGhBS3lvRWlLeWc4S3N0MXF2MFBfNkNEZldhLXBZRWJOYXlOb0dqdV9LSE91X1VQRGFDNFVYZG9WR0JQSmxqN0MtNldPQW54RUVscFVWS2g3ZGIydDZLdElVZUZ1MUdFbDBJTUVEbUlLQdIBgwFBVV95cUxQa3hkbmt5WF9xZkFFTHFrUGpwTEFKZ3RVSEZrZ3lhbmR2UEhMcVZqZFEweUFTNXBYY29CWVJaYV9xTEZZUFVaN3phQV8tMlpzU3BGM1hZbEQ2NjJKYllGaXhWVkg3bkVvNl9kNnNDeGxWeld2bWdvOHJBQS1zdkVscVhBbw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-09-19T07:00:00Z"
     },
     {
       "title": "הפועל ירושלים ניצחה את באר שבע/דימונה 69:83 ועלתה לרבע גמר גביע ווינר",
@@ -167,20 +212,6 @@
       "published": "2026-09-18T07:00:00Z"
     },
     {
-      "title": "הלקח של הפועל ירושלים: \"צריכים לדעת לשחק באווירה כזאת\"",
-      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOSHBPcVBSYVZDSUdJVVpPaGxGS05lQW9NSDhIVUlidFd3anl3Y2RrNXdaY1E0R2NoTkRmWWxhSGdZSTVYMEFBZklrYUtMblNKWndpdW44UGE5bTJIOWNxZGpydmlLTkNDQXA0djd0NE5KUXVRV2FwUFFNVDNrRXgxVk5yUjZHSElXdFlTVmJqb2NWYVl3V0xvblFSN1BKWHJ6cGdPS1NJMnRXTUhUZElXOUlMemdhYjRTTVZRQk5Gc0VYbExmaWxnd25UazBFYjZFZkFlZDE0elZqMi1Ndy01am9ROUpCdWg5NWJJcUk4Nk9jVkVsQkFlZmpxSlExeV9JV055Qg?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-14T07:00:00Z"
-    },
-    {
-      "title": "\"הפועל י-ם יכולה לחתוך אותי באמצע העונה\"",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1DUUo4NUdvUWdwUXlhek1temROakNHTkNYdWh1NlBoaHI0YlduZE9wM3hkQW4tb2I1RmdyZ012QWowZlh3Z2lRZWpDT09SRXBEWDloamNyTEtFYVRRUnQyR1NzWTlkbHVtSGtnOWUwZ2s0Zw?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-09-14T07:00:00Z"
-    },
-    {
       "title": "\"לא נשאיר את הסגל ככה\": הפועל ירושלים מחפשת מחליף להארפר",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNUXlHVzI4Sml3MXNyVi1hLXBJY19PSHZRTW1UbDJ1alZ2TzF2VE1UaU0zMUtqNXAtOVNxUUZtcnZiMDBXbHlqS3BWdmNyZUF0X1VsWGtuNzhWZ3k0WUVSc2RTYXVCMkVCVWZWN29VdHdOcElKWjNRRWlGMnduX1NDX2xlSktBQmdrMjFkdnhtU2VYUQ?oc=5",
       "source": "ספורט 1",
@@ -193,34 +224,6 @@
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
       "published": "2026-09-13T07:00:00Z"
-    },
-    {
-      "title": "על חשבון אקס הפועל ירושלים: הקבוצה הבאה של ניקולה מירוטיץ'",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBtWTBoR2VwSldlVFpRaUJDUTMwaTdON3QyeTc5d0VZeklteG9GRWQxWThkQjVreVk5UEUyNDBQTVdEdzlFS1pxNEh0bFFrbWl6dEhQdDQ3V0F2RkN1bnZUVF9nZ1RDVm01ZEs3YVd3djFGdlUxeFFfMtIBgAFBVV95cUxOeXgxNHlxaWR6QlYwdUNBb0lQSG0yeGl4N1hpOHltUHlWY1kzQ1o1amN0TXd0VDkxaDM3U3BLNFBSXy1mNktuZ2NLWk5pWFVzRUkxckV0WUpqLWVQaE5aX2pfQmh4ZUJMLU1lbFp4Tlgxa2NuTXd6QUxKOGoxam1MXw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-12T07:00:00Z"
-    },
-    {
-      "title": "דומיננטי כמו הארפר: הפועל ירושלים הביאה שחקן שלא היה פה",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9hb2lPRlJsdnp4anNaTW9aVTFsS1o0N2lYR1pDY2ZBT0JDcVZFRXI0SUVzMHFKbXFwZ20wamZuSE4ydEV4MVlwaTJWWHJSUnhXREhoQWdZdHI0X1Bzc20yeWpHTVkweWRNTkRlWmczZWN2QkJIQ2fSAX5BVV95cUxQTTdjQ1QwNHdiNXlTaDRtUFhLb1UtWmU5d0tqZmtGV25KeE5XWHlMZDFMaEd0M1ZKS2RRSGE4Q0tBMFhnS25oekl4dXo5VjJselhEbHRsZkYxY3FHZVFyUDRWVkNCdnVSbkFNcjlkeldpMm9NSTZRRVc3TU9ZYmc?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-09T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים הודיעה: יובל זוסמן סובל מנקע",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBGSktrOXlMdnhkel9oQnlTd1ljYmRSc1JwVklmNnQ0OFE1YlFrR0x5Vm8yMVBTeHRzajVBZXQ2QXhDNzdma0RjaTlsTU42MU1OOEJpTnMzSHJWdDF3M3ZLRmxIM0RSd3MzTDAyYXNORFpILWc?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-09-09T07:00:00Z"
-    },
-    {
-      "title": "הפועל ירושלים חגגה עם 77:110 על מכבי אשדוד",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9BdEs2VlJPOEo3ZTNCU2h4ZHRxaW81ZzFsVF9IMy13NERqNzJMVUJHLVd4el83Vnk5dkFDUHpJRTVIUmE2WTlCbXVDLWFla0IxUW1jb25mMC1OQQ?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-09-08T07:00:00Z"
     }
   ]
 }
