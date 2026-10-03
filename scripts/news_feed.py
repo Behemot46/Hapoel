@@ -589,6 +589,16 @@ def collect():
 # סיבה שהאיסוף נמדד מול meta.json: משמרת חדשה מתחילה כמה פעמים ביום.
 NEWS_EVERY = datetime.timedelta(hours=48)
 
+# **וחצי מרווח איסוף של חסד, אחרת ״פעם ביומיים״ הוא בפועל יומיים וחצי.**
+# הגייט נבדק רק כשהאיסוף רץ, והאיסוף רץ על רשת של 11 שעות, אז השוואה
+# ישירה ל־48 כמעט תמיד מחמיצה ומתקנת רק בסיבוב הבא. נמדד ב־3.10.2026:
+# באיסוף של 09:17 המדור היה בן 47 שעות, דילג, והרענון נדחה ל־20:30,
+# כלומר 58 שעות. ההטיה הזאת שיטתית ומצטברת.
+#
+# החסד מרכז את הרענון סביב 48 במקום לדחוף אותו תמיד מעבר: עם סף של
+# 42.5 שעות הוא נוחת בין 42.5 ל־53.5, ובמקרה שנמדד היה נוחת על 47.
+NEWS_GRACE = datetime.timedelta(hours=5, minutes=30)
+
 
 def news_age():
     """כמה זמן עבר מאז שהמדור נכתב, או None כשאין קובץ או שאין בו חתימה."""
@@ -611,8 +621,8 @@ def update_news(force=False):
     ``python scripts/news_feed.py`` אוסף תמיד, וזה הרענון בזמן תחזוקה.
     """
     age = news_age()
-    if not force and age is not None and age < NEWS_EVERY:
-        left = NEWS_EVERY - age
+    if not force and age is not None and age < NEWS_EVERY - NEWS_GRACE:
+        left = NEWS_EVERY - NEWS_GRACE - age
         log(f"המדור נכתב לפני {age.total_seconds() / 3600:.1f} שעות, "
             f"והקצב הוא פעם ביומיים. הבא בעוד {left.total_seconds() / 3600:.1f} שעות.")
         return (f"הקצב הוא פעם ביומיים, והמדור נכתב לפני "
