@@ -1,0 +1,42 @@
+{
+  "lastUpdated": "2026-10-03T20:18:25+00:00",
+  "sample": false,
+  "sources": {
+    "standings": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "games": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "eurocup": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "seasonStats": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "news": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "podcasts": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "roster": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "gameStats": {
+      "ok": true,
+      "detail": "4 טפסים, אין חדש"
+    },
+    "playerSeason": {
+      "ok": true,
+      "detail": "13 שחקנים מתוך 4 משחקים"
+    }
+  }
+}
