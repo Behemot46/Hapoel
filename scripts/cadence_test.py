@@ -136,6 +136,18 @@ check(news_h * 60 > quiet,
       f"מדור כל {news_h} שע׳, ארוך ממרווח האיסוף של {quiet // 60} שע׳")
 check(news_h <= 48,
       f"מדור כל {news_h} שע׳, לא יותר מהמרווח בין שתי בדיקות תחזוקה")
+# **והחסד חייב להיות בערך חצי מרווח איסוף.** בלעדיו הגייט נבדק רק על
+# רשת האיסופים ולכן כמעט תמיד מחמיץ ומתקן בסיבוב הבא, וכך ״פעם
+# ביומיים״ הפך ל־58 שעות ב־3.10.2026. גדול מדי יהפוך אותו לפעם ביום
+# וחצי, קטן מדי יחזיר את ההטיה.
+gh, gm = grab(read("scripts/news_feed.py"),
+              r"^NEWS_GRACE = datetime\.timedelta\(hours=(\d+), minutes=(\d+)\)",
+              "NEWS_GRACE", "news_feed.py")
+grace = gh * 60 + gm
+check(abs(grace - quiet / 2) <= 60,
+      f"חסד של {grace} דק׳, בערך חצי ממרווח האיסוף ({quiet // 2} דק׳)")
+check(grace < news_h * 60 / 2,
+      f"החסד ({grace} דק׳) קטן מחצי מקצב המדור, ולא מבטל אותו")
 # ודילוג הוא לא שקר: המקור מדווח ב־meta.json מה הוא עשה
 says = 'said if isinstance(said, str)' in read("scripts/update_data.py")
 check(says, "מקור שמדלג מספר את זה ב־meta.json ולא נרשם כ״עודכן בהצלחה״")
