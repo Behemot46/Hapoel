@@ -112,10 +112,10 @@
       "competition": "גביע ווינר סל",
       "home": "מכבי ת\"א",
       "away": "הפועל ירושלים",
-      "venue": "היכל טוטו, חולון",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
+      "venue": null,
+      "status": "finished",
+      "homeScore": 88,
+      "awayScore": 71
     },
     {
       "id": "20261006-euro-CedevitaOlim",
