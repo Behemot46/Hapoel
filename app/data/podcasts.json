@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04T19:13:05Z",
+  "updated": "2026-10-05T10:39:33Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,7 +14,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-10-01T10:23:07Z"
+      "latest": "2026-10-04T20:31:49Z"
     },
     {
       "id": "1675729649",
@@ -28,7 +28,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-09-27T13:42:52Z"
+      "latest": "2026-10-05T10:02:01Z"
     },
     {
       "id": "1648115499",
@@ -39,6 +39,24 @@
     }
   ],
   "items": [
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "נקודת מפנה? | מכבי מאוששת בקלאסיקו, איטודיס והפועל מוצאים דרך וירושלים מחפשת פתרונות",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3pu39h",
+      "published": "2026-10-05T10:02:01Z",
+      "duration": 4960
+    },
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "דרבי בגמר גביע ווינר, הכנות אחרונות לליגה",
+      "url": "https://omny.fm/shows/speaknrolisrael/c2a39022-b538-4d03-8887-b4d901510c50",
+      "published": "2026-10-04T20:31:49Z",
+      "duration": 4331
+    },
     {
       "showId": "1623083958",
       "show": "ספיק נ׳ רול",
@@ -157,15 +175,6 @@
       "duration": 4494
     },
     {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "בין הפרקט לבית המשפט",
-      "url": "https://omny.fm/shows/speaknrolisrael/bc8278de-3792-41db-8060-b4c100967a8c",
-      "published": "2026-09-10T09:13:46Z",
-      "duration": 3369
-    },
-    {
       "showId": "1648115499",
       "show": "אנחנו במפה",
       "about": "league",
@@ -200,15 +209,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3116389",
       "published": "2026-09-03T00:16:40Z",
       "duration": 5163
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "נסיך בלי כתר | נועם יעקב באולפן, הנבחרת מתרסקת, סורקין מאוכזב וירושלים בלי הארפר",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3o6e7a",
-      "published": "2026-09-02T04:00:00Z",
-      "duration": 5965
     },
     {
       "showId": "1573775015",
