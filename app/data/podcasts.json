@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-05T10:39:33Z",
+  "updated": "2026-10-05T21:40:11Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-09-27T11:22:00Z"
+      "latest": "2026-10-05T11:29:00Z"
     },
     {
       "id": "1698308776",
@@ -40,10 +40,19 @@
   ],
   "items": [
     {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "הגיע הזמן לטלטל את הספינה? | שוט, פרק 199",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-10-05T11:29:00Z",
+      "duration": 4220
+    },
+    {
       "showId": "1698308776",
       "show": "דאבל דריבל",
       "about": "league",
-      "title": "נקודת מפנה? | מכבי מאוששת בקלאסיקו, איטודיס והפועל מוצאים דרך וירושלים מחפשת פתרונות",
+      "title": "נקודת מפנה? | מכבי מתאוששת בקלאסיקו, איטודיס והפועל מוצאים דרך וירושלים מחפשת פתרונות",
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3pu39h",
       "published": "2026-10-05T10:02:01Z",
       "duration": 4960
@@ -146,15 +155,6 @@
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
       "published": "2026-09-17T13:20:00Z",
       "duration": 5501
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "אני צריך לבחור את המלחמות שלי, עם סשה אוברדוביץ' (נפרדים מג'ובה) | שוט, פרק 195",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-09-16T16:45:00Z",
-      "duration": 3523
     },
     {
       "showId": "1623083958",
