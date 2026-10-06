@@ -1,4 +1,12 @@
 {
-  "state": "idle",
-  "updated": "2026-10-04T19:01:59+00:00"
+  "state": "starting",
+  "game": {
+    "gameId": "20261006-euro-CedevitaOlim",
+    "competition": "יורוקאפ",
+    "home": "Cedevita Olimpija Ljubljana",
+    "away": "הפועל ירושלים",
+    "date": "2026-10-06T16:30:00Z",
+    "venue": "Arena Stozice"
+  },
+  "updated": "2026-10-06T15:24:12+00:00"
 }
