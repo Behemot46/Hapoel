@@ -125,11 +125,21 @@
       "home": "Cedevita Olimpija Ljubljana",
       "away": "הפועל ירושלים",
       "venue": "Arena Stozice",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "homePartials": null,
-      "awayPartials": null
+      "status": "finished",
+      "homeScore": 64,
+      "awayScore": 75,
+      "homePartials": [
+        18,
+        9,
+        20,
+        17
+      ],
+      "awayPartials": [
+        18,
+        19,
+        18,
+        20
+      ]
     },
     {
       "id": "20261011-הפועלחולון",
