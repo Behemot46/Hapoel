@@ -140,10 +140,7 @@
       "venue": "היכל טוטו, חולון",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null,
-      "broadcast": {
-        "pending": true
-      }
+      "awayScore": null
     },
     {
       "id": "20261014-euro-RecoletasSal",
