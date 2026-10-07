@@ -474,6 +474,67 @@ def _published(item):
     return d.astimezone(datetime.timezone.utc)
 
 
+# **הזמן שראינו ראשון הוא הזמן שנשאר.** גוגל מדווחת את מועד הפרסום
+# במדויק כל עוד הידיעה טרייה, ואחרי כמה ימים היא מחליפה אותו בתאריך גס:
+# אותו יום בשעה 07:00 בדיוק. עד כאן זה שלה, אבל אנחנו דרסנו בו את הזמן
+# המדויק שכבר היה בידינו, וזה כן שלנו.
+#
+# נמדד ב־7.10.2026 על 65 הגרסאות של news.json בגיט: 28 כותרות עברו
+# ל־07:00, כולן מזמן מדויק וכולן אחרי שהידיעה התיישנה. הכתבה של הארץ על
+# 68:88 מול הרצליה נכתבה ב־25.9 בשעה 12:58, כך נרשמה אצלנו שמונה איסופים
+# ברצף, וב־3.10 הפכה ל־07:00.
+#
+# האוהד רואה את זה בשני מקומות: התאריך היחסי מתחת לכותרת, והסדר, כי
+# המדור ממוין לפי הזמן וכותרות שהתאריך שלהן זז מקפצות במדור.
+#
+# **ומה שהנעילה לא פותרת, וכתוב כאן כדי שלא ייראה כאילו כן.** הידיעה של
+# 0404 על 88:71 בחצי הגמר, משחק של 4.10, מתוארכת ל־3.10 בשעה 07:00, יום
+# לפני המשחק שהיא מסקרת. שם הזמן היה שגוי כבר בתצפית הראשונה, ולנעילה אין
+# מה לשחזר. הארץ סיקרה את אותו משחק בכותרת אחרת ובזמן נכון, 4.10 בשעה
+# 18:14, אז זו לא כפילות שאפשר לנכש. אפשר היה להסיק את הזמן הנכון מהלוח
+# שלנו, אבל זה כבר זמן שלא ראינו בשום מקום, וזמן מומצא הוא לא תיקון.
+#
+# הכלל פשוט בכוונה: לא בוחרים בין שני זמנים ולא מחליטים מי מהם נראה
+# אמין, אלא נועלים את הראשון. הוא נרשם כשהפיד היה מדויק, וזה היתרון
+# היחיד שאפשר להוכיח.
+def _item_key(title):
+    """אותו מפתח שמשמש לזיהוי כפילויות: כותרת בלי רווחים ובלי פיסוק."""
+    return re.sub(r"\W+", "", title)
+
+
+def _iso(raw):
+    try:
+        when = datetime.datetime.fromisoformat((raw or "").replace("Z", "+00:00"))
+    except Exception:
+        return None
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=datetime.timezone.utc)
+    return when.astimezone(datetime.timezone.utc)
+
+
+def first_seen(items):
+    """מתי כל כותרת במדור הקיים נרשמה אצלנו בפעם הראשונה."""
+    out = {}
+    for it in items or ():
+        when = _iso(it.get("published"))
+        if it.get("title") and when is not None:
+            out[_item_key(it["title"])] = when
+    return out
+
+
+def keep_first(known, title, when):
+    """הזמן שנרשם אצלנו, אם הכותרת כבר הייתה במדור. אחרת זמן הפיד."""
+    return known.get(_item_key(title), when)
+
+
+def _stored_items():
+    try:
+        return json.loads(
+            (DATA / "news.json").read_text(encoding="utf-8")).get("items") or []
+    except Exception:
+        return []
+
+
 def _fetch_query(q, tries=3):
     """גוגל מחזירה 503 מדי פעם, במיוחד כששואלים אותה כמה פעמים ברצף
     מאותה כתובת. זה חולף, אז מנסים שוב לפני שמוותרים."""
@@ -501,7 +562,8 @@ def collect():
 
     seen, items = set(), []
     stats = {"raw": 0, "off_topic": 0, "old": 0, "blocked": 0, "dupe": 0,
-             "other_sport": 0}
+             "other_sport": 0, "pinned": 0}
+    known = first_seen(_stored_items())
     fixtures = our_game_times()
     log(f"לוח המשחקים להצלבה: {len(fixtures)} משחקים"
         if fixtures else "אין לוח משחקים, ההצלבה מול המשחקים לא תחול")
@@ -527,6 +589,12 @@ def collect():
 
             if not title or not link or when is None:
                 continue
+            # הנעילה קודמת לכל בדיקה שתלויה בזמן, כדי שגם הגיל וגם
+            # ההצלבה מול הלוח יישענו על אותו זמן שהאוהד יראה
+            first = keep_first(known, title, when)
+            if first != when:
+                stats["pinned"] += 1
+                when = first
             if not about_us(title):
                 stats["off_topic"] += 1
                 continue
@@ -573,6 +641,9 @@ def collect():
         f"dropped: {stats['off_topic']} not about us, {stats['old']} too old, "
         f"{stats['dupe']} duplicates, {stats['blocked']} blocked, "
         f"{stats['other_sport']} match reports on days we did not play")
+    if stats["pinned"]:
+        log(f"  {stats['pinned']} כותרות שמרו על הזמן שנרשם אצלנו, "
+            f"כי גוגל דיווחה עליהן זמן אחר")
     for i in items[:6]:
         log(f"  {i['published'][:10]}  {i['source']:<14} {i['title'][:66]}")
     return items
