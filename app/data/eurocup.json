@@ -41,14 +41,24 @@
           "pos": 4,
           "team": "Riga Zelli",
           "code": "RIG",
-          "played": 1,
+          "played": 2,
           "wins": 1,
-          "losses": 0,
-          "for": 86,
-          "against": 84
+          "losses": 1,
+          "for": 172,
+          "against": 171
         },
         {
           "pos": 5,
+          "team": "Rostock Seawolves",
+          "code": "RTK",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "for": 160,
+          "against": 180
+        },
+        {
+          "pos": 6,
           "team": "Baglietto Derthona Tortona",
           "code": "TRT",
           "played": 1,
@@ -58,7 +68,7 @@
           "against": 86
         },
         {
-          "pos": 6,
+          "pos": 7,
           "team": "Le Mans Sarthe Basket",
           "code": "LEM",
           "played": 1,
@@ -66,16 +76,6 @@
           "losses": 1,
           "for": 74,
           "against": 87
-        },
-        {
-          "pos": 7,
-          "team": "Rostock Seawolves",
-          "code": "RTK",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "for": 73,
-          "against": 94
         },
         {
           "pos": 8,
@@ -104,16 +104,6 @@
         },
         {
           "pos": 2,
-          "team": "La Laguna Tenerife",
-          "code": "TNF",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "for": 82,
-          "against": 75
-        },
-        {
-          "pos": 3,
           "team": "Maxima Roma",
           "code": "MRO",
           "played": 2,
@@ -121,6 +111,16 @@
           "losses": 1,
           "for": 166,
           "against": 147
+        },
+        {
+          "pos": 3,
+          "team": "London Lions",
+          "code": "LLI",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "for": 160,
+          "against": 151
         },
         {
           "pos": 4,
@@ -134,6 +134,16 @@
         },
         {
           "pos": 5,
+          "team": "La Laguna Tenerife",
+          "code": "TNF",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "for": 159,
+          "against": 164
+        },
+        {
+          "pos": 6,
           "team": "Siauliai Basketball",
           "code": "SIA",
           "played": 2,
@@ -143,7 +153,7 @@
           "against": 150
         },
         {
-          "pos": 6,
+          "pos": 7,
           "team": "Skyliners Frankfurt",
           "code": "FRA",
           "played": 2,
@@ -151,16 +161,6 @@
           "losses": 1,
           "for": 151,
           "against": 175
-        },
-        {
-          "pos": 7,
-          "team": "London Lions",
-          "code": "LLI",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "for": 71,
-          "against": 74
         },
         {
           "pos": 8,
