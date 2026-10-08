@@ -175,10 +175,7 @@
       "venue": "פיס ארנה, ירושלים",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null,
-      "broadcast": {
-        "pending": true
-      }
+      "awayScore": null
     },
     {
       "id": "20261021-euro-RigaZelli",
