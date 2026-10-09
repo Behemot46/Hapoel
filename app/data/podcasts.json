@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-09T10:44:13Z",
+  "updated": "2026-10-09T21:48:47Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -8,6 +8,13 @@
       "about": "team",
       "url": "https://podcasts.apple.com/us/podcast/%D7%9B%D7%99%D7%A4%D7%94-%D7%90%D7%93%D7%95%D7%9E%D7%94/id1573775015?uo=4",
       "latest": "2026-09-30T02:56:17Z"
+    },
+    {
+      "id": "6820447951",
+      "title": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "url": "https://podcasts.apple.com/il/podcast/%D7%9E%D7%90%D7%97%D7%95%D7%A8%D7%99-%D7%94%D7%A1%D7%9C%D7%99%D7%9D-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%90%D7%95%D7%94%D7%93%D7%99-%D7%94%D7%A4%D7%95%D7%A2%D7%9C-%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C/id6820447951?uo=4",
+      "latest": "2026-10-01T05:12:07Z"
     },
     {
       "id": "1623083958",
@@ -94,6 +101,15 @@
       "duration": 5437
     },
     {
+      "showId": "6820447951",
+      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "title": "יום אסוני או יום ששוני? מעבירים את הזמן לפני יום הדין בחמישי לאוקטובר | מאחורי הסלים, פרק 5",
+      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/5-e3pm8jr",
+      "published": "2026-10-01T05:12:07Z",
+      "duration": 4272
+    },
+    {
       "showId": "1573775015",
       "show": "כיפה אדומה",
       "about": "team",
@@ -157,6 +173,15 @@
       "duration": 2727
     },
     {
+      "showId": "6820447951",
+      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "title": "משחק ראשון בארנה ותופעת קני לופטון ג'וניור | מאחורי הסלים, פרק 4",
+      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/4-e3p3k86",
+      "published": "2026-09-19T16:28:09Z",
+      "duration": 4097
+    },
+    {
       "showId": "1698308776",
       "show": "דאבל דריבל",
       "about": "league",
@@ -202,6 +227,15 @@
       "duration": 8329
     },
     {
+      "showId": "6820447951",
+      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "title": "הפועל והיורוליג - יחסינו לאן? ארהל'ה וייסברג מתארח | מאחורי הסלים, פרק 3",
+      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/-------------3-e3ogrso",
+      "published": "2026-09-08T06:56:23Z",
+      "duration": 3874
+    },
+    {
       "showId": "1573775015",
       "show": "כיפה אדומה",
       "about": "team",
@@ -209,6 +243,15 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/98-e3og5rj",
       "published": "2026-09-08T03:00:00Z",
       "duration": 3652
+    },
+    {
+      "showId": "6820447951",
+      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "title": "זוסמן מתחתן, מקל מתראיין, פפי שגריר | מאחורי הסלים, פרק 2",
+      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/2-e3nluci",
+      "published": "2026-08-20T18:32:58Z",
+      "duration": 3787
     },
     {
       "showId": "1573775015",
