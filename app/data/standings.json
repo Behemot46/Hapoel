@@ -8,10 +8,18 @@
       "played": 0,
       "wins": 0,
       "losses": 0,
-      "points": 0
+      "points": 2
     },
     {
       "pos": 2,
+      "team": "גליל עליון",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 1
+    },
+    {
+      "pos": 3,
       "team": "הפועל ת\"א",
       "played": 0,
       "wins": 0,
@@ -19,55 +27,7 @@
       "points": 0
     },
     {
-      "pos": 3,
-      "team": "הפועל י-ם",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "points": 0
-    },
-    {
       "pos": 4,
-      "team": "בני הרצליה",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "points": 0
-    },
-    {
-      "pos": 5,
-      "team": "הפועל חולון",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "points": 0
-    },
-    {
-      "pos": 6,
-      "team": "הפועל העמק",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "points": 0
-    },
-    {
-      "pos": 7,
-      "team": "ראשון לציון",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "points": 0
-    },
-    {
-      "pos": 8,
-      "team": "הפועל ב\"ש",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "points": 0
-    },
-    {
-      "pos": 9,
       "team": "מכבי רמת גן",
       "played": 0,
       "wins": 0,
@@ -75,7 +35,23 @@
       "points": 0
     },
     {
-      "pos": 10,
+      "pos": 5,
+      "team": "הפועל י-ם",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 6,
+      "team": "הפועל חולון",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 7,
       "team": "קריית אתא",
       "played": 0,
       "wins": 0,
@@ -83,7 +59,15 @@
       "points": 0
     },
     {
-      "pos": 11,
+      "pos": 8,
+      "team": "הפועל העמק",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 9,
       "team": "נס ציונה",
       "played": 0,
       "wins": 0,
@@ -91,8 +75,24 @@
       "points": 0
     },
     {
+      "pos": 10,
+      "team": "הפועל ב\"ש",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
+      "pos": 11,
+      "team": "בני הרצליה",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "points": 0
+    },
+    {
       "pos": 12,
-      "team": "גליל עליון",
+      "team": "ראשון לציון",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -100,7 +100,7 @@
     },
     {
       "pos": 13,
-      "team": "הפועל אילת",
+      "team": "מכבי אשדוד",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -108,7 +108,7 @@
     },
     {
       "pos": 14,
-      "team": "מכבי אשדוד",
+      "team": "הפועל אילת",
       "played": 0,
       "wins": 0,
       "losses": 0,
