@@ -147,10 +147,10 @@
       "competition": "ליגת Winner סל, מחזור 1",
       "home": "הפועל חולון",
       "away": "הפועל ירושלים",
-      "venue": "היכל טוטו, חולון",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
+      "venue": null,
+      "status": "finished",
+      "homeScore": 69,
+      "awayScore": 92
     },
     {
       "id": "20261014-euro-RecoletasSal",

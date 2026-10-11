@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-11T18:01:00+00:00",
+  "lastUpdated": "2026-10-11T21:01:30+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -20,7 +20,7 @@
     },
     "news": {
       "ok": true,
-      "detail": "עודכן בהצלחה"
+      "detail": "הקצב הוא פעם ביומיים, והמדור נכתב לפני 3 שעות"
     },
     "podcasts": {
       "ok": true,
@@ -32,11 +32,11 @@
     },
     "gameStats": {
       "ok": true,
-      "detail": "6 טפסים, אין חדש"
+      "detail": "1 טפסים חדשים, 7 בסך הכול"
     },
     "playerSeason": {
       "ok": true,
-      "detail": "14 שחקנים מתוך 6 משחקים"
+      "detail": "14 שחקנים מתוך 7 משחקים"
     }
   }
 }
