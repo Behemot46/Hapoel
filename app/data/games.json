@@ -221,17 +221,17 @@
     },
     {
       "id": "20261101-הפועלאילת",
-      "date": "2026-11-01T12:00:00+02:00",
+      "date": "2026-11-01T19:00:00+02:00",
       "competition": "ליגת Winner סל, מחזור 4",
       "home": "הפועל ירושלים",
       "away": "הפועל אילת",
-      "venue": null,
+      "venue": "פיס ארנה, ירושלים",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261104-euro-ArisThessalo",

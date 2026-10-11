@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10T21:06:45Z",
+  "updated": "2026-10-11T10:09:35Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -7,7 +7,7 @@
       "title": "כיפה אדומה",
       "about": "team",
       "url": "https://podcasts.apple.com/us/podcast/%D7%9B%D7%99%D7%A4%D7%94-%D7%90%D7%93%D7%95%D7%9E%D7%94/id1573775015?uo=4",
-      "latest": "2026-09-30T02:56:17Z"
+      "latest": "2026-10-11T03:00:00Z"
     },
     {
       "id": "6820447951",
@@ -42,10 +42,28 @@
       "title": "אנחנו במפה",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%90%D7%A0%D7%97%D7%A0%D7%95-%D7%91%D7%9E%D7%A4%D7%94-%D7%94%D7%9B%D7%9C-%D7%A2%D7%9C-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%95%D7%AA-%D7%91%D7%90%D7%99%D7%A8%D7%95%D7%A4%D7%94/id1648115499?uo=4",
-      "latest": "2026-10-06T00:54:40Z"
+      "latest": "2026-10-11T05:19:43Z"
     }
   ],
   "items": [
+    {
+      "showId": "1648115499",
+      "show": "אנחנו במפה",
+      "about": "league",
+      "title": "מהדורה ספרדית",
+      "url": "https://rss.com/podcasts/we-are-on-the-map/3224636",
+      "published": "2026-10-11T05:19:43Z",
+      "duration": 4794
+    },
+    {
+      "showId": "1573775015",
+      "show": "כיפה אדומה",
+      "about": "team",
+      "title": "פרק 102: מגבירים קצב",
+      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/102-e3qaam2",
+      "published": "2026-10-11T03:00:00Z",
+      "duration": 3686
+    },
     {
       "showId": "1698308776",
       "show": "דאבל דריבל",
@@ -218,15 +236,6 @@
       "duration": 4494
     },
     {
-      "showId": "1648115499",
-      "show": "אנחנו במפה",
-      "about": "league",
-      "title": "היורוליג במפה",
-      "url": "https://rss.com/podcasts/we-are-on-the-map/3138652",
-      "published": "2026-09-10T00:40:21Z",
-      "duration": 8329
-    },
-    {
       "showId": "6820447951",
       "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
       "about": "team",
@@ -252,15 +261,6 @@
       "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/2-e3nluci",
       "published": "2026-08-20T18:32:58Z",
       "duration": 3787
-    },
-    {
-      "showId": "1573775015",
-      "show": "כיפה אדומה",
-      "about": "team",
-      "title": "פרק 97: טופ או פלופ",
-      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/97-e3nesbi",
-      "published": "2026-08-16T03:00:00Z",
-      "duration": 5036
     }
   ]
 }
