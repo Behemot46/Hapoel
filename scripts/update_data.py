@@ -143,6 +143,31 @@ def find_standings(soup):
         j_wins, j_losses = col("נצ"), col("הפ")
         j_rec = col('סה"כ', "סה״כ", "מאזן")
 
+        # **הכותרת הגדולה היא תלת־שכבתית, וזה מה שהפיל אותנו ב־11.10.2026.**
+        # השורה הראשונה היא ‏# | שם הקבוצה | נק' | סה"כ | בית | חוץ | סטט',
+        # כלומר שלוש עמודות בודדות ואחריהן שמות של **קבוצות** עמודות. שתי
+        # השורות שמתחתיה מפרטות אותן: ״משחקים | סלים״ ואז
+        # ״מש' | נצ' | הפ' | +/- | זכות | חובה״, וכך לכל אחת מהשלוש.
+        #
+        # בשורה הראשונה לבדה אין ״מש׳״, ״נצ׳״ ו״הפ׳״, ולכן שלושתם נקראו
+        # None והפכו ל־0 דרך ``or 0``, בעוד שהנקודות, שהן עמודה בודדת,
+        # נקראו נכון. זה מה שהאוהד ראה אחרי המחזור הראשון: ״0 משחקים,
+        # 0 ניצחונות, 2 נקודות״ באותה שורה.
+        #
+        # קבוצת העמודות הראשונה היא הסה"כ, והיא מתחילה מיד אחרי הנקודות.
+        # לכן שלוש העמודות שאחרי ``נק'`` הן משחקים, ניצחונות והפסדים,
+        # בסדר הזה. בטבלה הקטנה שבראש הדף הכותרת שכבה אחת ויש בה ``מש'``
+        # מפורש, ולכן הענף הזה חל רק כשהיא חסרה.
+        # שורת העלים היא זו שבה שלושת השמות ברצף. השורה שמעליה פותחת גם
+        # היא ב״משחקים״, ולכן חייבים את שלושתם ולא רק את הראשון.
+        if j_played is None and j_pts is not None:
+            for r in rows[hdr_idx + 1:hdr_idx + 3]:
+                leaf = [c.get_text(strip=True) for c in r.find_all(["td", "th"])]
+                if (len(leaf) >= 3 and leaf[0].startswith("מש")
+                        and leaf[1].startswith("נצ") and leaf[2].startswith("הפ")):
+                    j_played, j_wins, j_losses = j_pts + 1, j_pts + 2, j_pts + 3
+                    break
+
         parsed = []
         for r in rows[hdr_idx + 1:]:
             cells = [c.get_text(strip=True) for c in r.find_all("td")]
@@ -175,6 +200,33 @@ def find_standings(soup):
                 best = parsed
     return best
 
+
+# **אימות, כי העמודה שזזה לא מתלוננת.** הכתיבה השקטה של אפסים היא
+# התקלה שהכי קשה לראות: הטבלה מופיעה, היא מסודרת, והמספרים בה פשוט לא
+# נכונים. שני הכללים כאן הם לוגיקה ולא ניחוש:
+#
+#   * **אין נקודות בלי משחקים.** זאת החתימה המדויקת של התקלה מ־11.10.
+#   * **ניצחונות ועוד הפסדים שווה משחקים.** אם המיפוי זז, זה נשבר.
+#
+# ושיטת הניקוד נבדקת בלוג ולא כשגיאה: בליגה הישראלית ניצחון הוא שתי
+# נקודות והפסד אחת, אבל עונש או משחק שהופסד בטכני יכולים לשבור את זה,
+# וזה לא מצב שבו צריך להשאיר את האוהד בלי טבלה.
+def verify_standings(parsed):
+    for p in parsed:
+        team, played = p["team"], p["played"]
+        wins, losses, points = p["wins"], p["losses"], p.get("points")
+        if points and not played:
+            raise RuntimeError(
+                f"{team}: {points} נקודות ו־{played} משחקים, כלומר עמודה זזה")
+        if wins + losses != played:
+            raise RuntimeError(
+                f"{team}: {wins}+{losses} לא מסתכם ל־{played} משחקים")
+    odd = [p["team"] for p in parsed
+           if p.get("points") is not None
+           and p["points"] != 2 * p["wins"] + p["losses"]]
+    if odd:
+        log("שימו לב, הניקוד לא יוצא 2 לניצחון ו־1 להפסד אצל:", ", ".join(odd))
+
 # season pages: 2026/27 is cYear=2027 on basket.co.il; fall back to the
 # previous season during the off-season, when the new table is still empty
 STANDINGS_URLS = [
@@ -197,6 +249,7 @@ def update_standings():
         dump_tables(soup, url)
     if not parsed:
         raise RuntimeError("no standings table found containing team name (see DIAG lines)")
+    verify_standings(parsed)
 
     rows = []
     for i, p in enumerate(parsed, start=1):
