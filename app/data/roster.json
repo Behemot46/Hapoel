@@ -26,9 +26,9 @@
       "country": "ארה״ב",
       "code": "011970",
       "source": "eurocup",
+      "nameHe": "ג׳ארד הארפר",
       "slug": "jared-harper",
-      "photo": "img/players/jared-harper.jpg",
-      "nameHe": "ג׳ארד הארפר"
+      "photo": "img/players/jared-harper.jpg"
     },
     {
       "name": "Kenny Lofton Jr",
@@ -113,10 +113,10 @@
       "country": "ארה״ב",
       "code": "014007",
       "source": "eurocup",
+      "nameHe": "שייק מילטון",
       "slug": "shake-milton",
       "photoCredit": "פרובולרס",
-      "photo": "img/players/shake-milton.jpg",
-      "nameHe": "שייק מילטון"
+      "photo": "img/players/shake-milton.jpg"
     },
     {
       "name": "Dusan Miletic",
@@ -171,10 +171,10 @@
       "country": "ארה״ב",
       "code": "014904",
       "source": "eurocup",
+      "nameHe": "דייוויד רודי",
       "slug": "david-roddy",
       "photoCredit": "פרובולרס",
-      "photo": "img/players/david-roddy.jpg",
-      "nameHe": "דייוויד רודי"
+      "photo": "img/players/david-roddy.jpg"
     },
     {
       "name": "Gabriel Chachashvili",
