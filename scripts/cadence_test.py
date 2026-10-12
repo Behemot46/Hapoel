@@ -49,8 +49,17 @@ live_py = read("scripts/update_live.py")
 # הפולר: כל כמה זמן הוא דוגם, וכמה זמן הוא מחזיק
 poll_every = grab(live_yml, r"^          EVERY=(\d+)$",
                   "EVERY", "live.yml")[0] // 60
-poll_minutes = grab(live_yml, r"DEADLINE=\$\(\( \$\(date \+%s\) \+ (\d+) \* 60 \)\)",
-                    "DEADLINE", "live.yml")[0]
+# **הדדליין של הלולאה נקבע מהמשחק, והתקרה היא מה שחוסם אותו.** עד
+# 12.10.2026 היה כאן מספר קבוע של 210 דקות מתחילת הריצה, והבדיקה למטה
+# השוותה אותו ל־AFTER לבדו. זה מודל שגוי: הריצה מתחילה עד BEFORE דקות
+# לפני הקפיצה, ולכן היא צריכה להחזיק BEFORE+AFTER. כך עבר 210 את הבדיקה
+# ובכל זאת מת 18 דקות לפני סוף החלון ב־11.10, המשחק הראשון בליגה.
+poll_minutes = grab(live_yml, r"CAP=\$\(\( \$\(date \+%s\) \+ (\d+) \* 60 \)\)",
+                    "CAP", "live.yml")[0]
+fallback = grab(live_yml, r"FALLBACK=\$\(\( \$\(date \+%s\) \+ (\d+) \* 60 \)\)",
+                "FALLBACK", "live.yml")[0]
+job_cap = grab(live_yml, r"^    timeout-minutes: (\d+)$",
+               "timeout-minutes", "live.yml")[0]
 
 # הפולר: מתי הוא מחשיב משחק כ״עכשיו״
 before = grab(live_py, r"^BEFORE = datetime\.timedelta\(minutes=(\d+)\)",
@@ -101,8 +110,14 @@ check(poke <= before,
 # ודקירה יכולה לקרות רק אם האיסוף בכלל מחשיב את המשחק כמתקרב
 check(soon >= before,
       f"האיסוף מחפש משחק {soon} דק׳ קדימה, לפחות כמו חלון הפולר ({before})")
-check(poll_minutes >= after_h * 60,
-      f"הפולר מחזיק {poll_minutes} דק׳, מכסה את החלון של {after_h * 60} דק׳")
+# הריצה יכולה להתחיל ברגע שהחלון נפתח, כלומר BEFORE דקות לפני הקפיצה,
+# והיא חייבת לשרוד עד שהוא נסגר. אחרת היא מתה כשהמצב עוד ״playing״, ואף
+# אחד לא כותב idle עד שדקירה אחרת תיפול.
+check(poll_minutes >= before + after_h * 60,
+      f"התקרה {poll_minutes} דק׳ מכסה חלון מלא של {before + after_h * 60} דק׳")
+check(job_cap > poll_minutes,
+      f"תקרת הג׳וב {job_cap} דק׳ גדולה מהדדליין {poll_minutes}")
+print(f"  ברירת המחדל, כשלא התקבל חלון: {fallback} דק׳")
 
 print("\nהשומר מול הדופק:")
 # לולאה בריאה שקטה כשאין חדשות. אם השומר קורא לשקט הזה ״מת״, הוא יזמן
@@ -157,19 +172,29 @@ print("\nתקציב הדיפלויים של ורסל, 100 ביום:")
 quiet_day = (24 * 60) // quiet
 # ביום משחק: החלון הצפוף רחב win_b+win_a שעות, ומחוצה לו הקצב הרגוע
 from_collect = ((win_b + win_a) * 60) // hot + quiet_day
+# **דגימה אינה דחיפה, וזה מה שהמודל כאן פספס.** ‏save_live כותב רק
+# כשהתוכן באמת השתנה, ואחרת מרענן את החותמת פעם ב־STAMP_EVERY. במשחק
+# ליגה אין הזנה חיה והתוכן משתנה פעמיים בלבד, starting ואז playing ואז
+# idle, ולכן קצב הדחיפות נשלט בחותמת ולא בדגימה: נמדד ב־11.10.2026,
+# **13 דחיפות למשחק שלם** מול 42 שהמודל הקודם הניח. ביורוקאפ יש הזנה
+# חיה והתוצאה משתנה כמעט בכל דגימה, ושם הגבול הוא אכן קצב הדגימה.
+from_poller_home = poll_minutes // stamp + 2
 from_poller = poll_minutes // poll_every
 worst = from_collect + from_poller
 print(f"  איסוף ביום רגוע: {quiet_day}")
 print(f"  איסוף ביום משחק: לכל היותר {from_collect} ביום")
-print(f"  פולר במשחק: לכל היותר {from_poller}")
+print(f"  פולר במשחק ליגה: לכל היותר {from_poller_home} "
+      f"(נמדד 13 ב־11.10)")
+print(f"  פולר במשחק יורוקאפ: לכל היותר {from_poller}")
 print(f"  יום משחק במקרה הגרוע: {worst}")
 check(quiet_day <= 4,
       f"יום רגוע סוגר על {quiet_day} דיפלויים")
 check(worst <= 80,
       f"{worst} ביום משחק, עם מרווח מתחת ל־100")
-# שני משחקים ביום קורים, למשל בטורניר הכנה
-check(from_collect + 2 * from_poller <= 100,
-      f"{from_collect + 2 * from_poller} גם ביום עם שני משחקים")
+# **שני משחקים ביום קורים, למשל בטורניר הכנה, אבל לא שני משחקי יורוקאפ:**
+# שם משחק אחד בשבוע. לכן התרחיש הגרוע הוא יורוקאפ ועוד משחק מקומי.
+two_games = from_collect + from_poller + from_poller_home
+check(two_games <= 100, f"{two_games} גם ביום עם שני משחקים")
 
 if FAILURES:
     print(f"\nנשברו {len(FAILURES)} הסכמות בין הקבצים.")
