@@ -27,7 +27,8 @@
       "code": "011970",
       "source": "eurocup",
       "slug": "jared-harper",
-      "photo": "img/players/jared-harper.jpg"
+      "photo": "img/players/jared-harper.jpg",
+      "nameHe": "ג׳ארד הארפר"
     },
     {
       "name": "Kenny Lofton Jr",
@@ -114,7 +115,8 @@
       "source": "eurocup",
       "slug": "shake-milton",
       "photoCredit": "פרובולרס",
-      "photo": "img/players/shake-milton.jpg"
+      "photo": "img/players/shake-milton.jpg",
+      "nameHe": "שייק מילטון"
     },
     {
       "name": "Dusan Miletic",
@@ -171,7 +173,8 @@
       "source": "eurocup",
       "slug": "david-roddy",
       "photoCredit": "פרובולרס",
-      "photo": "img/players/david-roddy.jpg"
+      "photo": "img/players/david-roddy.jpg",
+      "nameHe": "דייוויד רודי"
     },
     {
       "name": "Gabriel Chachashvili",
