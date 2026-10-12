@@ -172,7 +172,25 @@ def eurocup_snapshot(game):
     }
 
 
+# **מתי החלון נסגר, לשימוש הלולאה שב־live.yml.** הלולאה חייבת לשרוד עד
+# שהחלון נסגר, אחרת היא מתה כשהמצב עוד ״playing״ ואף אחד לא כותב idle.
+# זה מה שקרה ב־11.10.2026, המשחק הראשון בליגה: הדדליין היה 210 דקות
+# מתחילת הריצה, כלומר 20:37, והחלון נסגר ב־20:55. הלולאה מתה 18 דקות
+# לפני, והאוהד ראה ״המשחק מתנהל״ עוד שלוש שעות ועשרים, עד שדקירה מאוחרת
+# ב־23:06 כתבה idle. דווקא בשעה שאחרי המשחק, כשנכנסים לראות את התוצאה.
+#
+# הקבוע נשאר כאן ולא מועתק ל־YAML, כדי שלא ייפרדו.
+def window_end():
+    game, start = current_game()
+    return (start + AFTER) if game else None
+
+
 def main():
+    if "--window-end" in sys.argv:
+        # הלולאה קוראת את זה, ולכן שורה אחת בלבד לפלט: חותמת זמן או כלום
+        end = window_end()
+        print(int(end.timestamp()) if end else "")
+        return 0
     game, start = current_game()
     if not game:
         # only rewrite when the state actually changes, so quiet nights make

@@ -143,6 +143,31 @@ def find_standings(soup):
         j_wins, j_losses = col("נצ"), col("הפ")
         j_rec = col('סה"כ', "סה״כ", "מאזן")
 
+        # **הכותרת הגדולה היא תלת־שכבתית, וזה מה שהפיל אותנו ב־11.10.2026.**
+        # השורה הראשונה היא ‏# | שם הקבוצה | נק' | סה"כ | בית | חוץ | סטט',
+        # כלומר שלוש עמודות בודדות ואחריהן שמות של **קבוצות** עמודות. שתי
+        # השורות שמתחתיה מפרטות אותן: ״משחקים | סלים״ ואז
+        # ״מש' | נצ' | הפ' | +/- | זכות | חובה״, וכך לכל אחת מהשלוש.
+        #
+        # בשורה הראשונה לבדה אין ״מש׳״, ״נצ׳״ ו״הפ׳״, ולכן שלושתם נקראו
+        # None והפכו ל־0 דרך ``or 0``, בעוד שהנקודות, שהן עמודה בודדת,
+        # נקראו נכון. זה מה שהאוהד ראה אחרי המחזור הראשון: ״0 משחקים,
+        # 0 ניצחונות, 2 נקודות״ באותה שורה.
+        #
+        # קבוצת העמודות הראשונה היא הסה"כ, והיא מתחילה מיד אחרי הנקודות.
+        # לכן שלוש העמודות שאחרי ``נק'`` הן משחקים, ניצחונות והפסדים,
+        # בסדר הזה. בטבלה הקטנה שבראש הדף הכותרת שכבה אחת ויש בה ``מש'``
+        # מפורש, ולכן הענף הזה חל רק כשהיא חסרה.
+        # שורת העלים היא זו שבה שלושת השמות ברצף. השורה שמעליה פותחת גם
+        # היא ב״משחקים״, ולכן חייבים את שלושתם ולא רק את הראשון.
+        if j_played is None and j_pts is not None:
+            for r in rows[hdr_idx + 1:hdr_idx + 3]:
+                leaf = [c.get_text(strip=True) for c in r.find_all(["td", "th"])]
+                if (len(leaf) >= 3 and leaf[0].startswith("מש")
+                        and leaf[1].startswith("נצ") and leaf[2].startswith("הפ")):
+                    j_played, j_wins, j_losses = j_pts + 1, j_pts + 2, j_pts + 3
+                    break
+
         parsed = []
         for r in rows[hdr_idx + 1:]:
             cells = [c.get_text(strip=True) for c in r.find_all("td")]
@@ -175,6 +200,33 @@ def find_standings(soup):
                 best = parsed
     return best
 
+
+# **אימות, כי העמודה שזזה לא מתלוננת.** הכתיבה השקטה של אפסים היא
+# התקלה שהכי קשה לראות: הטבלה מופיעה, היא מסודרת, והמספרים בה פשוט לא
+# נכונים. שני הכללים כאן הם לוגיקה ולא ניחוש:
+#
+#   * **אין נקודות בלי משחקים.** זאת החתימה המדויקת של התקלה מ־11.10.
+#   * **ניצחונות ועוד הפסדים שווה משחקים.** אם המיפוי זז, זה נשבר.
+#
+# ושיטת הניקוד נבדקת בלוג ולא כשגיאה: בליגה הישראלית ניצחון הוא שתי
+# נקודות והפסד אחת, אבל עונש או משחק שהופסד בטכני יכולים לשבור את זה,
+# וזה לא מצב שבו צריך להשאיר את האוהד בלי טבלה.
+def verify_standings(parsed):
+    for p in parsed:
+        team, played = p["team"], p["played"]
+        wins, losses, points = p["wins"], p["losses"], p.get("points")
+        if points and not played:
+            raise RuntimeError(
+                f"{team}: {points} נקודות ו־{played} משחקים, כלומר עמודה זזה")
+        if wins + losses != played:
+            raise RuntimeError(
+                f"{team}: {wins}+{losses} לא מסתכם ל־{played} משחקים")
+    odd = [p["team"] for p in parsed
+           if p.get("points") is not None
+           and p["points"] != 2 * p["wins"] + p["losses"]]
+    if odd:
+        log("שימו לב, הניקוד לא יוצא 2 לניצחון ו־1 להפסד אצל:", ", ".join(odd))
+
 # season pages: 2026/27 is cYear=2027 on basket.co.il; fall back to the
 # previous season during the off-season, when the new table is still empty
 STANDINGS_URLS = [
@@ -197,6 +249,7 @@ def update_standings():
         dump_tables(soup, url)
     if not parsed:
         raise RuntimeError("no standings table found containing team name (see DIAG lines)")
+    verify_standings(parsed)
 
     rows = []
     for i, p in enumerate(parsed, start=1):
@@ -1162,6 +1215,24 @@ SLUG_COMMENT = (
 SLUG_MAP = "player-slugs.json"
 
 
+# **המזהים היציבים של שחקן, בסדר העדפה.** מזהה המועדון הוא הראשון כי כל
+# הקובץ בנוי עליו. הקוד של היורוליג נוסף ב־12.10.2026, אחרי שנחתמו שייק
+# מילטון ודייוויד רודי: שניהם הופיעו רק בפיד האירופי, בלי clubId, ולכן
+# ``if cid`` מנע מהם כל זיכרון והכתובת שלהם נגזרה מהשם מחדש בכל איסוף.
+# ברגע שאתר המועדון היה מפרסם אותם בעברית הכתובת הייתה מתחלפת מתחתיהם,
+# כלומר בדיוק מה שקרה ללוברבוים, רק בכיוון ההפוך. הקוד מגיע מהפיד ולא
+# מהמועדון, ולכן הוא יציב בדיוק כשה־clubId חסר.
+def slug_keys(p):
+    keys = []
+    cid = str(p.get("clubId") or "")
+    if cid:
+        keys.append(cid)
+    code = str(p.get("code") or "")
+    if code:
+        keys.append(f"code:{code}")
+    return keys
+
+
 def is_placeholder_slug(slug, club_id=""):
     """slug שלא נגזר משם אלא מהמזהה, כלומר כתובת זמנית ולא שם."""
     return bool(slug) and slug == (f"p-{club_id}" if club_id else "player")
@@ -1198,7 +1269,8 @@ def assign_slugs(players):
     fresh, upgrades = False, []
     for p in players:
         cid = str(p.get("clubId") or "")
-        s = saved.get(cid)
+        keys = slug_keys(p)
+        s = next((saved[k] for k in keys if k in saved), None)
         want = slugify(p.get("name"), cid)
         # ואין כאן תנאי שגם want אינו זמני, כי הוא לא יכול לפעול: אם שניהם
         # זמניים לאותו מזהה הם אותו דבר בדיוק, וה־s != want כבר פסל את זה.
@@ -1208,8 +1280,7 @@ def assign_slugs(players):
         if s and s != want and is_placeholder_slug(s, cid):
             log(f"  {p.get('name')} מקבל כתובת אמיתית, {s} הופך ל־{want}")
             upgrades.append((s, want))
-            saved[cid] = s = want
-            fresh = True
+            s = want
         elif s:
             if s != want:
                 log(f"  {p.get('name')} שומר על ה־slug הקבוע שלו, {s}")
@@ -1218,8 +1289,12 @@ def assign_slugs(players):
             if s in taken:
                 s = f"{s}-{cid or len(taken)}"
                 log(f"  slug clash on {p.get('name')}, using {s}")
-            if cid:
-                saved[cid] = s
+        # נשמר תחת **כל** מזהה שיש לשחקן, ולא רק זה שנמצא. כך שחקן
+        # ששני המזהים שלו קיימים זוכר את הכתובת גם אם אחד מהם ייעלם,
+        # וזה מה שמחזיק אותה כשהמועדון מפרסם שחקן שהיה עד כה רק בפיד.
+        for k in keys:
+            if saved.get(k) != s:
+                saved[k] = s
                 fresh = True
         taken[s] = p.get("name")
         p["slug"] = s
@@ -1319,10 +1394,11 @@ def merge_club_and_euro(club, euro):
     number, the Hebrew name and the date of birth. The European feed is the
     only place with height, country, position and the person code the photos
     hang off, so take those from it wherever a player appears in both."""
-    he_to_lat = {}
+    he_to_lat, lat_to_he = {}, {}
     for lat, he in (load_json("player-names.json") or {}).items():
         if not lat.startswith("_"):
             he_to_lat[he] = lat
+            lat_to_he[lat] = he
     by_lat = {p["name"]: p for p in euro}
     by_num = {p.get("number"): p for p in euro if p.get("number") is not None}
 
@@ -1349,11 +1425,26 @@ def merge_club_and_euro(club, euro):
         merged.append(rec)
 
     # anyone the European feed knows but the club page did not list
+    #
+    # **ולשחקן כזה השם העברי בא מהקובץ הידני, אחרת הוא נעלם.** השם העברי
+    # מגיע מאתר המועדון, ולכן שחקן שהאתר הפסיק להציג מאבד אותו. ב־11.10.2026
+    # זה קרה לשלושה בבת אחת: ג׳ארד הארפר, שייק מילטון ודייוויד רודי היו
+    # עד 28.9 עם שם עברי ומאז מופיעים באותיות לטיניות, בעוד שתשעת האחרים
+    # בעברית. באפליקציה עברית זה בולט מאוד, וזה לא היה מוצדק: מילטון שיחק
+    # תשעה משחקים העונה ורודי שמונה, כולל 6.10, הם פשוט אינם על הדף.
+    #
+    # ``player-names.json`` נערך ביד ומחזיק בדיוק את שלושת השמות האלה,
+    # אז זה נתון מאומת ולא השלמה. השם מהאתר ממשיך לנצח אצל מי שהאתר כן
+    # מציג, והקובץ הידני נכנס רק כשאין אחר.
     listed = {r.get("name") for r in merged}
     for e in euro:
         if e["name"] not in listed:
-            log(f"  in the european squad but not on the club page: {e['name']}")
+            he = lat_to_he.get(e["name"])
+            log(f"  in the european squad but not on the club page: {e['name']}"
+                + (f", שם עברי מהקובץ הידני: {he}" if he else ", ואין לו שם עברי"))
             e["source"] = "eurocup"
+            if he:
+                e["nameHe"] = he
             merged.append(e)
 
     log(f"  merged squad: {len(merged)} players, {matched} matched to the european feed")

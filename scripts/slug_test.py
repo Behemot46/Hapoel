@@ -34,12 +34,19 @@ def main():
     roster = json.loads((DATA / "roster.json").read_text(encoding="utf-8"))
     players = roster["players"] if isinstance(roster, dict) else roster
     print(f"{len(saved)} מיפויים שמורים, {len(players)} שחקנים בסגל.")
+    # **לכל שחקן חייב להיות מזהה יציב אחד לפחות.** עד 12.10.2026 הבדיקה
+    # דרשה clubId, ואז נחתמו שייק מילטון ודייוויד רודי שמופיעים רק בפיד
+    # האירופי. לשניהם יש code ואין clubId, ולכן הדרישה היא על המזהים ולא
+    # על אחד מהם: בלי אף מזהה אין מה לשמור, והכתובת תיגזר מהשם מחדש בכל
+    # איסוף ותזוז ברגע שהשם יתחלף.
     for p in players:
-        cid = str(p.get("clubId") or "")
-        if not cid:
-            fail.append(f"{p.get('name')} בלי מזהה מועדון, אין לו על מה לשמור")
-        elif saved.get(cid) != p["slug"]:
-            fail.append(f"{p.get('name')}: בסגל {p['slug']}, בקובץ {saved.get(cid)}")
+        keys = ud.slug_keys(p)
+        if not keys:
+            fail.append(f"{p.get('name')} בלי אף מזהה יציב, אין לו על מה לשמור")
+            continue
+        if not any(saved.get(k) == p["slug"] for k in keys):
+            fail.append(f"{p.get('name')}: בסגל {p['slug']}, "
+                        f"בקובץ {[saved.get(k) for k in keys]}")
 
     # 2. **הבדיקה האמיתית:** שם מתחלף, וה־slug לא זז
     print("\nשם מתחלף, וה־slug נשאר:")
@@ -55,7 +62,7 @@ def main():
             continue
         he = p.get("nameHe") or "שחקן"
         p["name"] = he if p.get("name") != he else "Latin Name"
-        switched.append((p["clubId"], p["slug"], p["name"]))
+        switched.append((p, p["slug"], p["name"]))
     # **המבחן לא כותב לשום קובץ, וזה תוקן אחרי שהוא כן כתב.** assign_slugs
     # שומרת מיפוי חדש לדיסק, ולכן הרצת מוטציה ראשונה דרסה את
     # player-slugs.json האמיתי במיפויים שגויים ושברה את הסגל. מבחן
@@ -66,11 +73,13 @@ def main():
         ud.assign_slugs(before)
     finally:
         ud.save_json = saving
-    # מזווגים לפי מזהה ולא לפי מקום ברשימה, כי הדילוג למעלה כבר הוציא
-    # שחקן אחד מהאמצע וזיווג לפי סדר הוא בדיוק סוג הדיוק שנשבר בשקט.
-    by_id = {str(p.get("clubId")): p for p in before}
-    for cid, was, newname in switched:
-        now = by_id[str(cid)]
+    # **מחזיקים את המילון עצמו ולא מזהה.** זיווג לפי מקום ברשימה נשבר
+    # בגלל הדילוג למעלה, וזיווג לפי clubId נשבר ב־12.10.2026: שייק מילטון
+    # ודייוויד רודי נחתמו ומופיעים רק בפיד היורוקאפ, בלי clubId, ולכן
+    # שלושה שחקנים הצטופפו תחת המפתח ״None״ והבדיקה השוותה את ה־slug של
+    # אחד לזה של אחר. assign_slugs כותבת ``p["slug"]`` לתוך אותו מילון,
+    # אז ההפניה היא הזיווג המדויק, בלי שום מזהה באמצע.
+    for now, was, newname in switched:
         state = "נשאר " if now["slug"] == was else "זז!  "
         if now["slug"] != was:
             fail.append(f"{newname}: ה־slug זז מ־{was} ל־{now['slug']}")

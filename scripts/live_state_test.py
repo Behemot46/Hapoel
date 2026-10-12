@@ -66,6 +66,24 @@ def main():
         if after_tip.get("state") != "playing":
             fail.append("שינוי מצב אמיתי לא נכתב מיד")
 
+        # **סוף החלון, שהלולאה ב־live.yml נשענת עליו.** עד 12.10.2026
+        # הדדליין שלה היה 210 דקות מתחילת הריצה, מספר שאינו קשור למשחק,
+        # והיא מתה 18 דקות לפני שהחלון נסגר במשחק הראשון בליגה. התוצאה:
+        # ״המשחק מתנהל״ נשאר על המסך שלוש שעות ועשרים אחרי השריקה.
+        ul.now = lambda: TIP + datetime.timedelta(minutes=30)
+        end = ul.window_end()
+        if end != TIP + ul.AFTER:
+            fail.append(f"סוף החלון יצא {end}, אמור להיות {TIP + ul.AFTER}")
+        # הדדליין של הלולאה נקבע **אחרי** הדגימה הראשונה, ולכן מה שחשוב
+        # הוא שהוא רחוק מהרגע הזה יותר מכמה שנשאר למשחק
+        if (end - (TIP - datetime.timedelta(minutes=70))).total_seconds() <= 0:
+            fail.append("סוף החלון לא אחרי תחילת הדגימות")
+        # וכשאין משחק בחלון אין מה להחזיק
+        ul.now = lambda: TIP + datetime.timedelta(hours=5)
+        if ul.window_end() is not None:
+            fail.append("התקבל סוף חלון בלי משחק")
+        print(f"סוף החלון: {ul.AFTER} אחרי הקפיצה, והלולאה תחזיק עד שם.")
+
     if fail:
         print(f"{len(fail)} כשלים:")
         for f in fail:
