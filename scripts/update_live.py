@@ -154,9 +154,20 @@ def eurocup_snapshot(game):
     hs = int(local.get("score") or 0)
     as_ = int(road.get("score") or 0)
 
-    # nothing on the board yet means the feed has not caught up with tip-off
+    # **פיד ששותק לא אומר שהמשחק לא התחיל, והשעון שלנו כן אומר.** עד
+    # 14.10.2026 הענף הזה החזיר ״starting״, כלומר ״רגע לפני הקפיצה״,
+    # בכל פעם שלא הייתה תוצאה על הלוח. באותו יום זה נמדד על המשחק
+    # בבורגוס, **המשחק האירופי הראשון שהפולר בכלל כיסה**: הקפיצה הייתה
+    # ב־18:30, הפיד פרסם את התוצאה רק ב־20:46 כשהמשחק נגמר, ועד אז האוהד
+    # ראה ״רגע לפני הקפיצה״ שעתיים אחרי שהמשחק התחיל.
+    #
+    # ההחזרה של None מעבירה את ההחלטה לשעון, כלומר בדיוק למה שכבר נכתב
+    # ב־``main`` בשביל משחקי הליגה: ״playing״ אחרי הקפיצה ו״starting״
+    # לפניה. זה גם מה שנכון לומר: אנחנו יודעים מהלוח שהמשחק התחיל, ולא
+    # יודעים מה התוצאה.
     if not played and hs == 0 and as_ == 0:
-        return {"state": "starting"}
+        log("אין עדיין תוצאה בפיד, השעון יכריע אם המשחק התחיל")
+        return None
 
     # quarters that have any points in them; overtime shows as a 4-quarter game
     # still ticking, which is honest enough without inventing an OT field
