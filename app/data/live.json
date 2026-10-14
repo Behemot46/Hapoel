@@ -1,5 +1,24 @@
 {
-  "state": "starting",
+  "state": "final",
+  "home": 85,
+  "away": 84,
+  "ourScore": 85,
+  "theirScore": 84,
+  "quarter": 4,
+  "partials": {
+    "us": [
+      24,
+      22,
+      24,
+      15
+    ],
+    "them": [
+      18,
+      21,
+      20,
+      25
+    ]
+  },
   "game": {
     "gameId": "20261014-euro-RecoletasSal",
     "competition": "יורוקאפ",
@@ -8,5 +27,5 @@
     "date": "2026-10-14T18:30:00Z",
     "venue": "Coliseum Burgos"
   },
-  "updated": "2026-10-14T20:31:44+00:00"
+  "updated": "2026-10-14T20:46:50+00:00"
 }
