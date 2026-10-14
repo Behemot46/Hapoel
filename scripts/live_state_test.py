@@ -84,6 +84,47 @@ def main():
             fail.append("התקבל סוף חלון בלי משחק")
         print(f"סוף החלון: {ul.AFTER} אחרי הקפיצה, והלולאה תחזיק עד שם.")
 
+        # **משחק יורוקאפ שהפיד שלו שותק, וזה נמדד על בורגוס ב־14.10.2026.**
+        # הקפיצה הייתה 18:30, הפיד פרסם את התוצאה רק ב־20:46 כשהמשחק
+        # נגמר, ועד אז הפולר כתב ״starting״: האוהד ראה ״רגע לפני הקפיצה״
+        # שעתיים אחרי שהמשחק התחיל. זה היה המשחק האירופי הראשון שהפולר
+        # בכלל כיסה, ולכן זה נחשף רק אז.
+        print("\nיורוקאפ בלי תוצאה בפיד, השעון מכריע:")
+        euro = dict(GAME, competition="יורוקאפ", id="e")
+        feed = {"data": [{"utcDate": GAME["date"], "played": False,
+                          "local": {"club": {"code": "BUR"}, "score": 0,
+                                    "partials": {}},
+                          "road": {"club": {"code": "JER"}, "score": 0,
+                                   "partials": {}}}]}
+
+        class Fake:
+            @staticmethod
+            def json():
+                return feed
+
+        saved_get = ul.requests.get
+        ul.requests.get = lambda *a, **k: Fake()
+        try:
+            ul.now = lambda: TIP + datetime.timedelta(minutes=45)
+            if ul.eurocup_snapshot(euro) is not None:
+                fail.append("פיד בלי תוצאה החזיר מצב במקום None")
+            for label, t, want in (
+                    ("חצי שעה לפני הקפיצה", TIP - datetime.timedelta(minutes=30),
+                     "starting"),
+                    ("שעה אחרי הקפיצה", TIP + datetime.timedelta(minutes=60),
+                     "playing")):
+                ul.now = lambda t=t: t
+                ul.load = lambda name: ({"games": [euro]}
+                                        if name == "games.json" else {})
+                ul.main()
+                got = json.loads((tmp / "live.json").read_text(
+                    encoding="utf-8")).get("state")
+                print(f"   {label}: {got}")
+                if got != want:
+                    fail.append(f"יורוקאפ, {label}: {got} במקום {want}")
+        finally:
+            ul.requests.get = saved_get
+
     if fail:
         print(f"{len(fail)} כשלים:")
         for f in fail:
