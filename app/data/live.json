@@ -1,31 +1,4 @@
 {
-  "state": "final",
-  "home": 85,
-  "away": 84,
-  "ourScore": 85,
-  "theirScore": 84,
-  "quarter": 4,
-  "partials": {
-    "us": [
-      24,
-      22,
-      24,
-      15
-    ],
-    "them": [
-      18,
-      21,
-      20,
-      25
-    ]
-  },
-  "game": {
-    "gameId": "20261014-euro-RecoletasSal",
-    "competition": "יורוקאפ",
-    "home": "Recoletas Salud San Pablo Burgos",
-    "away": "הפועל ירושלים",
-    "date": "2026-10-14T18:30:00Z",
-    "venue": "Coliseum Burgos"
-  },
-  "updated": "2026-10-14T21:17:02+00:00"
+  "state": "idle",
+  "updated": "2026-10-14T21:32:07+00:00"
 }
