@@ -160,11 +160,21 @@
       "home": "Recoletas Salud San Pablo Burgos",
       "away": "הפועל ירושלים",
       "venue": "Coliseum Burgos",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "homePartials": null,
-      "awayPartials": null
+      "status": "finished",
+      "homeScore": 84,
+      "awayScore": 85,
+      "homePartials": [
+        18,
+        21,
+        20,
+        25
+      ],
+      "awayPartials": [
+        24,
+        22,
+        24,
+        15
+      ]
     },
     {
       "id": "20261017-הפועלבש",
