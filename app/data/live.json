@@ -1,4 +1,12 @@
 {
-  "state": "idle",
-  "updated": "2026-10-11T23:06:55+00:00"
+  "state": "starting",
+  "game": {
+    "gameId": "20261014-euro-RecoletasSal",
+    "competition": "יורוקאפ",
+    "home": "Recoletas Salud San Pablo Burgos",
+    "away": "הפועל ירושלים",
+    "date": "2026-10-14T18:30:00Z",
+    "venue": "Coliseum Burgos"
+  },
+  "updated": "2026-10-14T17:15:18+00:00"
 }
