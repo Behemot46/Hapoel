@@ -29,6 +29,16 @@
         },
         {
           "pos": 3,
+          "team": "Riga Zelli",
+          "code": "RIG",
+          "played": 3,
+          "wins": 2,
+          "losses": 1,
+          "for": 261,
+          "against": 250
+        },
+        {
+          "pos": 4,
           "team": "Baglietto Derthona Tortona",
           "code": "TRT",
           "played": 2,
@@ -36,16 +46,6 @@
           "losses": 1,
           "for": 173,
           "against": 169
-        },
-        {
-          "pos": 4,
-          "team": "Riga Zelli",
-          "code": "RIG",
-          "played": 2,
-          "wins": 1,
-          "losses": 1,
-          "for": 172,
-          "against": 171
         },
         {
           "pos": 5,
@@ -69,16 +69,6 @@
         },
         {
           "pos": 7,
-          "team": "Cedevita Olimpija Ljubljana",
-          "code": "LJU",
-          "played": 2,
-          "wins": 0,
-          "losses": 2,
-          "for": 145,
-          "against": 160
-        },
-        {
-          "pos": 8,
           "team": "Le Mans Sarthe Basket",
           "code": "LEM",
           "played": 2,
@@ -86,6 +76,16 @@
           "losses": 2,
           "for": 157,
           "against": 176
+        },
+        {
+          "pos": 8,
+          "team": "Cedevita Olimpija Ljubljana",
+          "code": "LJU",
+          "played": 3,
+          "wins": 0,
+          "losses": 3,
+          "for": 224,
+          "against": 249
         }
       ]
     },
@@ -94,6 +94,16 @@
       "rows": [
         {
           "pos": 1,
+          "team": "U-BT Cluj-Napoca",
+          "code": "CLU",
+          "played": 3,
+          "wins": 2,
+          "losses": 1,
+          "for": 247,
+          "against": 256
+        },
+        {
+          "pos": 2,
           "team": "Umana Reyer Venice",
           "code": "VNC",
           "played": 2,
@@ -103,7 +113,7 @@
           "against": 170
         },
         {
-          "pos": 2,
+          "pos": 3,
           "team": "Maxima Roma",
           "code": "MRO",
           "played": 2,
@@ -113,7 +123,7 @@
           "against": 147
         },
         {
-          "pos": 3,
+          "pos": 4,
           "team": "London Lions",
           "code": "LLI",
           "played": 2,
@@ -123,7 +133,7 @@
           "against": 151
         },
         {
-          "pos": 4,
+          "pos": 5,
           "team": "Turk Telekom Ankara",
           "code": "TTK",
           "played": 2,
@@ -133,7 +143,7 @@
           "against": 159
         },
         {
-          "pos": 5,
+          "pos": 6,
           "team": "La Laguna Tenerife",
           "code": "TNF",
           "played": 2,
@@ -141,16 +151,6 @@
           "losses": 1,
           "for": 159,
           "against": 164
-        },
-        {
-          "pos": 6,
-          "team": "Siauliai Basketball",
-          "code": "SIA",
-          "played": 2,
-          "wins": 1,
-          "losses": 1,
-          "for": 145,
-          "against": 150
         },
         {
           "pos": 7,
@@ -164,13 +164,13 @@
         },
         {
           "pos": 8,
-          "team": "U-BT Cluj-Napoca",
-          "code": "CLU",
-          "played": 2,
+          "team": "Siauliai Basketball",
+          "code": "SIA",
+          "played": 3,
           "wins": 1,
-          "losses": 1,
-          "for": 153,
-          "against": 181
+          "losses": 2,
+          "for": 220,
+          "against": 244
         }
       ]
     },
