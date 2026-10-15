@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15T00:37:19Z",
+  "updated": "2026-10-15T11:47:05Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-10-04T20:31:49Z"
+      "latest": "2026-10-15T09:56:30Z"
     },
     {
       "id": "1675729649",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "כדורסל בלי הפסקה",
+      "url": "https://omny.fm/shows/speaknrolisrael/e79abb5e-533c-4a5a-939a-b4e400a1f065",
+      "published": "2026-10-15T09:56:30Z",
+      "duration": 5162
+    },
     {
       "showId": "6820447951",
       "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
@@ -225,15 +234,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3p1gg6",
       "published": "2026-09-18T09:34:44Z",
       "duration": 3909
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "הדרבי התל אביבי הראשון לעונה",
-      "url": "https://omny.fm/shows/speaknrolisrael/11bae14a-bed0-45af-a9db-b4c700a9341b",
-      "published": "2026-09-16T10:20:26Z",
-      "duration": 3449
     },
     {
       "showId": "1573775015",
