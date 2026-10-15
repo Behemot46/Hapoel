@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14T21:36:24Z",
+  "updated": "2026-10-15T00:37:19Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,7 +14,7 @@
       "title": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
       "about": "team",
       "url": "https://podcasts.apple.com/il/podcast/%D7%9E%D7%90%D7%97%D7%95%D7%A8%D7%99-%D7%94%D7%A1%D7%9C%D7%99%D7%9D-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%90%D7%95%D7%94%D7%93%D7%99-%D7%94%D7%A4%D7%95%D7%A2%D7%9C-%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C/id6820447951?uo=4",
-      "latest": "2026-10-01T05:12:07Z"
+      "latest": "2026-10-14T23:29:05Z"
     },
     {
       "id": "1623083958",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "6820447951",
+      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "title": "מסכמים שבוע מושלם | מאחורי הסלים, פרק 6",
+      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/6-e3qh87n",
+      "published": "2026-10-14T23:29:05Z",
+      "duration": 3913
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -252,15 +261,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/98-e3og5rj",
       "published": "2026-09-08T03:00:00Z",
       "duration": 3652
-    },
-    {
-      "showId": "6820447951",
-      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
-      "about": "team",
-      "title": "זוסמן מתחתן, מקל מתראיין, פפי שגריר | מאחורי הסלים, פרק 2",
-      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/2-e3nluci",
-      "published": "2026-08-20T18:32:58Z",
-      "duration": 3787
     }
   ]
 }
