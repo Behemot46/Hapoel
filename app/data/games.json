@@ -259,17 +259,17 @@
     },
     {
       "id": "20261108-הפועלהעמק",
-      "date": "2026-11-08T12:00:00+02:00",
+      "date": "2026-11-08T20:15:00+02:00",
       "competition": "ליגת Winner סל, מחזור 5",
       "home": "הפועל ירושלים",
       "away": "הפועל העמק",
-      "venue": null,
+      "venue": "פיס ארנה, ירושלים",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261111-euro-BagliettoDer",
@@ -286,18 +286,18 @@
       "awayPartials": null
     },
     {
-      "id": "20261115-מכביתא",
-      "date": "2026-11-15T12:00:00+02:00",
+      "id": "20261114-מכביתא",
+      "date": "2026-11-14T20:55:00+02:00",
       "competition": "ליגת Winner סל, מחזור 6",
       "home": "מכבי ת\"א",
       "away": "הפועל ירושלים",
-      "venue": null,
+      "venue": "היכל מנורה מבטחים, ת\"א",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261117-euro-RostockSeawo",
@@ -314,18 +314,18 @@
       "awayPartials": null
     },
     {
-      "id": "20261122-מכביאשדוד",
-      "date": "2026-11-22T12:00:00+02:00",
+      "id": "20261120-מכביאשדוד",
+      "date": "2026-11-20T13:00:00+02:00",
       "competition": "ליגת Winner סל, מחזור 7",
       "home": "הפועל ירושלים",
       "away": "מכבי אשדוד",
-      "venue": null,
+      "venue": "פיס ארנה, ירושלים",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261206-בניהרצליה",
@@ -339,7 +339,10 @@
       "awayScore": null,
       "note": "המועד לא סופי, והשעה טרם נקבעה",
       "timeTbd": true,
-      "provisional": true
+      "provisional": true,
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261209-euro-CedevitaOlim",

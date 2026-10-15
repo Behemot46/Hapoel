@@ -1,18 +1,81 @@
 {
-  "updated": "2026-10-13T21:53:15Z",
+  "updated": "2026-10-15T22:54:34Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "וואלה ספורט",
-    "ספורט 1",
-    "ספורט 5",
-    "ynet",
-    "הארץ",
-    "ערוץ 7",
     "ישראל היום",
+    "ספורט 5",
+    "ספורט 1",
+    "ynet",
     "ישראל ספורט",
-    "C14"
+    "וואלה ספורט",
+    "C14",
+    "הארץ",
+    "ערוץ 7"
   ],
   "items": [
+    {
+      "title": "הכוכב הישראלי שהגיע למשחק של הפועל ירושלים בספרד: \"תצילו אותי\"",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9xYURvWWVoSFFHb3Njb0UxeTBIZ2ctOXJiVlJISF9NNC12bU1Ld29SY21UQWZMc1NUZ3NLNENqX29UQUl3S01ReUpjRW9IVGQxV096MjN4TXNVNmJ1b1RXcjdOXzdTbGZBaXdUStIBdEFVX3lxTFBKWU5Hdy12RmtSdE44LWNnSVVHT2FzUHRxTFhPRDk5dDNRakJQMkVKc1ZHTUhMTEQ3cWdGcUhFbEFzY01nWGd5ZnoycFNDSWt4SXJQTm9VcnlKVW1zU3l3dFRpNmtwSHAtSnM3aVFlYkF5LTM3?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-10-15T11:02:01Z"
+    },
+    {
+      "title": "\"אמוציות גבוהות\": הפועל י-ם מסכמת ניצחון",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9nTEpreFZtcVFwRERHZEJvN0JKSlJjb1dYOGZqOGZxcXJCMy00TGdDQ3ExSmhpXzBaUTZMcDllbHVmRUNleFlJdGQxa0VwbmNlRkZoYnprLTR1UHBKaUJzN2RVd3JCWjZkYjB0NnFEN3ZIZW8?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-10-15T03:48:10Z"
+    },
+    {
+      "title": "צפו: הפועל ירושלים נשארה מושלמת לאחר שניצחה את בורגוס בתום משחק צמוד, לופטון להט",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQWUFoLTQzMUtZSHBFSWpScVVqYkYydmJCdkpHNVFjakZuVE9LTjNBM3RveUthcUl6N3FxTnoyVU9nNTJocUpxUE5veUl2ZkgwaWh2WHFHaG1kWTVmVmYzWU03SmRZckw2UjJleVB1elFSem1KbXFfYm5rZmcxRUFHeDZRb0h5M1p4VVJlZVJUU1ozNDM3Mk9tSS1jMnhwd093bTF5b2M3ZkRjaERkcHYzSXZYZlYtWlFlVlM2Rm4wb0hwSVRvYWJhR0IyMjdNOV84dmE0aDVwUTZNY3Z0b0liTURlZkJCbzNWRzFrUGU3cVc4akxlZHBYVktpOE4wbDNRQlE?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-10-14T21:05:46Z"
+    },
+    {
+      "title": "הפועל ירושלים נותרה מושלמת ביורוקאפ, ניצחון ראשון לחולון ב-BCL",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9JWUFzOWU5dVBiRHFwa19LT3UxdmpXNTRnclRNRTIteG41ZUZtejZ6TVdoOGJtUUJRQjVsdzF6TGtkWUQwT3QwTnVSa2NkWS1LVXU1TDRFdEZiX2xidXlxR2lkNHo4eGRnSW5RNVRJMWFCeHUxcGQxRFhEWdIBgwFBVV95cUxPSnRlQl9xWHpvQzBsQmNmb19FWDFCOThSYVY1ZkwzZk1MM2ZmbHZxSkVicVVNeV95MHpXNmZ5QmhlMmhqYU9sOU0yN3NMVUVnc0VHY0lFTmhRWnBpaXBQQjZUNXM2Tkoyc0d1ZEZURDc5eEctaVFITUstYklGbzI3RDBtWQ?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-10-14T20:47:19Z"
+    },
+    {
+      "title": "עדיין מושלמת: הפועל י-ם גברה על בורגוס",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5NNUQ3OGFyV3Vlbktuem1kRjFfeHM5WHlsQkZ5aFhvNHBLN3dCcG1pbzNDTWRnU1R5X1k2YllkTzFSVnhBM21mWjZXU1V3NEw2aFd3TUJFTTNfdw?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-10-14T19:36:37Z"
+    },
+    {
+      "title": "אחרי דרמה גדולה: הפועל ירושלים שמרה על מאזן מושלם ביורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMiwwJBVV95cUxNVWY5MndlOU5VN2tFQ3UtT29QeUpnb3ZrU1Z3b2wteWxoMUpwZElZWHlTR3pQcTItZUhuZHZkTnV6T25OUGMwN1pYSlQ0Smt3X2ZNOUVaSnFsckZsdUpkYjRIRGFBWkVIRVFuN0NPZjZnT1pKN1dTZkE4MzFTanJyam1LcXRubkNxRWpvUTgtYjFfZ0lOdDEtR3FWUy1qV3dmVmczQmpXS2ZwT0hCc1BfSDA0Zy1WWi0yb1ZZYWxBelV0WklBV01FT19rRDhOM1NsaE8td2N4TE92T0NKTHowWF9YX3VUUDhaRFRsT3JxSnc3QzNGeFpQa25CRWtjVl8zY2x3YXdkTVdjREhXN1BDTnN6ZWQ4ZFRfbVJGLVNoSjNhYk40YXZIUUVFVmlVX3llbXpmSE1GbzlhUGNjMzdFX2NZTQ?oc=5",
+      "source": "ישראל ספורט",
+      "sourceUrl": "https://isport.co.il",
+      "published": "2026-10-14T17:59:00Z"
+    },
+    {
+      "title": "תצוגת שיא של לופטון, הפועל ירושלים גברה 84:85 על בורגוס",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5FY3VicVJzWDliX19vUzJTMXBjamFzeVBON2d5OE03N1cyaEktejBBNHVienh0UWZubkh0bGl2LWFEaURVMUdCWFdaeHJiWHZp?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-10-14T10:41:00Z"
+    },
+    {
+      "title": "בהפועל י-ם סימנו את המפתחות לבורגוס: \"עדיין בונים את עצמנו\"",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE56dlk1STZVTjB5b3FKaG9UOTcxU0piaVN4VWozMTBFNm1wRlFwOHBGeUNPVWVwY2FUcHFuWmZBZHY0dGszQ0dPOThBSk9pZw?oc=5",
+      "source": "C14",
+      "sourceUrl": "https://www.c14.co.il",
+      "published": "2026-10-14T09:31:49Z"
+    },
+    {
+      "title": "הפועל ירושלים מקווה שלורנזו בראון ימשיך במגמת השיפור בבורגוס",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9fSThmelp2WEhaQk5USmE0Rjd3OEhDOVlGOWtybUxCT3BsMF9zLWxJZzNMOWl1d2pwczlXYUtOQ1lJTFBDX25JNk5vUWgtRnRU?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-10-14T07:40:00Z"
+    },
     {
       "title": "מצפים למשוכה קשה: הפועל ירושלים תתארח בבורגוס",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1YeEljR1lkcVYxMWtXMklkZWpWNXVCVGwzNXBsb0E5X0ZPV1V6eWh6R19FRzNvWU9admxTbEp2Z1cwTXg0a0owa3dGNFhCOFZy?oc=5",
@@ -22,9 +85,9 @@
     },
     {
       "title": "\"עלול היה להסתיים באסון\": בהפועל ירושלים זועמים על האבטחה בחולון",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPWVVlVjl5d0ZBcEFJb2ZzUmhuUHJsZTN3ZDhNMG1TUlpvVlJjNFNKc2VyVGEwRGFZbWxKSEtsZk43ck5nZVlBanpEbjVDdnhQV1lFMmZoWG13anA3NVJxbS1xNzdNQjF2dzVfcUZ4YURyVTFyQkM1U2VfQUxWNTl1U3hfdkEwbFlHbms2dWgtM0Jpdw?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBuQ0tDZTZwdFA0VHRxQllDdDRZZmh1QWVBM3B6UWdRMmNhVjdocDkyVzlEUHFDYlZWMVJXQVhpc3h6OHp6VFBrLXo2UWZ2TW0x?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-10-13T13:13:30Z"
     },
     {
@@ -33,6 +96,13 @@
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-10-13T05:02:51Z"
+    },
+    {
+      "title": "קבוצת הנשים של \"הפועל ירושלים\" מוכיחה שהאווירה תלויה בקהל, לא בשחקנים/ות",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNYzdoWmI1dTZLWHM3ZEFsZmltQUhWdnNLOHh0VmpUNEFLSEp3UVFYR0x1N1N5UlJseFo0cEhkd3hYOWMxQlVKYzI2bVVNR2trc1VZZF9Jc3hYZUxwaktzTlRHcEY2Z0Rjc194cHhLajFtdlY5SkdZMFNwUWsyUnREQg?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-10-12T11:27:56Z"
     },
     {
       "title": "גובה הקנס שספגה הפועל ירושלים על האבוקות",
@@ -78,9 +148,9 @@
     },
     {
       "title": "גל מקל: \"הפועל ירושלים חזק בתמונה לקבלת רישיון ליורוליג\"",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1kY0lMdVpZUjA3MUtTMVVvSF9FVklUdGJZSWF4QVVKX3RpQjU0Sms2REFvbUY2SWk0U1A3Sy1fUzlNQmFDdDl3R0lfX0NvbzhqME5jWXVKWnA3V3R4MDRHME9kdXJxY3VXbFg0N193?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBPejJLb2d1MDMzUTVlY1VqY291SC1aY2hsUlIwZVFvSmNqVnJYdFdudV9TaUhackxmcERCS3JkVjg0cmViY2hQSEFIamV0cVc2?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-10-11T18:05:34Z"
     },
     {
@@ -133,6 +203,13 @@
       "published": "2026-10-07T05:04:06Z"
     },
     {
+      "title": "הנתון שמרגיז את אוברדוביץ' ונקודות האור: הפועל ירושלים מושלמת ביורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQMXF1S3VSWVRxRjlWT1pzVFk3YjE5VkRTTFRXTExmRm9fZ2ZNZ1RkSzVmR29aZGRyT3RQMmlvMmtHb1Y2aFJfZnJZWnkzSEt5RWhGek5Bb0U3N0lfNG9mVzI5ekl3X2J3THAtb2lqRmVSOW50MWxHU05sVlBVS2VaWTdUTWlJUm9fb3JQQUNqTmVFUQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-10-07T04:44:39Z"
+    },
+    {
       "title": "הפועל ירושלים ניצחה את צדביטה 64:75 ורשמה ניצחון שני ברציפות ביורוקאפ",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOZUVQa1Fram9ScGhSeTVRR1o3bUZHRTFZclZVNlNKUlk0VGU5dnREd3F5c2RLSzJaYmRnQlBSUkw5OUk1cG55MDFVZU91cC12M3FZTDRwOUg5RFNoc3RBSnZZXzhRYjN4dDJpRk9KbVhoNWVlTU84eXpTU2FYdnBHMDJrdFBERE5GcTA5Rnd4Q0Y4OFE0eExwdUFXMFA3YmVySUxF?oc=5",
       "source": "הארץ",
@@ -145,62 +222,6 @@
       "source": "ישראל ספורט",
       "sourceUrl": "https://isport.co.il",
       "published": "2026-10-06T18:51:40Z"
-    },
-    {
-      "title": "הספיקה להתאושש: הפועל ירושלים גברה על לובליאנה",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5Rb0VpVnNTWTdFdU9xblpPWXNIbnFLVFFreDZuWDFTUWV6b1VsT2xBTUlMcmItcjlDZUltcjFBQlNvb0JURXdkWVUwV0xZdjU1M1d1LUdPNGk1dw?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-10-06T16:30:31Z"
-    },
-    {
-      "title": "בשל האבוקות: הקנס שדורש התובע שיוטל על הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBSdVVEREI0WkprdWdCSmNLTzU3LURhMDJRdWFnMjBfNWU5a2pVdWdaTV9iQTRZNElhRXVOazNRTGtma3RsbWs0SlFXa3pKTldDVk95bXQ3M0s2eDR1eU5tOWszc0wzQ3dDYmpCazA5WHViWE80?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-10-05T17:26:07Z"
-    },
-    {
-      "title": "מכבי ת\"א עלתה לגמר גביע ווינר עם 71:88 על הפועל י-ם",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8yV19QS3c3OFNaYnh5YVJQVE5rQkpQYW9HMDIyUDFIQnVZZm1aamoxU2VuVi1vemJoVHEwVWhibHludExGS2dydjZUNDd2dw?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-10-04T18:59:44Z"
-    },
-    {
-      "title": "מכבי ת\"א ניצחה את הפועל ירושלים ותפגוש את הפועל ת\"א בגמר גביע ווינר",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPYWNDMmNqOFdFR3doWXM2T0d0N1laRlNOX3FTQ3FZMkQ0U3U0RHoxZ2NLUVVvVi1oVkFaSDY0R3AzSEprZkVzcDd0b1djdjhEVGM4elJ1Z2g3elBWcDVwU1FrQjdkQzdseE9XQU1JaXBKalRGX1NYc1NoM0lReUdJTWZGMjRNNEpiS1I4QkROQnZKNWRYQVl5b3U3NDA1cVRHV2hN?oc=5",
-      "source": "הארץ",
-      "sourceUrl": "https://www.haaretz.co.il",
-      "published": "2026-10-04T18:14:00Z"
-    },
-    {
-      "title": "מכבי ת\"א ניצחה את הפועל י-ם והעפילה לגמר",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1ObXNhLW9ULVpUSXZpNTBfMXV6RXY3M1NNdkxoYnkxMDZNd3U1MWpWOGNTYkJCd1FsVTVTYWVoWnFlaVltNDRVdg?oc=5",
-      "source": "ערוץ 7",
-      "sourceUrl": "https://www.inn.co.il",
-      "published": "2026-10-04T18:13:00Z"
-    },
-    {
-      "title": "אוברדוביץ' רצה שחקן אחר: אקס מכבי תל אביב שנפגש עם הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9vX1AwbkI3MXZsa0JacE9tUFFkeWx2SmR3MU13Yi12dFZpUm1KZnFnaThMYWhfcV9LY1U2ODVVUXZuczE5OFM1b2ZMb1pzWHJKQkptazdSQXdCSWxCM1VoVjN5ZnhhN2hMcEtocXJibVZ4YUoyNzRCTnQyZ9IBgwFBVV95cUxQOVpoMG1UWFJxTmVwWTZEa3dpY0VCRTc0REpicGV0SWk1OElmTmlQek4yLWUxeUI4ZmpUajUzb0ZXV29iOU9jcFFqUkpiMnVJem9zS1V2RlVkaGtSRTliY0NIUDRRdnhQTXhmRVM5bnJDbW11cTBrcFl6dG5HS2V0V3VGQQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-10-01T07:00:00Z"
-    },
-    {
-      "title": "\"סשה יבקר ויצעק על כל שחקן בהפועל ירושלים\"",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5CUWs4U0JPdFpVQS1feHR5cTI2ZjQ3OGN3ZTZfSk1td1E1WUkyREFndlNUQ2pLb2FCc2lsNlZxUnl1blJUY3BmUndyNTg4U091Y1JYS1NhR3ZRal82OFJ2OEppaE1TWWh3R3dLeEFJTVV4NTFncGc2QUNNRdIBgwFBVV95cUxQeVk5dGJJNW0zY3lKa0dhMDJFY3llVmdtdWpYZUJQQ0YtR2VRSTEyN0N0X1V4aW5YamhBUjJDcjcyLVJwcmNKMVBhVHpYNTdhczlDMFR4OTJ6UXhLWFAzeGtrbWFncUtqODRfMkdqYUNLbVVQRXllMmJrQUhoYllfT3drSQ?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-09-30T07:00:00Z"
-    },
-    {
-      "title": "לפני מכבי תל אביב: ההחלטה המסתמנת של הפועל ירושלים לגבי לורנזו בראון",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQSS1rbXJnaW1EYmFlbnhzQXZ1bV9HZnJVLXEzR0tlLXJ6eGxIaDV1SjFDck9jOTl2Tk1OQWFtRTBhZnBEbko2N1ZPZm85dmtTSkpJMkVBMHVlVjZPS0tWMEtveGwtX0RodUlQRjl1TlpqM25zdDJTTzk5WFl5MDFuUVRGWXZXZ0dWZ29zNE5Kb0hzUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-09-30T07:00:00Z"
     }
   ]
 }

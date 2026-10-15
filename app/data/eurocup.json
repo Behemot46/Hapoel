@@ -124,23 +124,23 @@
         },
         {
           "pos": 4,
-          "team": "London Lions",
-          "code": "LLI",
-          "played": 2,
-          "wins": 1,
+          "team": "Skyliners Frankfurt",
+          "code": "FRA",
+          "played": 3,
+          "wins": 2,
           "losses": 1,
-          "for": 160,
-          "against": 151
+          "for": 232,
+          "against": 251
         },
         {
           "pos": 5,
-          "team": "Skyliners Frankfurt",
-          "code": "FRA",
-          "played": 2,
+          "team": "London Lions",
+          "code": "LLI",
+          "played": 3,
           "wins": 1,
-          "losses": 1,
-          "for": 151,
-          "against": 175
+          "losses": 2,
+          "for": 236,
+          "against": 232
         },
         {
           "pos": 6,
