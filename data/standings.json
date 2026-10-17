@@ -1,0 +1,118 @@
+{
+  "season": "2026/27",
+  "competition": "ליגת ווינר סל",
+  "rows": [
+    {
+      "pos": 1,
+      "team": "מכבי ת\"א",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "points": 2
+    },
+    {
+      "pos": 2,
+      "team": "הפועל י-ם",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "points": 2
+    },
+    {
+      "pos": 3,
+      "team": "מכבי אשדוד",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "points": 2
+    },
+    {
+      "pos": 4,
+      "team": "הפועל ת\"א",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "points": 2
+    },
+    {
+      "pos": 5,
+      "team": "מכבי רמת גן",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "points": 2
+    },
+    {
+      "pos": 6,
+      "team": "הפועל אילת",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "points": 2
+    },
+    {
+      "pos": 7,
+      "team": "קריית אתא",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "points": 2
+    },
+    {
+      "pos": 8,
+      "team": "הפועל העמק",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "points": 1
+    },
+    {
+      "pos": 9,
+      "team": "ראשון לציון",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "points": 1
+    },
+    {
+      "pos": 10,
+      "team": "בני הרצליה",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "points": 1
+    },
+    {
+      "pos": 11,
+      "team": "הפועל ב\"ש",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "points": 1
+    },
+    {
+      "pos": 12,
+      "team": "נס ציונה",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "points": 1
+    },
+    {
+      "pos": 13,
+      "team": "הפועל חולון",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "points": 1
+    },
+    {
+      "pos": 14,
+      "team": "גליל עליון",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "points": 1
+    }
+  ]
+}
