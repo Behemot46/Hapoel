@@ -4,15 +4,15 @@
   "rows": [
     {
       "pos": 1,
-      "team": "מכבי ת\"א",
-      "played": 1,
-      "wins": 1,
+      "team": "הפועל י-ם",
+      "played": 2,
+      "wins": 2,
       "losses": 0,
-      "points": 2
+      "points": 4
     },
     {
       "pos": 2,
-      "team": "הפועל י-ם",
+      "team": "מכבי ת\"א",
       "played": 1,
       "wins": 1,
       "losses": 0,
@@ -60,6 +60,14 @@
     },
     {
       "pos": 8,
+      "team": "הפועל ב\"ש",
+      "played": 2,
+      "wins": 0,
+      "losses": 2,
+      "points": 2
+    },
+    {
+      "pos": 9,
       "team": "הפועל העמק",
       "played": 1,
       "wins": 0,
@@ -67,7 +75,7 @@
       "points": 1
     },
     {
-      "pos": 9,
+      "pos": 10,
       "team": "ראשון לציון",
       "played": 1,
       "wins": 0,
@@ -75,16 +83,8 @@
       "points": 1
     },
     {
-      "pos": 10,
-      "team": "בני הרצליה",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "points": 1
-    },
-    {
       "pos": 11,
-      "team": "הפועל ב\"ש",
+      "team": "בני הרצליה",
       "played": 1,
       "wins": 0,
       "losses": 1,
