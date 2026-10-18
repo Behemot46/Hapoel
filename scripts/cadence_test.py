@@ -74,6 +74,9 @@ quiet = grab(data_yml, r"^          QUIET_EVERY=\$\(\( (\d+) \* 3600 \)\)",
              "QUIET_EVERY", "update-data.yml")[0] * 60
 hot = grab(data_yml, r"^          GAME_EVERY=\$\(\( (\d+) \* 3600 \)\)",
            "GAME_EVERY", "update-data.yml")[0] * 60
+# בדקות, כמו POKE_EVERY ובניגוד ל־GAME_EVERY שנתון בשעות
+ended = grab(data_yml, r"^          ENDED_EVERY=\$\(\( (\d+) \* 60 \)\)",
+             "ENDED_EVERY", "update-data.yml")[0]
 # חלון ״סביב משחק״, שבתוכו הקצב הצפוף חל
 win_b, win_a = (grab(data_yml, r"BEFORE = datetime\.timedelta\(hours=(\d+)\)",
                      "BEFORE של החלון", "update-data.yml")[0],
@@ -100,6 +103,15 @@ print(f"  איסוף: כל {quiet // 60} שע׳ ביום רגוע, כל {hot // 
 print(f"  איסוף: דוקר כל {poke} דק׳, דופק כל {heartbeat // 60} שע׳, "
       f"מחפש משחק עד {soon} דק׳ קדימה")
 print(f"  שומר: ישן מדי מעל {limit // 60} שע׳")
+
+# הלולאה מתעוררת כל POKE_EVERY, ולכן מרווח קצר ממנה הוא מספר שלא ניתן
+# לכבד. וקצב שאחרי השריקה חייב להיות צפוף מזה של חלון המשחק, אחרת הוא
+# לא עושה כלום.
+check(ended >= poke,
+      f"קצב שאחרי השריקה ({ended} דק׳) לא צפוף מתדירות הלולאה ({poke} דק׳)")
+check(ended < hot,
+      f"אחרי השריקה אוספים כל {ended} דק׳, צפוף מ־{hot // 60} שע׳ "
+      f"של חלון המשחק")
 
 print("\nכיסוי פתיחת המשחק:")
 # כדי שהפולר יעבוד ברגע הקפיצה, חייבת ליפול דקירה בתוך [קפיצה מינוס
@@ -172,6 +184,12 @@ print("\nתקציב הדיפלויים של ורסל, 100 ביום:")
 quiet_day = (24 * 60) // quiet
 # ביום משחק: החלון הצפוף רחב win_b+win_a שעות, ומחוצה לו הקצב הרגוע
 from_collect = ((win_b + win_a) * 60) // hot + quiet_day
+# **ובשעתיים ורבע שאחרי השריקה האיסוף צפוף הרבה יותר.** נספר כאן כאילו
+# כל איסוף שם הוא דיפלוי, וזו הערכה שמרנית בכוונה: בפועל משתנה שם דבר
+# אחד, התוצאה עם הטופס והממוצעים ביחד, ושאר האיסופים שקטים ולא דוחפים.
+ENDED_WINDOW = 135
+from_ended = ENDED_WINDOW // ended
+from_collect += from_ended
 # **דגימה אינה דחיפה, וזה מה שהמודל כאן פספס.** ‏save_live כותב רק
 # כשהתוכן באמת השתנה, ואחרת מרענן את החותמת פעם ב־STAMP_EVERY. במשחק
 # ליגה אין הזנה חיה והתוכן משתנה פעמיים בלבד, starting ואז playing ואז
@@ -182,7 +200,8 @@ from_poller_home = poll_minutes // stamp + 2
 from_poller = poll_minutes // poll_every
 worst = from_collect + from_poller
 print(f"  איסוף ביום רגוע: {quiet_day}")
-print(f"  איסוף ביום משחק: לכל היותר {from_collect} ביום")
+print(f"  איסוף ביום משחק: לכל היותר {from_collect} ביום, "
+      f"מהם {from_ended} בחלון שאחרי השריקה")
 print(f"  פולר במשחק ליגה: לכל היותר {from_poller_home} "
       f"(נמדד 13 ב־11.10)")
 print(f"  פולר במשחק יורוקאפ: לכל היותר {from_poller}")
