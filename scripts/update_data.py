@@ -486,6 +486,46 @@ def preserve_missing(games, previous, now=None):
     return keep
 
 
+# **מה שהיה לנו ואף מקור כבר לא אומר, נשאר.** האולם של משחק ישראלי מגיע
+# רק מאתר המועדון, והמועדון מחליף את הכרטיס ברגע שהמשחק נגמר: במקום
+# המקום והשידור מופיעה התוצאה. אתר הליגה לא נותן אולם בכלל, ולכן הרשומה
+# נבנית מחדש בלי אולם וכותבת ריק על מה שכבר ידענו.
+#
+# נמדד ב־18.10.2026 על המשחק הביתי מול ב״ש: ב־15.10 היה כתוב ״פיס ארנה,
+# ירושלים״, וב־17.10 בערב, אחרי השריקה, השדה התרוקן. אותו דבר קרה לכל
+# משחקי הגביע והליגה שנגמרו, בעוד שהמשחקים האירופיים שמרו על האולם שלהם
+# כי שם הוא מגיע מהפיד ולא מהמועדון.
+#
+# הצעד הזה בא **אחרון**, אחרי ההעשרה מהמועדון, ולכן הוא לא יכול להקפיא
+# שינוי: אם המשחק הועבר לאולם אחר והמועדון פרסם את החדש, הוא כבר נכנס,
+# והצעד הזה נוגע רק בשדה שנשאר ריק.
+CARRY = ("venue", "broadcast")
+
+
+def carry_known_fields(games, previous, log=None):
+    by_id, by_teams = {}, {}
+    for g in previous:
+        if g.get("id"):
+            by_id[g["id"]] = g
+        by_teams[(g.get("date", "")[:10], g.get("home"), g.get("away"))] = g
+    carried = 0
+    for g in games:
+        # גם לפי יריבה ותאריך, כי אותו משחק מקבל מזהה אחר כשהוא עובר
+        # מלוח המועדון ללוח הליגה: שם יש תחילית ``-club-`` ושם אין.
+        old = (by_id.get(g.get("id"))
+               or by_teams.get((g.get("date", "")[:10], g.get("home"), g.get("away"))))
+        if not old:
+            continue
+        for field in CARRY:
+            if old.get(field) and not g.get(field):
+                g[field] = old[field]
+                carried += 1
+                if log:
+                    log(f"    = {g['date'][:10]} שומר {field} שכבר היה לנו: "
+                        f"{old[field]}")
+    return carried
+
+
 def update_games():
     team_link = find_team_link()
     if not team_link:
@@ -573,6 +613,10 @@ def update_games():
         log(f"שמרנו {len(revived)} משחקים שכבר לא מופיעים באף מקור:")
         for g in revived:
             log(f"    = {g['date'][:16]}  {g['home']} vs {g['away']}  status={g['status']}")
+
+    carried = carry_known_fields(games, previous, log=log)
+    if carried:
+        log(f"  {carried} שדות נשמרו מהקובץ הקודם, כי אף מקור כבר לא אומר אותם")
 
     games.sort(key=lambda g: g["date"])
     log("games total:", len(games))
