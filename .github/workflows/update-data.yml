@@ -102,6 +102,22 @@ jobs:
           # שש שעות אחריה האיסוף חוזר לקצב צפוף. זה עולה כשלושה דיפלויים
           # ביום משחק, ויום משחק ממילא רחוק מהתקרה.
           GAME_EVERY=$(( 3 * 3600 ))
+          # **ובשעתיים שאחרי השריקה, קצב צפוף הרבה יותר, כי זה הרגע שבו
+          # האוהד נכנס.** שלוש שעות הן מרווח סביר לחלון של שתים עשרה
+          # שעות, אבל הן גם אומרות שהתוצאה יכולה לאחר עד שלוש שעות אחרי
+          # שהמשחק נגמר. נמדד ב־17.10.2026 על המשחק מול ב״ש: השריקה
+          # ב־19:15 UTC, האיסוף שלפניה ב־18:23 ולא מצא כלום, והבא אחריו
+          # ב־21:39. **התוצאה הגיעה לאוהד שעתיים ו־24 דקות אחרי שהמשחק
+          # נגמר.** ב־11.10 היא הגיעה תוך רבע שעה, וזה היה מזל של תזמון.
+          #
+          # כאן האיסוף יורד ל־20 דקות בחלון שבין שעה ו־45 דקות אחרי
+          # הקפיצה ועד ארבע שעות אחריה: משחק כדורסל נגמר אחרי כשעתיים,
+          # והקצה התחתון משאיר מקום גם למשחק קצר.
+          #
+          # **וזה לא 20 דיפלויים.** ``push_if_changed`` דוחף רק כשמשהו
+          # באמת השתנה, ובחלון הזה משתנה דבר אחד: התוצאה, הטופס
+          # והממוצעים, ביחד, פעם אחת. שאר האיסופים שם שקטים לגמרי.
+          ENDED_EVERY=$(( 20 * 60 ))
           # דופק: גם כשאין שום שינוי, נדחוף פעם באחת עשרה שעות כדי שגיל
           # הקובץ באתר ימשיך להיות אמיתי, וכדי שהשומר יוכל למדוד שהריצה
           # חיה. השומר ב־watchdog.yml מודד מול המספר הזה, ולכן שינוי כאן
@@ -255,9 +271,13 @@ jobs:
           # החלון צריך לכסות את המשחק, ועוד את זמן האינדוקס של גוגל, ועוד
           # מרווח איסוף אחד: 2.5 + 1 + 3 מגיעים ל־6.5, ותשע נותנות מרווח.
           AFTER = datetime.timedelta(hours=9)
+          # החלון שבו המשחק זה עתה נגמר, והתוצאה היא מה שמחכים לו
+          ENDED_FROM = datetime.timedelta(hours=1, minutes=45)
+          ENDED_TO = datetime.timedelta(hours=4)
           now = datetime.datetime.now(datetime.timezone.utc)
           games = json.loads(pathlib.Path("app/data/games.json").read_text(
               encoding="utf-8")).get("games") or []
+          state = "quiet"
           for g in games:
               if g.get("timeTbd"):
                   continue
@@ -265,24 +285,25 @@ jobs:
                   start = datetime.datetime.fromisoformat(g["date"])
               except Exception:
                   continue
-              if now - AFTER <= start <= now + BEFORE:
-                  print("game")
+              if start + ENDED_FROM <= now <= start + ENDED_TO:
+                  state = "ended"
                   break
-          else:
-              print("quiet")
+              if now - AFTER <= start <= now + BEFORE:
+                  state = "game"
+          print(state)
           PY
           }
 
           echo "מתחילים משמרת של ${MINUTES} דקות."
           while :; do
             now=$(date +%s)
-            if [ "$(collect_every)" = "game" ]; then
-              every=$GAME_EVERY
-            else
-              every=$QUIET_EVERY
-            fi
+            case "$(collect_every)" in
+              ended) every=$ENDED_EVERY ;;
+              game)  every=$GAME_EVERY ;;
+              *)     every=$QUIET_EVERY ;;
+            esac
             if [ $(( now - last_collect )) -ge "$every" ]; then
-              echo "[$(date -u +%H:%M)] איסוף (מרווח $(( every / 3600 )) שעות)"
+              echo "[$(date -u +%H:%M)] איסוף (מרווח $(( every / 60 )) דקות)"
               python scripts/update_data.py || true
               last_collect=$now
               push_if_changed || true
