@@ -4,7 +4,7 @@
   "rows": [
     {
       "pos": 1,
-      "team": "הפועל י-ם",
+      "team": "מכבי ת\"א",
       "played": 2,
       "wins": 2,
       "losses": 0,
@@ -12,30 +12,38 @@
     },
     {
       "pos": 2,
-      "team": "מכבי ת\"א",
-      "played": 1,
-      "wins": 1,
+      "team": "הפועל י-ם",
+      "played": 2,
+      "wins": 2,
       "losses": 0,
-      "points": 2
+      "points": 4
     },
     {
       "pos": 3,
-      "team": "מכבי אשדוד",
-      "played": 1,
-      "wins": 1,
+      "team": "הפועל ת\"א",
+      "played": 2,
+      "wins": 2,
       "losses": 0,
-      "points": 2
+      "points": 4
     },
     {
       "pos": 4,
-      "team": "הפועל ת\"א",
-      "played": 1,
+      "team": "מכבי אשדוד",
+      "played": 2,
       "wins": 1,
-      "losses": 0,
-      "points": 2
+      "losses": 1,
+      "points": 3
     },
     {
       "pos": 5,
+      "team": "קריית אתא",
+      "played": 2,
+      "wins": 1,
+      "losses": 1,
+      "points": 3
+    },
+    {
+      "pos": 6,
       "team": "מכבי רמת גן",
       "played": 1,
       "wins": 1,
@@ -43,16 +51,8 @@
       "points": 2
     },
     {
-      "pos": 6,
-      "team": "הפועל אילת",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "points": 2
-    },
-    {
       "pos": 7,
-      "team": "קריית אתא",
+      "team": "הפועל אילת",
       "played": 1,
       "wins": 1,
       "losses": 0,

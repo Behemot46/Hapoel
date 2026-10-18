@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18T08:40:05Z",
+  "updated": "2026-10-18T19:40:58Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -35,7 +35,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-10-09T08:28:45Z"
+      "latest": "2026-10-18T12:05:46Z"
     },
     {
       "id": "1648115499",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "הצהרת כוונות | הפועל מהממת את פאו, מכבי מחייכת בוולנסיה ומתכוננים לעונת ה-NBA",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/-NBA-e3qmdfm",
+      "published": "2026-10-18T12:05:46Z",
+      "duration": 5430
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -225,15 +234,6 @@
       "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/4-e3p3k86",
       "published": "2026-09-19T16:28:09Z",
       "duration": 4097
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "לא כוחות | מכבי מפרקת את הפועל בדרבי, מדר גונב את ההצגה ואיטודיס סופג אש",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3p1gg6",
-      "published": "2026-09-18T09:34:44Z",
-      "duration": 3909
     },
     {
       "showId": "1573775015",
