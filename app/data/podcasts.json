@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19T09:06:07Z",
+  "updated": "2026-10-19T20:12:50Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-10-11T11:21:00Z"
+      "latest": "2026-10-19T17:50:00Z"
     },
     {
       "id": "1698308776",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "הגיע הזמן לעמוד מאחורי ההחלטות, עם יונתן אלון | שוט, פרק 201",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-10-19T17:50:00Z",
+      "duration": 5490
+    },
     {
       "showId": "1698308776",
       "show": "דאבל דריבל",
@@ -216,15 +225,6 @@
       "url": "https://omny.fm/shows/speaknrolisrael/98dfc6f6-2e34-4c1c-a277-b4ce00a97b7b",
       "published": "2026-09-23T10:22:05Z",
       "duration": 3349
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "אני אוהב שמבקרים אותי, עם וסיליה מיציץ'| שוט, פרק 197",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-09-22T07:40:00Z",
-      "duration": 2727
     },
     {
       "showId": "6820447951",

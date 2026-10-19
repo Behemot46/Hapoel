@@ -182,6 +182,16 @@
       "photo": "img/players/david-roddy.jpg"
     },
     {
+      "name": "Yonatan Keller",
+      "number": 30,
+      "position": "גארד",
+      "born": 2007,
+      "country": "ישראל",
+      "code": "015332",
+      "source": "eurocup",
+      "slug": "yonatan-keller"
+    },
+    {
       "name": "Gabriel Chachashvili",
       "number": 33,
       "position": "סנטר",

@@ -28,15 +28,15 @@
     },
     {
       "pos": 4,
-      "team": "מכבי אשדוד",
+      "team": "הפועל אילת",
       "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "points": 3
+      "wins": 2,
+      "losses": 0,
+      "points": 4
     },
     {
       "pos": 5,
-      "team": "בני הרצליה",
+      "team": "הפועל העמק",
       "played": 2,
       "wins": 1,
       "losses": 1,
@@ -44,7 +44,7 @@
     },
     {
       "pos": 6,
-      "team": "קריית אתא",
+      "team": "מכבי רמת גן",
       "played": 2,
       "wins": 1,
       "losses": 1,
@@ -52,22 +52,38 @@
     },
     {
       "pos": 7,
-      "team": "מכבי רמת גן",
-      "played": 1,
+      "team": "מכבי אשדוד",
+      "played": 2,
       "wins": 1,
-      "losses": 0,
-      "points": 2
+      "losses": 1,
+      "points": 3
     },
     {
       "pos": 8,
-      "team": "הפועל אילת",
-      "played": 1,
+      "team": "בני הרצליה",
+      "played": 2,
       "wins": 1,
-      "losses": 0,
-      "points": 2
+      "losses": 1,
+      "points": 3
     },
     {
       "pos": 9,
+      "team": "גליל עליון",
+      "played": 2,
+      "wins": 1,
+      "losses": 1,
+      "points": 3
+    },
+    {
+      "pos": 10,
+      "team": "קריית אתא",
+      "played": 2,
+      "wins": 1,
+      "losses": 1,
+      "points": 3
+    },
+    {
+      "pos": 11,
       "team": "נס ציונה",
       "played": 2,
       "wins": 0,
@@ -75,7 +91,7 @@
       "points": 2
     },
     {
-      "pos": 10,
+      "pos": 12,
       "team": "הפועל ב\"ש",
       "played": 2,
       "wins": 0,
@@ -83,36 +99,20 @@
       "points": 2
     },
     {
-      "pos": 11,
-      "team": "הפועל העמק",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "points": 1
-    },
-    {
-      "pos": 12,
-      "team": "ראשון לציון",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "points": 1
-    },
-    {
       "pos": 13,
-      "team": "הפועל חולון",
-      "played": 1,
+      "team": "ראשון לציון",
+      "played": 2,
       "wins": 0,
-      "losses": 1,
-      "points": 1
+      "losses": 2,
+      "points": 2
     },
     {
       "pos": 14,
-      "team": "גליל עליון",
-      "played": 1,
+      "team": "הפועל חולון",
+      "played": 2,
       "wins": 0,
-      "losses": 1,
-      "points": 1
+      "losses": 2,
+      "points": 2
     }
   ]
 }
