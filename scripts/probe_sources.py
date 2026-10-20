@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**השאלה הפעם, 20.10.2026:** יונתן קלר, גארד ישראלי יליד 2007, נוסף לסגל
-דרך הרישום ליורוקאפ ואתר המועדון לא מציג אותו, ולכן הוא מופיע באפליקציה
-באותיות לטיניות. תעתיק שאני ממציא אסור, ולכן השם צריך לבוא ממקור שפרסם
-אותו: העמוד של הליגה, שכתוב בעברית.
+**מה שנמדד כאן ב־20.10.2026, וחבל שיישכח:** יונתן קלר, גארד ישראלי יליד
+2007, נוסף לסגל דרך הרישום ליורוקאפ. אתר המועדון לא מציג אותו ולכן אין
+לו שם עברי, והוא מופיע באפליקציה באותיות לטיניות.
 
-הכלי בודק אם העמוד הזה באמת מחזיק טבלת סגל עם מספרי חולצה, מה
-``parse_roster`` מוציא ממנו, והאם ``fill_he_from_league`` משלים את השם
-החסר. בלי זה התיקון הוא ניחוש שעובד רק במבחן.
+הרעיון היה לקחת את השם מהעמוד של הליגה, שכתוב בעברית.
+**זה לא עובד, ונמדד:** ``parse_roster`` על ``team.asp?TeamId=2114``
+מחזיר **אפס שחקנים**. לעמוד הקבוצה אין טבלת סגל שהפרסר מזהה, וזו בדיוק
+הסיבה שמסלול הגיבוי ב־``update_roster`` לא מסתפק בו אלא ממשיך
+ל־``roster_candidates`` ואחר כך לעמוד סטטיסטיקה לפי TeamId.
+
+**הניסיון הבא, כשתהיה דחיפה בלאו הכי:** לקרוא את כל שרשרת הגיבוי ולא
+רק את הצעד הראשון שלה, ולהדפיס מה כל מועמד מחזיר. אם גם שם אין סגל
+בעברית, המקור הסביר היחיד שנשאר הוא טופס משחק של הליגה, שבו שמות
+השחקנים בעברית, וזה יקרה רק כשקלר ישחק משחק רשמי.
 """
-import json
 import pathlib
 import sys
 
@@ -26,21 +31,18 @@ def main():
     print(f"עמוד הקבוצה בליגה: {link}")
     if not link:
         return
-    league = ud.parse_roster(BeautifulSoup(ud.fetch(link), "html.parser"))
-    print(f"\n{len(league)} שחקנים נקראו מהעמוד:")
-    for r in sorted(league, key=lambda x: x.get("number") or 99):
-        print(f"  {str(r.get('number') or '-'):>3} {r.get('name','')[:24]:<24} "
-              f"{r.get('position','')[:10]:<10} {r.get('born','')}")
-
-    roster = json.loads(
-        (ud.DATA / "roster.json").read_text(encoding="utf-8"))["players"]
-    before = [p["name"] for p in roster if not p.get("nameHe")]
-    print(f"\nבסגל שלנו בלי שם עברי: {before or 'אף אחד'}")
-    filled = ud.fill_he_from_league(roster, league, log=ud.log)
-    print(f"הושלמו {filled}:")
-    for p in roster:
-        if p["name"] in before:
-            print(f"  {p['name']} -> {p.get('nameHe')!r}")
+    soup = BeautifulSoup(ud.fetch(link), "html.parser")
+    print(f"  {len(ud.parse_roster(soup))} שחקנים מהעמוד עצמו")
+    for u in ud.roster_candidates(link, soup)[:6]:
+        try:
+            sub = BeautifulSoup(ud.fetch(u), "html.parser")
+        except Exception as e:
+            print(f"  {u}: נפל, {e}")
+            continue
+        found = ud.parse_roster(sub)
+        print(f"  {u}: {len(found)} שחקנים")
+        for r in sorted(found, key=lambda x: x.get("number") or 99)[:20]:
+            print(f"      {str(r.get('number') or '-'):>3} {r.get('name','')[:24]}")
 
 
 if __name__ == "__main__":
