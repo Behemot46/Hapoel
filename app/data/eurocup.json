@@ -1,7 +1,7 @@
 {
   "competition": "יורוקאפ",
   "season": "2026/27",
-  "round": 3,
+  "round": 4,
   "ourGroup": "Group A",
   "groups": [
     {
@@ -134,6 +134,16 @@
         },
         {
           "pos": 5,
+          "team": "Siauliai Basketball",
+          "code": "SIA",
+          "played": 4,
+          "wins": 2,
+          "losses": 2,
+          "for": 314,
+          "against": 328
+        },
+        {
+          "pos": 6,
           "team": "London Lions",
           "code": "LLI",
           "played": 3,
@@ -141,16 +151,6 @@
           "losses": 2,
           "for": 236,
           "against": 232
-        },
-        {
-          "pos": 6,
-          "team": "Turk Telekom Ankara",
-          "code": "TTK",
-          "played": 3,
-          "wins": 1,
-          "losses": 2,
-          "for": 232,
-          "against": 234
         },
         {
           "pos": 7,
@@ -164,13 +164,13 @@
         },
         {
           "pos": 8,
-          "team": "Siauliai Basketball",
-          "code": "SIA",
-          "played": 3,
+          "team": "Turk Telekom Ankara",
+          "code": "TTK",
+          "played": 4,
           "wins": 1,
-          "losses": 2,
-          "for": 220,
-          "against": 244
+          "losses": 3,
+          "for": 316,
+          "against": 328
         }
       ]
     },
@@ -211,24 +211,14 @@
           "pos": 4,
           "team": "Buducnost VOLI Podgorica",
           "code": "BUD",
-          "played": 3,
-          "wins": 1,
+          "played": 4,
+          "wins": 2,
           "losses": 2,
-          "for": 259,
-          "against": 258
+          "for": 363,
+          "against": 347
         },
         {
           "pos": 5,
-          "team": "Neptunas Klaipeda",
-          "code": "KLA",
-          "played": 3,
-          "wins": 1,
-          "losses": 2,
-          "for": 250,
-          "against": 258
-        },
-        {
-          "pos": 6,
           "team": "Slask Wroclaw",
           "code": "WRO",
           "played": 3,
@@ -238,7 +228,7 @@
           "against": 266
         },
         {
-          "pos": 7,
+          "pos": 6,
           "team": "Dolomiti Energia Trento",
           "code": "TRN",
           "played": 3,
@@ -246,6 +236,16 @@
           "losses": 2,
           "for": 237,
           "against": 255
+        },
+        {
+          "pos": 7,
+          "team": "Neptunas Klaipeda",
+          "code": "KLA",
+          "played": 4,
+          "wins": 1,
+          "losses": 3,
+          "for": 339,
+          "against": 362
         },
         {
           "pos": 8,
@@ -274,6 +274,16 @@
         },
         {
           "pos": 2,
+          "team": "Lietkabelis Panevezys",
+          "code": "LKB",
+          "played": 4,
+          "wins": 3,
+          "losses": 1,
+          "for": 321,
+          "against": 307
+        },
+        {
+          "pos": 3,
           "team": "ratiopharm ulm",
           "code": "ULM",
           "played": 3,
@@ -283,7 +293,7 @@
           "against": 278
         },
         {
-          "pos": 3,
+          "pos": 4,
           "team": "PAOK Thessaloniki",
           "code": "PAO",
           "played": 3,
@@ -291,16 +301,6 @@
           "losses": 1,
           "for": 254,
           "against": 245
-        },
-        {
-          "pos": 4,
-          "team": "Lietkabelis Panevezys",
-          "code": "LKB",
-          "played": 3,
-          "wins": 2,
-          "losses": 1,
-          "for": 257,
-          "against": 250
         },
         {
           "pos": 5,
@@ -336,11 +336,11 @@
           "pos": 8,
           "team": "Balkan Botevgrad",
           "code": "BLK",
-          "played": 3,
+          "played": 4,
           "wins": 0,
-          "losses": 3,
-          "for": 214,
-          "against": 267
+          "losses": 4,
+          "for": 271,
+          "against": 331
         }
       ]
     }
