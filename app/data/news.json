@@ -2,11 +2,9 @@
   "updated": "2026-10-19T20:12:48Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "באר שבע נט",
     "וואלה ספורט",
     "ספורט 5",
     "Sport5",
-    "Universidad de Córdoba (UCO)",
     "ספורט 1",
     "ערוץ 7",
     "הארץ",
@@ -16,13 +14,6 @@
     "ynet"
   ],
   "items": [
-    {
-      "title": "הספסל שהציל את האלופה: מהפך דרמטי להפועל באר שבע מול הפועל ירושלים -",
-      "url": "https://news.google.com/rss/articles/CBMirgRBVV95cUxObmpkWjNzSUxwdnlEQ0hGdDdvRjNFdkM4cW5rRnphWXNaTDM3a3NLbnJBWHd0MWFVbUdFN1R1UTMxdzU3aDZnUnozXzczTG5LRHFfVER5aGJHZ1FSMmdTckI2alJVSDZfN0t1MkNseFZJM3BiUDBVM3J0NmE5ZjAyMXdOeWZ2NG1qT056SXdDc3RyOE5HOG84WmpqWnRmYXdReDBvRzFIdDZCRmNTc1puYUtVY3owQWJvWkFXTTRvSkpkX1dyLVNLRWlFdXVGcEp1SlZPTHpSLXZKSFFYeTJVMmN1NVRzRmozSS1ENS10YkNLaHZpZWNRbTNhRV9BMkRmRElHQUJua04zUVRmM0psZ2REWW9VRjhPaEtXbGZyRFhTYUVaTTFwby1BODlKb2JNM1g0dW9GeWFUMDFjdWVSZThJc2lDMTRzZmM3UUwxUEVkRms4SV9Kb0JPdC1WblU2UEFoZVBHYlU3YzNVWW5WdkpQRTIwdFVnMHNhLTIzRjFsekh5dDVyVDZuUjEwZUhVMTlBbENZeEhBSVNBOUNkVUQ5ZTRYOHZiczFuYkxiRzd1d254WV9jQWxZTktjblVQYWdqdlZoeU1DdmJhQ095Mm5KVThpMDFSNlBFZEdHYlM0b1JXc19PVjJkWGdfYTlrNkF1MU1HTE5LSjdsS1VOeVZjN1FyNVhYZWZVdFZlMEwyVUVBMkVLTG5DQ0g2WWNiakxDWjBxS3ZtaDE5cXc?oc=5",
-      "source": "באר שבע נט",
-      "sourceUrl": "https://www.b7net.co.il",
-      "published": "2026-10-19T09:55:05Z"
-    },
     {
       "title": "הפתרון של הפועל ירושלים והפועל חולון ליום הבחירות",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5BWGo3SnJqZnNjV2N0cTJsX21CRTBHN0tNdlNnMV9iN3RUYXByMXJVWWYzcWN4SG5jYnU2amEzNnJIN0dSWGlkelZmMGN3VG1D?oc=5",
@@ -38,53 +29,11 @@
       "published": "2026-10-19T05:09:00Z"
     },
     {
-      "title": "בהפועל ירושלים טוענים: ״ביזו את זכרו של הרש\"",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFByZHBnSGdoZ3JuWERFMnJEamY4NFUyODhMQmNiZ3RTaDRkdG5tX1NsbTZGWTN3VWxCaURfNEFPblQ3UHlQSDVWdkh6ZEFnOXNCMXJDYVlfOXhlZ3FGR0RaVnJ4RGhRVndEQ3k0YnJjS28?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-10-18T18:59:55Z"
-    },
-    {
-      "title": "הצביעו: האם ב\"ש קופחה נגד הפועל י-ם?",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQcnZmWjY2bllmcjYxcGY4NERobmlpQkxXMW9rVkhldTBkM215TUx3aWR2Ykc0S2FraXFYMGhFRDF2dm9lUTNNVWFNd3BNTEF1RDJ4R0otUWJ5RFlERmNuOU1ETnBWRVVyVWpXX1BHcmZhb1pTR0xUdkd6ZVBreml0WldQZE8?oc=5",
-      "source": "Sport5",
-      "sourceUrl": "https://m.sport5.co.il",
-      "published": "2026-10-18T18:44:28Z"
-    },
-    {
-      "title": "עימותים בין אוהדי ב\"ש לאוהדי הפועל י-ם",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5POHZIb1hlMU9xUmxVMTc1eVBEb2dRbG1oSDhGZl9acnVmS2h0Wng1RF96Wk5mTDlGVng0OGo0YVlwRkYxaDdXNkJCMnYxVm4wN1dFeEd1eHJ1VjdsZUdITV92aW1NczFBeGlDMTVNcHE?oc=5",
-      "source": "ספורט 5",
-      "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-10-18T17:33:36Z"
-    },
-    {
-      "title": "!+[צפייה בשידור חי] – לחצו כאן! הפועל באר שבע נגד הפועל ירושלים Live שידור טלוויזיה 18 באוקטובר 2026",
-      "url": "https://news.google.com/rss/articles/CBMijARBVV95cUxOaVJFVkJNaER3WU9JeFFTOEMtd0FLQ3dKWkQ3OWVHOGJlMV9JQzRmeVRYeWsyWGotTDgtRmUwa3I2WDNET2pXY3pCVVlnTzJKUHZ1YnFPZ1h3Wi1LSDZOblo4NnZjOWR1S2NPdU5JZUd1ZXBFdnRaaVVtckZLWThlMWtzb1hqYXJuUGZ0X21MS3ZocmdYVUdsT255a1F1MUt1QnZoMklwSm1VbUI1UjBtWkZfQVo0MmMxeFUzTlRXWmZWVDhLbXk3WFh2RmhrNGxNZE5sY1ZyRXF0M1ZwOTRtbjROZXp6VUV3NzA3UFhpdDQ5NmFtZDRXOEVsNGZwR1U1UG14c1BCV0g1U2hTRERFbU9WSmt0ci1pc08zN0oxSnJTYUxMQjJtUTA1UmNaWjJfRExmbUZNWWFjUnJvWTY4QldMRkJ3R3g1MTdjcUJOUlVPd3NzSDc0RHYwWFBSOEdvRGx5Wlpqb2dpSHBZcTVUUU9MWmFsWl93emFnV3pDNWNCZk9qRDQ5QmVyOXNzZ3JYaDFhUldLeU5wdzhRdDYwZS12cFNVQnlvckNmSlh1VDBXSUpremRCNmpVTzV3ZTFjcE1tVkxJWVQ0TFB6ejRzdzlpSGlNMGhPclhmc3p3UXhyN2FWMTd0eVJ1VUJ5dVA1OXU5RTV5a2hUeHR5MGNLNkNGSEYwUGx3LU5xRQ?oc=5",
-      "source": "Universidad de Córdoba (UCO)",
-      "sourceUrl": "https://www.uco.es",
-      "published": "2026-10-18T14:49:40Z"
-    },
-    {
-      "title": "~!@【【【4K】】】הפועל באר שבע נגד הפועל ירושלים שידורים חיים בערוץ הטלוויזיה 18 באוקטובר, 2026",
-      "url": "https://news.google.com/rss/articles/CBMi-ANBVV95cUxNQ0RraXEzWUx1OGgycGlCNjN2cHJlZHB1bXUxbC1uWkdMSzRDTkp3c1FsM1ZqbXJvOGw0d1ltWHZHTlI0c0dYZjlDaG41SU43UnJERlZIRFFlMzBET0FXMlg5bE9ySWNfNDZZM1VJQXI3WW01YkEwX21ULUkzYS1LM2pSTGZ5S3I1bXZIOF82c0JqX2NaVVVCSzZsbTdSNGY4cUtoYTVNWlF2VDg2N2g3WURvUlBMVWpfZzZFOE9FZ2FpTjNaamFmUnhldjllX2l5R2RMUFBXY3hPQzdCd1loVlowMzRlWF9QSXRpdFQ2anRMeW9ZSWRDbWNrV0pCQVZiTURtSzRsWVN0VmE0SE9VcXI5VzdBMEc5SXpTeUpfTy00VlRfWUpkLW52WmVpSUxwWHRTWEJkTkpyeEtaQmVHajI3NHh2TmY0djdMZjJDTVhqTFlRZGsyUFlqdTh6bTJwMGluX0lUWThQaW9VNVVmY0JlQ3RSRlhTQ2JEamNDelpLREVyQmVJME5ndVNBc2NteHY1X1lVUmhUaDhiTDFnVVRqcjV5OTZyX0VwRXRzR3B6Szd3RDA1d3VGX1MtS1VqZTJIdVBTOG1ZVGswNnVsaHBEaVZ1bGdvU3JJckhuVVEzN05CdjRucUd5dHVFWjh0c0x6Y3hVQl8?oc=5",
-      "source": "Universidad de Córdoba (UCO)",
-      "sourceUrl": "https://www.uco.es",
-      "published": "2026-10-18T14:49:38Z"
-    },
-    {
       "title": "אנחת רווחה בהפועל ירושלים: איתן בורג לא סובל מפציעה משמעותית",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPaEMwZXNPbS01X3hpNl95TEVpbEtiUUVuNlg4Qm91M1RGTmNNX3VHWGMxeVM5dnZiYjM3aHI5TE9VNll5eFc4Y0k1RGdzbnBPZnpVMVJQX3o5U0dkaUtYcmgzZWpmX20zM28tUEdhZ25IMFFFaHNSZ2Nxc2xpMGcwNFE2OG45Z014a2Y5MnBUdEw3UQ?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-10-18T10:58:19Z"
-    },
-    {
-      "title": "האלופה חוזרת לטרנר: כל חסימות הכבישים וההנחיות לקראת המשחק מול הפועל ירושלים -",
-      "url": "https://news.google.com/rss/articles/CBMihwVBVV95cUxPSkVGWGtnd0U3Q01nTVlRckdQbkJUS0pDYUhhcnJqamtJd3VSNndKMWt0WDBiem5Sd3NCdmFMeW9Ta1NVaEVxVlR4ZFpDeU9GbXBJR1ZZaVhjOE82V01pTnowTmIwOVpUeGhneEk0ZTA1YmVSVE9FRGxFeVRMbm8xR09Qa0FYR0VpT2FHS2xqd0FuQlJxRlBjRVROREJsSUJUb0R6NC12MTdwamlKbzdmeUVKLUNjWjRQWmF6ZXBmV3BidzlGRVNJLWlOU096Q2lTcXY5dEFYUFZTblNHZGZZWGdUXy1EUXRtNW5EbUtpR2JDb0FwTTdVTlVQX2VpUDRhN3lJN2RwbUdIdFpBclBPRWNVUmIxVkxyUGVweUs4cWNvTmZETGxBQmY0ZEJHSGVmalZucG54UzhYbHB5dDBiLXI5MEs0NDN5MXVHUUFSb1lCaDY5Ni1VRkJLWFlWT0l5SWl5MjlwUVR3UW5oRkQ1WXE2NTVVdThERDdERHZLZjNrMEFpa1V5ZUZTOVA2cGVmYXQxbjNuOGpyelBZdWJmS01Qb1d3MjNhaGtIUVRMdERaQWhSRFV1aVc5TlU0MnJfV3JKSFhMSWFnU3F3NDdFRDNqekt2RDI1R1ZiR05vYk1OQ2ZReXFySHBiMk9SeWNId1ZELXlYMnFCaXdXMi0xMDdMVmpFRVVCV0psbFlWR2tIQUdYQkJ0YmxxUFhsdjA3Z21wQng3TFBxT1NqZjBnNzhCUU5peENuZXVzNkFicWpqYkg4SzZzQ2tzM3lSVlltNGFGS0lkYXRLQ0I2U2lzblQ1LVJ2RnRoakRQR0k2QlRZQTFMbTY0anRQQm1UdW00cTJucldLcw?oc=5",
-      "source": "באר שבע נט",
-      "sourceUrl": "https://www.b7net.co.il",
-      "published": "2026-10-18T09:34:11Z"
     },
     {
       "title": "המחווה של הפועל ירושלים לגיבורים שנפלו",
