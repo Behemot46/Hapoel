@@ -1495,6 +1495,50 @@ def merge_club_and_euro(club, euro):
     merged.sort(key=lambda r: (r.get("number") is None, r.get("number") or 0))
     return merged
 
+# **שם עברי מהעמוד של הליגה, לשחקן שאף מקור אחר לא נתן לו אחד.**
+# ב־20.10.2026 נוסף לסגל יונתן קלר, גארד ישראלי יליד 2007 שנרשם ליורוקאפ.
+# אתר המועדון לא מציג אותו, ולכן הוא הגיע בלי שם עברי והופיע באפליקציה
+# עברית באותיות לטיניות. בשם של ישראלי זה צורם במיוחד, **ותעתיק שאני
+# ממציא הוא בדיוק מה שאסור**: שם של אדם אמיתי נכתב רק כפי שמקור פרסם.
+#
+# העמוד של הליגה הוא מקור רשמי שכתוב בעברית, ואנחנו כבר יודעים לקרוא
+# אותו: ``parse_roster`` שימש עד היום רק כגיבוי, כשעמוד המועדון החזיר
+# פחות מחמישה שחקנים. כאן הוא נקרא גם במסלול הרגיל, ורק כשחסר שם.
+#
+# **הזיווג דורש יותר ממספר חולצה.** מספר לבדו הוא עדות חלשה, ולכן שנת
+# הלידה חייבת להסכים כששני הצדדים יודעים אותה, ושם שכבר שייך לשחקן אחר
+# בסגל נפסל. מי שלא עבר את זה נשאר בשמו הלועזי, וזה בסדר גמור.
+def fill_he_from_league(players, league, log=None):
+    missing = [p for p in players if not p.get("nameHe")]
+    if not missing:
+        return 0
+    taken = {p["nameHe"] for p in players if p.get("nameHe")}
+    by_num = {}
+    for r in league:
+        if r.get("number") is not None:
+            by_num.setdefault(r["number"], []).append(r)
+    filled = 0
+    for p in missing:
+        rows = by_num.get(p.get("number")) or []
+        if len(rows) != 1:
+            continue
+        row = rows[0]
+        he = (row.get("name") or "").strip()
+        if not he or not re.search(r"[א-ת]{2,}", he) or he in taken:
+            continue
+        if p.get("born") and row.get("born") and p["born"] != row["born"]:
+            if log:
+                log(f"  {p['name']}: מספר {p.get('number')} מתאים אבל שנת "
+                    f"הלידה לא ({p['born']} מול {row['born']}), מדלג")
+            continue
+        p["nameHe"] = he
+        taken.add(he)
+        filled += 1
+        if log:
+            log(f"  {p['name']} מקבל שם עברי מהעמוד של הליגה: {he}")
+    return filled
+
+
 def update_roster():
     # The club's own squad page lists more players than the European
     # registration ever will, and is the only source with dates of birth.
@@ -1512,6 +1556,14 @@ def update_roster():
 
     if len(club) >= 5:
         players = merge_club_and_euro(club, euro)
+        if any(not p.get("nameHe") for p in players):
+            try:
+                link = find_team_link()
+                league = parse_roster(BeautifulSoup(fetch(link), "html.parser")) \
+                    if link else []
+                fill_he_from_league(players, league, log=log)
+            except Exception as e:
+                log("league roster lookup failed:", e)
         return _save_roster(players)
     log(f"club page gave {len(club)} players, falling back to the league site")
 
