@@ -21,24 +21,14 @@
           "pos": 2,
           "team": "Hapoel Midtown Jerusalem",
           "code": "JER",
-          "played": 3,
-          "wins": 3,
+          "played": 4,
+          "wins": 4,
           "losses": 0,
-          "for": 254,
-          "against": 221
+          "for": 354,
+          "against": 285
         },
         {
           "pos": 3,
-          "team": "Riga Zelli",
-          "code": "RIG",
-          "played": 3,
-          "wins": 2,
-          "losses": 1,
-          "for": 261,
-          "against": 250
-        },
-        {
-          "pos": 4,
           "team": "Le Mans Sarthe Basket",
           "code": "LEM",
           "played": 4,
@@ -48,7 +38,7 @@
           "against": 312
         },
         {
-          "pos": 5,
+          "pos": 4,
           "team": "Baglietto Derthona Tortona",
           "code": "TRT",
           "played": 4,
@@ -56,6 +46,16 @@
           "losses": 2,
           "for": 330,
           "against": 336
+        },
+        {
+          "pos": 5,
+          "team": "Riga Zelli",
+          "code": "RIG",
+          "played": 4,
+          "wins": 2,
+          "losses": 2,
+          "for": 325,
+          "against": 350
         },
         {
           "pos": 6,

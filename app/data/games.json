@@ -195,11 +195,21 @@
       "home": "הפועל ירושלים",
       "away": "Riga Zelli",
       "venue": "Hala Sportova Ranko Zeravica",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "homePartials": null,
-      "awayPartials": null
+      "status": "finished",
+      "homeScore": 100,
+      "awayScore": 64,
+      "homePartials": [
+        29,
+        21,
+        27,
+        23
+      ],
+      "awayPartials": [
+        20,
+        16,
+        19,
+        9
+      ]
     },
     {
       "id": "20261025-הפועלתא",
