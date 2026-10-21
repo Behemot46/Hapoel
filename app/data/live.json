@@ -1,4 +1,12 @@
 {
-  "state": "idle",
-  "updated": "2026-10-17T20:18:32+00:00"
+  "state": "starting",
+  "game": {
+    "gameId": "20261021-euro-RigaZelli",
+    "competition": "יורוקאפ",
+    "home": "הפועל ירושלים",
+    "away": "Riga Zelli",
+    "date": "2026-10-21T18:00:00Z",
+    "venue": "Hala Sportova Ranko Zeravica"
+  },
+  "updated": "2026-10-21T16:53:50+00:00"
 }
