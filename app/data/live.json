@@ -1,31 +1,4 @@
 {
-  "state": "final",
-  "home": 100,
-  "away": 64,
-  "ourScore": 100,
-  "theirScore": 64,
-  "quarter": 4,
-  "partials": {
-    "us": [
-      29,
-      21,
-      27,
-      23
-    ],
-    "them": [
-      20,
-      16,
-      19,
-      9
-    ]
-  },
-  "game": {
-    "gameId": "20261021-euro-RigaZelli",
-    "competition": "יורוקאפ",
-    "home": "הפועל ירושלים",
-    "away": "Riga Zelli",
-    "date": "2026-10-21T18:00:00Z",
-    "venue": "Hala Sportova Ranko Zeravica"
-  },
-  "updated": "2026-10-21T20:30:10+00:00"
+  "state": "idle",
+  "updated": "2026-10-21T20:35:14+00:00"
 }
