@@ -1,19 +1,32 @@
 {
-  "updated": "2026-10-19T20:12:48Z",
+  "updated": "2026-10-21T15:02:59Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "וואלה ספורט",
     "ספורט 5",
-    "Sport5",
-    "ספורט 1",
+    "ישראל היום",
+    "וואלה ספורט",
     "ערוץ 7",
     "הארץ",
-    "ישראל היום",
     "ONE",
-    "ישראל ספורט",
-    "ynet"
+    "ynet",
+    "Sport5",
+    "ספורט 1"
   ],
   "items": [
+    {
+      "title": "ברוכה הבאה: ניצחון בכורה להפועל י-ם",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9NVWZxbFc2NzBSeW55aE9MaC1zQ1VvbVRQbUEwYVNKZzRGTTBEVUhBTTc4R2RwVHFTUzlNZFFFYlV3WThjVFBUQnpMLWkyZjR0RWdVaFFfZzlNUXhQZnZlWlpNMHNvZVZqbFBQUEtDTFpMMWs?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-10-20T20:31:56Z"
+    },
+    {
+      "title": "\"אני אשם בהדחה מהיורוקאפ, העונה הפועל ירושלים יכולה לזכות\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE54MlZYN1MyN3JVRmRIZ3dJOGFFWHMwYUxjRlFWSlhBUE5kNXd2a0t0OUp4ZEE5cTlid05aQTNuWTF0Qzhobjc5czBoZW9ZZXBpdTZUU1JMLVdjTVhaWHlEN0Q3UjNUS2U1LVF4bjZOeVhWUHh3alp1UUJJb9IBgwFBVV95cUxPdlFJdTZKX2VnVmdDa3FQZmpJTk9XMDYyVWtxajBrU3dqVjZqM3VPV0tDNGZ3WGZBSVJNNXdjT3h2anpvbWpxcDkyM01LTi1BM0oydGpkdTZMckJZWU1mNDBiT0pvZGhZN3FjQTVZZUpzMUNXVU1tMUFzT3UwWG1uVmsyOA?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-10-19T19:11:00Z"
+    },
     {
       "title": "הפתרון של הפועל ירושלים והפועל חולון ליום הבחירות",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5BWGo3SnJqZnNjV2N0cTJsX21CRTBHN0tNdlNnMV9iN3RUYXByMXJVWWYzcWN4SG5jYnU2amEzNnJIN0dSWGlkelZmMGN3VG1D?oc=5",
@@ -29,11 +42,11 @@
       "published": "2026-10-19T05:09:00Z"
     },
     {
-      "title": "אנחת רווחה בהפועל ירושלים: איתן בורג לא סובל מפציעה משמעותית",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPaEMwZXNPbS01X3hpNl95TEVpbEtiUUVuNlg4Qm91M1RGTmNNX3VHWGMxeVM5dnZiYjM3aHI5TE9VNll5eFc4Y0k1RGdzbnBPZnpVMVJQX3o5U0dkaUtYcmgzZWpmX20zM28tUEdhZ25IMFFFaHNSZ2Nxc2xpMGcwNFE2OG45Z014a2Y5MnBUdEw3UQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-10-18T10:58:19Z"
+      "title": "\"חייבים לקום מהר\": בהפועל ירושלים מאוכזבים",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE85bXVMUl9UZjR2OVh2MnBaeVdiVFFzYW9sck1MQk8xaHp0WXBKdUN1b3FEWUtHNm4yVThXOXhaN0NkaFlWS2dCUlRCSEE3MlA3QVRlbXJWZ1U3VHRsbkU2cGxOWnR0U25tX0hROHlDdWU?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-10-19T03:30:54Z"
     },
     {
       "title": "המחווה של הפועל ירושלים לגיבורים שנפלו",
@@ -71,13 +84,6 @@
       "published": "2026-10-17T18:26:18Z"
     },
     {
-      "title": "נותרה מושלמת: הפועל ירושלים 74:88 על הפועל ב\"ש/דימונה",
-      "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxOemJXbFQ1ajF4bF84LTFOdnh4Tm9PZTJsdEttLWQ1VTNRZlhuSi1teUh2VU5qbHVGS3g3ckpBMDl2aXAzTUMwZy13ODZxbV9FUGZXSm80NHFRSEZaaFhoaktBbGJZVjNKSWxPR2NYRkVRRlREbDJzaUZDX2p5b0l5R0tJZG9vUDR3clpodGRoWjgtem9PanVJelAySjJCTEtOWGpwODdLOFBodlVKcnlpOS0yVWIxQ0M1cDQ4cHZrajkzSG9SM3g2STJic25UcHZoU29OSVhaQkY1LXM3NEFCVG9jOUJaaVpEcFdNdHVtWTJqVEpwUm9vVXg0MExoNC01S09wM012TlRQenRBRndNVHhpUGVScG54VkpNZGdvX2JkUmtudmNqYzN1OWgxbUNPOWhqM2VzYUQzcFhFak81eg?oc=5",
-      "source": "ישראל ספורט",
-      "sourceUrl": "https://isport.co.il",
-      "published": "2026-10-17T18:15:00Z"
-    },
-    {
       "title": "מבורך: הפועל ירושלים חנכה יציע לזכר הנופלים",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5uRmpESVpMUENtR1RLWTVOMkhfaDdSVWxNajVmeUxSTGZKX3ZXeW1DMnVkWkF3M2cySXBRY0pKTmZ2MGVIVXYtdGVOOTU1MUpkZDVIcm4xSXY2QQ?oc=5",
       "source": "ynet",
@@ -90,13 +96,6 @@
       "source": "Sport5",
       "sourceUrl": "https://m.sport5.co.il",
       "published": "2026-10-17T17:24:48Z"
-    },
-    {
-      "title": "הפועל ירושלים חנכה את \"יציע הנופלים\" בארנה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFA4RXp5dFFBRkd6UUQ0MENPU2hnYU5yYk5ya09jMUw4aW9iSVc3WHRYd0dXazlWazV2MTUtb2JTcDBobjVMM3FXSWJ6elBQeDcw?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-10-17T17:19:00Z"
     },
     {
       "title": "\"אפשר להשיג תוצאה טובה\": הפועל ירושלים אופטימית לקראת הפועל באר שבע",
@@ -118,13 +117,6 @@
       "source": "וואלה ספורט",
       "sourceUrl": "https://sports.walla.co.il",
       "published": "2026-10-17T10:27:00Z"
-    },
-    {
-      "title": "ללא סמית' וקייקוק: סגל הפועל ירושלים להפועל באר שבע",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPVnM0aG0yYWs5V2hZVVBkcUd3dmNNQ0RvSkxjbjVSNU9hdUs1dE1xNzk4cjRjNDR6clpjb1hPWmQzRlNqMjVtWlE2Z0xNSm94eHFYUmRMYWEtZV9LRVRXSlExRTZLWm9lLW85Rm83MFJPZFk0OFdHMGRnZ1c4ekdUM083ZG55SEg3M2ZWVm1WbkVtUQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-10-17T07:28:00Z"
     },
     {
       "title": "תפתיע בבירה לראשונה? הפועל באר שבע תתארח אצל הפועל ירושלים",
@@ -155,13 +147,6 @@
       "published": "2026-10-15T03:48:10Z"
     },
     {
-      "title": "צפו: הפועל ירושלים ניצחה את בורגוס בתום משחק צמוד, לופטון להט",
-      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQWUFoLTQzMUtZSHBFSWpScVVqYkYydmJCdkpHNVFjakZuVE9LTjNBM3RveUthcUl6N3FxTnoyVU9nNTJocUpxUE5veUl2ZkgwaWh2WHFHaG1kWTVmVmYzWU03SmRZckw2UjJleVB1elFSem1KbXFfYm5rZmcxRUFHeDZRb0h5M1p4VVJlZVJUU1ozNDM3Mk9tSS1jMnhwd093bTF5b2M3ZkRjaERkcHYzSXZYZlYtWlFlVlM2Rm4wb0hwSVRvYWJhR0IyMjdNOV84dmE0aDVwUTZNY3Z0b0liTURlZkJCbzNWRzFrUGU3cVc4akxlZHBYVktpOE4wbDNRQlE?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-10-14T21:05:46Z"
-    },
-    {
       "title": "עדיין מושלמת: הפועל י-ם גברה על בורגוס",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5NNUQ3OGFyV3Vlbktuem1kRjFfeHM5WHlsQkZ5aFhvNHBLN3dCcG1pbzNDTWRnU1R5X1k2YllkTzFSVnhBM21mWjZXU1V3NEw2aFd3TUJFTTNfdw?oc=5",
       "source": "ynet",
@@ -174,6 +159,69 @@
       "source": "ynet",
       "sourceUrl": "https://www.ynet.co.il",
       "published": "2026-10-14T19:10:00Z"
+    },
+    {
+      "title": "תצוגת שיא של לופטון, הפועל ירושלים גברה 84:85 על בורגוס",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5FY3VicVJzWDliX19vUzJTMXBjamFzeVBON2d5OE03N1cyaEktejBBNHVienh0UWZubkh0bGl2LWFEaURVMUdCWFdaeHJiWHZp?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-10-14T10:41:00Z"
+    },
+    {
+      "title": "גובה הקנס שספגה הפועל ירושלים על האבוקות",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQVDAxUUZlZ1RGUGZNQThyMTVERVQyeVVRSUpEaTJoZkNONXF1VjdicVlmeE9qcGg2QXBYREQxbmNaUWxLNnctWkxoTzFEZnE1Z1pFX2xuTGtyNWViM3BxMXBCeVdGT0gtRDh3R0xjb2JkNlZvb0UxMUEtbFlFYUJYaGZFWGM1MGd3?oc=5",
+      "source": "Sport5",
+      "sourceUrl": "https://m.sport5.co.il",
+      "published": "2026-10-12T09:16:14Z"
+    },
+    {
+      "title": "הסידור המיוחד ללורנזו בראון: כוכב הפועל ירושלים יתגורר בת\"א",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5VS2E1cEd0UlFzeDVpd1JkTU9ZeU04bzcyb0xVdjQ4RHdDVko5SWQ3M1Q0VlZpWkpId253Z25CSW5zVm1SUkdfc0FMSThDZEc0ZlNuUjZjM3VrUkhCcW1ZbTNjM3hwUzUzUkJ3c0laY3ZQc3c?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-10-12T07:00:00Z"
+    },
+    {
+      "title": "הפועל ירושלים הביסה את הפועל חולון 69:92",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPMVZOSGZneTl3bF9GVG41YnJxZGVDOURaS2xXcUh5TUVOSVVRdktkZ1o2UkJYS3BlbnUzWjk0a0JHN1ZXUG9tSjMxT3hCVmhxMWdGdk91WmZXUjJGa240SGl2dHlyR3VPR3JCX3lRSVRDZG5LWlZ4UnZKb0RfaXlTMEROckxGTjNEajBfWXdKQ2MyM2s3Y3B3ZmsycTBBdFNRTWhR?oc=5",
+      "source": "הארץ",
+      "sourceUrl": "https://www.haaretz.co.il",
+      "published": "2026-10-11T07:00:00Z"
+    },
+    {
+      "title": "עמדה במשימה: הפועל י-ם הביסה את הפועל חולון",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1nbXJNNHo3UkxSdzd0Vm9pdkN1Y2hXVS0xWDBULS1QdU9uQXdadGJJNnJlU19DalJKcldHV0l3X1FTdVNIQ3pQWXhYbmNzOThLTnQwTWdJemNJQQ?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-10-11T07:00:00Z"
+    },
+    {
+      "title": "אין ברירה: הפועל ירושלים זקוקה ללורנזו בראון במיטבו - ומהר",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBDcnRHN0ZDLWVMeS1WdXVRLUg4b1BFcl9OYzFienYtdWtYQjBSdTIyVHE4UWl1UUtkNnBrNkZsNVJUckxqNEljNTlOMnZhTzB3NVFfNklobGxlWnF4RFd0QUp3Vm94VHhUQ3lFVGlNVWYwam5VaXfSAX5BVV95cUxNUnAwaUxVMHlaS3d2NUJRRVFKQVBQV2dZM2wyWlpYSDgzQmVhN0FYYnhvQi1RNVpoOWxvZTFhei1lb0gxQTNzajM5U3FzeTRpMUdvbGx3OF9HWG1SMGtTRkZ1dGN4dDNLcXRmZkZlWjktazBBVExHWHc0cDZUdGc?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-10-07T07:00:00Z"
+    },
+    {
+      "title": "הגבוה החדש שחתם לשנתיים בהפועל ירושלים",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE53TmY1MnNQMk96eHotMUJ4Y0dCVGc2cEdXTjRxbjV5SlpkWTE3d0ZSR0E0WnVGTV90VUZKMXFLeWRPdVZPZURDT1BIM3NuTXV1SWdTVlM2NnNGeVJKUXhMUTJRa2RBbjFUYk51ZWY3ck04QQ?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-10-07T07:00:00Z"
+    },
+    {
+      "title": "\"יש פה סגל איכותי\": הפועל י-ם אופטימית",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5iYWFZdUNMNGFHX2hKV1N4WS1PRHRaaWNoM2pDamN5UnZPR0xNMFdoNUpTREJRS0NwVWFtUXJLZjhTVkJ1NVZ1M1pqaHJWcS1MZnpJQzRibVNHQ3pXd3ZaS0hjblZ1dUlXQXdzOEl0THNqVkk?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-10-07T07:00:00Z"
+    },
+    {
+      "title": "הספיקה להתאושש: הפועל ירושלים גברה על לובליאנה",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5Rb0VpVnNTWTdFdU9xblpPWXNIbnFLVFFreDZuWDFTUWV6b1VsT2xBTUlMcmItcjlDZUltcjFBQlNvb0JURXdkWVUwV0xZdjU1M1d1LUdPNGk1dw?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-10-06T07:00:00Z"
     }
   ]
 }
