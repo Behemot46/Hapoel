@@ -11,11 +11,11 @@
           "pos": 1,
           "team": "Aris Thessaloniki",
           "code": "ARI",
-          "played": 3,
-          "wins": 3,
+          "played": 4,
+          "wins": 4,
           "losses": 0,
-          "for": 268,
-          "against": 222
+          "for": 378,
+          "against": 301
         },
         {
           "pos": 2,
@@ -71,11 +71,11 @@
           "pos": 7,
           "team": "Rostock Seawolves",
           "code": "RTK",
-          "played": 3,
+          "played": 4,
           "wins": 1,
-          "losses": 2,
-          "for": 230,
-          "against": 262
+          "losses": 3,
+          "for": 309,
+          "against": 372
         },
         {
           "pos": 8,
@@ -304,23 +304,23 @@
         },
         {
           "pos": 5,
-          "team": "Roma Basketball",
-          "code": "BCR",
-          "played": 3,
+          "team": "Kids&Us Manresa",
+          "code": "MAN",
+          "played": 4,
           "wins": 2,
-          "losses": 1,
-          "for": 239,
-          "against": 247
+          "losses": 2,
+          "for": 375,
+          "against": 370
         },
         {
           "pos": 6,
-          "team": "Kids&Us Manresa",
-          "code": "MAN",
-          "played": 3,
-          "wins": 1,
+          "team": "Roma Basketball",
+          "code": "BCR",
+          "played": 4,
+          "wins": 2,
           "losses": 2,
-          "for": 267,
-          "against": 282
+          "for": 327,
+          "against": 355
         },
         {
           "pos": 7,
