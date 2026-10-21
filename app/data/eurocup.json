@@ -181,24 +181,14 @@
           "pos": 1,
           "team": "Napoli Basketball",
           "code": "NAP",
-          "played": 3,
-          "wins": 3,
+          "played": 4,
+          "wins": 4,
           "losses": 0,
-          "for": 263,
-          "against": 233
+          "for": 356,
+          "against": 326
         },
         {
           "pos": 2,
-          "team": "Tofas Bursa",
-          "code": "BUR",
-          "played": 3,
-          "wins": 3,
-          "losses": 0,
-          "for": 261,
-          "against": 236
-        },
-        {
-          "pos": 3,
           "team": "NINERS Chemnitz",
           "code": "NIN",
           "played": 4,
@@ -206,6 +196,16 @@
           "losses": 1,
           "for": 345,
           "against": 313
+        },
+        {
+          "pos": 3,
+          "team": "Tofas Bursa",
+          "code": "BUR",
+          "played": 4,
+          "wins": 3,
+          "losses": 1,
+          "for": 354,
+          "against": 329
         },
         {
           "pos": 4,
