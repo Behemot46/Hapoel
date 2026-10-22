@@ -65,12 +65,18 @@ def load(name):
 STAMP_EVERY = datetime.timedelta(minutes=15)
 
 
+def read_live():
+    """מה שכתוב כרגע בקובץ החי, או None. נקרא מהדיסק ולא דרך ``load``,
+    כי זה הקובץ שאנחנו עצמנו כותבים ולא נתון שנאסף."""
+    try:
+        return json.loads((DATA / "live.json").read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
 def save_live(doc):
     p = DATA / "live.json"
-    try:
-        prev = json.loads(p.read_text(encoding="utf-8"))
-    except Exception:
-        prev = None
+    prev = read_live()
 
     if prev is not None:
         same = {k: v for k, v in prev.items() if k != "updated"} == doc
@@ -237,6 +243,20 @@ def main():
         # הקפיצה״, הוא פשוט לא היה בשימוש למשחקי בית. עם חלון של 75
         # דקות זה קריטי: בלי זה היינו משקרים שעה ורבע.
         snap = {"state": "playing" if now() >= start else "starting"}
+        # **ותוצאה שכבר יש לנו לא נמחקת בגלל רגע שקט בפיד.** נמדד
+        # ב־21.10.2026 במשחק מול ריגה: ב־20:04 נכתב ״final 100-64״,
+        # ב־20:10 הפיד החזיר דגימה בלי תוצאה, והמצב חזר ל־״playing״.
+        # האוהד ראה את התוצאה הסופית ואז, חמש דקות, ״המשחק מתנהל״.
+        #
+        # הכלל: **המצב של משחק נע קדימה בלבד**, starting ואז playing ואז
+        # final. דגימה שקטה היא היעדר ידיעה ולא ידיעה חדשה, ולכן היא לא
+        # מורידה אותו בדרגה. מה שכן מסיים את הסיפור הוא סגירת החלון, ואז
+        # נכתב idle במסלול אחר לגמרי.
+        prev = read_live() or {}
+        same = (prev.get("game") or {}).get("gameId") == base["gameId"]
+        if same and prev.get("state") == "final":
+            log("יש לנו תוצאה סופית, ודגימה שקטה לא מוחקת אותה")
+            return 0
     save_live({**snap, "game": base})
     return 0
 
