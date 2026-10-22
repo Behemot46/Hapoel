@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21T21:57:41Z",
+  "updated": "2026-10-22T00:58:08Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-10-15T09:56:30Z"
+      "latest": "2026-10-21T23:22:14Z"
     },
     {
       "id": "1675729649",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "האדומות מנצחות, הצהובה בצרות",
+      "url": "https://omny.fm/shows/speaknrolisrael/5ff255ee-509c-4620-a9fd-b4ea017511ae",
+      "published": "2026-10-21T23:22:14Z",
+      "duration": 5545
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -216,15 +225,6 @@
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
       "published": "2026-09-27T11:22:00Z",
       "duration": 4170
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "היורוליג כאן, הכרעות בגביע ווינר",
-      "url": "https://omny.fm/shows/speaknrolisrael/98dfc6f6-2e34-4c1c-a277-b4ce00a97b7b",
-      "published": "2026-09-23T10:22:05Z",
-      "duration": 3349
     },
     {
       "showId": "6820447951",
