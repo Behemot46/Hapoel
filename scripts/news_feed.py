@@ -546,14 +546,34 @@ def _iso(raw):
     return when.astimezone(datetime.timezone.utc)
 
 
-def first_seen(items):
-    """מתי כל כותרת במדור הקיים נרשמה אצלנו בפעם הראשונה."""
+# **והזיכרון ארוך מהמדור עצמו, אחרת כותרת שיצאה וחזרה מקבלת זמן חדש.**
+# המדור מחזיק 30 כותרות, וכשמשבצת מתפנה כותרת ישנה חוזרת אליו, אבל גוגל
+# כבר מדווחת עליה תאריך גס. נמדד ב־22.10.2026: ב־20.10 הסרתי שבע כותרות
+# (ספאם וכדורגל), שבע ישנות חזרו באיסוף הבא, ושתיים מהן, שסוקרו את
+# המשחק בחולון, קיבלו 07:00 במקום 20:45 ו־17:55 שהיו להן קודם.
+#
+# לכן נשמר ``seen``, מפתח הכותרת אל הזמן הראשון, בתוך news.json עצמו.
+# בלי קובץ נוסף, והוא מתגזם באותו חלון גיל שבו המדור חי ממילא, כך שהוא
+# לא תופח. האפליקציה מתעלמת ממה שהיא לא מכירה.
+def first_seen(items, seen=None):
+    """מתי כל כותרת נרשמה אצלנו בפעם הראשונה: גם מה שבמדור וגם מה שזכור."""
     out = {}
+    for key, raw in (seen or {}).items():
+        when = _iso(raw)
+        if when is not None:
+            out[key] = when
     for it in items or ():
         when = _iso(it.get("published"))
         if it.get("title") and when is not None:
-            out[_item_key(it["title"])] = when
+            out.setdefault(_item_key(it["title"]), when)
     return out
+
+
+def prune_seen(known, cutoff):
+    """מה שנזכור לאיסוף הבא: רק כותרות שעוד בתוך חלון הגיל של המדור."""
+    return {k: w.isoformat(timespec="seconds").replace("+00:00", "Z")
+            for k, w in sorted(known.items(), key=lambda kv: kv[1], reverse=True)
+            if w >= cutoff}
 
 
 def keep_first(known, title, when):
@@ -561,12 +581,11 @@ def keep_first(known, title, when):
     return known.get(_item_key(title), when)
 
 
-def _stored_items():
+def _stored():
     try:
-        return json.loads(
-            (DATA / "news.json").read_text(encoding="utf-8")).get("items") or []
+        return json.loads((DATA / "news.json").read_text(encoding="utf-8"))
     except Exception:
-        return []
+        return {}
 
 
 def _fetch_query(q, tries=3):
@@ -597,7 +616,8 @@ def collect():
     seen, items = set(), []
     stats = {"raw": 0, "off_topic": 0, "old": 0, "blocked": 0, "dupe": 0,
              "other_sport": 0, "pinned": 0}
-    known = first_seen(_stored_items())
+    stored = _stored()
+    known = first_seen(stored.get("items"), stored.get("seen"))
     fixtures = our_game_times()
     log(f"לוח המשחקים להצלבה: {len(fixtures)} משחקים"
         if fixtures else "אין לוח משחקים, ההצלבה מול המשחקים לא תחול")
@@ -671,6 +691,7 @@ def collect():
 
     items.sort(key=lambda i: i["published"], reverse=True)
     items = items[: int(cfg["maxItems"])]
+    remembered = prune_seen(known, cutoff)
     log(f"{stats['raw']} items seen · kept {len(items)} · "
         f"dropped: {stats['off_topic']} not about us, {stats['old']} too old, "
         f"{stats['dupe']} duplicates, {stats['blocked']} blocked, "
@@ -680,7 +701,8 @@ def collect():
             f"כי גוגל דיווחה עליהן זמן אחר")
     for i in items[:6]:
         log(f"  {i['published'][:10]}  {i['source']:<14} {i['title'][:66]}")
-    return items
+    log(f"{len(remembered)} זמנים זכורים לאיסוף הבא")
+    return items, remembered
 
 
 # **קצב המדור: פעם ביומיים.** גבי ביקש את זה ב־27.9.2026, ויש לזה גם
@@ -732,7 +754,7 @@ def update_news(force=False):
             f"והקצב הוא פעם ביומיים. הבא בעוד {left.total_seconds() / 3600:.1f} שעות.")
         return (f"הקצב הוא פעם ביומיים, והמדור נכתב לפני "
                 f"{age.total_seconds() / 3600:.0f} שעות")
-    items = collect()
+    items, remembered = collect()
     if not items:
         raise RuntimeError("no headlines matched, leaving the previous feed in place")
     sources = []
@@ -746,6 +768,9 @@ def update_news(force=False):
                 "לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
         "sources": sources,
         "items": items,
+        # הזמן הראשון שנרשם לכל כותרת, גם לאחת שכבר יצאה מהמדור. ראו
+        # first_seen: בלי זה כותרת שחוזרת אחרי שיצאה מקבלת תאריך גס.
+        "seen": remembered,
     }
     (DATA / "news.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
