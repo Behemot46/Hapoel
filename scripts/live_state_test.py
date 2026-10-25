@@ -122,6 +122,24 @@ def main():
                 print(f"   {label}: {got}")
                 if got != want:
                     fail.append(f"יורוקאפ, {label}: {got} במקום {want}")
+            # **ותוצאה סופית לא נמחקת בגלל רגע שקט בפיד.** נמדד ב־21.10
+            # מול ריגה: ב־20:04 ״final 100-64״, ב־20:10 דגימה בלי תוצאה,
+            # והמצב חזר ל־״playing״ לחמש דקות. דווקא ברגע שבו נכנסים
+            # לראות את התוצאה.
+            print("\nדגימה שקטה אחרי תוצאה סופית:")
+            ul.now = lambda: TIP + datetime.timedelta(hours=2)
+            ul.load = lambda name: ({"games": [euro]}
+                                    if name == "games.json" else {})
+            (tmp / "live.json").write_text(json.dumps(
+                {"state": "final", "ourScore": 100, "theirScore": 64,
+                 "game": {"gameId": "e"}, "updated": "2026-09-08T20:04:00+00:00"},
+                ensure_ascii=False), encoding="utf-8")
+            ul.main()
+            after = json.loads((tmp / "live.json").read_text(encoding="utf-8"))
+            print(f"   {after.get('state')} {after.get('ourScore')}-"
+                  f"{after.get('theirScore')}")
+            if after.get("state") != "final" or after.get("ourScore") != 100:
+                fail.append(f"התוצאה הסופית נמחקה: {after.get('state')}")
         finally:
             ul.requests.get = saved_get
 
