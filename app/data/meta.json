@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-25T21:08:22+00:00",
+  "lastUpdated": "2026-10-25T21:28:57+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -31,12 +31,12 @@
       "detail": "עודכן בהצלחה"
     },
     "gameStats": {
-      "ok": false,
-      "detail": "1 טפסים נכשלו ואף אחד לא נאסף"
+      "ok": true,
+      "detail": "1 טפסים חדשים, 11 בסך הכול"
     },
     "playerSeason": {
       "ok": true,
-      "detail": "14 שחקנים מתוך 10 משחקים"
+      "detail": "14 שחקנים מתוך 11 משחקים"
     }
   }
 }
