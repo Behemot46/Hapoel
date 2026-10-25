@@ -218,9 +218,9 @@
       "home": "הפועל ת\"א",
       "away": "הפועל ירושלים",
       "venue": "היכל קבוצת שלמה, ת\"א",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
+      "status": "finished",
+      "homeScore": 60,
+      "awayScore": 70,
       "broadcast": {
         "pending": true
       }
