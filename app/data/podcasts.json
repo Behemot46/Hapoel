@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25T22:50:41Z",
+  "updated": "2026-10-26T09:59:03Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,7 +14,7 @@
       "title": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
       "about": "team",
       "url": "https://podcasts.apple.com/il/podcast/%D7%9E%D7%90%D7%97%D7%95%D7%A8%D7%99-%D7%94%D7%A1%D7%9C%D7%99%D7%9D-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%90%D7%95%D7%94%D7%93%D7%99-%D7%94%D7%A4%D7%95%D7%A2%D7%9C-%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C/id6820447951?uo=4",
-      "latest": "2026-10-14T23:29:05Z"
+      "latest": "2026-10-26T00:46:01Z"
     },
     {
       "id": "1623083958",
@@ -28,7 +28,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-10-19T17:50:00Z"
+      "latest": "2026-10-26T06:31:00Z"
     },
     {
       "id": "1698308776",
@@ -46,6 +46,24 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "הפועל ירושלים מלאה באופי, הפועל ת״א מופתעת ומכבי ת״א בסימן שאלה | שוט, פרק 202",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-10-26T06:31:00Z",
+      "duration": 4945
+    },
+    {
+      "showId": "6820447951",
+      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "title": "מסכמים ניצחון על הפות\"א | מאחורי הסלים פרק 7",
+      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/7-e3r33ln",
+      "published": "2026-10-26T00:46:01Z",
+      "duration": 2651
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -218,15 +236,6 @@
       "duration": 4910
     },
     {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "תחל עונה וברכותיה | שוט, פרק 198",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-09-27T11:22:00Z",
-      "duration": 4170
-    },
-    {
       "showId": "6820447951",
       "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
       "about": "team",
@@ -243,15 +252,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/99-e3ot6ng",
       "published": "2026-09-16T02:59:00Z",
       "duration": 4494
-    },
-    {
-      "showId": "6820447951",
-      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
-      "about": "team",
-      "title": "הפועל והיורוליג - יחסינו לאן? ארהל'ה וייסברג מתארח | מאחורי הסלים, פרק 3",
-      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/-------------3-e3ogrso",
-      "published": "2026-09-08T06:56:23Z",
-      "duration": 3874
     },
     {
       "showId": "1573775015",
