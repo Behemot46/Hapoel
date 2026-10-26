@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26T09:59:03Z",
+  "updated": "2026-10-26T21:02:50Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,14 +28,14 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-10-26T06:31:00Z"
+      "latest": "2026-10-26T10:28:00Z"
     },
     {
       "id": "1698308776",
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-10-18T12:05:46Z"
+      "latest": "2026-10-26T16:10:23Z"
     },
     {
       "id": "1648115499",
@@ -47,12 +47,21 @@
   ],
   "items": [
     {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "עניין של זהות | ירושלים מושלמת, שתי הפנים של הפועל, הצרות של מכבי ועמוס פרישמן באולפן",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3r4d07",
+      "published": "2026-10-26T16:10:23Z",
+      "duration": 6633
+    },
+    {
       "showId": "1675729649",
       "show": "שוט",
       "about": "league",
       "title": "הפועל ירושלים מלאה באופי, הפועל ת״א מופתעת ומכבי ת״א בסימן שאלה | שוט, פרק 202",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-10-26T06:31:00Z",
+      "published": "2026-10-26T10:28:00Z",
       "duration": 4945
     },
     {
@@ -225,15 +234,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/101-e3pje22",
       "published": "2026-09-30T02:56:17Z",
       "duration": 2287
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "סטירת פתיחה | היורוליג יוצא לדרך, מכבי ת\"א מופתעת, הפועל ת״א מועדת וירושלים מתכוננת ליורוקאפ",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3pf02c",
-      "published": "2026-09-27T13:42:52Z",
-      "duration": 4910
     },
     {
       "showId": "6820447951",

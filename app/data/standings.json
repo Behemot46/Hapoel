@@ -29,13 +29,37 @@
     {
       "pos": 4,
       "team": "הפועל אילת",
-      "played": 2,
+      "played": 3,
       "wins": 2,
-      "losses": 0,
-      "points": 4
+      "losses": 1,
+      "points": 5
     },
     {
       "pos": 5,
+      "team": "מכבי רמת גן",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "points": 5
+    },
+    {
+      "pos": 6,
+      "team": "בני הרצליה",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "points": 5
+    },
+    {
+      "pos": 7,
+      "team": "גליל עליון",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "points": 5
+    },
+    {
+      "pos": 8,
       "team": "הפועל העמק",
       "played": 3,
       "wins": 1,
@@ -43,7 +67,7 @@
       "points": 4
     },
     {
-      "pos": 6,
+      "pos": 9,
       "team": "נס ציונה",
       "played": 3,
       "wins": 1,
@@ -51,7 +75,15 @@
       "points": 4
     },
     {
-      "pos": 7,
+      "pos": 10,
+      "team": "מכבי אשדוד",
+      "played": 3,
+      "wins": 1,
+      "losses": 2,
+      "points": 4
+    },
+    {
+      "pos": 11,
       "team": "הפועל חולון",
       "played": 3,
       "wins": 1,
@@ -59,7 +91,7 @@
       "points": 4
     },
     {
-      "pos": 8,
+      "pos": 12,
       "team": "ראשון לציון",
       "played": 3,
       "wins": 1,
@@ -67,44 +99,12 @@
       "points": 4
     },
     {
-      "pos": 9,
-      "team": "מכבי רמת גן",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "points": 3
-    },
-    {
-      "pos": 10,
-      "team": "מכבי אשדוד",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "points": 3
-    },
-    {
-      "pos": 11,
-      "team": "בני הרצליה",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "points": 3
-    },
-    {
-      "pos": 12,
-      "team": "גליל עליון",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "points": 3
-    },
-    {
       "pos": 13,
       "team": "קריית אתא",
-      "played": 2,
+      "played": 3,
       "wins": 1,
-      "losses": 1,
-      "points": 3
+      "losses": 2,
+      "points": 4
     },
     {
       "pos": 14,
