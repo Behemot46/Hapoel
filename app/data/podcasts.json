@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26T21:02:50Z",
+  "updated": "2026-10-27T09:10:28Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -7,7 +7,7 @@
       "title": "כיפה אדומה",
       "about": "team",
       "url": "https://podcasts.apple.com/us/podcast/%D7%9B%D7%99%D7%A4%D7%94-%D7%90%D7%93%D7%95%D7%9E%D7%94/id1573775015?uo=4",
-      "latest": "2026-10-11T03:00:00Z"
+      "latest": "2026-10-27T04:00:00Z"
     },
     {
       "id": "6820447951",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1573775015",
+      "show": "כיפה אדומה",
+      "about": "team",
+      "title": "פרק 103: אין תלונות (בינתיים)",
+      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/103-e3r4sbd",
+      "published": "2026-10-27T04:00:00Z",
+      "duration": 4477
+    },
     {
       "showId": "1698308776",
       "show": "דאבל דריבל",
@@ -252,15 +261,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/99-e3ot6ng",
       "published": "2026-09-16T02:59:00Z",
       "duration": 4494
-    },
-    {
-      "showId": "1573775015",
-      "show": "כיפה אדומה",
-      "about": "team",
-      "title": "פרק 98: סתיו מסוכן",
-      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/98-e3og5rj",
-      "published": "2026-09-08T03:00:00Z",
-      "duration": 3652
     }
   ]
 }
