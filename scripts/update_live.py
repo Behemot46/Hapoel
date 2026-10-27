@@ -16,7 +16,8 @@ Deliberate limits, so the app can be honest about them:
 - Actions cron is best-effort and often runs late, so the app shows how old
   the reading is rather than pretending to be second-by-second.
 - Only EuroCup games have a live feed. Domestic games get a "playing now"
-  state with no score, which is better than a frozen countdown.
+  state with no score, which is better than a frozen countdown, and the
+  official result the moment the main updater lands it.
 """
 import datetime
 import json
@@ -31,6 +32,7 @@ DATA = ROOT / "app" / "data"
 UA = {"User-Agent": "Mozilla/5.0 (compatible; HapoelFanApp/1.0; +https://github.com/Behemot46/Hapoel)",
       "Accept": "application/json"}
 GAMES_URL = "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/games"
+US = "הפועל ירושלים"
 
 # a game is "on" from shortly before tip-off until well after it should have
 # ended, the second bound is generous because overtime and late tip-offs happen
@@ -104,12 +106,18 @@ def parse_dt(s):
 
 
 def current_game():
-    """The game happening right now, according to our own schedule."""
+    """The game happening right now, according to our own schedule.
+
+    **ומשחק שכבר נגמר נשאר בחלון שלו.** עד 27.10.2026 הענף הזה דילג על
+    כל משחק שסומן ״finished״, ולכן ברגע שהאיסוף הביא את התוצאה הרשמית
+    הפולר הפסיק לראות את המשחק וכתב idle, כלומר הכרטיס החי נעלם. במשחק
+    ליגה, שאין לו פיד חי, זה אומר שהתוצאה הסופית לא הוצגה בכרטיס אפילו
+    לרגע: ראו ``finished_snapshot``.
+    """
     games = (load("games.json") or {}).get("games") or []
     t = now()
+    found = None
     for g in games:
-        if g.get("status") == "finished":
-            continue
         # משחק שהליגה עוד לא פרסמה לו שעה נשמר על 12:00 כמציין מקום
         # (ראו parse_team_games ב־update_data.py). בלי הדילוג הזה הפולר
         # היה מכריז ״משחק עכשיו״ בצהריים של יום המשחק, על סמך שעה שאיש
@@ -117,9 +125,38 @@ def current_game():
         if g.get("timeTbd"):
             continue
         start = parse_dt(g.get("date"))
-        if start and start - BEFORE <= t <= start + AFTER:
+        if not start or not (start - BEFORE <= t <= start + AFTER):
+            continue
+        if g.get("status") != "finished":
             return g, start
-    return None, None
+        # משחק שנגמר הוא גיבוי: אם יש בחלון גם משחק שעוד מתנהל, הוא קודם
+        found = found or (g, start)
+    return found or (None, None)
+
+
+def finished_snapshot(game):
+    """התוצאה הרשמית מלוח המשחקים, או None אם עוד לא נאספה.
+
+    **למה זה כאן:** לליגה אין פיד חי, ולכן הפולר כתב ״המשחק מתנהל״ כל
+    הערב ואז idle. נמדד בדרבי ב־25.10.2026: הקפיצה ב־18:55, המשחק נגמר
+    בסביבות 20:45, האיסוף הביא 70-60 ללוח המשחקים ב־21:08, והפולר כתב
+    ״playing״ ב־21:11 ו־idle ב־21:16. כלומר בדיוק בשעה שבה נכנסים לראות
+    את התוצאה, הכרטיס אמר ״המשחק מתנהל · אין הזנת תוצאות חיה״ כשהתוצאה
+    הסופית כבר הייתה באפליקציה עצמה, ואז פשוט נעלם.
+
+    התוצאה הרשמית היא ידיעה טובה יותר מהשעון, ולכן היא גוברת עליו. מול
+    הפיד האירופי היא גיבוי בלבד, כי שם יש גם רבעים.
+    """
+    hs, as_ = game.get("homeScore"), game.get("awayScore")
+    if game.get("status") != "finished" or hs is None or as_ is None:
+        return None
+    we_home = game.get("home") == US
+    log("יש תוצאה רשמית בלוח המשחקים, והיא גוברת על השעון")
+    return {"state": "final",
+            "home": int(hs) if we_home else int(as_),
+            "away": int(as_) if we_home else int(hs),
+            "ourScore": int(hs) if we_home else int(as_),
+            "theirScore": int(as_) if we_home else int(hs)}
 
 
 def eurocup_snapshot(game):
@@ -234,6 +271,8 @@ def main():
         snap = eurocup_snapshot(game)
     else:
         log("domestic game, no live feed available, reporting 'playing' only")
+    if not snap:
+        snap = finished_snapshot(game)
 
     if not snap:
         # לפני הקפיצה זה עדיין לא ״המשחק מתנהל״. עד היום הפולר כתב
