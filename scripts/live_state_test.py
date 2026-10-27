@@ -143,6 +143,53 @@ def main():
         finally:
             ul.requests.get = saved_get
 
+        # **והתוצאה הרשמית, שהייתה הבאג האמיתי של הדרבי ב־25.10.2026.**
+        # לליגה אין פיד חי, ולכן הפולר כתב ״המשחק מתנהל״ כל הערב. מה
+        # שלא היה צריך לקרות הוא ההמשך: הקפיצה הייתה ב־18:55, המשחק נגמר
+        # בסביבות 20:45, האיסוף הביא 70-60 ללוח המשחקים ב־21:08, והפולר
+        # כתב ״playing״ ב־21:11 ו־idle ב־21:16. כלומר בשעה שבה נכנסים
+        # לראות את התוצאה, הכרטיס אמר ״המשחק מתנהל · אין הזנת תוצאות
+        # חיה״ כשהתוצאה כבר הייתה באפליקציה עצמה, ואז נעלם בלי להציג
+        # אותה אפילו לרגע.
+        print("\nתוצאה רשמית במשחק ליגה, מהדרבי ב־25.10:")
+        derby = {"id": "d", "date": "2026-10-25T20:55:00+02:00",
+                 "status": "scheduled", "competition": "ליגת Winner סל, מחזור 3",
+                 "home": "הפועל ת\"א", "away": "הפועל ירושלים",
+                 "venue": "היכל קבוצת שלמה, ת\"א",
+                 "homeScore": None, "awayScore": None}
+        tip = datetime.datetime.fromisoformat(derby["date"])
+
+        def run_derby(t, game):
+            ul.now = lambda: t
+            ul.load = lambda name: ({"games": [game]}
+                                    if name == "games.json" else {})
+            ul.main()
+            return json.loads((tmp / "live.json").read_text(encoding="utf-8"))
+
+        mid = run_derby(tip + datetime.timedelta(minutes=60), derby)
+        print(f"   באמצע המשחק: {mid.get('state')}")
+        if mid.get("state") != "playing":
+            fail.append(f"ליגה באמצע המשחק: {mid.get('state')} במקום playing")
+
+        # ועכשיו האיסוף הביא את התוצאה, בעוד שהחלון עוד פתוח
+        done = dict(derby, status="finished", homeScore=60, awayScore=70)
+        after = run_derby(tip + datetime.timedelta(hours=2, minutes=16), done)
+        print(f"   אחרי שהתוצאה נאספה: {after.get('state')} "
+              f"{after.get('ourScore')}-{after.get('theirScore')}")
+        if after.get("state") != "final":
+            fail.append(f"תוצאה רשמית בחלון: {after.get('state')} במקום final")
+        # אנחנו האורחים, ולכן 70 שלנו ו־60 שלהם, ולא ההפך
+        if (after.get("ourScore"), after.get("theirScore")) != (70, 60):
+            fail.append(f"התוצאה התהפכה: {after.get('ourScore')}-"
+                        f"{after.get('theirScore')}")
+        if (after.get("game") or {}).get("venue") != derby["venue"]:
+            fail.append("האולם נעלם מהכרטיס אחרי שהמשחק נגמר")
+        # וכשהחלון נסגר הכרטיס יורד, כי הלוח כבר מספר את הסיפור
+        gone = run_derby(tip + datetime.timedelta(hours=4), done)
+        print(f"   אחרי שהחלון נסגר: {gone.get('state')}")
+        if gone.get("state") != "idle":
+            fail.append(f"אחרי סגירת החלון: {gone.get('state')} במקום idle")
+
     if fail:
         print(f"{len(fail)} כשלים:")
         for f in fail:
