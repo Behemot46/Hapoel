@@ -1,7 +1,7 @@
 {
   "competition": "יורוקאפ",
   "season": "2026/27",
-  "round": 4,
+  "round": 5,
   "ourGroup": "Group A",
   "groups": [
     {
@@ -266,51 +266,51 @@
           "pos": 1,
           "team": "Bahcesehir College Istanbul",
           "code": "BAH",
-          "played": 4,
-          "wins": 3,
+          "played": 5,
+          "wins": 4,
           "losses": 1,
-          "for": 368,
-          "against": 313
+          "for": 452,
+          "against": 394
         },
         {
           "pos": 2,
-          "team": "PAOK Thessaloniki",
-          "code": "PAO",
-          "played": 4,
+          "team": "ratiopharm ulm",
+          "code": "ULM",
+          "played": 5,
           "wins": 3,
-          "losses": 1,
-          "for": 341,
-          "against": 323
+          "losses": 2,
+          "for": 453,
+          "against": 433
         },
         {
           "pos": 3,
-          "team": "Lietkabelis Panevezys",
-          "code": "LKB",
-          "played": 4,
+          "team": "Kids&Us Manresa",
+          "code": "MAN",
+          "played": 5,
           "wins": 3,
-          "losses": 1,
-          "for": 321,
-          "against": 307
+          "losses": 2,
+          "for": 451,
+          "against": 435
         },
         {
           "pos": 4,
-          "team": "Kids&Us Manresa",
-          "code": "MAN",
-          "played": 4,
-          "wins": 2,
+          "team": "PAOK Thessaloniki",
+          "code": "PAO",
+          "played": 5,
+          "wins": 3,
           "losses": 2,
-          "for": 375,
-          "against": 370
+          "for": 422,
+          "against": 407
         },
         {
           "pos": 5,
-          "team": "ratiopharm ulm",
-          "code": "ULM",
-          "played": 4,
-          "wins": 2,
+          "team": "Lietkabelis Panevezys",
+          "code": "LKB",
+          "played": 5,
+          "wins": 3,
           "losses": 2,
-          "for": 367,
-          "against": 365
+          "for": 389,
+          "against": 393
         },
         {
           "pos": 6,
@@ -336,11 +336,11 @@
           "pos": 8,
           "team": "Balkan Botevgrad",
           "code": "BLK",
-          "played": 4,
+          "played": 5,
           "wins": 0,
-          "losses": 4,
-          "for": 271,
-          "against": 331
+          "losses": 5,
+          "for": 336,
+          "against": 407
         }
       ]
     }
