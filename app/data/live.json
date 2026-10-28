@@ -1,4 +1,12 @@
 {
-  "state": "idle",
-  "updated": "2026-10-25T21:16:39+00:00"
+  "state": "starting",
+  "game": {
+    "gameId": "20261028-euro-LeMansSarthe",
+    "competition": "יורוקאפ",
+    "home": "Le Mans Sarthe Basket",
+    "away": "הפועל ירושלים",
+    "date": "2026-10-28T19:00:00Z",
+    "venue": "Antares Arena"
+  },
+  "updated": "2026-10-28T17:54:14+00:00"
 }
