@@ -72,7 +72,8 @@
       "birthDate": "1990-08-26",
       "clubId": "27222",
       "source": "club+eurocup",
-      "slug": "lorenzo-brown"
+      "slug": "lorenzo-brown",
+      "photo": "img/players/lorenzo-brown.jpg"
     },
     {
       "name": "Shachar Loberboum",
@@ -189,6 +190,7 @@
       "country": "ישראל",
       "code": "015332",
       "source": "eurocup",
+      "nameHe": "יונתן קלר",
       "slug": "yonatan-keller"
     },
     {

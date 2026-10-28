@@ -104,6 +104,16 @@
         },
         {
           "pos": 2,
+          "team": "Skyliners Frankfurt",
+          "code": "FRA",
+          "played": 5,
+          "wins": 3,
+          "losses": 2,
+          "for": 439,
+          "against": 452
+        },
+        {
+          "pos": 3,
           "team": "Umana Reyer Venice",
           "code": "VNC",
           "played": 4,
@@ -113,7 +123,7 @@
           "against": 325
         },
         {
-          "pos": 3,
+          "pos": 4,
           "team": "London Lions",
           "code": "LLI",
           "played": 4,
@@ -123,7 +133,7 @@
           "against": 304
         },
         {
-          "pos": 4,
+          "pos": 5,
           "team": "Maxima Roma",
           "code": "MRO",
           "played": 4,
@@ -133,7 +143,7 @@
           "against": 322
         },
         {
-          "pos": 5,
+          "pos": 6,
           "team": "Siauliai Basketball",
           "code": "SIA",
           "played": 4,
@@ -143,24 +153,14 @@
           "against": 328
         },
         {
-          "pos": 6,
+          "pos": 7,
           "team": "U-BT Cluj-Napoca",
           "code": "CLU",
-          "played": 4,
+          "played": 5,
           "wins": 2,
-          "losses": 2,
-          "for": 319,
-          "against": 345
-        },
-        {
-          "pos": 7,
-          "team": "Skyliners Frankfurt",
-          "code": "FRA",
-          "played": 4,
-          "wins": 2,
-          "losses": 2,
-          "for": 326,
-          "against": 355
+          "losses": 3,
+          "for": 416,
+          "against": 458
         },
         {
           "pos": 8,
@@ -211,14 +211,24 @@
           "pos": 4,
           "team": "Buducnost VOLI Podgorica",
           "code": "BUD",
-          "played": 4,
+          "played": 5,
           "wins": 2,
-          "losses": 2,
-          "for": 363,
-          "against": 347
+          "losses": 3,
+          "for": 455,
+          "against": 441
         },
         {
           "pos": 5,
+          "team": "Dolomiti Energia Trento",
+          "code": "TRN",
+          "played": 5,
+          "wins": 2,
+          "losses": 3,
+          "for": 410,
+          "against": 437
+        },
+        {
+          "pos": 6,
           "team": "Cosea JL Bourg-en-Bresse",
           "code": "BOU",
           "played": 4,
@@ -228,7 +238,7 @@
           "against": 345
         },
         {
-          "pos": 6,
+          "pos": 7,
           "team": "Neptunas Klaipeda",
           "code": "KLA",
           "played": 4,
@@ -236,16 +246,6 @@
           "losses": 3,
           "for": 339,
           "against": 362
-        },
-        {
-          "pos": 7,
-          "team": "Dolomiti Energia Trento",
-          "code": "TRN",
-          "played": 4,
-          "wins": 1,
-          "losses": 3,
-          "for": 316,
-          "against": 345
         },
         {
           "pos": 8,
@@ -314,23 +314,23 @@
         },
         {
           "pos": 6,
-          "team": "Roma Basketball",
-          "code": "BCR",
-          "played": 4,
+          "team": "BOSNA BH Telecom Sarajevo",
+          "code": "BOS",
+          "played": 5,
           "wins": 2,
-          "losses": 2,
-          "for": 327,
-          "against": 355
+          "losses": 3,
+          "for": 408,
+          "against": 409
         },
         {
           "pos": 7,
-          "team": "BOSNA BH Telecom Sarajevo",
-          "code": "BOS",
-          "played": 4,
-          "wins": 1,
+          "team": "Roma Basketball",
+          "code": "BCR",
+          "played": 5,
+          "wins": 2,
           "losses": 3,
-          "for": 323,
-          "against": 329
+          "for": 407,
+          "against": 440
         },
         {
           "pos": 8,
