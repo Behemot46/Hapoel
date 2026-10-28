@@ -1,31 +1,4 @@
 {
-  "state": "final",
-  "home": 90,
-  "away": 83,
-  "ourScore": 90,
-  "theirScore": 83,
-  "quarter": 4,
-  "partials": {
-    "us": [
-      21,
-      27,
-      17,
-      25
-    ],
-    "them": [
-      19,
-      21,
-      27,
-      16
-    ]
-  },
-  "game": {
-    "gameId": "20261028-euro-LeMansSarthe",
-    "competition": "יורוקאפ",
-    "home": "Le Mans Sarthe Basket",
-    "away": "הפועל ירושלים",
-    "date": "2026-10-28T19:00:00Z",
-    "venue": "Antares Arena"
-  },
-  "updated": "2026-10-28T21:57:03+00:00"
+  "state": "idle",
+  "updated": "2026-10-28T22:02:07+00:00"
 }
