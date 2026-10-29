@@ -233,11 +233,21 @@
       "home": "Le Mans Sarthe Basket",
       "away": "הפועל ירושלים",
       "venue": "Antares Arena",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "homePartials": null,
-      "awayPartials": null
+      "status": "finished",
+      "homeScore": 83,
+      "awayScore": 90,
+      "homePartials": [
+        19,
+        21,
+        27,
+        16
+      ],
+      "awayPartials": [
+        21,
+        27,
+        17,
+        25
+      ]
     },
     {
       "id": "20261101-הפועלאילת",

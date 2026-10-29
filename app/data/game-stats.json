@@ -1,6 +1,6 @@
 {
   "_comment": "טופסי משחק שנאספים אוטומטית מאתר הליגה. **הקובץ הזה נכתב על ידי scripts/game_stats.py ואין לערוך אותו ביד.** מה שנערך ביד יושב ב־boxscores.json, והאפליקציה מעדיפה אותו כשקיימים שניים לאותו משחק, כי שם כל מספר אומת מול הסכומים המודפסים בטופס הנייר. כל טופס כאן אימת את עצמו לפני שנכתב: סכום השחקנים ועוד השורה הקבוצתית יוצא בדיוק שורת הסה\"כ המודפסת, והנקודות של כל שחקן יוצאות מהקליעות שלו. טופס שלא עמד בזה נזרק ולא נכתב.",
-  "updated": "2026-10-25T21:28:39Z",
+  "updated": "2026-10-29T10:12:22Z",
   "games": {
     "20260908-מכביאשדוד": {
       "quarters": [
@@ -10203,6 +10203,868 @@
           "url": "https://basket.co.il/game-zone.asp?GameId=26662"
         }
       ],
+      "collected": true
+    },
+    "20261028-euro-LeMansSarthe": {
+      "quarters": [
+        [
+          21,
+          19
+        ],
+        [
+          27,
+          21
+        ],
+        [
+          17,
+          27
+        ],
+        [
+          25,
+          16
+        ]
+      ],
+      "teams": [
+        {
+          "name": "Le Mans Sarthe Basket",
+          "coach": "Vizade, Guillaume",
+          "players": [
+            {
+              "name": "T.Beracou",
+              "min": "8:06",
+              "no": 26,
+              "starter": false,
+              "pts": 0,
+              "ast": 0,
+              "stl": 0,
+              "to": 1,
+              "blk": 0,
+              "pf": 1,
+              "reb": 1,
+              "dreb": 1,
+              "oreb": 0,
+              "pir": -1,
+              "plusMinus": -3,
+              "p2": [
+                0,
+                0
+              ],
+              "p3": [
+                0,
+                0
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                0,
+                0
+              ]
+            },
+            {
+              "name": "L.Delaunay",
+              "min": "22:59",
+              "no": 9,
+              "starter": true,
+              "pts": 8,
+              "ast": 1,
+              "stl": 0,
+              "to": 1,
+              "blk": 0,
+              "pf": 2,
+              "reb": 8,
+              "dreb": 5,
+              "oreb": 3,
+              "pir": 11,
+              "plusMinus": -6,
+              "p2": [
+                3,
+                6
+              ],
+              "p3": [
+                0,
+                1
+              ],
+              "ft": [
+                2,
+                2
+              ],
+              "fg": [
+                3,
+                7
+              ]
+            },
+            {
+              "name": "M.Diaby-Cisse",
+              "min": "8:18",
+              "no": 88,
+              "starter": true,
+              "pts": 0,
+              "ast": 1,
+              "stl": 2,
+              "to": 0,
+              "blk": 0,
+              "pf": 2,
+              "reb": 0,
+              "dreb": 0,
+              "oreb": 0,
+              "pir": -1,
+              "plusMinus": -2,
+              "p2": [
+                0,
+                0
+              ],
+              "p3": [
+                0,
+                1
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                0,
+                1
+              ]
+            },
+            {
+              "name": "U.Doumbia Niang",
+              "min": "19:22",
+              "no": 10,
+              "starter": false,
+              "pts": 2,
+              "ast": 2,
+              "stl": 2,
+              "to": 1,
+              "blk": 0,
+              "pf": 3,
+              "reb": 2,
+              "dreb": 1,
+              "oreb": 1,
+              "pir": 1,
+              "plusMinus": -7,
+              "p2": [
+                1,
+                5
+              ],
+              "p3": [
+                0,
+                1
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                1,
+                6
+              ]
+            },
+            {
+              "name": "L.Dufeal",
+              "min": "23:07",
+              "no": 32,
+              "starter": true,
+              "pts": 14,
+              "ast": 1,
+              "stl": 0,
+              "to": 3,
+              "blk": 1,
+              "pf": 4,
+              "reb": 7,
+              "dreb": 5,
+              "oreb": 2,
+              "pir": 18,
+              "plusMinus": -8,
+              "p2": [
+                7,
+                7
+              ],
+              "p3": [
+                0,
+                0
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                7,
+                7
+              ]
+            },
+            {
+              "name": "B.Grasshoff",
+              "min": "20:03",
+              "no": 1,
+              "starter": false,
+              "pts": 6,
+              "ast": 1,
+              "stl": 2,
+              "to": 4,
+              "blk": 0,
+              "pf": 1,
+              "reb": 3,
+              "dreb": 1,
+              "oreb": 2,
+              "pir": 9,
+              "plusMinus": -15,
+              "p2": [
+                2,
+                2
+              ],
+              "p3": [
+                0,
+                2
+              ],
+              "ft": [
+                2,
+                3
+              ],
+              "fg": [
+                2,
+                4
+              ]
+            },
+            {
+              "name": "J.King",
+              "min": "23:02",
+              "no": 2,
+              "starter": false,
+              "pts": 20,
+              "ast": 3,
+              "stl": 2,
+              "to": 3,
+              "blk": 0,
+              "pf": 2,
+              "reb": 1,
+              "dreb": 0,
+              "oreb": 1,
+              "pir": 19,
+              "plusMinus": 5,
+              "p2": [
+                1,
+                2
+              ],
+              "p3": [
+                5,
+                7
+              ],
+              "ft": [
+                3,
+                5
+              ],
+              "fg": [
+                6,
+                9
+              ]
+            },
+            {
+              "name": "S.Penda",
+              "min": "20:27",
+              "no": 93,
+              "starter": false,
+              "pts": 5,
+              "ast": 1,
+              "stl": 0,
+              "to": 3,
+              "blk": 0,
+              "pf": 2,
+              "reb": 5,
+              "dreb": 4,
+              "oreb": 1,
+              "pir": 1,
+              "plusMinus": -8,
+              "p2": [
+                1,
+                6
+              ],
+              "p3": [
+                0,
+                1
+              ],
+              "ft": [
+                3,
+                5
+              ],
+              "fg": [
+                1,
+                7
+              ]
+            },
+            {
+              "name": "C.Stewart Jr",
+              "min": "26:20",
+              "no": 0,
+              "starter": true,
+              "pts": 10,
+              "ast": 4,
+              "stl": 0,
+              "to": 0,
+              "blk": 0,
+              "pf": 1,
+              "reb": 4,
+              "dreb": 2,
+              "oreb": 2,
+              "pir": 7,
+              "plusMinus": 1,
+              "p2": [
+                1,
+                7
+              ],
+              "p3": [
+                1,
+                7
+              ],
+              "ft": [
+                5,
+                6
+              ],
+              "fg": [
+                2,
+                14
+              ]
+            },
+            {
+              "name": "M.Wood",
+              "min": "28:16",
+              "no": 23,
+              "starter": true,
+              "pts": 18,
+              "ast": 0,
+              "stl": 0,
+              "to": 0,
+              "blk": 1,
+              "pf": 2,
+              "reb": 3,
+              "dreb": 2,
+              "oreb": 1,
+              "pir": 11,
+              "plusMinus": 8,
+              "p2": [
+                3,
+                5
+              ],
+              "p3": [
+                4,
+                10
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                7,
+                15
+              ]
+            }
+          ],
+          "teamRow": {
+            "name": "קבוצתי",
+            "min": "0:00",
+            "no": 0,
+            "starter": false,
+            "pts": 0,
+            "ast": 0,
+            "stl": 0,
+            "to": 1,
+            "blk": 0,
+            "pf": 0,
+            "reb": 4,
+            "dreb": 1,
+            "oreb": 3,
+            "pir": 3,
+            "plusMinus": 0,
+            "p2": [
+              0,
+              0
+            ],
+            "p3": [
+              0,
+              0
+            ],
+            "ft": [
+              0,
+              0
+            ],
+            "fg": [
+              0,
+              0
+            ]
+          },
+          "totals": {
+            "name": "סה\"כ",
+            "min": "",
+            "no": 0,
+            "starter": false,
+            "pts": 83,
+            "ast": 14,
+            "stl": 8,
+            "to": 17,
+            "blk": 2,
+            "pf": 20,
+            "reb": 38,
+            "dreb": 22,
+            "oreb": 16,
+            "pir": 78,
+            "plusMinus": -35,
+            "p2": [
+              19,
+              40
+            ],
+            "p3": [
+              10,
+              30
+            ],
+            "ft": [
+              15,
+              21
+            ],
+            "fg": [
+              29,
+              70
+            ]
+          },
+          "us": false,
+          "score": 83
+        },
+        {
+          "name": "Hapoel Midtown Jerusalem",
+          "coach": "Obradovic, Sasa",
+          "players": [
+            {
+              "name": "L.Brown",
+              "min": "18:32",
+              "no": 4,
+              "starter": false,
+              "pts": 7,
+              "ast": 5,
+              "stl": 1,
+              "to": 2,
+              "blk": 0,
+              "pf": 0,
+              "reb": 0,
+              "dreb": 0,
+              "oreb": 0,
+              "pir": 11,
+              "plusMinus": 8,
+              "p2": [
+                2,
+                3
+              ],
+              "p3": [
+                1,
+                2
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                3,
+                5
+              ],
+              "slug": "lorenzo-brown",
+              "he": "לורנזו בראון"
+            },
+            {
+              "name": "E.Butler Burg",
+              "min": "13:31",
+              "no": 35,
+              "starter": true,
+              "pts": 8,
+              "ast": 3,
+              "stl": 2,
+              "to": 0,
+              "blk": 0,
+              "pf": 2,
+              "reb": 4,
+              "dreb": 4,
+              "oreb": 0,
+              "pir": 15,
+              "plusMinus": -1,
+              "p2": [
+                3,
+                3
+              ],
+              "p3": [
+                0,
+                1
+              ],
+              "ft": [
+                2,
+                2
+              ],
+              "fg": [
+                3,
+                4
+              ],
+              "slug": "ethan-burg",
+              "he": "איתן בורג"
+            },
+            {
+              "name": "D.Cacok",
+              "min": "24:41",
+              "no": 0,
+              "starter": false,
+              "pts": 14,
+              "ast": 3,
+              "stl": 2,
+              "to": 2,
+              "blk": 0,
+              "pf": 2,
+              "reb": 7,
+              "dreb": 5,
+              "oreb": 2,
+              "pir": 20,
+              "plusMinus": -3,
+              "p2": [
+                7,
+                10
+              ],
+              "p3": [
+                0,
+                0
+              ],
+              "ft": [
+                0,
+                2
+              ],
+              "fg": [
+                7,
+                10
+              ],
+              "slug": "devontae-cacok",
+              "he": "דבונטה קייקוק"
+            },
+            {
+              "name": "N.Levi",
+              "min": "10:39",
+              "no": 15,
+              "starter": false,
+              "pts": 3,
+              "ast": 0,
+              "stl": 0,
+              "to": 0,
+              "blk": 1,
+              "pf": 2,
+              "reb": 2,
+              "dreb": 2,
+              "oreb": 0,
+              "pir": 4,
+              "plusMinus": 7,
+              "p2": [
+                0,
+                0
+              ],
+              "p3": [
+                1,
+                1
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                1,
+                1
+              ],
+              "slug": "nimrod-levi",
+              "he": "נמרוד לוי"
+            },
+            {
+              "name": "K.Lofton Jr",
+              "min": "23:42",
+              "no": 2,
+              "starter": true,
+              "pts": 15,
+              "ast": 3,
+              "stl": 0,
+              "to": 3,
+              "blk": 1,
+              "pf": 4,
+              "reb": 6,
+              "dreb": 3,
+              "oreb": 3,
+              "pir": 21,
+              "plusMinus": 5,
+              "p2": [
+                5,
+                6
+              ],
+              "p3": [
+                0,
+                0
+              ],
+              "ft": [
+                5,
+                8
+              ],
+              "fg": [
+                5,
+                6
+              ],
+              "slug": "kenny-lofton-jr",
+              "he": "קנת' לופטון ג'וניור"
+            },
+            {
+              "name": "D.Miletic",
+              "min": "12:11",
+              "no": 11,
+              "starter": true,
+              "pts": 4,
+              "ast": 1,
+              "stl": 0,
+              "to": 0,
+              "blk": 2,
+              "pf": 1,
+              "reb": 2,
+              "dreb": 1,
+              "oreb": 1,
+              "pir": 3,
+              "plusMinus": 2,
+              "p2": [
+                2,
+                4
+              ],
+              "p3": [
+                0,
+                2
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                2,
+                6
+              ],
+              "slug": "dusan-miletic",
+              "he": "דושאן מילטיץ'"
+            },
+            {
+              "name": "M.Milton",
+              "min": "26:26",
+              "no": 9,
+              "starter": false,
+              "pts": 10,
+              "ast": 6,
+              "stl": 1,
+              "to": 1,
+              "blk": 0,
+              "pf": 2,
+              "reb": 1,
+              "dreb": 0,
+              "oreb": 1,
+              "pir": 9,
+              "plusMinus": 9,
+              "p2": [
+                3,
+                10
+              ],
+              "p3": [
+                0,
+                1
+              ],
+              "ft": [
+                4,
+                4
+              ],
+              "fg": [
+                3,
+                11
+              ],
+              "slug": "shake-milton",
+              "he": "שייק מילטון"
+            },
+            {
+              "name": "D.Roddy",
+              "min": "24:47",
+              "no": 21,
+              "starter": true,
+              "pts": 13,
+              "ast": 2,
+              "stl": 0,
+              "to": 2,
+              "blk": 1,
+              "pf": 3,
+              "reb": 5,
+              "dreb": 3,
+              "oreb": 2,
+              "pir": 11,
+              "plusMinus": 4,
+              "p2": [
+                2,
+                4
+              ],
+              "p3": [
+                3,
+                6
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                5,
+                10
+              ],
+              "slug": "david-roddy",
+              "he": "דייויד רודי"
+            },
+            {
+              "name": "J.Smith",
+              "min": "21:31",
+              "no": 3,
+              "starter": true,
+              "pts": 8,
+              "ast": 2,
+              "stl": 1,
+              "to": 1,
+              "blk": 0,
+              "pf": 4,
+              "reb": 2,
+              "dreb": 1,
+              "oreb": 1,
+              "pir": 7,
+              "plusMinus": -2,
+              "p2": [
+                2,
+                3
+              ],
+              "p3": [
+                0,
+                4
+              ],
+              "ft": [
+                4,
+                4
+              ],
+              "fg": [
+                2,
+                7
+              ],
+              "slug": "jaleen-smith",
+              "he": "ג'יילן סמית'"
+            },
+            {
+              "name": "Y.Zoosman",
+              "min": "24:00",
+              "no": 50,
+              "starter": false,
+              "pts": 8,
+              "ast": 0,
+              "stl": 1,
+              "to": 2,
+              "blk": 0,
+              "pf": 3,
+              "reb": 1,
+              "dreb": 1,
+              "oreb": 0,
+              "pir": 3,
+              "plusMinus": 6,
+              "p2": [
+                1,
+                2
+              ],
+              "p3": [
+                2,
+                3
+              ],
+              "ft": [
+                0,
+                0
+              ],
+              "fg": [
+                3,
+                5
+              ],
+              "slug": "yovel-zoosman",
+              "he": "יובל זוסמן"
+            }
+          ],
+          "teamRow": {
+            "name": "קבוצתי",
+            "min": "0:00",
+            "no": 0,
+            "starter": false,
+            "pts": 0,
+            "ast": 0,
+            "stl": 0,
+            "to": 0,
+            "blk": 0,
+            "pf": 0,
+            "reb": 5,
+            "dreb": 4,
+            "oreb": 1,
+            "pir": 5,
+            "plusMinus": 0,
+            "p2": [
+              0,
+              0
+            ],
+            "p3": [
+              0,
+              0
+            ],
+            "ft": [
+              0,
+              0
+            ],
+            "fg": [
+              0,
+              0
+            ]
+          },
+          "totals": {
+            "name": "סה\"כ",
+            "min": "",
+            "no": 0,
+            "starter": false,
+            "pts": 90,
+            "ast": 25,
+            "stl": 8,
+            "to": 13,
+            "blk": 5,
+            "pf": 23,
+            "reb": 35,
+            "dreb": 24,
+            "oreb": 11,
+            "pir": 109,
+            "plusMinus": 35,
+            "p2": [
+              27,
+              45
+            ],
+            "p3": [
+              7,
+              20
+            ],
+            "ft": [
+              15,
+              20
+            ],
+            "fg": [
+              34,
+              65
+            ]
+          },
+          "us": true,
+          "score": 90
+        }
+      ],
+      "teamStats": [],
+      "euroCode": 66,
+      "euroSeason": "U2026",
+      "date": "2026-10-28T19:00:00Z",
+      "competition": "יורוקאפ",
+      "venue": "Antares Arena",
+      "source": {
+        "name": "הפיד הרשמי של היורוקאפ",
+        "note": "טופס המשחק, מזהה 66 בעונת U2026"
+      },
+      "links": [],
       "collected": true
     }
   }

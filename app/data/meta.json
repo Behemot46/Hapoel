@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-28T17:13:49+00:00",
+  "lastUpdated": "2026-10-29T10:12:40+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -7,8 +7,8 @@
       "detail": "עודכן בהצלחה"
     },
     "games": {
-      "ok": false,
-      "detail": "500 Server Error: Internal Server Error for url: https://basket.co.il/team.asp?TeamId=2114"
+      "ok": true,
+      "detail": "עודכן בהצלחה"
     },
     "eurocup": {
       "ok": true,
@@ -20,7 +20,7 @@
     },
     "news": {
       "ok": true,
-      "detail": "הקצב הוא פעם ביומיים, והמדור נכתב לפני 32 שעות"
+      "detail": "עודכן בהצלחה"
     },
     "podcasts": {
       "ok": true,
@@ -31,12 +31,12 @@
       "detail": "עודכן בהצלחה"
     },
     "gameStats": {
-      "ok": false,
-      "detail": "500 Server Error: Internal Server Error for url: https://basket.co.il/team.asp?TeamId=2114"
+      "ok": true,
+      "detail": "1 טפסים חדשים, 12 בסך הכול"
     },
     "playerSeason": {
       "ok": true,
-      "detail": "14 שחקנים מתוך 11 משחקים"
+      "detail": "14 שחקנים מתוך 12 משחקים"
     }
   }
 }
