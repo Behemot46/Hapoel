@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29T10:12:27Z",
+  "updated": "2026-10-29T21:18:19Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-10-21T23:22:14Z"
+      "latest": "2026-10-29T10:20:35Z"
     },
     {
       "id": "1675729649",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "שתי הפנים של הפועל ת\"א",
+      "url": "https://omny.fm/shows/speaknrolisrael/786a6320-7f51-45e9-bf8a-b4f200a89307",
+      "published": "2026-10-29T10:20:35Z",
+      "duration": 4543
+    },
     {
       "showId": "1573775015",
       "show": "כיפה אדומה",
@@ -216,15 +225,6 @@
       "url": "https://omny.fm/shows/speaknrolisrael/c2a39022-b538-4d03-8887-b4d901510c50",
       "published": "2026-10-04T20:31:49Z",
       "duration": 4331
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "תובנות מפתיחת העונה האירופית",
-      "url": "https://omny.fm/shows/speaknrolisrael/910b457c-9b62-43d4-b506-b4d600a8b573",
-      "published": "2026-10-01T10:23:07Z",
-      "duration": 5437
     },
     {
       "showId": "6820447951",
