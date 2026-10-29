@@ -190,6 +190,51 @@ def main():
         if gone.get("state") != "idle":
             fail.append(f"אחרי סגירת החלון: {gone.get('state')} במקום idle")
 
+        # **והשאלה אם לאוהד יש בכלל תוצאה, מהמשחק בלה מאן ב־28.10.2026.**
+        # משמרת האיסוף מתה שתי דקות אחרי הקפיצה, הקצב של כל 20 דקות
+        # שאחרי השריקה לא רץ אפילו פעם אחת, והשומר ב־watchdog.yml רץ רק
+        # בין 03:53 ל־15:53 UTC ולכן לא יכול היה לתפוס את זה. התוצאה
+        # הגיעה ללוח ב־10:12 למחרת, שלוש עשרה שעות אחרי השריקה, ועד אז
+        # ניצחון 90-83 הופיע באפליקציה כמשחק ״עתיד להתקיים״.
+        print("\nמשחק שנגמר בלי תוצאה בלוח, מלה מאן ב־28.10:")
+        lemans = {"id": "L", "date": "2026-10-28T19:00:00Z",
+                  "status": "scheduled", "competition": "יורוקאפ",
+                  "home": "Le Mans Sarthe Basket", "away": "הפועל ירושלים",
+                  "homeScore": None, "awayScore": None}
+        tip = datetime.datetime.fromisoformat(
+            lemans["date"].replace("Z", "+00:00"))
+        done = dict(lemans, status="finished", homeScore=83, awayScore=90)
+
+        cases = [
+            # הרגע שבו הפולר באמת שואל: סגירת החלון, שלוש שעות אחרי
+            ("בסגירת החלון, ואין תוצאה", [lemans], tip + ul.AFTER, True),
+            ("בסגירת החלון, והתוצאה כבר בלוח", [done], tip + ul.AFTER, False),
+            # באמצע המשחק אין מה לזמן, המשחק פשוט מתנהל
+            ("שעה אחרי הקפיצה", [lemans], tip + datetime.timedelta(hours=1),
+             False),
+            # ולמחרת בבוקר זה כבר התפקיד של הקצב הרגיל, לא של הפולר
+            ("למחרת בבוקר", [lemans], tip + datetime.timedelta(hours=15),
+             False),
+            # ומשחק שהליגה לא פרסמה לו שעה יושב על 12:00 כמציין מקום,
+            # ואסור שייחשב כמשחק שנגמר בלי תוצאה
+            ("משחק בלי שעה מפורסמת",
+             [dict(lemans, timeTbd=True)], tip + ul.AFTER, False),
+        ]
+        for label, games, t, want in cases:
+            got = ul.unreported(games, when=t) is not None
+            print(f"   {label}: {'מזמן איסוף' if got else 'שותק'}")
+            if got != want:
+                fail.append(f"{label}: {got}, אמור להיות {want}")
+
+        # **ושה־YAML באמת קורא לזה.** בדיקה שעברה בפייתון בזמן
+        # ש־live.yml לא מזמן כלום היא בדיקה שלא שומרת על האוהד.
+        yml = (pathlib.Path(__file__).resolve().parent.parent
+               / ".github" / "workflows" / "live.yml").read_text(encoding="utf-8")
+        for need in ("actions: write", "--unreported",
+                     "gh workflow run update-data.yml"):
+            if need not in yml:
+                fail.append(f"live.yml לא מכיל {need!r}")
+
     if fail:
         print(f"{len(fail)} כשלים:")
         for f in fail:

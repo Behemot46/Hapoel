@@ -29,6 +29,8 @@ on:
 
 permissions:
   contents: write
+  # כדי לזמן איסוף כשהמשחק נגמר ואין לו תוצאה בלוח, ראו את הצעד האחרון
+  actions: write
 
 # ריצה שנייה שתתחיל באמצע משחק תמצא את הראשונה עובדת. אין טעם בשתיהן,
 # והשנייה תמתין בתור ואז תצא מיד כי המשחק כבר ייגמר.
@@ -56,6 +58,8 @@ jobs:
         run: pip install requests
 
       - name: Poll until the game is over
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -uo pipefail
           git config user.name "hapoel-data-bot"
@@ -168,3 +172,30 @@ jobs:
               break
             fi
           done
+
+          # **והשאלה האחרונה: האם לאוהד יש בכלל תוצאה.**
+          #
+          # נמדד ב־28.10.2026 על המשחק בלה מאן: משמרת האיסוף שהתחילה
+          # ב־17:12 מתה ב־19:02, שתי דקות אחרי הקפיצה, כשהראנר של גיטהאב
+          # נעלם באמצע הצעד (אחת מתוך שישים משמרות). הקצב של כל 20 דקות
+          # שאחרי השריקה לא רץ אפילו פעם אחת, והשומר ב־watchdog.yml לא
+          # יכול היה לתפוס את זה: הוא רץ בין 03:53 ל־15:53 UTC בלבד,
+          # כלומר אף פעם לא בשעות שבהן משחקים, והסף שלו הוא 13 שעות.
+          # התוצאה הגיעה ללוח ב־10:12 למחרת, **שלוש עשרה שעות אחרי
+          # השריקה**, ובינתיים ניצחון 90-83 הופיע כמשחק ״עתיד להתקיים״.
+          #
+          # הפולר הוא היחיד שער ברגע הזה, ולכן הוא ששואל. הלוח נמשך טרי
+          # מ־origin/main, כי עץ העבודה כאן הוא מלפני המשחק. בלילה תקין
+          # התוצאה כבר שם והצעד שותק לגמרי.
+          git fetch -q origin main || true
+          git show origin/main:app/data/games.json > /tmp/games-main.json \
+            2>/dev/null || true
+          MISSING=$(python scripts/update_live.py --unreported /tmp/games-main.json \
+                      2>/dev/null || echo "")
+          if [ -n "$MISSING" ]; then
+            echo "המשחק נגמר ואין לו תוצאה בלוח ($MISSING), מזמן איסוף."
+            gh workflow run update-data.yml --ref main -R "$GITHUB_REPOSITORY" \
+              && echo "  איסוף זומן." || echo "  זימון האיסוף נכשל."
+          else
+            echo "התוצאה כבר בלוח, אין מה לזמן."
+          fi
