@@ -407,11 +407,11 @@
       "awayPartials": null
     },
     {
-      "id": "20261220-מכבירמתגן",
+      "id": "20261220-מכבירג",
       "date": "2026-12-20T12:00:00+02:00",
       "competition": "ליגת Winner סל, מחזור 10",
       "home": "הפועל ירושלים",
-      "away": "מכבי רמת גן",
+      "away": "מכבי ר\"ג",
       "venue": null,
       "status": "scheduled",
       "homeScore": null,
@@ -589,10 +589,10 @@
       "provisional": true
     },
     {
-      "id": "20270314-מכבירמתגן",
+      "id": "20270314-מכבירג",
       "date": "2027-03-14T12:00:00+02:00",
       "competition": "ליגת Winner סל, מחזור 19",
-      "home": "מכבי רמת גן",
+      "home": "מכבי ר\"ג",
       "away": "הפועל ירושלים",
       "venue": null,
       "status": "scheduled",
