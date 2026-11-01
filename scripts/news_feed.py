@@ -477,6 +477,16 @@ LIVE_PAGE = (
     re.compile(r"^[^:,\"\u05f4?!]+\sנגד\s[^:,\"\u05f4?!]+$"),
 )
 
+# **ומרכאות בתוך מילה הן גרשיים ולא ציטוט.** הכלל למעלה פוסל כל כותרת
+# שיש בה מרכאות, כי מרכאות הן סימן של כותרת אמיתית עם ציטוט. אבל ב״כפ"ס״,
+# ״ת"א״ ו״ב"ש״ אותו תו הוא חלק משם הקבוצה. נמדד ב־1.11.2026: ״הפועל י-ם
+# נגד הפועל כפ"ס 76-52״ מ־ONE עבר את הכלל ונכנס למדור, וכך גם היה עובר
+# עמוד מפגש מול כל יריב שיש בשמו גרשיים, כלומר חצי מהליגה.
+#
+# לכן הגרשיים מוחלפים באות לפני הבדיקה, ורק כשהם בין שתי אותיות עבריות.
+# מרכאות של ציטוט עומדות ליד רווח או בקצה, ונשארות.
+_GERSHAYIM = re.compile(r"(?<=[\u05d0-\u05ea])[\"\u05f4](?=[\u05d0-\u05ea])")
+
 
 def about_us(title):
     """True when the headline itself is about our basketball club."""
@@ -492,7 +502,7 @@ def about_us(title):
         return False
     if any(r.search(title) for r in SOCCER_ROLE):
         return False
-    if any(r.search(title.strip()) for r in LIVE_PAGE):
+    if any(r.search(_GERSHAYIM.sub("ג", title.strip())) for r in LIVE_PAGE):
         return False
     return not _soccer_score(title)
 

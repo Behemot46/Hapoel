@@ -45,6 +45,13 @@ US = "הפועל ירושלים"
 BEFORE = datetime.timedelta(minutes=75)
 AFTER = datetime.timedelta(hours=3)
 
+# **ומתי משחק שנגמר בלי תוצאה הוא כבר חוסר ולא המתנה.** משחק כדורסל
+# נגמר אחרי כשעתיים, ולכן משעתיים אחרי הקפיצה היעדר תוצאה בלוח אומר
+# שהאיסוף לא היה שם. הגבול העליון קיים כדי שלא נרדוף אחרי משחק של אתמול:
+# אחריו הקצב הרגיל של האיסוף ממילא מביא את התוצאה.
+ENDED = datetime.timedelta(hours=2)
+LATE = datetime.timedelta(hours=5)
+
 
 def log(*a):
     print("[live]", *a, flush=True)
@@ -234,12 +241,58 @@ def eurocup_snapshot(game):
 # ב־23:06 כתבה idle. דווקא בשעה שאחרי המשחק, כשנכנסים לראות את התוצאה.
 #
 # הקבוע נשאר כאן ולא מועתק ל־YAML, כדי שלא ייפרדו.
+# **משחק שנגמר ואין לו תוצאה בלוח, כלומר האיסוף פספס את החלון שאחרי
+# השריקה.** נמדד ב־28.10.2026 על המשחק בלה מאן: משמרת האיסוף שהתחילה
+# ב־17:12 מתה ב־19:02, שתי דקות אחרי הקפיצה, כי הראנר של גיטהאב נעלם
+# באמצע הצעד (הצעד נשאר ״in_progress״, הלוגים 404, אחת מתוך שישים
+# משמרות). הקצב של כל 20 דקות שאחרי השריקה לא רץ אפילו פעם אחת, והשומר
+# ב־watchdog.yml לא יכול היה לתפוס את זה: הוא רץ רק בין 03:53 ל־15:53
+# UTC, כלומר אף פעם לא בשעות שבהן משחקים, והסף שלו הוא 13 שעות.
+# **התוצאה הגיעה ללוח המשחקים ב־10:12 למחרת, שלוש עשרה שעות אחרי
+# השריקה**, ובינתיים האוהד ראה ניצחון 90-83 כמשחק ״עתיד להתקיים״.
+#
+# מי שכן ער באותו רגע הוא הפולר הזה, כי החלון שלו נסגר שלוש שעות אחרי
+# הקפיצה. לכן הוא זה ששואל את השאלה, ו־live.yml מזמן איסוף כשהתשובה
+# חיובית. בלילה תקין התוצאה כבר בלוח והשאלה שקטה.
+def unreported(games, when=None):
+    """המשחק שנגמר ועדיין אין לו תוצאה, או None."""
+    t = when or now()
+    for g in games or ():
+        if g.get("timeTbd"):
+            continue
+        start = parse_dt(g.get("date"))
+        if not start or not (start + ENDED <= t <= start + LATE):
+            continue
+        if g.get("homeScore") is None or g.get("awayScore") is None:
+            return g
+    return None
+
+
 def window_end():
     game, start = current_game()
     return (start + AFTER) if game else None
 
 
 def main():
+    # **הלוח נקרא מקובץ שניתן בשורת הפקודה**, כי live.yml מושך אותו טרי
+    # מ־origin/main: עץ העבודה של הפולר הוא מתחילת הריצה, כלומר מלפני
+    # המשחק, ושם לתוצאה אין סיכוי להופיע.
+    if "--unreported" in sys.argv:
+        i = sys.argv.index("--unreported")
+        path = sys.argv[i + 1] if len(sys.argv) > i + 1 else None
+        try:
+            doc = (json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
+                   if path else (load("games.json") or {}))
+        except Exception as e:
+            # לשגיאה, כי live.yml קורא את הפלט הרגיל כתשובה: שורת לוג
+            # עליו הייתה נקראת כ״יש משחק בלי תוצאה״ ומזמנת איסוף לחינם
+            print("[live] לא הצלחתי לקרוא את לוח המשחקים:",
+                  type(e).__name__, e, file=sys.stderr)
+            return 0
+        g = unreported(doc.get("games") or [])
+        if g:
+            print(g.get("id") or g.get("date") or "")
+        return 0
     if "--window-end" in sys.argv:
         # הלולאה קוראת את זה, ולכן שורה אחת בלבד לפלט: חותמת זמן או כלום
         end = window_end()
