@@ -256,9 +256,9 @@
       "home": "הפועל ירושלים",
       "away": "הפועל אילת",
       "venue": "פיס ארנה, ירושלים",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
+      "status": "finished",
+      "homeScore": 88,
+      "awayScore": 78,
       "broadcast": {
         "pending": true
       }
