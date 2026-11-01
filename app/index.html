@@ -89,6 +89,11 @@
   </a>
 </nav>
 
+<!--
+  analytics.js לפני app.js: הוא מגדיר רק פונקציות, ו־app.js קורא להן
+  בציור. בסדר ההפוך הציור הראשון היה יכול לרוץ לפני שהן קיימות.
+-->
+<script src="js/analytics.js"></script>
 <script src="js/app.js"></script>
 <script>
   // ספירת כניסות, ורק במקום שבו היא בכלל קיימת.

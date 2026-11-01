@@ -25,6 +25,7 @@ def build():
     html = read("index.html")
     css = read("css/style.css")
     js = read("js/app.js")
+    analytics = read("js/analytics.js")
 
     # every data file the app asks for, keyed the way loadJSON looks them up
     data = {}
@@ -65,6 +66,8 @@ def build():
     html = re.sub(r'\s*<link rel="apple-touch-icon"[^>]*>', "", html)
     if crest_uri:
         html = html.replace('src="icons/crest.png"', 'src="' + crest_uri + '"')
+    html = html.replace('<script src="js/analytics.js"></script>',
+                        "<script>\n" + analytics + "\n</script>")
     html = html.replace('<script src="js/app.js"></script>',
                         "<script>\n" + payload + js + "\n</script>")
     # the service worker block is dead weight in a file:// copy
