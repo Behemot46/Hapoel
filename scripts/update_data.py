@@ -32,6 +32,7 @@ import club_roster
 import game_stats
 import news_feed
 import player_stats
+import advanced_stats
 import photo_crop
 import podcast_feed
 
@@ -1804,6 +1805,8 @@ SOURCES = [("standings", update_standings), ("games", update_games),
            ("gameStats", game_stats.update_game_stats),
            # אחרי gameStats ולא לפניו: הממוצעים מחושבים מהטפסים שהוא אוסף
            ("playerSeason", player_stats.update_player_season),
+           # וגם המדדים המתקדמים, מאותם טפסים ובאותו סדר
+           ("advanced", advanced_stats.update_advanced),
            ("news", news_feed.update_news),
            ("podcasts", podcast_feed.update_podcasts),
            ("roster", update_roster)]

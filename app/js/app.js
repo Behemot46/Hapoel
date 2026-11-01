@@ -150,6 +150,7 @@ const LATER = [
   ["boxscores", "boxscores.json", null],
   ["gameStats", "game-stats.json", null],
   ["playerSeason", "player-season.json", null],
+  ["advanced", "advanced.json", null],
   ["hof", "hall-of-fame.json", null],
   ["history", "history.json", null],
   ["profiles", "player-profiles.json", {}],
@@ -2244,12 +2245,14 @@ function renderHome() {
     view.appendChild(promo);
   }
 
-  if (state.lastSeason || state.seasonStats) {
+  if (state.lastSeason || state.seasonStats || state.advanced) {
     const promo = el("a", "card promo");
     promo.href = "#/stats";
     const t = el("div");
-    t.appendChild(text("div", "promo-title", "סטטיסטיקה"));
-    t.appendChild(text("div", "promo-sub", "העונה הזו, והמאזן המלא של העונה שעברה"));
+    t.appendChild(text("div", "promo-title", "סטטיסטיקה וניתוח"));
+    t.appendChild(text("div", "promo-sub", state.advanced
+      ? "ארבעת הגורמים, יעילות ל־100 החזקות, רבעים, ונפח מול יעילות לכל שחקן"
+      : "העונה הזו, והמאזן המלא של העונה שעברה"));
     promo.appendChild(t);
     promo.appendChild(text("div", "chevron", "‹"));
     view.appendChild(promo);
@@ -2699,6 +2702,9 @@ function renderGame(id) {
   head.appendChild(q);
   head.appendChild(shareResultButton(g));
   view.appendChild(head);
+
+  // למה זה נגמר ככה, מיד מתחת למה שקרה
+  renderGameAnalytics(g, box);
 
   // הדיווח
   if (box.report && box.report.length) {
@@ -3327,6 +3333,7 @@ function renderPlayer(slug) {
       sc.appendChild(statBar(label + " (" + pair[0] + " מתוך " + pair[1] + ")",
                              value, 100, "%")));
     view.appendChild(sc);
+    renderPlayerAdvanced(p, season);
     view.appendChild(gameLog(season.log));
   } else {
     sc.appendChild(text("div", "empty",
@@ -3554,6 +3561,9 @@ function renderThisSeason() {
     return;
   }
 
+  // הקבוצה קודם: ״למה אנחנו מנצחים״ לפני ״מי קלע כמה״
+  renderTeamAnalytics();
+
   view.appendChild(text("div", "section-title", "ממוצעים למשחק"));
   // **הסדר נקבע לפי מה נחתך.** הטבלה רחבה מהמסך ונגררת, ולכן העמודה
   // האחרונה היא הראשונה שלא רואים. נקודות, ריבאונדים ואסיסטים יושבים
@@ -3586,6 +3596,8 @@ function renderThisSeason() {
   view.appendChild(prose("div", "table-note",
     "רק מי שלקח חמש זריקות שדה ומעלה. eFG נותן לשלשה את המשקל שלה, " +
     "ו־TS מכניס גם את קו העונשין: כמה נקודות יוצאות מכל זריקה שנלקחה."));
+
+  renderPlayerAnalytics();
 
   // ממוצעי היורוקאפ נשארים כשכבה משלהם, כי הם חתך של תחרות אחת
   const e = state.seasonStats;
@@ -3654,18 +3666,19 @@ function seasonTable(rows, cols) {
   return wrap;
 }
 
-// Deliberately a promise, not a fake chart: everything here needs play-by-play
-// data we do not have yet, and inventing it would be worse than waiting.
+// **מה יש, ומה עוד לא.** עד 1.11.2026 הכרטיס הזה הבטיח יעילות ל־100
+// החזקות ואחוז שימוש כמשהו שאי אפשר לחשב בכנות. זה היה זהיר מדי: ההערכה
+// המקובלת של מספר ההחזקות נבנית כולה משורת הסה״כ, ועכשיו היא כאן. מה
+// שבאמת דורש מהלך אחר מהלך הוא חמישיות, וזה נשאר כתוב כאן כמו שהוא.
 function advancedCard() {
-  view.appendChild(text("div", "section-title", "סטטיסטיקה מתקדמת"));
+  view.appendChild(text("div", "section-title", "מה עוד אין"));
   const c = el("div", "card notice");
-  c.appendChild(text("div", "notice-title", "מה יש, ומה עוד לא"));
+  c.appendChild(text("div", "notice-title", "חמישיות, ומה קורה כשהוא על הספסל"));
   c.appendChild(prose("div", "notice-body",
-    "eFG ו־TS כבר כאן למעלה, והם מחושבים מטופס המשחק בלי שום הנחה, " +
-    "חוץ מהמקדם 0.44 שמעריך כמה ניסיונות קליעה שווה זריקת עונשין. " +
-    "מה שעוד אין: יעילות התקפה והגנה ל־100 מחזורים, אחוז שימוש והפרש " +
-    "כשעל הפרקט. אלה דורשים ספירת מחזורים ודקות משותפות שאין בטופס, " +
-    "וטבלה שנראית מרשים אבל מבוססת על ניחוש שווה פחות מכלום."));
+    "כל מה שלמעלה מחושב מטופס המשחק: החזקות, יעילות, ארבעת הגורמים ושיעורי " +
+    "השחקנים, בנוסחאות המקובלות בעולם. מה שעוד אין הוא מי שיחק עם מי, " +
+    "וההפרש כשהשחקן על הספסל לעומת כשהוא על המגרש. את זה יודע רק רישום " +
+    "של מהלך אחר מהלך, ואין לנו אותו, וגרף שמנחש את זה שווה פחות מכלום."));
   view.appendChild(c);
 }
 
