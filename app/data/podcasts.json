@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T11:26:53Z",
+  "updated": "2026-11-02T22:32:40Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -7,14 +7,14 @@
       "title": "כיפה אדומה",
       "about": "team",
       "url": "https://podcasts.apple.com/us/podcast/%D7%9B%D7%99%D7%A4%D7%94-%D7%90%D7%93%D7%95%D7%9E%D7%94/id1573775015?uo=4",
-      "latest": "2026-10-27T04:00:00Z"
+      "latest": "2026-11-02T04:00:00Z"
     },
     {
       "id": "6820447951",
       "title": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
       "about": "team",
       "url": "https://podcasts.apple.com/il/podcast/%D7%9E%D7%90%D7%97%D7%95%D7%A8%D7%99-%D7%94%D7%A1%D7%9C%D7%99%D7%9D-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%90%D7%95%D7%94%D7%93%D7%99-%D7%94%D7%A4%D7%95%D7%A2%D7%9C-%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C/id6820447951?uo=4",
-      "latest": "2026-10-26T00:46:01Z"
+      "latest": "2026-11-01T21:03:52Z"
     },
     {
       "id": "1623083958",
@@ -47,6 +47,15 @@
   ],
   "items": [
     {
+      "showId": "1573775015",
+      "show": "כיפה אדומה",
+      "about": "team",
+      "title": "פרק 104: חכי לי סלוניקי",
+      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/104-e3ricpg",
+      "published": "2026-11-02T04:00:00Z",
+      "duration": 2940
+    },
+    {
       "showId": "1675729649",
       "show": "שוט",
       "about": "league",
@@ -54,6 +63,15 @@
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
       "published": "2026-11-02T01:09:00Z",
       "duration": 5457
+    },
+    {
+      "showId": "6820447951",
+      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "title": "תפתחו לפטופים: דן שמיר מגיע לאולפן | מאחורי הסלים, פרק 8",
+      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/8-e3ridtm",
+      "published": "2026-11-01T21:03:52Z",
+      "duration": 4735
     },
     {
       "showId": "1648115499",
@@ -243,24 +261,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/101-e3pje22",
       "published": "2026-09-30T02:56:17Z",
       "duration": 2287
-    },
-    {
-      "showId": "6820447951",
-      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
-      "about": "team",
-      "title": "משחק ראשון בארנה ותופעת קני לופטון ג'וניור | מאחורי הסלים, פרק 4",
-      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/4-e3p3k86",
-      "published": "2026-09-19T16:28:09Z",
-      "duration": 4097
-    },
-    {
-      "showId": "1573775015",
-      "show": "כיפה אדומה",
-      "about": "team",
-      "title": "פרק 99: פנים חדשות",
-      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/99-e3ot6ng",
-      "published": "2026-09-16T02:59:00Z",
-      "duration": 4494
     }
   ]
 }
