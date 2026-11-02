@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01T20:54:08Z",
+  "updated": "2026-11-02T11:26:53Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-10-26T10:28:00Z"
+      "latest": "2026-11-02T01:09:00Z"
     },
     {
       "id": "1698308776",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "נוקאאוט אדום, כאוס בצהוב: הדרבי התל אביבי אדום, מתכוננים לסלוניקי | שוט, פרק 203",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-11-02T01:09:00Z",
+      "duration": 5457
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -198,15 +207,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3q77ai",
       "published": "2026-10-09T08:28:45Z",
       "duration": 4109
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "הגיע הזמן לטלטל את הספינה? | שוט, פרק 199",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-10-05T11:29:00Z",
-      "duration": 4220
     },
     {
       "showId": "1698308776",
