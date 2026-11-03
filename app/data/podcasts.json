@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T22:32:40Z",
+  "updated": "2026-11-03T11:03:52Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-10-29T10:20:35Z"
+      "latest": "2026-11-02T22:48:50Z"
     },
     {
       "id": "1675729649",
@@ -35,7 +35,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-10-26T16:10:23Z"
+      "latest": "2026-11-02T14:12:06Z"
     },
     {
       "id": "1648115499",
@@ -46,6 +46,24 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "אנחנו מכבי? מי אתם בכלל?",
+      "url": "https://omny.fm/shows/speaknrolisrael/0291ae01-2341-4a33-a87f-b4f6017612fc",
+      "published": "2026-11-02T22:48:50Z",
+      "duration": 4715
+    },
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "צהוב זה השחור החדש | הפועל דורסת בדרבי, מכבי שוקעת, ירושלים לא עוצרת ואריק שטילמן באולפן",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3rjk9v",
+      "published": "2026-11-02T14:12:06Z",
+      "duration": 5259
+    },
     {
       "showId": "1573775015",
       "show": "כיפה אדומה",
@@ -225,24 +243,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3q77ai",
       "published": "2026-10-09T08:28:45Z",
       "duration": 4109
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "נקודת מפנה? | מכבי מתאוששת בקלאסיקו, איטודיס והפועל מוצאים דרך וירושלים מחפשת פתרונות",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3pu39h",
-      "published": "2026-10-05T10:02:01Z",
-      "duration": 4960
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "דרבי בגמר גביע ווינר, הכנות אחרונות לליגה",
-      "url": "https://omny.fm/shows/speaknrolisrael/c2a39022-b538-4d03-8887-b4d901510c50",
-      "published": "2026-10-04T20:31:49Z",
-      "duration": 4331
     },
     {
       "showId": "6820447951",

@@ -36,22 +36,6 @@
     },
     {
       "pos": 5,
-      "team": "הפועל אילת",
-      "played": 4,
-      "wins": 2,
-      "losses": 2,
-      "points": 6
-    },
-    {
-      "pos": 6,
-      "team": "נס ציונה",
-      "played": 4,
-      "wins": 2,
-      "losses": 2,
-      "points": 6
-    },
-    {
-      "pos": 7,
       "team": "בני הרצליה",
       "played": 4,
       "wins": 2,
@@ -59,8 +43,24 @@
       "points": 6
     },
     {
+      "pos": 6,
+      "team": "הפועל אילת",
+      "played": 4,
+      "wins": 2,
+      "losses": 2,
+      "points": 6
+    },
+    {
+      "pos": 7,
+      "team": "ראשון לציון",
+      "played": 4,
+      "wins": 2,
+      "losses": 2,
+      "points": 6
+    },
+    {
       "pos": 8,
-      "team": "קריית אתא",
+      "team": "נס ציונה",
       "played": 4,
       "wins": 2,
       "losses": 2,
@@ -68,7 +68,7 @@
     },
     {
       "pos": 9,
-      "team": "ראשון לציון",
+      "team": "קריית אתא",
       "played": 4,
       "wins": 2,
       "losses": 2,
@@ -84,7 +84,7 @@
     },
     {
       "pos": 11,
-      "team": "הפועל העמק",
+      "team": "הפועל ב\"ש",
       "played": 4,
       "wins": 1,
       "losses": 3,
@@ -92,14 +92,6 @@
     },
     {
       "pos": 12,
-      "team": "מכבי אשדוד",
-      "played": 4,
-      "wins": 1,
-      "losses": 3,
-      "points": 5
-    },
-    {
-      "pos": 13,
       "team": "הפועל חולון",
       "played": 4,
       "wins": 1,
@@ -107,8 +99,16 @@
       "points": 5
     },
     {
+      "pos": 13,
+      "team": "מכבי אשדוד",
+      "played": 4,
+      "wins": 1,
+      "losses": 3,
+      "points": 5
+    },
+    {
       "pos": 14,
-      "team": "הפועל ב\"ש",
+      "team": "הפועל העמק",
       "played": 4,
       "wins": 1,
       "losses": 3,
