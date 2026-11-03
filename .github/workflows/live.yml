@@ -165,6 +165,11 @@ jobs:
           echo "יש משחק. נשארים ודוגמים כל ${EVERY} שניות."
           while [ "$(date +%s)" -lt "$DEADLINE" ]; do
             sleep "$EVERY"
+            # **לוח המשחקים טרי לפני כל דגימה**, כי ממנו מגיעה התוצאה הרשמית
+            # למשחק ליגה. נמדד ב־1.11.2026 מול אילת: האיסוף הביא 88-78 ללוח
+            # ב־18:52, והכרטיס אמר ״המשחק מתנהל״ עד 19:05, כי הפולר רענן את
+            # העותק שלו רק כשפרסם, כלומר פעם ברבע שעה.
+            git pull -q --rebase --autostash origin main || true
             python scripts/update_live.py || true
             publish
             if [ "$(state_of)" = "idle" ]; then

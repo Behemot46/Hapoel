@@ -234,6 +234,11 @@ def main():
                      "gh workflow run update-data.yml"):
             if need not in yml:
                 fail.append(f"live.yml לא מכיל {need!r}")
+        # **ולוח טרי לפני כל דגימה בלולאה.** בלי זה התוצאה הרשמית מגיעה
+        # לכרטיס רק כשהפולר מפרסם, ונמדד ב־1.11 פיגור של 13 דקות
+        loop = yml[yml.find("while ["):]
+        if not (0 <= loop.find("git pull") < loop.find("python scripts/update_live.py")):
+            fail.append("הלולאה ב־live.yml לא מושכת את main לפני הדגימה")
 
     if fail:
         print(f"{len(fail)} כשלים:")
