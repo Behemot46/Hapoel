@@ -1,7 +1,7 @@
 {
   "competition": "יורוקאפ",
   "season": "2026/27",
-  "round": 5,
+  "round": 6,
   "ourGroup": "Group A",
   "groups": [
     {
@@ -181,51 +181,51 @@
           "pos": 1,
           "team": "Napoli Basketball",
           "code": "NAP",
-          "played": 5,
-          "wins": 5,
+          "played": 6,
+          "wins": 6,
           "losses": 0,
-          "for": 450,
-          "against": 411
+          "for": 540,
+          "against": 490
         },
         {
           "pos": 2,
-          "team": "NINERS Chemnitz",
-          "code": "NIN",
-          "played": 5,
-          "wins": 4,
+          "team": "Tofas Bursa",
+          "code": "BUR",
+          "played": 6,
+          "wins": 5,
           "losses": 1,
-          "for": 441,
-          "against": 390
+          "for": 538,
+          "against": 482
         },
         {
           "pos": 3,
-          "team": "Tofas Bursa",
-          "code": "BUR",
-          "played": 5,
+          "team": "NINERS Chemnitz",
+          "code": "NIN",
+          "played": 6,
           "wins": 4,
-          "losses": 1,
-          "for": 444,
-          "against": 403
+          "losses": 2,
+          "for": 525,
+          "against": 486
         },
         {
           "pos": 4,
           "team": "Buducnost VOLI Podgorica",
           "code": "BUD",
-          "played": 5,
-          "wins": 2,
+          "played": 6,
+          "wins": 3,
           "losses": 3,
-          "for": 455,
-          "against": 441
+          "for": 551,
+          "against": 525
         },
         {
           "pos": 5,
           "team": "Dolomiti Energia Trento",
           "code": "TRN",
-          "played": 5,
+          "played": 6,
           "wins": 2,
-          "losses": 3,
-          "for": 410,
-          "against": 437
+          "losses": 4,
+          "for": 489,
+          "against": 527
         },
         {
           "pos": 6,
@@ -239,16 +239,6 @@
         },
         {
           "pos": 7,
-          "team": "Neptunas Klaipeda",
-          "code": "KLA",
-          "played": 5,
-          "wins": 1,
-          "losses": 4,
-          "for": 424,
-          "against": 456
-        },
-        {
-          "pos": 8,
           "team": "Slask Wroclaw",
           "code": "WRO",
           "played": 5,
@@ -256,6 +246,16 @@
           "losses": 4,
           "for": 392,
           "against": 451
+        },
+        {
+          "pos": 8,
+          "team": "Neptunas Klaipeda",
+          "code": "KLA",
+          "played": 6,
+          "wins": 1,
+          "losses": 5,
+          "for": 503,
+          "against": 550
         }
       ]
     },
@@ -266,21 +266,21 @@
           "pos": 1,
           "team": "Bahcesehir College Istanbul",
           "code": "BAH",
-          "played": 5,
-          "wins": 4,
+          "played": 6,
+          "wins": 5,
           "losses": 1,
-          "for": 452,
-          "against": 394
+          "for": 548,
+          "against": 476
         },
         {
           "pos": 2,
-          "team": "ratiopharm ulm",
-          "code": "ULM",
-          "played": 5,
-          "wins": 3,
+          "team": "PAOK Thessaloniki",
+          "code": "PAO",
+          "played": 6,
+          "wins": 4,
           "losses": 2,
-          "for": 453,
-          "against": 433
+          "for": 535,
+          "against": 518
         },
         {
           "pos": 3,
@@ -294,16 +294,6 @@
         },
         {
           "pos": 4,
-          "team": "PAOK Thessaloniki",
-          "code": "PAO",
-          "played": 5,
-          "wins": 3,
-          "losses": 2,
-          "for": 422,
-          "against": 407
-        },
-        {
-          "pos": 5,
           "team": "Lietkabelis Panevezys",
           "code": "LKB",
           "played": 5,
@@ -311,6 +301,16 @@
           "losses": 2,
           "for": 389,
           "against": 393
+        },
+        {
+          "pos": 5,
+          "team": "ratiopharm ulm",
+          "code": "ULM",
+          "played": 6,
+          "wins": 3,
+          "losses": 3,
+          "for": 535,
+          "against": 529
         },
         {
           "pos": 6,
@@ -326,11 +326,11 @@
           "pos": 7,
           "team": "Roma Basketball",
           "code": "BCR",
-          "played": 5,
+          "played": 6,
           "wins": 2,
-          "losses": 3,
-          "for": 407,
-          "against": 440
+          "losses": 4,
+          "for": 518,
+          "against": 553
         },
         {
           "pos": 8,
