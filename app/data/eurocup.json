@@ -39,23 +39,23 @@
         },
         {
           "pos": 4,
-          "team": "Riga Zelli",
-          "code": "RIG",
-          "played": 5,
+          "team": "Le Mans Sarthe Basket",
+          "code": "LEM",
+          "played": 6,
           "wins": 3,
-          "losses": 2,
-          "for": 404,
-          "against": 421
+          "losses": 3,
+          "for": 477,
+          "against": 467
         },
         {
           "pos": 5,
-          "team": "Le Mans Sarthe Basket",
-          "code": "LEM",
-          "played": 5,
-          "wins": 2,
+          "team": "Riga Zelli",
+          "code": "RIG",
+          "played": 6,
+          "wins": 3,
           "losses": 3,
-          "for": 406,
-          "against": 402
+          "for": 469,
+          "against": 492
         },
         {
           "pos": 6,
@@ -126,11 +126,11 @@
           "pos": 4,
           "team": "Skyliners Frankfurt",
           "code": "FRA",
-          "played": 5,
+          "played": 6,
           "wins": 3,
-          "losses": 2,
-          "for": 439,
-          "against": 452
+          "losses": 3,
+          "for": 517,
+          "against": 550
         },
         {
           "pos": 5,
@@ -166,11 +166,11 @@
           "pos": 8,
           "team": "Turk Telekom Ankara",
           "code": "TTK",
-          "played": 5,
-          "wins": 1,
+          "played": 6,
+          "wins": 2,
           "losses": 4,
-          "for": 377,
-          "against": 407
+          "for": 475,
+          "against": 485
         }
       ]
     },
@@ -274,6 +274,16 @@
         },
         {
           "pos": 2,
+          "team": "Kids&Us Manresa",
+          "code": "MAN",
+          "played": 6,
+          "wins": 4,
+          "losses": 2,
+          "for": 531,
+          "against": 501
+        },
+        {
+          "pos": 3,
           "team": "PAOK Thessaloniki",
           "code": "PAO",
           "played": 6,
@@ -283,27 +293,7 @@
           "against": 518
         },
         {
-          "pos": 3,
-          "team": "Kids&Us Manresa",
-          "code": "MAN",
-          "played": 5,
-          "wins": 3,
-          "losses": 2,
-          "for": 451,
-          "against": 435
-        },
-        {
           "pos": 4,
-          "team": "Lietkabelis Panevezys",
-          "code": "LKB",
-          "played": 5,
-          "wins": 3,
-          "losses": 2,
-          "for": 389,
-          "against": 393
-        },
-        {
-          "pos": 5,
           "team": "ratiopharm ulm",
           "code": "ULM",
           "played": 6,
@@ -311,6 +301,16 @@
           "losses": 3,
           "for": 535,
           "against": 529
+        },
+        {
+          "pos": 5,
+          "team": "Lietkabelis Panevezys",
+          "code": "LKB",
+          "played": 6,
+          "wins": 3,
+          "losses": 3,
+          "for": 455,
+          "against": 473
         },
         {
           "pos": 6,
