@@ -1,4 +1,12 @@
 {
-  "state": "idle",
-  "updated": "2026-11-01T20:01:13+00:00"
+  "state": "starting",
+  "game": {
+    "gameId": "20261104-euro-ArisThessalo",
+    "competition": "יורוקאפ",
+    "home": "הפועל ירושלים",
+    "away": "Aris Thessaloniki",
+    "date": "2026-11-04T19:00:00Z",
+    "venue": "Hala Sportova Ranko Zeravica"
+  },
+  "updated": "2026-11-04T18:43:00+00:00"
 }
