@@ -29,16 +29,6 @@
         },
         {
           "pos": 3,
-          "team": "Baglietto Derthona Tortona",
-          "code": "TRT",
-          "played": 5,
-          "wins": 3,
-          "losses": 2,
-          "for": 416,
-          "against": 419
-        },
-        {
-          "pos": 4,
           "team": "Le Mans Sarthe Basket",
           "code": "LEM",
           "played": 6,
@@ -46,6 +36,16 @@
           "losses": 3,
           "for": 477,
           "against": 467
+        },
+        {
+          "pos": 4,
+          "team": "Baglietto Derthona Tortona",
+          "code": "TRT",
+          "played": 6,
+          "wins": 3,
+          "losses": 3,
+          "for": 481,
+          "against": 484
         },
         {
           "pos": 5,
@@ -81,11 +81,11 @@
           "pos": 8,
           "team": "Cedevita Olimpija Ljubljana",
           "code": "LJU",
-          "played": 5,
-          "wins": 0,
+          "played": 6,
+          "wins": 1,
           "losses": 5,
-          "for": 363,
-          "against": 411
+          "for": 428,
+          "against": 476
         }
       ]
     },
@@ -114,16 +114,26 @@
         },
         {
           "pos": 3,
-          "team": "Siauliai Basketball",
-          "code": "SIA",
-          "played": 5,
+          "team": "Umana Reyer Venice",
+          "code": "VNC",
+          "played": 6,
           "wins": 3,
-          "losses": 2,
-          "for": 412,
-          "against": 421
+          "losses": 3,
+          "for": 528,
+          "against": 484
         },
         {
           "pos": 4,
+          "team": "Siauliai Basketball",
+          "code": "SIA",
+          "played": 6,
+          "wins": 3,
+          "losses": 3,
+          "for": 489,
+          "against": 519
+        },
+        {
+          "pos": 5,
           "team": "Skyliners Frankfurt",
           "code": "FRA",
           "played": 6,
@@ -131,16 +141,6 @@
           "losses": 3,
           "for": 517,
           "against": 550
-        },
-        {
-          "pos": 5,
-          "team": "Umana Reyer Venice",
-          "code": "VNC",
-          "played": 5,
-          "wins": 2,
-          "losses": 3,
-          "for": 430,
-          "against": 407
         },
         {
           "pos": 6,
@@ -219,6 +219,16 @@
         },
         {
           "pos": 5,
+          "team": "Cosea JL Bourg-en-Bresse",
+          "code": "BOU",
+          "played": 6,
+          "wins": 2,
+          "losses": 4,
+          "for": 502,
+          "against": 525
+        },
+        {
+          "pos": 6,
           "team": "Dolomiti Energia Trento",
           "code": "TRN",
           "played": 6,
@@ -228,27 +238,7 @@
           "against": 527
         },
         {
-          "pos": 6,
-          "team": "Cosea JL Bourg-en-Bresse",
-          "code": "BOU",
-          "played": 5,
-          "wins": 1,
-          "losses": 4,
-          "for": 414,
-          "against": 441
-        },
-        {
           "pos": 7,
-          "team": "Slask Wroclaw",
-          "code": "WRO",
-          "played": 5,
-          "wins": 1,
-          "losses": 4,
-          "for": 392,
-          "against": 451
-        },
-        {
-          "pos": 8,
           "team": "Neptunas Klaipeda",
           "code": "KLA",
           "played": 6,
@@ -256,6 +246,16 @@
           "losses": 5,
           "for": 503,
           "against": 550
+        },
+        {
+          "pos": 8,
+          "team": "Slask Wroclaw",
+          "code": "WRO",
+          "played": 6,
+          "wins": 1,
+          "losses": 5,
+          "for": 476,
+          "against": 539
         }
       ]
     },
@@ -316,11 +316,11 @@
           "pos": 6,
           "team": "BOSNA BH Telecom Sarajevo",
           "code": "BOS",
-          "played": 5,
+          "played": 6,
           "wins": 2,
-          "losses": 3,
-          "for": 408,
-          "against": 409
+          "losses": 4,
+          "for": 477,
+          "against": 487
         },
         {
           "pos": 7,
@@ -336,11 +336,11 @@
           "pos": 8,
           "team": "Balkan Botevgrad",
           "code": "BLK",
-          "played": 5,
-          "wins": 0,
+          "played": 6,
+          "wins": 1,
           "losses": 5,
-          "for": 336,
-          "against": 407
+          "for": 414,
+          "against": 476
         }
       ]
     }

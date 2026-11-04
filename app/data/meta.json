@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-04T19:13:54+00:00",
+  "lastUpdated": "2026-11-04T20:54:44+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -7,8 +7,8 @@
       "detail": "עודכן בהצלחה"
     },
     "games": {
-      "ok": false,
-      "detail": "HTTPSConnectionPool(host='basket.co.il', port=443): Read timed out. (read timeout=30)"
+      "ok": true,
+      "detail": "עודכן בהצלחה"
     },
     "eurocup": {
       "ok": true,
@@ -20,7 +20,7 @@
     },
     "news": {
       "ok": true,
-      "detail": "הקצב הוא פעם ביומיים, והמדור נכתב לפני 8 שעות"
+      "detail": "הקצב הוא פעם ביומיים, והמדור נכתב לפני 10 שעות"
     },
     "podcasts": {
       "ok": true,
