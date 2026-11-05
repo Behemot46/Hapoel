@@ -1,7 +1,7 @@
 {
   "_comment": "ממוצעי העונה ויומן המשחקים לכל שחקן, מחושבים מטפסי המשחק שנאספו. **הקובץ נכתב על ידי scripts/player_stats.py ואין לערוך אותו ביד.** רק משחקים רשמיים נספרים: משחקי הכנה נשארים בעמוד המשחק שלהם ולא נכנסים לממוצע, כי הם לא חלק מהעונה. אחוז קליעה נכתב רק כשבאמת זרקו.",
-  "updated": "2026-11-04T21:15:14Z",
-  "games": 13,
+  "updated": "2026-11-05T00:05:56Z",
+  "games": 14,
   "gameIds": [
     "20260908-מכביאשדוד",
     "20260918-הפועלבש",
@@ -15,46 +15,61 @@
     "20261021-euro-RigaZelli",
     "20261025-הפועלתא",
     "20261028-euro-LeMansSarthe",
-    "20261101-הפועלאילת"
+    "20261101-הפועלאילת",
+    "20261104-euro-ArisThessalo"
   ],
   "players": [
     {
       "slug": "kenny-lofton-jr",
       "name": "קנת' לופטון ג'וניור",
-      "games": 12,
-      "seconds": 18005,
+      "games": 13,
+      "seconds": 19937,
       "totals": {
-        "pts": 204,
-        "reb": 77,
-        "oreb": 26,
-        "dreb": 51,
-        "ast": 32,
-        "to": 32,
-        "stl": 7,
-        "blk": 7,
-        "pf": 33,
-        "pir": 251,
+        "pts": 226,
+        "reb": 87,
+        "oreb": 32,
+        "dreb": 55,
+        "ast": 34,
+        "to": 36,
+        "stl": 9,
+        "blk": 8,
+        "pf": 37,
+        "pir": 268,
         "fg": [
-          74,
-          133
+          82,
+          153
         ],
         "p2": [
-          69,
-          113
+          76,
+          130
         ],
         "p3": [
-          5,
-          20
+          6,
+          23
         ],
         "ft": [
-          51,
-          66
+          56,
+          73
         ]
       },
       "log": [
         {
+          "gameId": "20261104-euro-ArisThessalo",
+          "date": "2026-11-04T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Aris Thessaloniki",
+          "us": 84,
+          "them": 73,
+          "win": true,
+          "min": "32:12",
+          "pts": 22,
+          "reb": 10,
+          "ast": 2,
+          "pir": 17
+        },
+        {
           "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
+          "date": "2026-10-28T19:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Le Mans Sarthe Basket",
           "us": 90,
@@ -82,7 +97,7 @@
         },
         {
           "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
+          "date": "2026-10-21T18:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Riga Zelli",
           "us": 100,
@@ -110,7 +125,7 @@
         },
         {
           "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
+          "date": "2026-10-14T18:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Recoletas Salud San Pablo Burgos",
           "us": 85,
@@ -138,7 +153,7 @@
         },
         {
           "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
+          "date": "2026-10-06T16:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Cedevita Olimpija Ljubljana",
           "us": 75,
@@ -166,7 +181,7 @@
         },
         {
           "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
+          "date": "2026-09-29T17:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Rostock Seawolves",
           "us": 94,
@@ -222,314 +237,89 @@
         }
       ],
       "avg": {
-        "pts": 17.0,
-        "reb": 6.4,
-        "oreb": 2.2,
+        "pts": 17.4,
+        "reb": 6.7,
+        "oreb": 2.5,
         "dreb": 4.2,
-        "ast": 2.7,
-        "to": 2.7,
-        "stl": 0.6,
+        "ast": 2.6,
+        "to": 2.8,
+        "stl": 0.7,
         "blk": 0.6,
         "pf": 2.8,
-        "pir": 20.9,
-        "min": "25:00",
-        "fgPct": 56,
+        "pir": 20.6,
+        "min": "25:34",
+        "fgPct": 54,
         "fg": [
-          74,
-          133
+          82,
+          153
         ],
-        "p2Pct": 61,
+        "p2Pct": 58,
         "p2": [
-          69,
-          113
+          76,
+          130
         ],
-        "p3Pct": 25,
+        "p3Pct": 26,
         "p3": [
-          5,
-          20
+          6,
+          23
         ],
         "ftPct": 77,
         "ft": [
-          51,
-          66
+          56,
+          73
         ],
-        "efg": 57.5,
-        "ts": 62.9
-      }
-    },
-    {
-      "slug": "jaleen-smith",
-      "name": "ג'יילן סמית'",
-      "games": 12,
-      "seconds": 18763,
-      "totals": {
-        "pts": 142,
-        "reb": 32,
-        "oreb": 4,
-        "dreb": 28,
-        "ast": 57,
-        "to": 23,
-        "stl": 13,
-        "blk": 0,
-        "pf": 32,
-        "pir": 157,
-        "fg": [
-          47,
-          98
-        ],
-        "p2": [
-          24,
-          42
-        ],
-        "p3": [
-          23,
-          56
-        ],
-        "ft": [
-          25,
-          26
-        ]
-      },
-      "log": [
-        {
-          "gameId": "20261101-הפועלאילת",
-          "date": "2026-11-01T19:00:00+02:00",
-          "competition": "ליגת Winner סל, מחזור 4",
-          "opponent": "הפועל עירוני אילת",
-          "us": 88,
-          "them": 78,
-          "win": true,
-          "min": "27",
-          "pts": 18,
-          "reb": 2,
-          "ast": 5,
-          "pir": 22
-        },
-        {
-          "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Le Mans Sarthe Basket",
-          "us": 90,
-          "them": 83,
-          "win": true,
-          "min": "21:31",
-          "pts": 8,
-          "reb": 2,
-          "ast": 2,
-          "pir": 7
-        },
-        {
-          "gameId": "20261025-הפועלתא",
-          "date": "2026-10-25T20:55:00+02:00",
-          "competition": "ליגת Winner סל, מחזור 3",
-          "opponent": "הפועל IBI תל אביב",
-          "us": 70,
-          "them": 60,
-          "win": true,
-          "min": "30",
-          "pts": 13,
-          "reb": 1,
-          "ast": 5,
-          "pir": 14
-        },
-        {
-          "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Riga Zelli",
-          "us": 100,
-          "them": 64,
-          "win": true,
-          "min": "26:11",
-          "pts": 9,
-          "reb": 2,
-          "ast": 6,
-          "pir": 13
-        },
-        {
-          "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Recoletas Salud San Pablo Burgos",
-          "us": 85,
-          "them": 84,
-          "win": true,
-          "min": "22:17",
-          "pts": 13,
-          "reb": 2,
-          "ast": 9,
-          "pir": 13
-        },
-        {
-          "gameId": "20261011-הפועלחולון",
-          "date": "2026-10-11T20:55:00+03:00",
-          "competition": "ליגת Winner סל, מחזור 1",
-          "opponent": "הפועל מעוז דניאל חולון",
-          "us": 92,
-          "them": 69,
-          "win": true,
-          "min": "30",
-          "pts": 15,
-          "reb": 1,
-          "ast": 5,
-          "pir": 16
-        },
-        {
-          "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Cedevita Olimpija Ljubljana",
-          "us": 75,
-          "them": 64,
-          "win": true,
-          "min": "29:56",
-          "pts": 9,
-          "reb": 3,
-          "ast": 3,
-          "pir": 8
-        },
-        {
-          "gameId": "20261004-מכביתא",
-          "date": "2026-10-04T19:00:00+03:00",
-          "competition": "גביע ווינר סל",
-          "opponent": "מכבי Rapyd תל אביב",
-          "us": 71,
-          "them": 88,
-          "win": false,
-          "min": "23",
-          "pts": 5,
-          "reb": 4,
-          "ast": 4,
-          "pir": 4
-        },
-        {
-          "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Rostock Seawolves",
-          "us": 94,
-          "them": 73,
-          "win": true,
-          "min": "28:48",
-          "pts": 20,
-          "reb": 4,
-          "ast": 7,
-          "pir": 25
-        },
-        {
-          "gameId": "20260925-בניהרצליה",
-          "date": "2026-09-25T14:00:00+03:00",
-          "competition": "גביע ווינר סל",
-          "opponent": "בני Penlink הרצליה",
-          "us": 88,
-          "them": 68,
-          "win": true,
-          "min": "23",
-          "pts": 9,
-          "reb": 3,
-          "ast": 3,
-          "pir": 6
-        },
-        {
-          "gameId": "20260918-הפועלבש",
-          "date": "2026-09-18T14:30:00+03:00",
-          "competition": "גביע ווינר סל",
-          "opponent": "הפועל אלטשולר שחם ב\"ש/דימונה",
-          "us": 83,
-          "them": 69,
-          "win": true,
-          "min": "26",
-          "pts": 12,
-          "reb": 6,
-          "ast": 3,
-          "pir": 17
-        },
-        {
-          "gameId": "20260908-מכביאשדוד",
-          "date": "2026-09-08T19:00:00+03:00",
-          "competition": "גביע ווינר סל",
-          "opponent": "מכבי רוטשטיין אשדוד",
-          "us": 110,
-          "them": 77,
-          "win": true,
-          "min": "25",
-          "pts": 11,
-          "reb": 2,
-          "ast": 5,
-          "pir": 12
-        }
-      ],
-      "avg": {
-        "pts": 11.8,
-        "reb": 2.7,
-        "oreb": 0.3,
-        "dreb": 2.3,
-        "ast": 4.8,
-        "to": 1.9,
-        "stl": 1.1,
-        "blk": 0.0,
-        "pf": 2.7,
-        "pir": 13.1,
-        "min": "26:04",
-        "fgPct": 48,
-        "fg": [
-          47,
-          98
-        ],
-        "p2Pct": 57,
-        "p2": [
-          24,
-          42
-        ],
-        "p3Pct": 41,
-        "p3": [
-          23,
-          56
-        ],
-        "ftPct": 96,
-        "ft": [
-          25,
-          26
-        ],
-        "efg": 59.7,
-        "ts": 64.9
+        "efg": 55.6,
+        "ts": 61.0
       }
     },
     {
       "slug": "shake-milton",
       "name": "שייק מילטון",
-      "games": 12,
-      "seconds": 18275,
+      "games": 13,
+      "seconds": 20285,
       "totals": {
-        "pts": 138,
-        "reb": 41,
+        "pts": 157,
+        "reb": 44,
         "oreb": 13,
-        "dreb": 28,
-        "ast": 40,
-        "to": 20,
-        "stl": 9,
+        "dreb": 31,
+        "ast": 43,
+        "to": 21,
+        "stl": 11,
         "blk": 5,
-        "pf": 25,
-        "pir": 172,
+        "pf": 26,
+        "pir": 199,
         "fg": [
-          43,
-          100
+          49,
+          110
         ],
         "p2": [
-          37,
-          74
+          41,
+          81
         ],
         "p3": [
-          6,
-          26
+          8,
+          29
         ],
         "ft": [
-          46,
-          48
+          51,
+          53
         ]
       },
       "log": [
+        {
+          "gameId": "20261104-euro-ArisThessalo",
+          "date": "2026-11-04T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Aris Thessaloniki",
+          "us": 84,
+          "them": 73,
+          "win": true,
+          "min": "33:30",
+          "pts": 19,
+          "reb": 3,
+          "ast": 3,
+          "pir": 27
+        },
         {
           "gameId": "20261101-הפועלאילת",
           "date": "2026-11-01T19:00:00+02:00",
@@ -546,7 +336,7 @@
         },
         {
           "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
+          "date": "2026-10-28T19:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Le Mans Sarthe Basket",
           "us": 90,
@@ -574,7 +364,7 @@
         },
         {
           "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
+          "date": "2026-10-21T18:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Riga Zelli",
           "us": 100,
@@ -602,7 +392,7 @@
         },
         {
           "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
+          "date": "2026-10-14T18:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Recoletas Salud San Pablo Burgos",
           "us": 85,
@@ -616,7 +406,7 @@
         },
         {
           "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
+          "date": "2026-10-06T16:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Cedevita Olimpija Ljubljana",
           "us": 75,
@@ -644,7 +434,7 @@
         },
         {
           "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
+          "date": "2026-09-29T17:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Rostock Seawolves",
           "us": 94,
@@ -700,60 +490,313 @@
         }
       ],
       "avg": {
-        "pts": 11.5,
+        "pts": 12.1,
         "reb": 3.4,
-        "oreb": 1.1,
-        "dreb": 2.3,
+        "oreb": 1.0,
+        "dreb": 2.4,
         "ast": 3.3,
-        "to": 1.7,
+        "to": 1.6,
         "stl": 0.8,
         "blk": 0.4,
-        "pf": 2.1,
-        "pir": 14.3,
-        "min": "25:23",
-        "fgPct": 43,
+        "pf": 2.0,
+        "pir": 15.3,
+        "min": "26:00",
+        "fgPct": 45,
         "fg": [
-          43,
-          100
+          49,
+          110
         ],
-        "p2Pct": 50,
+        "p2Pct": 51,
         "p2": [
-          37,
-          74
+          41,
+          81
         ],
-        "p3Pct": 23,
+        "p3Pct": 28,
         "p3": [
-          6,
-          26
+          8,
+          29
         ],
         "ftPct": 96,
         "ft": [
-          46,
-          48
+          51,
+          53
         ],
-        "efg": 46.0,
-        "ts": 57.0
+        "efg": 48.2,
+        "ts": 58.9
+      }
+    },
+    {
+      "slug": "jaleen-smith",
+      "name": "ג'יילן סמית'",
+      "games": 13,
+      "seconds": 20389,
+      "totals": {
+        "pts": 152,
+        "reb": 36,
+        "oreb": 4,
+        "dreb": 32,
+        "ast": 60,
+        "to": 23,
+        "stl": 13,
+        "blk": 0,
+        "pf": 35,
+        "pir": 165,
+        "fg": [
+          50,
+          109
+        ],
+        "p2": [
+          26,
+          45
+        ],
+        "p3": [
+          24,
+          64
+        ],
+        "ft": [
+          28,
+          29
+        ]
+      },
+      "log": [
+        {
+          "gameId": "20261104-euro-ArisThessalo",
+          "date": "2026-11-04T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Aris Thessaloniki",
+          "us": 84,
+          "them": 73,
+          "win": true,
+          "min": "27:06",
+          "pts": 10,
+          "reb": 4,
+          "ast": 3,
+          "pir": 8
+        },
+        {
+          "gameId": "20261101-הפועלאילת",
+          "date": "2026-11-01T19:00:00+02:00",
+          "competition": "ליגת Winner סל, מחזור 4",
+          "opponent": "הפועל עירוני אילת",
+          "us": 88,
+          "them": 78,
+          "win": true,
+          "min": "27",
+          "pts": 18,
+          "reb": 2,
+          "ast": 5,
+          "pir": 22
+        },
+        {
+          "gameId": "20261028-euro-LeMansSarthe",
+          "date": "2026-10-28T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Le Mans Sarthe Basket",
+          "us": 90,
+          "them": 83,
+          "win": true,
+          "min": "21:31",
+          "pts": 8,
+          "reb": 2,
+          "ast": 2,
+          "pir": 7
+        },
+        {
+          "gameId": "20261025-הפועלתא",
+          "date": "2026-10-25T20:55:00+02:00",
+          "competition": "ליגת Winner סל, מחזור 3",
+          "opponent": "הפועל IBI תל אביב",
+          "us": 70,
+          "them": 60,
+          "win": true,
+          "min": "30",
+          "pts": 13,
+          "reb": 1,
+          "ast": 5,
+          "pir": 14
+        },
+        {
+          "gameId": "20261021-euro-RigaZelli",
+          "date": "2026-10-21T18:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Riga Zelli",
+          "us": 100,
+          "them": 64,
+          "win": true,
+          "min": "26:11",
+          "pts": 9,
+          "reb": 2,
+          "ast": 6,
+          "pir": 13
+        },
+        {
+          "gameId": "20261014-euro-RecoletasSal",
+          "date": "2026-10-14T18:30:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Recoletas Salud San Pablo Burgos",
+          "us": 85,
+          "them": 84,
+          "win": true,
+          "min": "22:17",
+          "pts": 13,
+          "reb": 2,
+          "ast": 9,
+          "pir": 13
+        },
+        {
+          "gameId": "20261011-הפועלחולון",
+          "date": "2026-10-11T20:55:00+03:00",
+          "competition": "ליגת Winner סל, מחזור 1",
+          "opponent": "הפועל מעוז דניאל חולון",
+          "us": 92,
+          "them": 69,
+          "win": true,
+          "min": "30",
+          "pts": 15,
+          "reb": 1,
+          "ast": 5,
+          "pir": 16
+        },
+        {
+          "gameId": "20261006-euro-CedevitaOlim",
+          "date": "2026-10-06T16:30:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Cedevita Olimpija Ljubljana",
+          "us": 75,
+          "them": 64,
+          "win": true,
+          "min": "29:56",
+          "pts": 9,
+          "reb": 3,
+          "ast": 3,
+          "pir": 8
+        },
+        {
+          "gameId": "20261004-מכביתא",
+          "date": "2026-10-04T19:00:00+03:00",
+          "competition": "גביע ווינר סל",
+          "opponent": "מכבי Rapyd תל אביב",
+          "us": 71,
+          "them": 88,
+          "win": false,
+          "min": "23",
+          "pts": 5,
+          "reb": 4,
+          "ast": 4,
+          "pir": 4
+        },
+        {
+          "gameId": "20260929-euro-RostockSeawo",
+          "date": "2026-09-29T17:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Rostock Seawolves",
+          "us": 94,
+          "them": 73,
+          "win": true,
+          "min": "28:48",
+          "pts": 20,
+          "reb": 4,
+          "ast": 7,
+          "pir": 25
+        },
+        {
+          "gameId": "20260925-בניהרצליה",
+          "date": "2026-09-25T14:00:00+03:00",
+          "competition": "גביע ווינר סל",
+          "opponent": "בני Penlink הרצליה",
+          "us": 88,
+          "them": 68,
+          "win": true,
+          "min": "23",
+          "pts": 9,
+          "reb": 3,
+          "ast": 3,
+          "pir": 6
+        },
+        {
+          "gameId": "20260918-הפועלבש",
+          "date": "2026-09-18T14:30:00+03:00",
+          "competition": "גביע ווינר סל",
+          "opponent": "הפועל אלטשולר שחם ב\"ש/דימונה",
+          "us": 83,
+          "them": 69,
+          "win": true,
+          "min": "26",
+          "pts": 12,
+          "reb": 6,
+          "ast": 3,
+          "pir": 17
+        },
+        {
+          "gameId": "20260908-מכביאשדוד",
+          "date": "2026-09-08T19:00:00+03:00",
+          "competition": "גביע ווינר סל",
+          "opponent": "מכבי רוטשטיין אשדוד",
+          "us": 110,
+          "them": 77,
+          "win": true,
+          "min": "25",
+          "pts": 11,
+          "reb": 2,
+          "ast": 5,
+          "pir": 12
+        }
+      ],
+      "avg": {
+        "pts": 11.7,
+        "reb": 2.8,
+        "oreb": 0.3,
+        "dreb": 2.5,
+        "ast": 4.6,
+        "to": 1.8,
+        "stl": 1.0,
+        "blk": 0.0,
+        "pf": 2.7,
+        "pir": 12.7,
+        "min": "26:08",
+        "fgPct": 46,
+        "fg": [
+          50,
+          109
+        ],
+        "p2Pct": 58,
+        "p2": [
+          26,
+          45
+        ],
+        "p3Pct": 38,
+        "p3": [
+          24,
+          64
+        ],
+        "ftPct": 97,
+        "ft": [
+          28,
+          29
+        ],
+        "efg": 56.9,
+        "ts": 62.4
       }
     },
     {
       "slug": "david-roddy",
       "name": "דייויד רודי",
-      "games": 11,
-      "seconds": 16760,
+      "games": 12,
+      "seconds": 18291,
       "totals": {
         "pts": 124,
-        "reb": 42,
-        "oreb": 17,
-        "dreb": 25,
-        "ast": 22,
-        "to": 12,
+        "reb": 48,
+        "oreb": 20,
+        "dreb": 28,
+        "ast": 27,
+        "to": 13,
         "stl": 10,
         "blk": 4,
         "pf": 23,
-        "pir": 125,
+        "pir": 134,
         "fg": [
           44,
-          101
+          104
         ],
         "p2": [
           25,
@@ -761,7 +804,7 @@
         ],
         "p3": [
           19,
-          49
+          52
         ],
         "ft": [
           17,
@@ -769,6 +812,20 @@
         ]
       },
       "log": [
+        {
+          "gameId": "20261104-euro-ArisThessalo",
+          "date": "2026-11-04T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Aris Thessaloniki",
+          "us": 84,
+          "them": 73,
+          "win": true,
+          "min": "25:31",
+          "pts": 0,
+          "reb": 6,
+          "ast": 5,
+          "pir": 9
+        },
         {
           "gameId": "20261101-הפועלאילת",
           "date": "2026-11-01T19:00:00+02:00",
@@ -785,7 +842,7 @@
         },
         {
           "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
+          "date": "2026-10-28T19:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Le Mans Sarthe Basket",
           "us": 90,
@@ -813,7 +870,7 @@
         },
         {
           "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
+          "date": "2026-10-21T18:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Riga Zelli",
           "us": 100,
@@ -841,7 +898,7 @@
         },
         {
           "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
+          "date": "2026-10-14T18:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Recoletas Salud San Pablo Burgos",
           "us": 85,
@@ -855,7 +912,7 @@
         },
         {
           "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
+          "date": "2026-10-06T16:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Cedevita Olimpija Ljubljana",
           "us": 75,
@@ -883,7 +940,7 @@
         },
         {
           "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
+          "date": "2026-09-29T17:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Rostock Seawolves",
           "us": 94,
@@ -925,68 +982,68 @@
         }
       ],
       "avg": {
-        "pts": 11.3,
-        "reb": 3.8,
-        "oreb": 1.5,
+        "pts": 10.3,
+        "reb": 4.0,
+        "oreb": 1.7,
         "dreb": 2.3,
-        "ast": 2.0,
+        "ast": 2.2,
         "to": 1.1,
-        "stl": 0.9,
-        "blk": 0.4,
-        "pf": 2.1,
-        "pir": 11.4,
+        "stl": 0.8,
+        "blk": 0.3,
+        "pf": 1.9,
+        "pir": 11.2,
         "min": "25:24",
-        "fgPct": 44,
+        "fgPct": 42,
         "fg": [
           44,
-          101
+          104
         ],
         "p2Pct": 48,
         "p2": [
           25,
           52
         ],
-        "p3Pct": 39,
+        "p3Pct": 37,
         "p3": [
           19,
-          49
+          52
         ],
         "ftPct": 94,
         "ft": [
           17,
           18
         ],
-        "efg": 53.0,
-        "ts": 56.9
+        "efg": 51.4,
+        "ts": 55.4
       }
     },
     {
       "slug": "dusan-miletic",
       "name": "דושאן מילטיץ'",
-      "games": 10,
-      "seconds": 9136,
+      "games": 11,
+      "seconds": 9945,
       "totals": {
-        "pts": 88,
-        "reb": 54,
-        "oreb": 20,
-        "dreb": 34,
-        "ast": 5,
+        "pts": 96,
+        "reb": 60,
+        "oreb": 23,
+        "dreb": 37,
+        "ast": 6,
         "to": 11,
         "stl": 4,
-        "blk": 11,
-        "pf": 19,
-        "pir": 126,
+        "blk": 12,
+        "pf": 20,
+        "pir": 142,
         "fg": [
-          35,
-          53
+          39,
+          58
         ],
         "p2": [
-          33,
-          48
+          37,
+          52
         ],
         "p3": [
           2,
-          5
+          6
         ],
         "ft": [
           16,
@@ -994,6 +1051,20 @@
         ]
       },
       "log": [
+        {
+          "gameId": "20261104-euro-ArisThessalo",
+          "date": "2026-11-04T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Aris Thessaloniki",
+          "us": 84,
+          "them": 73,
+          "win": true,
+          "min": "13:29",
+          "pts": 8,
+          "reb": 6,
+          "ast": 1,
+          "pir": 16
+        },
         {
           "gameId": "20261101-הפועלאילת",
           "date": "2026-11-01T19:00:00+02:00",
@@ -1010,7 +1081,7 @@
         },
         {
           "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
+          "date": "2026-10-28T19:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Le Mans Sarthe Basket",
           "us": 90,
@@ -1024,7 +1095,7 @@
         },
         {
           "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
+          "date": "2026-10-21T18:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Riga Zelli",
           "us": 100,
@@ -1052,7 +1123,7 @@
         },
         {
           "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
+          "date": "2026-10-14T18:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Recoletas Salud San Pablo Burgos",
           "us": 85,
@@ -1080,7 +1151,7 @@
         },
         {
           "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
+          "date": "2026-10-06T16:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Cedevita Olimpija Ljubljana",
           "us": 75,
@@ -1094,7 +1165,7 @@
         },
         {
           "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
+          "date": "2026-09-29T17:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Rostock Seawolves",
           "us": 94,
@@ -1136,75 +1207,89 @@
         }
       ],
       "avg": {
-        "pts": 8.8,
-        "reb": 5.4,
-        "oreb": 2.0,
+        "pts": 8.7,
+        "reb": 5.5,
+        "oreb": 2.1,
         "dreb": 3.4,
         "ast": 0.5,
-        "to": 1.1,
+        "to": 1.0,
         "stl": 0.4,
         "blk": 1.1,
-        "pf": 1.9,
-        "pir": 12.6,
-        "min": "15:14",
-        "fgPct": 66,
+        "pf": 1.8,
+        "pir": 12.9,
+        "min": "15:04",
+        "fgPct": 67,
         "fg": [
-          35,
-          53
+          39,
+          58
         ],
-        "p2Pct": 69,
+        "p2Pct": 71,
         "p2": [
-          33,
-          48
+          37,
+          52
         ],
-        "p3Pct": 40,
+        "p3Pct": 33,
         "p3": [
           2,
-          5
+          6
         ],
         "ftPct": 64,
         "ft": [
           16,
           25
         ],
-        "efg": 67.9,
-        "ts": 68.8
+        "efg": 69.0,
+        "ts": 69.6
       }
     },
     {
       "slug": "devontae-cacok",
       "name": "דבונטה קייקוק",
-      "games": 11,
-      "seconds": 12614,
+      "games": 12,
+      "seconds": 13854,
       "totals": {
-        "pts": 94,
-        "reb": 72,
+        "pts": 102,
+        "reb": 74,
         "oreb": 23,
-        "dreb": 49,
-        "ast": 16,
-        "to": 13,
-        "stl": 11,
+        "dreb": 51,
+        "ast": 18,
+        "to": 15,
+        "stl": 13,
         "blk": 1,
-        "pf": 29,
-        "pir": 134,
+        "pf": 32,
+        "pir": 142,
         "fg": [
-          43,
-          68
+          46,
+          73
         ],
         "p2": [
-          43,
-          68
+          46,
+          73
         ],
         "p3": [
           0,
           0
         ],
         "ft": [
-          8,
-          25
+          10,
+          27
         ]
       },
       "log": [
+        {
+          "gameId": "20261104-euro-ArisThessalo",
+          "date": "2026-11-04T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Aris Thessaloniki",
+          "us": 84,
+          "them": 73,
+          "win": true,
+          "min": "20:40",
+          "pts": 8,
+          "reb": 2,
+          "ast": 2,
+          "pir": 8
+        },
         {
           "gameId": "20261101-הפועלאילת",
           "date": "2026-11-01T19:00:00+02:00",
@@ -1221,7 +1306,7 @@
         },
         {
           "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
+          "date": "2026-10-28T19:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Le Mans Sarthe Basket",
           "us": 90,
@@ -1249,7 +1334,7 @@
         },
         {
           "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
+          "date": "2026-10-21T18:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Riga Zelli",
           "us": 100,
@@ -1263,7 +1348,7 @@
         },
         {
           "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
+          "date": "2026-10-14T18:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Recoletas Salud San Pablo Burgos",
           "us": 85,
@@ -1291,7 +1376,7 @@
         },
         {
           "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
+          "date": "2026-10-06T16:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Cedevita Olimpija Ljubljana",
           "us": 75,
@@ -1319,7 +1404,7 @@
         },
         {
           "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
+          "date": "2026-09-29T17:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Rostock Seawolves",
           "us": 94,
@@ -1362,286 +1447,47 @@
       ],
       "avg": {
         "pts": 8.5,
-        "reb": 6.5,
-        "oreb": 2.1,
-        "dreb": 4.5,
+        "reb": 6.2,
+        "oreb": 1.9,
+        "dreb": 4.2,
         "ast": 1.5,
         "to": 1.2,
-        "stl": 1.0,
+        "stl": 1.1,
         "blk": 0.1,
-        "pf": 2.6,
-        "pir": 12.2,
-        "min": "19:07",
+        "pf": 2.7,
+        "pir": 11.8,
+        "min": "19:14",
         "fgPct": 63,
         "fg": [
-          43,
-          68
+          46,
+          73
         ],
         "p2Pct": 63,
         "p2": [
-          43,
-          68
+          46,
+          73
         ],
         "p3Pct": null,
         "p3": [
           0,
           0
         ],
-        "ftPct": 32,
+        "ftPct": 37,
         "ft": [
-          8,
-          25
-        ],
-        "efg": 63.2,
-        "ts": 59.5
-      }
-    },
-    {
-      "slug": "yovel-zoosman",
-      "name": "יובל זוסמן",
-      "games": 12,
-      "seconds": 16125,
-      "totals": {
-        "pts": 85,
-        "reb": 28,
-        "oreb": 9,
-        "dreb": 19,
-        "ast": 17,
-        "to": 13,
-        "stl": 19,
-        "blk": 5,
-        "pf": 16,
-        "pir": 113,
-        "fg": [
-          27,
-          57
-        ],
-        "p2": [
-          14,
+          10,
           27
         ],
-        "p3": [
-          13,
-          30
-        ],
-        "ft": [
-          18,
-          26
-        ]
-      },
-      "log": [
-        {
-          "gameId": "20261101-הפועלאילת",
-          "date": "2026-11-01T19:00:00+02:00",
-          "competition": "ליגת Winner סל, מחזור 4",
-          "opponent": "הפועל עירוני אילת",
-          "us": 88,
-          "them": 78,
-          "win": true,
-          "min": "24",
-          "pts": 5,
-          "reb": 2,
-          "ast": 3,
-          "pir": 8
-        },
-        {
-          "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Le Mans Sarthe Basket",
-          "us": 90,
-          "them": 83,
-          "win": true,
-          "min": "24:00",
-          "pts": 8,
-          "reb": 1,
-          "ast": 0,
-          "pir": 3
-        },
-        {
-          "gameId": "20261025-הפועלתא",
-          "date": "2026-10-25T20:55:00+02:00",
-          "competition": "ליגת Winner סל, מחזור 3",
-          "opponent": "הפועל IBI תל אביב",
-          "us": 70,
-          "them": 60,
-          "win": true,
-          "min": "25",
-          "pts": 6,
-          "reb": 5,
-          "ast": 2,
-          "pir": 10
-        },
-        {
-          "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Riga Zelli",
-          "us": 100,
-          "them": 64,
-          "win": true,
-          "min": "18:44",
-          "pts": 10,
-          "reb": 3,
-          "ast": 2,
-          "pir": 19
-        },
-        {
-          "gameId": "20261017-הפועלבש",
-          "date": "2026-10-17T20:15:00+03:00",
-          "competition": "ליגת Winner סל, מחזור 2",
-          "opponent": "הפועל אלטשולר שחם ב\"ש/דימונה",
-          "us": 88,
-          "them": 74,
-          "win": true,
-          "min": "25",
-          "pts": 10,
-          "reb": 3,
-          "ast": 4,
-          "pir": 16
-        },
-        {
-          "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Recoletas Salud San Pablo Burgos",
-          "us": 85,
-          "them": 84,
-          "win": true,
-          "min": "19:24",
-          "pts": 5,
-          "reb": 4,
-          "ast": 2,
-          "pir": 8
-        },
-        {
-          "gameId": "20261011-הפועלחולון",
-          "date": "2026-10-11T20:55:00+03:00",
-          "competition": "ליגת Winner סל, מחזור 1",
-          "opponent": "הפועל מעוז דניאל חולון",
-          "us": 92,
-          "them": 69,
-          "win": true,
-          "min": "22",
-          "pts": 6,
-          "reb": 1,
-          "ast": 0,
-          "pir": 5
-        },
-        {
-          "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Cedevita Olimpija Ljubljana",
-          "us": 75,
-          "them": 64,
-          "win": true,
-          "min": "22:28",
-          "pts": 7,
-          "reb": 3,
-          "ast": 0,
-          "pir": 8
-        },
-        {
-          "gameId": "20261004-מכביתא",
-          "date": "2026-10-04T19:00:00+03:00",
-          "competition": "גביע ווינר סל",
-          "opponent": "מכבי Rapyd תל אביב",
-          "us": 71,
-          "them": 88,
-          "win": false,
-          "min": "27",
-          "pts": 4,
-          "reb": 2,
-          "ast": 1,
-          "pir": 5
-        },
-        {
-          "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Rostock Seawolves",
-          "us": 94,
-          "them": 73,
-          "win": true,
-          "min": "24:09",
-          "pts": 9,
-          "reb": 1,
-          "ast": 0,
-          "pir": 11
-        },
-        {
-          "gameId": "20260925-בניהרצליה",
-          "date": "2026-09-25T14:00:00+03:00",
-          "competition": "גביע ווינר סל",
-          "opponent": "בני Penlink הרצליה",
-          "us": 88,
-          "them": 68,
-          "win": true,
-          "min": "25",
-          "pts": 9,
-          "reb": 2,
-          "ast": 1,
-          "pir": 11
-        },
-        {
-          "gameId": "20260908-מכביאשדוד",
-          "date": "2026-09-08T19:00:00+03:00",
-          "competition": "גביע ווינר סל",
-          "opponent": "מכבי רוטשטיין אשדוד",
-          "us": 110,
-          "them": 77,
-          "win": true,
-          "min": "12",
-          "pts": 6,
-          "reb": 1,
-          "ast": 2,
-          "pir": 9
-        }
-      ],
-      "avg": {
-        "pts": 7.1,
-        "reb": 2.3,
-        "oreb": 0.8,
-        "dreb": 1.6,
-        "ast": 1.4,
-        "to": 1.1,
-        "stl": 1.6,
-        "blk": 0.4,
-        "pf": 1.3,
-        "pir": 9.4,
-        "min": "22:24",
-        "fgPct": 47,
-        "fg": [
-          27,
-          57
-        ],
-        "p2Pct": 52,
-        "p2": [
-          14,
-          27
-        ],
-        "p3Pct": 43,
-        "p3": [
-          13,
-          30
-        ],
-        "ftPct": 69,
-        "ft": [
-          18,
-          26
-        ],
-        "efg": 58.8,
-        "ts": 62.1
+        "efg": 63.0,
+        "ts": 60.1
       }
     },
     {
       "slug": "ethan-burg",
       "name": "איתן בורג",
-      "games": 13,
-      "seconds": 13339,
+      "games": 14,
+      "seconds": 13782,
       "totals": {
-        "pts": 91,
+        "pts": 95,
         "reb": 32,
         "oreb": 7,
         "dreb": 25,
@@ -1649,19 +1495,19 @@
         "to": 12,
         "stl": 13,
         "blk": 1,
-        "pf": 34,
-        "pir": 95,
+        "pf": 36,
+        "pir": 94,
         "fg": [
-          31,
-          66
+          33,
+          71
         ],
         "p2": [
-          17,
-          28
+          19,
+          31
         ],
         "p3": [
           14,
-          38
+          40
         ],
         "ft": [
           15,
@@ -1669,6 +1515,20 @@
         ]
       },
       "log": [
+        {
+          "gameId": "20261104-euro-ArisThessalo",
+          "date": "2026-11-04T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Aris Thessaloniki",
+          "us": 84,
+          "them": 73,
+          "win": true,
+          "min": "7:23",
+          "pts": 4,
+          "reb": 0,
+          "ast": 0,
+          "pir": -1
+        },
         {
           "gameId": "20261101-הפועלאילת",
           "date": "2026-11-01T19:00:00+02:00",
@@ -1685,7 +1545,7 @@
         },
         {
           "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
+          "date": "2026-10-28T19:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Le Mans Sarthe Basket",
           "us": 90,
@@ -1713,7 +1573,7 @@
         },
         {
           "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
+          "date": "2026-10-21T18:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Riga Zelli",
           "us": 100,
@@ -1741,7 +1601,7 @@
         },
         {
           "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
+          "date": "2026-10-14T18:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Recoletas Salud San Pablo Burgos",
           "us": 85,
@@ -1769,7 +1629,7 @@
         },
         {
           "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
+          "date": "2026-10-06T16:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Cedevita Olimpija Ljubljana",
           "us": 75,
@@ -1797,7 +1657,7 @@
         },
         {
           "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
+          "date": "2026-09-29T17:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Rostock Seawolves",
           "us": 94,
@@ -1853,39 +1713,461 @@
         }
       ],
       "avg": {
-        "pts": 7.0,
-        "reb": 2.5,
+        "pts": 6.8,
+        "reb": 2.3,
         "oreb": 0.5,
-        "dreb": 1.9,
-        "ast": 1.6,
+        "dreb": 1.8,
+        "ast": 1.5,
         "to": 0.9,
-        "stl": 1.0,
+        "stl": 0.9,
         "blk": 0.1,
         "pf": 2.6,
-        "pir": 7.3,
-        "min": "17:06",
-        "fgPct": 47,
+        "pir": 6.7,
+        "min": "16:24",
+        "fgPct": 46,
         "fg": [
-          31,
-          66
+          33,
+          71
         ],
         "p2Pct": 61,
         "p2": [
-          17,
-          28
+          19,
+          31
         ],
-        "p3Pct": 37,
+        "p3Pct": 35,
         "p3": [
           14,
-          38
+          40
         ],
         "ftPct": 88,
         "ft": [
           15,
           17
         ],
-        "efg": 57.6,
-        "ts": 61.9
+        "efg": 56.3,
+        "ts": 60.5
+      }
+    },
+    {
+      "slug": "yovel-zoosman",
+      "name": "יובל זוסמן",
+      "games": 13,
+      "seconds": 17422,
+      "totals": {
+        "pts": 87,
+        "reb": 31,
+        "oreb": 9,
+        "dreb": 22,
+        "ast": 17,
+        "to": 14,
+        "stl": 20,
+        "blk": 5,
+        "pf": 20,
+        "pir": 113,
+        "fg": [
+          27,
+          59
+        ],
+        "p2": [
+          14,
+          28
+        ],
+        "p3": [
+          13,
+          31
+        ],
+        "ft": [
+          20,
+          28
+        ]
+      },
+      "log": [
+        {
+          "gameId": "20261104-euro-ArisThessalo",
+          "date": "2026-11-04T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Aris Thessaloniki",
+          "us": 84,
+          "them": 73,
+          "win": true,
+          "min": "21:37",
+          "pts": 2,
+          "reb": 3,
+          "ast": 0,
+          "pir": 0
+        },
+        {
+          "gameId": "20261101-הפועלאילת",
+          "date": "2026-11-01T19:00:00+02:00",
+          "competition": "ליגת Winner סל, מחזור 4",
+          "opponent": "הפועל עירוני אילת",
+          "us": 88,
+          "them": 78,
+          "win": true,
+          "min": "24",
+          "pts": 5,
+          "reb": 2,
+          "ast": 3,
+          "pir": 8
+        },
+        {
+          "gameId": "20261028-euro-LeMansSarthe",
+          "date": "2026-10-28T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Le Mans Sarthe Basket",
+          "us": 90,
+          "them": 83,
+          "win": true,
+          "min": "24:00",
+          "pts": 8,
+          "reb": 1,
+          "ast": 0,
+          "pir": 3
+        },
+        {
+          "gameId": "20261025-הפועלתא",
+          "date": "2026-10-25T20:55:00+02:00",
+          "competition": "ליגת Winner סל, מחזור 3",
+          "opponent": "הפועל IBI תל אביב",
+          "us": 70,
+          "them": 60,
+          "win": true,
+          "min": "25",
+          "pts": 6,
+          "reb": 5,
+          "ast": 2,
+          "pir": 10
+        },
+        {
+          "gameId": "20261021-euro-RigaZelli",
+          "date": "2026-10-21T18:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Riga Zelli",
+          "us": 100,
+          "them": 64,
+          "win": true,
+          "min": "18:44",
+          "pts": 10,
+          "reb": 3,
+          "ast": 2,
+          "pir": 19
+        },
+        {
+          "gameId": "20261017-הפועלבש",
+          "date": "2026-10-17T20:15:00+03:00",
+          "competition": "ליגת Winner סל, מחזור 2",
+          "opponent": "הפועל אלטשולר שחם ב\"ש/דימונה",
+          "us": 88,
+          "them": 74,
+          "win": true,
+          "min": "25",
+          "pts": 10,
+          "reb": 3,
+          "ast": 4,
+          "pir": 16
+        },
+        {
+          "gameId": "20261014-euro-RecoletasSal",
+          "date": "2026-10-14T18:30:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Recoletas Salud San Pablo Burgos",
+          "us": 85,
+          "them": 84,
+          "win": true,
+          "min": "19:24",
+          "pts": 5,
+          "reb": 4,
+          "ast": 2,
+          "pir": 8
+        },
+        {
+          "gameId": "20261011-הפועלחולון",
+          "date": "2026-10-11T20:55:00+03:00",
+          "competition": "ליגת Winner סל, מחזור 1",
+          "opponent": "הפועל מעוז דניאל חולון",
+          "us": 92,
+          "them": 69,
+          "win": true,
+          "min": "22",
+          "pts": 6,
+          "reb": 1,
+          "ast": 0,
+          "pir": 5
+        },
+        {
+          "gameId": "20261006-euro-CedevitaOlim",
+          "date": "2026-10-06T16:30:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Cedevita Olimpija Ljubljana",
+          "us": 75,
+          "them": 64,
+          "win": true,
+          "min": "22:28",
+          "pts": 7,
+          "reb": 3,
+          "ast": 0,
+          "pir": 8
+        },
+        {
+          "gameId": "20261004-מכביתא",
+          "date": "2026-10-04T19:00:00+03:00",
+          "competition": "גביע ווינר סל",
+          "opponent": "מכבי Rapyd תל אביב",
+          "us": 71,
+          "them": 88,
+          "win": false,
+          "min": "27",
+          "pts": 4,
+          "reb": 2,
+          "ast": 1,
+          "pir": 5
+        },
+        {
+          "gameId": "20260929-euro-RostockSeawo",
+          "date": "2026-09-29T17:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Rostock Seawolves",
+          "us": 94,
+          "them": 73,
+          "win": true,
+          "min": "24:09",
+          "pts": 9,
+          "reb": 1,
+          "ast": 0,
+          "pir": 11
+        },
+        {
+          "gameId": "20260925-בניהרצליה",
+          "date": "2026-09-25T14:00:00+03:00",
+          "competition": "גביע ווינר סל",
+          "opponent": "בני Penlink הרצליה",
+          "us": 88,
+          "them": 68,
+          "win": true,
+          "min": "25",
+          "pts": 9,
+          "reb": 2,
+          "ast": 1,
+          "pir": 11
+        },
+        {
+          "gameId": "20260908-מכביאשדוד",
+          "date": "2026-09-08T19:00:00+03:00",
+          "competition": "גביע ווינר סל",
+          "opponent": "מכבי רוטשטיין אשדוד",
+          "us": 110,
+          "them": 77,
+          "win": true,
+          "min": "12",
+          "pts": 6,
+          "reb": 1,
+          "ast": 2,
+          "pir": 9
+        }
+      ],
+      "avg": {
+        "pts": 6.7,
+        "reb": 2.4,
+        "oreb": 0.7,
+        "dreb": 1.7,
+        "ast": 1.3,
+        "to": 1.1,
+        "stl": 1.5,
+        "blk": 0.4,
+        "pf": 1.5,
+        "pir": 8.7,
+        "min": "22:20",
+        "fgPct": 46,
+        "fg": [
+          27,
+          59
+        ],
+        "p2Pct": 50,
+        "p2": [
+          14,
+          28
+        ],
+        "p3Pct": 42,
+        "p3": [
+          13,
+          31
+        ],
+        "ftPct": 71,
+        "ft": [
+          20,
+          28
+        ],
+        "efg": 56.8,
+        "ts": 61.0
+      }
+    },
+    {
+      "slug": "lorenzo-brown",
+      "name": "לורנזו בראון",
+      "games": 7,
+      "seconds": 7577,
+      "totals": {
+        "pts": 38,
+        "reb": 14,
+        "oreb": 4,
+        "dreb": 10,
+        "ast": 26,
+        "to": 15,
+        "stl": 7,
+        "blk": 1,
+        "pf": 12,
+        "pir": 39,
+        "fg": [
+          14,
+          44
+        ],
+        "p2": [
+          10,
+          31
+        ],
+        "p3": [
+          4,
+          13
+        ],
+        "ft": [
+          6,
+          6
+        ]
+      },
+      "log": [
+        {
+          "gameId": "20261104-euro-ArisThessalo",
+          "date": "2026-11-04T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Aris Thessaloniki",
+          "us": 84,
+          "them": 73,
+          "win": true,
+          "min": "18:32",
+          "pts": 11,
+          "reb": 3,
+          "ast": 3,
+          "pir": 11
+        },
+        {
+          "gameId": "20261028-euro-LeMansSarthe",
+          "date": "2026-10-28T19:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Le Mans Sarthe Basket",
+          "us": 90,
+          "them": 83,
+          "win": true,
+          "min": "18:32",
+          "pts": 7,
+          "reb": 0,
+          "ast": 5,
+          "pir": 11
+        },
+        {
+          "gameId": "20261021-euro-RigaZelli",
+          "date": "2026-10-21T18:00:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Riga Zelli",
+          "us": 100,
+          "them": 64,
+          "win": true,
+          "min": "6:28",
+          "pts": 0,
+          "reb": 1,
+          "ast": 1,
+          "pir": -2
+        },
+        {
+          "gameId": "20261017-הפועלבש",
+          "date": "2026-10-17T20:15:00+03:00",
+          "competition": "ליגת Winner סל, מחזור 2",
+          "opponent": "הפועל אלטשולר שחם ב\"ש/דימונה",
+          "us": 88,
+          "them": 74,
+          "win": true,
+          "min": "26",
+          "pts": 11,
+          "reb": 4,
+          "ast": 3,
+          "pir": 12
+        },
+        {
+          "gameId": "20261014-euro-RecoletasSal",
+          "date": "2026-10-14T18:30:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Recoletas Salud San Pablo Burgos",
+          "us": 85,
+          "them": 84,
+          "win": true,
+          "min": "17:43",
+          "pts": 0,
+          "reb": 2,
+          "ast": 5,
+          "pir": -4
+        },
+        {
+          "gameId": "20261011-הפועלחולון",
+          "date": "2026-10-11T20:55:00+03:00",
+          "competition": "ליגת Winner סל, מחזור 1",
+          "opponent": "הפועל מעוז דניאל חולון",
+          "us": 92,
+          "them": 69,
+          "win": true,
+          "min": "24",
+          "pts": 5,
+          "reb": 2,
+          "ast": 5,
+          "pir": 11
+        },
+        {
+          "gameId": "20261006-euro-CedevitaOlim",
+          "date": "2026-10-06T16:30:00Z",
+          "competition": "יורוקאפ",
+          "opponent": "Cedevita Olimpija Ljubljana",
+          "us": 75,
+          "them": 64,
+          "win": true,
+          "min": "15:02",
+          "pts": 4,
+          "reb": 2,
+          "ast": 4,
+          "pir": 0
+        }
+      ],
+      "avg": {
+        "pts": 5.4,
+        "reb": 2.0,
+        "oreb": 0.6,
+        "dreb": 1.4,
+        "ast": 3.7,
+        "to": 2.1,
+        "stl": 1.0,
+        "blk": 0.1,
+        "pf": 1.7,
+        "pir": 5.6,
+        "min": "18:02",
+        "fgPct": 32,
+        "fg": [
+          14,
+          44
+        ],
+        "p2Pct": 32,
+        "p2": [
+          10,
+          31
+        ],
+        "p3Pct": 31,
+        "p3": [
+          4,
+          13
+        ],
+        "ftPct": 100,
+        "ft": [
+          6,
+          6
+        ],
+        "efg": 36.4,
+        "ts": 40.7
       }
     },
     {
@@ -1938,7 +2220,7 @@
         },
         {
           "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
+          "date": "2026-10-28T19:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Le Mans Sarthe Basket",
           "us": 90,
@@ -1966,7 +2248,7 @@
         },
         {
           "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
+          "date": "2026-10-21T18:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Riga Zelli",
           "us": 100,
@@ -1994,7 +2276,7 @@
         },
         {
           "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
+          "date": "2026-10-14T18:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Recoletas Salud San Pablo Burgos",
           "us": 85,
@@ -2022,7 +2304,7 @@
         },
         {
           "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
+          "date": "2026-10-06T16:30:00Z",
           "competition": "יורוקאפ",
           "opponent": "Cedevita Olimpija Ljubljana",
           "us": 75,
@@ -2050,7 +2332,7 @@
         },
         {
           "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
+          "date": "2026-09-29T17:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Rostock Seawolves",
           "us": 94,
@@ -2139,161 +2421,6 @@
         ],
         "efg": 59.6,
         "ts": 60.9
-      }
-    },
-    {
-      "slug": "lorenzo-brown",
-      "name": "לורנזו בראון",
-      "games": 6,
-      "seconds": 6465,
-      "totals": {
-        "pts": 27,
-        "reb": 11,
-        "oreb": 2,
-        "dreb": 9,
-        "ast": 23,
-        "to": 14,
-        "stl": 5,
-        "blk": 1,
-        "pf": 9,
-        "pir": 28,
-        "fg": [
-          10,
-          35
-        ],
-        "p2": [
-          7,
-          25
-        ],
-        "p3": [
-          3,
-          10
-        ],
-        "ft": [
-          4,
-          4
-        ]
-      },
-      "log": [
-        {
-          "gameId": "20261028-euro-LeMansSarthe",
-          "date": "2026-10-28T20:00:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Le Mans Sarthe Basket",
-          "us": 90,
-          "them": 83,
-          "win": true,
-          "min": "18:32",
-          "pts": 7,
-          "reb": 0,
-          "ast": 5,
-          "pir": 11
-        },
-        {
-          "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Riga Zelli",
-          "us": 100,
-          "them": 64,
-          "win": true,
-          "min": "6:28",
-          "pts": 0,
-          "reb": 1,
-          "ast": 1,
-          "pir": -2
-        },
-        {
-          "gameId": "20261017-הפועלבש",
-          "date": "2026-10-17T20:15:00+03:00",
-          "competition": "ליגת Winner סל, מחזור 2",
-          "opponent": "הפועל אלטשולר שחם ב\"ש/דימונה",
-          "us": 88,
-          "them": 74,
-          "win": true,
-          "min": "26",
-          "pts": 11,
-          "reb": 4,
-          "ast": 3,
-          "pir": 12
-        },
-        {
-          "gameId": "20261014-euro-RecoletasSal",
-          "date": "2026-10-14T20:30:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Recoletas Salud San Pablo Burgos",
-          "us": 85,
-          "them": 84,
-          "win": true,
-          "min": "17:43",
-          "pts": 0,
-          "reb": 2,
-          "ast": 5,
-          "pir": -4
-        },
-        {
-          "gameId": "20261011-הפועלחולון",
-          "date": "2026-10-11T20:55:00+03:00",
-          "competition": "ליגת Winner סל, מחזור 1",
-          "opponent": "הפועל מעוז דניאל חולון",
-          "us": 92,
-          "them": 69,
-          "win": true,
-          "min": "24",
-          "pts": 5,
-          "reb": 2,
-          "ast": 5,
-          "pir": 11
-        },
-        {
-          "gameId": "20261006-euro-CedevitaOlim",
-          "date": "2026-10-06T18:30:00+03:00",
-          "competition": "יורוקאפ",
-          "opponent": "Cedevita Olimpija Ljubljana",
-          "us": 75,
-          "them": 64,
-          "win": true,
-          "min": "15:02",
-          "pts": 4,
-          "reb": 2,
-          "ast": 4,
-          "pir": 0
-        }
-      ],
-      "avg": {
-        "pts": 4.5,
-        "reb": 1.8,
-        "oreb": 0.3,
-        "dreb": 1.5,
-        "ast": 3.8,
-        "to": 2.3,
-        "stl": 0.8,
-        "blk": 0.2,
-        "pf": 1.5,
-        "pir": 4.7,
-        "min": "17:58",
-        "fgPct": 29,
-        "fg": [
-          10,
-          35
-        ],
-        "p2Pct": 28,
-        "p2": [
-          7,
-          25
-        ],
-        "p3Pct": 30,
-        "p3": [
-          3,
-          10
-        ],
-        "ftPct": 100,
-        "ft": [
-          4,
-          4
-        ],
-        "efg": 32.9,
-        "ts": 36.7
       }
     },
     {
@@ -2501,7 +2628,7 @@
         },
         {
           "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
+          "date": "2026-10-21T18:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Riga Zelli",
           "us": 100,
@@ -2684,7 +2811,7 @@
         },
         {
           "gameId": "20261021-euro-RigaZelli",
-          "date": "2026-10-21T20:00:00+03:00",
+          "date": "2026-10-21T18:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Riga Zelli",
           "us": 100,
@@ -2726,7 +2853,7 @@
         },
         {
           "gameId": "20260929-euro-RostockSeawo",
-          "date": "2026-09-29T19:00:00+03:00",
+          "date": "2026-09-29T17:00:00Z",
           "competition": "יורוקאפ",
           "opponent": "Rostock Seawolves",
           "us": 94,

@@ -9,23 +9,23 @@
       "rows": [
         {
           "pos": 1,
-          "team": "Aris Thessaloniki",
-          "code": "ARI",
-          "played": 5,
-          "wins": 5,
+          "team": "Hapoel Midtown Jerusalem",
+          "code": "JER",
+          "played": 6,
+          "wins": 6,
           "losses": 0,
-          "for": 456,
-          "against": 374
+          "for": 528,
+          "against": 441
         },
         {
           "pos": 2,
-          "team": "Hapoel Midtown Jerusalem",
-          "code": "JER",
-          "played": 5,
+          "team": "Aris Thessaloniki",
+          "code": "ARI",
+          "played": 6,
           "wins": 5,
-          "losses": 0,
-          "for": 444,
-          "against": 368
+          "losses": 1,
+          "for": 529,
+          "against": 458
         },
         {
           "pos": 3,
@@ -59,26 +59,16 @@
         },
         {
           "pos": 6,
-          "team": "Recoletas Salud San Pablo Burgos",
-          "code": "BGS",
-          "played": 5,
-          "wins": 1,
+          "team": "Rostock Seawolves",
+          "code": "RTK",
+          "played": 6,
+          "wins": 2,
           "losses": 4,
-          "for": 399,
-          "against": 427
+          "for": 478,
+          "against": 517
         },
         {
           "pos": 7,
-          "team": "Rostock Seawolves",
-          "code": "RTK",
-          "played": 5,
-          "wins": 1,
-          "losses": 4,
-          "for": 392,
-          "against": 458
-        },
-        {
-          "pos": 8,
           "team": "Cedevita Olimpija Ljubljana",
           "code": "LJU",
           "played": 6,
@@ -86,6 +76,16 @@
           "losses": 5,
           "for": 428,
           "against": 476
+        },
+        {
+          "pos": 8,
+          "team": "Recoletas Salud San Pablo Burgos",
+          "code": "BGS",
+          "played": 6,
+          "wins": 1,
+          "losses": 5,
+          "for": 458,
+          "against": 513
         }
       ]
     },
@@ -104,16 +104,6 @@
         },
         {
           "pos": 2,
-          "team": "London Lions",
-          "code": "LLI",
-          "played": 5,
-          "wins": 3,
-          "losses": 2,
-          "for": 404,
-          "against": 365
-        },
-        {
-          "pos": 3,
           "team": "Umana Reyer Venice",
           "code": "VNC",
           "played": 6,
@@ -123,7 +113,27 @@
           "against": 484
         },
         {
+          "pos": 3,
+          "team": "London Lions",
+          "code": "LLI",
+          "played": 6,
+          "wins": 3,
+          "losses": 3,
+          "for": 480,
+          "against": 441
+        },
+        {
           "pos": 4,
+          "team": "Maxima Roma",
+          "code": "MRO",
+          "played": 6,
+          "wins": 3,
+          "losses": 3,
+          "for": 496,
+          "against": 496
+        },
+        {
+          "pos": 5,
           "team": "Siauliai Basketball",
           "code": "SIA",
           "played": 6,
@@ -133,7 +143,7 @@
           "against": 519
         },
         {
-          "pos": 5,
+          "pos": 6,
           "team": "Skyliners Frankfurt",
           "code": "FRA",
           "played": 6,
@@ -141,16 +151,6 @@
           "losses": 3,
           "for": 517,
           "against": 550
-        },
-        {
-          "pos": 6,
-          "team": "Maxima Roma",
-          "code": "MRO",
-          "played": 5,
-          "wins": 2,
-          "losses": 3,
-          "for": 420,
-          "against": 420
         },
         {
           "pos": 7,
