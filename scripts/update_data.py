@@ -689,13 +689,34 @@ def _score_of(v, sibling, key):
 
 ISO_DATE = re.compile(r"(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})")
 
+# **השעון של היורוליג הוא שעון מרכז אירופה, לא שעון ישראל.** הנתיב הזה
+# משמש רק את הגיבוי של היורוקאפ, ועד 5.11.2026 הוא חתם כל שעה ב־+03:00.
+# נמדד ב־4.11 מול אריס: בקשה אחת לפיד הראשי נכשלה ב־21:15 UTC, הגיבוי קרא
+# את השדה date של המשחק, ״20:00״, וכתב 20:00+03:00, כלומר 17:00 UTC במקום
+# 19:00. שתי טעויות שמצטברות: date הוא שעון מרכז אירופה (כתוב למעלה, ליד
+# EUROCUP_V2_GAMES), ו־+03:00 הוא שעון הקיץ של ישראל, שנגמר ב־25.10. כל
+# משחקי היורוקאפ על הלוח זזו שעתיים אחורה לשלוש שעות, עד שהפיד הראשי חזר,
+# והכרטיס החי נסגר 40 דקות מוקדם.
+#
+# עכשיו utcDate קודם, כי הוא הרגע עצמו, ורק בהיעדרו date נקרא כשעון מרכז
+# אירופה עם ההפרש האמיתי של אותו יום. שני המשחקים מול אריס מאמתים את זה:
+# ״20:00״ ב־4.11 הוא 19:00 UTC, ו״19:00״ ב־5.1 הוא 18:00 UTC, בדיוק מה
+# שהפיד הראשי נותן.
+CET = zoneinfo.ZoneInfo("Europe/Madrid")
+
 def _date_of(d):
+    utc = d.get("utcdate")
+    if isinstance(utc, str):
+        m = ISO_DATE.search(utc)
+        if m:
+            y, mo, da, hh, mm = m.groups()
+            return f"{y}-{mo}-{da}T{hh}:{mm}:00Z"
     for k, v in d.items():
         if "date" in k.lower() and isinstance(v, str):
             m = ISO_DATE.search(v)
             if m:
-                y, mo, da, hh, mm = m.groups()
-                return f"{y}-{mo}-{da}T{hh}:{mm}:00+03:00"
+                y, mo, da, hh, mm = (int(x) for x in m.groups())
+                return datetime.datetime(y, mo, da, hh, mm, tzinfo=CET).isoformat(timespec="seconds")
             dm = DATE_RE.search(v)
             if dm:
                 da, mo, y = (int(x) for x in dm.groups())
@@ -703,7 +724,7 @@ def _date_of(d):
                     y += 2000
                 tm = TIME_RE.search(" ".join(str(x) for x in d.values() if isinstance(x, str)))
                 hh, mm = (int(x) for x in tm.groups()) if tm else (20, 0)
-                return f"{y:04d}-{mo:02d}-{da:02d}T{hh:02d}:{mm:02d}:00+03:00"
+                return datetime.datetime(y, mo, da, hh, mm, tzinfo=CET).isoformat(timespec="seconds")
     return None
 
 def _extract_games(obj, out):

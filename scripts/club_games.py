@@ -41,8 +41,11 @@ ONE מחזירים 404 (נמדד 11.9.2026). לכן `.game-type .container .text
 """
 import datetime
 import re
+import zoneinfo
 
 from bs4 import BeautifulSoup
+
+ISRAEL = zoneinfo.ZoneInfo("Asia/Jerusalem")
 
 GAMES_URL = "https://hapoel.co.il/games"
 
@@ -189,8 +192,11 @@ def parse_games(html, season_start, log=None):
         # אמצע היום שורד כל אזור זמן סביר, והשעה עצמה לא מוצגת ממילא כי
         # timeTbd מסמן שאין מה להציג.
         hh, mm = time if time else (12, 0)
-        when = datetime.datetime(date.year, date.month, date.day, hh, mm,
-                                 tzinfo=datetime.timezone(datetime.timedelta(hours=3)))
+        # **ההפרש של אותו יום, ולא +03:00 קבוע.** +03:00 הוא שעון הקיץ, ומאז
+        # 25.10.2026 ישראל ב־+02:00, ולכן כל משחק שהגיע רק מכאן נרשם שעה
+        # מוקדם מדי כל החורף. אותה טעות תוקנה באתר הליגה (israel_iso ב־
+        # update_data.py) ונשארה כאן.
+        when = datetime.datetime(date.year, date.month, date.day, hh, mm, tzinfo=ISRAEL)
         opp = away_raw if is_us(home_raw) else home_raw
         cycle = _txt(g.select_one(".cycle"))
         venue, tv = _venue_and_tv(g)
