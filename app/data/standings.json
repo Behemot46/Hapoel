@@ -12,6 +12,14 @@
     },
     {
       "pos": 2,
+      "team": "גליל עליון",
+      "played": 5,
+      "wins": 3,
+      "losses": 2,
+      "points": 8
+    },
+    {
+      "pos": 3,
       "team": "הפועל ת\"א",
       "played": 4,
       "wins": 3,
@@ -19,7 +27,7 @@
       "points": 7
     },
     {
-      "pos": 3,
+      "pos": 4,
       "team": "מכבי ר\"ג",
       "played": 4,
       "wins": 3,
@@ -27,16 +35,8 @@
       "points": 7
     },
     {
-      "pos": 4,
-      "team": "מכבי ת\"א",
-      "played": 4,
-      "wins": 2,
-      "losses": 2,
-      "points": 6
-    },
-    {
       "pos": 5,
-      "team": "בני הרצליה",
+      "team": "הפועל אילת",
       "played": 4,
       "wins": 2,
       "losses": 2,
@@ -44,7 +44,7 @@
     },
     {
       "pos": 6,
-      "team": "הפועל אילת",
+      "team": "בני הרצליה",
       "played": 4,
       "wins": 2,
       "losses": 2,
@@ -60,7 +60,7 @@
     },
     {
       "pos": 8,
-      "team": "נס ציונה",
+      "team": "מכבי ת\"א",
       "played": 4,
       "wins": 2,
       "losses": 2,
@@ -76,23 +76,23 @@
     },
     {
       "pos": 10,
-      "team": "גליל עליון",
+      "team": "הפועל חולון",
+      "played": 5,
+      "wins": 1,
+      "losses": 4,
+      "points": 6
+    },
+    {
+      "pos": 11,
+      "team": "נס ציונה",
       "played": 4,
       "wins": 2,
       "losses": 2,
       "points": 6
     },
     {
-      "pos": 11,
-      "team": "הפועל ב\"ש",
-      "played": 4,
-      "wins": 1,
-      "losses": 3,
-      "points": 5
-    },
-    {
       "pos": 12,
-      "team": "הפועל חולון",
+      "team": "הפועל ב\"ש",
       "played": 4,
       "wins": 1,
       "losses": 3,
