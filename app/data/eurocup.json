@@ -96,11 +96,11 @@
           "pos": 1,
           "team": "La Laguna Tenerife",
           "code": "TNF",
-          "played": 5,
-          "wins": 4,
+          "played": 6,
+          "wins": 5,
           "losses": 1,
-          "for": 441,
-          "against": 409
+          "for": 554,
+          "against": 482
         },
         {
           "pos": 2,
@@ -154,16 +154,6 @@
         },
         {
           "pos": 7,
-          "team": "U-BT Cluj-Napoca",
-          "code": "CLU",
-          "played": 5,
-          "wins": 2,
-          "losses": 3,
-          "for": 416,
-          "against": 458
-        },
-        {
-          "pos": 8,
           "team": "Turk Telekom Ankara",
           "code": "TTK",
           "played": 6,
@@ -171,6 +161,16 @@
           "losses": 4,
           "for": 475,
           "against": 485
+        },
+        {
+          "pos": 8,
+          "team": "U-BT Cluj-Napoca",
+          "code": "CLU",
+          "played": 6,
+          "wins": 2,
+          "losses": 4,
+          "for": 489,
+          "against": 571
         }
       ]
     },
