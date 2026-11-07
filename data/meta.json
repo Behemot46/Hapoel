@@ -1,0 +1,46 @@
+{
+  "lastUpdated": "2026-11-07T10:28:16+00:00",
+  "sample": false,
+  "sources": {
+    "standings": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "games": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "eurocup": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "seasonStats": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "news": {
+      "ok": true,
+      "detail": "הקצב הוא פעם ביומיים, והמדור נכתב לפני 23 שעות"
+    },
+    "podcasts": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "roster": {
+      "ok": true,
+      "detail": "עודכן בהצלחה"
+    },
+    "gameStats": {
+      "ok": true,
+      "detail": "14 טפסים, אין חדש"
+    },
+    "playerSeason": {
+      "ok": true,
+      "detail": "14 שחקנים מתוך 14 משחקים"
+    },
+    "advanced": {
+      "ok": true,
+      "detail": "14 משחקים, הפרש +18.7 ל־100 החזקות"
+    }
+  }
+}
