@@ -1,26 +1,31 @@
 #!/usr/bin/env python3
 """כלי אבחון ידני. נכתב מחדש בכל פעם לפי השאלה שנשאלת.
 
-**השאלה הפעם, והיא פתוחה מ־20.10.2026:** יונתן קלר, גארד ישראלי יליד
-2007, נוסף לסגל דרך הרישום ליורוקאפ. אתר המועדון לא מציג אותו ולכן אין
-לו שם עברי, והוא מופיע באפליקציה באותיות לטיניות. **אין להמציא תעתיק.**
+**השאלה הפעם, פתוחה מ־4.11.2026:** מי מפרסם ראשון את התוצאה של משחק
+יורוקאפ, אתר המועדון או הפיד של היורוליג?
 
-מה שנמדד ונפסל: ``parse_roster`` על ``team.asp?TeamId=2114`` מחזיר **אפס
-שחקנים**, ולכן אותו עמוד לבדו הוא לא מקור לשם עברי.
+מה שנמדד מול אריס ב־4.11: הפיד ``v2/.../games`` לא הראה תוצאה כל המשחק
+וגם לא אחרי השריקה, והתוצאה נכנסה ללוח רק ב־00:06 UTC, יותר משלוש שעות
+אחרי הסיום. אם אתר המועדון (או ה־API החי הישן של היורוליג) מחזיק תוצאה
+מוקדם יותר, אפשר להשתמש בו כגיבוי לתוצאה כשהפיד הרשמי שותק. **מודדים
+לפני שבונים**: מריצים את הכלי כמה פעמים אחרי השריקה ומשווים.
 
-**ומה שהתגלה ב־27.10:** חיפוש באינטרנט החזיר את
-``basket.co.il/team.asp?TeamId=1112&lang=en``, ושם קלר כן מופיע ברשימת
-הסגל. כלומר ל־2114 ול־1112 יש תפקידים שונים באתר הליגה, ו־
-``find_team_link`` מוצא את הראשון.
+מה מודפס בכל ריצה, לפי התאריך שהתקבל (ברירת מחדל: היום ב־UTC):
 
-ולכן שתי שאלות נפרדות, ושתיהן נבדקות כאן:
+1. אתר המועדון: הכרטיס של המשחק, הטקסט הגולמי של ``.score``, והאם
+   הכרטיס בכלל עוד מופיע (ההערה ב־update_data.py אומרת שהאתר מוריד
+   משחק מהעמוד כשהוא נגמר, וזה בדיוק מה שצריך לראות).
+2. הפיד ``v2/.../games``: played, score ורבעים של המשחק שלנו.
+3. הטופס ``v2/.../games/{code}/stats``: סכום הנקודות של כל צד.
+4. ה־API החי הישן, ``live.euroleague.net/api/Header``, שאינו בשימוש אצלנו
+   ונבדק רק כדי לדעת אם יש בו משהו.
 
-1. האם יש עמוד באתר הליגה שהפרסר מזהה בו סגל, לאורך **כל** שרשרת
-   הגיבוי של ``update_roster`` ולא רק הצעד הראשון שלה.
-2. **והחשובה יותר:** האם המילה ״קלר״ מופיעה בעברית באחד העמודים האלה
-   בכלל, גם אם הפרסר לא מזהה שם טבלת סגל. שם שמפרסם כתב הוא נתון; שם
-   שאני מרכיב מהאותיות הלטיניות הוא המצאה, וזה הגבול.
+הכלי לא כותב כלום. שעת הריצה מודפסת בראש, כי היא הנתון.
+
+    python scripts/probe_sources.py [YYYY-MM-DD]
 """
+import datetime
+import json
 import pathlib
 import re
 import sys
@@ -30,68 +35,116 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import requests
 from bs4 import BeautifulSoup
 
+import club_games
 import update_data as ud
 
-# ״קלר״ ככתיב הצפוי, ו־Keller כדי לראות שבכלל הגענו לעמוד הנכון
-HE = re.compile(r"קלר")
-LAT = re.compile(r"Keller", re.I)
+V2_GAMES = "https://api-live.euroleague.net/v2/competitions/U/seasons/U2026/games"
+V2_STATS = V2_GAMES + "/{code}/stats"
+OLD_HEADER = "https://live.euroleague.net/api/Header?gamecode={code}&seasoncode=U2026"
 
 
-def look(label, url):
-    """מוריד עמוד אחד, ומדווח גם סגל וגם אזכור של השם."""
+def get(url):
+    r = requests.get(url, headers=ud.UA, timeout=30)
+    print(f"  GET {url} → {r.status_code}, {len(r.content)} בתים")
+    r.raise_for_status()
+    return r
+
+
+def club(day):
+    print("\n1. אתר המועדון")
+    # דרך ud.fetch ולא requests ישירות, כי הוא מפענח את הקידוד של האתר;
+    # requests לבד מנחש latin-1, ואז אף כרטיס לא מזוהה כשלנו
     try:
-        html = ud.fetch(url)
+        html = ud.fetch(club_games.GAMES_URL)
+        print(f"  GET {club_games.GAMES_URL}, {len(html)} תווים")
     except Exception as e:
-        print(f"  {label}: נפל, {type(e).__name__} {e}")
-        return None
+        print(f"  נפל: {type(e).__name__} {e}")
+        return
     soup = BeautifulSoup(html, "html.parser")
-    found = ud.parse_roster(soup)
-    text = soup.get_text(" ", strip=True)
-    marks = []
-    if LAT.search(text):
-        marks.append("Keller")
-    if HE.search(text):
-        marks.append("קלר")
-    print(f"  {label}: {len(found)} שחקנים, {len(text)} תווים"
-          + (f", מוזכר: {', '.join(marks)}" if marks else ""))
-    for r in sorted(found, key=lambda x: x.get("number") or 99)[:20]:
-        print(f"      {str(r.get('number') or '-'):>3} {r.get('name','')[:28]}")
-    # **וההקשר, כי זה מה שקובע.** מדפיסים את הסביבה של כל אזכור, כדי
-    # לקרוא בעיניים איך המפרסם כתב את השם ולא לנחש אותו.
-    for pat in (HE, LAT):
-        for m in list(pat.finditer(text))[:4]:
-            a, b = max(0, m.start() - 70), min(len(text), m.end() + 70)
-            print(f"      … {text[a:b]} …")
-    return soup
+    cards = soup.select(".game")
+    print(f"  {len(cards)} כרטיסים בעמוד")
+    games = club_games.parse_games(html, club_games.season_start_year())
+    near = [g for g in games if abs((datetime.date.fromisoformat(g["date"][:10]) - day).days) <= 1]
+    if not near:
+        first = games[0]["date"][:10] if games else "-"
+        print(f"  אין כרטיס ל־{day}. הכרטיס הראשון בעמוד: {first}")
+    for g in near:
+        print(f"  {g['date']} {g['home']} - {g['away']}: {g['status']}, "
+              f"{g['homeScore']}-{g['awayScore']}")
+    # **והטקסט הגולמי, כי _score מתרגם 0:0 ל״אין תוצאה״** ואולי האתר כותב
+    # תוצאה חיה בפורמט אחר
+    for c in cards:
+        when = club_games._txt(c.select_one(".date-time"))
+        d, _ = club_games.parse_when(when, club_games.season_start_year())
+        if d and abs((d - day).days) <= 1:
+            print(f"  גולמי: date-time={when!r} score={club_games._txt(c.select_one('.score'))!r}")
+
+
+def euroleague(day):
+    print("\n2. הפיד v2/games")
+    try:
+        body = get(V2_GAMES).json()
+    except Exception as e:
+        print(f"  נפל: {type(e).__name__} {e}")
+        return None
+    rows = body.get("data") if isinstance(body, dict) else body
+    ours = []
+    for g in rows or []:
+        local, road = g.get("local") or {}, g.get("road") or {}
+        codes = [(s.get("club") or {}).get("code") for s in (local, road)]
+        if "JER" in codes and (g.get("utcDate") or "")[:10] in (
+                str(day), str(day - datetime.timedelta(days=1))):
+            ours.append(g)
+    if not ours:
+        print(f"  אין משחק שלנו ב־{day}")
+        return None
+    g = ours[-1]
+    local, road = g.get("local") or {}, g.get("road") or {}
+    print(f"  {g.get('utcDate')} code={g.get('gameCode') or g.get('code')} "
+          f"played={g.get('played')}")
+    for side in (local, road):
+        print(f"    {(side.get('club') or {}).get('code')}: score={side.get('score')} "
+              f"partials={side.get('partials')}")
+    # שדות מצב שאולי קיימים ולא נקראים אצלנו
+    flags = {k: v for k, v in g.items() if re.search(r"status|live|state|minute|quarter", k, re.I)}
+    if flags:
+        print(f"  שדות מצב: {json.dumps(flags, ensure_ascii=False)[:300]}")
+    return g
+
+
+def stats(g):
+    code = g.get("gameCode") or g.get("code")
+    print("\n3. הטופס v2/games/{code}/stats")
+    try:
+        body = get(V2_STATS.format(code=code)).json()
+    except Exception as e:
+        print(f"  נפל: {type(e).__name__} {e}")
+        return
+    for key in ("local", "road"):
+        tot = ((body.get(key) or {}).get("total") or {})
+        print(f"    {key}: points={tot.get('points')} timePlayed={tot.get('timePlayed')}")
+
+
+def old_live(g):
+    code = g.get("gameCode") or g.get("code")
+    print("\n4. ה־API החי הישן")
+    try:
+        r = get(OLD_HEADER.format(code=code))
+        print(f"  {r.text[:400]}")
+    except Exception as e:
+        print(f"  נפל: {type(e).__name__} {e}")
 
 
 def main():
-    link = ud.find_team_link()
-    print(f"עמוד הקבוצה כפי ש־find_team_link מוצא אותו: {link}")
-    soup = look("אותו עמוד", link) if link else None
-
-    if soup is not None:
-        print("\nשרשרת roster_candidates:")
-        for u in ud.roster_candidates(link, soup)[:6]:
-            look(u, u)
-
-    tid = None
-    if link:
-        m = re.search(r"TeamId=(\d+)", link)
-        tid = m.group(1) if m else None
-    print(f"\nעמודים לפי TeamId, גם זה שנמצא ({tid}) וגם 1112 מהחיפוש:")
-    paths = ("team.asp?TeamId={}", "stats-individual.asp?TeamId={}",
-             "stats-individual.asp?TeamId={}&cYear=2027",
-             "team-players.asp?TeamId={}", "players.asp?TeamId={}",
-             "stats-accumulate.asp?TeamId={}")
-    for t in [x for x in (tid, "1112") if x]:
-        for path in paths:
-            u = requests.compat.urljoin(ud.LEAGUE_HOME, path.format(t))
-            look(u, u)
-
-    print("\nוהעמוד שהחיפוש החזיר, באנגלית, רק כדי לאמת שזו הקבוצה הנכונה:")
-    look("1112&lang=en",
-         requests.compat.urljoin(ud.LEAGUE_HOME, "team.asp?TeamId=1112&lang=en"))
+    arg = sys.argv[1] if len(sys.argv) > 1 else ""
+    now = datetime.datetime.now(datetime.timezone.utc)
+    day = datetime.date.fromisoformat(arg) if re.match(r"\d{4}-\d{2}-\d{2}$", arg) else now.date()
+    print(f"ריצה ב־{now:%Y-%m-%d %H:%M:%S} UTC, משחק של {day}")
+    club(day)
+    g = euroleague(day)
+    if g:
+        stats(g)
+        old_live(g)
 
 
 if __name__ == "__main__":
