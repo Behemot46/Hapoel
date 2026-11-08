@@ -63,6 +63,25 @@ def main():
     check("משחק עתידי, אין תוצאה", (g["homeScore"], g["awayScore"]), (None, None))
     check("משחק בלי שעה מסומן", g.get("timeTbd"), True)
 
+    # **והשעה של משחקי היורוקאפ כשהפיד הראשי נופל.** נמדד ב־4.11.2026
+    # מול אריס: בקשה אחת נכשלה, הגיבוי קרא את date, ״20:00״ בשעון מרכז
+    # אירופה, וחתם אותו +03:00, כלומר שעתיים מוקדם. כל משחקי היורוקאפ
+    # על הלוח זזו לשלוש שעות, והכרטיס החי נסגר מוקדם. המספרים כאן הם
+    # בדיוק מה שהגיבוי קרא באותו ערב, מול מה שהפיד הראשי נותן לאותם משחקים.
+    import datetime as dt
+    def instant(s):
+        return dt.datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone(dt.timezone.utc)
+    utc = lambda s: dt.datetime.fromisoformat(s).replace(tzinfo=dt.timezone.utc)
+    full = {"date": "2026-11-04T20:00:00", "localdate": "2026-11-04T20:00:00",
+            "utcdate": "2026-11-04T19:00:00Z"}
+    check("יורוקאפ, utcDate קודם לכל השאר", u._date_of(full), "2026-11-04T19:00:00Z")
+    check("יורוקאפ, date לבד בחורף הוא שעון מרכז אירופה",
+          instant(u._date_of({"date": "2026-11-04T20:00:00"})), utc("2026-11-04T19:00:00"))
+    check("יורוקאפ, המשחק השני מול אריס",
+          instant(u._date_of({"date": "2027-01-05T19:00:00"})), utc("2027-01-05T18:00:00"))
+    check("יורוקאפ, date לבד בקיץ",
+          instant(u._date_of({"date": "2026-09-29T19:00:00"})), utc("2026-09-29T17:00:00"))
+
     if fail:
         print(f"{len(fail)} כשלים:")
         for f in fail:

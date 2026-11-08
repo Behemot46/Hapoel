@@ -41,8 +41,11 @@ ONE מחזירים 404 (נמדד 11.9.2026). לכן `.game-type .container .text
 """
 import datetime
 import re
+import zoneinfo
 
 from bs4 import BeautifulSoup
+
+ISRAEL = zoneinfo.ZoneInfo("Asia/Jerusalem")
 
 GAMES_URL = "https://hapoel.co.il/games"
 
@@ -147,7 +150,13 @@ def _venue_and_tv(g):
 # ערוצים, והם גם קצרים מדי: הגרסה הראשונה של הקוד כללה את ״יס״, והמחרוזת
 # הזאת יושבת בתוך ״פ**יס** ארנה, ירושלים״. התוצאה הייתה שהאולם הביתי שלנו
 # סווג כערוץ טלוויזיה והמשחק הוצג בלי מקום.
-CHANNELS = ("5STARS", "5 STARS", "ספורט 5", "SPORT 5", "SPORT5", "ONE",
+#
+# **והערוצים של ספורט 5 נכתבים בנפרד.** ב־8.11.2026 המועדון כתב ״5PLUS״
+# למשחק מול העמק, וזה לא נתפס: ״ספורט 5״ לא מופיע בתוך ״5PLUS״, והתא
+# נפל ל״מקום שני״ שנזרק בשקט. האוהד ראה ״טרם פורסם״ ביום המשחק, כשהמועדון
+# כבר פרסם. נוספו כל ערוצי ספורט 5, כי אף אחד מהם לא יכול להיות שם של אולם.
+CHANNELS = ("5STARS", "5 STARS", "5PLUS", "5 PLUS", "5LIVE", "5 LIVE",
+            "5GOLD", "5 GOLD", "ספורט 5", "SPORT 5", "SPORT5", "ONE",
             "ערוץ הספורט", "כאן 11", "WinnerLeague.TV")
 
 # ההתאמה היא על מילה שלמה ולא על תת־מחרוזת, מאותה סיבה בדיוק.
@@ -189,8 +198,11 @@ def parse_games(html, season_start, log=None):
         # אמצע היום שורד כל אזור זמן סביר, והשעה עצמה לא מוצגת ממילא כי
         # timeTbd מסמן שאין מה להציג.
         hh, mm = time if time else (12, 0)
-        when = datetime.datetime(date.year, date.month, date.day, hh, mm,
-                                 tzinfo=datetime.timezone(datetime.timedelta(hours=3)))
+        # **ההפרש של אותו יום, ולא +03:00 קבוע.** +03:00 הוא שעון הקיץ, ומאז
+        # 25.10.2026 ישראל ב־+02:00, ולכן כל משחק שהגיע רק מכאן נרשם שעה
+        # מוקדם מדי כל החורף. אותה טעות תוקנה באתר הליגה (israel_iso ב־
+        # update_data.py) ונשארה כאן.
+        when = datetime.datetime(date.year, date.month, date.day, hh, mm, tzinfo=ISRAEL)
         opp = away_raw if is_us(home_raw) else home_raw
         cycle = _txt(g.select_one(".cycle"))
         venue, tv = _venue_and_tv(g)
