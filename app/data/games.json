@@ -359,17 +359,14 @@
     },
     {
       "id": "20261206-בניהרצליה",
-      "date": "2026-12-06T12:00:00+02:00",
+      "date": "2026-12-06T20:15:00+02:00",
       "competition": "ליגת Winner סל, מחזור 8",
       "home": "בני הרצליה",
       "away": "הפועל ירושלים",
-      "venue": null,
+      "venue": "היובל, הרצליה",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true,
       "broadcast": {
         "pending": true
       }
@@ -390,17 +387,17 @@
     },
     {
       "id": "20261213-נסציונה",
-      "date": "2026-12-13T12:00:00+02:00",
+      "date": "2026-12-13T18:30:00+02:00",
       "competition": "ליגת Winner סל, מחזור 9",
       "home": "נס ציונה",
       "away": "הפועל ירושלים",
-      "venue": null,
+      "venue": "לב המושבה, נס ציונה",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261216-euro-RecoletasSal",
