@@ -1,5 +1,9 @@
 {
-  "state": "playing",
+  "state": "final",
+  "home": 65,
+  "away": 59,
+  "ourScore": 65,
+  "theirScore": 59,
   "game": {
     "gameId": "20261108-הפועלהעמק",
     "competition": "ליגת Winner סל, מחזור 5",
@@ -8,5 +12,5 @@
     "date": "2026-11-08T20:15:00+02:00",
     "venue": "פיס ארנה, ירושלים"
   },
-  "updated": "2026-11-08T20:19:08+00:00"
+  "updated": "2026-11-08T20:34:14+00:00"
 }
