@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-08T20:08:54+00:00",
+  "lastUpdated": "2026-11-08T20:29:16+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -32,15 +32,15 @@
     },
     "gameStats": {
       "ok": true,
-      "detail": "14 טפסים, אין חדש"
+      "detail": "1 טפסים חדשים, 15 בסך הכול"
     },
     "playerSeason": {
       "ok": true,
-      "detail": "14 שחקנים מתוך 14 משחקים"
+      "detail": "14 שחקנים מתוך 15 משחקים"
     },
     "advanced": {
       "ok": true,
-      "detail": "14 משחקים, הפרש +18.7 ל־100 החזקות"
+      "detail": "15 משחקים, הפרש +18.1 ל־100 החזקות"
     }
   }
 }

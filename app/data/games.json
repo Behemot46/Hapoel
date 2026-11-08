@@ -294,9 +294,9 @@
       "home": "הפועל ירושלים",
       "away": "הפועל העמק",
       "venue": "פיס ארנה, ירושלים",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
+      "status": "finished",
+      "homeScore": 65,
+      "awayScore": 59,
       "broadcast": {
         "channel": "5PLUS"
       }
