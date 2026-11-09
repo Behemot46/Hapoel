@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08T22:11:06Z",
+  "updated": "2026-11-09T11:50:32Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,7 +14,7 @@
       "title": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
       "about": "team",
       "url": "https://podcasts.apple.com/il/podcast/%D7%9E%D7%90%D7%97%D7%95%D7%A8%D7%99-%D7%94%D7%A1%D7%9C%D7%99%D7%9D-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%90%D7%95%D7%94%D7%93%D7%99-%D7%94%D7%A4%D7%95%D7%A2%D7%9C-%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C/id6820447951?uo=4",
-      "latest": "2026-11-01T21:03:52Z"
+      "latest": "2026-11-09T09:16:42Z"
     },
     {
       "id": "1623083958",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "6820447951",
+      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "title": "שומרים על הרצף | מאחורי הסלים פרק 9",
+      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/9-e3s2a1v",
+      "published": "2026-11-09T09:16:42Z",
+      "duration": 3877
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -243,15 +252,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3q77ai",
       "published": "2026-10-09T08:28:45Z",
       "duration": 4109
-    },
-    {
-      "showId": "6820447951",
-      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
-      "about": "team",
-      "title": "יום אסוני או יום ששוני? מעבירים את הזמן לפני יום הדין בחמישי לאוקטובר | מאחורי הסלים, פרק 5",
-      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/5-e3pm8jr",
-      "published": "2026-10-01T05:12:07Z",
-      "duration": 4272
     },
     {
       "showId": "1573775015",

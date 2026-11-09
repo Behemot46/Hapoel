@@ -313,7 +313,10 @@
       "homeScore": null,
       "awayScore": null,
       "homePartials": null,
-      "awayPartials": null
+      "awayPartials": null,
+      "broadcast": {
+        "channel": "ספורט1"
+      }
     },
     {
       "id": "20261114-מכביתא",
