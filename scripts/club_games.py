@@ -131,7 +131,7 @@ def _venue_and_tv(g):
     """
     cells = [_txt(c) for c in g.select(".game-type .container .text")]
     cells = [c for c in cells if c]
-    venue, tv = None, None
+    venue, tv, unknown = None, None, []
     for c in cells:
         if c == TV_PENDING:
             tv = {"pending": True}
@@ -139,7 +139,9 @@ def _venue_and_tv(g):
             tv = {"channel": c}
         elif venue is None:
             venue = c
-    return venue, tv
+        else:
+            unknown.append(c)
+    return venue, tv, unknown
 
 
 # שמות הערוצים שמשדרים כדורסל ישראלי, כפי שהמועדון כותב אותם. הרשימה
@@ -155,8 +157,15 @@ def _venue_and_tv(g):
 # למשחק מול העמק, וזה לא נתפס: ״ספורט 5״ לא מופיע בתוך ״5PLUS״, והתא
 # נפל ל״מקום שני״ שנזרק בשקט. האוהד ראה ״טרם פורסם״ ביום המשחק, כשהמועדון
 # כבר פרסם. נוספו כל ערוצי ספורט 5, כי אף אחד מהם לא יכול להיות שם של אולם.
+#
+# **ויום אחר כך זה קרה שוב, עם ערוץ אחר.** ב־9.11 המועדון כתב ״ספורט1״
+# (בלי רווח) למשחק בטורטונה, ושוב התא נזרק. נוספו ערוצי ספורט 1 עד 4, עם
+# רווח ובלעדיו, ו**תא שלא זוהה נרשם עכשיו בלוג של האיסוף** במקום להיעלם:
+# אם יבוא ערוץ שלישי שלא הכרנו, הוא ייראה שם בשורה ״תא לא מזוהה״.
 CHANNELS = ("5STARS", "5 STARS", "5PLUS", "5 PLUS", "5LIVE", "5 LIVE",
-            "5GOLD", "5 GOLD", "ספורט 5", "SPORT 5", "SPORT5", "ONE",
+            "5GOLD", "5 GOLD", "ספורט 5", "SPORT 5", "SPORT5",
+            "ספורט 1", "ספורט1", "ספורט 2", "ספורט2", "ספורט 3", "ספורט3",
+            "ספורט 4", "ספורט4", "SPORT 1", "SPORT1", "ONE",
             "ערוץ הספורט", "כאן 11", "WinnerLeague.TV")
 
 # ההתאמה היא על מילה שלמה ולא על תת־מחרוזת, מאותה סיבה בדיוק.
@@ -205,7 +214,10 @@ def parse_games(html, season_start, log=None):
         when = datetime.datetime(date.year, date.month, date.day, hh, mm, tzinfo=ISRAEL)
         opp = away_raw if is_us(home_raw) else home_raw
         cycle = _txt(g.select_one(".cycle"))
-        venue, tv = _venue_and_tv(g)
+        venue, tv, unknown = _venue_and_tv(g)
+        if unknown and log:
+            log(f"  לוח המועדון: תא לא מזוהה אחרי המקום ב־{date}, "
+                f"אולי ערוץ שלא הכרנו: {unknown}")
         game = {
             "id": f"{date:%Y%m%d}-club-" + re.sub(r"[^א-תA-Za-z]", "", opp)[:12],
             "date": when.isoformat(),
