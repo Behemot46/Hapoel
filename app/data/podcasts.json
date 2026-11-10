@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T11:25:08Z",
+  "updated": "2026-11-10T22:29:57Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -35,7 +35,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-11-02T14:12:06Z"
+      "latest": "2026-11-10T14:15:07Z"
     },
     {
       "id": "1648115499",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "בחזרה מהקבר | מכבי קמה בדרבי, הפועל בועטת בדלי, ירושלים מושלמת וחולון והעמק מחפשות התחלה חדשה",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3s53hb",
+      "published": "2026-11-10T14:15:07Z",
+      "duration": 4151
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -243,15 +252,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/102-e3qaam2",
       "published": "2026-10-11T03:00:00Z",
       "duration": 3686
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "חילופי מומנטום | מכבי מתעוררת מול מילאנו, הפועל נעצרת בולנסיה וירושלים מנצחת במכות",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3q77ai",
-      "published": "2026-10-09T08:28:45Z",
-      "duration": 4109
     },
     {
       "showId": "1573775015",
