@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T23:02:01Z",
+  "updated": "2026-11-10T11:25:08Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-11-02T01:09:00Z"
+      "latest": "2026-11-10T11:08:00Z"
     },
     {
       "id": "1698308776",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "מכבי ת\"א חוזרת מהקבר: הקאמבק הגדול בדרבי, הפועל י-ם ממשיכה בשלה | שוט, פרק 204",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-11-10T11:08:00Z",
+      "duration": 5638
+    },
     {
       "showId": "6820447951",
       "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
@@ -225,15 +234,6 @@
       "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/6-e3qh87n",
       "published": "2026-10-14T23:29:05Z",
       "duration": 3913
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "התמונה מתחילה להתבהר | שוט , פרק 200",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-10-11T11:21:00Z",
-      "duration": 5137
     },
     {
       "showId": "1573775015",
