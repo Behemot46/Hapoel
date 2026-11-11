@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T22:29:57Z",
+  "updated": "2026-11-11T11:13:34Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-11-02T22:48:50Z"
+      "latest": "2026-11-11T10:02:14Z"
     },
     {
       "id": "1675729649",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "מסכמים דרבי מופרע",
+      "url": "https://omny.fm/shows/speaknrolisrael/659c3e2c-cb1f-4175-bfa4-b4ff00a3c956",
+      "published": "2026-11-11T10:02:14Z",
+      "duration": 5142
+    },
     {
       "showId": "1698308776",
       "show": "דאבל דריבל",
@@ -225,15 +234,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3243283",
       "published": "2026-10-18T03:57:42Z",
       "duration": 5334
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "כדורסל בלי הפסקה",
-      "url": "https://omny.fm/shows/speaknrolisrael/e79abb5e-533c-4a5a-939a-b4e400a1f065",
-      "published": "2026-10-15T09:56:30Z",
-      "duration": 5162
     },
     {
       "showId": "6820447951",
