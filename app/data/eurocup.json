@@ -96,11 +96,11 @@
           "pos": 1,
           "team": "La Laguna Tenerife",
           "code": "TNF",
-          "played": 6,
-          "wins": 5,
+          "played": 7,
+          "wins": 6,
           "losses": 1,
-          "for": 554,
-          "against": 482
+          "for": 640,
+          "against": 553
         },
         {
           "pos": 2,
@@ -124,16 +124,6 @@
         },
         {
           "pos": 4,
-          "team": "Siauliai Basketball",
-          "code": "SIA",
-          "played": 6,
-          "wins": 3,
-          "losses": 3,
-          "for": 489,
-          "against": 519
-        },
-        {
-          "pos": 5,
           "team": "Skyliners Frankfurt",
           "code": "FRA",
           "played": 6,
@@ -143,7 +133,7 @@
           "against": 550
         },
         {
-          "pos": 6,
+          "pos": 5,
           "team": "Umana Reyer Venice",
           "code": "VNC",
           "played": 7,
@@ -153,7 +143,7 @@
           "against": 564
         },
         {
-          "pos": 7,
+          "pos": 6,
           "team": "Turk Telekom Ankara",
           "code": "TTK",
           "played": 7,
@@ -161,6 +151,16 @@
           "losses": 4,
           "for": 564,
           "against": 566
+        },
+        {
+          "pos": 7,
+          "team": "Siauliai Basketball",
+          "code": "SIA",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 560,
+          "against": 605
         },
         {
           "pos": 8,
@@ -266,11 +266,11 @@
           "pos": 1,
           "team": "Bahcesehir College Istanbul",
           "code": "BAH",
-          "played": 6,
-          "wins": 5,
+          "played": 7,
+          "wins": 6,
           "losses": 1,
-          "for": 548,
-          "against": 476
+          "for": 647,
+          "against": 537
         },
         {
           "pos": 2,
@@ -306,11 +306,11 @@
           "pos": 5,
           "team": "Lietkabelis Panevezys",
           "code": "LKB",
-          "played": 6,
+          "played": 7,
           "wins": 3,
-          "losses": 3,
-          "for": 455,
-          "against": 473
+          "losses": 4,
+          "for": 516,
+          "against": 572
         },
         {
           "pos": 6,
