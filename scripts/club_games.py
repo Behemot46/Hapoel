@@ -175,8 +175,17 @@ _CHANNEL_RE = re.compile(
     re.IGNORECASE)
 
 
+# **והמשפחות עצמן, לא רק השמות שראינו.** שלושה ימים, שלושה כתיבים חדשים:
+# ״5PLUS״ ב־8.11, ״ספורט1״ ב־9.11 ו״5SPORT״ ב־11.11 (למשחק מול מכבי ת״א),
+# וכל אחד מהם נזרק עד שהוסף ביד. לכן תא שכולו ״5״ צמוד למילה לועזית
+# (5SPORT, 5PLUS, 5 LIVE), או ״ספורט״/SPORT עם ספרה (ספורט1, SPORT 2), הוא
+# ערוץ. ההתאמה היא על **התא כולו** ולא על חלק ממנו, ולכן אולם שבשמו יש
+# ספרה לא ייתפס בטעות.
+_CHANNEL_FAMILY = re.compile(r"5\s?[A-Za-z]{3,}|(?:ספורט|SPORT)\s?\d", re.IGNORECASE)
+
+
 def _looks_like_channel(s):
-    return bool(_CHANNEL_RE.search(s))
+    return bool(_CHANNEL_RE.search(s) or _CHANNEL_FAMILY.fullmatch(s.strip()))
 
 
 def parse_games(html, season_start, log=None):
