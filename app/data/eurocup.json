@@ -31,11 +31,11 @@
           "pos": 3,
           "team": "Le Mans Sarthe Basket",
           "code": "LEM",
-          "played": 6,
-          "wins": 3,
+          "played": 7,
+          "wins": 4,
           "losses": 3,
-          "for": 477,
-          "against": 467
+          "for": 565,
+          "against": 547
         },
         {
           "pos": 4,
@@ -81,11 +81,11 @@
           "pos": 8,
           "team": "Recoletas Salud San Pablo Burgos",
           "code": "BGS",
-          "played": 6,
+          "played": 7,
           "wins": 1,
-          "losses": 5,
-          "for": 458,
-          "against": 513
+          "losses": 6,
+          "for": 538,
+          "against": 601
         }
       ]
     },
@@ -296,14 +296,24 @@
           "pos": 4,
           "team": "ratiopharm ulm",
           "code": "ULM",
-          "played": 6,
+          "played": 7,
           "wins": 3,
-          "losses": 3,
-          "for": 535,
-          "against": 529
+          "losses": 4,
+          "for": 613,
+          "against": 612
         },
         {
           "pos": 5,
+          "team": "Roma Basketball",
+          "code": "BCR",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 601,
+          "against": 631
+        },
+        {
+          "pos": 6,
           "team": "Lietkabelis Panevezys",
           "code": "LKB",
           "played": 7,
@@ -311,16 +321,6 @@
           "losses": 4,
           "for": 516,
           "against": 572
-        },
-        {
-          "pos": 6,
-          "team": "Roma Basketball",
-          "code": "BCR",
-          "played": 6,
-          "wins": 2,
-          "losses": 4,
-          "for": 518,
-          "against": 553
         },
         {
           "pos": 7,

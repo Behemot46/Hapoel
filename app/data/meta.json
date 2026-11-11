@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-11T20:57:30+00:00",
+  "lastUpdated": "2026-11-11T21:17:49+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -32,7 +32,7 @@
     },
     "gameStats": {
       "ok": true,
-      "detail": "1 טפסים חדשים, 16 בסך הכול"
+      "detail": "16 טפסים, אין חדש"
     },
     "playerSeason": {
       "ok": true,
