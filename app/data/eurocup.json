@@ -21,11 +21,11 @@
           "pos": 2,
           "team": "Aris Thessaloniki",
           "code": "ARI",
-          "played": 6,
-          "wins": 5,
+          "played": 7,
+          "wins": 6,
           "losses": 1,
-          "for": 529,
-          "against": 458
+          "for": 634,
+          "against": 539
         },
         {
           "pos": 3,
@@ -51,11 +51,11 @@
           "pos": 5,
           "team": "Riga Zelli",
           "code": "RIG",
-          "played": 6,
+          "played": 7,
           "wins": 3,
-          "losses": 3,
-          "for": 469,
-          "against": 492
+          "losses": 4,
+          "for": 550,
+          "against": 597
         },
         {
           "pos": 6,
@@ -181,11 +181,11 @@
           "pos": 1,
           "team": "Napoli Basketball",
           "code": "NAP",
-          "played": 6,
-          "wins": 6,
+          "played": 7,
+          "wins": 7,
           "losses": 0,
-          "for": 540,
-          "against": 490
+          "for": 652,
+          "against": 580
         },
         {
           "pos": 2,
@@ -199,16 +199,6 @@
         },
         {
           "pos": 3,
-          "team": "NINERS Chemnitz",
-          "code": "NIN",
-          "played": 6,
-          "wins": 4,
-          "losses": 2,
-          "for": 525,
-          "against": 486
-        },
-        {
-          "pos": 4,
           "team": "Buducnost VOLI Podgorica",
           "code": "BUD",
           "played": 7,
@@ -216,6 +206,16 @@
           "losses": 3,
           "for": 619,
           "against": 591
+        },
+        {
+          "pos": 4,
+          "team": "NINERS Chemnitz",
+          "code": "NIN",
+          "played": 7,
+          "wins": 4,
+          "losses": 3,
+          "for": 615,
+          "against": 598
         },
         {
           "pos": 5,

@@ -344,7 +344,10 @@
       "homeScore": null,
       "awayScore": null,
       "homePartials": null,
-      "awayPartials": null
+      "awayPartials": null,
+      "broadcast": {
+        "channel": "ספורט1"
+      }
     },
     {
       "id": "20261120-מכביאשדוד",
@@ -357,7 +360,7 @@
       "homeScore": null,
       "awayScore": null,
       "broadcast": {
-        "pending": true
+        "channel": "5SPORT"
       }
     },
     {
