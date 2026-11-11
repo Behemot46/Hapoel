@@ -309,11 +309,21 @@
       "home": "Baglietto Derthona Tortona",
       "away": "הפועל ירושלים",
       "venue": "Nova Arena",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "homePartials": null,
-      "awayPartials": null,
+      "status": "finished",
+      "homeScore": 77,
+      "awayScore": 91,
+      "homePartials": [
+        25,
+        25,
+        18,
+        9
+      ],
+      "awayPartials": [
+        25,
+        23,
+        21,
+        22
+      ],
       "broadcast": {
         "channel": "ספורט1"
       }
