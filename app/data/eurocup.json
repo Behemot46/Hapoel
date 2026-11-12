@@ -116,24 +116,14 @@
           "pos": 3,
           "team": "Maxima Roma",
           "code": "MRO",
-          "played": 6,
-          "wins": 3,
+          "played": 7,
+          "wins": 4,
           "losses": 3,
-          "for": 496,
-          "against": 496
+          "for": 609,
+          "against": 585
         },
         {
           "pos": 4,
-          "team": "Skyliners Frankfurt",
-          "code": "FRA",
-          "played": 6,
-          "wins": 3,
-          "losses": 3,
-          "for": 517,
-          "against": 550
-        },
-        {
-          "pos": 5,
           "team": "Umana Reyer Venice",
           "code": "VNC",
           "played": 7,
@@ -143,7 +133,7 @@
           "against": 564
         },
         {
-          "pos": 6,
+          "pos": 5,
           "team": "Turk Telekom Ankara",
           "code": "TTK",
           "played": 7,
@@ -153,7 +143,7 @@
           "against": 566
         },
         {
-          "pos": 7,
+          "pos": 6,
           "team": "Siauliai Basketball",
           "code": "SIA",
           "played": 7,
@@ -161,6 +151,16 @@
           "losses": 4,
           "for": 560,
           "against": 605
+        },
+        {
+          "pos": 7,
+          "team": "Skyliners Frankfurt",
+          "code": "FRA",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 606,
+          "against": 663
         },
         {
           "pos": 8,
