@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T22:37:04Z",
+  "updated": "2026-11-13T11:15:29Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-11-10T11:08:00Z"
+      "latest": "2026-11-12T23:59:00Z"
     },
     {
       "id": "1698308776",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "מכבי ת\"א מסיימת שבוע צהוב בדרבי, מתכוננים לקלאסיקו: מי הקבוצה הטובה בישראל? | שוט, פרק 205",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-11-12T23:59:00Z",
+      "duration": 4709
+    },
     {
       "showId": "1623083958",
       "show": "ספיק נ׳ רול",
@@ -207,15 +216,6 @@
       "url": "https://omny.fm/shows/speaknrolisrael/5ff255ee-509c-4620-a9fd-b4ea017511ae",
       "published": "2026-10-21T23:22:14Z",
       "duration": 5545
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "הגיע הזמן לעמוד מאחורי ההחלטות, עם יונתן אלון | שוט, פרק 201",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-10-19T17:50:00Z",
-      "duration": 5490
     },
     {
       "showId": "1698308776",
