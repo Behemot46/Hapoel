@@ -1,5 +1,9 @@
 {
-  "state": "playing",
+  "state": "final",
+  "home": 82,
+  "away": 77,
+  "ourScore": 82,
+  "theirScore": 77,
   "game": {
     "gameId": "20261114-מכביתא",
     "competition": "ליגת Winner סל, מחזור 6",
@@ -8,5 +12,5 @@
     "date": "2026-11-14T20:55:00+02:00",
     "venue": "היכל מנורה מבטחים, ת\"א"
   },
-  "updated": "2026-11-14T20:59:08+00:00"
+  "updated": "2026-11-14T21:09:12+00:00"
 }
