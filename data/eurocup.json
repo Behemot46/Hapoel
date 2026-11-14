@@ -1,0 +1,348 @@
+{
+  "competition": "יורוקאפ",
+  "season": "2026/27",
+  "round": 7,
+  "ourGroup": "Group A",
+  "groups": [
+    {
+      "name": "Group A",
+      "rows": [
+        {
+          "pos": 1,
+          "team": "Hapoel Midtown Jerusalem",
+          "code": "JER",
+          "played": 7,
+          "wins": 7,
+          "losses": 0,
+          "for": 619,
+          "against": 518
+        },
+        {
+          "pos": 2,
+          "team": "Aris Thessaloniki",
+          "code": "ARI",
+          "played": 7,
+          "wins": 6,
+          "losses": 1,
+          "for": 634,
+          "against": 539
+        },
+        {
+          "pos": 3,
+          "team": "Le Mans Sarthe Basket",
+          "code": "LEM",
+          "played": 7,
+          "wins": 4,
+          "losses": 3,
+          "for": 565,
+          "against": 547
+        },
+        {
+          "pos": 4,
+          "team": "Baglietto Derthona Tortona",
+          "code": "TRT",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 558,
+          "against": 575
+        },
+        {
+          "pos": 5,
+          "team": "Riga Zelli",
+          "code": "RIG",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 550,
+          "against": 597
+        },
+        {
+          "pos": 6,
+          "team": "Cedevita Olimpija Ljubljana",
+          "code": "LJU",
+          "played": 7,
+          "wins": 2,
+          "losses": 5,
+          "for": 516,
+          "against": 547
+        },
+        {
+          "pos": 7,
+          "team": "Rostock Seawolves",
+          "code": "RTK",
+          "played": 7,
+          "wins": 2,
+          "losses": 5,
+          "for": 549,
+          "against": 605
+        },
+        {
+          "pos": 8,
+          "team": "Recoletas Salud San Pablo Burgos",
+          "code": "BGS",
+          "played": 7,
+          "wins": 1,
+          "losses": 6,
+          "for": 538,
+          "against": 601
+        }
+      ]
+    },
+    {
+      "name": "Group B",
+      "rows": [
+        {
+          "pos": 1,
+          "team": "La Laguna Tenerife",
+          "code": "TNF",
+          "played": 7,
+          "wins": 6,
+          "losses": 1,
+          "for": 640,
+          "against": 553
+        },
+        {
+          "pos": 2,
+          "team": "London Lions",
+          "code": "LLI",
+          "played": 7,
+          "wins": 4,
+          "losses": 3,
+          "for": 560,
+          "against": 517
+        },
+        {
+          "pos": 3,
+          "team": "Maxima Roma",
+          "code": "MRO",
+          "played": 7,
+          "wins": 4,
+          "losses": 3,
+          "for": 609,
+          "against": 585
+        },
+        {
+          "pos": 4,
+          "team": "Umana Reyer Venice",
+          "code": "VNC",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 604,
+          "against": 564
+        },
+        {
+          "pos": 5,
+          "team": "Turk Telekom Ankara",
+          "code": "TTK",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 564,
+          "against": 566
+        },
+        {
+          "pos": 6,
+          "team": "Siauliai Basketball",
+          "code": "SIA",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 560,
+          "against": 605
+        },
+        {
+          "pos": 7,
+          "team": "Skyliners Frankfurt",
+          "code": "FRA",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 606,
+          "against": 663
+        },
+        {
+          "pos": 8,
+          "team": "U-BT Cluj-Napoca",
+          "code": "CLU",
+          "played": 7,
+          "wins": 2,
+          "losses": 5,
+          "for": 570,
+          "against": 660
+        }
+      ]
+    },
+    {
+      "name": "Group C",
+      "rows": [
+        {
+          "pos": 1,
+          "team": "Napoli Basketball",
+          "code": "NAP",
+          "played": 7,
+          "wins": 7,
+          "losses": 0,
+          "for": 652,
+          "against": 580
+        },
+        {
+          "pos": 2,
+          "team": "Tofas Bursa",
+          "code": "BUR",
+          "played": 7,
+          "wins": 6,
+          "losses": 1,
+          "for": 634,
+          "against": 568
+        },
+        {
+          "pos": 3,
+          "team": "Buducnost VOLI Podgorica",
+          "code": "BUD",
+          "played": 7,
+          "wins": 4,
+          "losses": 3,
+          "for": 619,
+          "against": 591
+        },
+        {
+          "pos": 4,
+          "team": "NINERS Chemnitz",
+          "code": "NIN",
+          "played": 7,
+          "wins": 4,
+          "losses": 3,
+          "for": 615,
+          "against": 598
+        },
+        {
+          "pos": 5,
+          "team": "Cosea JL Bourg-en-Bresse",
+          "code": "BOU",
+          "played": 7,
+          "wins": 2,
+          "losses": 5,
+          "for": 568,
+          "against": 593
+        },
+        {
+          "pos": 6,
+          "team": "Neptunas Klaipeda",
+          "code": "KLA",
+          "played": 7,
+          "wins": 2,
+          "losses": 5,
+          "for": 593,
+          "against": 632
+        },
+        {
+          "pos": 7,
+          "team": "Dolomiti Energia Trento",
+          "code": "TRN",
+          "played": 7,
+          "wins": 2,
+          "losses": 5,
+          "for": 575,
+          "against": 623
+        },
+        {
+          "pos": 8,
+          "team": "Slask Wroclaw",
+          "code": "WRO",
+          "played": 7,
+          "wins": 1,
+          "losses": 6,
+          "for": 558,
+          "against": 629
+        }
+      ]
+    },
+    {
+      "name": "Group D",
+      "rows": [
+        {
+          "pos": 1,
+          "team": "Bahcesehir College Istanbul",
+          "code": "BAH",
+          "played": 7,
+          "wins": 6,
+          "losses": 1,
+          "for": 647,
+          "against": 537
+        },
+        {
+          "pos": 2,
+          "team": "PAOK Thessaloniki",
+          "code": "PAO",
+          "played": 7,
+          "wins": 5,
+          "losses": 2,
+          "for": 614,
+          "against": 574
+        },
+        {
+          "pos": 3,
+          "team": "Kids&Us Manresa",
+          "code": "MAN",
+          "played": 7,
+          "wins": 5,
+          "losses": 2,
+          "for": 617,
+          "against": 583
+        },
+        {
+          "pos": 4,
+          "team": "ratiopharm ulm",
+          "code": "ULM",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 613,
+          "against": 612
+        },
+        {
+          "pos": 5,
+          "team": "Roma Basketball",
+          "code": "BCR",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 601,
+          "against": 631
+        },
+        {
+          "pos": 6,
+          "team": "Lietkabelis Panevezys",
+          "code": "LKB",
+          "played": 7,
+          "wins": 3,
+          "losses": 4,
+          "for": 516,
+          "against": 572
+        },
+        {
+          "pos": 7,
+          "team": "BOSNA BH Telecom Sarajevo",
+          "code": "BOS",
+          "played": 7,
+          "wins": 2,
+          "losses": 5,
+          "for": 559,
+          "against": 573
+        },
+        {
+          "pos": 8,
+          "team": "Balkan Botevgrad",
+          "code": "BLK",
+          "played": 7,
+          "wins": 1,
+          "losses": 6,
+          "for": 470,
+          "against": 555
+        }
+      ]
+    }
+  ]
+}
