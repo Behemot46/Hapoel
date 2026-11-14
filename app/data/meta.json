@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-14T20:43:51+00:00",
+  "lastUpdated": "2026-11-14T21:04:09+00:00",
   "sample": false,
   "sources": {
     "standings": {
@@ -31,8 +31,8 @@
       "detail": "עודכן בהצלחה"
     },
     "gameStats": {
-      "ok": true,
-      "detail": "16 טפסים, אין חדש"
+      "ok": false,
+      "detail": "1 טפסים נכשלו ואף אחד לא נאסף"
     },
     "playerSeason": {
       "ok": true,

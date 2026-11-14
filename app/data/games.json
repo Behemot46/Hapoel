@@ -335,9 +335,9 @@
       "home": "מכבי ת\"א",
       "away": "הפועל ירושלים",
       "venue": "היכל מנורה מבטחים, ת\"א",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
+      "status": "finished",
+      "homeScore": 77,
+      "awayScore": 82,
       "broadcast": {
         "channel": "5SPORT"
       }
