@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15T11:14:58Z",
+  "updated": "2026-11-15T22:21:33Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -14,7 +14,7 @@
       "title": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
       "about": "team",
       "url": "https://podcasts.apple.com/il/podcast/%D7%9E%D7%90%D7%97%D7%95%D7%A8%D7%99-%D7%94%D7%A1%D7%9C%D7%99%D7%9D-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%90%D7%95%D7%94%D7%93%D7%99-%D7%94%D7%A4%D7%95%D7%A2%D7%9C-%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C/id6820447951?uo=4",
-      "latest": "2026-11-09T09:16:42Z"
+      "latest": "2026-11-15T21:40:33Z"
     },
     {
       "id": "1623083958",
@@ -35,7 +35,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-11-10T14:15:07Z"
+      "latest": "2026-11-15T16:40:49Z"
     },
     {
       "id": "1648115499",
@@ -46,6 +46,24 @@
     }
   ],
   "items": [
+    {
+      "showId": "6820447951",
+      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
+      "about": "team",
+      "title": "ראיון פרישה עם ג'יימס פלדין (וניצחון על מכבי) | מאחורי הסלים, פרק 10",
+      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/10-e3sek13",
+      "published": "2026-11-15T21:40:33Z",
+      "duration": 4250
+    },
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "מי מספר אחת? | ירושלים משתלטת על הפסגה, מכבי מחפשת יציבות, הפועל מאבדת גובה ודני אבדיה פורח",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3se8av",
+      "published": "2026-11-15T16:40:49Z",
+      "duration": 4555
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -218,15 +236,6 @@
       "duration": 5545
     },
     {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "הצהרת כוונות | הפועל מהממת את פאו, מכבי מחייכת בוולנסיה ומתכוננים לעונת ה-NBA",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/-NBA-e3qmdfm",
-      "published": "2026-10-18T12:05:46Z",
-      "duration": 5430
-    },
-    {
       "showId": "1648115499",
       "show": "אנחנו במפה",
       "about": "league",
@@ -234,15 +243,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3243283",
       "published": "2026-10-18T03:57:42Z",
       "duration": 5334
-    },
-    {
-      "showId": "6820447951",
-      "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
-      "about": "team",
-      "title": "מסכמים שבוע מושלם | מאחורי הסלים, פרק 6",
-      "url": "https://podcasters.spotify.com/pod/show/noam-sharon9/episodes/6-e3qh87n",
-      "published": "2026-10-14T23:29:05Z",
-      "duration": 3913
     },
     {
       "showId": "1573775015",
