@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T22:25:29Z",
+  "updated": "2026-11-15T11:14:58Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-11-12T23:59:00Z"
+      "latest": "2026-11-15T00:16:00Z"
     },
     {
       "id": "1698308776",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "הקבוצה הטובה בישראל: הפועל י-ם מנצחת בקלאסיקו, עתיד העונה של מכבי והפועל ת\"א | שוט, פרק 206",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-11-15T00:16:00Z",
+      "duration": 5794
+    },
     {
       "showId": "1675729649",
       "show": "שוט",
@@ -180,15 +189,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3r4d07",
       "published": "2026-10-26T16:10:23Z",
       "duration": 6633
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "הפועל ירושלים מלאה באופי, הפועל ת״א מופתעת ומכבי ת״א בסימן שאלה | שוט, פרק 202",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-10-26T10:28:00Z",
-      "duration": 4945
     },
     {
       "showId": "6820447951",
