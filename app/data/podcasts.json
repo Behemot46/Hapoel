@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15T22:21:33Z",
+  "updated": "2026-11-16T11:45:54Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -7,7 +7,7 @@
       "title": "כיפה אדומה",
       "about": "team",
       "url": "https://podcasts.apple.com/us/podcast/%D7%9B%D7%99%D7%A4%D7%94-%D7%90%D7%93%D7%95%D7%9E%D7%94/id1573775015?uo=4",
-      "latest": "2026-11-02T04:00:00Z"
+      "latest": "2026-11-16T04:59:39Z"
     },
     {
       "id": "6820447951",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1573775015",
+      "show": "כיפה אדומה",
+      "about": "team",
+      "title": "פרק 105: גן חיות",
+      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/105-e3sf563",
+      "published": "2026-11-16T04:59:39Z",
+      "duration": 4291
+    },
     {
       "showId": "6820447951",
       "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
@@ -252,15 +261,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/102-e3qaam2",
       "published": "2026-10-11T03:00:00Z",
       "duration": 3686
-    },
-    {
-      "showId": "1573775015",
-      "show": "כיפה אדומה",
-      "about": "team",
-      "title": "פרק 101: ברגל ימין",
-      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/101-e3pje22",
-      "published": "2026-09-30T02:56:17Z",
-      "duration": 2287
     }
   ]
 }
