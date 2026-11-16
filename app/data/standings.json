@@ -20,6 +20,22 @@
     },
     {
       "pos": 3,
+      "team": "ראשון לציון",
+      "played": 6,
+      "wins": 4,
+      "losses": 2,
+      "points": 10
+    },
+    {
+      "pos": 4,
+      "team": "גליל עליון",
+      "played": 6,
+      "wins": 4,
+      "losses": 2,
+      "points": 10
+    },
+    {
+      "pos": 5,
       "team": "הפועל ת\"א",
       "played": 5,
       "wins": 4,
@@ -27,7 +43,15 @@
       "points": 9
     },
     {
-      "pos": 4,
+      "pos": 6,
+      "team": "הפועל אילת",
+      "played": 6,
+      "wins": 3,
+      "losses": 3,
+      "points": 9
+    },
+    {
+      "pos": 7,
       "team": "מכבי אשדוד",
       "played": 6,
       "wins": 3,
@@ -35,7 +59,7 @@
       "points": 9
     },
     {
-      "pos": 5,
+      "pos": 8,
       "team": "מכבי רמת גן",
       "played": 6,
       "wins": 3,
@@ -43,32 +67,8 @@
       "points": 9
     },
     {
-      "pos": 6,
-      "team": "ראשון לציון",
-      "played": 5,
-      "wins": 3,
-      "losses": 2,
-      "points": 8
-    },
-    {
-      "pos": 7,
-      "team": "הפועל אילת",
-      "played": 5,
-      "wins": 3,
-      "losses": 2,
-      "points": 8
-    },
-    {
-      "pos": 8,
-      "team": "גליל עליון",
-      "played": 5,
-      "wins": 3,
-      "losses": 2,
-      "points": 8
-    },
-    {
       "pos": 9,
-      "team": "בני הרצליה",
+      "team": "הפועל חולון",
       "played": 6,
       "wins": 2,
       "losses": 4,
@@ -76,7 +76,7 @@
     },
     {
       "pos": 10,
-      "team": "קריית אתא",
+      "team": "בני הרצליה",
       "played": 6,
       "wins": 2,
       "losses": 4,
@@ -84,6 +84,14 @@
     },
     {
       "pos": 11,
+      "team": "קריית אתא",
+      "played": 6,
+      "wins": 2,
+      "losses": 4,
+      "points": 8
+    },
+    {
+      "pos": 12,
       "team": "מכבי ת\"א",
       "played": 5,
       "wins": 2,
@@ -91,28 +99,20 @@
       "points": 7
     },
     {
-      "pos": 12,
-      "team": "הפועל העמק",
-      "played": 5,
-      "wins": 1,
-      "losses": 4,
-      "points": 6
-    },
-    {
       "pos": 13,
-      "team": "הפועל חולון",
-      "played": 5,
+      "team": "הפועל העמק",
+      "played": 6,
       "wins": 1,
-      "losses": 4,
-      "points": 6
+      "losses": 5,
+      "points": 7
     },
     {
       "pos": 14,
       "team": "הפועל ב\"ש",
-      "played": 5,
+      "played": 6,
       "wins": 1,
-      "losses": 4,
-      "points": 6
+      "losses": 5,
+      "points": 7
     }
   ]
 }

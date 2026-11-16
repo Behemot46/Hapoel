@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16T11:45:54Z",
+  "updated": "2026-11-16T22:56:17Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -42,10 +42,19 @@
       "title": "אנחנו במפה",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%90%D7%A0%D7%97%D7%A0%D7%95-%D7%91%D7%9E%D7%A4%D7%94-%D7%94%D7%9B%D7%9C-%D7%A2%D7%9C-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%95%D7%AA-%D7%91%D7%90%D7%99%D7%A8%D7%95%D7%A4%D7%94/id1648115499?uo=4",
-      "latest": "2026-11-08T15:18:59Z"
+      "latest": "2026-11-16T18:39:03Z"
     }
   ],
   "items": [
+    {
+      "showId": "1648115499",
+      "show": "אנחנו במפה",
+      "about": "league",
+      "title": "בתקופה מטריפה",
+      "url": "https://rss.com/podcasts/we-are-on-the-map/3325617",
+      "published": "2026-11-16T18:39:03Z",
+      "duration": 6216
+    },
     {
       "showId": "1573775015",
       "show": "כיפה אדומה",
@@ -243,15 +252,6 @@
       "url": "https://omny.fm/shows/speaknrolisrael/5ff255ee-509c-4620-a9fd-b4ea017511ae",
       "published": "2026-10-21T23:22:14Z",
       "duration": 5545
-    },
-    {
-      "showId": "1648115499",
-      "show": "אנחנו במפה",
-      "about": "league",
-      "title": "מנצחים קדימה",
-      "url": "https://rss.com/podcasts/we-are-on-the-map/3243283",
-      "published": "2026-10-18T03:57:42Z",
-      "duration": 5334
     },
     {
       "showId": "1573775015",
