@@ -1,4 +1,12 @@
 {
-  "state": "idle",
-  "updated": "2026-11-14T21:59:32+00:00"
+  "state": "starting",
+  "game": {
+    "gameId": "20261117-euro-RostockSeawo",
+    "competition": "יורוקאפ",
+    "home": "Rostock Seawolves",
+    "away": "הפועל ירושלים",
+    "date": "2026-11-17T19:00:00Z",
+    "venue": "Stadthalle Rostock"
+  },
+  "updated": "2026-11-17T18:22:53+00:00"
 }
