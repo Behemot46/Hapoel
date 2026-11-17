@@ -1,31 +1,4 @@
 {
-  "state": "final",
-  "home": 91,
-  "away": 80,
-  "ourScore": 91,
-  "theirScore": 80,
-  "quarter": 4,
-  "partials": {
-    "us": [
-      24,
-      21,
-      26,
-      20
-    ],
-    "them": [
-      24,
-      18,
-      17,
-      21
-    ]
-  },
-  "game": {
-    "gameId": "20261117-euro-RostockSeawo",
-    "competition": "יורוקאפ",
-    "home": "Rostock Seawolves",
-    "away": "הפועל ירושלים",
-    "date": "2026-11-17T19:00:00Z",
-    "venue": "Stadthalle Rostock"
-  },
-  "updated": "2026-11-17T21:59:18+00:00"
+  "state": "idle",
+  "updated": "2026-11-17T22:04:21+00:00"
 }
