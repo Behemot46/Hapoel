@@ -350,11 +350,21 @@
       "home": "Rostock Seawolves",
       "away": "הפועל ירושלים",
       "venue": "Stadthalle Rostock",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "homePartials": null,
-      "awayPartials": null,
+      "status": "finished",
+      "homeScore": 80,
+      "awayScore": 91,
+      "homePartials": [
+        24,
+        18,
+        17,
+        21
+      ],
+      "awayPartials": [
+        24,
+        21,
+        26,
+        20
+      ],
       "broadcast": {
         "channel": "ספורט1"
       }
