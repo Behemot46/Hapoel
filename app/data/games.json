@@ -445,13 +445,16 @@
       "competition": "ליגת Winner סל, מחזור 10",
       "home": "הפועל ירושלים",
       "away": "מכבי רמת גן",
-      "venue": null,
+      "venue": "פיס ארנה, ירושלים",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
       "note": "המועד לא סופי, והשעה טרם נקבעה",
       "timeTbd": true,
-      "provisional": true
+      "provisional": true,
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261223-euro-RigaZelli",
@@ -473,13 +476,16 @@
       "competition": "ליגת Winner סל, מחזור 11",
       "home": "הפועל ירושלים",
       "away": "קריית אתא",
-      "venue": null,
+      "venue": "פיס ארנה, ירושלים",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
       "note": "המועד לא סופי, והשעה טרם נקבעה",
       "timeTbd": true,
-      "provisional": true
+      "provisional": true,
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20261230-euro-LeMansSarthe",
@@ -501,13 +507,16 @@
       "competition": "ליגת Winner סל, מחזור 12",
       "home": "ראשון לציון",
       "away": "הפועל ירושלים",
-      "venue": null,
+      "venue": "בית מכבי, ראשל\"צ",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
       "note": "המועד לא סופי, והשעה טרם נקבעה",
       "timeTbd": true,
-      "provisional": true
+      "provisional": true,
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20270105-euro-ArisThessalo",
@@ -529,13 +538,16 @@
       "competition": "ליגת Winner סל, מחזור 13",
       "home": "הפועל ירושלים",
       "away": "גליל עליון",
-      "venue": null,
+      "venue": "פיס ארנה, ירושלים",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
       "note": "המועד לא סופי, והשעה טרם נקבעה",
       "timeTbd": true,
-      "provisional": true
+      "provisional": true,
+      "broadcast": {
+        "pending": true
+      }
     },
     {
       "id": "20270113-euro-BagliettoDer",
