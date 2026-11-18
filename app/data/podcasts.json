@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T01:51:44Z",
+  "updated": "2026-11-18T12:56:54Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-11-11T10:02:14Z"
+      "latest": "2026-11-18T11:18:56Z"
     },
     {
       "id": "1675729649",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "יממה גדושה של כדורסל",
+      "url": "https://omny.fm/shows/speaknrolisrael/8a6895d8-bb78-4d2a-b5ca-b50600b8c852",
+      "published": "2026-11-18T11:18:56Z",
+      "duration": 5749
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -243,15 +252,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3262573",
       "published": "2026-10-25T06:20:37Z",
       "duration": 5817
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "האדומות מנצחות, הצהובה בצרות",
-      "url": "https://omny.fm/shows/speaknrolisrael/5ff255ee-509c-4620-a9fd-b4ea017511ae",
-      "published": "2026-10-21T23:22:14Z",
-      "duration": 5545
     },
     {
       "showId": "1573775015",
