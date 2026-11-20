@@ -1,24 +1,43 @@
 {
-  "updated": "2026-11-18T12:56:52Z",
+  "updated": "2026-11-20T11:55:17Z",
   "note": "כותרות מאתרי הספורט, נאספות דרך חדשות Google. לחיצה על כותרת פותחת את הכתבה באתר שפרסם אותה.",
   "sources": [
-    "C14",
-    "ynet",
-    "ספורט 1",
     "ישראל היום",
-    "כל העיר",
     "וואלה ספורט",
-    "כיפה",
-    "הארץ",
+    "ספורט 1",
+    "ynet",
+    "ערוץ 7",
+    "C14",
     "ספורט 5"
   ],
   "items": [
     {
-      "title": "אירופה אדומה: האם הפועל ירושלים בדרך לעונה היסטורית?",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1nakVObnFzQ2JHYmtuT01yUDdxQWx1NjY2VEttNS1VN09ZZklWQW9rVGVMQnM5dUxIRFhyVl9pc01PdWV2eURWUEZGRFpGZw?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-11-18T08:19:25Z"
+      "title": "\"הפועל ירושלים דיברה איתי בקיץ, עזבתי אותה כדי לשחק ביורוליג\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5GZmlYaUZJelFsOWc4TVpWWHE2eVRWdFRHVXhudWUyQ01laEJqVDNtTjgxd0FwZUF3UVdCV0F5MGJuNlFCbTlucTNhTjExNU50N25iQXRZU0pGRXR5bkgxNDBnYnZhb2RIVHRGYXVOcGpJSFlDNUNCaVJTdw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-11-19T13:54:28Z"
+    },
+    {
+      "title": "דווקא אשדוד תקלקל? הפועל ירושלים רוצה לצאת לפגרה מושלמת",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5rQWF4SlgzSzF3Yml0eVVWWFNHbnVjMXQ4LThKNWptbnBYVE8zWFFUeVJvVFlUR3g4aEItVnlEQVo4UzhqMU5hUkk2eGltM2JT?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-11-19T13:01:00Z"
+    },
+    {
+      "title": "הפועל ירושלים חוזרת למגרש: הבשורות לקראת הדרבי",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5ZV1VWaW1zZENNVnlmb2txVWJRRjE1aFc4WWtIUXZYTlZXb2xNT3lCN280bFJFLTltRE1zRTd0ZFRPRGMybFRGelBJUDhibElCdGUtWi1Hc1dUeE1EcnpVTnRsbnJjR0VkbUV2NUlNOFZOeUpCM0tXSXRn?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-11-18T14:55:52Z"
+    },
+    {
+      "title": "זה היתרון הגדול של הפועל ירושלים על מכבי והפועל תל אביב",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOdEpQY1k0VUtQMkl2d1ByME5VaEVRMi1yYVgtemhTWGlTNzZ6ZDhreDR3dC11TXY2SEg1eVpENXJJOGgxZnI1OHlRSXVXV2hORnpPeUhicHlWRUpTU1lfai1fQ1F3Rm1LYnY4cFNGN3BneE5yYjk2cGRHXzd5bVpVaFllVmZsSDQ2TUU5cGZOb3JIQQ?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
+      "published": "2026-11-18T13:35:52Z"
     },
     {
       "title": "\"מרגיש טוב\": נמרוד לוי הפך לאקס פקטור של הפועל ירושלים",
@@ -28,11 +47,18 @@
       "published": "2026-11-18T05:44:42Z"
     },
     {
-      "title": "צפו: לופטון ונמרוד לוי סחפו את הפועל ירושלים לניצחון על רוסטוק",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQdnlucmNyY3Q0dnRnQ0Q5Qm01dFBYd19UZGZOLVBueWRzamI0YkZUdmxsLTRQbmJneExHRWl2dWEyNWE5RzRReHdsSHVsVmRDSEFpN0tLT1Y2dnhFc1pkdGhmUERZMEVVTThJNHNVLUZESm5DUkNTbmhWZVhEdjdzVDRaaXF2NTJRVnlMUXpCaw?oc=5",
+      "title": "קרוב מהצפוי: מתי ג'ארד הארפר יחזור לפעילות בהפועל ירושלים?",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOLXJ3YTZXbk9wS01wVE9tRUt2QmRwTGtfNkdLQ3RaVTJFemJoM3d5WkQwdHVTa0loQ2xzMkZySl8yQnVSM2Z3VlBPWUc4SW5QTkFOVzl2akFlZlNMZVdqWWtaNUhnekwwN2lZTTh4NTNlZ2FMV1ZvOUhjWGE5Y1ZwLUZETWhrMmVsTEptOEdycTY3Zw?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-11-17T21:47:06Z"
+      "published": "2026-11-18T05:21:58Z"
+    },
+    {
+      "title": "מושלמת באירופה: ניצחון חוץ להפועל י-ם",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBlR01VNzFaeldqdXBHaWhwOW02NWFsRVF2enFrZ1hEb3NZVzlyVVlBVVJSdjhZbzR5elJ2Q1ZPWk1FXy1qaUJpaA?oc=5",
+      "source": "ערוץ 7",
+      "sourceUrl": "https://www.inn.co.il",
+      "published": "2026-11-17T21:23:36Z"
     },
     {
       "title": "הספירה נמשכת: ניצחון 14 ברציפות להפועל ירושלים",
@@ -49,25 +75,11 @@
       "published": "2026-11-17T21:00:00Z"
     },
     {
-      "title": "עדיין מושלמת: הפועל י-ם ניצחה 80:91 את רוסטוק",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5hTFVwanRQTWNnSXh5RVFiTURWSFc2RURNUEJpQmhoNU9tWElac3FuRWRoQndUSFFJN3ZBZTgyMVZYRkN4WUNBb0Z2eFlWck8yWUQ1cWtfU04zQQ?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-11-17T20:21:06Z"
-    },
-    {
       "title": "\"מכונה רצינית\": הפועל ירושלים גורפת מחמאות ברחבי אירופה",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBIMm5KSno1bEd0c1NwR3Y4YjNIVm1VQ0xkTnhjMmJmODY2THZaeXpNb1QyVXRQa29RX0wwUjRYM3ZEOW5sQk5KOWl3d2JYd3Q1M2tqWGRfamVXUWNzTHdwcjFsWHBwdnUxN3FMdDFMUHo?oc=5",
       "source": "ספורט 1",
       "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-11-17T16:12:00Z"
-    },
-    {
-      "title": "הפועל ירושלים: למה ההצלחה הכלכלית מצדיקה העלאת שכר?",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9uMGxZeGpZZ0lobWtGMDRJNTB2MndKa2QzNmhOZlU4LVlyTmpqanVYTnRuX3VtaHhQeXBLMkZmc3B1dFNkVEZhejBuUDZYTk1f?oc=5",
-      "source": "כל העיר",
-      "sourceUrl": "https://www.kolhair.co.il",
-      "published": "2026-11-17T12:36:57Z"
     },
     {
       "title": "המשוכה הבאה בדרך: הפועל ירושלים רוצה להישאר מושלמת",
@@ -77,20 +89,6 @@
       "published": "2026-11-17T12:11:18Z"
     },
     {
-      "title": "קני לופטון יחזור לעצמו? הפועל ירושלים תתארח ברוסטוק",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5MdW9NYWtENDFFM2F4RW00UDRmai1JNEVzeG0xeVNTZHZzYTBLOWcwYXFoOTQwMVA1eE1IcERaWFpmaGprZG9VQlRLeFhlRFIx?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-11-16T09:34:00Z"
-    },
-    {
-      "title": "כך הפועל ירושלים הפכה לקבוצה הטובה ביותר בכדורסל הישראלי",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1jcWxpUzF4eGZUOVF3MUFQbWhja0pGQU96VXlMSDhGNW15US1EOXNQeVUyZjY0dUcyTnZTMWpxLWNtN1hrY1dKTFUyZ2ppbXlwOTNnOG5JQ3lZUUtz?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-11-16T08:12:52Z"
-    },
-    {
       "title": "הפועל ירושלים הוכיחה שהיא הקבוצה הכי טובה בישראל",
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBpeUw4TE9Ic0RlZDRydW9PYmhFZThLbzVGOEFVdG5kWHhqNGJ6VG44QWhybnc1QjVyMWNlSHlIbEJ6UllES0FZeEdXZWRkU2pP?oc=5",
       "source": "וואלה ספורט",
@@ -98,32 +96,11 @@
       "published": "2026-11-15T15:50:00Z"
     },
     {
-      "title": "בהפועל ירושלים זועמים: \"בידוק אגרסיבי וחריג בהיקפו\"",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE14WVRJS1FoZ0VIclk0b3lpdG5BaTNkTGRFeTFEWFVnd3EzLTgtQ19sTDNIRERLNGhxXzdPWjkxOVpwbHgwdzZFVmFvYXJiRkV2d0NzcjFOcXZaZVVldWxhRnRuWXYtUkw1ZGU0YV94UXZ2QkU?oc=5",
-      "source": "ynet",
-      "sourceUrl": "https://www.ynet.co.il",
-      "published": "2026-11-15T11:49:20Z"
-    },
-    {
       "title": "הפועל ירושלים נגד המשטרה: \"יחס מביש לאוהדים שלנו\"",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE8xQ2FJT09vZU5BaG1LQWphNVYxSWp1YjZMNjNMSWRHazhLYkZoYkVFRTVXTFBBLWlldDhrYm9NRzJYUnFqWXVKZGJZMHFQcEVU?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNb19zcHpjSldscG51SUk1LVdNUzZBRWJscjBMOEVwa0FLN3c4bTNfLV9nWDdjTHQzcnpwU1pFVFhVMXlaOEwyNVE5ZS1XcWhRVTBWbndkSmNnaHg5ZDVFY3VDY2lEcEdtcTVTakVhN1lxX2hyaXkycEpUUTc0NnZicjYwVHdJRWxJdEZWc3NFZ1JHdw?oc=5",
+      "source": "ספורט 1",
+      "sourceUrl": "https://sport1.maariv.co.il",
       "published": "2026-11-15T10:55:34Z"
-    },
-    {
-      "title": "מהפך בכדורסל הישראלי: הפועל ירושלים פורחת - מכבי תל אביב קורסת",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPdWlCLXoxTi1sdGJMV0FtUDFFSGpfUnpubHBnRUU5UXJ6cVVSbVdqX0JVYUJfa051MkpsX1ZzRUJpYUNldmIyaUIyb0RiYU1ZZWczMUdoNXJOSFRqOW9ibF9NZTFpaE5RS0l6aGUxcmJuc0NOdDlCVzNpTXMwYS1PUm5PYVplVXY4Z0xoNFpsSDYzTVZlcmdnUEJRd9IBowFBVV95cUxQQmNWaERkclg0OU1xY0lHbld4Ry1uZUk0YWJVaU45OXVRMHlIdWYwUUxSUkNvbUh1Y2RuaW04WWgtcENVQnhYVnYwTGFLMEJKYm5zNGVSR0ZjOGRzRzVDMjYtRTRMNUh5Skt0Vk9iY0laeWQ2UVM3a1NkNXVFSUdOa0JTMWRSOEh1ejE3eXZBdUliUzdpeHVhRXJ6RkVRRlV4NmVr?oc=5",
-      "source": "כיפה",
-      "sourceUrl": "https://www.kipa.co.il",
-      "published": "2026-11-15T10:00:00Z"
-    },
-    {
-      "title": "זו פתיחת העונה הטובה ביותר בתולדות הפועל ירושלים, והציפיות ממנה בשמיים",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQbFF0a1hZdnp2eFd1ZnZsTmkyU0JYaUYzUTJqVXBCSmdyTXVmTzhnQThiLXp0aDZKSDdodjNwV1JVZXV4SC1IRU95eTFlR1EtdVZ1TU96THlrLVF3dUt5NHpXRnB6MTBlZ204RXhtNmZ2TEJTQ1BMZUphSDZDQ3pERU9qNGVVQ2NpbkxYSk9vVC1NazgweTdvQk9FZm00NDNTOGpaNkxNYzk3ekZObXEzbDVMSkJQWmlBbWhj?oc=5",
-      "source": "הארץ",
-      "sourceUrl": "https://www.haaretz.co.il",
-      "published": "2026-11-15T09:45:00Z"
     },
     {
       "title": "\"דיברתי עם מכבי תל אביב בקיץ, אבל העדפתי את הפועל ירושלים\"",
@@ -154,20 +131,6 @@
       "published": "2026-11-15T04:19:00Z"
     },
     {
-      "title": "הפועל ירושלים מאושרת ומפרגנת ליותם חנוכי, בראון צפוי להישאר עד לסיום העונה",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFAwaXhhLW1QNmIzSFRjdWEzdExUeXdCTDQ1S21WNE9wMTA0cVM2ZWJoMjlLU1ZUMURROXRmWkZEYlU2RjR1cjZwa210VXBlQjRt?oc=5",
-      "source": "וואלה ספורט",
-      "sourceUrl": "https://sports.walla.co.il",
-      "published": "2026-11-15T04:04:00Z"
-    },
-    {
-      "title": "הקלאסיקו אדום: הפועל ירושלים ניצחה 77:82 את מכבי תל אביב",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBVNmV3MWZwYi1rSjVUU2R0cHo0a01HNnBSXzZ0eXFSTmZlNlZ1U2VYU2Q1RkR4dGQ2cF9oLXNCaFJZMEtGaGpDdmNuMmsxQQ?oc=5",
-      "source": "C14",
-      "sourceUrl": "https://www.c14.co.il",
-      "published": "2026-11-14T21:22:18Z"
-    },
-    {
       "title": "מושלמת - גם אחרי הקלאסיקו: ניצחון חוץ גדול להפועל ירושלים על מכבי ת\"א",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE81LVRLTGtaOVVIM2x0SHNMWHRGSE9vbElzUUctNEpVN1pyZnladUVUM1E2eXRqTVpHYVRqZlNWaFdZb3lUa3ZjVG1aT2xXc0JvZFVvclFTNHNLRDFQbHEycjNUUnBvOW85cFBJc3hHSmlpeWs?oc=5",
       "source": "ynet",
@@ -182,11 +145,11 @@
       "published": "2026-11-14T20:59:00Z"
     },
     {
-      "title": "מכבי תל אביב התפרקה ברבע הרביעי - והפסידה 82:77 להפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9xQ1pKdThlMWpOVGNiNkNFeVZNX0lmLXZMNHdXU1FsZV9wcGwtZ0NYOW9Qc0xzbWJXSUZmY2s5RUI0QldxY3dPYVh2Z0FRRXUxdG1xSldTMXJiM0ZIazFEYUtVWnJKMlR4aTN3Qlc0QnlrZjRBODBNd3RWZw?oc=5",
-      "source": "ישראל היום",
-      "sourceUrl": "https://www.israelhayom.co.il",
-      "published": "2026-11-14T18:45:05Z"
+      "title": "מלכת הקלאץ`: המאזן המטורף של הפועל י-ם בכל רבע רביעי",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5leXcyNTRjU3RHWDJIYnFFZVplWDhDa3l6UkVDNVRJaDRua0FrV3JEZk56cVdqUlZ2X0lKNWdWem81SUYzSm5JUXJTODI1dG02MDVlV3o1YlZaQnRfY0NjaEJLa2d3anNfb0RiQm5XV1hCZw?oc=5",
+      "source": "ספורט 5",
+      "sourceUrl": "https://www.sport5.co.il",
+      "published": "2026-11-14T20:27:00Z"
     },
     {
       "title": "למרות הפציעה: ים מדר נחוש לשחק נגד הפועל ירושלים",
@@ -196,35 +159,79 @@
       "published": "2026-11-14T10:06:51Z"
     },
     {
-      "title": "דניאל תייס בבכורה בליגה במכבי ת\"א, וההפתעה שמכינה לה הפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOQ0tGSkltYU56TUg0NXM4aWNlanBlbDVHcUlQUlZhSDNoa3MyVWVqWkZVYTk5M3B0a09Ud3AyRkxhTWY4YmVsTWM0MFczWEVvTkl6OURabEdwNjdiamRLMV8zNEVNenRqQ3VhM2RNdDFaY0sxT3dUREhlX3F3SjQtQmlCOWZJaWR4am1lMi1DY2V6QQ?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-11-14T08:06:48Z"
-    },
-    {
-      "title": "דניאל תייס בסגל מכבי ת\"א לקלאסיקו, לורנזו בראון בהפועל ירושלים",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92V2hZd210R21ScjNuQVEtbEk1RHpzMmVlT0p5OUhlazhVS3FVcFRHbHJwNUs4UjZmeWFYMjJsbkZ5aEVTVFhEeW5na3pCYm1HZHJCdnZTWkNwaUJneGIxU1ZUSjYzZXdTOW9GQlZzd2hpdw?oc=5",
+      "title": "נבחרו מדי הפועל ירושלים לעונה הבאה",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Uc0ZlQXU0SUJnS3BUTjdCeHV2b2RnUjJjUEVKS2t0X2NMZG9nSmpqempCN0tTdjlpSE51eHpvSllKS0N1bGtQdklMYmhXVWFlcG1HSGZBd2s2ZXE0WjdRTzJBeG1wVnl1aUF1WWhfY2c?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-11-14T07:21:00Z"
+      "published": "2026-11-13T11:51:00Z"
     },
     {
-      "title": "מכבי תל אביב עדכנה: מצבו של ים מדר לקראת הפועל ירושלים. מה לגבי בריסט?",
-      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQc0Vvc0RKOWh4NlMxWUhYZnE5ZTVYZEdLOTVhajVQZG9ubGd6T2R0OHBCR0NhQTA2ZHVkYmsyQjBuczQ2NlhUdDdheDRSVXg4QngzUE5EdWhlelhSV2ZZZnFyS252Rml0aG1BemYxMUszNk90SExoSkdiODhJZGdFNHB0a2VWV0hDMEhiWlVkTmpKWjJUeU1abl9aTS1LOWVVWVVTLVd3WktidHpQWGdzeW1CdHo5bGs4Y1drRHd1cFFaMzVHZTRhSFAxYldHeUZ2TDJlQ3k1NVNwZnpHNHlvQ0JfNVJXX0pBTkZVQ0dTSElJR0ZidzNMdVRKNkM1VHdLdGFqZA?oc=5",
-      "source": "ספורט 1",
-      "sourceUrl": "https://sport1.maariv.co.il",
-      "published": "2026-11-13T13:05:08Z"
+      "title": "הפועל ירושלים מתכננת מהפכה בסגל, אלון נפרד: \"עשיתי את המיטב\"",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBOMFJ4QV85RUdBVW9yWmJrcExQZUQ1UUlpVXVVbHdheDRtQnNJa0Z1SzJtbjhXc2hwUmd1OFJsT1ozaFVyRklGdU5iU0ZtSWluOTdnWGFXaW5TRlJHOTJaWGcyVThMQjVfUndIV21NNUYtYmc?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-11-06T08:00:00Z"
     },
     {
-      "title": "הפועל ירושלים למען פצועי צה\"ל",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5zdnF0U0lsRTBRSEp3cWpoTzI2dXRTQWtTT3dxSTdvNUw4Uy1ZX3hPTTVqVGJWMjRIVHhyb0YyS1I1MkY1Z3BHZV9scS0yX1NWa2Ria3R0YlAzWTEyeDVlQ1YxLVZ2dHhHVV9wSUJOeGhpUQ?oc=5",
+      "title": "לופטון שולט, בראון מתעורר: הפועל ירושלים עברה עוד מבחן",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBZd0MtY0NjSVpwUjBTX2ZFZlFxQkVQTDVCb0dTcGVKbENLNTNCNV9yUHMyRElBVHpIWl8zT0ZBT0FJUXB0ZWhzZnFqc2RFdDRxdHdiZHJpMXJZWV9hSjg1bEx3V1c0ZlZVNGdSRjE0YXlWNlk?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-11-05T05:56:01Z"
+    },
+    {
+      "title": "עדיין מושלמת: ניצחון גדול להפועל ירושלים ביורוקאפ",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9lODhrcXFwM1FNRlROQUF1ZU1idDdMNWhVbm5EcU9TTkdUa3N4a2hhNnN5TF9ueUxoYWlGcC1ZZHRrMDZYUTZsM2gtblljanBY?oc=5",
+      "source": "וואלה ספורט",
+      "sourceUrl": "https://sports.walla.co.il",
+      "published": "2026-11-04T21:48:00Z"
+    },
+    {
+      "title": "\"ניצחון עצום\": אוהדי הפועל ירושלים חוגגים ברשת",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5xLUMyNlkzWmg2R0dCbUUwWXNQaExGMUVkNWNsYWYtcWNkNkN3MWJoXzZzWWFySllNYzBaLUlNY1F4T1phR1lCMUppdjlSYk02c2puc2w4UEhiUGNtVVF6MXRWT050WTNtQVd1czB1STZ3cFU?oc=5",
       "source": "ספורט 5",
       "sourceUrl": "https://www.sport5.co.il",
-      "published": "2026-11-13T12:19:36Z"
+      "published": "2026-11-04T21:30:49Z"
+    },
+    {
+      "title": "הצהרת כוונות ביורוקאפ: הפועל ירושלים מושלמת עם 73:84 על אריס",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBWSHA5QUN3dE44Z0k5b1huRDFVS3UzZ0loR3dSTWpTb0xLWXA5VEJkM1lZemZnTV9Vanl0UEVuLXZHYmw1Y0w3WFRPN01tVDFMelB2RFFqZ0JKM1g5ZENMeVd2aUpibGhjeldDNkJ4VHF1RVRYNXRtc2Nkbw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-11-04T21:16:11Z"
+    },
+    {
+      "title": "שש משש: הפועל ירושלים גברה על אריס סלוניקי",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1fYUlzNmFjRmotU1o4WjRpU0paNjJ6cXA4T1c4QmVpeDAzWXR5aU1RaElwTklKUmhWQzZfMzQxV2NRamJiR0lCNVE2cUdvdHF5ZFAyRkpydW1kdw?oc=5",
+      "source": "ynet",
+      "sourceUrl": "https://www.ynet.co.il",
+      "published": "2026-11-04T19:07:13Z"
+    },
+    {
+      "title": "ואסיליס ספאנוליס בירך את הפועל ירושלים - ואז הגיעה העקיצה",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE0xc1NUY0hpcW14TlJBVUw4ODVkZ1VUcmlwOWRLai1PdUJRSVdmd3pGSmFYbnE1VlhJcTdLemlrN3ZkWmlZMXNVTDZ3d3NZbHBxTHZiSVpicDh2TTRGN1JwQzdCYW9xNW9WRUxHckNsaGlodUliMWFROFFlOA?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-11-04T19:04:00Z"
+    },
+    {
+      "title": "\"לא אעזוב את הפועל ירושלים, תפקידי להוכיח שאני ראוי לשחק\"",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE15b09OeTFhRS01bEp2bWFVRW5iZXMwVExWaVZjalFHWERaSEZJUmF4T2hpLVl5N3NHbXB0WVpLOEF0cjFuc0dHRTd1QmFxTnVNRGxIVnI5ak1VZk9yUXhFTG9jbzB0ZWRMYWdGaW5kcURUaWtCaU5TV2V5cw?oc=5",
+      "source": "ישראל היום",
+      "sourceUrl": "https://www.israelhayom.co.il",
+      "published": "2026-11-04T15:56:14Z"
     }
   ],
   "seen": {
+    "אירופהאדומההאםהפועלירושליםבדרךלעונההיסטורית": "2026-11-18T08:19:25Z",
+    "מרגישטובנמרודלויהפךלאקספקטורשלהפועלירושלים": "2026-11-18T05:44:42Z",
+    "צפולופטוןונמרודלויסחפואתהפועלירושליםלניצחוןעלרוסטוק": "2026-11-17T21:47:06Z",
+    "הספירהנמשכתניצחון14ברציפותלהפועלירושלים": "2026-11-17T21:13:36Z",
+    "לופטוןגוניורונמרודלויהשאירואתהפועלירושליםמושלמת": "2026-11-17T21:00:00Z",
+    "עדייןמושלמתהפועליםניצחה8091אתרוסטוק": "2026-11-17T20:21:06Z",
+    "מכונהרציניתהפועלירושליםגורפתמחמאותברחביאירופה": "2026-11-17T16:12:00Z",
+    "הפועלירושליםלמהההצלחההכלכליתמצדיקההעלאתשכר": "2026-11-17T12:36:57Z",
+    "המשוכההבאהבדרךהפועלירושליםרוצהלהישארמושלמת": "2026-11-17T12:11:18Z",
     "קנילופטוןיחזורלעצמוהפועלירושליםתתארחברוסטוק": "2026-11-16T09:34:00Z",
     "כךהפועלירושליםהפכהלקבוצההטובהביותרבכדורסלהישראלי": "2026-11-16T08:12:52Z",
     "חשששלאיוכלללכתולדברדיווחמצבושלכוכבהעברשלהפועלירושלים": "2026-11-15T17:25:37Z",
@@ -233,10 +240,12 @@
     "הפועלירושליםנגדהמשטרהיחסמבישלאוהדיםשלנו": "2026-11-15T10:55:34Z",
     "הפועליםנגדהמשטרהנדהמנומהיחסהמבישלקהל": "2026-11-15T10:55:25Z",
     "הפועלירושליםבמתקפהחריפהיחסמביששלהמשטרה": "2026-11-15T10:31:57Z",
+    "מהפךבכדורסלהישראליהפועלירושליםפורחתמכביתלאביבקורסת": "2026-11-15T10:00:00Z",
     "זופתיחתהעונההטובהביותרבתולדותהפועלירושליםוהציפיותממנהבשמיים": "2026-11-15T09:45:00Z",
     "דיברתיעםמכביתלאביבבקיץאבלהעדפתיאתהפועלירושלים": "2026-11-15T09:00:28Z",
     "סליחהמכביאבלהפועלירושליםהיאהקבוצההטובהבישראל": "2026-11-15T07:35:53Z",
     "מהלךשלעונהשלמההפועלירושליםעומדתבפניהחלטהגורלית": "2026-11-15T06:13:57Z",
+    "גוברתההערכהלורנזובראוןיסייםאתהעונהבהפועלירושלים": "2026-11-15T04:19:00Z",
     "הפועלירושליםמאושרתומפרגנתליותםחנוכיבראוןצפוילהישארעדלסיוםהעונה": "2026-11-15T04:04:00Z",
     "הקלאסיקואדוםהפועלירושליםניצחה7782אתמכביתלאביב": "2026-11-14T21:22:18Z",
     "מושלמתגםאחריהקלאסיקוניצחוןחוץגדוללהפועלירושליםעלמכביתא": "2026-11-14T20:59:41Z",
@@ -415,22 +424,6 @@
     "הספיקהלהתאוששהפועלירושליםגברהעללובליאנה": "2026-10-06T16:30:31Z",
     "סיקורמשחקהפועלירושליםנגדאולימפיהלובליאנה": "2026-10-06T15:11:35Z",
     "הפועלתאוהפועלירושליםיחכוהיורוליגטרםהחליטהעלהרישיונותהחדשים": "2026-10-06T12:53:00Z",
-    "אחריהחתמתקייקוקדיווחהפועלירושליםקרובהלצירוףסנטרנוסף": "2026-10-06T11:59:25Z",
-    "לאנספרהירידהבמעמדושלרועיהוברבהפועלירושלים": "2026-10-06T07:12:36Z",
-    "אלובליאנהנגדהפועלירושליםיורוקאפמחזור1": "2026-10-06T06:30:00Z",
-    "יוםגורליהתרחישיםלעתידהפועלתלאביבוהפועלירושלים": "2026-10-06T03:25:09Z",
-    "בשלהאבוקותהקנסשדורשהתובעשיוטלעלהפועלירושלים": "2026-10-05T17:26:07Z",
-    "היורוליגתחתלחץשיתוףהפעולהביןמכביתלאביבלהפועלירושלים": "2026-10-05T15:53:14Z",
-    "הפועלירושליםתנסהלהתאוששבלובליאנהבראוןצפוילשחק": "2026-10-05T13:28:00Z",
-    "הפועלירושליםלחיפהלאנכנסיםלשיקוליםשלהם": "2026-10-05T12:01:55Z",
-    "זוחוויהטובהמאודשחקןהפועלירושליםהפתיעאחריההפסדלמכביתא": "2026-10-05T06:23:33Z",
-    "מכביתאעלתהלגמרגביעווינרעם7188עלהפועלים": "2026-10-04T18:59:44Z",
-    "מכביתאניצחהאתהפועלירושליםותפגושאתהפועלתאבגמרגביעווינר": "2026-10-04T18:14:00Z",
-    "מכביתאניצחהאתהפועליםוהעפילהלגמר": "2026-10-04T18:13:00Z",
-    "חוזרתלקצבמכביתאהביסה7188אתהפועלים": "2026-10-04T18:10:26Z",
-    "ישדרביבגמרמכביתלאביבניצחה7188אתהפועלירושלים": "2026-10-04T18:02:00Z",
-    "ישדרביבגמרמכביתאניצחהאתהפועלירושלים7188בחציגמרגביעווינר": "2026-10-04T18:00:03Z",
-    "לגביעווינרחוקיםמשלומכביתלאביבהביסהאתהפועלירושלים": "2026-10-04T17:59:00Z",
-    "מכביתלאביבניצחה7188אתהפועלירושליםועלתהלגמרגביעווינר": "2026-10-04T15:51:25Z"
+    "אחריהחתמתקייקוקדיווחהפועלירושליםקרובהלצירוףסנטרנוסף": "2026-10-06T11:59:25Z"
   }
 }
