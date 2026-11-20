@@ -5,10 +5,10 @@
     {
       "pos": 1,
       "team": "הפועל י-ם",
-      "played": 6,
-      "wins": 6,
+      "played": 7,
+      "wins": 7,
       "losses": 0,
-      "points": 12
+      "points": 14
     },
     {
       "pos": 2,
@@ -36,6 +36,14 @@
     },
     {
       "pos": 5,
+      "team": "מכבי אשדוד",
+      "played": 7,
+      "wins": 3,
+      "losses": 4,
+      "points": 10
+    },
+    {
+      "pos": 6,
       "team": "הפועל ת\"א",
       "played": 5,
       "wins": 4,
@@ -43,16 +51,8 @@
       "points": 9
     },
     {
-      "pos": 6,
-      "team": "הפועל אילת",
-      "played": 6,
-      "wins": 3,
-      "losses": 3,
-      "points": 9
-    },
-    {
       "pos": 7,
-      "team": "מכבי אשדוד",
+      "team": "הפועל אילת",
       "played": 6,
       "wins": 3,
       "losses": 3,

@@ -376,9 +376,9 @@
       "home": "הפועל ירושלים",
       "away": "מכבי אשדוד",
       "venue": "פיס ארנה, ירושלים",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
+      "status": "finished",
+      "homeScore": 92,
+      "awayScore": 68,
       "broadcast": {
         "channel": "5SPORT"
       }
