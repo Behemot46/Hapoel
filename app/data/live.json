@@ -1,5 +1,9 @@
 {
-  "state": "playing",
+  "state": "final",
+  "home": 92,
+  "away": 68,
+  "ourScore": 92,
+  "theirScore": 68,
   "game": {
     "gameId": "20261120-מכביאשדוד",
     "competition": "ליגת Winner סל, מחזור 7",
@@ -8,5 +12,5 @@
     "date": "2026-11-20T13:00:00+02:00",
     "venue": "פיס ארנה, ירושלים"
   },
-  "updated": "2026-11-20T12:40:58+00:00"
+  "updated": "2026-11-20T12:46:02+00:00"
 }
