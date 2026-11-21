@@ -144,6 +144,36 @@ def check_eurocup(fail):
         fail.append("שורת הסה\"כ האירופית לקחה דקות מהפיד, וזה אורך המשחק")
 
 
+def check_unfilled_form(fail):
+    """הטופס של מכבי אשדוד, 20.11.2026, כפי שנשמר: אפסים ליד 92-68.
+
+    הקבוצות והתוצאה הן מה שנמדד באותו יום. אתר הליגה הגיש עמוד טופס שכל
+    השורות בו אפס, והוא נשמר כי אפס מאוזן מול אפס. אחר כך אותו עמוד הגיש
+    92-68, ורק טופס כזה מחזיק את התוצאה של הלוח.
+    """
+    print("\nטופס שעוד לא מולא לא נחשב טופס:")
+    game = {"home": "הפועל ירושלים", "away": "מכבי אשדוד",
+            "homeScore": 92, "awayScore": 68}
+    empty = {"teams": [{"name": "הפועל מידטאון ירושלים", "us": True, "score": 0},
+                       {"name": "מכבי רוטשטיין אשדוד", "us": False, "score": 0}]}
+    filled = {"teams": [{"name": "הפועל מידטאון ירושלים", "us": True, "score": 92},
+                        {"name": "מכבי רוטשטיין אשדוד", "us": False, "score": 68}]}
+    flipped = {"teams": [{"name": "הפועל מידטאון ירושלים", "us": True, "score": 68},
+                         {"name": "מכבי רוטשטיין אשדוד", "us": False, "score": 92}]}
+    away = dict(game, home="מכבי אשדוד", away="הפועל ירושלים",
+                homeScore=68, awayScore=92)
+    cases = [("טופס של אפסים", empty, game, False),
+             ("הטופס המלא", filled, game, True),
+             ("תוצאה הפוכה", flipped, game, False),
+             ("אותה תוצאה כשאנחנו בחוץ", filled, away, True),
+             ("משחק בלי תוצאה בלוח", empty, dict(game, homeScore=None), True)]
+    for what, form, g, want in cases:
+        got = gs.form_matches(form, g)
+        print(f"  {what}: {'תקין' if got == want else 'נשבר'}")
+        if got != want:
+            fail.append(f"form_matches על {what} החזיר {got} ולא {want}")
+
+
 def main():
     fail = []
 
@@ -230,6 +260,7 @@ def main():
             fail.append(f"שינוי ב{what} של שחקן לא נתפס באימות")
 
     check_eurocup(fail)
+    check_unfilled_form(fail)
 
     print("\nכותרת שהשתנתה מפילה את הפרסר:")
     moved = [list(r) for r in US]

@@ -482,6 +482,28 @@ COMMENT = (
 )
 
 
+def form_matches(form, g):
+    """האם הטופס מחזיק את התוצאה שבלוח, שלנו מול שלהם.
+
+    **טופס שמאוזן מול עצמו עוד לא בהכרח מולא.** נמדד ב־20.11.2026 מול
+    מכבי אשדוד: אתר הליגה הגיש את עמוד הטופס ב־12:45 UTC, כשהלוח כבר
+    החזיק 92-68, אבל כל השורות בו היו אפסים. אפס שווה לאפס, ולכן הטופס
+    עבר את verify, נשמר, ומאז כל ריצה אמרה ״אין חדש״ ואף אחד לא ביקש
+    אותו שוב, והאוהד ראה טופס ריק. טופס שהנקודות בו אינן התוצאה של הלוח
+    הוא טופס שעוד לא מולא, ומבקשים אותו שוב בריצה הבאה.
+    """
+    hs, as_ = g.get("homeScore"), g.get("awayScore")
+    if hs is None or as_ is None:
+        return True
+    ours = (hs, as_) if is_us(g.get("home")) else (as_, hs)
+    teams = form.get("teams") or []
+    mine = [t.get("score") for t in teams if t.get("us")]
+    theirs = [t.get("score") for t in teams if not t.get("us")]
+    if len(mine) != 1 or len(theirs) != 1:
+        return False
+    return (mine[0], theirs[0]) == ours
+
+
 def update_game_stats():
     """אוסף טופס לכל משחק רשמי שנגמר ואין לו עדיין אחד."""
     sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -508,6 +530,15 @@ def update_game_stats():
         log("פיד היורוקאפ לא נענה:", e)
     log(f"{len(euro)} משחקי יורוקאפ שנגמרו בפיד")
 
+    # טופס שנשמר ולא מחזיק את התוצאה של הלוח יוצא מהקובץ ונאסף מחדש (ראו
+    # form_matches). גם אם האיסוף נכשל שוב, עדיף לאוהד בלי טופס מאשר טופס
+    # של אפסים ליד תוצאה של 92-68.
+    stale = [g["id"] for g in games
+             if g["id"] in done and not form_matches(done[g["id"]], g)]
+    for gid in stale:
+        log(f"  {gid}: הטופס השמור לא מחזיק את התוצאה של הלוח, נאסף מחדש")
+        del done[gid]
+
     todo = []
     for g in games:
         day = g["date"][:10]
@@ -519,7 +550,7 @@ def update_game_stats():
             todo.append((g, "league", ids[day]))
         elif day in euro:
             todo.append((g, "euro", euro[day]))
-    if not todo:
+    if not todo and not stale:
         log("אין טופס חדש לאסוף")
         return f"{len(done)} טפסים, אין חדש"
 
@@ -543,6 +574,11 @@ def update_game_stats():
             failed += 1
             log(f"  {g['id']}: {e}")
             continue
+        if not form_matches(built, g):
+            failed += 1
+            got = " · ".join(f"{t['name']} {t['score']}" for t in built["teams"])
+            log(f"  {g['id']}: הטופס עוד לא מולא ({got}), ננסה בריצה הבאה")
+            continue
         built.update({
             "date": g["date"],
             "competition": g.get("competition") or "",
@@ -560,7 +596,7 @@ def update_game_stats():
         score = " · ".join(f"{t['name']} {t['score']}" for t in built["teams"])
         log(f"  נאסף: {g['id']} · {score}")
 
-    if not added:
+    if not added and not stale:
         raise RuntimeError(f"{failed} טפסים נכשלו ואף אחד לא נאסף")
     payload = {
         "_comment": COMMENT,
@@ -571,7 +607,10 @@ def update_game_stats():
     (DATA / OUT).write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     log(f"נכתב {OUT}: {added} חדשים, {len(done)} בסך הכול"
-        + (f", {failed} נכשלו" if failed else ""))
+        + (f", {failed} נכשלו" if failed else "")
+        + (f", {len(stale)} ריקים הוסרו" if stale else ""))
+    if stale and not added:
+        return f"{len(stale)} טפסים ריקים הוסרו ויאספו שוב, {len(done)} בסך הכול"
     return f"{added} טפסים חדשים, {len(done)} בסך הכול"
 
 
