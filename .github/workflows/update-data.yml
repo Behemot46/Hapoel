@@ -46,6 +46,10 @@ on:
         description: 'כמה דקות להישאר בלולאה (ברירת מחדל 330)'
         required: false
         default: '330'
+      chain:
+        description: 'משמרת שזומנה ממשמרת קודמת, ולכן לא אוספת מיד (1)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -143,7 +147,12 @@ jobs:
           # היחיד לתקן נתון עכשיו הוא להמתין. נמדד ב־11.9.2026: אחרי
           # שנוסף שדה השידור לא הייתה שום דרך להביא אותו לאתר במשך 2.6
           # שעות.
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          #
+          # **משמרת שזומנה ממשמרת קודמת (chain) אינה הרצה ידנית**, ולכן
+          # היא קוראת את הזמן מ־meta.json כמו סלוט מתוזמן. אחרת כל שרשור
+          # היה מוסיף איסוף, וכל איסוף הוא דיפלוי.
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] \
+             && [ "${{ inputs.chain }}" != "1" ]; then
             echo "הרצה ידנית, אוספים מיד."
             last_collect=0
           else
@@ -255,6 +264,51 @@ jobs:
             gh workflow run live.yml --ref main -R "$GITHUB_REPOSITORY" || true
           }
 
+          # **משמרת שנגמרת כשמשחק בדרך מזמנת את הבאה בעצמה, ולא סומכת על
+          # סלוט.** נמדד ב־20.11.2026, המשחק מול מכבי אשדוד בצהריים (קפיצה
+          # ב־11:00 UTC): המשמרת של הלילה נגמרה ב־03:01, ומארבעת הסלוטים
+          # שאחריה (03:23, 05:23, 07:23, 09:23) אף אחד לא נורה. גם אף אחד
+          # משנים־עשר הסלוטים של הפולר בין 09:07 ל־11:37 לא נורה. הסלוט של
+          # 11:23 נורה ב־11:54, ורק אז הפולר הופעל, **והכרטיס החי הופיע
+          # 55 דקות אחרי הקפיצה.** סלוטים נופלים יחד, ולכן הפתרון הוא לא
+          # עוד סלוט אלא שרשרת: המשמרת מזמנת את הבאה, וה־concurrency
+          # מעמיד אותה בתור עד שזו יוצאת.
+          #
+          # החלון: משחק שלא הסתיים, שמתחיל בתוך 12 השעות הקרובות או שהתחיל
+          # לפני פחות מ־9 שעות (כמו AFTER של collect_every, כי עד אז
+          # התוצאה עוד יכולה להיות בדרך). מחוץ לחלון, יום רגוע, והסלוטים
+          # מספיקים. המשמרת המשורשרת לא אוספת מיד (chain), ולכן השרשרת
+          # לא מוסיפה דיפלויים, רק דקות Actions, שבריפו ציבורי חינמיות.
+          chain_next_shift_if_game_is_coming() {
+            local coming
+            coming=$(python - <<'PY'
+          import datetime, json, pathlib
+          AHEAD = datetime.timedelta(hours=12)
+          BEHIND = datetime.timedelta(hours=9)
+          now = datetime.datetime.now(datetime.timezone.utc)
+          games = json.loads(pathlib.Path("app/data/games.json").read_text(
+              encoding="utf-8")).get("games") or []
+          for g in games:
+              if g.get("status") == "finished" or g.get("timeTbd"):
+                  continue
+              try:
+                  start = datetime.datetime.fromisoformat(g["date"])
+              except Exception:
+                  continue
+              if now - BEHIND <= start <= now + AHEAD:
+                  print(f"{g['id']} {g['date']}")
+                  break
+          PY
+          )
+            if [ -z "$coming" ]; then
+              echo "אין משחק בחלון, המשמרת הבאה תחכה לסלוט."
+              return 0
+            fi
+            echo "משחק בחלון ($coming), מזמנים את המשמרת הבאה."
+            gh workflow run update-data.yml --ref main -R "$GITHUB_REPOSITORY" \
+              -f chain=1 || echo "זימון המשמרת הבאה נכשל." >&2
+          }
+
           # ״יום רגוע״ או ״סביב משחק״. לא מדלגים כאן על משחק שכבר הסתיים,
           # כי דווקא אז יש מה לאסוף: התוצאה.
           collect_every() {
@@ -315,6 +369,7 @@ jobs:
             left=$(( DEADLINE - now ))
             if [ "$left" -le "$POKE_EVERY" ]; then
               echo "המשמרת נגמרה."
+              chain_next_shift_if_game_is_coming
               break
             fi
             sleep "$POKE_EVERY"
