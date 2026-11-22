@@ -441,7 +441,7 @@
     },
     {
       "id": "20261220-מכבירמתגן",
-      "date": "2026-12-20T12:00:00+02:00",
+      "date": "2026-12-20T20:55:00+02:00",
       "competition": "ליגת Winner סל, מחזור 10",
       "home": "הפועל ירושלים",
       "away": "מכבי רמת גן",
@@ -449,9 +449,6 @@
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true,
       "broadcast": {
         "pending": true
       }
@@ -472,7 +469,7 @@
     },
     {
       "id": "20261227-קרייתאתא",
-      "date": "2026-12-27T12:00:00+02:00",
+      "date": "2026-12-27T20:15:00+02:00",
       "competition": "ליגת Winner סל, מחזור 11",
       "home": "הפועל ירושלים",
       "away": "קריית אתא",
@@ -480,9 +477,6 @@
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "note": "המועד לא סופי, והשעה טרם נקבעה",
-      "timeTbd": true,
-      "provisional": true,
       "broadcast": {
         "pending": true
       }

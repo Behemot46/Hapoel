@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T11:41:23Z",
+  "updated": "2026-11-22T22:44:17Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -28,7 +28,7 @@
       "title": "שוט",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "latest": "2026-11-15T00:16:00Z"
+      "latest": "2026-11-22T18:06:00Z"
     },
     {
       "id": "1698308776",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1675729649",
+      "show": "שוט",
+      "about": "league",
+      "title": "הגיע הזמן לדבר על קטש? ירושלים מושלמת, האדישות בהפועל ת\"א | שוט, פרק 207",
+      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
+      "published": "2026-11-22T18:06:00Z",
+      "duration": 5012
+    },
     {
       "showId": "1623083958",
       "show": "ספיק נ׳ רול",
@@ -180,15 +189,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/104-e3ricpg",
       "published": "2026-11-02T04:00:00Z",
       "duration": 2940
-    },
-    {
-      "showId": "1675729649",
-      "show": "שוט",
-      "about": "league",
-      "title": "נוקאאוט אדום, כאוס בצהוב: הדרבי התל אביבי אדום, מתכוננים לסלוניקי | שוט, פרק 203",
-      "url": "https://podcasts.apple.com/us/podcast/%D7%A9%D7%95%D7%98/id1675729649?uo=4",
-      "published": "2026-11-02T01:09:00Z",
-      "duration": 5457
     },
     {
       "showId": "6820447951",
