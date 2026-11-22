@@ -25,8 +25,10 @@
       "born": 1997,
       "country": "ארה״ב",
       "code": "011970",
-      "source": "eurocup",
-      "nameHe": "ג׳ארד הארפר",
+      "nameHe": "ג'ארד הארפר",
+      "birthDate": "1997-09-14",
+      "clubId": "26038",
+      "source": "club+eurocup",
       "slug": "jared-harper",
       "photo": "img/players/jared-harper.jpg"
     },
