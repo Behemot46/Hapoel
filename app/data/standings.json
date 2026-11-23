@@ -20,14 +20,6 @@
     },
     {
       "pos": 3,
-      "team": "הפועל ת\"א",
-      "played": 6,
-      "wins": 5,
-      "losses": 1,
-      "points": 11
-    },
-    {
-      "pos": 4,
       "team": "נס ציונה",
       "played": 7,
       "wins": 4,
@@ -35,7 +27,7 @@
       "points": 11
     },
     {
-      "pos": 5,
+      "pos": 4,
       "team": "גליל עליון",
       "played": 7,
       "wins": 4,
@@ -43,11 +35,19 @@
       "points": 11
     },
     {
-      "pos": 6,
+      "pos": 5,
       "team": "מכבי רמת גן",
       "played": 7,
       "wins": 4,
       "losses": 3,
+      "points": 11
+    },
+    {
+      "pos": 6,
+      "team": "הפועל ת\"א",
+      "played": 6,
+      "wins": 5,
+      "losses": 1,
       "points": 11
     },
     {
