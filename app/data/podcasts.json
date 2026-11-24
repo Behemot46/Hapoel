@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T01:01:43Z",
+  "updated": "2026-11-24T13:58:21Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -7,7 +7,7 @@
       "title": "כיפה אדומה",
       "about": "team",
       "url": "https://podcasts.apple.com/us/podcast/%D7%9B%D7%99%D7%A4%D7%94-%D7%90%D7%93%D7%95%D7%9E%D7%94/id1573775015?uo=4",
-      "latest": "2026-11-16T04:59:39Z"
+      "latest": "2026-11-24T09:24:25Z"
     },
     {
       "id": "6820447951",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1573775015",
+      "show": "כיפה אדומה",
+      "about": "team",
+      "title": "פרק 106: בית חדש, מסורת ישנה",
+      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/106-e3su317",
+      "published": "2026-11-24T09:24:25Z",
+      "duration": 3998
+    },
     {
       "showId": "1648115499",
       "show": "אנחנו במפה",
@@ -252,15 +261,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3r4d07",
       "published": "2026-10-26T16:10:23Z",
       "duration": 6633
-    },
-    {
-      "showId": "1573775015",
-      "show": "כיפה אדומה",
-      "about": "team",
-      "title": "פרק 102: מגבירים קצב",
-      "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/102-e3qaam2",
-      "published": "2026-10-11T03:00:00Z",
-      "duration": 3686
     }
   ]
 }
