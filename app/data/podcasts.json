@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T13:15:43Z",
+  "updated": "2026-11-24T01:01:43Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -42,10 +42,19 @@
       "title": "אנחנו במפה",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%90%D7%A0%D7%97%D7%A0%D7%95-%D7%91%D7%9E%D7%A4%D7%94-%D7%94%D7%9B%D7%9C-%D7%A2%D7%9C-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%95%D7%AA-%D7%91%D7%90%D7%99%D7%A8%D7%95%D7%A4%D7%94/id1648115499?uo=4",
-      "latest": "2026-11-16T18:39:03Z"
+      "latest": "2026-11-23T16:37:14Z"
     }
   ],
   "items": [
+    {
+      "showId": "1648115499",
+      "show": "אנחנו במפה",
+      "about": "league",
+      "title": "מחלפים עונתיים",
+      "url": "https://rss.com/podcasts/we-are-on-the-map/3345771",
+      "published": "2026-11-23T16:37:14Z",
+      "duration": 4045
+    },
     {
       "showId": "6820447951",
       "show": "מאחורי הסלים - פודקאסט אוהדי הפועל ירושלים כדורסל",
@@ -243,15 +252,6 @@
       "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3r4d07",
       "published": "2026-10-26T16:10:23Z",
       "duration": 6633
-    },
-    {
-      "showId": "1648115499",
-      "show": "אנחנו במפה",
-      "about": "league",
-      "title": "מפנטזים באירופה",
-      "url": "https://rss.com/podcasts/we-are-on-the-map/3262573",
-      "published": "2026-10-25T06:20:37Z",
-      "duration": 5817
     },
     {
       "showId": "1573775015",
