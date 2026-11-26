@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T00:17:35Z",
+  "updated": "2026-11-26T12:53:14Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -35,7 +35,7 @@
       "title": "דאבל דריבל",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%93%D7%90%D7%91%D7%9C-%D7%93%D7%A8%D7%99%D7%91%D7%9C/id1698308776?uo=4",
-      "latest": "2026-11-15T16:40:49Z"
+      "latest": "2026-11-26T11:32:31Z"
     },
     {
       "id": "1648115499",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1698308776",
+      "show": "דאבל דריבל",
+      "about": "league",
+      "title": "כל אחד רוצה | אבדיה מנצח את וומבי, הפועל מאבדת שליטה, סורקין מעיר את מכבי והנבחרת מחכה לננו",
+      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3t2dr7",
+      "published": "2026-11-26T11:32:31Z",
+      "duration": 4666
+    },
     {
       "showId": "1623083958",
       "show": "ספיק נ׳ רול",
@@ -252,15 +261,6 @@
       "url": "https://podcasters.spotify.com/pod/show/kipa-aduma/episodes/103-e3r4sbd",
       "published": "2026-10-27T04:00:00Z",
       "duration": 4477
-    },
-    {
-      "showId": "1698308776",
-      "show": "דאבל דריבל",
-      "about": "league",
-      "title": "עניין של זהות | ירושלים מושלמת, שתי הפנים של הפועל, הצרות של מכבי ועמוס פרישמן באולפן",
-      "url": "https://podcasters.spotify.com/pod/show/walla-sport/episodes/ep-e3r4d07",
-      "published": "2026-10-26T16:10:23Z",
-      "duration": 6633
     }
   ]
 }
