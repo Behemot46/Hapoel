@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25T13:12:43Z",
+  "updated": "2026-11-26T00:17:35Z",
   "note": "פרקים אחרונים מפודקאסטים על הפועל ועל הכדורסל הישראלי. לחיצה על פרק פותחת אותו אצל מי שהקליט.",
   "shows": [
     {
@@ -21,7 +21,7 @@
       "title": "ספיק נ׳ רול",
       "about": "league",
       "url": "https://podcasts.apple.com/us/podcast/%D7%A1%D7%A4%D7%99%D7%A7-%D7%A0-%D7%A8%D7%95%D7%9C-%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98-%D7%9B%D7%93%D7%95%D7%A8%D7%A1%D7%9C-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99/id1623083958?uo=4",
-      "latest": "2026-11-18T11:18:56Z"
+      "latest": "2026-11-25T23:37:42Z"
     },
     {
       "id": "1675729649",
@@ -46,6 +46,15 @@
     }
   ],
   "items": [
+    {
+      "showId": "1623083958",
+      "show": "ספיק נ׳ רול",
+      "about": "league",
+      "title": "הישראליות ביורוליג, הפגרה בליגה ומצב הנבחרת",
+      "url": "https://omny.fm/shows/speaknrolisrael/87c28e0e-1014-4128-8d2a-b50d0183d78d",
+      "published": "2026-11-25T23:37:42Z",
+      "duration": 5054
+    },
     {
       "showId": "1573775015",
       "show": "כיפה אדומה",
@@ -234,15 +243,6 @@
       "url": "https://rss.com/podcasts/we-are-on-the-map/3284184",
       "published": "2026-11-01T10:45:20Z",
       "duration": 4590
-    },
-    {
-      "showId": "1623083958",
-      "show": "ספיק נ׳ רול",
-      "about": "league",
-      "title": "שתי הפנים של הפועל ת\"א",
-      "url": "https://omny.fm/shows/speaknrolisrael/786a6320-7f51-45e9-bf8a-b4f200a89307",
-      "published": "2026-10-29T10:20:35Z",
-      "duration": 4543
     },
     {
       "showId": "1573775015",
