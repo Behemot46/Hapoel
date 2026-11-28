@@ -35,6 +35,65 @@ def run_at(t, tmp):
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
 
 
+# התשובה האמיתית של ה־API הישן למשחק בטורטונה (gamecode 99) אחרי הסיום,
+# כפי שהוא מחזיר אותה מאז 11.11.2026, בשדות שהקריאה משתמשת בהם.
+TORTONA_FINAL = {
+    "CodeTeamA": "TRT", "CodeTeamB": "JER", "ScoreA": "77", "ScoreB": "91",
+    "Live": False, "GameTime": "40:00", "RemainingPartialTime": "00:00",
+    "Quarter": "",
+    "ScoreQuarter1A": 25, "ScoreQuarter1B": 25, "ScoreQuarter2A": 50,
+    "ScoreQuarter2B": 48, "ScoreQuarter3A": 68, "ScoreQuarter3B": 69,
+    "ScoreQuarter4A": 77, "ScoreQuarter4B": 91,
+}
+# ומה שנמדד באמצע אותו משחק, בדגימה של 20:21 UTC. רק השדות שנרשמו אז.
+TORTONA_Q4 = {"CodeTeamA": "TRT", "CodeTeamB": "JER", "ScoreA": "71",
+              "ScoreB": "82", "Live": True, "GameTime": "36:00",
+              "RemainingPartialTime": "03:39"}
+
+
+def check_header_shadow(fail):
+    print("\nה־API הישן בצל: הקריאה מהצד שלנו, ובלי ליפול:")
+    final = ul.header_reading(TORTONA_FINAL)
+    want = (False, 91, 77, [25, 48, 69, 91], [25, 50, 68, 77])
+    got = final and (final["live"], final["ours"], final["theirs"],
+                     final["cumulative"]["us"], final["cumulative"]["them"])
+    print(f"   טורטונה בסוף: {got}")
+    if got != want:
+        fail.append(f"הקריאה של הסיום בטורטונה יצאה {got} ולא {want}")
+    mid = ul.header_reading(TORTONA_Q4)
+    got = mid and (mid["live"], mid["ours"], mid["theirs"], mid["gameTime"])
+    print(f"   טורטונה ברבע הרביעי: {got}")
+    if got != (True, 82, 71, "36:00"):
+        fail.append(f"הקריאה באמצע המשחק יצאה {got}")
+    # הצדדים לפי הקוד ולא לפי המיקום: אותה תשובה כשאנחנו A
+    flipped = {k.replace("A", "#").replace("B", "A").replace("#", "B")
+               if k.startswith(("CodeTeam", "Score")) else k: v
+               for k, v in TORTONA_FINAL.items()}
+    got = ul.header_reading(flipped)
+    if not got or (got["ours"], got["theirs"]) != (91, 77):
+        fail.append("כשאנחנו בצד A הקריאה לא מצאה את התוצאה שלנו")
+    for label, h in (("בלי JER", dict(TORTONA_FINAL, CodeTeamB="ARI")),
+                     ("JER בשני הצדדים", dict(TORTONA_FINAL, CodeTeamA="JER")),
+                     ("תוצאה ריקה", dict(TORTONA_FINAL, ScoreB="")),
+                     ("תשובה שאינה JSON", "<html>")):
+        if ul.header_reading(h) is not None:
+            fail.append(f"{label}: הקריאה החזירה משהו במקום None")
+    # **הצל לא מפיל את הדגימה**, גם כשהבקשה עצמה נופלת
+    saved_get, saved_log = ul.requests.get, ul.log
+    def boom(*a, **k):
+        raise ConnectionError("הרשת נפלה")
+    ul.requests.get, ul.log = boom, lambda *a: None
+    try:
+        if ul.shadow_header({"gameCode": 99}) is not None:
+            fail.append("בקשה שנפלה החזירה קריאה")
+        if ul.shadow_header({}) is not None:
+            fail.append("פריט בלי gameCode החזיר קריאה")
+    except Exception as e:
+        fail.append(f"הצל הפיל את הדגימה: {type(e).__name__}")
+    finally:
+        ul.requests.get, ul.log = saved_get, saved_log
+
+
 def main():
     fail = []
     with tempfile.TemporaryDirectory() as d:
@@ -239,6 +298,8 @@ def main():
         loop = yml[yml.find("while ["):]
         if not (0 <= loop.find("git pull") < loop.find("python scripts/update_live.py")):
             fail.append("הלולאה ב־live.yml לא מושכת את main לפני הדגימה")
+
+    check_header_shadow(fail)
 
     if fail:
         print(f"{len(fail)} כשלים:")

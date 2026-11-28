@@ -481,7 +481,9 @@ function liveCard(live) {
   } else if (live.state === "starting") {
     c.appendChild(text("div", "live-when", "רגע לפני הקפיצה"));
   } else {
-    // a domestic game: we know it is being played, we have no feed for it
+    // we know from the clock that it is being played, and have no score for
+    // it: a league game has no live feed at all, and the EuroCup feed stays
+    // at 0-0 until the league closes the game (measured 11.11.2026)
     c.appendChild(text("div", "live-when", "המשחק מתנהל · אין הזנת תוצאות חיה"));
   }
 
