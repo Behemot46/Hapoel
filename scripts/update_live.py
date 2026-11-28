@@ -166,6 +166,70 @@ def finished_snapshot(game):
             "theirScore": int(as_) if we_home else int(hs)}
 
 
+# **ה־API החי הישן של היורוליג, בצל בלבד.** נמדד מול טורטונה ב־11.11.2026:
+# זה המקור היחיד שהחזיק תוצאה חיה, כש־v2 החזיר 0-0 עד שהליגה סגרה את
+# המשחק, וברוסטוק ב־17.11 v2 נסגר כ־45 דקות אחרי הסוף. מה שעוד לא נמדד:
+# מתי הוא מתחיל להראות תוצאה ומה הוא מחזיר לפני הקפיצה. לכן בשלב הזה
+# הפולר רק רושם בלוג מה הוא אומר, **ולא כותב ממנו כלום ל־live.json**. אחרי
+# שהלוג של משחק שלם נקרא, מחליטים אם ואיך להשתמש בו.
+HEADER_URL = "https://live.euroleague.net/api/Header?gamecode={code}&seasoncode=U2026"
+
+
+def header_reading(h):
+    """מה שה־API הישן אומר על המשחק מהצד שלנו, או None כשאין על מה לסמוך.
+
+    הצדדים נקבעים לפי ``CodeTeamA``/``CodeTeamB`` מול JER, ולא לפי ההנחה
+    ש־A הוא הבית. ``ScoreA``/``ScoreB`` הם מחרוזות. הרבעים נרשמים כפי
+    שהם, מצטברים, בלי לגזור מהם תוצאת רבע: איך הם נראים באמצע משחק עוד
+    לא נמדד.
+    """
+    if not isinstance(h, dict):
+        return None
+    a, b = h.get("CodeTeamA"), h.get("CodeTeamB")
+    if (a == "JER") == (b == "JER"):
+        return None
+    us, them = ("A", "B") if a == "JER" else ("B", "A")
+    try:
+        ours, theirs = int(h[f"Score{us}"]), int(h[f"Score{them}"])
+    except (KeyError, TypeError, ValueError):
+        return None
+    return {
+        "live": h.get("Live") is True,
+        "ours": ours,
+        "theirs": theirs,
+        "gameTime": h.get("GameTime"),
+        "remaining": h.get("RemainingPartialTime"),
+        "quarter": h.get("Quarter"),
+        "cumulative": {
+            "us": [h.get(f"ScoreQuarter{i}{us}") for i in range(1, 5)],
+            "them": [h.get(f"ScoreQuarter{i}{them}") for i in range(1, 5)],
+        },
+    }
+
+
+def shadow_header(g):
+    """רושם שורה אחת בלוג עם מה שה־API הישן אומר. לא כותב ולא נופל."""
+    code = g.get("gameCode") or g.get("code")
+    if not code:
+        log("header-shadow: אין gameCode בפריט של v2")
+        return None
+    try:
+        r = requests.get(HEADER_URL.format(code=code), headers=UA, timeout=15)
+        r.raise_for_status()
+        reading = header_reading(r.json())
+    except Exception as e:
+        log(f"header-shadow: נפל ({type(e).__name__})")
+        return None
+    if not reading:
+        log("header-shadow: התשובה לא נקראת מהצד שלנו")
+        return None
+    log(f"header-shadow: Live={reading['live']} אנחנו {reading['ours']} "
+        f"הם {reading['theirs']} GameTime={reading['gameTime']!r} "
+        f"Rem={reading['remaining']!r} Quarter={reading['quarter']!r} "
+        f"cum={reading['cumulative']}")
+    return reading
+
+
 def eurocup_snapshot(game):
     """Score and quarters for a EuroCup game, or None if unavailable."""
     try:
@@ -195,6 +259,9 @@ def eurocup_snapshot(game):
         return None
 
     g, local, road = best
+    # לפני כל החלטה, כדי שגם הדגימות שלפני הקפיצה ובזמן שהפיד שותק ייכנסו
+    # ללוג. התוצאה לא משמשת לכלום עדיין (ראו HEADER_URL).
+    shadow_header(g)
     we_home = (local.get("club") or {}).get("code") == "JER"
     def parts(side):
         p = side.get("partials") or {}
